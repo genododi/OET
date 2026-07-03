@@ -1,0 +1,21 @@
+{
+  "name": "OET Doctors Hub (sample)",
+  "type": "private_supergroup",
+  "id": 123456789,
+  "messages": [
+    {
+      "id": 1001,
+      "type": "message",
+      "date": "2024-06-15T09:30:00",
+      "from": "Dr Ashgan",
+      "text": "Writing tip for medicine OET: keep referral letters concise — one clear purpose per paragraph. Avoid judgmental language when describing patient behaviour."
+    },
+    {
+      "id": 1002,
+      "type": "message",
+      "date": "2024-06-16T14:00:00",
+      "from": "Another Member",
+      "text": "Thanks for sharing!"
+    }
+  ]
+}
