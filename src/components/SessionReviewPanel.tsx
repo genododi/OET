@@ -5,6 +5,7 @@ import { getReadinessLevel, readinessLabel } from '../lib/oetScoring';
 import type { SpeakingEvaluationResult } from '../lib/speakingEvaluation';
 import { speakingPassClass } from '../lib/speakingEvaluation';
 import { SubtestBadge } from './SubtestBadge';
+import { AiFeedbackPanel } from './AiFeedbackPanel';
 
 interface TaskReviewPanelProps {
   task: SessionTask;
@@ -145,6 +146,7 @@ export function TaskReviewPanel({
             </ul>
           )}
         </details>
+        <AiFeedbackPanel task={task} mode="writing" draft={userDraft} />
       </section>
     );
   }
@@ -195,6 +197,7 @@ export function TaskReviewPanel({
             ))}
           </ul>
         </details>
+        <AiFeedbackPanel task={task} mode="speaking" transcript={speakingEval.transcript} />
       </section>
     );
   }

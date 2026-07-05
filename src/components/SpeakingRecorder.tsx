@@ -78,7 +78,7 @@ export function SpeakingRecorder({ taskId, criteria, onResult, showDetailedRevie
 
   const runEvaluation = useCallback(
     (text: string, duration: number, usedFallback: boolean) => {
-      const result = evaluateSpeakingResponse(text, duration, criteria, usedFallback);
+      const result = { ...evaluateSpeakingResponse(text, duration, criteria, usedFallback), transcript: text };
       setEvalResult(result);
       onResult?.(result);
     },

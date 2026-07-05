@@ -21,6 +21,8 @@ export interface SpeakingEvaluationResult {
   practicePass: boolean;
   examReady: boolean;
   perfectAnswerTips: string[];
+  /** Raw transcript text, attached by the caller for optional AI-assisted review. */
+  transcript?: string;
 }
 
 export type OetSpeakingEvaluation = SpeakingEvaluationResult;

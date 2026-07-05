@@ -2,7 +2,9 @@ import type { Difficulty, MockExam, OetSubtest, PracticeModule } from '../types'
 
 export const PREFERRED_PROFESSION_KEY = 'preferredProfession';
 export const DEFAULT_PROFESSION = 'Medicine';
-export const TARGET_MEDICINE_ADVANCED_PER_SUBTEST = 1000;
+// NOTE: see comment in data/mockExams.ts — reduced from 1000 (which multiplies across 4
+// subtests internally, i.e. was contributing thousands of near-duplicate-content entries).
+export const TARGET_MEDICINE_ADVANCED_PER_SUBTEST = 8;
 
 /** Set Medicine on first visit; return stored or default value. */
 export function initPreferredProfession(): string {

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { mockExams } from '../data/mockExams';
 import { practiceModules } from '../data/practice';
 import { examExperiences } from '../data/experiences';
@@ -8,6 +9,10 @@ import { pearlsPitfalls } from '../data/pearlsPitfalls';
 import { usmleQBanks } from '../data/usmleCourses';
 import { useProgress } from '../hooks/useProgress';
 import { matchesProfessionFilter } from '../lib/preferredProfession';
+import { buildSmartSession } from '../lib/sessionBuilder';
+import { SessionRunner } from '../components/SessionRunner';
+import { ReadinessDashboard } from '../components/ReadinessDashboard';
+import type { SessionConfig } from '../types/session';
 import type { NavSection, OetSubtest } from '../types';
 
 interface Props {
@@ -24,6 +29,15 @@ const subtestNav: { name: string; subtest: OetSubtest; time: string; icon: strin
 
 export function HomePage({ onNavigate, preferredProfession = 'Medicine' }: Props) {
   const { completed, completedCount } = useProgress();
+  const [smartConfig, setSmartConfig] = useState<SessionConfig | null>(null);
+
+  const startSmart = (subtests?: OetSubtest[]) => {
+    setSmartConfig(buildSmartSession({ subtests: subtests ?? [], completed }));
+  };
+
+  if (smartConfig) {
+    return <SessionRunner config={smartConfig} onExit={() => setSmartConfig(null)} />;
+  }
 
   const medicineMocks = mockExams.filter((e) =>
     matchesProfessionFilter(e.profession, preferredProfession),
@@ -58,6 +72,8 @@ export function HomePage({ onNavigate, preferredProfession = 'Medicine' }: Props
         </section>
       )}
 
+      <ReadinessDashboard completed={completed} onStartSmart={startSmart} />
+
       {completedCount > 0 && (
         <section className="card recent-progress">
           <h3>Recent activity</h3>
@@ -87,6 +103,9 @@ export function HomePage({ onNavigate, preferredProfession = 'Medicine' }: Props
           <div className="hero-actions">
             <button type="button" className="btn btn-primary" onClick={() => onNavigate('mock')}>
               Start a medicine mock
+            </button>
+            <button type="button" className="btn btn-secondary" onClick={() => startSmart()}>
+              🎯 Smart Session (adaptive)
             </button>
             <button type="button" className="btn btn-secondary" onClick={() => onNavigate('guide')}>
               Medicine study guide

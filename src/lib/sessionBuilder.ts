@@ -1,6 +1,8 @@
 import type { Difficulty, MockExam, OetSubtest, PracticeModule } from '../types';
 import type { SessionConfig, SessionTask } from '../types/session';
+import type { CompletedSession } from '../types/session';
 import { pickTasks, bankBySubtest } from '../data/sessionTaskBank';
+import { buildTaskStats, weightedPick, type TaskStat } from './taskHistory';
 
 /** Minimum content tasks (excluding intro/break) for every session. */
 export const MIN_CONTENT_TASKS = 10;
@@ -134,6 +136,66 @@ export function buildMockSession(exam: MockExam): SessionConfig {
     subtitle: exam.profession,
     durationMinutes: exam.durationMinutes,
     subtests: exam.subtests,
+    tasks,
+  };
+}
+
+export interface SmartSessionOptions {
+  subtests: OetSubtest[];
+  completed: CompletedSession[];
+  /** Total content tasks across all chosen subtests. Default 16 (≈4 per subtest). */
+  totalTasks?: number;
+}
+
+/**
+ * Builds a session drawn from the full content bank but weighted toward tasks the
+ * user hasn't seen yet or has scored poorly/staled on — a lightweight spaced-repetition
+ * pass over the whole bank rather than a fixed named exam.
+ */
+export function buildSmartSession({ subtests, completed, totalTasks = 16 }: SmartSessionOptions): SessionConfig {
+  const stats: Map<string, TaskStat> = buildTaskStats(completed);
+  const activeSubtests = subtests.length > 0 ? subtests : (['listening', 'reading', 'writing', 'speaking'] as OetSubtest[]);
+  const counts = distributeTaskCounts(activeSubtests, totalTasks);
+  const runId = `smart-${Date.now().toString(36)}`;
+
+  const tasks: SessionTask[] = [
+    {
+      id: `${runId}-intro`,
+      subtest: 'intro',
+      title: 'Smart Session',
+      instructions:
+        'Built from your history: unseen and previously-weak items are prioritised, mastered items appear less often. Mixed across the sub-tests you selected.',
+      checklist: [
+        `Sub-tests: ${activeSubtests.join(', ')}`,
+        `${totalTasks} task(s), adaptive selection`,
+      ],
+    },
+  ];
+
+  activeSubtests.forEach((subtest, index) => {
+    if (index > 0) {
+      tasks.push({
+        id: `${runId}-break-${index}`,
+        subtest: 'break',
+        title: 'Short break',
+        instructions: 'Take 2 minutes. Hydrate before the next sub-test.',
+      });
+    }
+    const bank = bankBySubtest[subtest];
+    const requested = Math.min(counts[index]!, bank.length);
+    const picked = weightedPick(bank, requested, stats);
+    picked.forEach((task) => {
+      tasks.push({ ...task, id: `${runId}-${task.id}` });
+    });
+  });
+
+  return {
+    id: runId,
+    kind: 'practice',
+    title: 'Smart Session',
+    subtitle: 'Adaptive — built from your progress',
+    durationMinutes: Math.max(20, totalTasks * 3),
+    subtests: activeSubtests,
     tasks,
   };
 }

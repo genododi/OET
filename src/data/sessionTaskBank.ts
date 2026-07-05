@@ -845,6 +845,36 @@ export const readingTasks: SessionTask[] = [
     { label: 'Eliminate the need for ethics approval', correct: false },
     { label: 'Guarantee all patients improve', correct: false },
   ]),
+  readingMcq('read-21', 'Part B — Antimicrobial stewardship memo', 'passage-antibiotic-stewardship-memo', 'Before prescribing a restricted antibiotic, a clinician must…', [
+    { label: 'Get sign-off from the on-call microbiology registrar', correct: true },
+    { label: 'Wait for pharmacy to dispense a narrow-spectrum agent first', correct: false },
+    { label: 'Complete an online training module', correct: false },
+  ]),
+  readingMcq('read-22', 'Part B — Antimicrobial stewardship memo', 'passage-antibiotic-stewardship-memo', 'For life-threatening sepsis, empirical restricted therapy…', [
+    { label: 'May start immediately but must be reviewed within 24 hours', correct: true },
+    { label: 'Is never permitted without prior approval', correct: false },
+    { label: 'Requires two registrars to co-sign', correct: false },
+  ]),
+  readingMcq('read-23', 'Part B — Telehealth consent notice', 'passage-telehealth-consent-notice', 'Telehealth consultations are NOT appropriate for…', [
+    { label: 'New presentations of chest pain or breathing difficulty', correct: true },
+    { label: 'Stable chronic disease review appointments', correct: false },
+    { label: 'Discussing results with a patient', correct: false },
+  ]),
+  readingMcq('read-24', 'Part B — Telehealth consent notice', 'passage-telehealth-consent-notice', 'Before clinical discussion begins, clinicians must confirm identity using…', [
+    { label: 'Full name and date of birth', correct: true },
+    { label: 'Photo identification only', correct: false },
+    { label: 'A signed consent form emailed in advance', correct: false },
+  ]),
+  readingMcq('read-25', 'Part C — Sepsis alert tool abstract', 'passage-sepsis-recognition-abstract', 'After implementation, time to first antibiotic dose…', [
+    { label: 'Fell from 118 to 61 minutes', correct: true },
+    { label: 'Stayed the same but mortality improved', correct: false },
+    { label: 'Increased slightly due to alert fatigue', correct: false },
+  ]),
+  readingMcq('read-26', 'Part C — Sepsis alert tool abstract', 'passage-sepsis-recognition-abstract', 'The authors recommend managing alert fatigue by…', [
+    { label: 'Reviewing alert thresholds regularly rather than once', correct: true },
+    { label: 'Removing nursing staff from the escalation pathway', correct: false },
+    { label: 'Disabling alerts during the first two weeks', correct: false },
+  ]),
 ];
 
 export const writingTasks: SessionTask[] = [
@@ -931,6 +961,76 @@ export const writingTasks: SessionTask[] = [
     'Pt: Young adult anxiety/depression\nRisk plan in place\nFollow-up community mental health\nMeds: SSRI started',
     'Dear Community Mental Health Team,\n\nI am discharging Ms Sarah Nguyen into your care following inpatient stabilisation of acute anxiety and depressive symptoms...',
     'Discharge',
+  ),
+  writing(
+    'write-13',
+    'Urgent referral — Suspected malignancy (2-week wait)',
+    'Pt: Mr David Foster, 58y\nPersistent rectal bleeding 6wk, weight loss 5kg\nFHx bowel cancer (father)\nRefer colorectal — 2-week-wait pathway',
+    'Dear Colorectal Surgeon,\n\nI am writing to refer Mr David Foster, aged 58, under the two-week-wait pathway for suspected colorectal malignancy...',
+    'Urgent referral',
+  ),
+  writing(
+    'write-14',
+    'Discharge — Post-MI cardiac rehabilitation',
+    'Pt: Mr Andreas Papadopoulos, 61y\nAdmitted STEMI, PCI to LAD\nStarted dual antiplatelet, statin, bisoprolol\nRefer cardiac rehab programme',
+    'Dear Cardiac Rehabilitation Coordinator,\n\nMr Andreas Papadopoulos was admitted with an acute ST-elevation myocardial infarction, treated with primary percutaneous coronary intervention, and is now ready for discharge...',
+    'Discharge',
+  ),
+  writing(
+    'write-15',
+    'Transfer — Renal dialysis coordination',
+    'Pt: Mrs Fatima Al-Sayed, 70y\nESRD, haemodialysis 3x/week\nRelocating to daughter in new city\nTransfer dialysis unit care',
+    'Dear Renal Unit Consultant,\n\nI am writing to arrange transfer of ongoing haemodialysis care for Mrs Fatima Al-Sayed, aged 70, who is relocating to be closer to family...',
+    'Transfer',
+  ),
+  writing(
+    'write-16',
+    'Urgent referral — Suspected sepsis, GP to ED',
+    'Pt: Mr Tomasz Nowak, 74y\nFever 39.2, confusion, hypotensive 88/54\nUTI symptoms 2 days\nUrgent ED referral, query sepsis',
+    'Dear Emergency Department Team,\n\nI am writing to refer Mr Tomasz Nowak, aged 74, for urgent assessment of suspected sepsis secondary to a probable urinary tract infection...',
+    'Urgent referral',
+  ),
+  writing(
+    'write-17',
+    'Advice — Travel vaccination and malaria prophylaxis',
+    'Pt: Ms Beatrice Adeyemi, 34y\nTravelling to rural Uganda 4 weeks\nNo prior travel vaccines\nAdvise yellow fever, typhoid, malaria prophylaxis',
+    'Dear Ms Adeyemi,\n\nThank you for attending your travel health consultation. This letter summarises the vaccinations and malaria prevention we discussed ahead of your trip to Uganda...',
+    'Advice',
+  ),
+  writing(
+    'write-18',
+    'Discharge — Post-operative wound infection',
+    'Pt: Mrs Carla Espinoza, 55y\nDay 6 post-cholecystectomy, wound cellulitis\nStarted oral flucloxacillin, daily dressing\nDischarge to community nurse for wound review',
+    'Dear Community Nurse,\n\nMrs Carla Espinoza was admitted six days ago for laparoscopic cholecystectomy and developed a superficial wound infection, now improving on oral antibiotics...',
+    'Discharge',
+  ),
+  writing(
+    'write-19',
+    'Referral — Postnatal depression to psychiatry',
+    'Pt: Ms Olivia Bennett, 29y\n6wk postpartum, low mood, poor bonding, no self-harm\nEPDS score 19\nRefer perinatal mental health team',
+    'Dear Perinatal Mental Health Team,\n\nI am writing to refer Ms Olivia Bennett, aged 29, who is six weeks postpartum and presenting with symptoms consistent with postnatal depression...',
+    'Referral',
+  ),
+  writing(
+    'write-20',
+    'Referral — Palliative/hospice care',
+    'Pt: Mr Harold Jennings, 79y\nMetastatic pancreatic cancer, no further active treatment\nPain managed on opioid titration\nRefer hospice for end-of-life care coordination',
+    'Dear Hospice Medical Director,\n\nI am writing to refer Mr Harold Jennings, aged 79, who has metastatic pancreatic cancer and has elected to focus on comfort-oriented, end-of-life care...',
+    'Referral',
+  ),
+  writing(
+    'write-21',
+    'Referral — Paediatric asthma exacerbation',
+    'Pt: Master Liam Carter, 8y\nThird ED presentation this year, poor inhaler technique\nOn salbutamol + low-dose ICS\nRefer paediatric respiratory specialist',
+    'Dear Paediatric Respiratory Specialist,\n\nI am writing to refer Liam Carter, aged 8, who has had recurrent asthma exacerbations despite current inhaled therapy...',
+    'Referral',
+  ),
+  writing(
+    'write-22',
+    'Advice — Medication non-adherence, elderly polypharmacy',
+    'Pt: Mrs Doris Whitfield, 81y\nOn 9 medications, admits skipping doses\nConfused by multiple dosing times\nAdvise GP of need for medication review',
+    'Dear Dr Coleman,\n\nI am writing to advise you of ongoing medication non-adherence in Mrs Doris Whitfield, aged 81, who is currently prescribed nine regular medications...',
+    'Advice / GP notification',
   ),
 ];
 
@@ -1202,6 +1302,96 @@ export const speakingTasks: SessionTask[] = [
         'Grab rails reduce your risk of slipping when getting on and off the toilet.',
         'I will refer you to community services for installation assessment.',
         'Can you show me how you would stand up using the rail?',
+      ],
+    },
+  ),
+  speaking(
+    'speak-19',
+    'Informed consent for biopsy',
+    'You are a doctor. Patient needs consent for a skin lesion biopsy and is nervous about results.',
+    ['Explain the procedure in plain language', 'Discuss risks and what results mean', 'Confirm voluntary consent'],
+    {
+      expectedKeywords: ['biopsy', 'sample', 'local anaesthetic', 'results', 'risk', 'consent', 'questions'],
+      checklist: ['Explain the procedure in plain language', 'Discuss risks and what results mean', 'Confirm voluntary consent'],
+      samplePhrases: [
+        'We take a small sample of the skin under local anaesthetic to examine it closely.',
+        'Most results are reassuring, but I\'ll explain what happens either way once we know.',
+        'Do you have any questions before you sign the consent form?',
+      ],
+    },
+  ),
+  speaking(
+    'speak-20',
+    'Explaining a new type 2 diabetes diagnosis',
+    'You are a doctor. Patient just diagnosed with type 2 diabetes, worried about insulin injections.',
+    ['Explain diagnosis without alarming', 'Clarify treatment usually starts with tablets/lifestyle', 'Check understanding'],
+    {
+      expectedKeywords: ['diabetes', 'blood sugar', 'tablets', 'lifestyle', 'insulin', 'diet', 'monitor'],
+      checklist: ['Explain diagnosis without alarming', 'Clarify treatment usually starts with tablets/lifestyle', 'Check understanding'],
+      samplePhrases: [
+        'Your blood sugar levels are higher than they should be — this is type 2 diabetes.',
+        'Most people start with lifestyle changes and tablets; insulin isn\'t usually the first step.',
+        'What questions do you have about what this means day to day?',
+      ],
+    },
+  ),
+  speaking(
+    'speak-21',
+    'Discussing anticoagulation risk (starting a DOAC)',
+    'You are a doctor. Patient with new atrial fibrillation is anxious about bleeding risk on anticoagulants.',
+    ['Explain stroke vs bleeding risk balance', 'Practical safety advice', 'Check understanding'],
+    {
+      expectedKeywords: ['stroke', 'bleeding', 'anticoagulant', 'risk', 'bruising', 'dentist', 'balance'],
+      checklist: ['Explain stroke vs bleeding risk balance', 'Practical safety advice', 'Check understanding'],
+      samplePhrases: [
+        'This medication lowers your stroke risk, but it does raise the chance of bruising or bleeding.',
+        'Mention it before any dental work or surgery, and seek help for unusual bleeding.',
+        'Can you tell me what you\'d do if you noticed blood in your stool?',
+      ],
+    },
+  ),
+  speaking(
+    'speak-22',
+    'Sharing an abnormal biopsy result',
+    'You are a doctor. Patient\'s biopsy shows early-stage cancer; they came in alone.',
+    ['Give a warning shot before the result', 'Deliver news clearly and compassionately', 'Outline immediate next steps'],
+    {
+      expectedKeywords: ['sorry', 'cancer', 'understand', 'specialist', 'treatment', 'support', 'time'],
+      checklist: ['Give a warning shot before the result', 'Deliver news clearly and compassionately', 'Outline immediate next steps'],
+      samplePhrases: [
+        'I\'m afraid the biopsy result is more serious than we were hoping for.',
+        'It shows an early-stage cancer, and I know that\'s a lot to take in right now.',
+        'We\'ll arrange a specialist appointment quickly and go through every option together.',
+      ],
+    },
+  ),
+  speaking(
+    'speak-23',
+    'Medication non-adherence conversation',
+    'You are a doctor. Patient with hypertension admits skipping tablets due to side effects.',
+    ['Non-judgmental exploration of reasons', 'Problem-solve alternatives', 'Agree a realistic plan'],
+    {
+      expectedKeywords: ['understand', 'side effect', 'alternative', 'dose', 'together', 'plan', 'follow-up'],
+      checklist: ['Non-judgmental exploration of reasons', 'Problem-solve alternatives', 'Agree a realistic plan'],
+      samplePhrases: [
+        'Thank you for telling me — it\'s really helpful to know why the tablets weren\'t working for you.',
+        'There are other options with fewer side effects that we could try instead.',
+        'Shall we agree on a plan and check in again in two weeks?',
+      ],
+    },
+  ),
+  speaking(
+    'speak-24',
+    'Discussing goals of care with family',
+    'You are a doctor. Elderly patient with advanced dementia; family asks about escalating treatment.',
+    ['Explore family understanding and wishes', 'Explain benefits/burdens of escalation honestly', 'Reach a shared, compassionate plan'],
+    {
+      expectedKeywords: ['understand', 'comfort', 'quality of life', 'wishes', 'together', 'burden', 'support'],
+      checklist: ['Explore family understanding and wishes', 'Explain benefits/burdens of escalation honestly', 'Reach a shared, compassionate plan'],
+      samplePhrases: [
+        'Can you tell me what your mother would have wanted in a situation like this?',
+        'Further treatment may cause more discomfort without changing the overall outcome.',
+        'Let\'s agree together on a plan that focuses on her comfort and dignity.',
       ],
     },
   ),

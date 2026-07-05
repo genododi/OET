@@ -7,9 +7,15 @@ import {
   generateMockExams,
 } from './generators/mockExamGenerator';
 
-const TARGET_MOCK_COUNT = 1000;
-export const TARGET_MEDICINE_MOCK_COUNT = 1000;
-export const TARGET_ADVANCED_MOCK_COUNT = 1000;
+// NOTE: These were previously 1000 each (plus a further 1000-per-subtest multiplier via
+// TARGET_MEDICINE_ADVANCED_PER_SUBTEST in preferredProfession.ts), producing thousands of "mock
+// exam" entries. Every one of those drew its actual questions from the same finite task bank in
+// sessionTaskBank.ts — only the titles/descriptions were unique, not the underlying content.
+// Reduced to honest numbers that still give real browsing variety without implying a depth of
+// content that doesn't exist. Grow these back up only in step with real additions to the task bank.
+const TARGET_MOCK_COUNT = 24;
+export const TARGET_MEDICINE_MOCK_COUNT = 24;
+export const TARGET_ADVANCED_MOCK_COUNT = 14;
 export { TARGET_MEDICINE_ADVANCED_PER_SUBTEST } from '../lib/preferredProfession';
 
 const curatedMockExams: MockExam[] = [

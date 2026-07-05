@@ -9,8 +9,9 @@ import { DifficultyBadge } from '../components/DifficultyBadge';
 import { ListPagination } from '../components/ListPagination';
 import { SubtestBadge } from '../components/SubtestBadge';
 import { SessionRunner } from '../components/SessionRunner';
-import { buildPracticeSession } from '../lib/sessionBuilder';
+import { buildPracticeSession, buildSmartSession } from '../lib/sessionBuilder';
 import { usePagination } from '../hooks/usePagination';
+import type { SessionConfig } from '../types/session';
 import {
   countMedicineAdvancedPracticeBySubtest,
   countMedicineCatalog,
@@ -40,7 +41,8 @@ export function PracticePage({
   const [difficulty, setDifficulty] = useState<Difficulty | 'all'>('all');
   const [query, setQuery] = useState('');
   const [activeModule, setActiveModule] = useState<PracticeModule | null>(null);
-  const { isComplete } = useProgress();
+  const [smartConfig, setSmartConfig] = useState<SessionConfig | null>(null);
+  const { isComplete, completed } = useProgress();
 
   const professions = useMemo(
     () =>
@@ -122,8 +124,36 @@ export function PracticePage({
     );
   }
 
+  if (smartConfig) {
+    return <SessionRunner config={smartConfig} onExit={() => setSmartConfig(null)} />;
+  }
+
   return (
     <div className="page-section">
+      <article className="card smart-practice-card">
+        <div>
+          <h3>🎯 Smart Practice</h3>
+          <p className="meta">
+            Auto-built from your history across all four sub-tests — prioritises items you haven't
+            seen yet or scored poorly on, instead of repeating the same set.
+          </p>
+        </div>
+        <button
+          type="button"
+          className="btn btn-primary btn-sm"
+          onClick={() =>
+            setSmartConfig(
+              buildSmartSession({
+                subtests: filter === 'all' ? [] : [filter],
+                completed,
+              }),
+            )
+          }
+        >
+          Start Smart Practice{filter !== 'all' ? ` — ${filter}` : ''}
+        </button>
+      </article>
+
       <p className="page-intro">
         {profession === 'Medicine' ? (
           <>
