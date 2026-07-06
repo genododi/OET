@@ -742,6 +742,246 @@ export const listeningTasks: SessionTask[] = [
     ]),
     difficulty: 'advanced',
   },
+  {
+    ...mcq('lis-71', 'listening', 'Part A — TB specimen handling', 'Complete: Sputum sample must be sent for ___ staining.', [
+      { label: 'acid-fast', correct: true },
+      { label: 'acid fast', correct: false },
+      { label: 'acid-farce', correct: false },
+    ]),
+    difficulty: 'advanced',
+  },
+  {
+    ...mcq('lis-72', 'listening', 'Part B — MRI contrast risk', 'Complete: eGFR is borderline for ___ administration.', [
+      { label: 'gadolinium', correct: true },
+      { label: 'gadolinuim', correct: false },
+      { label: 'iodinated', correct: false },
+    ]),
+    difficulty: 'advanced',
+  },
+  {
+    ...mcq('lis-73', 'listening', 'Part B — Infection control escalation', 'Complete: Patient needs ___ precautions after varicella exposure.', [
+      { label: 'airborne', correct: true },
+      { label: 'droplet', correct: false },
+      { label: 'airborn', correct: false },
+    ]),
+    difficulty: 'advanced',
+  },
+  {
+    ...mcq('lis-74', 'listening', 'Part C — Acute dyspnoea differential', 'Complete: Consultant suspects ___ embolism.', [
+      { label: 'pulmonary', correct: true },
+      { label: 'pulmanary', correct: false },
+      { label: 'coronary', correct: false },
+    ]),
+    difficulty: 'advanced',
+  },
+  {
+    ...mcq('lis-75', 'listening', 'Part A — ACS pathway timing', 'Complete: Repeat troponin at ___ hours.', [
+      { label: 'three', correct: true },
+      { label: 'tree', correct: false },
+      { label: 'thirteen', correct: false },
+    ]),
+    difficulty: 'advanced',
+  },
+  {
+    ...mcq('lis-76', 'listening', 'Part B — Contrast medication safety', 'Complete: Withhold ___ before contrast scan.', [
+      { label: 'metformin', correct: true },
+      { label: 'metoprolol', correct: false },
+      { label: 'metformine', correct: false },
+    ]),
+    difficulty: 'advanced',
+  },
+  {
+    ...mcq('lis-77', 'listening', 'Part A — Adrenal crisis', 'Complete: Start ___ for suspected adrenal crisis.', [
+      { label: 'hydrocortisone', correct: true },
+      { label: 'hydrochlorothiazide', correct: false },
+      { label: 'hydroxychloroquine', correct: false },
+    ]),
+    difficulty: 'advanced',
+  },
+  {
+    ...mcq('lis-78', 'listening', 'Part C — Audiology report', 'Complete: Audiology notes ___ hearing loss.', [
+      { label: 'sensorineural', correct: true },
+      { label: 'sensory-neural', correct: false },
+      { label: 'conductive', correct: false },
+    ]),
+    difficulty: 'advanced',
+  },
+  {
+    ...mcq('lis-79', 'listening', 'Part A — Haematology film', 'Complete: Blood film shows ___ cells.', [
+      { label: 'schistocytes', correct: true },
+      { label: 'schistocites', correct: false },
+      { label: 'spherocytes', correct: false },
+    ]),
+    difficulty: 'advanced',
+  },
+  {
+    ...mcq('lis-80', 'listening', 'Part B — Ascites procedure', 'Complete: Administer ___ before paracentesis.', [
+      { label: 'albumin', correct: true },
+      { label: 'albuterol', correct: false },
+      { label: 'albumen', correct: false },
+    ]),
+    difficulty: 'advanced',
+  },
+  {
+    ...mcq('lis-81', 'listening', 'Part B — Paediatric wound closure', 'Complete: Use ___ suture for facial laceration.', [
+      { label: 'absorbable', correct: true },
+      { label: 'non-absorbable', correct: false },
+      { label: 'absorble', correct: false },
+    ]),
+    difficulty: 'advanced',
+  },
+  {
+    ...mcq('lis-82', 'listening', 'Part C — Endocrine trial exclusion', 'Complete: Trial excluded patients with ___ insufficiency.', [
+      { label: 'adrenal', correct: true },
+      { label: 'renal', correct: false },
+      { label: 'adrenial', correct: false },
+    ]),
+    difficulty: 'advanced',
+  },
+  {
+    ...mcq('lis-83', 'listening', 'Part B — SSRI interaction', 'Complete: Monitor for ___ syndrome after SSRI change.', [
+      { label: 'serotonin', correct: true },
+      { label: 'sertraline', correct: false },
+      { label: 'serotinin', correct: false },
+    ]),
+    difficulty: 'advanced',
+  },
+  {
+    ...mcq('lis-84', 'listening', 'Part A — Needle-stick protocol', 'Complete: Patient needs ___ prophylaxis after needle-stick.', [
+      { label: 'post-exposure', correct: true },
+      { label: 'post exposure', correct: false },
+      { label: 'pre-exposure', correct: false },
+    ]),
+    difficulty: 'advanced',
+  },
+  {
+    ...mcq('lis-85', 'listening', 'Part A — Early pregnancy scan', 'Complete: Ultrasound confirms ___ pregnancy.', [
+      { label: 'ectopic', correct: true },
+      { label: 'atopic', correct: false },
+      { label: 'eutopic', correct: false },
+    ]),
+    difficulty: 'advanced',
+  },
+  {
+    ...mcq('lis-86', 'listening', 'Part B — Dysphagia assessment', 'Complete: Swallow assessment showed silent ___.', [
+      { label: 'aspiration', correct: true },
+      { label: 'respiration', correct: false },
+      { label: 'aspiratione', correct: false },
+    ]),
+    difficulty: 'advanced',
+  },
+  {
+    ...mcq('lis-87', 'listening', 'Part C — Ototoxicity review', 'Complete: Drug causing ototoxicity: ___.', [
+      { label: 'gentamicin', correct: true },
+      { label: 'gentamycin', correct: false },
+      { label: 'vancomycin', correct: false },
+    ]),
+    difficulty: 'advanced',
+  },
+  {
+    ...mcq('lis-88', 'listening', 'Part A — COPD oxygen prescription', 'Complete: Target oxygen saturation is ___ percent.', [
+      { label: '88-92', correct: true },
+      { label: '94-98', correct: false },
+      { label: '88 to 92', correct: false },
+    ]),
+    difficulty: 'advanced',
+  },
+  {
+    ...mcq('lis-89', 'listening', 'Part B — Surgical emergency', 'Complete: Treat suspected ___ fasciitis urgently.', [
+      { label: 'necrotising', correct: true },
+      { label: 'necrotizing', correct: false },
+      { label: 'necrotysing', correct: false },
+    ]),
+    difficulty: 'advanced',
+  },
+  {
+    ...mcq('lis-90', 'listening', 'Part C — Transplant pharmacology', 'Complete: Reduce tacrolimus because of ___.', [
+      { label: 'nephrotoxicity', correct: true },
+      { label: 'neurotoxicity', correct: false },
+      { label: 'nephrotoxisity', correct: false },
+    ]),
+    difficulty: 'advanced',
+  },
+  {
+    ...mcq('lis-91', 'listening', 'Part A — Pleural infection plan', 'Complete: Plan ___ drainage for empyema.', [
+      { label: 'intercostal', correct: true },
+      { label: 'intracostal', correct: false },
+      { label: 'intercoastal', correct: false },
+    ]),
+    difficulty: 'advanced',
+  },
+  {
+    ...mcq('lis-92', 'listening', 'Part C — Dizziness assessment', 'Complete: Symptoms suggest ___ vertigo.', [
+      { label: 'positional', correct: true },
+      { label: 'postural', correct: false },
+      { label: 'positionel', correct: false },
+    ]),
+    difficulty: 'advanced',
+  },
+  {
+    ...mcq('lis-93', 'listening', 'Part B — Thyroidectomy discharge', 'Complete: Start ___ replacement after thyroidectomy.', [
+      { label: 'levothyroxine', correct: true },
+      { label: 'liothyronine', correct: false },
+      { label: 'levothiroxine', correct: false },
+    ]),
+    difficulty: 'advanced',
+  },
+  {
+    ...mcq('lis-94', 'listening', 'Part C — Anaemia interpretation', 'Complete: Consultant mentions ___ anaemia.', [
+      { label: 'haemolytic', correct: true },
+      { label: 'hemolytic', correct: false },
+      { label: 'megaloblastic', correct: false },
+    ]),
+    difficulty: 'advanced',
+  },
+  {
+    ...mcq('lis-95', 'listening', 'Part A — Postmenopausal bleeding', 'Complete: Refer for ___ ultrasound.', [
+      { label: 'transvaginal', correct: true },
+      { label: 'trans-abdominal', correct: false },
+      { label: 'transvaginel', correct: false },
+    ]),
+    difficulty: 'advanced',
+  },
+  {
+    ...mcq('lis-96', 'listening', 'Part B — C. difficile isolation', 'Complete: Use ___ precautions for C. difficile.', [
+      { label: 'contact', correct: true },
+      { label: 'droplet', correct: false },
+      { label: 'kontact', correct: false },
+    ]),
+    difficulty: 'advanced',
+  },
+  {
+    ...mcq('lis-97', 'listening', 'Part A — Cancer genetics', 'Complete: Genetic test shows ___ mutation.', [
+      { label: 'BRCA1', correct: true },
+      { label: 'BRCA2', correct: false },
+      { label: 'BCRA1', correct: false },
+    ]),
+    difficulty: 'advanced',
+  },
+  {
+    ...mcq('lis-98', 'listening', 'Part B — Melanoma staging', 'Complete: Patient is awaiting ___ biopsy.', [
+      { label: 'sentinel node', correct: true },
+      { label: 'central node', correct: false },
+      { label: 'sentinal node', correct: false },
+    ]),
+    difficulty: 'advanced',
+  },
+  {
+    ...mcq('lis-99', 'listening', 'Part C — RCT methodology critique', 'Complete: Lecture criticizes lack of ___ concealment.', [
+      { label: 'allocation', correct: true },
+      { label: 'allocated', correct: false },
+      { label: 'blinding', correct: false },
+    ]),
+    difficulty: 'advanced',
+  },
+  {
+    ...mcq('lis-100', 'listening', 'Part A — Vestibular rehabilitation', 'Complete: Clinic advises ___ exercises for vestibular rehab.', [
+      { label: 'gaze-stabilisation', correct: true },
+      { label: 'gaze stabilization', correct: false },
+      { label: 'gate-stabilisation', correct: false },
+    ]),
+    difficulty: 'advanced',
+  },
 ];
 
 export const readingTasks: SessionTask[] = [
@@ -875,6 +1115,86 @@ export const readingTasks: SessionTask[] = [
     { label: 'Removing nursing staff from the escalation pathway', correct: false },
     { label: 'Disabling alerts during the first two weeks', correct: false },
   ]),
+  {
+    ...readingMcq('read-27', 'Part B — Contrast safety policy', 'passage-aki-contrast-policy', 'For suspected massive pulmonary embolism, the policy says contrast CT should…', [
+      { label: 'Proceed when senior risk-benefit documentation is made', correct: true },
+      { label: 'Be cancelled whenever creatinine is above range', correct: false },
+      { label: 'Wait until creatinine has been rechecked after 72 hours', correct: false },
+    ]),
+    difficulty: 'advanced',
+  },
+  {
+    ...readingMcq('read-28', 'Part B — Metformin and contrast', 'passage-aki-contrast-policy', 'Metformin should be withheld after contrast when…', [
+      { label: 'There is AKI, eGFR below 30, or intra-arterial contrast', correct: true },
+      { label: 'Any patient receives any iodinated contrast scan', correct: false },
+      { label: 'The scan is for suspected pulmonary embolism only', correct: false },
+    ]),
+    difficulty: 'advanced',
+  },
+  {
+    ...readingMcq('read-29', 'Part C — Fluctuating capacity', 'passage-capacity-fluctuation', 'The guidance warns clinicians not to…', [
+      { label: 'Treat one deferred decision as global incapacity', correct: true },
+      { label: 'Use interpreters or hearing aids during assessment', correct: false },
+      { label: 'Respect a capacitous refusal of treatment', correct: false },
+    ]),
+    difficulty: 'advanced',
+  },
+  {
+    ...readingMcq('read-30', 'Part C — Family role in consent', 'passage-capacity-fluctuation', 'According to the passage, family members…', [
+      { label: 'Inform best-interests decisions but do not automatically decide', correct: true },
+      { label: 'Can always override a confused patient immediately', correct: false },
+      { label: 'Must be excluded unless the patient has capacity', correct: false },
+    ]),
+    difficulty: 'advanced',
+  },
+  {
+    ...readingMcq('read-31', 'Part B — Necrotising infection escalation', 'passage-nec-fasc-triage', 'If necrotising infection is suspected, MRI should…', [
+      { label: 'Not delay surgical escalation and treatment', correct: true },
+      { label: 'Be completed before any antibiotics are given', correct: false },
+      { label: 'Replace surgical consultant review', correct: false },
+    ]),
+    difficulty: 'advanced',
+  },
+  {
+    ...readingMcq('read-32', 'Part C — LRINEC score interpretation', 'passage-nec-fasc-triage', 'The writer views laboratory scores as…', [
+      { label: 'Supportive but unsafe for ruling out disease alone', correct: true },
+      { label: 'More reliable than clinical red flags', correct: false },
+      { label: 'Useful only after blistering has developed', correct: false },
+    ]),
+    difficulty: 'advanced',
+  },
+  {
+    ...readingMcq('read-33', 'Part C — Non-inferiority result', 'passage-noninferiority-statins', 'Why was non-inferiority met in the statin trial?', [
+      { label: 'The upper confidence limit stayed below the prespecified margin', correct: true },
+      { label: 'The combination group proved lower mortality', correct: false },
+      { label: 'The trial was double-blind for symptoms and treatment', correct: false },
+    ]),
+    difficulty: 'advanced',
+  },
+  {
+    ...readingMcq('read-34', 'Part C — Trial limitation', 'passage-noninferiority-statins', 'The study cannot prove cardiovascular-event superiority because…', [
+      { label: 'It was powered for LDL change rather than infarction or mortality', correct: true },
+      { label: 'Allocation concealment was absent', correct: false },
+      { label: 'No laboratory staff were blinded', correct: false },
+    ]),
+    difficulty: 'advanced',
+  },
+  {
+    ...readingMcq('read-35', 'Part B — Pharmacovigilance signal', 'passage-pharmacovigilance-signal', 'The bulletin defines a safety signal as…', [
+      { label: 'A reason for further assessment, not proof of causation', correct: true },
+      { label: 'Definitive evidence that the medicine must be withdrawn', correct: false },
+      { label: 'A finding that only applies to patients with pancreatitis', correct: false },
+    ]),
+    difficulty: 'advanced',
+  },
+  {
+    ...readingMcq('read-36', 'Part B — GLP-1 illness advice', 'passage-pharmacovigilance-signal', 'During significant dehydration or acute illness, clinicians should consider…', [
+      { label: 'Temporarily withholding the GLP-1 medicine', correct: true },
+      { label: 'Continuing the previous dose automatically', correct: false },
+      { label: 'Stopping GLP-1 therapy permanently in every patient', correct: false },
+    ]),
+    difficulty: 'advanced',
+  },
 ];
 
 export const writingTasks: SessionTask[] = [
@@ -1032,6 +1352,106 @@ export const writingTasks: SessionTask[] = [
     'Dear Dr Coleman,\n\nI am writing to advise you of ongoing medication non-adherence in Mrs Doris Whitfield, aged 81, who is currently prescribed nine regular medications...',
     'Advice / GP notification',
   ),
+  {
+    ...writing(
+      'write-23',
+      'Urgent referral — Suspected necrotising fasciitis',
+      'Pt: Mr Hadi Mansour, 49y\nSevere calf pain out of proportion, rapidly spreading erythema\nTemp 39.4, HR 128, BP 92/58\nDiabetes, minor shin cut 2 days ago\nBlood cultures taken, IV piperacillin-tazobactam started\nUrgent surgical review required; do not delay for imaging',
+      'Dear Surgical Registrar,\n\nI am writing to refer Mr Hadi Mansour urgently with suspected necrotising fasciitis requiring immediate surgical assessment...',
+      'Emergency surgical referral',
+    ),
+    difficulty: 'advanced',
+  },
+  {
+    ...writing(
+      'write-24',
+      'Discharge — AKI after contrast CT',
+      'Pt: Mrs Judith Parker, 76y\nAdmitted: PE ruled out by CTPA\nDeveloped contrast-associated AKI, creatinine now improving\nMetformin withheld, restart after GP renal function check\nAvoid NSAIDs; repeat U&E in 48h\nDischarge to GP follow-up',
+      'Dear Dr Verma,\n\nMrs Judith Parker is being discharged following investigation for suspected pulmonary embolism complicated by acute kidney injury after contrast imaging...',
+      'Discharge to GP',
+    ),
+    difficulty: 'advanced',
+  },
+  {
+    ...writing(
+      'write-25',
+      'Referral — Postmenopausal bleeding pathway',
+      'Pt: Mrs Elena Rossi, 64y\n2 episodes postmenopausal bleeding, no HRT\nBMI 34, T2DM, nulliparous\nPelvic exam normal, Hb stable\nRequest urgent gynaecology assessment and transvaginal ultrasound',
+      'Dear Gynaecology Team,\n\nI am writing to refer Mrs Elena Rossi under the urgent postmenopausal bleeding pathway for further assessment...',
+      'Urgent gynaecology referral',
+    ),
+    difficulty: 'advanced',
+  },
+  {
+    ...writing(
+      'write-26',
+      'Transfer — Stroke dysphagia to rehab unit',
+      'Pt: Mr Samuel Grant, 69y\nLeft MCA stroke, improving right-sided weakness\nVideo swallow: silent aspiration thin fluids\nCurrent plan: pureed diet, thickened fluids, supervised meals\nTransfer to inpatient rehabilitation; speech pathology follow-up essential',
+      'Dear Rehabilitation Nurse Coordinator,\n\nI am writing to transfer Mr Samuel Grant to your rehabilitation unit following a left middle cerebral artery stroke complicated by dysphagia...',
+      'Transfer to rehabilitation',
+    ),
+    difficulty: 'advanced',
+  },
+  {
+    ...writing(
+      'write-27',
+      'Referral — BRCA1 counselling and cascade testing',
+      'Pt: Ms Amara Blake, 38y\nMother ovarian cancer age 47; sister breast cancer age 41\nGenetic result: pathogenic BRCA1 variant\nAnxious about prophylactic surgery and child testing\nRefer genetics clinic for counselling and family cascade testing',
+      'Dear Clinical Genetics Consultant,\n\nI am writing to refer Ms Amara Blake after identification of a pathogenic BRCA1 variant requiring specialist counselling...',
+      'Genetics referral',
+    ),
+    difficulty: 'advanced',
+  },
+  {
+    ...writing(
+      'write-28',
+      'GP update — Tacrolimus nephrotoxicity',
+      'Pt: Mr Victor Chen, 54y renal transplant recipient\nTacrolimus trough high, creatinine doubled\nDose reduced by transplant team; repeat level/U&E in 48h\nAvoid macrolides/NSAIDs; report reduced urine output urgently',
+      'Dear Dr Hassan,\n\nI am writing to update you regarding Mr Victor Chen, a renal transplant recipient whose tacrolimus dose has been reduced due to suspected nephrotoxicity...',
+      'Specialist update to GP',
+    ),
+    difficulty: 'advanced',
+  },
+  {
+    ...writing(
+      'write-29',
+      'Advice — GLP-1 adverse symptoms safety net',
+      'Pt: Mrs Priya Nair, 52y T2DM/obesity\nStarted semaglutide 6 weeks ago, dose increased last week\nPersistent vomiting, poor oral intake, mild dehydration\nMedication withheld; check ketones/renal function\nWrite patient advice letter with red flags and follow-up',
+      'Dear Mrs Nair,\n\nThank you for attending today regarding persistent vomiting after your recent semaglutide dose increase...',
+      'Patient advice letter',
+    ),
+    difficulty: 'advanced',
+  },
+  {
+    ...writing(
+      'write-30',
+      'Referral — Silent aspiration after pneumonia',
+      'Pt: Ms Nora Ellis, 82y\nRecurrent aspiration pneumonia, wet voice after fluids\nWeight loss 4kg, frail, lives alone\nRequest community speech pathology and dietitian review\nInterim: thickened fluids, supervised meals, medication crushing review',
+      'Dear Community Speech Pathology Team,\n\nI am referring Ms Nora Ellis for urgent swallowing assessment following recurrent aspiration pneumonia and suspected ongoing dysphagia...',
+      'Community allied-health referral',
+    ),
+    difficulty: 'advanced',
+  },
+  {
+    ...writing(
+      'write-31',
+      'Emergency referral — Ectopic pregnancy',
+      'Pt: Ms Chloe Martin, 31y\n6 weeks pregnant by dates, severe right iliac fossa pain\nPositive pregnancy test, shoulder-tip pain, BP 94/60\nUltrasound: right tubal ectopic with free pelvic fluid\nIV access secured; urgent gynaecology transfer',
+      'Dear Gynaecology Registrar,\n\nI am writing to refer Ms Chloe Martin urgently with a confirmed right tubal ectopic pregnancy and signs of haemodynamic compromise...',
+      'Emergency gynaecology referral',
+    ),
+    difficulty: 'advanced',
+  },
+  {
+    ...writing(
+      'write-32',
+      'Referral — Suspected giant cell arteritis',
+      'Pt: Mr Bernard Wu, 73y\nNew temporal headache, jaw claudication, blurred vision\nESR 88, tender temporal artery\nPrednisolone 60 mg started today\nUrgent ophthalmology/rheumatology review requested',
+      'Dear Ophthalmology Registrar,\n\nI am writing to refer Mr Bernard Wu urgently with suspected giant cell arteritis and visual symptoms requiring same-day specialist assessment...',
+      'Urgent specialist referral',
+    ),
+    difficulty: 'advanced',
+  },
 ];
 
 export const speakingTasks: SessionTask[] = [
@@ -1395,6 +1815,150 @@ export const speakingTasks: SessionTask[] = [
       ],
     },
   ),
+  {
+    ...speaking(
+      'speak-25',
+      'Possible pulmonary embolism — urgent transfer refusal',
+      'You are a GP. Patient with pleuritic chest pain refuses ambulance transfer because they need to collect a child from school.',
+      ['Acknowledge practical worry', 'Explain PE risk and urgency without panic', 'Negotiate safe transfer and support options'],
+      {
+        expectedKeywords: ['pulmonary embolism', 'chest pain', 'urgent', 'ambulance', 'risk', 'child', 'support'],
+        checklist: ['Acknowledge practical worry', 'Explain PE risk and urgency without panic', 'Negotiate safe transfer and support options'],
+        samplePhrases: [
+          'I can see you are worried about your child, and we need to solve that safely.',
+          'Your symptoms could indicate a clot in the lung, which can become dangerous quickly.',
+          'Let us call someone you trust for school pickup while I arrange urgent transfer.',
+        ],
+      },
+    ),
+    difficulty: 'advanced',
+  },
+  {
+    ...speaking(
+      'speak-26',
+      'Capacity assessment — confused refusal',
+      'You are a doctor. A delirious patient refuses antibiotics for sepsis and says staff are trying to poison them.',
+      ['Assess understanding gently', 'Explain why treatment is needed', 'Discuss best-interests action and reassurance'],
+      {
+        expectedKeywords: ['infection', 'sepsis', 'confused', 'capacity', 'antibiotics', 'best interests', 'safe'],
+        checklist: ['Assess understanding gently', 'Explain why treatment is needed', 'Discuss best-interests action and reassurance'],
+        samplePhrases: [
+          'I can hear that this feels frightening, and I want to check what you understand.',
+          'The infection is making you confused, and antibiotics are needed to keep you safe.',
+          'If you cannot weigh the information right now, we may treat in your best interests and keep explaining.',
+        ],
+      },
+    ),
+    difficulty: 'advanced',
+  },
+  {
+    ...speaking(
+      'speak-27',
+      'GLP-1 severe nausea safety-net',
+      'You are a pharmacist. Patient on semaglutide has persistent vomiting but wants to continue for weight loss.',
+      ['Validate motivation', 'Explain dehydration and red flags', 'Advise temporary withholding and medical review'],
+      {
+        expectedKeywords: ['semaglutide', 'vomiting', 'dehydration', 'withhold', 'review', 'abdominal pain', 'fluids'],
+        checklist: ['Validate motivation', 'Explain dehydration and red flags', 'Advise temporary withholding and medical review'],
+        samplePhrases: [
+          'I understand the weight loss feels important, but persistent vomiting is not a mild side effect.',
+          'You could become dehydrated or develop a more serious abdominal problem.',
+          'Please pause the medicine and arrange same-day review, especially if pain or ketones occur.',
+        ],
+      },
+    ),
+    difficulty: 'advanced',
+  },
+  {
+    ...speaking(
+      'speak-28',
+      'Breaking genetic-risk news',
+      'You are a doctor. Patient has a BRCA1 mutation and fears this means they definitely have cancer.',
+      ['Correct misunderstanding compassionately', 'Explain risk and surveillance options', 'Offer genetics counselling and family support'],
+      {
+        expectedKeywords: ['BRCA1', 'risk', 'cancer', 'screening', 'genetics', 'family', 'counselling'],
+        checklist: ['Correct misunderstanding compassionately', 'Explain risk and surveillance options', 'Offer genetics counselling and family support'],
+        samplePhrases: [
+          'This result does not mean you have cancer today; it means your lifetime risk is higher.',
+          'There are screening and risk-reducing options, and you do not need to decide today.',
+          'A genetics counsellor can help you and discuss what relatives may need to know.',
+        ],
+      },
+    ),
+    difficulty: 'advanced',
+  },
+  {
+    ...speaking(
+      'speak-29',
+      'Dysphagia diet conflict',
+      'You are a speech pathologist. Stroke patient is angry about thickened fluids and says they will drink normal water.',
+      ['Acknowledge frustration', 'Explain silent aspiration simply', 'Agree a realistic safe-swallow plan'],
+      {
+        expectedKeywords: ['thickened fluids', 'aspiration', 'stroke', 'pneumonia', 'safe', 'swallow', 'plan'],
+        checklist: ['Acknowledge frustration', 'Explain silent aspiration simply', 'Agree a realistic safe-swallow plan'],
+        samplePhrases: [
+          'I can understand why thickened drinks feel unpleasant and restrictive.',
+          'The test showed fluid can go toward your lungs without making you cough.',
+          'Let us choose options you can tolerate while we work on exercises to reassess your swallow.',
+        ],
+      },
+    ),
+    difficulty: 'advanced',
+  },
+  {
+    ...speaking(
+      'speak-30',
+      'Needle-stick exposure counselling',
+      'You are an occupational health nurse. Staff member is panicking after a needle-stick injury from an unknown source.',
+      ['Contain anxiety', 'Explain immediate tests and prophylaxis', 'Give follow-up and confidentiality reassurance'],
+      {
+        expectedKeywords: ['needle-stick', 'blood tests', 'post-exposure prophylaxis', 'HIV', 'hepatitis', 'follow-up', 'confidential'],
+        checklist: ['Contain anxiety', 'Explain immediate tests and prophylaxis', 'Give follow-up and confidentiality reassurance'],
+        samplePhrases: [
+          'This is frightening, but you did the right thing by reporting it immediately.',
+          'We will take baseline bloods and assess whether post-exposure prophylaxis is recommended.',
+          'Your results and follow-up will be handled confidentially.',
+        ],
+      },
+    ),
+    difficulty: 'advanced',
+  },
+  {
+    ...speaking(
+      'speak-31',
+      'Adrenal crisis sick-day rules',
+      'You are a nurse. Patient with Addison disease is unsure when to use emergency hydrocortisone.',
+      ['Explain sick-day dosing', 'Demonstrate emergency injection plan', 'Check teach-back and medical-alert use'],
+      {
+        expectedKeywords: ['Addison', 'hydrocortisone', 'vomiting', 'injection', 'ambulance', 'sick day', 'medical alert'],
+        checklist: ['Explain sick-day dosing', 'Demonstrate emergency injection plan', 'Check teach-back and medical-alert use'],
+        samplePhrases: [
+          'If you are vomiting and cannot keep tablets down, that is when the emergency injection matters.',
+          'Use the hydrocortisone injection, then call an ambulance rather than waiting to see.',
+          'Can you show me where you keep the kit and when you would use it?',
+        ],
+      },
+    ),
+    difficulty: 'advanced',
+  },
+  {
+    ...speaking(
+      'speak-32',
+      'Transplant drug interaction warning',
+      'You are a pharmacist. Renal transplant patient wants to take leftover clarithromycin for a cough.',
+      ['Explain interaction risk', 'Advise not to self-start antibiotics', 'Arrange safe clinical review'],
+      {
+        expectedKeywords: ['tacrolimus', 'clarithromycin', 'interaction', 'kidney', 'levels', 'review', 'antibiotic'],
+        checklist: ['Explain interaction risk', 'Advise not to self-start antibiotics', 'Arrange safe clinical review'],
+        samplePhrases: [
+          'Clarithromycin can raise tacrolimus levels and harm your kidney transplant.',
+          'Please do not start leftover antibiotics without the transplant team checking.',
+          'Let us arrange a review today so your cough is treated safely.',
+        ],
+      },
+    ),
+    difficulty: 'advanced',
+  },
 ];
 
 export const bankBySubtest: Record<OetSubtest, SessionTask[]> = {

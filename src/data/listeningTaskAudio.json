@@ -4,7 +4,7 @@
     "correctAnswer": "antibiotic",
     "script": "So, during the handover I noticed the six o'clock antibiotic dose for Mr Patel went in at nearly eight. That delay is a real concern. Let's document it properly and make sure the next dose is on time.",
     "evidenceTerms": [
-      "delayed",
+      "delay",
       "antibiotic"
     ],
     "voice": "Kate"
@@ -181,7 +181,7 @@
     "script": "The imaging request came through but it doesn't say whether contrast is needed. Can the requesting doctor clarify that before we proceed?",
     "evidenceTerms": [
       "contrast",
-      "required"
+      "needed"
     ],
     "voice": "Kate"
   },
@@ -249,7 +249,7 @@
     "correctAnswer": "non-cardiac",
     "script": "You know what? This chest pain isn't your typical angina. It's sharp and changes with position. That points me toward oesophageal spasm or costochondritis rather than the heart. We'll do a stress echo to be safe, but I think we're looking at something non-cardiac here.",
     "evidenceTerms": [
-      "atypical",
+      "typical angina",
       "costochondritis",
       "non-cardiac"
     ],
@@ -273,7 +273,7 @@
       "clarithromycin",
       "warfarin",
       "INR",
-      "CYP450"
+      "enzymes"
     ],
     "voice": "Kate"
   },
@@ -283,7 +283,7 @@
     "script": "The new protocol? It's evidence-based and I support the idea. But let's be real — the paperwork is heavy and in a busy ED that could slow things down instead of helping. So I'm cautiously supportive, but the implementation needs work.",
     "evidenceTerms": [
       "support",
-      "reservations",
+      "paperwork",
       "implementation"
     ],
     "voice": "Karen"
@@ -304,7 +304,7 @@
     "evidenceTerms": [
       "apixaban",
       "amiodarone",
-      "reconcile"
+      "transfer summary"
     ],
     "voice": "Tessa"
   },
@@ -313,9 +313,9 @@
     "correctAnswer": "30",
     "script": "Contrast-induced nephropathy isn't common, but the risk goes way up when the eGFR is below 30 and they're on metformin. In that scenario we stop metformin for two days and hydrate well before the scan.",
     "evidenceTerms": [
-      "eGFR below 30",
+      "eGFR is below 30",
       "metformin",
-      "hydration"
+      "hydrate"
     ],
     "voice": "Moira"
   },
@@ -345,7 +345,7 @@
     "correctAnswer": "atypical",
     "script": "The medical student picked up the classic heart failure signs — good start. But here's what they missed: this patient's symptoms came on over six months, not weeks. That slow, indolent course points to constrictive pericarditis, not systolic failure. So they're partially right, but the timing changes everything.",
     "evidenceTerms": [
-      "atypical",
+      "slow",
       "constrictive pericarditis",
       "indolent"
     ],
@@ -377,9 +377,9 @@
     "correctAnswer": "5",
     "script": "Use the NEWS2 chart. If the total is five or more — or any single parameter hits three — call the registrar straight away. Don't wait for the next set of observations.",
     "evidenceTerms": [
-      "5",
+      "five",
       "single parameter",
-      "3",
+      "three",
       "registrar"
     ],
     "voice": "Moira"
@@ -461,7 +461,7 @@
     "correctAnswer": "soft",
     "script": "Following the swallow assessment, she's at risk of aspiration with thin fluids. So I'm recommending a soft diet with Level 2 thickened fluids. We'll reassess in three days.",
     "evidenceTerms": [
-      "modified texture",
+      "swallow assessment",
       "soft diet",
       "Level 2"
     ],
@@ -496,7 +496,7 @@
     "evidenceTerms": [
       "sertraline",
       "twenty-five",
-      "titration"
+      "low and slow"
     ],
     "voice": "Tessa"
   },
@@ -526,7 +526,7 @@
     "script": "We've secured peripheral IV access in the left forearm. The line's running well and we've started normal saline at a hundred mils per hour.",
     "evidenceTerms": [
       "peripheral",
-      "intravenous"
+      "IV access"
     ],
     "voice": "Daniel"
   },
@@ -654,7 +654,7 @@
     "correctAnswer": "500",
     "script": "We gave a five hundred mil fluid challenge of compound sodium lactate over fifteen minutes. The blood pressure came up from ninety systolic to a hundred and ten.",
     "evidenceTerms": [
-      "500",
+      "five hundred",
       "compound sodium lactate"
     ],
     "voice": "Moira"
@@ -724,5 +724,333 @@
       "ventilatory support"
     ],
     "voice": "Moira"
+  },
+  "lis-71": {
+    "question": "Complete: Sputum sample must be sent for ___ staining.",
+    "correctAnswer": "acid-fast",
+    "script": "Because the cough has lasted six weeks with night sweats and weight loss, send an early morning sputum sample for acid-fast bacilli staining and mycobacterial culture.",
+    "evidenceTerms": [
+      "acid-fast",
+      "sputum",
+      "mycobacterial"
+    ],
+    "voice": "Daniel"
+  },
+  "lis-72": {
+    "question": "Complete: eGFR is borderline for ___ administration.",
+    "correctAnswer": "gadolinium",
+    "script": "Her eGFR is twenty-nine, so gadolinium administration is borderline and must be discussed with radiology before the MRI slot is confirmed.",
+    "evidenceTerms": [
+      "gadolinium",
+      "eGFR",
+      "radiology"
+    ],
+    "voice": "Karen"
+  },
+  "lis-73": {
+    "question": "Complete: Patient needs ___ precautions after varicella exposure.",
+    "correctAnswer": "airborne",
+    "script": "The patient is immunosuppressed and has had significant varicella exposure. Move him to a negative-pressure room and use airborne precautions until infection control reviews him.",
+    "evidenceTerms": [
+      "airborne precautions",
+      "varicella",
+      "negative-pressure"
+    ],
+    "voice": "Kate"
+  },
+  "lis-74": {
+    "question": "Complete: Consultant suspects ___ embolism.",
+    "correctAnswer": "pulmonary",
+    "script": "Given the pleuritic chest pain, tachycardia, and recent long-haul flight, the consultant suspects pulmonary embolism and wants a D-dimer followed by CTPA if indicated.",
+    "evidenceTerms": [
+      "pulmonary embolism",
+      "pleuritic",
+      "CTPA"
+    ],
+    "voice": "Samantha"
+  },
+  "lis-75": {
+    "question": "Complete: Repeat troponin at ___ hours.",
+    "correctAnswer": "three",
+    "script": "The initial troponin is negative but the pain started only ninety minutes ago. Repeat troponin at three hours before deciding whether he can go home.",
+    "evidenceTerms": [
+      "three hours",
+      "troponin"
+    ],
+    "voice": "Moira"
+  },
+  "lis-76": {
+    "question": "Complete: Withhold ___ before contrast scan.",
+    "correctAnswer": "metformin",
+    "script": "Because she is dehydrated and needs contrast imaging, withhold metformin on the day of the scan and restart only after renal function is rechecked.",
+    "evidenceTerms": [
+      "metformin",
+      "contrast",
+      "renal function"
+    ],
+    "voice": "Tessa"
+  },
+  "lis-77": {
+    "question": "Complete: Start ___ for suspected adrenal crisis.",
+    "correctAnswer": "hydrocortisone",
+    "script": "Do not wait for the cortisol result. In suspected adrenal crisis, start intravenous hydrocortisone immediately with saline resuscitation.",
+    "evidenceTerms": [
+      "hydrocortisone",
+      "adrenal crisis",
+      "saline"
+    ],
+    "voice": "Daniel"
+  },
+  "lis-78": {
+    "question": "Complete: Audiology notes ___ hearing loss.",
+    "correctAnswer": "sensorineural",
+    "script": "The audiogram shows asymmetrical sensorineural hearing loss, so the ENT team wants an MRI internal auditory meatus to exclude an acoustic neuroma.",
+    "evidenceTerms": [
+      "sensorineural",
+      "audiogram",
+      "acoustic neuroma"
+    ],
+    "voice": "Karen"
+  },
+  "lis-79": {
+    "question": "Complete: Blood film shows ___ cells.",
+    "correctAnswer": "schistocytes",
+    "script": "The platelet count has crashed and the blood film shows schistocytes. That combination raises concern for microangiopathic haemolysis.",
+    "evidenceTerms": [
+      "schistocytes",
+      "blood film",
+      "haemolysis"
+    ],
+    "voice": "Samantha"
+  },
+  "lis-80": {
+    "question": "Complete: Administer ___ before paracentesis.",
+    "correctAnswer": "albumin",
+    "script": "For large-volume paracentesis, administer albumin afterwards to reduce circulatory dysfunction. Please calculate the dose based on litres drained.",
+    "evidenceTerms": [
+      "albumin",
+      "paracentesis",
+      "litres drained"
+    ],
+    "voice": "Kate"
+  },
+  "lis-81": {
+    "question": "Complete: Use ___ suture for facial laceration.",
+    "correctAnswer": "absorbable",
+    "script": "For this child with a small facial laceration, use absorbable suture so we do not need a distressing removal appointment next week.",
+    "evidenceTerms": [
+      "absorbable suture",
+      "facial laceration"
+    ],
+    "voice": "Moira"
+  },
+  "lis-82": {
+    "question": "Complete: Trial excluded patients with ___ insufficiency.",
+    "correctAnswer": "adrenal",
+    "script": "The trial excluded patients with adrenal insufficiency, recent steroid use, or pituitary disease because those factors would distort cortisol-response outcomes.",
+    "evidenceTerms": [
+      "adrenal insufficiency",
+      "steroid",
+      "cortisol"
+    ],
+    "voice": "Daniel"
+  },
+  "lis-83": {
+    "question": "Complete: Monitor for ___ syndrome after SSRI change.",
+    "correctAnswer": "serotonin",
+    "script": "After increasing the SSRI while he is still taking tramadol, monitor closely for serotonin syndrome: agitation, tremor, sweating, and diarrhoea.",
+    "evidenceTerms": [
+      "serotonin syndrome",
+      "SSRI",
+      "tramadol"
+    ],
+    "voice": "Tessa"
+  },
+  "lis-84": {
+    "question": "Complete: Patient needs ___ prophylaxis after needle-stick.",
+    "correctAnswer": "post-exposure",
+    "script": "This was a high-risk needle-stick injury from an unknown source. Start post-exposure prophylaxis today after baseline HIV, hepatitis B, and hepatitis C bloods.",
+    "evidenceTerms": [
+      "post-exposure prophylaxis",
+      "needle-stick",
+      "HIV"
+    ],
+    "voice": "Samantha"
+  },
+  "lis-85": {
+    "question": "Complete: Ultrasound confirms ___ pregnancy.",
+    "correctAnswer": "ectopic",
+    "script": "The ultrasound confirms an ectopic pregnancy in the right fallopian tube with free fluid in the pelvis. The gynaecology registrar is coming now.",
+    "evidenceTerms": [
+      "ectopic pregnancy",
+      "fallopian tube",
+      "free fluid"
+    ],
+    "voice": "Karen"
+  },
+  "lis-86": {
+    "question": "Complete: Swallow assessment showed silent ___.",
+    "correctAnswer": "aspiration",
+    "script": "The video swallow assessment showed silent aspiration with thin fluids. Keep her nil by mouth until speech pathology reviews the thickened-fluid plan.",
+    "evidenceTerms": [
+      "silent aspiration",
+      "swallow",
+      "thickened-fluid"
+    ],
+    "voice": "Kate"
+  },
+  "lis-87": {
+    "question": "Complete: Drug causing ototoxicity: ___.",
+    "correctAnswer": "gentamicin",
+    "script": "His hearing deteriorated after several high trough levels. Gentamicin is the likely ototoxic drug, so stop it and document the adverse reaction.",
+    "evidenceTerms": [
+      "gentamicin",
+      "ototoxic",
+      "trough levels"
+    ],
+    "voice": "Daniel"
+  },
+  "lis-88": {
+    "question": "Complete: Target oxygen saturation is ___ percent.",
+    "correctAnswer": "88-92",
+    "script": "Because of his chronic carbon dioxide retention, prescribe controlled oxygen and document the target as 88 to 92 percent, not the usual higher range.",
+    "evidenceTerms": [
+      "88 to 92",
+      "controlled oxygen",
+      "carbon dioxide"
+    ],
+    "voice": "Moira"
+  },
+  "lis-89": {
+    "question": "Complete: Treat suspected ___ fasciitis urgently.",
+    "correctAnswer": "necrotising",
+    "script": "The pain is out of proportion and the skin is rapidly discolouring. Treat suspected necrotising fasciitis urgently and call surgery before imaging delays care.",
+    "evidenceTerms": [
+      "necrotising fasciitis",
+      "surgery",
+      "rapidly"
+    ],
+    "voice": "Tessa"
+  },
+  "lis-90": {
+    "question": "Complete: Reduce tacrolimus because of ___.",
+    "correctAnswer": "nephrotoxicity",
+    "script": "The tacrolimus trough is high and creatinine has doubled. Reduce the dose because of nephrotoxicity and repeat levels in forty-eight hours.",
+    "evidenceTerms": [
+      "nephrotoxicity",
+      "tacrolimus",
+      "creatinine"
+    ],
+    "voice": "Samantha"
+  },
+  "lis-91": {
+    "question": "Complete: Plan ___ drainage for empyema.",
+    "correctAnswer": "intercostal",
+    "script": "The CT chest shows a loculated pleural collection with gas bubbles. Respiratory wants image-guided intercostal drainage for empyema this afternoon.",
+    "evidenceTerms": [
+      "intercostal drainage",
+      "empyema",
+      "pleural"
+    ],
+    "voice": "Daniel"
+  },
+  "lis-92": {
+    "question": "Complete: Symptoms suggest ___ vertigo.",
+    "correctAnswer": "positional",
+    "script": "The vertigo lasts seconds and is triggered when she rolls over in bed. That pattern suggests benign paroxysmal positional vertigo rather than a stroke.",
+    "evidenceTerms": [
+      "positional vertigo",
+      "rolls over",
+      "stroke"
+    ],
+    "voice": "Karen"
+  },
+  "lis-93": {
+    "question": "Complete: Start ___ replacement after thyroidectomy.",
+    "correctAnswer": "levothyroxine",
+    "script": "Following total thyroidectomy, start levothyroxine replacement and check calcium because hypoparathyroidism can present with tingling or cramps.",
+    "evidenceTerms": [
+      "levothyroxine",
+      "thyroidectomy",
+      "calcium"
+    ],
+    "voice": "Kate"
+  },
+  "lis-94": {
+    "question": "Complete: Consultant mentions ___ anaemia.",
+    "correctAnswer": "haemolytic",
+    "script": "The bilirubin is unconjugated, LDH is high, and haptoglobin is low. The consultant mentions haemolytic anaemia and requests a direct antiglobulin test.",
+    "evidenceTerms": [
+      "haemolytic anaemia",
+      "haptoglobin",
+      "antiglobulin"
+    ],
+    "voice": "Moira"
+  },
+  "lis-95": {
+    "question": "Complete: Refer for ___ ultrasound.",
+    "correctAnswer": "transvaginal",
+    "script": "With postmenopausal bleeding, refer for transvaginal ultrasound to measure endometrial thickness before deciding whether biopsy is needed.",
+    "evidenceTerms": [
+      "transvaginal ultrasound",
+      "endometrial",
+      "biopsy"
+    ],
+    "voice": "Tessa"
+  },
+  "lis-96": {
+    "question": "Complete: Use ___ precautions for C. difficile.",
+    "correctAnswer": "contact",
+    "script": "For suspected C. difficile diarrhoea, use contact precautions, isolate the patient, and clean surfaces with sporicidal disinfectant.",
+    "evidenceTerms": [
+      "contact precautions",
+      "C. difficile",
+      "sporicidal"
+    ],
+    "voice": "Samantha"
+  },
+  "lis-97": {
+    "question": "Complete: Genetic test shows ___ mutation.",
+    "correctAnswer": "BRCA1",
+    "script": "Her genetic test shows a pathogenic BRCA1 mutation, so she needs counselling about breast screening, ovarian risk, and cascade testing for relatives.",
+    "evidenceTerms": [
+      "BRCA1 mutation",
+      "genetic",
+      "cascade testing"
+    ],
+    "voice": "Karen"
+  },
+  "lis-98": {
+    "question": "Complete: Patient is awaiting ___ biopsy.",
+    "correctAnswer": "sentinel node",
+    "script": "After the wide local excision, the patient is awaiting sentinel node biopsy to stage the melanoma before the oncology plan is finalised.",
+    "evidenceTerms": [
+      "sentinel node biopsy",
+      "melanoma",
+      "stage"
+    ],
+    "voice": "Daniel"
+  },
+  "lis-99": {
+    "question": "Complete: Lecture criticizes lack of ___ concealment.",
+    "correctAnswer": "allocation",
+    "script": "The lecturer's main criticism is the lack of allocation concealment. Without it, recruiters may unconsciously influence which participants enter each treatment arm.",
+    "evidenceTerms": [
+      "allocation concealment",
+      "participants",
+      "treatment arm"
+    ],
+    "voice": "Moira"
+  },
+  "lis-100": {
+    "question": "Complete: Clinic advises ___ exercises for vestibular rehab.",
+    "correctAnswer": "gaze-stabilisation",
+    "script": "For vestibular rehabilitation, the clinic advises gaze-stabilisation exercises twice daily, especially while turning the head slowly from side to side.",
+    "evidenceTerms": [
+      "gaze-stabilisation",
+      "vestibular",
+      "head"
+    ],
+    "voice": "Kate"
   }
 }

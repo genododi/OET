@@ -757,7 +757,7 @@ const curatedMockExams: MockExam[] = [
     description:
       'EduBenchmark pattern: Shauna Mendes keratitis ophthalmology referral, diabetic counselling speaking, infection control Part A.',
     questionsCount: 42,
-    tags: ['edubenchmark', 'medicine', 'writing'],
+    tags: ['edubenchmark', 'medicine', 'keratitis', 'ophthalmology'],
     sourceHint: 'EduBenchmark case notes — Shauna Mendes',
   },
   {
@@ -770,7 +770,7 @@ const curatedMockExams: MockExam[] = [
     description:
       'EduBenchmark pattern: Laura Joseph contact dermatitis dermatology referral, allergen avoidance counselling, Part C occupational health lecture.',
     questionsCount: 42,
-    tags: ['edubenchmark', 'medicine', 'writing'],
+    tags: ['edubenchmark', 'medicine', 'contact-dermatitis', 'dermatology'],
     sourceHint: 'EduBenchmark case notes — Laura Jhoseph',
   },
   {
@@ -783,7 +783,7 @@ const curatedMockExams: MockExam[] = [
     description:
       'EduBenchmark urgent referral: Mariana Joseph nephrotic syndrome to ED. Includes steroid counselling speaking and renal function reading.',
     questionsCount: 42,
-    tags: ['edubenchmark', 'medicine', 'urgent'],
+    tags: ['edubenchmark', 'medicine', 'nephrotic-syndrome', 'urgent-renal'],
     sourceHint: 'EduBenchmark case notes — Mariana Joseph',
   },
   {
@@ -796,7 +796,7 @@ const curatedMockExams: MockExam[] = [
     description:
       'EduBenchmark urgent referral: James Smith GI bleed to emergency. Haematemesis management speaking, blood transfusion policy Part A.',
     questionsCount: 42,
-    tags: ['edubenchmark', 'medicine', 'urgent'],
+    tags: ['edubenchmark', 'medicine', 'gi-bleed', 'urgent-ed'],
     sourceHint: 'EduBenchmark case notes — James Smith',
   },
   {
@@ -809,7 +809,7 @@ const curatedMockExams: MockExam[] = [
     description:
       'EduBenchmark discharge: Coco Thompson alcoholic liver disease to GP. Includes alcohol reduction counselling and liver function reading.',
     questionsCount: 42,
-    tags: ['edubenchmark', 'medicine', 'discharge'],
+    tags: ['edubenchmark', 'medicine', 'alcoholic-liver-disease', 'discharge-gp'],
     sourceHint: 'EduBenchmark case notes — Coco Thompson',
   },
   {
@@ -822,7 +822,7 @@ const curatedMockExams: MockExam[] = [
     description:
       'EduBenchmark nursing: Adriana Hakim bedsore wound specialist referral. Includes wound care education speaking and pressure ulcer prevention Part A.',
     questionsCount: 42,
-    tags: ['edubenchmark', 'nursing', 'writing'],
+    tags: ['edubenchmark', 'nursing', 'bedsore', 'wound-care'],
     sourceHint: 'EduBenchmark case notes — Adriana Hakim',
   },
   {
@@ -835,7 +835,7 @@ const curatedMockExams: MockExam[] = [
     description:
       'EduBenchmark nursing: Nizamuddin Bakidar depression refugee support referral. Includes mental health first aid speaking and MH policy Part C.',
     questionsCount: 42,
-    tags: ['edubenchmark', 'nursing', 'writing'],
+    tags: ['edubenchmark', 'nursing', 'depression', 'refugee-support'],
     sourceHint: 'EduBenchmark case notes — Nizamuddin Bakidar',
   },
   {
@@ -952,7 +952,7 @@ const curatedMockExams: MockExam[] = [
     description:
       'EduBenchmark dentistry: Amelia Cartwright chronic generalised periodontitis referral. Includes oral hygiene counselling and periodontal guidelines Part B.',
     questionsCount: 42,
-    tags: ['edubenchmark', 'dentistry', 'writing'],
+    tags: ['edubenchmark', 'dentistry', 'periodontitis', 'periodontist'],
     sourceHint: 'EduBenchmark case notes — Amelia Cartwright',
   },
   {
@@ -965,7 +965,7 @@ const curatedMockExams: MockExam[] = [
     description:
       'EduBenchmark dentistry: Kevin Hughes bruxism referral to prosthodontist. Includes night guard counselling and TMJ disorder reading Part C.',
     questionsCount: 42,
-    tags: ['edubenchmark', 'dentistry', 'writing'],
+    tags: ['edubenchmark', 'dentistry', 'bruxism', 'prosthodontist'],
     sourceHint: 'EduBenchmark case notes — Kevin Hughes',
   },
   {
@@ -991,7 +991,7 @@ const curatedMockExams: MockExam[] = [
     description:
       'EduBenchmark discharge: Cindy Larson shoulder dislocation discharge to family doctor. Includes physio counselling and orthopaedic rehabilitation Part B.',
     questionsCount: 42,
-    tags: ['edubenchmark', 'medicine', 'discharge'],
+    tags: ['edubenchmark', 'medicine', 'shoulder-dislocation', 'orthopaedic-discharge'],
     sourceHint: 'EduBenchmark case notes — Cindy Larson',
   },
   {
