@@ -1052,5 +1052,49 @@
       "head"
     ],
     "voice": "Kate"
+  },
+  "lis-101": {
+    "question": "Complete: INR today is ___, so warfarin is withheld.",
+    "correctAnswer": "4.8",
+    "script": "Anticoagulation clinic call: Mr Rahman's INR is four point eight today, above his target range. Please ask him to withhold warfarin tonight, check for bleeding, and arrange a repeat INR tomorrow morning.",
+    "speechScript": "Anticoagulation clinic call. Mister Rahman's I N R is four point eight today, above his target range. Please ask him to withhold warfarin tonight, check for bleeding, and arrange a repeat I N R tomorrow morning.",
+    "evidenceTerms": ["four point eight", "withhold warfarin", "repeat INR"],
+    "voice": "Karen"
+  },
+  "lis-102": {
+    "question": "Complete: Reposition this patient at least every ___ hours.",
+    "correctAnswer": "two",
+    "script": "At the pressure-injury handover, please turn Mrs Lewis at least every two hours. Her sacrum is already reddened, so document each reposition and keep her heels off the mattress.",
+    "evidenceTerms": ["every two hours", "reposition", "sacrum"],
+    "voice": "Tessa"
+  },
+  "lis-103": {
+    "question": "Complete: The speaker emphasises vaccine ___, not coercion.",
+    "correctAnswer": "confidence",
+    "script": "The lecturer argues that uptake improves when services build vaccine confidence through respectful conversations and easy access. She explicitly contrasts that approach with coercion, which can reduce trust in underserved communities.",
+    "evidenceTerms": ["vaccine confidence", "coercion", "trust"],
+    "voice": "Moira"
+  },
+  "lis-104": {
+    "question": "Complete: Potassium was repeated because the first sample was ___ .",
+    "correctAnswer": "haemolysed",
+    "script": "Renal registrar: do not act on the first potassium result yet. The laboratory says the sample was haemolysed, which can falsely raise potassium, so take a fresh urgent specimen and obtain an ECG if the repeat remains high.",
+    "speechScript": "Renal registrar. Do not act on the first potassium result yet. The laboratory says the sample was haemolysed, which can falsely raise potassium, so take a fresh urgent specimen and obtain an E C G if the repeat remains high.",
+    "evidenceTerms": ["sample was haemolysed", "potassium", "fresh urgent specimen"],
+    "voice": "Daniel"
+  },
+  "lis-105": {
+    "question": "Complete: Parent should seek help if there are fewer than ___ wet nappies.",
+    "correctAnswer": "three",
+    "script": "Before you take your baby home, watch for dehydration. Please call us urgently if there are fewer than three wet nappies in a day, if she is too sleepy to feed, or if breathing becomes difficult.",
+    "evidenceTerms": ["fewer than three wet nappies", "dehydration", "feed"],
+    "voice": "Samantha"
+  },
+  "lis-106": {
+    "question": "Complete: The lecturer recommends a diagnostic ___ before discharge.",
+    "correctAnswer": "time-out",
+    "script": "In the final minute before discharge, the speaker recommends a diagnostic time-out: ask what else could explain the presentation, review abnormal results, and state clearly what follow-up is needed if symptoms change.",
+    "evidenceTerms": ["diagnostic time-out", "before discharge", "follow-up"],
+    "voice": "Kate"
   }
 }

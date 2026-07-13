@@ -1,5 +1,6 @@
 import type { MockExam } from '../types';
 import { TARGET_MEDICINE_ADVANCED_PER_SUBTEST } from '../lib/preferredProfession';
+import { oetMockDurationMinutes, oetMockTaskCount } from '../lib/oetExamTiming';
 import {
   generateAdvancedMockExams,
   generateMedicineAdvancedMockExams,
@@ -208,13 +209,13 @@ const curatedMockExams: MockExam[] = [
   },
   {
     id: 'mock-timed-sprint',
-    title: '45-Minute Sub-test Sprint',
+    title: 'Full OET Timing Simulation',
     profession: 'All professions',
     subtests: ['listening', 'reading', 'writing', 'speaking'],
     durationMinutes: 45,
     difficulty: 'beginner',
     description:
-      'Pick one sub-test and run a single timed section with instant answer review — good for daily warm-ups.',
+      'Complete all four sub-tests with the live OET component timing and task blueprint.',
     questionsCount: 12,
   },
   {
@@ -693,35 +694,35 @@ const curatedMockExams: MockExam[] = [
   },
   {
     id: 'mock-writing-nursing-only',
-    title: 'Nursing Writing Marathon (6 letters)',
+    title: 'Nursing Writing Timed Mock',
     profession: 'Nursing',
     subtests: ['writing'],
     durationMinutes: 270,
     difficulty: 'advanced',
     description:
-      'Six nursing letters: discharge, transfer, community referral, aged care, wound handover, hypoglycemia referral.',
+      'One Nursing writing task completed in the live 45-minute OET Writing time.',
     questionsCount: 6,
   },
   {
     id: 'mock-writing-medicine-only',
-    title: 'Medicine Writing Marathon (6 letters)',
+    title: 'Medicine Writing Timed Mock',
     profession: 'Medicine',
     subtests: ['writing'],
     durationMinutes: 270,
     difficulty: 'advanced',
     description:
-      'Urgent cardiology, gastro, dermatology, ophthalmology referrals + GP update letters.',
+      'One Medicine writing task completed in the live 45-minute OET Writing time.',
     questionsCount: 6,
   },
   {
     id: 'mock-speaking-nursing-only',
-    title: 'Nursing Speaking Marathon',
+    title: 'Nursing Speaking Timed Mock',
     profession: 'Nursing',
     subtests: ['speaking'],
     durationMinutes: 60,
     difficulty: 'intermediate',
     description:
-      'EnglishWise/Khaira nursing topics: medication, infection control, palliative, mental health, discharge planning.',
+      'Two Nursing role-play cards completed in the live 20-minute OET Speaking time.',
     questionsCount: 10,
   },
   {
@@ -1031,4 +1032,13 @@ export const mockExams: MockExam[] = [
   ...generateMockExams(generatedMockCount),
   ...advancedMockExams,
   ...medicineAdvancedMockExams,
-];
+].map((exam) => ({
+  ...exam,
+  // Every displayed mock now uses the live OET component times and task blueprint.
+  durationMinutes: oetMockDurationMinutes(exam.subtests),
+  questionsCount: oetMockTaskCount(exam.subtests),
+  description: exam.description.replace(
+    /Timed \d+ min, \d+ items/g,
+    `Timed ${oetMockDurationMinutes(exam.subtests)} min, ${oetMockTaskCount(exam.subtests)} scored tasks`,
+  ),
+}));

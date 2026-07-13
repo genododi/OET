@@ -181,7 +181,7 @@ export const MOCK_PACK_LABELS = [
   'Mini-Mock',
   'LRW Combo',
   'Sub-test Simulator',
-  'Marathon Mock',
+  'Exam-Length Mock',
   'Recall Simulation',
   'CBT Block',
   'Paper-day Simulation',
@@ -201,7 +201,7 @@ export const ADVANCED_PRACTICE_PACK_LABELS = [
 export const ADVANCED_MOCK_PACK_LABELS = [
   'Advanced Full Mock',
   'Expert LRW Combo',
-  'Marathon Simulation',
+  'Exam-Length Simulation',
   '14-Day Sprint Mock',
   'High-Stakes CBT Block',
   'Recall Mega-Mock',

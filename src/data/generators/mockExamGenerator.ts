@@ -79,18 +79,18 @@ const MOCK_PROFILES: MockProfile[] = [
     tag: 'lrw',
   },
   {
-    label: 'Writing Marathon',
+    label: 'Writing Timed Mock',
     subtests: ['writing'],
     durationMinutes: 270,
     questionsCount: 6,
-    tag: 'marathon',
+    tag: 'writing-timed',
   },
   {
-    label: 'Speaking Marathon',
+    label: 'Speaking Timed Mock',
     subtests: ['speaking'],
     durationMinutes: 60,
     questionsCount: 10,
-    tag: 'marathon',
+    tag: 'speaking-timed',
   },
   {
     label: 'CBT @Home Simulation',
@@ -326,7 +326,7 @@ export function generateMockExams(count: number): MockExam[] {
 }
 
 const ADVANCED_MOCK_PROFILES: MockProfile[] = [
-  MOCK_PROFILES.find((p) => p.tag === 'marathon')!,
+  MOCK_PROFILES.find((p) => p.tag === 'writing-timed')!,
   MOCK_PROFILES.find((p) => p.tag === '14-day-sprint')!,
   MOCK_PROFILES.find((p) => p.tag === 'lrw')!,
   MOCK_PROFILES.find((p) => p.tag === 'full-mock')!,
@@ -341,18 +341,18 @@ const ADVANCED_MOCK_PROFILES: MockProfile[] = [
     tag: 'combo',
   },
   {
-    label: 'Advanced Speaking Marathon',
+    label: 'Advanced Speaking Timed Mock',
     subtests: ['speaking'],
     durationMinutes: 75,
     questionsCount: 14,
-    tag: 'marathon',
+    tag: 'speaking-timed',
   },
   {
-    label: 'Expert Multi-Subtest Block',
+    label: 'Expert Full OET Mock',
     subtests: ['listening', 'reading', 'writing', 'speaking'],
     durationMinutes: 195,
     questionsCount: 48,
-    tag: 'marathon',
+    tag: 'full-mock',
   },
 ];
 

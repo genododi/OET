@@ -3,6 +3,11 @@ import type { SessionConfig, SessionTask } from '../types/session';
 import type { CompletedSession } from '../types/session';
 import { pickTasks, bankBySubtest } from '../data/sessionTaskBank';
 import { buildTaskStats, weightedPick, type TaskStat } from './taskHistory';
+import {
+  OET_SUBTEST_TASK_COUNTS,
+  oetMockDurationMinutes,
+  oetMockTaskCount,
+} from './oetExamTiming';
 
 /** Minimum content tasks (excluding intro/break) for every session. */
 export const MIN_CONTENT_TASKS = 10;
@@ -56,9 +61,10 @@ function distributeTaskCounts(subtests: OetSubtest[], totalTarget: number): numb
   return subtests.map((_, index) => Math.max(1, base + (index < extra ? 1 : 0)));
 }
 
-function resolveMockTaskTotal(exam: MockExam): number {
-  const fromMetadata = exam.questionsCount > 0 ? exam.questionsCount : MIN_CONTENT_TASKS;
-  return Math.max(MIN_CONTENT_TASKS, Math.min(fromMetadata, 40));
+function resolveMockTaskCounts(exam: MockExam): number[] {
+  // A mock is a simulation, so its section blueprint follows the live OET rather
+  // than evenly spreading an arbitrary metadata total across the four components.
+  return exam.subtests.map((subtest) => OET_SUBTEST_TASK_COUNTS[subtest]);
 }
 
 export function buildPracticeSession(module: PracticeModule): SessionConfig {
@@ -96,7 +102,9 @@ export function buildPracticeSession(module: PracticeModule): SessionConfig {
 }
 
 export function buildMockSession(exam: MockExam): SessionConfig {
-  const taskCounts = distributeTaskCounts(exam.subtests, resolveMockTaskTotal(exam));
+  const taskCounts = resolveMockTaskCounts(exam);
+  const durationMinutes = oetMockDurationMinutes(exam.subtests);
+  const questionCount = oetMockTaskCount(exam.subtests);
 
   const tasks: SessionTask[] = [
     {
@@ -104,10 +112,11 @@ export function buildMockSession(exam: MockExam): SessionConfig {
       subtest: 'intro',
       title: 'Mock exam instructions',
       instructions:
-        'Timed simulation — complete sections in order. Tasks rotate from a bank of 50+ recall-informed scenarios.',
+        'Timed simulation — complete sections in order. Listening, Reading and Writing form the 145-minute written block; Speaking is a separate 20-minute component in live OET scheduling.',
       checklist: [
         `Focus: ${exam.profession}`,
-        `Duration: ${exam.durationMinutes} min`,
+        `Duration: ${durationMinutes} min`,
+        `Blueprint: ${questionCount} scored task(s)`,
         `Sub-tests: ${exam.subtests.join(', ')}`,
       ],
     },
@@ -126,7 +135,10 @@ export function buildMockSession(exam: MockExam): SessionConfig {
     const requested = taskCounts[index]!;
     const capped = Math.min(requested, bankSize);
     const seed = sessionSeed(exam.id, subtest, capped, exam.title, exam.profession);
-    tasks.push(...pickTasks(subtest, capped, `${exam.id}-${subtest}`, seed, exam.difficulty));
+    // Full simulations need the official number of tasks in each component.
+    // Do not filter the bank by a card's advertised difficulty, otherwise a
+    // small advanced/intermediate pool silently shortens a 42-question paper.
+    tasks.push(...pickTasks(subtest, capped, `${exam.id}-${subtest}`, seed));
   });
 
   return {
@@ -134,7 +146,7 @@ export function buildMockSession(exam: MockExam): SessionConfig {
     kind: 'mock',
     title: exam.title,
     subtitle: exam.profession,
-    durationMinutes: exam.durationMinutes,
+    durationMinutes,
     subtests: exam.subtests,
     tasks,
   };

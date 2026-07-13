@@ -982,6 +982,54 @@ export const listeningTasks: SessionTask[] = [
     ]),
     difficulty: 'advanced',
   },
+  {
+    ...mcq('lis-101', 'listening', 'Part A — Anticoagulation clinic', 'Complete: INR today is ___, so warfarin is withheld.', [
+      { label: '4.8', correct: true },
+      { label: '1.8', correct: false },
+      { label: '48', correct: false },
+    ]),
+    difficulty: 'intermediate',
+  },
+  {
+    ...mcq('lis-102', 'listening', 'Part B — Pressure injury handover', 'Complete: Reposition this patient at least every ___ hours.', [
+      { label: 'two', correct: true },
+      { label: 'four', correct: false },
+      { label: 'twelve', correct: false },
+    ]),
+    difficulty: 'intermediate',
+  },
+  {
+    ...mcq('lis-103', 'listening', 'Part C — Vaccination programme lecture', 'Complete: The speaker emphasises vaccine ___, not coercion.', [
+      { label: 'confidence', correct: true },
+      { label: 'compliance', correct: false },
+      { label: 'convenience', correct: false },
+    ]),
+    difficulty: 'advanced',
+  },
+  {
+    ...mcq('lis-104', 'listening', 'Part A — Renal medicine review', 'Complete: Potassium was repeated because the first sample was ___ .', [
+      { label: 'haemolysed', correct: true },
+      { label: 'fasting', correct: false },
+      { label: 'diluted', correct: false },
+    ]),
+    difficulty: 'advanced',
+  },
+  {
+    ...mcq('lis-105', 'listening', 'Part B — Paediatric discharge call', 'Complete: Parent should seek help if there are fewer than ___ wet nappies.', [
+      { label: 'three', correct: true },
+      { label: 'six', correct: false },
+      { label: 'eight', correct: false },
+    ]),
+    difficulty: 'intermediate',
+  },
+  {
+    ...mcq('lis-106', 'listening', 'Part C — Diagnostic safety lecture', 'Complete: The lecturer recommends a diagnostic ___ before discharge.', [
+      { label: 'time-out', correct: true },
+      { label: 'handover', correct: false },
+      { label: 'referral', correct: false },
+    ]),
+    difficulty: 'advanced',
+  },
 ];
 
 export const readingTasks: SessionTask[] = [
@@ -1192,6 +1240,54 @@ export const readingTasks: SessionTask[] = [
       { label: 'Temporarily withholding the GLP-1 medicine', correct: true },
       { label: 'Continuing the previous dose automatically', correct: false },
       { label: 'Stopping GLP-1 therapy permanently in every patient', correct: false },
+    ]),
+    difficulty: 'advanced',
+  },
+  {
+    ...readingMcq('read-37', 'Part B — Infection-control update', 'passage-infection-control', 'When hands are visibly soiled, staff should use…', [
+      { label: 'Soap and water', correct: true },
+      { label: 'Gloves without hand hygiene', correct: false },
+      { label: 'Alcohol rub only', correct: false },
+    ]),
+    difficulty: 'intermediate',
+  },
+  {
+    ...readingMcq('read-38', 'Part C — Early discharge programme', 'passage-trial-abstract', 'Why should the results be interpreted cautiously?', [
+      { label: 'The single-centre cohort may not generalise and selection bias is possible', correct: true },
+      { label: 'No patients received the discharge checklist', correct: false },
+      { label: 'Readmission was significantly higher in the intervention group', correct: false },
+    ]),
+    difficulty: 'advanced',
+  },
+  {
+    ...readingMcq('read-39', 'Part A — Stroke pathway target', 'passage-stroke-pathway', 'The CT brain target after arrival is within…', [
+      { label: '20 minutes', correct: true },
+      { label: '60 minutes', correct: false },
+      { label: '4 hours', correct: false },
+    ]),
+    difficulty: 'intermediate',
+  },
+  {
+    ...readingMcq('read-40', 'Part B — Surgical consent', 'passage-consent-form', 'For a major non-urgent procedure, the information sheet recommends…', [
+      { label: 'A cooling-off period of at least 24 hours', correct: true },
+      { label: 'Signing consent after sedation', correct: false },
+      { label: 'A relative signing in place of the patient', correct: false },
+    ]),
+    difficulty: 'intermediate',
+  },
+  {
+    ...readingMcq('read-41', 'Part C — Nurse staffing evidence', 'passage-nurse-staffing-abstract', 'Which outcome did not reach statistical significance after adjustment?', [
+      { label: 'Mortality differences', correct: true },
+      { label: 'Falls', correct: false },
+      { label: 'Medication errors', correct: false },
+    ]),
+    difficulty: 'advanced',
+  },
+  {
+    ...readingMcq('read-42', 'Part A — Anticoagulation clinic SOP', 'passage-anticoagulation-sop', 'Which medicine is contraindicated when eGFR is below 30 ml/min?', [
+      { label: 'Dabigatran', correct: true },
+      { label: 'Warfarin', correct: false },
+      { label: 'Apixaban', correct: false },
     ]),
     difficulty: 'advanced',
   },

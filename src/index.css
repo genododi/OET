@@ -2821,6 +2821,54 @@ button {
   margin-bottom: 0.25rem;
 }
 
+.video-samples-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.video-samples-card h3 {
+  margin: 0 0 0.35rem;
+}
+
+.video-sample-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+.video-sample-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.65rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--primary);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.video-sample-link span {
+  color: var(--text-muted);
+  text-transform: capitalize;
+  font-weight: 500;
+}
+
+@media (max-width: 700px) {
+  .video-samples-card {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .video-sample-links {
+    justify-content: flex-start;
+  }
+}
+
 /* Settings toggle + modal */
 .settings-toggle {
   margin-left: auto;

@@ -10,7 +10,7 @@ interface Props {
 }
 
 function correctLabel(task: SessionTask): string {
-  return task.options?.find((o) => o.correct)?.label ?? '';
+  return task.options?.find((option) => option.correct)?.label ?? '';
 }
 
 function isCorrectAnswer(task: SessionTask, userText: string | undefined): boolean | null {
@@ -22,106 +22,65 @@ function isCorrectAnswer(task: SessionTask, userText: string | undefined): boole
 export default function ListeningSection({ tasks, answers, onAnswer, revealed, onReveal }: Props) {
   const [playing, setPlaying] = useState(false);
   const [currentIdx, setCurrentIdx] = useState<number | null>(null);
-  const synthRef = useRef<SpeechSynthesis | null>(null);
-  const utterancesRef = useRef<SpeechSynthesisUtterance[]>([]);
-  const pauseTimeRef = useRef(0);
-  const totalDurationRef = useRef(0);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  const buildUtterances = useCallback(() => {
-    if (!synthRef.current) return;
-
-    let totalSec = 0;
-    const utts = tasks.map((task) => {
-      const text = task.audioTranscript || task.prompt || '';
-      const words = text.split(/\s+/).length;
-      const estSec = (words / 3) + 1.5;
-      totalSec += estSec;
-
-      const utt = new SpeechSynthesisUtterance(text);
-      utt.rate = 1;
-      utt.pitch = 1;
-      return utt;
-    });
-    totalDurationRef.current = totalSec;
-    utterancesRef.current = utts;
-  }, [tasks]);
-
-  useEffect(() => {
-    synthRef.current = window.speechSynthesis;
-    buildUtterances();
-  }, [buildUtterances]);
-
-  useEffect(() => {
-    return () => {
-      synthRef.current?.cancel();
-    };
+  const stopPlayback = useCallback(() => {
+    audioRef.current?.pause();
+    audioRef.current = null;
+    setPlaying(false);
+    setCurrentIdx(null);
   }, []);
 
-  const startPlayback = useCallback(() => {
-    const synth = synthRef.current;
-    if (!synth || utterancesRef.current.length === 0) return;
+  function playTask(index: number) {
+    if (index >= tasks.length) {
+      stopPlayback();
+      return;
+    }
 
-    synth.cancel();
-    const utts = utterancesRef.current;
-    const startIdx = pauseTimeRef.current > 0
-      ? Math.min(Math.floor((pauseTimeRef.current / totalDurationRef.current) * utts.length), utts.length - 1)
-      : 0;
-
-    const playQueue = (index: number) => {
-      if (index >= utts.length) {
-        setPlaying(false);
-        setCurrentIdx(null);
-        return;
-      }
-      setCurrentIdx(index);
-      const utt = utts[index];
-      utt.onend = () => {
-        if (index + 1 < utts.length) {
-          playQueue(index + 1);
-        } else {
-          setPlaying(false);
-          setCurrentIdx(null);
-        }
-      };
-      synth.speak(utt);
+    const task = tasks[index]!;
+    const audio = new Audio(task.audioSrc);
+    audioRef.current = audio;
+    setCurrentIdx(index);
+    audio.onended = () => playTask(index + 1);
+    audio.onerror = () => {
+      // A local development build can briefly lack generated MP3s. Keep the
+      // session usable by moving to the next original script rather than stalling.
+      playTask(index + 1);
     };
-
-    pauseTimeRef.current = 0;
-    setPlaying(true);
-    playQueue(startIdx);
-  }, []);
+    void audio.play().catch(() => stopPlayback());
+  }
 
   const togglePlay = () => {
-    const synth = synthRef.current;
-    if (!synth) return;
     if (playing) {
-      synth.cancel();
-      setPlaying(false);
-      setCurrentIdx(null);
-    } else {
-      startPlayback();
+      stopPlayback();
+      return;
     }
+    setPlaying(true);
+    playTask(0);
   };
+
+  useEffect(() => stopPlayback, [stopPlayback]);
 
   return (
     <div className="card listening-section">
       <div className="listening-section-header">
         <h3>Listening — continuous playback</h3>
         <p className="session-instructions">
-          All questions are shown below. Audio is generated fresh for this session in story dialogue style.
+          The original question-matched clips play once in sequence, like a complete listening
+          section. Do not pause or replay in exam practice mode.
         </p>
       </div>
 
       <div className="listening-player">
         <button type="button" className="btn btn-primary" onClick={togglePlay}>
-          {playing ? '⏸ Stop' : '▶ Play all audio'}
+          {playing ? '⏹ Stop' : '▶ Play all audio once'}
         </button>
         {currentIdx !== null && (
           <span className="listening-time">
             Question {currentIdx + 1} / {tasks.length}
           </span>
         )}
-        <span className="listening-voice-info">Story dialogue playback</span>
+        <span className="listening-voice-info">Question-matched audio</span>
       </div>
 
       <ol className="listening-questions">
@@ -143,7 +102,7 @@ export default function ListeningSection({ tasks, answers, onAnswer, revealed, o
                 type="text"
                 className="session-text-input"
                 value={answers[task.id] ?? ''}
-                onChange={(e) => onAnswer(task.id, e.target.value)}
+                onChange={(event) => onAnswer(task.id, event.target.value)}
                 placeholder="Type your answer..."
                 disabled={revealed[task.id]}
                 autoComplete="off"

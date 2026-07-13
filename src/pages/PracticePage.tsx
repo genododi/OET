@@ -22,6 +22,7 @@ import {
   TARGET_MEDICINE_ADVANCED_PER_SUBTEST,
 } from '../lib/preferredProfession';
 import { useProgress } from '../hooks/useProgress';
+import { videoSamplesFor } from '../data/videoSamples';
 
 const filters: Array<OetSubtest | 'all'> = ['all', 'listening', 'reading', 'writing', 'speaking'];
 const difficulties: Array<Difficulty | 'all'> = ['all', 'beginner', 'intermediate', 'advanced'];
@@ -115,6 +116,8 @@ export function PracticePage({
     [],
   );
 
+  const videoSamples = useMemo(() => videoSamplesFor(filter), [filter]);
+
   if (activeModule) {
     return (
       <SessionRunner
@@ -176,6 +179,31 @@ export function PracticePage({
           </>
         )}
       </p>
+
+      <article className="card video-samples-card">
+        <div>
+          <h3>📺 YouTube sample walk-throughs</h3>
+          <p className="meta">
+            Curated from Official OET, E2 OET, and Swoosh English. These links supplement the
+            original in-app tests; third-party recordings are not copied into the app.
+          </p>
+        </div>
+        <div className="video-sample-links">
+          {videoSamples.map((sample) => (
+            <a
+              key={`${sample.provider}-${sample.subtest}`}
+              className="video-sample-link"
+              href={sample.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              title={sample.note}
+            >
+              <span>{sample.subtest}</span>
+              {sample.provider} →
+            </a>
+          ))}
+        </div>
+      </article>
 
       <div className="search-bar">
         <input
