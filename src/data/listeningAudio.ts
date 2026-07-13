@@ -1,6 +1,7 @@
 /** Official OET listening audio — run `npm run import-audio` to refresh local copies. */
 
 import type { MockExam, PracticeModule } from '../types';
+import { baseUrl } from '../lib/baseUrl';
 
 export interface ListeningAudioTrack {
   id: string;
@@ -61,7 +62,7 @@ export function getListeningTrack(id: string): ListeningAudioTrack | undefined {
 
 /** Prefer bundled file; fall back to CDN / SoundCloud stream. */
 export function resolveAudioSrc(track: ListeningAudioTrack): string | undefined {
-  return track.localPath ?? track.cdnUrl;
+  return track.localPath ? `${baseUrl}${track.localPath.replace(/^\//, '')}` : track.cdnUrl;
 }
 
 function idHash(id: string, size: number): number {

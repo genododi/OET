@@ -13,6 +13,7 @@ import type { SessionTask, SpeakingCriteria, WritingRubricItem } from '../types/
 import { hashString } from './generators/uniqueness';
 import listeningTaskAudioDefinitions from './listeningTaskAudio.json';
 import { getReadingPassage } from './readingPassages';
+import { baseUrl } from '../lib/baseUrl';
 
 const subtestInstructions: Record<OetSubtest, string> = {
   listening:
@@ -57,7 +58,7 @@ function resolveQuestionMatchedAudio(
 
   const audioRevision = hashString(JSON.stringify(definition)).toString(36);
   return {
-    audioSrc: `/audio/question-matched/${id}.mp3?v=${audioRevision}`,
+    audioSrc: `${baseUrl}audio/question-matched/${id}.mp3?v=${audioRevision}`,
     audioLabel: 'Question-matched listening clip',
     audioNote: 'Original OET-style practice audio generated from this exact question scenario.',
     audioTranscript: definition.script,
