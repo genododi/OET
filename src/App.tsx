@@ -52,8 +52,8 @@ const pageMeta: Record<NavSection, { title: string; subtitle?: string }> = {
     subtitle: 'Detailed write-ups and debrief documents',
   },
   usmle: {
-    title: 'USMLE (Coursology Q-Bank)',
-    subtitle: 'Question banks for physicians preparing USMLE Step 1, 2 CK, and Step 3',
+    title: 'USMLE Q-Bank',
+    subtitle: 'Practice questions for Step 1, Step 2 CK, and Step 3',
   },
 };
 

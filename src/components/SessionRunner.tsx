@@ -6,7 +6,7 @@ import { AudioPlayer } from './AudioPlayer';
 import { SpeakingRecorder } from './SpeakingRecorder';
 import { TaskReviewPanel, SessionSummaryPanel } from './SessionReviewPanel';
 import ListeningSection from './ListeningSection';
-import type { OetSubtest } from '../types';
+import type { SubtestType } from '../types';
 import {
   computeSessionReview,
   evaluateMcqAnswer,
@@ -14,6 +14,12 @@ import {
   type WritingEvaluation,
 } from '../lib/oetScoring';
 import type { SpeakingEvaluationResult } from '../lib/speakingEvaluation';
+import { usmleDisciplineMap } from '../data/usmleDisciplines';
+import { computeUsmleScore } from '../lib/usmleScoring';
+import { saveUsmleSession } from '../lib/usmleAnalytics';
+import { LabValuesPanel } from './LabValuesPanel';
+import { CalculatorPanel } from './CalculatorPanel';
+import { QuestionFlagButton } from './QuestionFlagButton';
 
 interface Props {
   config: SessionConfig;
@@ -61,6 +67,7 @@ export function SessionRunner({ config, onExit }: Props) {
   const [revealed, setRevealed] = useState<Record<string, boolean>>({});
   const [writingSubmitted, setWritingSubmitted] = useState<Record<string, boolean>>({});
   const [speakingResults, setSpeakingResults] = useState<Record<string, SpeakingEvaluationResult>>({});
+  const [flaggedTasks, setFlaggedTasks] = useState<Record<string, boolean>>({});
 
   const task = config.tasks[taskIndex];
   const listeningGroup = useMemo(() => getListeningGroup(config.tasks, taskIndex), [config.tasks, taskIndex]);
@@ -83,6 +90,12 @@ export function SessionRunner({ config, onExit }: Props) {
 
   const speakingEval = speakingResults[task?.id ?? ''] ?? null;
   const taskRevealed = task ? revealed[task.id] : false;
+
+  const usmleScore = useMemo(() => {
+    if (config.kind !== 'usmle-block' && config.kind !== 'usmle-custom') return null;
+    if (phase !== 'done') return null;
+    return computeUsmleScore(config.tasks, answers);
+  }, [config, answers, phase]);
 
   useEffect(() => {
     if (phase !== 'active' || secondsLeft <= 0) return;
@@ -109,6 +122,8 @@ export function SessionRunner({ config, onExit }: Props) {
       if (selected && right && selected === right.id) correct += 1;
     });
 
+    const isUsmle = config.kind === 'usmle-block' || config.kind === 'usmle-custom';
+
     markComplete({
       id: config.id,
       kind: config.kind,
@@ -125,6 +140,18 @@ export function SessionRunner({ config, onExit }: Props) {
         taskReviews: review.taskReviews,
       },
     });
+
+    if (isUsmle) {
+      const usmleScore = computeUsmleScore(config.tasks, answers);
+      const step = config.tasks.find((t) => t.usmleStep)?.usmleStep ?? 'step1';
+      saveUsmleSession(
+        step,
+        usmleScore.percentCorrect,
+        usmleScore.total,
+        usmleScore.disciplineBreakdown.map((d) => ({ discipline: d.discipline, percentCorrect: d.percentCorrect })),
+      );
+    }
+
     setPhase('done');
   }, [config, markComplete, answers, notes, speakingResults]);
 
@@ -160,6 +187,10 @@ export function SessionRunner({ config, onExit }: Props) {
     setWritingSubmitted((s) => ({ ...s, [task.id]: true }));
   };
 
+  const toggleFlag = (taskId: string) => {
+    setFlaggedTasks((f) => ({ ...f, [taskId]: !f[taskId] }));
+  };
+
   const handleSpeakingResult = useCallback(
     (result: SpeakingEvaluationResult | null) => {
       if (!task || task.subtest !== 'speaking') return;
@@ -185,7 +216,15 @@ export function SessionRunner({ config, onExit }: Props) {
           ← Back
         </button>
         <article className="card session-intro-card">
-          <span className="session-kind">{config.kind === 'mock' ? 'Mock exam' : 'Practice module'}</span>
+          <span className="session-kind">
+            {config.kind === 'usmle-block'
+              ? 'USMLE Block'
+              : config.kind === 'usmle-custom'
+                ? 'USMLE Quiz'
+                : config.kind === 'mock'
+                  ? 'Mock exam'
+                  : 'Practice module'}
+          </span>
           <h2>{config.title}</h2>
           <p className="meta">{config.subtitle}</p>
           <p className="description">{config.tasks[0]?.instructions}</p>
@@ -197,8 +236,9 @@ export function SessionRunner({ config, onExit }: Props) {
             </ul>
           )}
           <p className="meta session-threshold-note">
-            Exam-like mode: answers are hidden until you submit. Review shows OET pass criteria (70%+
-            practice / 80%+ exam-ready for Listening & Reading).
+            {config.kind === 'usmle-block' || config.kind === 'usmle-custom'
+              ? 'Answers are hidden until you submit. A three-digit estimated score and pass/fail assessment are shown at the end of each block.'
+              : 'Exam-like mode: answers are hidden until you submit. Review shows OET pass criteria (70%+ practice / 80%+ exam-ready for Listening & Reading).'}
           </p>
           <div className="badge-row">
             {config.subtests.map((s) => (
@@ -230,9 +270,36 @@ export function SessionRunner({ config, onExit }: Props) {
             {config.title} — progress and review saved locally on this device.
           </p>
           <SessionSummaryPanel title={config.title} review={sessionReview} />
+          {usmleScore && (
+            <div className="card usmle-score-card">
+              <h3>USMLE Performance</h3>
+              <div className="usmle-score-row">
+                <div className="usmle-score-stat">
+                  <span className="usmle-score-stat-value">{usmleScore.percentCorrect}%</span>
+                  <span className="usmle-score-stat-label">Percent Correct</span>
+                </div>
+                <div className="usmle-score-stat">
+                  <span className="usmle-score-stat-value">{usmleScore.correct}/{usmleScore.total}</span>
+                  <span className="usmle-score-stat-label">Correct</span>
+                </div>
+                {usmleScore.estimatedThreeDigitScore != null && (
+                  <div className="usmle-score-stat">
+                    <span className="usmle-score-stat-value">{usmleScore.estimatedThreeDigitScore}</span>
+                    <span className="usmle-score-stat-label">Estimated Score</span>
+                  </div>
+                )}
+                <div className="usmle-score-stat">
+                  <span className={`usmle-score-stat-value ${usmleScore.passed ? 'usmle-pass' : 'usmle-fail'}`}>
+                    {usmleScore.passed ? 'PASS' : 'FAIL'}
+                  </span>
+                  <span className="usmle-score-stat-label">{usmleScore.passed ? 'Above threshold' : 'Needs improvement'}</span>
+                </div>
+              </div>
+            </div>
+          )}
           <div className="session-intro-actions">
             <button type="button" className="btn btn-primary" onClick={onExit}>
-              Back to {config.kind === 'mock' ? 'mocks' : 'practice'}
+              Back to {config.kind === 'usmle-block' || config.kind === 'usmle-custom' ? 'USMLE' : config.kind === 'mock' ? 'mocks' : 'practice'}
             </button>
             <button
               type="button"
@@ -296,7 +363,23 @@ export function SessionRunner({ config, onExit }: Props) {
           <div className="card-header-row">
             <span className="session-task-type">{subtestLabel(task)}</span>
             {task.subtest !== 'intro' && task.subtest !== 'break' && (
-              <SubtestBadge subtest={task.subtest as OetSubtest} small />
+              <SubtestBadge subtest={task.subtest as SubtestType} small />
+            )}
+            {task.usmleDiscipline && (
+              <span
+                className="tag usmle-discipline-tag"
+                style={{ backgroundColor: usmleDisciplineMap.get(task.usmleDiscipline)?.color ?? '#666' }}
+              >
+                {usmleDisciplineMap.get(task.usmleDiscipline)?.shortLabel ?? task.usmleDiscipline}
+              </span>
+            )}
+            <div className="card-header-spacer" />
+            {(config.kind === 'usmle-block' || config.kind === 'usmle-custom') && (
+              <>
+                <LabValuesPanel />
+                <CalculatorPanel />
+                <QuestionFlagButton taskId={task.id} flagged={!!flaggedTasks[task.id]} onToggle={toggleFlag} />
+              </>
             )}
           </div>
           <h3>{task.title}</h3>
@@ -313,6 +396,13 @@ export function SessionRunner({ config, onExit }: Props) {
               scenarioId={task.id}
               revision={task.audioRevision}
             />
+          )}
+
+          {task.hasImage && task.imageSrc && (
+            <figure className="usmle-image-figure">
+              <img src={task.imageSrc} alt={task.imageCaption ?? 'Clinical image'} className="usmle-vignette-image" />
+              {task.imageCaption && <figcaption>{task.imageCaption}</figcaption>}
+            </figure>
           )}
 
           {task.readingPassage && (

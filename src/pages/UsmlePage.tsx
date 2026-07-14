@@ -1,93 +1,104 @@
-import {
-  coursologyPortalUrl,
-  coursologySignInUrl,
-  coursologyTelegramUrl,
-  coursologyUpdatesUrl,
-  groupUsmleQBanks,
-  usmleCatalogMeta,
-  usmleQBanks,
-} from '../data/usmleCourses';
+import { useState } from 'react';
+import type { UsmleStep, UsmleDiscipline } from '../types/usmle';
+import type { SessionConfig } from '../types/session';
+import { UsmleBlockSetup } from '../components/UsmleBlockSetup';
+import { SessionRunner } from '../components/SessionRunner';
+import { UsmlePerformance } from '../components/UsmlePerformance';
+import { buildUsmleBlockSession, buildUsmleCustomSession, getUsmleTaskCount } from '../lib/usmleSessionBuilder';
 
-const stepLabels: Record<string, string> = {
-  step1: 'Step 1',
-  step2: 'Step 2 CK',
-  step3: 'Step 3',
-  all: 'All steps',
-};
+type UsmleView = 'dashboard' | 'setup' | 'session';
+
+const STEP_CARDS: { step: UsmleStep; label: string; description: string }[] = [
+  {
+    step: 'step1',
+    label: 'Step 1',
+    description: 'Basic Sciences — anatomy, biochemistry, microbiology, pathology, pharmacology, physiology, and more',
+  },
+  {
+    step: 'step2',
+    label: 'Step 2 CK',
+    description: 'Clinical Knowledge — internal medicine subspecialties, surgery, pediatrics, OB/GYN, psychiatry',
+  },
+  {
+    step: 'step3',
+    label: 'Step 3',
+    description: 'Clinical Management — ambulatory care, inpatient management, biostatistics, preventive medicine',
+  },
+];
 
 export function UsmlePage() {
-  const groups = groupUsmleQBanks();
+  const [view, setView] = useState<UsmleView>('dashboard');
+  const [selectedStep, setSelectedStep] = useState<UsmleStep | null>(null);
+  const [sessionConfig, setSessionConfig] = useState<SessionConfig | null>(null);
+
+  const handleStepSelect = (step: UsmleStep) => {
+    setSelectedStep(step);
+    setView('setup');
+  };
+
+  const handleStart = (
+    step: UsmleStep,
+    discipline: UsmleDiscipline | undefined,
+    questionCount: number,
+    timeMinutes: number,
+    isCustom: boolean,
+  ) => {
+    const options = { step, discipline, questionCount, timeMinutes };
+    const config = isCustom ? buildUsmleCustomSession(options) : buildUsmleBlockSession(options);
+    setSessionConfig(config);
+    setView('session');
+  };
+
+  const handleExit = () => {
+    setSessionConfig(null);
+    setView('dashboard');
+  };
+
+  if (view === 'session' && sessionConfig) {
+    return <SessionRunner config={sessionConfig} onExit={handleExit} />;
+  }
+
+  if (view === 'setup' && selectedStep) {
+    return (
+      <UsmleBlockSetup
+        step={selectedStep}
+        onStart={handleStart}
+        onBack={() => setView('dashboard')}
+      />
+    );
+  }
+
+  const taskCounts = STEP_CARDS.map((card) => ({
+    ...card,
+    count: getUsmleTaskCount(card.step),
+  }));
 
   return (
     <div className="usmle-page">
       <section className="card usmle-hero">
-        <span className="hero-eyebrow">External resource · USMLE</span>
-        <h2>{usmleCatalogMeta.title}</h2>
-        <p>{usmleCatalogMeta.subtitle}</p>
-        <p className="meta">{usmleCatalogMeta.portalNote}</p>
-        <div className="hero-actions">
-          <a
-            href={coursologyPortalUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn btn-primary"
-          >
-            Open Coursology Q-Bank ↗
-          </a>
-          <a
-            href={coursologySignInUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn btn-secondary"
-          >
-            Sign in ↗
-          </a>
-        </div>
-      </section>
-
-      <section className="card usmle-stats">
+        <h2>USMLE Q-Bank</h2>
         <p>
-          <strong>{usmleQBanks.length}</strong> publicly announced Q-banks and libraries cataloged from
-          Coursology&apos;s Telegram channel — content access requires a subscription at{' '}
-          <a href={coursologyPortalUrl} target="_blank" rel="noopener noreferrer">
-            coursology-qbank.com
-          </a>
-          .
+          Practice with USMLE-style multiple-choice questions for Steps 1, 2 CK, and 3.
+          Each question includes a clinical vignette, detailed answer explanations, and discipline tagging.
         </p>
-        <div className="usmle-meta-links">
-          <a href={coursologyUpdatesUrl} target="_blank" rel="noopener noreferrer" className="link-btn">
-            Platform updates (Telegram) ↗
-          </a>
-          <a href={coursologyTelegramUrl} target="_blank" rel="noopener noreferrer" className="link-btn">
-            Subscribe via Telegram ↗
-          </a>
-        </div>
       </section>
 
-      {groups.map((group) => (
-        <section key={group.category} className="card usmle-category">
-          <h3>{group.label}</h3>
-          <ul className="usmle-qbank-list">
-            {group.items.map((item) => (
-              <li key={item.id} className="usmle-qbank-item">
-                <div className="usmle-qbank-head">
-                  <a href={item.url} target="_blank" rel="noopener noreferrer" className="usmle-qbank-link">
-                    {item.name} ↗
-                  </a>
-                  <span className="usmle-step-tags">
-                    {item.steps.map((s) => (
-                      <span key={s} className="tag">
-                        {stepLabels[s]}
-                      </span>
-                    ))}
-                  </span>
-                </div>
-                <p className="meta">{item.description}</p>
-              </li>
-            ))}
-          </ul>
-        </section>
-      ))}
+      <div className="usmle-step-grid">
+        {taskCounts.map((card) => (
+          <button
+            key={card.step}
+            type="button"
+            className="card usmle-step-card"
+            onClick={() => handleStepSelect(card.step)}
+          >
+            <h3>{card.label}</h3>
+            <p>{card.description}</p>
+            <span className="usmle-step-count">{card.count} questions</span>
+          </button>
+        ))}
+      </div>
+
+      <UsmlePerformance />
     </div>
   );
 }

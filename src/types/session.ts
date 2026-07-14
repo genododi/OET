@@ -1,4 +1,5 @@
-import type { Difficulty, OetSubtest } from './index';
+import type { Difficulty, OetSubtest, SubtestType } from './index';
+import type { UsmleStep, UsmleDiscipline, UsmleQuestionFormat } from './usmle';
 
 export interface SessionOption {
   id: string;
@@ -30,7 +31,7 @@ export interface SpeakingCriteria {
 
 export interface SessionTask {
   id: string;
-  subtest: OetSubtest | 'intro' | 'break';
+  subtest: SubtestType;
   title: string;
   difficulty?: Difficulty;
   instructions: string;
@@ -59,6 +60,18 @@ export interface SessionTask {
   audioEvidenceTerms?: string[];
   /** Content-derived cache revision for the question/audio pair. */
   audioRevision?: string;
+  /** USMLE step (step1, step2, step3) */
+  usmleStep?: UsmleStep;
+  /** USMLE discipline tag */
+  usmleDiscipline?: UsmleDiscipline;
+  /** USMLE question format */
+  usmleQuestionFormat?: UsmleQuestionFormat;
+  /** Whether this question has an associated image */
+  hasImage?: boolean;
+  /** Path to vignette image (under public/usmle/images/) */
+  imageSrc?: string;
+  /** Caption for the vignette image */
+  imageCaption?: string;
 }
 
 export interface SessionListeningAudio {
@@ -71,11 +84,11 @@ export interface SessionListeningAudio {
 
 export interface SessionConfig {
   id: string;
-  kind: 'mock' | 'practice';
+  kind: 'mock' | 'practice' | 'usmle-block' | 'usmle-custom';
   title: string;
   subtitle: string;
   durationMinutes: number;
-  subtests: OetSubtest[];
+  subtests: SubtestType[];
   tasks: SessionTask[];
   /** Full-length official audio for listening mocks/practice (shown on intro + listening steps) */
   listeningAudio?: SessionListeningAudio;
@@ -93,7 +106,7 @@ export interface SubtestReviewScore {
 
 export interface TaskReviewSnapshot {
   taskId: string;
-  subtest: OetSubtest | 'intro' | 'break';
+  subtest: SubtestType;
   passed: boolean | null;
   scorePercent: number | null;
   summary: string;
@@ -110,7 +123,7 @@ export interface SessionReviewData {
 
 export interface CompletedSession {
   id: string;
-  kind: 'mock' | 'practice';
+  kind: 'mock' | 'practice' | 'usmle-block' | 'usmle-custom';
   title: string;
   completedAt: string;
   durationMinutes: number;

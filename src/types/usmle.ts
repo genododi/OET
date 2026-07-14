@@ -1,0 +1,35 @@
+export type UsmleStep = 'step1' | 'step2' | 'step3';
+
+export type UsmleDiscipline =
+  | 'anatomy'
+  | 'biochemistry'
+  | 'microbiology'
+  | 'pathology'
+  | 'pharmacology'
+  | 'physiology'
+  | 'immunology'
+  | 'behavioral'
+  | 'biostatistics'
+  | 'cardiology'
+  | 'neurology'
+  | 'pulmonology'
+  | 'nephrology'
+  | 'gastroenterology'
+  | 'endocrinology'
+  | 'rheumatology'
+  | 'hematology'
+  | 'oncology'
+  | 'reproductive'
+  | 'musculoskeletal'
+  | 'dermatology'
+  | 'ophthalmology'
+  | 'ent'
+  | 'psychiatry'
+  | 'pediatrics'
+  | 'obgyn'
+  | 'surgery'
+  | 'emergency'
+  | 'preventive'
+  | 'infectious_disease';
+
+export type UsmleQuestionFormat = 'single-best-answer' | 'multiple-select' | 'biostats-calculation';

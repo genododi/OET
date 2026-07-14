@@ -1,4 +1,4 @@
-import type { OetSubtest } from '../types';
+import type { OetSubtest, SubtestType } from '../types';
 import type { SessionTask } from '../types/session';
 import {
   evaluateSpeakingResponse,
@@ -356,12 +356,15 @@ function rubricWeakAreas(tasks: SessionTask[], notes: Record<string, string>): s
 }
 
 export function computeSessionReview(
-  config: { tasks: SessionTask[]; subtests: OetSubtest[] },
+  config: { tasks: SessionTask[]; subtests: SubtestType[] },
   answers: Record<string, string>,
   notes: Record<string, string>,
   speakingResults: Record<string, OetSpeakingEvaluation | SpeakingEvaluationResult>,
 ): SessionReviewSummary {
-  const subtestScores = config.subtests.map((s) =>
+  const oetSubtests = config.subtests.filter((s): s is OetSubtest =>
+    s !== 'intro' && s !== 'break' && s !== 'usmle',
+  );
+  const subtestScores = oetSubtests.map((s) =>
     computeSubtestScore(s, config.tasks, answers, notes, speakingResults),
   );
 
@@ -380,7 +383,7 @@ export function computeSessionReview(
 
   const taskReviews: TaskReviewSnapshot[] = config.tasks
     .filter((t) => t.subtest !== 'intro' && t.subtest !== 'break')
-    .map((t) => {
+    .map((t): TaskReviewSnapshot => {
       if (t.options?.length) {
         if (t.subtest === 'listening') {
           const userText = (answers[t.id] ?? '').trim();
@@ -389,7 +392,7 @@ export function computeSessionReview(
           const passed = userText.toLowerCase() === correctLabel.toLowerCase();
           return {
             taskId: t.id,
-            subtest: t.subtest,
+            subtest: t.subtest as SubtestType,
             passed: userText ? passed : null,
             scorePercent: userText ? (passed ? 100 : 0) : null,
             summary: passed
@@ -397,16 +400,16 @@ export function computeSessionReview(
               : userText
                 ? `Incorrect — you wrote "${userText}", correct is "${correctLabel}"`
                 : 'Not attempted',
-          };
+          } as TaskReviewSnapshot;
         }
         const ev = evaluateMcqAnswer(t, answers[t.id]);
         return {
           taskId: t.id,
-          subtest: t.subtest,
+          subtest: t.subtest as SubtestType,
           passed: ev?.correct ?? null,
           scorePercent: ev ? (ev.correct ? 100 : 0) : null,
           summary: ev?.explanation ?? 'Not attempted',
-        };
+        } as TaskReviewSnapshot;
       }
       if (t.subtest === 'writing') {
         const ev = evaluateWritingDraft(t, notes[t.id] ?? '');
@@ -433,11 +436,11 @@ export function computeSessionReview(
       }
       return {
         taskId: t.id,
-        subtest: t.subtest,
+        subtest: t.subtest as SubtestType,
         passed: null,
         scorePercent: null,
         summary: '—',
-      };
+      } as TaskReviewSnapshot;
     });
 
   return {

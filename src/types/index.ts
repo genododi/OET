@@ -1,5 +1,7 @@
 export type OetSubtest = 'listening' | 'reading' | 'writing' | 'speaking';
 
+export type SubtestType = OetSubtest | 'intro' | 'break' | 'usmle';
+
 export type Difficulty = 'beginner' | 'intermediate' | 'advanced';
 
 export interface MockExam {
