@@ -18,7 +18,7 @@ import { SessionRunner } from '../components/SessionRunner';
 import { useProgress } from '../hooks/useProgress';
 import type { Difficulty, MockExam, OetSubtest } from '../types';
 
-const difficulties: Array<Difficulty | 'all'> = ['all', 'beginner', 'intermediate', 'advanced'];
+const difficulties: Array<Difficulty | 'all'> = ['all', 'advanced'];
 const subtestFilters: Array<OetSubtest | 'all'> = ['all', 'listening', 'reading', 'writing', 'speaking'];
 
 interface Props {
@@ -158,7 +158,7 @@ export function MockExamsPage({ defaultProfession = 'Medicine' }: Props) {
             onClick={() => setDifficulty(d)}
           >
             {d === 'all'
-              ? `All levels (${difficultyCounts.all.toLocaleString()})`
+              ? `Advanced catalog (${difficultyCounts.all.toLocaleString()})`
               : `${d.charAt(0).toUpperCase() + d.slice(1)} (${difficultyCounts[d].toLocaleString()})`}
           </button>
         ))}

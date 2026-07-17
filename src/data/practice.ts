@@ -1541,10 +1541,19 @@ const medicineAdvancedPracticeModules = generateMedicineAdvancedPracticeModules(
   TARGET_MEDICINE_ADVANCED_PER_SUBTEST,
 );
 
+function promoteToAdvanced(module: PracticeModule): PracticeModule {
+  return {
+    ...module,
+    difficulty: 'advanced',
+    description: module.description.replace(/\b(beginner|intermediate)\b/gi, 'advanced'),
+    tags: [...new Set([...(module.tags ?? []), 'advanced-only', 'grade-a-training'])],
+  };
+}
+
 export const practiceModules: PracticeModule[] = [
   ...curatedPracticeModules,
   ...medicinePracticeModules,
   ...generatePracticeModules(generatedPracticeCount),
   ...advancedPracticeModules,
   ...medicineAdvancedPracticeModules,
-];
+].map(promoteToAdvanced);

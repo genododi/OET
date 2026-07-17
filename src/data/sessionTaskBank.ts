@@ -2058,11 +2058,37 @@ export const speakingTasks: SessionTask[] = [
   },
 ];
 
+const ADVANCED_CHALLENGE: Record<OetSubtest, string> = {
+  listening:
+    'Advanced standard: discriminate exact evidence from plausible detail; attend to qualification, negation, tense, and the speaker’s stance.',
+  reading:
+    'Advanced standard: answer only what the text supports; distinguish inference from fact and reject clinically plausible but unsupported distractors.',
+  writing:
+    'Advanced standard: prioritise information for the reader, synthesise competing details, and maintain precise, concise professional register throughout.',
+  speaking:
+    'Advanced standard: respond to emotion and uncertainty, adapt language to the listener, and negotiate a safe plan with natural signposting.',
+};
+
+/**
+ * Grade A mode deliberately removes the beginner/intermediate route. Every
+ * task is presented with an expert challenge brief and counted as advanced.
+ * This keeps adaptive practice, named modules, and timed mocks on one strict
+ * difficulty policy across all four OET sub-tests.
+ */
+function asAdvancedTask(task: SessionTask): SessionTask {
+  const subtest = task.subtest as OetSubtest;
+  return {
+    ...task,
+    difficulty: 'advanced',
+    instructions: `${task.instructions}\n\n${ADVANCED_CHALLENGE[subtest]}`,
+  };
+}
+
 export const bankBySubtest: Record<OetSubtest, SessionTask[]> = {
-  listening: listeningTasks,
-  reading: readingTasks,
-  writing: writingTasks,
-  speaking: speakingTasks,
+  listening: listeningTasks.map(asAdvancedTask),
+  reading: readingTasks.map(asAdvancedTask),
+  writing: writingTasks.map(asAdvancedTask),
+  speaking: speakingTasks.map(asAdvancedTask),
 };
 
 export function seedOffset(id: string, size: number): number {

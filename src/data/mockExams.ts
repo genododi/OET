@@ -1026,6 +1026,15 @@ const medicineAdvancedMockExams = generateMedicineAdvancedMockExams(
   TARGET_MEDICINE_ADVANCED_PER_SUBTEST,
 );
 
+function promoteToAdvanced(exam: MockExam): MockExam {
+  return {
+    ...exam,
+    difficulty: 'advanced',
+    description: exam.description.replace(/\b(beginner|intermediate)\b/gi, 'advanced'),
+    tags: [...new Set([...(exam.tags ?? []), 'advanced-only', 'grade-a-training'])],
+  };
+}
+
 export const mockExams: MockExam[] = [
   ...curatedMockExams,
   ...medicineMockExams,
@@ -1041,4 +1050,4 @@ export const mockExams: MockExam[] = [
     /Timed \d+ min, \d+ items/g,
     `Timed ${oetMockDurationMinutes(exam.subtests)} min, ${oetMockTaskCount(exam.subtests)} scored tasks`,
   ),
-}));
+})).map(promoteToAdvanced);

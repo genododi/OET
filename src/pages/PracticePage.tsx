@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import {
   practiceModules,
   TARGET_ADVANCED_PRACTICE_COUNT,
@@ -25,7 +25,7 @@ import { useProgress } from '../hooks/useProgress';
 import { videoSamplesFor } from '../data/videoSamples';
 
 const filters: Array<OetSubtest | 'all'> = ['all', 'listening', 'reading', 'writing', 'speaking'];
-const difficulties: Array<Difficulty | 'all'> = ['all', 'beginner', 'intermediate', 'advanced'];
+const difficulties: Array<Difficulty | 'all'> = ['all', 'advanced'];
 
 interface Props {
   initialFilter?: OetSubtest;
@@ -38,7 +38,8 @@ export function PracticePage({
   defaultProfession = 'Medicine',
   onFilterChange,
 }: Props) {
-  const [filter, setFilter] = useState<OetSubtest | 'all'>(initialFilter ?? 'all');
+  const [selectedFilter, setSelectedFilter] = useState<OetSubtest | 'all'>('all');
+  const filter = initialFilter ?? selectedFilter;
   const [difficulty, setDifficulty] = useState<Difficulty | 'all'>('all');
   const [query, setQuery] = useState('');
   const [activeModule, setActiveModule] = useState<PracticeModule | null>(null);
@@ -55,12 +56,8 @@ export function PracticePage({
   );
   const [profession, setProfession] = useState(defaultProfession);
 
-  useEffect(() => {
-    if (initialFilter) setFilter(initialFilter);
-  }, [initialFilter]);
-
   const setFilterAndRoute = (next: OetSubtest | 'all') => {
-    setFilter(next);
+    setSelectedFilter(next);
     onFilterChange?.(next);
   };
 
@@ -224,7 +221,7 @@ export function PracticePage({
             onClick={() => setDifficulty(d)}
           >
             {d === 'all'
-              ? `All levels (${difficultyCounts.all.toLocaleString()})`
+              ? `Advanced catalog (${difficultyCounts.all.toLocaleString()})`
               : `${d.charAt(0).toUpperCase() + d.slice(1)} (${difficultyCounts[d].toLocaleString()})`}
           </button>
         ))}

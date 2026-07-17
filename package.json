@@ -13,6 +13,7 @@
     "generate:question-audio": "node scripts/generate-question-audio.mjs",
     "test:audio-relevance": "node scripts/validate-question-audio.mjs",
     "test:audio-spoken": "node scripts/audit-question-audio.mjs",
+    "test:advanced-oet": "npx tsx scripts/verify-advanced-oet.ts",
     "import-ashgan-telegram": "python3 scripts/import-ashgan-telegram.py",
     "import-ashgan": "python3 scripts/import-ashgan-assets.py",
     "import-ashgan:public": "python3 scripts/import-ashgan-assets.py --default-handles --download --write-ts --limit 12",

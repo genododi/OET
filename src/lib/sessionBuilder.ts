@@ -135,10 +135,9 @@ export function buildMockSession(exam: MockExam): SessionConfig {
     const requested = taskCounts[index]!;
     const capped = Math.min(requested, bankSize);
     const seed = sessionSeed(exam.id, subtest, capped, exam.title, exam.profession);
-    // Full simulations need the official number of tasks in each component.
-    // Do not filter the bank by a card's advertised difficulty, otherwise a
-    // small advanced/intermediate pool silently shortens a 42-question paper.
-    tasks.push(...pickTasks(subtest, capped, `${exam.id}-${subtest}`, seed));
+    // Full simulations retain the official component blueprint while enforcing
+    // the catalog-wide advanced-only task policy.
+    tasks.push(...pickTasks(subtest, capped, `${exam.id}-${subtest}`, seed, 'advanced'));
   });
 
   return {

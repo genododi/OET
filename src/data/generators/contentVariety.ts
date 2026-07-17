@@ -109,7 +109,8 @@ export const ALLIED_PROFESSIONS = [
 
 export const SUBTESTS: OetSubtest[] = ['listening', 'reading', 'writing', 'speaking'];
 
-export const DIFFICULTIES: Difficulty[] = ['beginner', 'intermediate', 'advanced'];
+/** The public catalog is deliberately an advanced-only Grade A training environment. */
+export const DIFFICULTIES: Difficulty[] = ['advanced'];
 
 export const PRACTICE_TAG_POOL = [
   'medicine',
