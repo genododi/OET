@@ -2711,6 +2711,218 @@ button {
   cursor: not-allowed;
 }
 
+/* Grade A command center */
+.grade-a-command {
+  padding: 1.5rem;
+  border: 1px solid #bae6fd;
+  background:
+    radial-gradient(circle at 92% 8%, rgba(14, 165, 233, 0.12), transparent 25rem),
+    linear-gradient(135deg, #f0fdfa, #ffffff 58%);
+}
+
+.grade-a-head,
+.grade-a-next,
+.grade-a-skill-top,
+.grade-a-progress-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.grade-a-head {
+  align-items: flex-start;
+  margin-bottom: 1.25rem;
+}
+
+.grade-a-head h2 {
+  margin: 0.15rem 0 0.35rem;
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  font-weight: 400;
+}
+
+.grade-a-head .meta {
+  max-width: 66ch;
+}
+
+.grade-a-eyebrow,
+.grade-a-next-label {
+  display: block;
+  color: var(--teal-800);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.grade-a-score {
+  display: flex;
+  min-width: 6.75rem;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.65rem 0.8rem;
+  border: 1px solid var(--teal-200);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.grade-a-score strong {
+  color: var(--teal-800);
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.grade-a-score span {
+  margin-top: 0.25rem;
+  color: var(--text-muted);
+  font-size: 0.68rem;
+  text-align: center;
+}
+
+.grade-a-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.grade-a-skill {
+  display: flex;
+  min-height: 14rem;
+  flex-direction: column;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.86);
+}
+
+.grade-a-skill-ready {
+  border-color: #86efac;
+  background: #f0fdf4;
+}
+
+.grade-a-status,
+.grade-a-status-ready {
+  padding: 0.18rem 0.5rem;
+  border-radius: 999px;
+  background: var(--slate-100);
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.grade-a-status-ready {
+  background: var(--emerald-100);
+  color: var(--emerald-800);
+}
+
+.grade-a-progress-label {
+  margin: 0.75rem 0 0.3rem;
+}
+
+.grade-a-progress-label strong {
+  color: var(--text-h);
+  font-size: 1.2rem;
+}
+
+.grade-a-progress-label span,
+.grade-a-skill small {
+  color: var(--text-muted);
+  font-size: 0.74rem;
+}
+
+.grade-a-track {
+  position: relative;
+  height: 0.5rem;
+  overflow: visible;
+  border-radius: 999px;
+  background: var(--slate-100);
+}
+
+.grade-a-track > span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--teal-500), var(--sky-500));
+}
+
+.grade-a-track > i {
+  position: absolute;
+  top: -0.2rem;
+  width: 2px;
+  height: 0.9rem;
+  background: var(--slate-800);
+}
+
+.grade-a-skill p {
+  margin: 0.85rem 0 0.45rem;
+  color: var(--slate-700);
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+.grade-a-skill small {
+  line-height: 1.45;
+}
+
+.grade-a-drill {
+  align-self: flex-start;
+  margin-top: auto;
+  padding-top: 0.65rem;
+}
+
+.grade-a-next {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: var(--radius-sm);
+  background: var(--slate-900);
+  color: #fff;
+}
+
+.grade-a-next-label {
+  color: var(--teal-200);
+  margin-bottom: 0.16rem;
+}
+
+.grade-a-next strong {
+  display: block;
+  font-size: 1rem;
+}
+
+.grade-a-next p {
+  margin-top: 0.15rem;
+  color: var(--slate-300);
+  font-size: 0.8rem;
+}
+
+.grade-a-next .btn-primary {
+  flex-shrink: 0;
+  background: var(--teal-500);
+}
+
+.grade-a-next .btn-primary:hover {
+  background: var(--teal-600);
+}
+
+.grade-a-disclaimer {
+  margin-top: 0.75rem;
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  line-height: 1.45;
+}
+
+@media (max-width: 700px) {
+  .grade-a-head,
+  .grade-a-next {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .grade-a-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* Readiness dashboard */
 .readiness-dashboard {
   display: flex;

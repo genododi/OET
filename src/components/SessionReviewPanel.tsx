@@ -17,7 +17,7 @@ interface TaskReviewPanelProps {
 
 function PassBadge({ passed, examReady }: { passed: boolean; examReady?: boolean }) {
   if (examReady) {
-    return <span className="oet-badge oet-badge-exam-ready">Exam-ready</span>;
+    return <span className="oet-badge oet-badge-exam-ready">Strong practice</span>;
   }
   if (passed) {
     return <span className="oet-badge oet-badge-pass">Practice pass</span>;
@@ -86,7 +86,7 @@ export function TaskReviewPanel({
     return (
       <section className="session-review" aria-label="Writing review">
         <div className="session-review-header">
-          <h4>Writing rubric review</h4>
+          <h4>Writing practice review</h4>
           <PassBadge passed={writingEval.practicePass} examReady={writingEval.examReady} />
         </div>
         <p className="session-review-meta">
@@ -155,11 +155,11 @@ export function TaskReviewPanel({
     return (
       <section className={`session-review speaking-feedback ${speakingPassClass(speakingEval)}`}>
         <div className="session-review-header">
-          <h4>Speaking rubric review</h4>
+          <h4>Speaking practice review</h4>
           <PassBadge passed={speakingEval.practicePass} examReady={speakingEval.examReady} />
         </div>
         <p className="session-review-meta">
-          Overall: <strong>{speakingEval.score}%</strong> · {speakingEval.wordCount} words ·{' '}
+          Practice indicator: <strong>{speakingEval.score}%</strong> · {speakingEval.wordCount} words ·{' '}
           {speakingEval.wordsPerMinute} wpm
         </p>
         <div className="session-rubric-grid session-rubric-grid-3">
@@ -217,7 +217,7 @@ export function SessionSummaryPanel({ title, review }: SessionSummaryProps) {
         <p className="session-summary-percent">{review.overallPercent}%</p>
         <p className="session-summary-label">Overall readiness</p>
         {review.overallExamReady ? (
-          <span className="oet-badge oet-badge-exam-ready">Grade B equivalent — exam-ready</span>
+          <span className="oet-badge oet-badge-exam-ready">Strong practice performance</span>
         ) : review.overallPracticePass ? (
           <span className="oet-badge oet-badge-pass">Practice pass — keep building</span>
         ) : (
@@ -236,7 +236,7 @@ export function SessionSummaryPanel({ title, review }: SessionSummaryProps) {
               </span>
             )}
             {s.examReady ? (
-              <span className="oet-badge oet-badge-exam-ready oet-badge-sm">Ready</span>
+              <span className="oet-badge oet-badge-exam-ready oet-badge-sm">Strong</span>
             ) : s.practicePass ? (
               <span className="oet-badge oet-badge-pass oet-badge-sm">Pass</span>
             ) : (
@@ -271,8 +271,8 @@ export function SessionSummaryPanel({ title, review }: SessionSummaryProps) {
       </details>
 
       <p className="session-summary-note meta">
-        {title} — thresholds: Listening/Reading 70% practice / 80% exam-ready; Writing/Speaking rubric
-        65% / 75%.
+        {title} — practice indicators: Listening/Reading 70% / 80%; Writing/Speaking 65% / 75%.
+        These are training signals, not an official OET score conversion.
       </p>
     </section>
   );

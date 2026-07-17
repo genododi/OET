@@ -12,6 +12,7 @@ import { matchesProfessionFilter } from '../lib/preferredProfession';
 import { buildSmartSession } from '../lib/sessionBuilder';
 import { SessionRunner } from '../components/SessionRunner';
 import { ReadinessDashboard } from '../components/ReadinessDashboard';
+import { GradeACommandCenter } from '../components/GradeACommandCenter';
 import type { SessionConfig } from '../types/session';
 import type { NavSection, OetSubtest } from '../types';
 
@@ -72,6 +73,7 @@ export function HomePage({ onNavigate, preferredProfession = 'Medicine' }: Props
         </section>
       )}
 
+      <GradeACommandCenter completed={completed} onStartSmart={startSmart} />
       <ReadinessDashboard completed={completed} onStartSmart={startSmart} />
 
       {completedCount > 0 && (

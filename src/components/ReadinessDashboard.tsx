@@ -95,7 +95,7 @@ export function ReadinessDashboard({ completed, onStartSmart }: Props) {
                 <span
                   className="readiness-threshold-marker"
                   style={{ left: `${OET_THRESHOLDS[s.subtest].examReady}%` }}
-                  title={`Exam-ready threshold: ${OET_THRESHOLDS[s.subtest].examReady}%`}
+                  title={`Strong-practice threshold: ${OET_THRESHOLDS[s.subtest].examReady}%`}
                 />
               </div>
               <div className="readiness-row-bottom">

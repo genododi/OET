@@ -65,17 +65,6 @@ export function SpeakingRecorder({ taskId, criteria, onResult, showDetailedRevie
     };
   }, [revokeAudioUrl]);
 
-  useEffect(() => {
-    setTranscript('');
-    setFallbackText('');
-    revokeAudioUrl();
-    setAudioUrl(null);
-    setDurationSeconds(0);
-    setEvalResult(null);
-    setErrorMsg(null);
-    setState('idle');
-  }, [taskId, revokeAudioUrl]);
-
   const runEvaluation = useCallback(
     (text: string, duration: number, usedFallback: boolean) => {
       const result = { ...evaluateSpeakingResponse(text, duration, criteria, usedFallback), transcript: text };
@@ -290,7 +279,7 @@ export function SpeakingRecorder({ taskId, criteria, onResult, showDetailedRevie
           <p className="speaking-score">
             Score: <strong>{evalResult.score}%</strong>
             {evalResult.examReady && (
-              <span className="oet-badge oet-badge-exam-ready oet-badge-sm"> Exam-ready</span>
+              <span className="oet-badge oet-badge-exam-ready oet-badge-sm"> Strong practice</span>
             )}
             {!evalResult.examReady && evalResult.practicePass && (
               <span className="oet-badge oet-badge-pass oet-badge-sm"> Practice pass</span>

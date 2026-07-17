@@ -238,7 +238,7 @@ export function SessionRunner({ config, onExit }: Props) {
           <p className="meta session-threshold-note">
             {config.kind === 'usmle-block' || config.kind === 'usmle-custom'
               ? 'Answers are hidden until you submit. A three-digit estimated score and pass/fail assessment are shown at the end of each block.'
-              : 'Exam-like mode: answers are hidden until you submit. Review shows OET pass criteria (70%+ practice / 80%+ exam-ready for Listening & Reading).'}
+              : 'Exam-like mode: answers are hidden until you submit. Practice signals are coaching indicators, not official OET score predictions; use the Grade A command center for stricter internal targets.'}
           </p>
           <div className="badge-row">
             {config.subtests.map((s) => (
@@ -535,6 +535,7 @@ export function SessionRunner({ config, onExit }: Props) {
                 </ul>
               )}
               <SpeakingRecorder
+                key={task.id}
                 taskId={task.id}
                 criteria={task.speakingCriteria ?? defaultSpeakingCriteria}
                 onResult={handleSpeakingResult}
