@@ -1,7 +1,6 @@
 import type { OetSubtest, PracticeModule } from '../../types';
 import {
   DIFFICULTIES,
-  GENERATED_NON_MEDICINE_PROFESSIONS,
   MEDICINE_CLINICAL_THEMES,
   MEDICINE_PRACTICE_TAG_POOL,
   MEDICINE_SOURCE_HINTS,
@@ -181,10 +180,6 @@ function durationFor(subtest: OetSubtest, index: number, tasksCount: number): nu
   return Math.min(90, base + bump + marathon + (index % 5));
 }
 
-function professionFor(index: number): string {
-  return pick(GENERATED_NON_MEDICINE_PROFESSIONS, index);
-}
-
 function buildMedicineTags(subtest: OetSubtest, index: number): string[] {
   const tags = new Set<string>([
     'medicine',
@@ -230,14 +225,14 @@ export function generatePracticeModule(serial: number): PracticeModule {
   const pool: ContentPool = 'general';
   const index = diversifiedIndex(pool, serial);
   const subtest = pick(SUBTESTS, index + Math.floor(index / 4));
-  const profession = professionFor(index);
+  const profession = 'Medicine';
   const difficulty = pick(DIFFICULTIES, index + 2);
   const pack = pick(PRACTICE_PACK_LABELS, index);
   const theme = pick(CLINICAL_THEMES, index + 5);
   const topicBase = pick(TOPICS_BY_SUBTEST[subtest], index);
   const tasksCount = tasksCountFor(subtest, index);
   const durationMinutes = durationFor(subtest, index, tasksCount);
-  const profShort = profession === 'All professions' ? 'All Professions' : profession;
+  const profShort = 'Medicine';
   const displayNum = serial;
   const ref = catalogRef(pool, serial, subtest);
 
@@ -265,7 +260,7 @@ export function generatePracticeModule(serial: number): PracticeModule {
     difficulty,
     description,
     tasksCount,
-    profession: profession === 'All professions' ? profession : profession,
+    profession,
     tags,
     sourceHint,
   };
@@ -363,14 +358,14 @@ export function generateAdvancedPracticeModule(serial: number): PracticeModule {
   const pool: ContentPool = 'advanced';
   const index = diversifiedIndex(pool, serial, 1);
   const subtest = pick(SUBTESTS, index + Math.floor(index / 3));
-  const profession = professionFor(index + serial);
+  const profession = 'Medicine';
   const profile = pick(ADVANCED_PRACTICE_PROFILES, index);
   const pack = pick(ADVANCED_PRACTICE_PACK_LABELS, index);
   const theme = pick(CLINICAL_THEMES, index + 11);
   const topicBase = pick(TOPICS_BY_SUBTEST[subtest], index + 4);
   const tasksCount = advancedTasksCountFor(subtest, index);
   const durationMinutes = advancedDurationFor(subtest, index, tasksCount, profile.durationBump);
-  const profShort = profession === 'All professions' ? 'All Professions' : profession;
+  const profShort = 'Medicine';
   const subtestName = subtestLabel(subtest);
   const sourceHint = pick(SOURCE_HINTS, index + 6);
   const ref = catalogRef(pool, serial, subtest);
@@ -405,7 +400,7 @@ export function generateAdvancedPracticeModule(serial: number): PracticeModule {
     difficulty: 'advanced',
     description,
     tasksCount,
-    profession: profession === 'All professions' ? profession : profession,
+    profession,
     tags: [...tags],
     sourceHint,
   };

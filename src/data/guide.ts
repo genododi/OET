@@ -1,6 +1,6 @@
 import type { GuideSection } from '../types';
 
-export const guideSections: GuideSection[] = [
+const allGuideSections: GuideSection[] = [
   {
     id: 'guide-overview',
     title: 'What is the OET?',
@@ -145,7 +145,7 @@ export const guideSections: GuideSection[] = [
     title: 'Combined & Reformed Scoring (2024+)',
     category: 'scoring',
     content: [
-      'Some regulators accept a combined OET score across sub-tests rather than B in each — verify with your nursing council or GMC/GMC equivalent.',
+      'Some regulators accept a combined OET score across sub-tests rather than B in each — verify the current policy with your medical regulator.',
       'OET on Computer and OET at Home follow the same task types; Speaking remains live with an interlocutor via video at home venues.',
       'Grade boundaries align to IELTS equivalencies on the official OET website — useful if your regulator accepts both tests.',
       'Retake policy: You can book individual sub-tests in many regions, reducing cost and preparation scope for resits.',
@@ -225,3 +225,9 @@ export const guideSections: GuideSection[] = [
     ],
   },
 ];
+
+/** The guide is intentionally scoped to the Medicine OET pathway. */
+export const guideSections = allGuideSections.filter(
+  (section) =>
+    !['guide-nursing', 'guide-pharmacy', 'guide-physio', 'guide-dentistry'].includes(section.id),
+);

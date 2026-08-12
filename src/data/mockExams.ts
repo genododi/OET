@@ -2,10 +2,8 @@ import type { MockExam } from '../types';
 import { TARGET_MEDICINE_ADVANCED_PER_SUBTEST } from '../lib/preferredProfession';
 import { oetMockDurationMinutes, oetMockTaskCount } from '../lib/oetExamTiming';
 import {
-  generateAdvancedMockExams,
   generateMedicineAdvancedMockExams,
   generateMedicineMockExams,
-  generateMockExams,
 } from './generators/mockExamGenerator';
 
 // NOTE: These were previously 1000 each (plus a further 1000-per-subtest multiplier via
@@ -14,7 +12,6 @@ import {
 // sessionTaskBank.ts — only the titles/descriptions were unique, not the underlying content.
 // Reduced to honest numbers that still give real browsing variety without implying a depth of
 // content that doesn't exist. Grow these back up only in step with real additions to the task bank.
-const TARGET_MOCK_COUNT = 24;
 export const TARGET_MEDICINE_MOCK_COUNT = 24;
 export const TARGET_ADVANCED_MOCK_COUNT = 14;
 export { TARGET_MEDICINE_ADVANCED_PER_SUBTEST } from '../lib/preferredProfession';
@@ -1019,9 +1016,16 @@ const curatedMockExams: MockExam[] = [
   },
 ];
 
-const generatedMockCount = Math.max(0, TARGET_MOCK_COUNT - curatedMockExams.length);
+const NON_PHYSICIAN_CONTENT =
+  /\b(?:nurse|nurses|nursing|pharmacist|pharmacy|physiotherapist|physiotherapy|dentist|dentistry|radiographer|radiography|occupational therapist|dietetics|dietitian|podiatrist|speech pathologist)\b/i;
+
+function isPhysicianMock(exam: MockExam): boolean {
+  return !NON_PHYSICIAN_CONTENT.test(
+    [exam.title, exam.description, ...(exam.tags ?? []), exam.sourceHint ?? ''].join(' '),
+  );
+}
+
 const medicineMockExams = generateMedicineMockExams(TARGET_MEDICINE_MOCK_COUNT);
-const advancedMockExams = generateAdvancedMockExams(TARGET_ADVANCED_MOCK_COUNT);
 const medicineAdvancedMockExams = generateMedicineAdvancedMockExams(
   TARGET_MEDICINE_ADVANCED_PER_SUBTEST,
 );
@@ -1036,10 +1040,10 @@ function promoteToAdvanced(exam: MockExam): MockExam {
 }
 
 export const mockExams: MockExam[] = [
-  ...curatedMockExams,
+  ...curatedMockExams.filter(
+    (exam) => exam.profession === 'Medicine' && isPhysicianMock(exam),
+  ),
   ...medicineMockExams,
-  ...generateMockExams(generatedMockCount),
-  ...advancedMockExams,
   ...medicineAdvancedMockExams,
 ].map((exam) => ({
   ...exam,

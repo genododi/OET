@@ -1,7 +1,6 @@
 import type { MockExam, OetSubtest } from '../../types';
 import {
   DIFFICULTIES,
-  GENERATED_NON_MEDICINE_PROFESSIONS,
   MEDICINE_MOCK_TAG_POOL,
   MEDICINE_SOURCE_HINTS,
   ADVANCED_MOCK_PACK_LABELS,
@@ -207,7 +206,7 @@ export function generateMockExam(serial: number): MockExam {
   const pool: MockContentPool = 'general';
   const index = diversifiedIndex(pool, serial);
   const profile = resolveProfile(index);
-  const profession = pick(GENERATED_NON_MEDICINE_PROFESSIONS, index + 3);
+  const profession = 'Medicine';
   const difficulty = pick(DIFFICULTIES, index + 1);
   const pack = pick(MOCK_PACK_LABELS, index + 7);
   const theme = pick(RECALL_THEMES, index);
@@ -372,7 +371,7 @@ export function generateAdvancedMockExam(serial: number): MockExam {
   const pool: MockContentPool = 'advanced';
   const index = diversifiedIndex(pool, serial, 1);
   const profile = resolveAdvancedProfile(index);
-  const profession = pick(GENERATED_NON_MEDICINE_PROFESSIONS, index + serial);
+  const profession = 'Medicine';
   const pack = pick(ADVANCED_MOCK_PACK_LABELS, index);
   const theme = pick(RECALL_THEMES, index + 3);
   const sourceHint = pick(SOURCE_HINTS, index + 8);

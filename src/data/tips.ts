@@ -12,7 +12,7 @@ export const tips: Tip[] = [
     id: 'tip-gen-2',
     subtest: 'general',
     title: 'Know your profession\'s criteria',
-    tip: 'Download the official OET criteria for Writing and Speaking for Nursing, Medicine, Pharmacy, etc. Highlight verbs like "explains", "reassures", "structures".',
+    tip: 'Download the official OET Medicine criteria for Writing and Speaking. Highlight verbs such as "explains", "reassures", and "structures".',
     category: 'Study strategy',
   },
   {
@@ -279,14 +279,14 @@ export const tips: Tip[] = [
     id: 'tip-speak-8',
     subtest: 'speaking',
     title: 'Use the warm-up to set fluency baseline',
-    tip: 'Warm-up questions (Why did you choose nursing? Where do you work?) are ungraded but set your fluency baseline. Speak at natural pace — do not rush because it "does not count".',
+    tip: 'Warm-up questions (Why did you choose medicine? Where do you work?) are ungraded but set your fluency baseline. Speak at a natural pace — do not rush because it "does not count".',
     category: 'Speaking',
   },
   {
     id: 'tip-speak-9',
     subtest: 'speaking',
     title: 'Introduce yourself professionally',
-    tip: 'Start role-plays with a clear introduction: "Hello, my name is [Name], I\'m the [nurse/doctor/pharmacist] looking after you today." This immediately shows relationship-building.',
+    tip: 'Start role-plays with a clear introduction: "Hello, my name is Dr [Name], and I\'m looking after you today." This immediately shows relationship-building.',
     category: 'Speaking',
   },
   {

@@ -5,7 +5,6 @@ import { PdfLibraryItem, PdfViewer } from '../components/PdfViewer';
 import { AudioPlayer } from '../components/AudioPlayer';
 import {
   matchesProfessionFilter,
-  orderProfessions,
   sortByPreferredProfession,
 } from '../lib/preferredProfession';
 
@@ -20,14 +19,7 @@ export function BooksPage({ initialItemId, defaultProfession = 'Medicine', onIte
   const [query, setQuery] = useState('');
   const [profession, setProfession] = useState(defaultProfession);
 
-  const professions = useMemo(
-    () =>
-      orderProfessions(
-        ['all', ...Array.from(new Set(bookPdfs.map((b) => b.profession)))],
-        defaultProfession,
-      ),
-    [defaultProfession],
-  );
+  const professions = ['Medicine'];
 
   useEffect(() => {
     setSelectedId(initialItemId ?? null);

@@ -1,7 +1,7 @@
 import type { BookPdf } from '../types';
 
 /** Official OET materials downloaded from oet.com CDN — run `npm run import-pdfs` to refresh. */
-export const bookPdfs: BookPdf[] = [
+const allBookPdfs: BookPdf[] = [
   {
     id: 'book-ready-guide',
     title: 'OET Ready Study Guide',
@@ -124,3 +124,9 @@ export const bookPdfs: BookPdf[] = [
     tags: ['official', 'nursing', 'writing'],
   },
 ];
+
+/** Keep shared official resources only when they contain no other-profession sample tasks. */
+export const bookPdfs = allBookPdfs
+  .filter((book) => book.profession === 'All professions' || book.profession === 'Medicine')
+  .filter((book) => !/\b(nursing|pharmacy|dentistry|physiotherapy)\b/i.test(book.description))
+  .map((book) => ({ ...book, profession: 'Medicine' }));

@@ -2084,11 +2084,36 @@ function asAdvancedTask(task: SessionTask): SessionTask {
   };
 }
 
+/**
+ * The live task bank is scoped to physician work.  Keep source material for
+ * maintenance, but never draw a scenario that assigns the candidate a
+ * non-physician role or centres another OET profession.
+ */
+const NON_PHYSICIAN_SCENARIO =
+  /\b(?:nurse|nurses|nursing|pharmacist|pharmacists|pharmacy|physiotherapist|physiotherapy|dentist|dentistry|radiographer|radiography|occupational therapist|dietetics|dietitian|podiatrist|speech pathologist)\b/i;
+
+function isPhysicianTask(task: SessionTask): boolean {
+  const content = [
+    task.title,
+    task.instructions,
+    task.prompt,
+    task.readingPassage,
+    task.readingPassageTitle,
+    task.sampleAnswer,
+    task.modelAnswer,
+    task.audioTranscript,
+    ...(task.options?.map((option) => option.label) ?? []),
+  ]
+    .filter(Boolean)
+    .join(' ');
+  return !NON_PHYSICIAN_SCENARIO.test(content);
+}
+
 export const bankBySubtest: Record<OetSubtest, SessionTask[]> = {
-  listening: listeningTasks.map(asAdvancedTask),
-  reading: readingTasks.map(asAdvancedTask),
-  writing: writingTasks.map(asAdvancedTask),
-  speaking: speakingTasks.map(asAdvancedTask),
+  listening: listeningTasks.filter(isPhysicianTask).map(asAdvancedTask),
+  reading: readingTasks.filter(isPhysicianTask).map(asAdvancedTask),
+  writing: writingTasks.filter(isPhysicianTask).map(asAdvancedTask),
+  speaking: speakingTasks.filter(isPhysicianTask).map(asAdvancedTask),
 };
 
 export function seedOffset(id: string, size: number): number {

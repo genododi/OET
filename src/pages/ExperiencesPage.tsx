@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { examExperiences } from '../data/experiences';
 import { getRelatedPdfId } from '../data/experienceLinks';
-import { orderProfessions, sortByPreferredProfession } from '../lib/preferredProfession';
+import { sortByPreferredProfession } from '../lib/preferredProfession';
 import { SubtestBadge } from '../components/SubtestBadge';
 import type { NavSection, OetSubtest } from '../types';
 
@@ -14,14 +14,7 @@ export function ExperiencesPage({ onNavigate, defaultProfession = 'Medicine' }: 
   const [query, setQuery] = useState('');
   const [profession, setProfession] = useState(defaultProfession);
 
-  const professions = useMemo(
-    () =>
-      orderProfessions(
-        ['all', ...Array.from(new Set(examExperiences.map((e) => e.profession)))],
-        defaultProfession,
-      ),
-    [defaultProfession],
-  );
+  const professions = ['Medicine'];
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();

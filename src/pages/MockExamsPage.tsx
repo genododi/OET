@@ -8,7 +8,6 @@ import {
   countMedicineAdvancedMockBySubtest,
   countMedicineCatalog,
   matchesProfessionFilter,
-  orderProfessions,
   sortByPreferredProfession,
   TARGET_MEDICINE_ADVANCED_PER_SUBTEST,
 } from '../lib/preferredProfession';
@@ -32,14 +31,7 @@ export function MockExamsPage({ defaultProfession = 'Medicine' }: Props) {
   const [subtest, setSubtest] = useState<OetSubtest | 'all'>('all');
   const { isComplete } = useProgress();
 
-  const professions = useMemo(
-    () =>
-      orderProfessions(
-        ['all', ...Array.from(new Set(mockExams.map((e) => e.profession)))],
-        defaultProfession,
-      ),
-    [defaultProfession],
-  );
+  const professions = ['Medicine'];
   const [profession, setProfession] = useState(defaultProfession);
 
   const filtered = useMemo(() => {

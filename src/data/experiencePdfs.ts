@@ -1,7 +1,7 @@
 import type { ExperiencePdf } from '../types';
 
 /** Experience write-ups — generated from curated Telegram-style debriefs. Run `npm run import-pdfs` to rebuild. */
-export const experiencePdfs: ExperiencePdf[] = [
+const allExperiencePdfs: ExperiencePdf[] = [
   {
     id: 'exp-pdf-1',
     title: 'March 2025 — Nursing CBT London (Full Recall)',
@@ -168,3 +168,6 @@ export const experiencePdfs: ExperiencePdf[] = [
     source: 'Multiple Telegram groups',
   },
 ];
+
+/** Detailed debriefs submitted by Medicine candidates only. */
+export const experiencePdfs = allExperiencePdfs.filter((pdf) => pdf.profession === 'Medicine');

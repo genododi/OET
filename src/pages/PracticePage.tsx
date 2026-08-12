@@ -17,7 +17,6 @@ import {
   countMedicineCatalog,
   matchesProfessionFilter,
   moduleProfession,
-  orderProfessions,
   sortByPreferredProfession,
   TARGET_MEDICINE_ADVANCED_PER_SUBTEST,
 } from '../lib/preferredProfession';
@@ -46,14 +45,7 @@ export function PracticePage({
   const [smartConfig, setSmartConfig] = useState<SessionConfig | null>(null);
   const { isComplete, completed } = useProgress();
 
-  const professions = useMemo(
-    () =>
-      orderProfessions(
-        ['all', ...Array.from(new Set(practiceModules.map((m) => moduleProfession(m.profession))))],
-        defaultProfession,
-      ),
-    [defaultProfession],
-  );
+  const professions = ['Medicine'];
   const [profession, setProfession] = useState(defaultProfession);
 
   const setFilterAndRoute = (next: OetSubtest | 'all') => {

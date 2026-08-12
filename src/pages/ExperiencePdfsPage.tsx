@@ -10,10 +10,10 @@ interface Props {
 export function ExperiencePdfsPage({ initialItemId, onItemChange }: Props) {
   const [selectedId, setSelectedId] = useState<string | null>(initialItemId ?? null);
   const [query, setQuery] = useState('');
-  const [profession, setProfession] = useState('all');
+  const [profession, setProfession] = useState('Medicine');
 
   const professions = useMemo(
-    () => ['all', ...Array.from(new Set(experiencePdfs.map((p) => p.profession))).sort()],
+    () => ['Medicine'],
     [],
   );
 

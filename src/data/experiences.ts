@@ -1,6 +1,6 @@
 import type { ExamExperience } from '../types';
 
-export const examExperiences: ExamExperience[] = [
+const allExamExperiences: ExamExperience[] = [
   {
     id: 'exp-1',
     author: 'Sarah M.',
@@ -415,3 +415,8 @@ export const examExperiences: ExamExperience[] = [
     },
   },
 ];
+
+/** Physician-only experience archive. */
+export const examExperiences = allExamExperiences.filter(
+  (experience) => experience.profession === 'Medicine',
+);

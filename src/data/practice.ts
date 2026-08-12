@@ -1,15 +1,12 @@
 import type { PracticeModule } from '../types';
 import { TARGET_MEDICINE_ADVANCED_PER_SUBTEST } from '../lib/preferredProfession';
 import {
-  generateAdvancedPracticeModules,
   generateMedicineAdvancedPracticeModules,
   generateMedicinePracticeModules,
-  generatePracticeModules,
 } from './generators/practiceGenerator';
 
 // NOTE: see matching comment in mockExams.ts — reduced from 1000 each to avoid implying more
 // distinct question content than the underlying task bank actually contains.
-const TARGET_PRACTICE_COUNT = 30;
 export const TARGET_MEDICINE_PRACTICE_COUNT = 30;
 export const TARGET_ADVANCED_PRACTICE_COUNT = 16;
 export { TARGET_MEDICINE_ADVANCED_PER_SUBTEST } from '../lib/preferredProfession';
@@ -1534,9 +1531,16 @@ const curatedPracticeModules: PracticeModule[] = [
   },
 ];
 
-const generatedPracticeCount = Math.max(0, TARGET_PRACTICE_COUNT - curatedPracticeModules.length);
+const NON_PHYSICIAN_CONTENT =
+  /\b(?:nurse|nurses|nursing|pharmacist|pharmacy|physiotherapist|physiotherapy|dentist|dentistry|radiographer|radiography|occupational therapist|dietetics|dietitian|podiatrist|speech pathologist)\b/i;
+
+function isPhysicianPractice(module: PracticeModule): boolean {
+  return !NON_PHYSICIAN_CONTENT.test(
+    [module.title, module.topic, module.description, ...(module.tags ?? [])].join(' '),
+  );
+}
+
 const medicinePracticeModules = generateMedicinePracticeModules(TARGET_MEDICINE_PRACTICE_COUNT);
-const advancedPracticeModules = generateAdvancedPracticeModules(TARGET_ADVANCED_PRACTICE_COUNT);
 const medicineAdvancedPracticeModules = generateMedicineAdvancedPracticeModules(
   TARGET_MEDICINE_ADVANCED_PER_SUBTEST,
 );
@@ -1551,9 +1555,9 @@ function promoteToAdvanced(module: PracticeModule): PracticeModule {
 }
 
 export const practiceModules: PracticeModule[] = [
-  ...curatedPracticeModules,
+  ...curatedPracticeModules
+    .filter(isPhysicianPractice)
+    .map((module) => ({ ...module, profession: 'Medicine' })),
   ...medicinePracticeModules,
-  ...generatePracticeModules(generatedPracticeCount),
-  ...advancedPracticeModules,
   ...medicineAdvancedPracticeModules,
 ].map(promoteToAdvanced);
