@@ -231,4 +231,31 @@ export const dailyOetProgression: readonly DailyOetProgressionEntry[] = [
       speaking: 'speak-42',
     },
   },
+  {
+    date: '2026-08-23',
+    stage: 11,
+    complexityIndex: 11,
+    reasoningLayers: [
+      'exact-evidence discrimination',
+      'causal attribution across bundled interventions',
+      'conditional exception handling',
+      'methodological claim calibration',
+      'time-dependent bias detection',
+      'rapid response-format switching',
+      'produced-answer orthographic precision',
+      'triangulation of selection, detection and competing safety duties',
+      'reconciliation of aggregate and subgroup evidence with mediated disclosure',
+      'integration of competing-risk evidence with treatment-limitation language',
+      'separation of regression to the mean from effect with probabilistic counselling',
+    ],
+    level: 'advanced',
+    focus:
+      'Regression-to-the-mean appraisal and probabilistic counselling: infer why selecting extreme baseline performers weakens a before-and-after claim, distinguish temporal improvement from intervention effect in dense analysis, prioritise immediate plasma exchange in a suspected TTP transfer, and explain a high-chance prenatal screen without presenting it as diagnosis or directing the patient’s reproductive choice.',
+    taskIds: {
+      listening: 'lis-117',
+      reading: 'read-89',
+      writing: 'write-43',
+      speaking: 'speak-43',
+    },
+  },
 ];

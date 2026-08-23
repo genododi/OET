@@ -629,6 +629,21 @@ Nor should death and dialysis automatically be combined into one undifferentiate
 
 In this trial, the decline in estimated dialysis incidence became smaller after competing-risk analysis, while the mortality difference remained imprecise. Biomarkers moved in a direction consistent with slower renal decline, which supports biological plausibility but does not settle the patient-level trade-off. The appropriate conclusion is that intensive treatment may delay kidney progression, but the magnitude of benefit and its balance against mortality and adverse effects remain uncertain. “Censored at death” cannot be read as though those participants simply had not yet completed follow-up.`,
   },
+  'passage-regression-to-mean-audit': {
+    id: 'passage-regression-to-mean-audit',
+    title: 'Evaluation note — Extreme baseline performance tends not to stay extreme',
+    text: `A falls-reduction team offered intensive coaching to the five wards with the highest fall rates during the previous quarter. Three months later, their combined rate had fallen by 24%, while the hospital-wide rate changed little. The team attributed the difference to coaching and proposed targeting the highest-rate wards each quarter.
+
+The result is compatible with benefit, but the selection rule creates a predictable alternative explanation. A ward’s observed rate reflects its underlying risk plus chance fluctuations: an unusual cluster of confused patients, several events in a small denominator or simple random variation may temporarily push it upwards. Wards selected because their latest value is extreme are likely to record a less extreme value next time even if nothing changes. This regression towards the mean is not a data error and cannot be removed by confirming that every fall was recorded accurately.
+
+Seasonal change and hospital-wide initiatives further complicate the comparison. The coaching wards entered the programme in winter and were reassessed in spring, when activity and respiratory admissions differed. A new medication-review prompt was also introduced throughout the hospital halfway through follow-up. The stable hospital-wide average does not fully control for these influences because coached wards had different case mix and started from an exceptional peak.
+
+Comparing the selected wards with the five lowest-rate wards would be worse, not better. Low outliers are also likely to move towards the centre, exaggerating separation at baseline and convergence afterwards. A contemporaneous comparison should instead include wards eligible under the same rule and, ideally, allocate coaching among them without using future outcomes. If random allocation is impractical, several pre-intervention measurements can show whether a rise was sustained and support an interrupted time-series analysis with an appropriate comparison group.
+
+The evaluation should also examine mechanisms: completion of risk assessments, medicine changes, observation practice and exposure-adjusted falls. None proves patient benefit alone, but improvement along the proposed pathway makes a causal account more coherent.
+
+The sensible conclusion is not that coaching failed. It is that a fall measured immediately after selecting extreme performers overstates what the before-and-after comparison can establish. Continued rollout may be reasonable, but the size of effect should be tested with a design that separates intervention, underlying trend and the expected retreat from an unusually high baseline.`,
+  },
   'passage-delirium-part-a-set': {
     id: 'passage-delirium-part-a-set',
     title: 'Part A texts — Delirium recognition, causes, management and follow-up',

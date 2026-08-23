@@ -1215,5 +1215,17 @@
       "not a complete quality measure"
     ],
     "voice": "Moira"
+  },
+  "lis-117": {
+    "question": "Why is the speaker cautious about the reported 24% reduction in falls?",
+    "correctAnswer": "Wards selected for an extreme recent rate may improve partly through regression towards the mean",
+    "script": "The coached wards recorded twenty-four percent fewer falls, but remember how they entered the programme: we selected the five wards with the highest rate in a single quarter. Part of that peak reflected chance, so a less extreme result was likely next time even without coaching. Accurate incident reporting does not remove regression towards the mean. The decline may still include a genuine benefit, but we need several pre-intervention measurements and a comparable group before attributing the whole change to coaching.",
+    "speechScript": "The coached wards recorded twenty four percent fewer falls, but remember how they entered the programme: we selected the five wards with the highest rate in a single quarter. Part of that peak reflected chance, so a less extreme result was likely next time even without coaching. Accurate incident reporting does not remove regression towards the mean. The decline may still include a genuine benefit, but we need several pre intervention measurements and a comparable group before attributing the whole change to coaching.",
+    "evidenceTerms": [
+      "peak reflected chance",
+      "less extreme result",
+      "regression towards the mean"
+    ],
+    "voice": "Daniel"
   }
 }

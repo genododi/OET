@@ -280,6 +280,17 @@ const writingCriteriaByTaskId: Record<string, WritingCriteria> = {
     ],
     irrelevantTerms: ['appendicectomy', 'birdwatching'],
   },
+  'write-43': {
+    requiredConceptGroups: [
+      ['thrombotic thrombocytopenic purpura', 'TTP'],
+      ['platelets', '12'],
+      ['schistocytes', 'microangiopathic haemolysis', 'microangiopathic hemolysis', 'LDH'],
+      ['confusion', 'neurological', 'GCS'],
+      ['ADAMTS13', 'pending', 'must not await'],
+      ['plasma exchange', 'caplacizumab', 'methylprednisolone', 'urgent transfer'],
+    ],
+    irrelevantTerms: ['asthma', 'baking'],
+  },
 };
 
 const AUTO_WRITING_STOP_WORDS = new Set([
@@ -1486,6 +1497,35 @@ export const listeningTasks: SessionTask[] = [
     ),
     difficulty: 'advanced',
   },
+  {
+    ...mcq(
+      'lis-117',
+      'listening',
+      'Part C — Falls-coaching evaluation',
+      'Why is the speaker cautious about the reported 24% reduction in falls?',
+      [
+        {
+          label: 'Wards selected for an extreme recent rate may improve partly through regression towards the mean',
+          correct: true,
+          explanation:
+            'The speaker notes that chance contributed to the extreme baseline used for selection, so some subsequent decline was expected without coaching.',
+        },
+        {
+          label: 'Falls cannot be compared between wards unless every ward has exactly the same number of beds',
+          correct: false,
+          explanation:
+            'The concern is extreme-value selection and trend, not a requirement for identical ward size.',
+        },
+        {
+          label: 'Accurate incident reporting proves that the entire reduction was caused by coaching',
+          correct: false,
+          explanation:
+            'Accurate measurement does not remove regression to the mean or other before-and-after biases.',
+        },
+      ],
+    ),
+    difficulty: 'advanced',
+  },
 ];
 
 export const readingTasks: SessionTask[] = [
@@ -2048,6 +2088,32 @@ export const readingTasks: SessionTask[] = [
       },
     ],
   ),
+  advancedReadingMcq(
+    'read-89',
+    'Part C — Extreme baseline and apparent improvement',
+    'passage-regression-to-mean-audit',
+    'What principally weakens the claim that coaching caused the 24% reduction in falls?',
+    [
+      {
+        label: 'The wards were chosen at an unusually high measurement that was likely to fall partly through chance fluctuation',
+        correct: true,
+        explanation:
+          'Selection on an extreme recent value makes a less extreme follow-up likely even without an intervention, so the simple before-and-after contrast overstates causal evidence.',
+      },
+      {
+        label: 'The fall records were too inaccurate to establish whether the outcome changed at all',
+        correct: false,
+        explanation:
+          'The passage says regression to the mean remains even when all falls were recorded accurately.',
+      },
+      {
+        label: 'Coaching could only be evaluated by comparing the highest-rate wards with the lowest-rate wards',
+        correct: false,
+        explanation:
+          'The writer explicitly says comparing high and low outliers would exaggerate the problem.',
+      },
+    ],
+  ),
 ];
 
 export const writingTasks: SessionTask[] = [
@@ -2545,6 +2611,31 @@ She received her third pembrolizumab dose for metastatic melanoma eight days ago
 Pembrolizumab has been withheld. Following oncology discussion, she received intravenous methylprednisolone 1 g and is monitored in intensive care with pacing pads applied. She is alert, with blood pressure 112/70 mmHg and oxygen saturation 95% on two litres; however, swallowing and respiratory muscle weakness are progressing. Electrolytes and renal function are normal.
 
 Please accept her immediately for continuous rhythm and respiratory monitoring, temporary pacing capability, cardiac MRI, and joint decisions regarding further immunosuppression and intravenous immunoglobulin or plasma exchange. Her daughter understands the suspected immune toxicity and urgency.
+
+Please contact me if further information is required.
+
+Yours sincerely,
+
+Dr Maya Hassan`,
+    difficulty: 'advanced',
+  },
+  {
+    ...writing(
+      'write-43',
+      'Immediate transfer — Suspected thrombotic thrombocytopenic purpura',
+      '23 Aug 2026 — Pt: Ms Rania Adel, 37y\nPresented today: fluctuating confusion, petechiae, severe fatigue\nHb 78 g/L; platelets 12 × 10⁹/L\nBlood film: numerous schistocytes\nLDH 1,800 U/L; haptoglobin undetectable; bilirubin 42 µmol/L\nCreatinine 155 µmol/L (baseline 70)\nPT/aPTT and fibrinogen normal; no fever or sepsis focus\nCT head: no acute abnormality\nWorking diagnosis: thrombotic thrombocytopenic purpura; high PLASMIC score\nADAMTS13 sample collected before treatment; result pending\nDiscussed with haematology: treatment/transfer must not await ADAMTS13 result\nIV methylprednisolone commenced\nCurrent: fluctuating GCS 14; BP 126/74; no active major bleeding; urine output preserved\nDo not give platelets unless life-threatening bleeding after specialist discussion\nNeeds immediate tertiary transfer for plasma exchange, caplacizumab consideration and neurological/cardiac/renal monitoring\nFamily informed of suspected diagnosis and urgency\nPMH: mild childhood asthma; enjoys baking\nNo regular medicines; no known drug allergies\nWrite an immediate haematology transfer letter prioritising the diagnostic pattern, neurological risk, action already taken and treatment that must not be delayed',
+      'Dear Haematology Registrar,\n\nI am writing to request the immediate transfer of Ms Rania Adel, aged 37, with suspected thrombotic thrombocytopenic purpura requiring urgent plasma exchange.',
+      'Immediate haematology transfer',
+    ),
+    modelAnswer: `Dear Haematology Registrar,
+
+I am writing to request immediate transfer of Ms Rania Adel, aged 37, with suspected thrombotic thrombocytopenic purpura requiring urgent plasma exchange.
+
+She presented today with fluctuating confusion, petechiae and severe fatigue. Haemoglobin is 78 g/L and platelets 12 × 10⁹/L. Blood film shows numerous schistocytes, with LDH 1,800 U/L, undetectable haptoglobin and bilirubin 42 µmol/L, confirming microangiopathic haemolysis. Creatinine is 155 µmol/L from a baseline of 70. PT, aPTT and fibrinogen are normal, with no fever or sepsis focus. CT head shows no acute abnormality.
+
+Her PLASMIC score is high. An ADAMTS13 sample was collected before treatment, but the result remains pending and must not delay management. Following discussion with your team, intravenous methylprednisolone has commenced. She has fluctuating GCS 14 but remains haemodynamically stable, without major bleeding and with preserved urine output. Platelets should be avoided unless life-threatening bleeding occurs after specialist discussion.
+
+Please accept her immediately for plasma exchange, consideration of caplacizumab, and neurological, cardiac and renal monitoring. Her family understands the suspected diagnosis and urgency of transfer.
 
 Please contact me if further information is required.
 
@@ -3494,6 +3585,55 @@ export const speakingTasks: SessionTask[] = [
           'A decision not to attempt CPR would apply only if your heart or breathing stopped. It would not mean stopping oxygen, antibiotics, relief of breathlessness or other treatment we agree could help.',
           'We can also discuss intensive care separately, because CPR and every other treatment are not one all-or-nothing decision.',
           'Could you tell me what you understand would continue, what matters most to you, and whom you would like involved when we review the plan?',
+        ],
+      },
+    ),
+    difficulty: 'advanced',
+  },
+  {
+    ...speaking(
+      'speak-43',
+      'High-chance prenatal screen — probability without direction',
+      'You are a doctor speaking with a 35-year-old patient at 13 weeks of pregnancy. Cell-free DNA screening reports a 1-in-8 chance of trisomy 21. The patient believes this confirms the condition; their partner is pressing for immediate termination, while the patient is unsure and asks what you would choose.',
+      [
+        'Acknowledge the shock and establish what the patient understands and wants from the discussion',
+        'Explain screening probability versus diagnosis using a clear natural-frequency comparison',
+        'Describe diagnostic testing and the option of no further testing, including uncertainty and timing',
+        'Remain non-directive, explore values and offer genetics, emotional and follow-up support',
+      ],
+      {
+        expectedKeywords: [
+          'screening',
+          'chance',
+          'one in eight',
+          'not a diagnosis',
+          'trisomy 21',
+          'chromosome',
+          'CVS',
+          'amniocentesis',
+          'diagnostic',
+          'miscarriage',
+          'no further testing',
+          'choice',
+          'values',
+          'partner',
+          'genetics',
+          'support',
+          'understand',
+        ],
+        checklist: [
+          'Validate the emotional impact and ask what the patient currently believes the result means',
+          'Translate one in eight into both affected and unaffected natural frequencies without false reassurance',
+          'Explain that CVS or later amniocentesis can diagnose, including procedure uncertainty and the option to decline',
+          'Resist choosing for the patient or allowing partner pressure to replace the patient’s informed preference',
+          'Offer genetics support, time for questions, teach-back and a prompt follow-up plan',
+        ],
+        samplePhrases: [
+          'I can see this result has been frightening, and before we discuss options I would like to hear what you think it tells us.',
+          'This is a screening result, not a diagnosis: among eight pregnancies with this result, about one may have trisomy 21 and about seven may not.',
+          'A placental test called CVS can give diagnostic information now, and amniocentesis is another option later; both have a small procedure-related uncertainty that we can discuss carefully.',
+          'You may also choose no diagnostic test. I will not decide about the pregnancy for you, and your partner’s view should not replace your own values and choice.',
+          'Could you tell me the difference between the screening result and a diagnosis, and which questions you want the genetics team to address?',
         ],
       },
     ),
