@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { experiencePdfs } from '../data/experiencePdfs';
 import { PdfLibraryItem, PdfViewer } from '../components/PdfViewer';
 
@@ -8,7 +8,6 @@ interface Props {
 }
 
 export function ExperiencePdfsPage({ initialItemId, onItemChange }: Props) {
-  const [selectedId, setSelectedId] = useState<string | null>(initialItemId ?? null);
   const [query, setQuery] = useState('');
   const [profession, setProfession] = useState('Medicine');
 
@@ -17,19 +16,14 @@ export function ExperiencePdfsPage({ initialItemId, onItemChange }: Props) {
     [],
   );
 
-  useEffect(() => {
-    setSelectedId(initialItemId ?? null);
-  }, [initialItemId]);
-
+  const selectedId = initialItemId ?? null;
   const selected = experiencePdfs.find((p) => p.id === selectedId) ?? null;
 
   const openItem = (id: string) => {
-    setSelectedId(id);
     onItemChange?.(id);
   };
 
   const closeItem = () => {
-    setSelectedId(null);
     onItemChange?.(undefined);
   };
 

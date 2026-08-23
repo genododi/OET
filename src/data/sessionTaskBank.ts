@@ -1031,6 +1031,35 @@ export const listeningTasks: SessionTask[] = [
     ]),
     difficulty: 'advanced',
   },
+  {
+    ...mcq(
+      'lis-107',
+      'listening',
+      'Part C — Diagnostic AI grand round',
+      'What does the speaker identify as essential before the model is introduced more widely?',
+      [
+        {
+          label: 'External validation in hospitals with a different case mix',
+          correct: true,
+          explanation:
+            'The speaker distinguishes local recalibration from the external validation needed to establish transportability.',
+        },
+        {
+          label: 'Further recalibration using the same hospital data',
+          correct: false,
+          explanation:
+            'The model has already been recalibrated locally; repeating this does not show that it transfers safely to other settings.',
+        },
+        {
+          label: 'Replacing consultant review with automated decisions',
+          correct: false,
+          explanation:
+            'The speaker explicitly retains consultant review and presents the model as decision support.',
+        },
+      ],
+    ),
+    difficulty: 'advanced',
+  },
 ];
 
 export const readingTasks: SessionTask[] = [
@@ -1292,6 +1321,35 @@ export const readingTasks: SessionTask[] = [
     ]),
     difficulty: 'advanced',
   },
+  {
+    ...readingMcq(
+      'read-43',
+      'Part C — Silent model drift',
+      'passage-model-drift-study',
+      'What concern most strongly shapes the authors\' recommendation?',
+      [
+        {
+          label: 'Apparently stable headline accuracy can conceal unsafe performance changes in important subgroups',
+          correct: true,
+          explanation:
+            'The authors stress that unchanged aggregate discrimination concealed poorer sensitivity after the case mix and workflow changed.',
+        },
+        {
+          label: 'Clinicians will inevitably ignore every alert once a system has been in use for a year',
+          correct: false,
+          explanation:
+            'Alert acknowledgement declined, but the authors do not claim that all clinicians ignored every alert.',
+        },
+        {
+          label: 'A locally developed model can never be recalibrated successfully',
+          correct: false,
+          explanation:
+            'Recalibration improved calibration; the concern is that it did not prove transportability or restore every subgroup equally.',
+        },
+      ],
+    ),
+    difficulty: 'advanced',
+  },
 ];
 
 export const writingTasks: SessionTask[] = [
@@ -1547,6 +1605,29 @@ export const writingTasks: SessionTask[] = [
       'Dear Ophthalmology Registrar,\n\nI am writing to refer Mr Bernard Wu urgently with suspected giant cell arteritis and visual symptoms requiring same-day specialist assessment...',
       'Urgent specialist referral',
     ),
+    difficulty: 'advanced',
+  },
+  {
+    ...writing(
+      'write-33',
+      'Urgent referral — Probable culture-negative endocarditis',
+      '21 Aug 2026 — Pt: Mr Elias Haddad, 57y, accountant\n3 weeks intermittent fever, fatigue, 4-kg weight loss\nNew early diastolic murmur; splinter haemorrhages\nCRP 126 mg/L; Hb 104 g/L; renal function normal\nThree blood-culture sets taken before IV therapy: no growth to date\nCompleted amoxicillin for presumed sinusitis last week\nTTE today: 11-mm aortic-valve vegetation, new moderate aortic regurgitation\nHaemodynamically stable; no focal neurology\nMicrobiology advised IV vancomycin + ceftriaxone — commenced today\nDental extraction 6 weeks ago\nPMH: hypertension controlled with ramipril; tennis elbow in 2024\nNo known drug allergies; non-smoker; plays chess weekly\nRequest same-day cardiology review, TOE, antimicrobial plan and early surgical opinion',
+      'Dear Dr Patel,\n\nI am writing to request urgent cardiology review for Mr Elias Haddad, aged 57, who has probable culture-negative infective endocarditis with new moderate aortic regurgitation.',
+      'Urgent cardiology referral',
+    ),
+    modelAnswer: `Dear Dr Patel,
+
+I am writing to request urgent cardiology review for Mr Elias Haddad, aged 57, who has probable culture-negative infective endocarditis with new moderate aortic regurgitation.
+
+He presented on 21 August after three weeks of intermittent fever, fatigue and a 4-kg weight loss. Examination revealed a new early diastolic murmur and splinter haemorrhages. His CRP was 126 mg/L and haemoglobin 104 g/L. Three blood-culture sets obtained before intravenous treatment show no growth to date; however, he completed five days of amoxicillin for presumed sinusitis last week. Transthoracic echocardiography today demonstrated an 11-mm aortic-valve vegetation with moderate regurgitation. He remains haemodynamically stable without focal neurological signs.
+
+Following microbiology advice, intravenous vancomycin and ceftriaxone were commenced today. Renal function is normal. His history includes well-controlled hypertension treated with ramipril, and he has no known drug allergies. A dental extraction six weeks ago may be relevant.
+
+Please assess him today for transoesophageal echocardiography, ongoing antimicrobial management and early surgical opinion, particularly given the vegetation size and valve dysfunction. Mr Haddad and his wife understand the concern and need for inpatient investigation. Please contact me if further information is required.
+
+Yours sincerely,
+
+Dr Maya Hassan`,
     difficulty: 'advanced',
   },
 ];
@@ -2051,6 +2132,44 @@ export const speakingTasks: SessionTask[] = [
           'Clarithromycin can raise tacrolimus levels and harm your kidney transplant.',
           'Please do not start leftover antibiotics without the transplant team checking.',
           'Let us arrange a review today so your cough is treated safely.',
+        ],
+      },
+    ),
+    difficulty: 'advanced',
+  },
+  {
+    ...speaking(
+      'speak-33',
+      'Incidental pulmonary nodule — uncertainty and shared planning',
+      'You are a doctor in a respiratory clinic. A 46-year-old patient has an 8-mm pulmonary nodule found incidentally after a minor car accident. They are convinced it is cancer and demand immediate surgery; their calculated risk is intermediate and interval imaging is one reasonable option.',
+      [
+        'Elicit the patient\'s fears and what they understand from the scan report',
+        'Explain uncertainty, risk stratification and management options in plain language',
+        'Negotiate a safe shared plan, address safety-netting and check understanding',
+      ],
+      {
+        expectedKeywords: [
+          'nodule',
+          'cancer',
+          'uncertain',
+          'risk',
+          'scan',
+          'biopsy',
+          'surgery',
+          'follow-up',
+          'choice',
+          'understand',
+        ],
+        checklist: [
+          'Explore the meaning the patient has attached to the scan result before giving information',
+          'Chunk information, avoid false reassurance and compare surveillance with invasive investigation',
+          'Reach a shared plan with explicit follow-up, red flags and teach-back',
+        ],
+        samplePhrases: [
+          'Seeing the word nodule in a report can be frightening; what is worrying you most about it?',
+          'A nodule is a small shadow, and this scan alone cannot tell us that it is cancer.',
+          'Surgery gives tissue diagnosis but also carries harm, while interval scanning can show whether the nodule changes.',
+          'Could you tell me how you understand the options, so we can choose the safest plan together?',
         ],
       },
     ),

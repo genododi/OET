@@ -170,8 +170,8 @@ function scoreWritingDimension(
   const informal = /\b(can't|won't|don't|gonna|okay|hi there)\b/.test(n);
   const paragraphs = text.split(/\n\s*\n/).filter((p) => p.trim().length > 0).length;
 
-  let score = 0;
-  let feedback = '';
+  let score: number;
+  let feedback: string;
   let gap: string | undefined;
 
   switch (dimension) {

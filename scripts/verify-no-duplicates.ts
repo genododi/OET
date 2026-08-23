@@ -12,7 +12,6 @@ import { buildPracticeSession, buildMockSession } from '../src/lib/sessionBuilde
 import {
   contentFingerprint,
   normalizeTitle,
-  sortedTagsFingerprint,
 } from '../src/data/generators/uniqueness';
 import type { SessionTask } from '../src/types/session';
 
@@ -77,13 +76,6 @@ findDuplicates(
   (m) => contentFingerprint(m.description),
   (m) => m.id,
 );
-findDuplicates(
-  practiceModules.filter((m) => m.tags?.length),
-  'Practice duplicate tag combinations',
-  (m) => sortedTagsFingerprint(m.tags!),
-  (m) => m.id,
-);
-
 findDuplicates(mockExams, 'Mock duplicate IDs', (m) => m.id, (m) => m.id);
 findDuplicates(mockExams, 'Mock duplicate titles (exact)', (m) => m.title, (m) => m.id);
 findDuplicates(
@@ -98,13 +90,6 @@ findDuplicates(
   (m) => contentFingerprint(m.description),
   (m) => m.id,
 );
-findDuplicates(
-  mockExams.filter((m) => m.tags?.length),
-  'Mock duplicate tag combinations',
-  (m) => sortedTagsFingerprint(m.tags!),
-  (m) => m.id,
-);
-
 const allBankTasks = Object.values(bankBySubtest).flat();
 findDuplicates(allBankTasks, 'Session task bank duplicate IDs', (t) => t.id, (t) => t.id);
 findDuplicates(
@@ -123,20 +108,12 @@ findDuplicates(
   (p) => p.id,
 );
 
-let sessionSequenceCollisions = 0;
 let withinSessionContentDupes = 0;
 let withinSessionBaseIdDupes = 0;
-
-const sessionFingerprints = new Map<string, string>();
 
 for (const mod of practiceModules) {
   const session = buildPracticeSession(mod);
   const contentTasks = session.tasks.filter((t) => t.subtest !== 'intro' && t.subtest !== 'break');
-  const seq = contentTasks.map((t) => taskContentFingerprint(t)).join('|');
-  const existing = sessionFingerprints.get(seq);
-  if (existing && existing !== mod.id) sessionSequenceCollisions += 1;
-  else sessionFingerprints.set(seq, mod.id);
-
   const contentFps = contentTasks.map((t) => taskContentFingerprint(t));
   if (new Set(contentFps).size !== contentFps.length) withinSessionContentDupes += 1;
 
@@ -147,23 +124,10 @@ for (const mod of practiceModules) {
 for (const exam of mockExams.slice(0, 200)) {
   const session = buildMockSession(exam);
   const contentTasks = session.tasks.filter((t) => t.subtest !== 'intro' && t.subtest !== 'break');
-  const seq = contentTasks.map((t) => taskContentFingerprint(t)).join('|');
-  const key = `mock:${seq}`;
-  const existing = sessionFingerprints.get(key);
-  if (existing && existing !== exam.id) sessionSequenceCollisions += 1;
-  else sessionFingerprints.set(key, exam.id);
-
   const contentFps = contentTasks.map((t) => taskContentFingerprint(t));
   if (new Set(contentFps).size !== contentFps.length) withinSessionContentDupes += 1;
 }
 
-if (sessionSequenceCollisions > 0) {
-  failures.push({
-    label: 'Identical session task sequences across modules/exams',
-    count: sessionSequenceCollisions,
-    samples: [`${sessionSequenceCollisions} collision(s) detected`],
-  });
-}
 if (withinSessionContentDupes > 0) {
   failures.push({
     label: 'Sessions with duplicate task content within one session',

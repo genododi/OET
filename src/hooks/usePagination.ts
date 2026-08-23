@@ -1,19 +1,15 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 
 const DEFAULT_PAGE_SIZE = 24;
 
 export function usePagination<T>(items: T[], pageSize = DEFAULT_PAGE_SIZE) {
-  const [page, setPage] = useState(1);
+  const [requestedPage, setRequestedPage] = useState(1);
 
   const totalPages = Math.max(1, Math.ceil(items.length / pageSize));
-
-  useEffect(() => {
-    setPage(1);
-  }, [items]);
-
-  useEffect(() => {
-    if (page > totalPages) setPage(totalPages);
-  }, [page, totalPages]);
+  const page = Math.min(requestedPage, totalPages);
+  const setPage = (nextPage: number) => {
+    setRequestedPage(Math.max(1, Math.min(nextPage, totalPages)));
+  };
 
   const pageItems = useMemo(() => {
     const start = (page - 1) * pageSize;

@@ -54,8 +54,6 @@ interface Props {
 }
 
 export function Sidebar({ active, onNavigate, mobileOpen, onCloseMobile }: Props) {
-  let lastGroup = '';
-
   const handleNav = (id: NavSection) => {
     onNavigate(id);
     onCloseMobile();
@@ -83,9 +81,8 @@ export function Sidebar({ active, onNavigate, mobileOpen, onCloseMobile }: Props
         </div>
 
         <nav className="sidebar-nav">
-          {navItems.map((item) => {
-            const showGroup = item.group && item.group !== lastGroup;
-            if (item.group) lastGroup = item.group;
+          {navItems.map((item, index) => {
+            const showGroup = item.group && item.group !== navItems[index - 1]?.group;
 
             return (
               <div key={item.id}>
@@ -105,9 +102,11 @@ export function Sidebar({ active, onNavigate, mobileOpen, onCloseMobile }: Props
             );
           })}
 
-          {externalNavItems.map((item) => {
-            const showGroup = item.group !== lastGroup;
-            lastGroup = item.group;
+          {externalNavItems.map((item, index) => {
+            const previousGroup = index > 0
+              ? externalNavItems[index - 1]?.group
+              : navItems[navItems.length - 1]?.group;
+            const showGroup = item.group !== previousGroup;
 
             return (
               <div key={item.href}>

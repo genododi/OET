@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { bookPdfs } from '../data/books';
 import { getListeningAudioForBook, resolveAudioSrc } from '../data/listeningAudio';
 import { PdfLibraryItem, PdfViewer } from '../components/PdfViewer';
@@ -15,26 +15,20 @@ interface Props {
 }
 
 export function BooksPage({ initialItemId, defaultProfession = 'Medicine', onItemChange }: Props) {
-  const [selectedId, setSelectedId] = useState<string | null>(initialItemId ?? null);
   const [query, setQuery] = useState('');
   const [profession, setProfession] = useState(defaultProfession);
 
   const professions = ['Medicine'];
 
-  useEffect(() => {
-    setSelectedId(initialItemId ?? null);
-  }, [initialItemId]);
-
+  const selectedId = initialItemId ?? null;
   const selected = bookPdfs.find((b) => b.id === selectedId) ?? null;
   const listeningTrack = selected ? getListeningAudioForBook(selected.id) : undefined;
 
   const openItem = (id: string) => {
-    setSelectedId(id);
     onItemChange?.(id);
   };
 
   const closeItem = () => {
-    setSelectedId(null);
     onItemChange?.(undefined);
   };
 

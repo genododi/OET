@@ -418,6 +418,7 @@
     "question": "Complete: Switch antiemetic to ___.",
     "correctAnswer": "cyclizine",
     "script": "The ondansetron isn't touching her nausea, so let's switch things up. I want to try cyclizine instead — it works through a different pathway and might work better for this type of post-op nausea.",
+    "speechScript": "The first sickness medicine is not helping her nausea, so switch treatment. Please give cyclizine instead. It works through a different pathway and may control this post operation nausea better.",
     "evidenceTerms": [
       "cyclizine",
       "ondansetron",
@@ -1096,5 +1097,16 @@
     "script": "In the final minute before discharge, the speaker recommends a diagnostic time-out: ask what else could explain the presentation, review abnormal results, and state clearly what follow-up is needed if symptoms change.",
     "evidenceTerms": ["diagnostic time-out", "before discharge", "follow-up"],
     "voice": "Kate"
+  },
+  "lis-107": {
+    "question": "What does the speaker identify as essential before the model is introduced more widely?",
+    "correctAnswer": "External validation in hospitals with a different case mix",
+    "script": "The model's discrimination looked stable after twelve months, and local recalibration corrected its average risk estimates. But that is not enough to show transportability. Before wider rollout, it needs external validation in hospitals with a different case mix, followed by subgroup monitoring. This remains decision support; it should not replace consultant review.",
+    "evidenceTerms": [
+      "external validation",
+      "different case mix",
+      "decision support"
+    ],
+    "voice": "Moira"
   }
 }

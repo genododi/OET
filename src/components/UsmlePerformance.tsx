@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import type { UsmleStep } from '../types/usmle';
+import type { UsmleDiscipline, UsmleStep } from '../types/usmle';
 import { getUsmleDisciplineStats, getUsmleOverallStats } from '../lib/usmleAnalytics';
 import { usmleDisciplineMap } from '../data/usmleDisciplines';
 
@@ -59,7 +59,7 @@ export function UsmlePerformance() {
               <h4>Discipline Breakdown</h4>
               <div className="usmle-discipline-bars">
                 {stats.map((s) => {
-                  const meta = usmleDisciplineMap.get(s.discipline as any);
+                  const meta = usmleDisciplineMap.get(s.discipline as UsmleDiscipline);
                   return (
                     <div key={s.discipline} className="usmle-discipline-bar-row">
                       <div className="usmle-discipline-bar-label">

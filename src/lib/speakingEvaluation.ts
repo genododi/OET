@@ -105,12 +105,16 @@ export function evaluateSpeakingResponse(
     (keywordScore * 0.55 + checklistScore * 0.45) * 100,
   );
 
-  let languageScore = 70;
-  if (wordCount < 30) languageScore = 25;
-  else if (wordsPerMinute > 180) languageScore = 50;
-  else if (wordsPerMinute < 60) languageScore = 55;
-  else if (layLanguage) languageScore = 85;
-  else languageScore = 65;
+  const languageScore =
+    wordCount < 30
+      ? 25
+      : wordsPerMinute > 180
+        ? 50
+        : wordsPerMinute < 60
+          ? 55
+          : layLanguage
+            ? 85
+            : 65;
 
   const weights = criteria.dimensionWeights ?? DEFAULT_WEIGHTS;
   const score = Math.round(
@@ -119,27 +123,22 @@ export function evaluateSpeakingResponse(
       languageScore * weights.language,
   );
 
-  let suggestion = '';
-  if (wordCount < 30) {
-    suggestion =
-      'Your response was quite brief. OET speaking tasks typically need 2–3 minutes of interactive dialogue — expand with empathy, explanations, and safety-net advice.';
-  } else if (wordsPerMinute > 180) {
-    suggestion =
-      'You spoke quickly. Slow down slightly and pause to check the patient understands (teach-back).';
-  } else if (wordsPerMinute < 80) {
-    suggestion =
-      'Pace was slow — that can be fine for clarity, but ensure you cover all role-play points within the time limit.';
-  } else if (missingChecklist.length > 0) {
-    suggestion = `Try to address: ${missingChecklist.slice(0, 2).join('; ')}.`;
-  } else if (missingKeywords.length > 0) {
-    suggestion = `Consider using terms like: ${missingKeywords.slice(0, 3).join(', ')}.`;
-  } else {
-    suggestion = 'Good coverage of key points. Practice again focusing on natural interaction and teach-back.';
-  }
+  const baseSuggestion =
+    wordCount < 30
+      ? 'Your response was quite brief. OET speaking tasks typically need 2–3 minutes of interactive dialogue — expand with empathy, explanations, and safety-net advice.'
+      : wordsPerMinute > 180
+        ? 'You spoke quickly. Slow down slightly and pause to check the patient understands (teach-back).'
+        : wordsPerMinute < 80
+          ? 'Pace was slow — that can be fine for clarity, but ensure you cover all role-play points within the time limit.'
+          : missingChecklist.length > 0
+            ? `Try to address: ${missingChecklist.slice(0, 2).join('; ')}.`
+            : missingKeywords.length > 0
+              ? `Consider using terms like: ${missingKeywords.slice(0, 3).join(', ')}.`
+              : 'Good coverage of key points. Practice again focusing on natural interaction and teach-back.';
 
-  if (usedFallback) {
-    suggestion = `${suggestion} (Evaluated from typed text — re-record when microphone access is available for fluency scoring.)`;
-  }
+  const suggestion = usedFallback
+    ? `${baseSuggestion} (Evaluated from typed text — re-record when microphone access is available for fluency scoring.)`
+    : baseSuggestion;
 
   const thresholds = OET_THRESHOLDS.speaking;
 
