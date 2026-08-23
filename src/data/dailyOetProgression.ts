@@ -258,4 +258,32 @@ export const dailyOetProgression: readonly DailyOetProgressionEntry[] = [
       speaking: 'speak-43',
     },
   },
+  {
+    date: '2026-08-23',
+    stage: 12,
+    complexityIndex: 12,
+    reasoningLayers: [
+      'exact-evidence discrimination',
+      'causal attribution across bundled interventions',
+      'conditional exception handling',
+      'methodological claim calibration',
+      'time-dependent bias detection',
+      'rapid response-format switching',
+      'produced-answer orthographic precision',
+      'triangulation of selection, detection and competing safety duties',
+      'reconciliation of aggregate and subgroup evidence with mediated disclosure',
+      'integration of competing-risk evidence with treatment-limitation language',
+      'separation of regression to the mean from effect with probabilistic counselling',
+      'analysis of informative missingness with interpreter-mediated autonomous consent',
+    ],
+    level: 'advanced',
+    focus:
+      'Informative missingness and interpreter-mediated autonomy: infer why complete-case improvement may exclude people harmed or burdened by treatment, identify missing-not-at-random bias in a longitudinal report, prioritise transplant-centre transfer despite a low paracetamol level after staggered ingestion, and secure the patient’s own surgical decision through professional interpretation without excluding chosen family support.',
+    taskIds: {
+      listening: 'lis-118',
+      reading: 'read-90',
+      writing: 'write-44',
+      speaking: 'speak-44',
+    },
+  },
 ];
