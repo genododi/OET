@@ -6,6 +6,7 @@ import type { SessionTask } from '../src/types/session';
 const SUBTESTS: readonly OetSubtest[] = ['listening', 'reading', 'writing', 'speaking'];
 const seenTaskIds = new Set<string>();
 let previousDate = '';
+let previousComplexityIndex = 0;
 
 function fail(message: string): never {
   throw new Error(`Daily OET progression failed: ${message}`);
@@ -26,11 +27,18 @@ function requireSingleCorrectOption(task: SessionTask): void {
 
 for (const [index, entry] of dailyOetProgression.entries()) {
   if (entry.stage !== index + 1) fail(`stage ${entry.stage} is out of sequence`);
+  if (entry.complexityIndex !== entry.stage) {
+    fail(`stage ${entry.stage} has complexity index ${entry.complexityIndex}`);
+  }
+  if (entry.complexityIndex <= previousComplexityIndex) {
+    fail(`stage ${entry.stage} is not harder than the previous progression stage`);
+  }
   if (!/^\d{4}-\d{2}-\d{2}$/.test(entry.date)) fail(`${entry.date} is not an ISO date`);
   if (entry.date < previousDate) fail(`${entry.date} is earlier than ${previousDate}`);
   if (entry.level !== 'advanced') fail(`${entry.date} is not advanced`);
   if (entry.focus.trim().length < 80) fail(`${entry.date} needs a specific progression focus`);
   previousDate = entry.date;
+  previousComplexityIndex = entry.complexityIndex;
 
   for (const subtest of SUBTESTS) {
     const taskId = entry.taskIds[subtest];
@@ -89,5 +97,5 @@ for (const [index, entry] of dailyOetProgression.entries()) {
 }
 
 console.log(
-  `Verified ${dailyOetProgression.length} daily OET stage(s), ${seenTaskIds.size} advanced tasks, and balanced four-subtest coverage.`,
+  `Verified ${dailyOetProgression.length} increasingly difficult daily OET stage(s), ${seenTaskIds.size} advanced tasks, and balanced four-subtest coverage.`,
 );

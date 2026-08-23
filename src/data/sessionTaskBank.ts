@@ -1131,6 +1131,35 @@ export const listeningTasks: SessionTask[] = [
     ),
     difficulty: 'advanced',
   },
+  {
+    ...mcq(
+      'lis-110',
+      'listening',
+      'Part C — Journal-club inference',
+      'What is the speaker’s main reservation about calling the treatments equivalent?',
+      [
+        {
+          label: 'The superiority study was not designed to exclude clinically important differences',
+          correct: true,
+          explanation:
+            'The speaker says the confidence interval still permits meaningful benefit or harm, so a null superiority result cannot establish equivalence.',
+        },
+        {
+          label: 'The treatments produced exactly the same result in every participant',
+          correct: false,
+          explanation:
+            'The speaker rejects an equivalence claim and does not describe identical individual outcomes.',
+        },
+        {
+          label: 'A non-inferiority margin was prespecified too conservatively',
+          correct: false,
+          explanation:
+            'No non-inferiority design or prespecified margin was used; that absence is part of the criticism.',
+        },
+      ],
+    ),
+    difficulty: 'advanced',
+  },
 ];
 
 export const readingTasks: SessionTask[] = [
@@ -1525,6 +1554,21 @@ export const readingTasks: SessionTask[] = [
     { label: 'Whenever the review cannot redesign equipment immediately', correct: false },
     { label: 'When the organisation wants to close the report quickly', correct: false },
   ]),
+  advancedReadingMcq('read-60', 'Part C — Null result versus equivalence', 'passage-noninferiority-interpretation', 'Why can a non-significant result from a superiority test not establish equivalence?', [
+    { label: 'Its confidence interval may still include clinically important benefit and harm', correct: true },
+    { label: 'Superiority trials cannot calculate confidence intervals', correct: false },
+    { label: 'Equivalent treatments must produce identical outcomes in every patient', correct: false },
+  ]),
+  advancedReadingMcq('read-61', 'Part C — Competing analysis biases', 'passage-noninferiority-interpretation', 'Why does the writer favour agreement between intention-to-treat and per-protocol analyses?', [
+    { label: 'Protocol dilution and loss of randomisation can bias the two analyses differently', correct: true },
+    { label: 'Agreement allows investigators to choose a wider margin after seeing the data', correct: false },
+    { label: 'Both analyses automatically remove bias caused by rescue treatment', correct: false },
+  ]),
+  advancedReadingMcq('read-62', 'Part C — Outcome-definition mismatch', 'passage-noninferiority-interpretation', 'What most weakens the claim that five days of treatment alone was sufficient?', [
+    { label: 'Rescue antibiotics could be given while the initial course was still counted as successful', correct: true },
+    { label: 'The participants were randomised only after they became clinically stable', correct: false },
+    { label: 'The shorter course reduced treatment burden', correct: false },
+  ]),
 ];
 
 export const writingTasks: SessionTask[] = [
@@ -1847,6 +1891,31 @@ He presented with two days of poor intake, nausea, abdominal pain and tachypnoea
 Mr Mensah is now eating normally. Ketones have fallen to 0.3 mmol/L, acidosis has resolved and renal function has recovered. Empagliflozin has been discontinued pending specialist review, while metformin has been restarted. He has received written sick-day guidance, including maintaining fluids and carbohydrate intake, checking ketones during illness and withholding relevant medicines as instructed.
 
 Please review him within 48–72 hours, reassess his glucose-lowering regimen and reinforce the sick-day plan. Diabetes clinic follow-up is arranged in two weeks. He should seek urgent care for recurrent vomiting, abdominal pain, rapid breathing, drowsiness or raised ketones, even if his glucose is not markedly elevated.
+
+Please contact me if further information is required.
+
+Yours sincerely,
+
+Dr Maya Hassan`,
+    difficulty: 'advanced',
+  },
+  {
+    ...writing(
+      'write-36',
+      'Emergency transfer — Lithium toxicity with acute kidney injury',
+      '23 Aug 2026 — Pt: Mrs Helen Ward, 63y\nBipolar disorder stable 8 years on lithium carbonate 800 mg nocte\n4 days diarrhoea/vomiting after family gastroenteritis; poor intake\nToday: increasing confusion, coarse tremor, unsteady gait\nTemp 36.7°C, HR 96, BP 102/64, dry mucosa; GCS 14; no focal deficit\nLithium 2.1 mmol/L; creatinine 196 µmol/L (baseline 78); Na 149 mmol/L; K 4.2\nECG sinus rhythm, QTc 472 ms\nLithium withheld; IV 0.9% saline commenced; cardiac monitoring\nStarted ibuprofen for back pain 10 days ago; takes ramipril for hypertension\nDiscussed with renal/toxicology teams: urgent transfer for serial levels and dialysis assessment\nPMH: eczema; cataract surgery 2022\nNo known drug allergies; volunteers at library\nWrite an emergency transfer letter prioritising toxicity, contributors, treatment and requested action',
+      'Dear Renal Registrar,\n\nI am arranging emergency transfer of Mrs Helen Ward, aged 63, with symptomatic lithium toxicity and acute kidney injury requiring urgent assessment for extracorporeal treatment.',
+      'Emergency renal transfer',
+    ),
+    modelAnswer: `Dear Renal Registrar,
+
+I am arranging emergency transfer of Mrs Helen Ward, aged 63, with symptomatic lithium toxicity and acute kidney injury requiring urgent assessment for extracorporeal treatment.
+
+Mrs Ward has taken lithium carbonate 800 mg nightly for bipolar disorder, which has been stable for eight years. After four days of diarrhoea, vomiting and poor intake, she developed confusion, coarse tremor and gait instability. She is dehydrated, with a pulse of 96, blood pressure 102/64 mmHg and GCS 14, without focal deficits.
+
+Her lithium concentration is 2.1 mmol/L and creatinine 196 µmol/L, compared with a baseline of 78. Sodium is 149 mmol/L and potassium 4.2 mmol/L. ECG shows sinus rhythm with a QTc of 472 ms. Recent ibuprofen use and regular ramipril may have contributed to lithium accumulation during volume depletion.
+
+Lithium has been withheld, intravenous 0.9% saline commenced and cardiac monitoring established. Following discussion with your team and toxicology, please assess her immediately for serial lithium and renal measurements, neurological monitoring and the need for dialysis. She requires careful fluid management and review of interacting medicines. Her family has been informed of the urgent transfer.
 
 Please contact me if further information is required.
 
@@ -2473,6 +2542,48 @@ export const speakingTasks: SessionTask[] = [
           'This medicine lowers the chance of a stroke, but it also increases the chance of bleeding; let us compare both using the same numbers.',
           'What matters most to you as you weigh those two risks?',
           'It is reasonable to take time if you understand the options; can you tell me how you see them before we agree the next step?',
+        ],
+      },
+    ),
+    difficulty: 'advanced',
+  },
+  {
+    ...speaking(
+      'speak-36',
+      'Demand for whole-body imaging after bereavement',
+      'You are a GP seeing a patient whose sibling recently died from metastatic cancer. The patient has no focal symptoms, is frightened that routine blood tests have missed cancer, and insists on an immediate whole-body CT scan. They interpret reluctance as cost-cutting and threaten to complain.',
+      [
+        'Acknowledge the bereavement, fear and loss of trust before discussing investigation',
+        'Explain why indiscriminate imaging may create harm and distinguish screening from symptom-led testing',
+        'Elicit personal and family risk, agree appropriate screening and follow-up, and safety-net specific changes',
+      ],
+      {
+        expectedKeywords: [
+          'sorry',
+          'fear',
+          'cancer',
+          'scan',
+          'radiation',
+          'incidental',
+          'screening',
+          'risk',
+          'symptoms',
+          'follow-up',
+          'choice',
+          'understand',
+        ],
+        checklist: [
+          'Explore the sibling’s diagnosis and the patient’s feared meaning before correcting assumptions',
+          'Explain false positives, incidental findings and radiation in neutral language without dismissing concern',
+          'Take a focused risk and symptom history, then offer guideline-appropriate screening or targeted investigation',
+          'Provide explicit red flags, a review interval and teach-back while preserving the right to complain or seek another opinion',
+        ],
+        samplePhrases: [
+          'I am very sorry about your sibling; after a loss like that, it makes sense that a normal blood test may not feel reassuring.',
+          'A whole-body scan can find harmless abnormalities that lead to more procedures, and it also exposes you to radiation, so it is not a reliable general screening test.',
+          'I am not trying to save money at the expense of your health; I want us to choose tests that are more likely to help than harm you.',
+          'Let us review your symptoms, family history and the screening you are due, then agree exactly what should trigger further investigation.',
+          'Could you tell me what you understand our plan to be and what would bring you back sooner?',
         ],
       },
     ),

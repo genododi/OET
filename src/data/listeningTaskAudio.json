@@ -1131,5 +1131,17 @@
       "cancel"
     ],
     "voice": "Karen"
+  },
+  "lis-110": {
+    "question": "What is the speaker’s main reservation about calling the treatments equivalent?",
+    "correctAnswer": "The superiority study was not designed to exclude clinically important differences",
+    "script": "The investigators found no statistically significant difference and called the treatments equivalent. That goes too far. This was a superiority study, and its confidence interval still includes both clinically important benefit and harm. Absence of evidence is not evidence of equivalence. They would have needed adequate power and a prespecified non-inferiority margin to support that claim.",
+    "speechScript": "The investigators found no statistically significant difference and called the treatments equivalent. That goes too far. This was a superiority study, and its confidence interval still includes both clinically important benefit and harm. Absence of evidence is not evidence of equivalence. They would have needed adequate power and a pre specified non inferiority margin to support that claim.",
+    "evidenceTerms": [
+      "superiority study",
+      "confidence interval",
+      "equivalence"
+    ],
+    "voice": "Daniel"
   }
 }

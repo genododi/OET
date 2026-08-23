@@ -564,6 +564,19 @@ When harm has occurred, the duty to communicate openly with the patient is separ
 
 Action plans should target contributory conditions and name an owner, deadline and measure of effect. Reminding staff to “take more care” is weak unless the review shows a genuine knowledge gap. Stronger actions redesign equipment, simplify access to critical information or create forcing functions. The purpose of reporting is completed learning, not accumulation of incident forms.`,
   },
+  'passage-noninferiority-interpretation': {
+    id: 'passage-noninferiority-interpretation',
+    title: 'Journal commentary — When “not worse” has not been proved',
+    text: `A trial compared a five-day antibiotic course with the conventional ten-day course for a selected group of clinically stable patients. Its stated aim was non-inferiority: to determine whether any loss of efficacy with the shorter course was smaller than a prespecified margin. This is not the same as failing to find a statistically significant difference in a superiority test. A non-significant superiority result may simply reflect imprecision; its confidence interval can still contain both worthwhile benefit and clinically important harm.
+
+The margin is therefore central. It should represent the largest reduction in efficacy that patients and clinicians would accept in exchange for advantages such as fewer adverse effects or less treatment burden. It must be justified clinically and set before outcomes are examined. Choosing a margin after seeing the results turns the standard into a moving target. Even a statistically successful result deserves caution if the margin would permit an unacceptable number of additional failures.
+
+Interpretation is also sensitive to protocol deviations. In a superiority trial, crossover and non-adherence often make groups look more alike, tending to obscure a real difference. The same dilution can make non-inferiority easier to declare. A per-protocol analysis excludes some deviations but may break the protection created by randomisation because the people who adhere can differ systematically from those who do not. For that reason, concordant intention-to-treat and per-protocol analyses are reassuring; neither should be selected merely because it gives the preferred conclusion.
+
+In this study, rescue treatment was more frequent in the short-course group, yet patients receiving rescue antibiotics were still counted as initial successes if their symptoms had improved by day five. That definition may answer whether the strategy eventually controlled symptoms, but it is less persuasive about whether five days alone was sufficient. Participants were also low risk and improving before randomisation, so the findings should not be extended automatically to severe infection or immunocompromised patients.
+
+The shorter course may still be reasonable for the population studied. The point is narrower: non-inferiority depends on an acceptable margin, unbiased conduct, appropriate analysis and an outcome definition that matches the clinical claim. “No significant difference” supplies none of those guarantees by itself.`,
+  },
 };
 
 export function getReadingPassage(id: string): ReadingPassage | undefined {

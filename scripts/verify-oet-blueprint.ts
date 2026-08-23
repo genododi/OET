@@ -25,6 +25,7 @@ const officialTaskCounts: Record<OetSubtest, number> = {
   writing: 1,
   speaking: 2,
 };
+const minimumReserveTasks = 3;
 
 assert.deepEqual(OET_SUBTEST_MINUTES, officialMinutes, 'OET component timing has drifted');
 assert.deepEqual(OET_SUBTEST_TASK_COUNTS, officialTaskCounts, 'OET task blueprint has drifted');
@@ -32,9 +33,10 @@ assert.equal(OET_WRITTEN_BLOCK_MINUTES, 145, 'Written block must remain 145 minu
 assert.equal(OET_FULL_TEST_MINUTES, 165, 'Full test content time must remain 165 minutes');
 
 for (const subtest of subtests) {
+  const minimumBankSize = officialTaskCounts[subtest] + minimumReserveTasks;
   assert.ok(
-    bankBySubtest[subtest].length >= officialTaskCounts[subtest],
-    `${subtest} bank has ${bankBySubtest[subtest].length} task(s), below the ${officialTaskCounts[subtest]}-task live blueprint`,
+    bankBySubtest[subtest].length >= minimumBankSize,
+    `${subtest} bank has ${bankBySubtest[subtest].length} task(s); a full blueprint plus ${minimumReserveTasks} reserve tasks requires ${minimumBankSize}`,
   );
 }
 
@@ -106,7 +108,7 @@ for (const task of bankBySubtest.speaking) {
 }
 
 console.log(
-  `Official blueprint verified across ${mockExams.length} mocks (${fullMocks} full): ${subtests
+  `Official blueprint plus ${minimumReserveTasks}-task bank reserve verified across ${mockExams.length} mocks (${fullMocks} full): ${subtests
     .map((subtest) => `${subtest} ${officialTaskCounts[subtest]}/${officialMinutes[subtest]}m`)
     .join(', ')}.`,
 );
