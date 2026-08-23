@@ -1119,5 +1119,17 @@
       "deprescribing alone"
     ],
     "voice": "Daniel"
+  },
+  "lis-109": {
+    "question": "What action does the speaker want after the laboratory corrects the patient identification?",
+    "correctAnswer": "Cancel hyperkalaemia treatment and document the corrected result",
+    "script": "Correction from the laboratory: the potassium of six point eight belonged to another patient. Mister Okafor's sample is four point eight and his ECG is unchanged. Please cancel the hyperkalaemia treatment, document the corrected result, and repeat potassium only if his clinical picture changes.",
+    "speechScript": "Correction from the laboratory. The potassium of six point eight belonged to another patient. Mister Okafor's sample is four point eight and his E C G is unchanged. Please cancel the high potassium treatment, document the corrected result, and repeat potassium only if his clinical picture changes.",
+    "evidenceTerms": [
+      "another patient",
+      "four point eight",
+      "cancel"
+    ],
+    "voice": "Karen"
   }
 }

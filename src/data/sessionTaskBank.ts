@@ -224,6 +224,19 @@ function readingMcq(
   };
 }
 
+function advancedReadingMcq(
+  id: string,
+  title: string,
+  passageId: string,
+  question: string,
+  options: McqOptionInput[],
+): SessionTask {
+  return {
+    ...readingMcq(id, title, passageId, question, options),
+    difficulty: 'advanced',
+  };
+}
+
 const speakingDimensionWeights = {
   communication: 0.35,
   clinicalCommunication: 0.4,
@@ -1089,6 +1102,35 @@ export const listeningTasks: SessionTask[] = [
     ),
     difficulty: 'advanced',
   },
+  {
+    ...mcq(
+      'lis-109',
+      'listening',
+      'Part B — Corrected critical result',
+      'What action does the speaker want after the laboratory corrects the patient identification?',
+      [
+        {
+          label: 'Cancel hyperkalaemia treatment and document the corrected result',
+          correct: true,
+          explanation:
+            'The 6.8 result belonged to another patient; the correct potassium is 4.8 and the planned treatment should be cancelled.',
+        },
+        {
+          label: 'Continue treatment because the first result was above the critical threshold',
+          correct: false,
+          explanation:
+            'The first result was assigned to the wrong patient and must not drive treatment.',
+        },
+        {
+          label: 'Repeat potassium immediately despite the stable clinical picture',
+          correct: false,
+          explanation:
+            'The speaker asks for repetition only if the clinical picture changes, not automatically.',
+        },
+      ],
+    ),
+    difficulty: 'advanced',
+  },
 ];
 
 export const readingTasks: SessionTask[] = [
@@ -1408,6 +1450,81 @@ export const readingTasks: SessionTask[] = [
     ),
     difficulty: 'advanced',
   },
+  advancedReadingMcq('read-45', 'Part B — Antibiotic review decision', 'passage-antibiotic-timeout-analysis', 'At the 48-hour review, negative cultures should lead the clinician to…', [
+    { label: 'Reassess the clinical evidence and document why treatment is stopped, changed or continued', correct: true },
+    { label: 'Complete the original broad-spectrum course automatically', correct: false },
+    { label: 'Stop every antibiotic regardless of the patient’s condition', correct: false },
+  ]),
+  advancedReadingMcq('read-46', 'Part C — Response does not prove diagnosis', 'passage-antibiotic-timeout-analysis', 'Why does improvement after treatment not confirm the original bacterial diagnosis?', [
+    { label: 'Other treatment and the passage of time may also explain the improvement', correct: true },
+    { label: 'Antibiotics never affect symptoms within 48 hours', correct: false },
+    { label: 'Culture results are always more important than clinical response', correct: false },
+  ]),
+  advancedReadingMcq('read-47', 'Part C — Stewardship audit design', 'passage-antibiotic-timeout-analysis', 'Which audit approach best reflects the writer’s recommendation?', [
+    { label: 'Combine documented decisions, exposure, clinical outcomes and route changes', correct: true },
+    { label: 'Reward the service with the highest antibiotic stop rate', correct: false },
+    { label: 'Count only prescriptions with a positive culture', correct: false },
+  ]),
+  advancedReadingMcq('read-48', 'Part C — Spectrum effect', 'passage-screening-spectrum-bias', 'What principally explains the lower sensitivity in community clinics?', [
+    { label: 'The tested population included milder and overlapping presentations', correct: true },
+    { label: 'The laboratory secretly changed the assay threshold', correct: false },
+    { label: 'Community clinicians used endoscopy more often', correct: false },
+  ]),
+  advancedReadingMcq('read-49', 'Part C — Verification bias', 'passage-screening-spectrum-bias', 'How could the community evaluation overestimate sensitivity?', [
+    { label: 'Disease in test-negative patients may remain undiscovered when they do not receive the reference test', correct: true },
+    { label: 'Every patient with a positive test received endoscopy', correct: false },
+    { label: 'The referral cohort contained patients with severe disease', correct: false },
+  ]),
+  advancedReadingMcq('read-50', 'Part C — Threshold trade-off', 'passage-screening-spectrum-bias', 'What is the likely consequence of lowering the positivity threshold?', [
+    { label: 'Higher sensitivity accompanied by more false-positive referrals', correct: true },
+    { label: 'Higher specificity with fewer missed cases', correct: false },
+    { label: 'Removal of spectrum and verification bias', correct: false },
+  ]),
+  advancedReadingMcq('read-51', 'Part B — Oxygen in critical illness', 'passage-oxygen-target-audit', 'If hypercapnic risk is unknown and the patient is critically ill, the policy advises clinicians to…', [
+    { label: 'Give necessary high-concentration oxygen while immediate assessment proceeds', correct: true },
+    { label: 'Withhold oxygen until an old blood gas is located', correct: false },
+    { label: 'Use the 88–92% target for every patient with breathlessness', correct: false },
+  ]),
+  advancedReadingMcq('read-52', 'Part C — Reassuring saturation trap', 'passage-oxygen-target-audit', 'Why can a normal saturation on increasing oxygen be misleading?', [
+    { label: 'Ventilation and carbon dioxide retention may worsen despite the displayed saturation', correct: true },
+    { label: 'Pulse oximeters cannot measure oxygen after treatment starts', correct: false },
+    { label: 'A normal saturation always means oxygen should be removed abruptly', correct: false },
+  ]),
+  advancedReadingMcq('read-53', 'Part C — Audit interpretation', 'passage-oxygen-target-audit', 'What did the apparently acceptable saturation result conceal?', [
+    { label: 'Poor documentation of targets and inadequate repeat blood-gas monitoring', correct: true },
+    { label: 'Excessive use of ventilatory support in all patients', correct: false },
+    { label: 'A policy requiring one target range for every adult', correct: false },
+  ]),
+  advancedReadingMcq('read-54', 'Part A — Absolute treatment benefit', 'passage-shared-decision-risk', 'A fall in events from 2 in 100 to 1 in 100 represents an absolute reduction of…', [
+    { label: '1 percentage point', correct: true },
+    { label: '50 percentage points', correct: false },
+    { label: '2 percentage points', correct: false },
+  ]),
+  advancedReadingMcq('read-55', 'Part C — Purpose of teach-back', 'passage-shared-decision-risk', 'How does the guidance frame teach-back?', [
+    { label: 'A way to discover and correct weaknesses in the explanation', correct: true },
+    { label: 'A test the patient must pass before choosing treatment', correct: false },
+    { label: 'A replacement for discussing uncertainty', correct: false },
+  ]),
+  advancedReadingMcq('read-56', 'Part C — Shared decision standard', 'passage-shared-decision-risk', 'According to the writer, shared decision-making is achieved when…', [
+    { label: 'An informed patient preference materially shapes the plan', correct: true },
+    { label: 'The clinician records that risks were mentioned', correct: false },
+    { label: 'Every patient selects the option with the greatest relative benefit', correct: false },
+  ]),
+  advancedReadingMcq('read-57', 'Part B — Near-miss reporting', 'passage-incident-learning-policy', 'Why should an event be reported when no harm occurred?', [
+    { label: 'It can reveal a hazard before a patient is injured', correct: true },
+    { label: 'It proves that the existing safety barriers worked as designed', correct: false },
+    { label: 'It automatically requires disciplinary action', correct: false },
+  ]),
+  advancedReadingMcq('read-58', 'Part C — Fair accountability', 'passage-incident-learning-policy', 'What should primarily distinguish an ordinary error from conduct requiring a different response?', [
+    { label: 'The behaviour and context rather than chance outcome severity', correct: true },
+    { label: 'Whether the event generated a formal complaint', correct: false },
+    { label: 'Whether the patient happened to be harmed', correct: false },
+  ]),
+  advancedReadingMcq('read-59', 'Part C — Strength of corrective action', 'passage-incident-learning-policy', 'When is a reminder to “take more care” most defensible?', [
+    { label: 'When the investigation identifies a genuine knowledge gap', correct: true },
+    { label: 'Whenever the review cannot redesign equipment immediately', correct: false },
+    { label: 'When the organisation wants to close the report quickly', correct: false },
+  ]),
 ];
 
 export const writingTasks: SessionTask[] = [
@@ -1707,6 +1824,31 @@ Investigations demonstrate haemoglobin 78 g/L, platelets 18 × 10^9/L, reticuloc
 Following our discussion, an ADAMTS13 sample will be obtained before transfer without delaying treatment. Please assess her immediately for plasma exchange, corticosteroid therapy and further management. She is being closely observed for recurrent neurological symptoms, bleeding and clinical deterioration. Ms Tran has been informed that this is a serious suspected blood disorder requiring emergency inpatient care.
 
 Please contact me if you require any further information.
+
+Yours sincerely,
+
+Dr Maya Hassan`,
+    difficulty: 'advanced',
+  },
+  {
+    ...writing(
+      'write-35',
+      'Discharge — Euglycaemic ketoacidosis after SGLT2 inhibitor',
+      '23 Aug 2026 — Pt: Mr Daniel Mensah, 51y\nAdmitted with nausea, abdominal pain, tachypnoea after 2 days poor intake\nT2DM; taking empagliflozin and metformin\nGlucose 9.8 mmol/L, ketones 5.6 mmol/L, pH 7.18, bicarbonate 12\nDiagnosed euglycaemic DKA; treated with IV insulin, dextrose and fluids\nTrigger: viral gastroenteritis; cultures negative\nNow eating, ketones 0.3, pH normal, renal function recovered\nEmpagliflozin stopped pending diabetes review; metformin restarted\nEducated on sick-day rules, ketone testing and urgent red flags\nFollow-up: GP in 48–72h; diabetes clinic in 2 weeks\nPMH: seasonal rhinitis; dental check due next month\nWrite discharge letter requesting medication review and reinforcement of sick-day plan',
+      'Dear Dr Okoro,\n\nMr Daniel Mensah is being discharged after successful treatment of euglycaemic diabetic ketoacidosis associated with empagliflozin during an acute gastrointestinal illness.',
+      'Discharge to GP',
+    ),
+    modelAnswer: `Dear Dr Okoro,
+
+Mr Daniel Mensah is being discharged after successful treatment of euglycaemic diabetic ketoacidosis associated with empagliflozin during an acute gastrointestinal illness.
+
+He presented with two days of poor intake, nausea, abdominal pain and tachypnoea. Although his glucose was only 9.8 mmol/L, ketones were 5.6 mmol/L, pH 7.18 and bicarbonate 12 mmol/L. He was treated with intravenous insulin, dextrose and fluids. Viral gastroenteritis was considered the precipitant, and cultures remained negative.
+
+Mr Mensah is now eating normally. Ketones have fallen to 0.3 mmol/L, acidosis has resolved and renal function has recovered. Empagliflozin has been discontinued pending specialist review, while metformin has been restarted. He has received written sick-day guidance, including maintaining fluids and carbohydrate intake, checking ketones during illness and withholding relevant medicines as instructed.
+
+Please review him within 48–72 hours, reassess his glucose-lowering regimen and reinforce the sick-day plan. Diabetes clinic follow-up is arranged in two weeks. He should seek urgent care for recurrent vomiting, abdominal pain, rapid breathing, drowsiness or raised ketones, even if his glucose is not markedly elevated.
+
+Please contact me if further information is required.
 
 Yours sincerely,
 
@@ -2292,6 +2434,45 @@ export const speakingTasks: SessionTask[] = [
           'The scan shows no structural damage, while the examination shows a problem with how movement signals are functioning.',
           'This diagnosis can improve, and treatment retrains those movement patterns while we continue to review you medically.',
           'Before we decide the next step, could you tell me what this explanation means to you?',
+        ],
+      },
+    ),
+    difficulty: 'advanced',
+  },
+  {
+    ...speaking(
+      'speak-35',
+      'Anticoagulation decision — preserving patient autonomy',
+      'You are a doctor discussing anticoagulation with a patient who has atrial fibrillation and limited English. Their adult child answers every question and insists treatment must start today, while the patient appears hesitant. A professional interpreter is available by video.',
+      [
+        'Address the patient directly, offer the interpreter and establish their preferred level of family involvement',
+        'Explain stroke reduction and bleeding risk using balanced absolute language',
+        'Elicit the patient’s priorities, confirm capacity and agree a safe decision or follow-up plan',
+      ],
+      {
+        expectedKeywords: [
+          'interpreter',
+          'choice',
+          'stroke',
+          'bleeding',
+          'risk',
+          'benefit',
+          'understand',
+          'family',
+          'decision',
+          'follow-up',
+        ],
+        checklist: [
+          'Ask the patient how they want language support and family involvement handled',
+          'Present benefit and harm with matching denominators and without coercion',
+          'Explore hesitation and values before recommending or deferring treatment',
+          'Use teach-back and document a safe follow-up plan if more time is needed',
+        ],
+        samplePhrases: [
+          'I would like to hear from you directly, and we can use the interpreter so the decision is fully yours.',
+          'This medicine lowers the chance of a stroke, but it also increases the chance of bleeding; let us compare both using the same numbers.',
+          'What matters most to you as you weigh those two risks?',
+          'It is reasonable to take time if you understand the options; can you tell me how you see them before we agree the next step?',
         ],
       },
     ),

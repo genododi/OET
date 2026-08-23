@@ -40,4 +40,17 @@ export const dailyOetProgression: readonly DailyOetProgressionEntry[] = [
       speaking: 'speak-34',
     },
   },
+  {
+    date: '2026-08-23',
+    stage: 3,
+    level: 'advanced',
+    focus:
+      'Corrected evidence and conditional rules: act on a revised critical result, navigate policy exceptions under time pressure, prioritise euglycaemic ketoacidosis follow-up, and preserve autonomy through interpreted risk discussion.',
+    taskIds: {
+      listening: 'lis-109',
+      reading: 'read-45',
+      writing: 'write-35',
+      speaking: 'speak-35',
+    },
+  },
 ];

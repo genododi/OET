@@ -505,6 +505,65 @@ The intervention group was monitored more intensively, making treatment-triggeri
 
 The appropriate conclusion is therefore narrower than the promotional headline but stronger than dismissal. Remote monitoring changed the composite outcome, principally by generating earlier clinical contact and treatment adjustment. Whether it prevents admission or prolongs life remains uncertain. Future studies should report every component transparently, include patient-reported burden, and avoid presenting significance in the composite as proof that each clinically important outcome improved.`,
   },
+  'passage-antibiotic-timeout-analysis': {
+    id: 'passage-antibiotic-timeout-analysis',
+    title: 'Policy analysis — The 48-hour antibiotic time-out',
+    text: `The hospital's revised antibiotic policy requires a documented review within 48 hours of starting intravenous treatment. The review is a decision checkpoint, not an automatic stop date. Clinicians must record the working diagnosis, microbiology available so far, response to treatment, intended route and a proposed duration or next review date. The prescription should then be stopped, narrowed, switched to oral treatment or continued with a stated reason.
+
+A negative culture is not synonymous with absence of infection. Prior antibiotics, inadequate sampling and infections that are difficult to culture may all produce negative results. Nevertheless, “cultures negative” cannot serve as the sole reason for continuing broad-spectrum treatment. The prescriber must state which clinical evidence still supports bacterial infection and why a narrower or oral option is unsuitable. In a haemodynamically stable patient whose alternative diagnosis now appears more likely, stopping treatment may be safer than completing an arbitrary course.
+
+The policy includes an emergency exception. Treatment must not be delayed in suspected sepsis while approval or ideal samples are sought. This exception governs initiation only; it does not remove the obligation to review. Likewise, improvement after treatment does not prove that the original diagnosis was correct, because fluids, oxygen and time may have contributed.
+
+Audit teams should therefore avoid judging quality solely by the percentage of prescriptions stopped at 48 hours. A high stop rate could reflect appropriate review, premature cessation or a low-risk case mix. Better measures include the proportion with a documented decision, concordance with culture and imaging results, avoidable days of broad-spectrum exposure, clinical deterioration after change and timely conversion to oral treatment. The purpose is accountable reasoning under uncertainty, not a numerical target detached from patient safety.`,
+  },
+  'passage-screening-spectrum-bias': {
+    id: 'passage-screening-spectrum-bias',
+    title: 'Commentary — Why diagnostic accuracy changed outside the referral centre',
+    text: `A new blood test for inflammatory bowel disease achieved 94% sensitivity and 89% specificity in a tertiary referral cohort. When introduced in community clinics, sensitivity fell to 78% and the positive predictive value dropped sharply. The assay had not changed. The patients had.
+
+The development study compared people with established, often severe disease against controls with clearly non-inflammatory symptoms. This “two-gate” design made the groups unusually distinct. Community clinicians, by contrast, tested people with mild early disease, overlapping functional symptoms, recent infection and several competing inflammatory conditions. These intermediate presentations compressed the biological separation on which the test depended. The resulting spectrum effect is not a laboratory error; it is a change in performance created by a more representative case mix.
+
+Verification also differed. In the referral study, nearly everyone received endoscopy, whereas community patients with a negative blood result were less likely to undergo the reference test. If disease among test-negative patients remains undiscovered, sensitivity will appear better than it is. Following all participants clinically can reduce this bias, but symptom resolution alone is an imperfect reference standard.
+
+Lowering the positivity threshold would recover some sensitivity but create more false-positive referrals. Whether that trade-off is acceptable depends on the consequence of missed disease, capacity for endoscopy and how the test sits within a pathway rather than on one universal “best” cut-off. The authors therefore recommend prospective validation in consecutive community patients, with reference testing determined independently of the blood result where ethically feasible.
+
+The lesson is not that diagnostic tests are unreliable. It is that accuracy belongs to a test used at a threshold in a particular population and workflow. Quoting the referral-centre sensitivity without those conditions turns a conditional estimate into a misleading promise.`,
+  },
+  'passage-oxygen-target-audit': {
+    id: 'passage-oxygen-target-audit',
+    title: 'Safety bulletin — Prescribing oxygen by target saturation',
+    text: `Oxygen must be prescribed to a target saturation range rather than administered as a routine response to breathlessness. For most acutely unwell adults, the target is 94–98%. For patients at risk of hypercapnic respiratory failure, including some people with severe chronic obstructive pulmonary disease, the initial target is 88–92% pending blood-gas results. The lower range is not a reason to tolerate deterioration: rising carbon dioxide, acidosis, exhaustion or reduced consciousness requires urgent senior assessment and ventilatory planning.
+
+The policy distinguishes risk history from diagnostic labels. Not every person with chronic obstructive pulmonary disease retains carbon dioxide, and obesity hypoventilation, neuromuscular weakness or previous hypercapnic failure may create risk without that label. Previous blood gases and alert cards should inform the prescription. If no risk is known and the patient is critically ill, high-concentration oxygen should not be withheld while immediate assessment proceeds.
+
+After oxygen begins, the device and flow must be adjusted to keep saturation within the prescribed range. A normal saturation on increasing oxygen can conceal worsening ventilation; repeat blood gases are required when hypercapnia is possible. Conversely, abrupt removal in a severely hypoxaemic patient is unsafe. Treatment should be titrated while the cause of deterioration is addressed.
+
+The latest audit found that most patients achieved an acceptable saturation, yet only 54% had a documented target and 31% of those at hypercapnic risk had a timely repeat blood gas. The apparently reassuring saturation metric therefore masked unreliable prescribing and monitoring. Improvement work will measure documented targets, appropriate reassessment and escalation—not simply the proportion of observations falling between two numbers.`,
+  },
+  'passage-shared-decision-risk': {
+    id: 'passage-shared-decision-risk',
+    title: 'Guidance — Communicating treatment benefit without distorting risk',
+    text: `Risk communication should allow a patient to compare realistic options, not steer them through selective arithmetic. Relative effects can sound impressive while concealing a small absolute benefit. If an event falls from 2 in 100 people to 1 in 100, the relative reduction is 50%, but the absolute reduction is one percentage point. Both statements are mathematically correct; presenting only the relative figure exaggerates the likely personal benefit.
+
+Use a consistent denominator and time frame when comparing outcomes: “3 in 100 over five years” should not be placed beside “one-third over a lifetime”. Natural frequencies are often easier to understand than decimals, particularly when uncertainty is high. Benefits and harms should use the same framing. Saying that 97 in 100 people remain event-free while describing harm as 3 in 100 is positive framing on both sides; switching between survival and mortality can manipulate perception.
+
+Population estimates do not determine an individual's choice. Baseline risk, competing illness, treatment burden and what the person values all matter. A small average benefit may be worthwhile to someone who strongly prioritises avoiding a particular outcome, while another person may reasonably decline because daily treatment or monitoring conflicts with their goals.
+
+Decision aids can improve consistency but do not replace conversation. Clinicians should check what the patient believes will happen with and without treatment, correct denominator errors and invite deliberation. Teach-back is not a memory test: ask the patient to describe the options in their own words so that the explanation—not the patient—can be corrected. Where evidence is imprecise, give a range and name the uncertainty rather than supplying a false point estimate. Shared decision-making is achieved when an informed preference shapes the plan, not merely when a form records that risks were mentioned.`,
+  },
+  'passage-incident-learning-policy': {
+    id: 'passage-incident-learning-policy',
+    title: 'Governance memo — Learning from near misses without losing accountability',
+    text: `A near miss is an event that could have caused harm but did not, whether because of timely recovery, chance or a barrier elsewhere in the system. It should be reported even when the patient remains well. Absence of injury does not make the underlying hazard less informative; indeed, near misses offer an opportunity to learn without a patient first paying the price.
+
+The review begins by establishing what happened and what conditions shaped the actions taken. Questions should examine workload, equipment design, information availability, supervision, interruptions and how the process normally operates—not only how policy says it should operate. Asking why an individual failed to follow a rule may be necessary, but stopping there can conceal why the same deviation made sense or became routine in that environment.
+
+A learning approach is not a promise of consequence-free practice. Deliberate harm, reckless disregard and concealment require a different response from an ordinary error made within a poorly designed system. The distinction should rest on behaviour and context, not the severity of the outcome. Punishing a minor error because harm occurred by chance, while ignoring the same risky behaviour after a near miss, produces neither fairness nor safety.
+
+When harm has occurred, the duty to communicate openly with the patient is separate from the internal investigation. Known facts, an apology and immediate next steps should be shared promptly; staff should not speculate about unconfirmed causes. Later findings and preventive actions must be communicated when available.
+
+Action plans should target contributory conditions and name an owner, deadline and measure of effect. Reminding staff to “take more care” is weak unless the review shows a genuine knowledge gap. Stronger actions redesign equipment, simplify access to critical information or create forcing functions. The purpose of reporting is completed learning, not accumulation of incident forms.`,
+  },
 };
 
 export function getReadingPassage(id: string): ReadingPassage | undefined {
