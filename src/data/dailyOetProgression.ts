@@ -180,4 +180,29 @@ export const dailyOetProgression: readonly DailyOetProgressionEntry[] = [
       speaking: 'speak-40',
     },
   },
+  {
+    date: '2026-08-23',
+    stage: 9,
+    complexityIndex: 9,
+    reasoningLayers: [
+      'exact-evidence discrimination',
+      'causal attribution across bundled interventions',
+      'conditional exception handling',
+      'methodological claim calibration',
+      'time-dependent bias detection',
+      'rapid response-format switching',
+      'produced-answer orthographic precision',
+      'triangulation of selection, detection and competing safety duties',
+      'reconciliation of aggregate and subgroup evidence with mediated disclosure',
+    ],
+    level: 'advanced',
+    focus:
+      'Reversal between headline and subgroup evidence plus mediated disclosure: recognise when an improved aggregate outcome is created by a lower-risk case mix, resist an unsupported pathway-effect claim in dense prose, compress maternal cardiac failure and anticoagulation priorities into an urgent transfer, and negotiate a family request for collusion while honouring the competent patient’s stated information preference.',
+    taskIds: {
+      listening: 'lis-115',
+      reading: 'read-87',
+      writing: 'write-41',
+      speaking: 'speak-41',
+    },
+  },
 ];

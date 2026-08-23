@@ -258,6 +258,17 @@ const writingCriteriaByTaskId: Record<string, WritingCriteria> = {
     ],
     irrelevantTerms: ['psoriasis', 'chess'],
   },
+  'write-41': {
+    requiredConceptGroups: [
+      ['peripartum cardiomyopathy', 'postpartum cardiomyopathy'],
+      ['ejection fraction', 'EF 25', '25%'],
+      ['pulmonary oedema', 'pulmonary edema', 'orthopnoea'],
+      ['apical thrombus', 'left-ventricular thrombus', 'LMWH'],
+      ['furosemide', 'enalapril', 'heart-failure therapy'],
+      ['maternal medicine', 'breastfeeding', 'anticoagulation', 'tertiary transfer'],
+    ],
+    irrelevantTerms: ['migraine', 'art teacher', 'watercolour'],
+  },
 };
 
 const AUTO_WRITING_STOP_WORDS = new Set([
@@ -1406,6 +1417,35 @@ export const listeningTasks: SessionTask[] = [
     ),
     difficulty: 'advanced',
   },
+  {
+    ...mcq(
+      'lis-115',
+      'listening',
+      'Part C — Case-mix reversal in an outcomes audit',
+      'What conclusion does the speaker draw from the mortality figures?',
+      [
+        {
+          label: 'The lower overall rate may reflect a shift towards lower-risk cases rather than better outcomes within comparable groups',
+          correct: true,
+          explanation:
+            'The speaker notes that mortality was unchanged within each baseline-risk band and fell overall only after the service admitted proportionally more low-risk patients.',
+        },
+        {
+          label: 'The programme has proved that rapid assessment reduces mortality in every risk group',
+          correct: false,
+          explanation:
+            'Within-band mortality did not improve, so the aggregate decline cannot support this universal causal claim.',
+        },
+        {
+          label: 'Risk stratification should be abandoned because subgroup analysis is always misleading',
+          correct: false,
+          explanation:
+            'The speaker recommends prespecified case-mix standardisation, not abandoning clinically meaningful subgroup analysis.',
+        },
+      ],
+    ),
+    difficulty: 'advanced',
+  },
 ];
 
 export const readingTasks: SessionTask[] = [
@@ -1916,6 +1956,32 @@ export const readingTasks: SessionTask[] = [
       },
     ],
   ),
+  advancedReadingMcq(
+    'read-87',
+    'Part C — Aggregate improvement and subgroup reversal',
+    'passage-aggregate-subgroup-reversal',
+    'Why does the writer resist describing the pathway as preventing one admission for every 25 patients?',
+    [
+      {
+        label: 'The combined rate largely changed with the proportion of low-risk referrals, while comparable risk groups showed little improvement',
+        correct: true,
+        explanation:
+          'The crude calculation uses populations with different baseline-risk distributions and therefore cannot be interpreted directly as a pathway effect.',
+      },
+      {
+        label: 'The arithmetic is wrong because a four-percentage-point fall can never equal one event in 25',
+        correct: false,
+        explanation:
+          'The writer explicitly accepts the arithmetic but rejects the causal interpretation of incomparable denominators.',
+      },
+      {
+        label: 'Any analysis containing more than one risk stratum is too unstable to inform service evaluation',
+        correct: false,
+        explanation:
+          'The passage supports prespecified, clinically meaningful strata while warning against unstable or selectively chosen subdivisions.',
+      },
+    ],
+  ),
 ];
 
 export const writingTasks: SessionTask[] = [
@@ -2363,6 +2429,31 @@ He presented today with sudden left-sided weakness, dysarthria and headache. CT 
 Mr Nassar is alert and haemodynamically stable, with persistent left-arm weakness. Neurosurgery advises conservative treatment and strict blood-pressure control. Platelets and renal function are normal. He has no previous stroke; his valve was inserted in 2019 for rheumatic disease, with a usual INR target of 2.5–3.5.
 
 Anticoagulation remains withheld, creating competing risks of recurrent haemorrhage and valve thrombosis. As continuous joint specialist review is unavailable locally, please accept him urgently to determine the timing and method of anticoagulation resumption, including whether interim heparin is appropriate. His family understands the uncertainty and transfer rationale.
+
+Please contact me if further information is required.
+
+Yours sincerely,
+
+Dr Maya Hassan`,
+    difficulty: 'advanced',
+  },
+  {
+    ...writing(
+      'write-41',
+      'Urgent transfer — Peripartum cardiomyopathy with ventricular thrombus',
+      '23 Aug 2026 — Pt: Ms Salma Youssef, 32y; 10 days postpartum after uncomplicated vaginal delivery\nPresented yesterday: progressive breathlessness, orthopnoea, bilateral leg oedema\nSpO2 88% room air; chest X-ray pulmonary oedema\nEcho: global LV impairment, EF 25%, 1.4 cm apical thrombus; valves normal\nTroponin mildly elevated; renal function/electrolytes normal\nCT pulmonary angiography: no pulmonary embolism\nTreatment: IV furosemide; now enalapril commenced\nTherapeutic LMWH started for apical thrombus\nCurrent: comfortable on 2 L oxygen, SpO2 96%, BP 108/68, alert\nBreastfeeding; anxious about medicine exposure and separation from newborn\nInfant well, currently cared for by partner\nNeeds tertiary joint heart-failure/maternal-medicine management\nRequests: optimise therapy; decide anticoagulation duration/transition; breastfeeding-compatible counselling; rhythm monitoring and repeat echo plan\nBriefly advised future pregnancy may carry significant risk; detailed contraception/preconception discussion after stabilisation\nPMH: occasional migraine; works as art teacher and enjoys watercolour\nNo known drug allergies\nWrite an urgent tertiary transfer letter selecting the cardiac, thrombotic, postpartum and requested-management priorities',
+      'Dear Dr Patel,\n\nI am writing to request the urgent transfer of Ms Salma Youssef, aged 32 and 10 days postpartum, for specialist management of severe peripartum cardiomyopathy complicated by a left-ventricular apical thrombus.',
+      'Urgent tertiary transfer',
+    ),
+    modelAnswer: `Dear Dr Patel,
+
+I am writing to request urgent transfer of Ms Salma Youssef, aged 32 and 10 days postpartum, for specialist management of severe peripartum cardiomyopathy complicated by a left-ventricular apical thrombus.
+
+She presented yesterday with progressive breathlessness, orthopnoea and bilateral leg oedema. Oxygen saturation was 88% on air, and chest X-ray showed pulmonary oedema. Echocardiography demonstrated global left-ventricular impairment, an ejection fraction of 25% and a 1.4-cm apical thrombus, with normal valves. Troponin was mildly elevated; renal function and electrolytes were normal. CT pulmonary angiography excluded pulmonary embolism.
+
+Following intravenous furosemide, she is comfortable on two litres of oxygen with 96% saturation and blood pressure of 108/68 mmHg. Enalapril has been commenced, and she is receiving therapeutic low-molecular-weight heparin. She is breastfeeding and is anxious about medicine exposure and separation from her newborn, who is currently well and cared for by her partner.
+
+Please accept her for joint heart-failure and maternal-medicine care, including treatment optimisation, rhythm monitoring, a repeat-imaging plan, and decisions about anticoagulation duration and transition. She also requires counselling on breastfeeding-compatible therapy. Future-pregnancy risk and contraception should be discussed fully after stabilisation.
 
 Please contact me if further information is required.
 
@@ -3216,6 +3307,53 @@ export const speakingTasks: SessionTask[] = [
           'When you say your partner controls your phone and transport, can I ask whether you ever feel frightened, pressured or unable to say no?',
           'We can treat the infection and help notify partners without using your name; let us choose a method of contact and follow-up that is safe for you.',
           'Could you tell me in your own words what the treatment involves and what you would do if your safety or symptoms worsened?',
+        ],
+      },
+    ),
+    difficulty: 'advanced',
+  },
+  {
+    ...speaking(
+      'speak-41',
+      'Cancer disclosure — family request for collusion',
+      'You are the hospital doctor speaking with the adult son of a competent 63-year-old patient whose pancreatic biopsy confirms cancer. The son asks you to call it “inflammation” because he fears the truth will remove hope. The patient previously told the team that she wants direct information and has asked today, “Is this cancer?”',
+      [
+        'Acknowledge the son’s protective intention and explore what he fears the patient will experience',
+        'Explain why the patient’s stated information preference and trust cannot be replaced by family preference',
+        'Offer to ask the patient how much detail she wants now and whether she wants her son present',
+        'Negotiate an honest, compassionate disclosure plan with emotional and practical support',
+      ],
+      {
+        expectedKeywords: [
+          'cancer',
+          'biopsy',
+          'information',
+          'choice',
+          'preference',
+          'honest',
+          'trust',
+          'hope',
+          'family',
+          'present',
+          'support',
+          'questions',
+          'pace',
+          'understand',
+          'next steps',
+        ],
+        checklist: [
+          'Validate the son’s wish to protect the patient without agreeing to deceptive language',
+          'Explore fears, cultural expectations and what the patient has previously said about receiving information',
+          'Explain that a competent patient can choose how much to know and who should be present',
+          'Offer paced, plain-language disclosure that preserves realistic hope and includes immediate support',
+          'Agree how the son can help, anticipate questions and check the disclosure plan is understood',
+        ],
+        samplePhrases: [
+          'I can hear that you are trying to protect your mother, and I would like to understand what you fear will happen if she hears the diagnosis directly.',
+          'She has told us that she wants clear information and is asking whether this is cancer, so calling it inflammation could damage her trust and take away her choice.',
+          'I can first ask how much detail she wants today and whether she would like you beside her; she can also ask us to pause at any point.',
+          'Being honest does not mean removing hope. We can explain the result gently, allow silence, answer questions and focus on the treatment and support available next.',
+          'Could you tell me how you might support her during the conversation and what you understand our plan to be?',
         ],
       },
     ),

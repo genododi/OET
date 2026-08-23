@@ -1191,5 +1191,17 @@
       "owned outstanding results"
     ],
     "voice": "Daniel"
+  },
+  "lis-115": {
+    "question": "What conclusion does the speaker draw from the mortality figures?",
+    "correctAnswer": "The lower overall rate may reflect a shift towards lower-risk cases rather than better outcomes within comparable groups",
+    "script": "At first glance, mortality fell after rapid assessment began, from eight percent to six. But the service also started receiving many more lower-risk patients, while the sickest went directly to intensive care and were no longer counted in its denominator. Within each prespecified baseline-risk band, mortality was essentially unchanged. The combined figure improved because the proportions in those bands shifted. We should report a case-mix-standardised comparison before claiming lives were saved. That does not prove the service has no value; it means the headline rate cannot tell us whether outcomes improved for comparable patients.",
+    "speechScript": "At first glance, mortality fell after rapid assessment began, from eight percent to six. But the service also started receiving many more lower risk patients, while the sickest went directly to intensive care and were no longer counted in its denominator. Within each pre specified baseline risk band, mortality was essentially unchanged. The combined figure improved because the proportions in those bands shifted. We should report a case mix standardised comparison before claiming lives were saved. That does not prove the service has no value; it means the headline rate cannot tell us whether outcomes improved for comparable patients.",
+    "evidenceTerms": [
+      "lower-risk patients",
+      "mortality was essentially unchanged",
+      "outcomes improved for comparable patients"
+    ],
+    "voice": "Karen"
   }
 }

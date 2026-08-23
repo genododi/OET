@@ -603,6 +603,19 @@ One secondary analysis included only patients who reattended within 30 days and 
 
 The evaluation still provides useful evidence. It shows that next-day review is feasible and can recover unresolved results, clarify safety-netting and accelerate reassessment. A stronger study would define eligibility before discharge, record reasons for non-enrolment, capture outcomes across hospitals and compare groups with similar opportunities for follow-up. Until then, the programme should be described as improving the process and timeliness of diagnostic follow-up, not as a quantified reduction in diagnostic error caused by the calls alone.`,
   },
+  'passage-aggregate-subgroup-reversal': {
+    id: 'passage-aggregate-subgroup-reversal',
+    title: 'Analysis — When a better headline rate reflects a different case mix',
+    text: `A same-day assessment pathway reported a fall in 30-day unplanned admission from 12% to 8% after implementation. The improvement appeared convincing because the numerator and denominator were large and data completeness exceeded 95%. Managers described the pathway as preventing one admission for every 25 patients assessed. That calculation is arithmetically correct but does not establish that the pathway caused the change.
+
+During the same period, referral practice altered. Community clinicians began sending lower-risk patients directly to same-day assessment rather than managing them at home, while the sickest patients were increasingly routed straight to acute wards and never entered the pathway dataset. The post-implementation population therefore contained a larger proportion of people whose admission risk was already low. Within the prespecified low-, medium- and high-risk strata, admission rates were almost unchanged; the combined rate fell because the proportions of patients in those strata changed.
+
+This reversal does not mean that subgroup results are automatically more truthful than the headline. Small strata can be unstable, and excessive subdivision invites selective emphasis. The relevant question is whether the grouping variable represents a clinically meaningful characteristic measured before the pathway could affect it. Baseline physiological risk meets that requirement more plausibly than “received senior review”, which occurs after enrolment and may itself be influenced by deterioration.
+
+The authors attempted regression adjustment using age, comorbidity and the first recorded warning score. Their adjusted estimate moved towards no effect, although uncertainty remained. Adjustment cannot correct unmeasured differences or inconsistent referral thresholds, but the attenuation is evidence against presenting the crude rate as a direct treatment effect. A standardised analysis using a common baseline-risk distribution would answer a clearer question: what admission rates would be expected if the before and after groups had comparable case mix?
+
+The pathway may still improve access, patient experience or speed of review, none of which was measured adequately in this audit. It may even reduce admission for particular patients. The defensible conclusion is narrower: the service coincided with a lower overall admission rate, largely explained by a shift towards lower-risk referrals. Claiming that it prevented a specific number of admissions requires stronger design and comparable populations, not simply a precise calculation from an incomparable denominator.`,
+  },
   'passage-delirium-part-a-set': {
     id: 'passage-delirium-part-a-set',
     title: 'Part A texts — Delirium recognition, causes, management and follow-up',
