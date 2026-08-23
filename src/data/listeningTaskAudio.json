@@ -1227,5 +1227,17 @@
       "regression towards the mean"
     ],
     "voice": "Daniel"
+  },
+  "lis-118": {
+    "question": "Why does the speaker reject the complete-case conclusion that symptoms improved?",
+    "correctAnswer": "People who stopped treatment or became too unwell were excluded, so the remaining reports may overstate benefit",
+    "script": "The report shows better symptom scores at twelve months, but only for participants who completed every questionnaire. Several people stopped treatment because of adverse effects, and others who deteriorated were too unwell to return the final form. Those outcomes are unlikely to be missing at random. A complete-case analysis therefore leaves a selected group who could tolerate and continue treatment, so its apparent improvement may overstate benefit. We need reasons for missing data, sensitivity analyses that include plausible worse outcomes, and adverse-event reporting before making a treatment claim.",
+    "speechScript": "The report shows better symptom scores at twelve months, but only for participants who completed every questionnaire. Several people stopped treatment because of adverse effects, and others who deteriorated were too unwell to return the final form. Those outcomes are unlikely to be missing at random. A complete case analysis therefore leaves a selected group who could tolerate and continue treatment, so its apparent improvement may overstate benefit. We need reasons for missing data, sensitivity analyses that include plausible worse outcomes, and adverse event reporting before making a treatment claim.",
+    "evidenceTerms": [
+      "stopped treatment",
+      "too unwell",
+      "overstate benefit"
+    ],
+    "voice": "Karen"
   }
 }

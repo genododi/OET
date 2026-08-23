@@ -644,6 +644,19 @@ The evaluation should also examine mechanisms: completion of risk assessments, m
 
 The sensible conclusion is not that coaching failed. It is that a fall measured immediately after selecting extreme performers overstates what the before-and-after comparison can establish. Continued rollout may be reasonable, but the size of effect should be tested with a design that separates intervention, underlying trend and the expected retreat from an unusually high baseline.`,
   },
+  'passage-informative-missingness': {
+    id: 'passage-informative-missingness',
+    title: 'Methods commentary — Missing outcomes can carry clinical information',
+    text: `A longitudinal study of a new treatment reported that fatigue scores improved substantially at twelve months. The headline analysis included only participants who returned every scheduled questionnaire. Nearly one third of the original cohort was absent from that final comparison, yet the authors described the result as evidence of sustained effectiveness.
+
+Missing data are not automatically bias, and retaining an incomplete record is not automatically better than excluding it. The key question is why an outcome is missing and whether that reason is related to the unobserved value. A participant who changes address for reasons unrelated to health may plausibly resemble observed participants after accounting for known characteristics. By contrast, someone who stops treatment because fatigue worsens, develops an adverse effect, or becomes too unwell to complete a form is likely to have an outcome systematically different from those who remain.
+
+In this study, withdrawal notes showed that adverse effects and perceived lack of benefit were common among non-completers. The complete-case analysis therefore selected people who could tolerate treatment and stay engaged. Adjusting for their baseline fatigue and age does not recover the missing post-treatment experiences. Nor can last-observation-carried-forward be assumed conservative: symptoms may improve, deteriorate or fluctuate after the last measurement.
+
+The investigators should first report follow-up by treatment group and give reasons for missingness. A primary model can use observed interim information under an explicit assumption about the missing outcomes, but that assumption cannot be verified from the incomplete data alone. Sensitivity analyses should then ask how conclusions change if people who withdrew for adverse effects had systematically worse scores than otherwise similar completers. A pattern-mixture or tipping-point analysis can show how severe the unobserved outcomes would need to be to reverse the result.
+
+None of this proves the treatment is ineffective. The observed improvement remains useful evidence about participants who continued and responded. It does mean that a complete-case average cannot be generalised confidently to everyone who started therapy. Effectiveness claims must integrate retention, adverse effects and plausible outcomes among those no longer observed, rather than treating their absence as though no clinical outcome occurred.`,
+  },
   'passage-delirium-part-a-set': {
     id: 'passage-delirium-part-a-set',
     title: 'Part A texts — Delirium recognition, causes, management and follow-up',

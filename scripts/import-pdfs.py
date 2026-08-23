@@ -447,8 +447,7 @@ def generate_experience_pdfs() -> None:
 def main() -> None:
     print("=== Official OET book PDFs ===")
     download_official_pdfs()
-    print("\n=== Experience write-up PDFs ===")
-    generate_experience_pdfs()
+    print("\nExperience PDF generation is disabled: unverified testimony remains quarantined.")
     print("\nDone.")
 
 

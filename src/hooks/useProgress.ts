@@ -4,17 +4,32 @@ import type { CompletedSession } from '../types/session';
 const STORAGE_KEY = 'oet-study-partner-progress';
 
 interface ProgressState {
+  schemaVersion: 1;
   completed: CompletedSession[];
+}
+
+const emptyProgress: ProgressState = { schemaVersion: 1, completed: [] };
+
+export function migrateProgress(raw: unknown): ProgressState {
+  if (!raw || typeof raw !== 'object') return emptyProgress;
+  const candidate = raw as { schemaVersion?: unknown; completed?: unknown };
+  const completed = Array.isArray(candidate.completed)
+    ? candidate.completed.filter((item): item is CompletedSession => {
+        if (!item || typeof item !== 'object') return false;
+        const session = item as Partial<CompletedSession>;
+        return typeof session.id === 'string' && typeof session.completedAt === 'string';
+      })
+    : [];
+  return { schemaVersion: 1, completed };
 }
 
 function readProgress(): ProgressState {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return { completed: [] };
-    const parsed = JSON.parse(raw) as ProgressState;
-    return { completed: parsed.completed ?? [] };
+    if (!raw) return emptyProgress;
+    return migrateProgress(JSON.parse(raw));
   } catch {
-    return { completed: [] };
+    return emptyProgress;
   }
 }
 
@@ -46,7 +61,7 @@ export function useProgress() {
   const markComplete = useCallback((session: CompletedSession) => {
     const next = readProgress();
     const without = next.completed.filter((c) => c.id !== session.id);
-    writeProgress({ completed: [session, ...without].slice(0, 50) });
+    writeProgress({ schemaVersion: 1, completed: [session, ...without].slice(0, 50) });
   }, []);
 
   const isComplete = useCallback(

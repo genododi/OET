@@ -1,11 +1,8 @@
 /**
- * Session task bank — scenarios synthesised from:
- * - Official OET sample materials (oet.com CDN)
- * - Public exam debriefs (Reddit r/OET, USMLE Privateers journal, prep sites)
- * - Common Telegram study-group recall themes (@officialoet, @oetexams_materias,
- *   @OETNursesUK, @OETDoctorsHub, @OETPharmacyPrep, @OETAlliedHealth)
- *
- * Prompts change every session — use for pattern practice, not prediction.
+ * Session task bank. The timing and task structures follow the published OET
+ * blueprint; all learner-facing scenarios are original practice material.
+ * They are unofficial and are designed to train transferable criteria, not to
+ * predict live test content.
  */
 
 import type { Difficulty, OetSubtest } from '../types';
@@ -291,6 +288,17 @@ const writingCriteriaByTaskId: Record<string, WritingCriteria> = {
     ],
     irrelevantTerms: ['asthma', 'baking'],
   },
+  'write-44': {
+    requiredConceptGroups: [
+      ['staggered paracetamol ingestion', 'staggered overdose'],
+      ['ALT', 'alanine aminotransferase', 'acute liver injury'],
+      ['INR', 'coagulopathy'],
+      ['lactate', 'acidosis', 'hypoglycaemia', 'hypoglycemia'],
+      ['acetylcysteine', 'N-acetylcysteine', 'NAC'],
+      ['transplant centre', 'transplant assessment', 'urgent transfer'],
+    ],
+    irrelevantTerms: ['eczema', 'accountant', 'gardening'],
+  },
 };
 
 const AUTO_WRITING_STOP_WORDS = new Set([
@@ -463,7 +471,7 @@ export const listeningTasks: SessionTask[] = [
     { label: 'oxigen', correct: false },
     { label: 'oxygin', correct: false },
   ]),
-  mcq('lis-7', 'listening', 'Part C — Telehealth (recall theme)', 'Complete: Telehealth works best with periodic ___ review.', [
+  mcq('lis-7', 'listening', 'Part C — Telehealth (original scenario)', 'Complete: Telehealth works best with periodic ___ review.', [
     { label: 'in-person', correct: true },
     { label: 'inpeson', correct: false },
     { label: 'imperson', correct: false },
@@ -1526,6 +1534,35 @@ export const listeningTasks: SessionTask[] = [
     ),
     difficulty: 'advanced',
   },
+  {
+    ...mcq(
+      'lis-118',
+      'listening',
+      'Part C — Informative missingness in follow-up',
+      'Why does the speaker reject the complete-case conclusion that symptoms improved?',
+      [
+        {
+          label: 'People who stopped treatment or became too unwell were excluded, so the remaining reports may overstate benefit',
+          correct: true,
+          explanation:
+            'The speaker links missing final reports to adverse effects and deterioration, making the observed completers a selected, more treatment-tolerant group.',
+        },
+        {
+          label: 'Every participant with a missing questionnaire must have experienced exactly the same deterioration',
+          correct: false,
+          explanation:
+            'The speaker recommends sensitivity analyses because individual missing outcomes are uncertain; they are not assumed identical.',
+        },
+        {
+          label: 'Baseline adjustment proves that later missing outcomes cannot bias the treatment estimate',
+          correct: false,
+          explanation:
+            'The speaker explicitly says baseline information cannot repair outcome-dependent exclusion from the complete-case analysis.',
+        },
+      ],
+    ),
+    difficulty: 'advanced',
+  },
 ];
 
 export const readingTasks: SessionTask[] = [
@@ -2114,6 +2151,32 @@ export const readingTasks: SessionTask[] = [
       },
     ],
   ),
+  advancedReadingMcq(
+    'read-90',
+    'Part C — Informative missingness after treatment withdrawal',
+    'passage-informative-missingness',
+    'Why does the writer say the complete-case improvement may not apply to everyone who began treatment?',
+    [
+      {
+        label: 'Withdrawal was often related to adverse effects or lack of benefit, selecting more tolerant and engaged participants for the final comparison',
+        correct: true,
+        explanation:
+          'Outcome-related withdrawal means the completers can differ systematically from those whose final fatigue score is missing.',
+      },
+      {
+        label: 'Any missing questionnaire makes all observed measurements unusable regardless of the reason for absence',
+        correct: false,
+        explanation:
+          'The writer says missing data are not automatically bias and that the reason and relationship to the unobserved value matter.',
+      },
+      {
+        label: 'Carrying the last recorded fatigue score forward is guaranteed to underestimate treatment benefit',
+        correct: false,
+        explanation:
+          'The passage says this method is not automatically conservative because symptoms can improve, worsen or fluctuate.',
+      },
+    ],
+  ),
 ];
 
 export const writingTasks: SessionTask[] = [
@@ -2636,6 +2699,31 @@ She presented today with fluctuating confusion, petechiae and severe fatigue. Ha
 Her PLASMIC score is high. An ADAMTS13 sample was collected before treatment, but the result remains pending and must not delay management. Following discussion with your team, intravenous methylprednisolone has commenced. She has fluctuating GCS 14 but remains haemodynamically stable, without major bleeding and with preserved urine output. Platelets should be avoided unless life-threatening bleeding occurs after specialist discussion.
 
 Please accept her immediately for plasma exchange, consideration of caplacizumab, and neurological, cardiac and renal monitoring. Her family understands the suspected diagnosis and urgency of transfer.
+
+Please contact me if further information is required.
+
+Yours sincerely,
+
+Dr Maya Hassan`,
+    difficulty: 'advanced',
+  },
+  {
+    ...writing(
+      'write-44',
+      'Urgent transfer — Staggered paracetamol ingestion with acute liver failure',
+      '23 Aug 2026 — Pt: Mr Omar Nabil, 46y\nThree days of repeated supratherapeutic paracetamol for dental pain; exact total uncertain\nLast dose approximately 10 hours ago; paracetamol level 8 mg/L\nNow vomiting, right-upper-quadrant pain, drowsy but oriented\nALT 7,850 U/L; bilirubin 64 µmol/L; INR 3.4\nGlucose 3.1 mmol/L corrected with IV dextrose; lactate 4.8 mmol/L after fluids\nCreatinine 188 µmol/L (baseline 82); pH 7.29\nNo alcohol dependence; viral hepatitis screen pending\nN-acetylcysteine commenced immediately; toxicology and liver teams consulted\nCurrent: GCS 14, BP 106/66, HR 104, SpO2 97% room air; urine output falling\nNeeds immediate transfer to transplant centre for acute liver failure assessment, continued acetylcysteine, serial glucose/gases/INR, renal support and encephalopathy monitoring\nLow paracetamol level does not exclude toxicity after staggered ingestion\nPMH: eczema; accountant; enjoys gardening\nNo regular medicines; no known drug allergies\nWrite an urgent transfer letter prioritising the ingestion pattern, liver failure, treatment and requested transplant-centre care',
+      'Dear Liver Transplant Registrar,\n\nI am writing to request the immediate transfer of Mr Omar Nabil, aged 46, for transplant-centre assessment of acute liver failure following a staggered paracetamol ingestion.',
+      'Immediate tertiary transfer',
+    ),
+    modelAnswer: `Dear Liver Transplant Registrar,
+
+I am writing to request immediate transfer of Mr Omar Nabil, 46, for transplant-centre assessment of acute liver failure after staggered paracetamol ingestion.
+
+Over three days, he repeatedly exceeded the recommended dose for dental pain; the total is uncertain and his last dose was approximately ten hours ago. Although his paracetamol level is only 8 mg/L, this does not exclude toxicity after staggered ingestion. He now has vomiting, right-upper-quadrant pain and mild drowsiness. ALT is 7,850 U/L, bilirubin 64 µmol/L and INR 3.4. He is acidotic (pH 7.29), with lactate 4.8 mmol/L despite fluids. Creatinine has risen from 82 to 188 µmol/L and urine output is falling. Glucose of 3.1 mmol/L was corrected intravenously.
+
+N-acetylcysteine was commenced immediately following toxicology and liver-team discussion. He is currently oriented with GCS 14, blood pressure 106/66 mmHg, heart rate 104 and oxygen saturation 97% on air. Viral hepatitis screening is pending.
+
+Please accept him immediately for continued acetylcysteine, transplant assessment, serial glucose, blood-gas and INR monitoring, renal support, and close observation for encephalopathy.
 
 Please contact me if further information is required.
 
@@ -3634,6 +3722,53 @@ export const speakingTasks: SessionTask[] = [
           'A placental test called CVS can give diagnostic information now, and amniocentesis is another option later; both have a small procedure-related uncertainty that we can discuss carefully.',
           'You may also choose no diagnostic test. I will not decide about the pregnancy for you, and your partner’s view should not replace your own values and choice.',
           'Could you tell me the difference between the screening result and a diagnosis, and which questions you want the genetics team to address?',
+        ],
+      },
+    ),
+    difficulty: 'advanced',
+  },
+  {
+    ...speaking(
+      'speak-44',
+      'Surgical consent — professional interpretation and chosen family support',
+      'You are the surgeon discussing urgent but not immediate bowel surgery with a patient who has limited English. Their adult child keeps answering, asks you to use them as interpreter, and says the family has already agreed. A professional video interpreter is available. The patient appears uncertain and asks quietly whether there are alternatives.',
+      [
+        'Address the patient directly, arrange professional interpretation and ask how they want family involved',
+        'Explain the proposed operation, material benefits, risks, alternatives and consequences of delay in plain language',
+        'Explore the patient’s own concerns and check that family pressure is not replacing their decision',
+        'Use interpreter-mediated teach-back and agree a safe decision and review plan',
+      ],
+      {
+        expectedKeywords: [
+          'interpreter',
+          'your decision',
+          'operation',
+          'benefit',
+          'risk',
+          'alternative',
+          'delay',
+          'questions',
+          'family',
+          'choice',
+          'pressure',
+          'understand',
+          'teach-back',
+          'consent',
+          'review',
+        ],
+        checklist: [
+          'Speak to the patient rather than the relative and offer a qualified interpreter',
+          'Ask the patient privately how they want family involved and whether they feel free to decide',
+          'Explain the operation, material risks, expected benefit, alternatives and implications of delay without jargon',
+          'Allow questions and avoid treating family agreement or a signed form as the patient’s consent',
+          'Use interpreter-mediated teach-back and document the patient’s own decision or need for further review',
+        ],
+        samplePhrases: [
+          'I would like to hear from you directly, and the professional interpreter will help me make sure my explanation is accurate.',
+          'Your family can support you if you wish, but this is your decision; would you like part of the conversation to be private?',
+          'The operation aims to treat the blockage, but we should discuss bleeding, infection, recovery, the alternatives and what delaying treatment could mean for you.',
+          'Please ask anything that is unclear. Family agreement and a signature do not replace your own informed choice.',
+          'Using the interpreter, could you explain in your own words the options and tell me which matters most to you before we agree the next step?',
         ],
       },
     ),

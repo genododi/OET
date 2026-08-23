@@ -168,7 +168,7 @@ function buildMockTags(profile: MockProfile, profession: string, index: number):
   ) {
     tags.add('allied-health');
   }
-  if (index % 11 === 0) tags.add('telegram-recall');
+  if (index % 11 === 0) tags.add('unseen-scenario');
   if (index % 13 === 0) tags.add('official-style');
   return [...tags];
 }
@@ -188,7 +188,7 @@ function buildMedicineMockTags(profile: MockProfile, index: number): string[] {
   const tags = new Set<string>([
     'medicine',
     'physician',
-    'doctors-hub',
+    'source-governed',
     profile.tag,
     ...profile.subtests,
     ...pickMany(MEDICINE_MOCK_TAG_POOL, index, 4),
@@ -197,7 +197,7 @@ function buildMedicineMockTags(profile: MockProfile, index: number): string[] {
     tags.add('referral-letter');
     tags.add('case-notes');
   }
-  if (index % 11 === 0) tags.add('telegram-recall');
+  if (index % 11 === 0) tags.add('unseen-scenario');
   if (index % 13 === 0) tags.add('official-style');
   return [...tags];
 }

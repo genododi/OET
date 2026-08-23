@@ -383,6 +383,15 @@ export function SessionRunner({ config, onExit }: Props) {
           </div>
           <h3>{task.title}</h3>
           <p className="session-instructions">{task.instructions}</p>
+          {task.provenance && (
+            <div className="task-provenance">
+              <span>Original practice aligned to</span>{' '}
+              <a href={task.provenance.sourceUrl} target="_blank" rel="noopener noreferrer">
+                {task.provenance.sourceLabel}
+              </a>
+              <span> · {task.provenance.reviewStatus}</span>
+            </div>
+          )}
 
           {(task.audioSrc || task.audioExternalUrl) && (
             <AudioPlayer

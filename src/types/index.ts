@@ -13,9 +13,9 @@ export interface MockExam {
   difficulty: Difficulty;
   description: string;
   questionsCount: number;
-  /** Search/filter tags (medicine, telegram-recall, marathon, …) */
+  /** Search/filter tags (medicine, unseen-scenario, marathon, …) */
   tags?: string[];
-  /** Where content style was inspired (official sample, Telegram recall, …) */
+  /** Traceable source or authoring basis for the content style. */
   sourceHint?: string;
 }
 
@@ -39,6 +39,9 @@ export interface GuideSection {
   title: string;
   category: 'overview' | 'subtest' | 'scoring' | 'registration';
   content: string[];
+  sourceLabel?: string;
+  sourceUrl?: string;
+  classification?: 'official' | 'original-derived';
 }
 
 /** Curated advice attributed to Dr. Ashgan from a verified public Telegram post. */
@@ -136,6 +139,8 @@ export interface ExperiencePdf {
 
 export type NavSection =
   | 'home'
+  | 'planner'
+  | 'resources'
   | 'mock'
   | 'practice'
   | 'guide'
@@ -145,3 +150,18 @@ export type NavSection =
   | 'books'
   | 'experience-pdfs'
   | 'usmle';
+
+export type {
+  DiagnosticProfile,
+  PracticeProvenance,
+  RedistributionStatus,
+  SourceAsset,
+  SourceContainer,
+  SourceManifest,
+  StudyPlan,
+  StudyPlanAssignment,
+  StudyResource,
+  StudyResourceFormat,
+  TutorFeedback,
+  TutorRubricScore,
+} from './study';

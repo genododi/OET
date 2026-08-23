@@ -37,9 +37,9 @@ export const pearlsPitfalls: PearlPitfall[] = [
     id: 'pearl-5',
     type: 'pearl',
     subtest: 'general',
-    title: 'Telegram community wisdom',
+    title: 'Rotate original clinical scenarios',
     description:
-      'Candidates who share recent prompts in study groups often report similar scenario types (e.g. diabetes referrals, post-op discharge). Use experiences as pattern recognition, not prediction.',
+      'Practise the same communication skill across different clinical contexts. Variation builds transfer: a clear referral purpose or empathy response should work even when the diagnosis changes.',
   },
   {
     id: 'pitfall-1',
@@ -197,9 +197,9 @@ export const pearlsPitfalls: PearlPitfall[] = [
     id: 'pitfall-13',
     type: 'pitfall',
     subtest: 'general',
-    title: 'Memorising Telegram "leaked" prompts',
+    title: 'Memorising alleged leaked prompts',
     description:
-      'OET rotates scenarios. Rote answers for a recalled prompt will not fit the actual card and harm spontaneity in Speaking.',
+      'Rote answers for an unverified prompt will not fit a different task and can harm relevance and spontaneity. Train the official criteria with unseen original scenarios instead.',
   },
   {
     id: 'pearl-13',

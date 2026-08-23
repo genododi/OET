@@ -1,73 +1,100 @@
-# React + TypeScript + Vite
+# OET Study Partner
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A static, Medicine-first OET study system for learners targeting Grade A / 450+. It combines a first-run diagnostic, adaptive local study plan, timed practice across all four sub-tests, source-traceable guides, and deterministic tutoring that works without an API key.
 
-Currently, two official plugins are available:
+This is an independent preparation tool. Practice scores and tutor feedback are coaching indicators, not official OET results.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Run locally
 
-## React Compiler
+Requirements: Node.js 20+ and npm.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm ci
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+The production build uses the `/OET/` base path required by this repository's GitHub Pages deployment.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run build
+npm run preview
 ```
+
+## Learner features
+
+- Grade A diagnostic and plan based on exam date, available days, daily time, and four baseline scaled scores.
+- Medicine resource library with sub-test, format, source, and text filters.
+- Timed Listening, Reading, Writing, and Speaking sessions with review evidence and provenance.
+- Original referral, discharge, transfer, advice, and patient-role-play practice.
+- Offline rubric feedback, corrections, vocabulary cues, model structures, and next drills.
+- Optional bring-your-own Anthropic key for a second writing or speaking review. The key stays in browser storage and the app remains usable if the provider times out or fails.
+- USMLE remains a separate related-exam area and is excluded from OET planning, readiness, ingestion, and reporting.
+
+## Source policy
+
+Public availability is not redistribution permission. Every public resource must have a source URL, publication decision, and rights status.
+
+- Official or permission-confirmed assets may be served locally.
+- Rights-unclear community files remain in the private external archive and appear in the app only as link-only references or newly authored derivative exercises.
+- Paid packs, third-party recordings, copied answer keys, generated testimonials, corrupt downloads, executables, and unsafe archives are not published.
+- The Official OET speaking masterclass is linked and used to author original drills; its video is not republished.
+
+The private archive lives outside Git at:
+
+```text
+/Volumes/GENODODI/oet-study-sources/
+  raw/{google-drive,facebook,telegram,mega,references}/
+  normalized/
+  quarantine/
+  manifests/
+  reports/
+```
+
+## Refresh the source archive
+
+GENODODI must be mounted. The scripts refuse an archive root outside that volume.
+
+```bash
+npm run sources:acquire -- --references
+npm run sources:acquire -- --drive
+npm run sources:drive-resilient -- --default-sources
+npm run sources:acquire -- --mega
+python3 scripts/acquire-telegram-links.py --download-drive
+npm run sources:drive-resilient -- --from-telegram-manifest /Volumes/GENODODI/oet-study-sources/manifests/telegram-link-index.json --destination /Volumes/GENODODI/oet-study-sources/raw/telegram/google-drive
+npm run sources:extract-mega
+npm run sources:inventory
+```
+
+Facebook files use the account owner's signed-in Safari session. Set Safari's download location to `raw/facebook`, download from the group's Files view, then run the inventory command. Credentials and signed download URLs must never be copied into the repository or manifest.
+
+Source import is resumable. Checksums drive duplicate relationships; every original source-path record is retained. Encrypted, executable, corrupt, path-traversing, unverifiable, or rights-unclear material is quarantined or marked private.
+
+## Tutoring and privacy
+
+The built-in tutor is deterministic and fully client-side. Optional AI review calls Anthropic directly from the browser with the learner's own key, validates the structured response, limits output sizes, and times out after 30 seconds. Provider failure never blocks offline study.
+
+Learner settings, diagnostic profile, plan, and progress use versioned local-storage schemas. No application backend is required.
+
+## Verification
+
+```bash
+npm run lint
+npm run test:unit
+npm run test:oet
+npm run test:governance
+npm run test:source-manifest
+npm run build
+npm run test:e2e
+```
+
+`test:oet` verifies official blueprint counts/timing, question uniqueness and answers, productive-skill coverage, Part A responses, audio mappings, spoken relevance, and Grade A readiness. `test:governance` blocks unsafe, quarantined, oversized, and unverifiable public assets. `test:source-manifest` validates the checked-in source register and automatically validates the detailed external manifest when GENODODI is mounted; use `npm run test:source-manifest -- --require-external` for final archive acceptance. Playwright covers diagnostic planning, resource search, timed writing, speaking fallback, offline tutoring, and hash routing.
+
+For a fresh Playwright installation:
+
+```bash
+npx playwright install --with-deps chromium
+```
+
+## Deployment
+
+GitHub Actions gates deployment on lint, unit/component tests, all OET content verifiers, source governance, the production build, and Playwright smoke tests. Only a successful `main` build is deployed to GitHub Pages.

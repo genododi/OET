@@ -1,23 +1,32 @@
-import { useEffect, useState } from 'react';
+import { lazy, Suspense, useEffect, useState } from 'react';
 import { Layout } from './components/Layout';
-import { HomePage } from './pages/HomePage';
-import { MockExamsPage } from './pages/MockExamsPage';
-import { PracticePage } from './pages/PracticePage';
-import { GuidePage } from './pages/GuidePage';
-import { TipsPage } from './pages/TipsPage';
-import { PearlsPitfallsPage } from './pages/PearlsPitfallsPage';
-import { ExperiencesPage } from './pages/ExperiencesPage';
-import { BooksPage } from './pages/BooksPage';
-import { ExperiencePdfsPage } from './pages/ExperiencePdfsPage';
-import { UsmlePage } from './pages/UsmlePage';
 import type { NavSection } from './types';
 import { buildHash, isPracticeFilter, parseRoute } from './lib/routing';
 import { initPreferredProfession } from './lib/preferredProfession';
+
+const HomePage = lazy(() => import('./pages/HomePage').then((module) => ({ default: module.HomePage })));
+const StudyPlannerPage = lazy(() => import('./pages/StudyPlannerPage').then((module) => ({ default: module.StudyPlannerPage })));
+const ResourcesPage = lazy(() => import('./pages/ResourcesPage').then((module) => ({ default: module.ResourcesPage })));
+const MockExamsPage = lazy(() => import('./pages/MockExamsPage').then((module) => ({ default: module.MockExamsPage })));
+const PracticePage = lazy(() => import('./pages/PracticePage').then((module) => ({ default: module.PracticePage })));
+const GuidePage = lazy(() => import('./pages/GuidePage').then((module) => ({ default: module.GuidePage })));
+const TipsPage = lazy(() => import('./pages/TipsPage').then((module) => ({ default: module.TipsPage })));
+const PearlsPitfallsPage = lazy(() => import('./pages/PearlsPitfallsPage').then((module) => ({ default: module.PearlsPitfallsPage })));
+const BooksPage = lazy(() => import('./pages/BooksPage').then((module) => ({ default: module.BooksPage })));
+const UsmlePage = lazy(() => import('./pages/UsmlePage').then((module) => ({ default: module.UsmlePage })));
 
 const pageMeta: Record<NavSection, { title: string; subtitle?: string }> = {
   home: {
     title: 'Dashboard',
     subtitle: 'Medicine-focused OET preparation for physicians',
+  },
+  planner: {
+    title: 'Grade A Study Plan',
+    subtitle: 'Diagnostic-led Medicine preparation toward 450+',
+  },
+  resources: {
+    title: 'Medicine Resources',
+    subtitle: 'Curated, traceable, and rights-aware preparation material',
   },
   mock: {
     title: 'Mock Exams',
@@ -33,23 +42,23 @@ const pageMeta: Record<NavSection, { title: string; subtitle?: string }> = {
   },
   tips: {
     title: 'Tips & Tricks',
-    subtitle: 'Proven strategies from educators and successful candidates',
+    subtitle: 'Source-governed strategies aligned with official OET criteria',
   },
   pearls: {
     title: 'Pearls & Pitfalls',
     subtitle: 'What to do — and what to avoid',
   },
   experiences: {
-    title: 'Exam Experiences',
-    subtitle: 'Recaps from Telegram study groups worldwide',
+    title: 'Medicine Resources',
+    subtitle: 'Curated, traceable, and rights-aware preparation material',
   },
   books: {
     title: 'Book PDFs',
     subtitle: 'Study books and compilations',
   },
   'experience-pdfs': {
-    title: 'Experience PDFs',
-    subtitle: 'Detailed write-ups and debrief documents',
+    title: 'Medicine Resources',
+    subtitle: 'Curated, traceable, and rights-aware preparation material',
   },
   usmle: {
     title: 'USMLE Q-Bank',
@@ -91,6 +100,10 @@ function App() {
     switch (route.section) {
       case 'home':
         return <HomePage onNavigate={navigate} preferredProfession={preferredProfession} />;
+      case 'planner':
+        return <StudyPlannerPage onNavigate={navigate} />;
+      case 'resources':
+        return <ResourcesPage />;
       case 'mock':
         return <MockExamsPage defaultProfession={preferredProfession} />;
       case 'practice':
@@ -112,8 +125,6 @@ function App() {
         return <TipsPage />;
       case 'pearls':
         return <PearlsPitfallsPage />;
-      case 'experiences':
-        return <ExperiencesPage onNavigate={navigate} defaultProfession={preferredProfession} />;
       case 'books':
         return (
           <BooksPage
@@ -122,13 +133,9 @@ function App() {
             onItemChange={(id) => navigate('books', id)}
           />
         );
+      case 'experiences':
       case 'experience-pdfs':
-        return (
-          <ExperiencePdfsPage
-            initialItemId={route.itemId}
-            onItemChange={(id) => navigate('experience-pdfs', id)}
-          />
-        );
+        return <ResourcesPage />;
       case 'usmle':
         return <UsmlePage />;
     }
@@ -136,7 +143,9 @@ function App() {
 
   return (
     <Layout active={route.section} onNavigate={navigate} title={meta.title} subtitle={meta.subtitle}>
-      {renderPage()}
+      <Suspense fallback={<div className="card loading-card">Loading study tools…</div>}>
+        {renderPage()}
+      </Suspense>
     </Layout>
   );
 }

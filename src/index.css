@@ -3544,3 +3544,234 @@ button {
 .usmle-calc-toggle {
   font-size: 0.75rem;
 }
+
+/* Source-driven study planner and resource library */
+.loading-card {
+  padding: 2rem;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.planner-intro,
+.source-policy-banner {
+  padding: clamp(1.25rem, 3vw, 2rem);
+  background: linear-gradient(135deg, rgba(13, 148, 136, 0.1), rgba(14, 116, 144, 0.05));
+  border-color: rgba(13, 148, 136, 0.25);
+}
+
+.planner-intro h2,
+.source-policy-banner h2 {
+  margin: 0.25rem 0 0.5rem;
+}
+
+.diagnostic-form {
+  padding: 1.5rem;
+}
+
+.planner-form-grid,
+.diagnostic-score-grid,
+.resource-filter-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.planner-form-grid label,
+.diagnostic-score-grid label,
+.resource-filter-row label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  color: var(--text-h);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.planner-form-grid input,
+.diagnostic-score-grid input,
+.resource-filter-row select {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--text-h);
+  padding: 0.65rem 0.75rem;
+  font: inherit;
+}
+
+.diagnostic-score-grid label {
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--slate-50);
+}
+
+.diagnostic-score-grid small {
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.form-errors {
+  color: var(--rose-600);
+  background: rgba(225, 29, 72, 0.07);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 1rem 0.75rem 2rem;
+}
+
+.study-plan-results {
+  padding: 1.5rem;
+}
+
+.plan-target {
+  border: 1px solid rgba(13, 148, 136, 0.3);
+  border-radius: 999px;
+  padding: 0.45rem 0.8rem;
+  color: var(--teal-700);
+}
+
+.plan-assignment-list {
+  display: grid;
+  gap: 0.65rem;
+  margin: 1rem 0;
+}
+
+.plan-assignment {
+  display: grid;
+  grid-template-columns: 95px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+
+.plan-assignment time {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.plan-assignment p {
+  margin: 0.2rem 0 0;
+}
+
+.source-policy-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.source-policy-shield {
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 64px;
+  height: 64px;
+  border-radius: 20px;
+  background: var(--teal-600);
+  color: white;
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.resource-filter-row {
+  margin: 1rem 0;
+}
+
+.resource-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.resource-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.25rem;
+}
+
+.resource-card h3,
+.resource-card p {
+  margin: 0;
+}
+
+.resource-card .btn {
+  margin-top: auto;
+  align-self: flex-start;
+}
+
+.resource-provenance {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.65rem 0.75rem;
+  border-left: 3px solid var(--teal-500);
+  background: var(--slate-50);
+  font-size: 0.8rem;
+}
+
+.task-provenance {
+  margin: 0.65rem 0 1rem;
+  padding: 0.55rem 0.7rem;
+  border-radius: var(--radius-sm);
+  background: rgba(13, 148, 136, 0.07);
+  color: var(--text-muted);
+  font-size: 0.78rem;
+}
+
+.task-provenance a {
+  color: var(--teal-700);
+  font-weight: 600;
+}
+
+.offline-tutor-result {
+  display: grid;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.tutor-rubric-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+  gap: 0.5rem;
+}
+
+.tutor-rubric-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+}
+
+.guide-source {
+  margin: 0.9rem 1.1rem 1.1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.82rem;
+}
+
+.guide-source span {
+  font-weight: 700;
+  color: var(--text);
+}
+
+@media (max-width: 640px) {
+  .plan-assignment {
+    grid-template-columns: 1fr;
+  }
+
+  .plan-assignment .btn {
+    justify-self: start;
+  }
+
+  .source-policy-shield {
+    display: none;
+  }
+}

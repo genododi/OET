@@ -223,7 +223,7 @@ const curatedMockExams: MockExam[] = [
     durationMinutes: 180,
     difficulty: 'intermediate',
     description:
-      'Catheter care reading, CHF discharge writing, and family-centred speaking scenarios aligned with recent recall patterns.',
+      'Original catheter-care reading, CHF discharge writing, and family-centred speaking scenarios aligned with published OET criteria.',
     questionsCount: 42,
   },
   {
@@ -468,43 +468,43 @@ const curatedMockExams: MockExam[] = [
       'Balanced mixed-profession mock designed for once-per-week use in a 6-week study plan.',
     questionsCount: 42,
   },
-  // ── Telegram / public recall–aligned packs ──
+  // ── Original, blueprint-aligned scenario packs ──
   {
     id: 'mock-tg-nurses-uk-1',
-    title: 'Telegram Recall Pack — @OETNursesUK (Set 1)',
+    title: 'Nursing Blueprint Practice — Set 1',
     profession: 'Nursing',
     subtests: ['writing', 'speaking', 'reading'],
     durationMinutes: 120,
     difficulty: 'intermediate',
     description:
-      'Public debrief themes: COPD discharge, warfarin diet speaking, infection control Part A matching — pattern practice only.',
+      'Original COPD discharge, warfarin diet speaking, and infection-control reading tasks for transferable skills practice.',
     questionsCount: 24,
   },
   {
     id: 'mock-tg-doctors-hub-1',
-    title: 'Telegram Recall Pack — @OETDoctorsHub (Set 1)',
+    title: 'Medicine Blueprint Practice — Set 1',
     profession: 'Medicine',
     subtests: ['writing', 'speaking', 'listening'],
     durationMinutes: 120,
     difficulty: 'advanced',
     description:
-      'Cardiology referral, breaking scan results, clinical trial Part C — synthesised from public Reddit/Telegram debriefs.',
+      'Original cardiology referral, scan-results discussion, and clinical-trial listening tasks aligned with official criteria.',
     questionsCount: 24,
   },
   {
     id: 'mock-tg-pharmacy-1',
-    title: 'Telegram Recall Pack — @OETPharmacyPrep',
+    title: 'Pharmacy Blueprint Practice — Set 1',
     profession: 'Pharmacy',
     subtests: ['writing', 'speaking', 'listening'],
     durationMinutes: 120,
     difficulty: 'intermediate',
     description:
-      'Drug interaction letter, inhaler counselling, antibiotic stewardship Part C — common pharmacy group themes.',
+      'Original drug-interaction letter, inhaler counselling, and antibiotic-stewardship tasks.',
     questionsCount: 24,
   },
   {
     id: 'mock-tg-allied-1',
-    title: 'Telegram Recall Pack — @OETAlliedHealth',
+    title: 'Allied Health Blueprint Practice — Set 1',
     profession: 'Physiotherapy',
     subtests: ['speaking', 'writing'],
     durationMinutes: 75,
@@ -515,35 +515,35 @@ const curatedMockExams: MockExam[] = [
   },
   {
     id: 'mock-writing-recall-pack',
-    title: 'Writing Recall Mega-Pack (12 scenarios)',
+    title: 'Writing Unseen Scenario Pack (12 tasks)',
     profession: 'All professions',
     subtests: ['writing'],
     durationMinutes: 180,
     difficulty: 'advanced',
     description:
-      'Pericarditis urgent referral, pneumonia discharge, Dunbar transfer, fractured wrist, CHF discharge, GI referral — top public recall types.',
+      'Original urgent referral, discharge, transfer, and advice letters spanning varied Medicine contexts.',
     questionsCount: 12,
   },
   {
     id: 'mock-speaking-recall-pack',
-    title: 'Speaking Recall Mega-Pack (16 role-plays)',
+    title: 'Speaking Unseen Scenario Pack (16 role-plays)',
     profession: 'All professions',
     subtests: ['speaking'],
     durationMinutes: 90,
     difficulty: 'intermediate',
     description:
-      'Medication side effects, fall risk, palliative talk, MRI anxiety, vaccine hesitancy, interruption handling — Khaira/Educator + Telegram themes.',
+      'Original role-plays covering medication effects, fall risk, palliative care, MRI anxiety, vaccine hesitancy, and interruption handling.',
     questionsCount: 16,
   },
   {
     id: 'mock-reading-recall-pack',
-    title: 'Reading Recall Mega-Pack',
+    title: 'Reading Unseen Scenario Pack',
     profession: 'All professions',
     subtests: ['reading'],
     durationMinutes: 60,
     difficulty: 'advanced',
     description:
-      'Falls prevention, catheter bundles, vaccination matching, staffing ratio abstracts, mental health policy — frequent Part A/C themes.',
+      'Original Part A and C tasks on falls prevention, catheter bundles, vaccination, staffing research, and mental-health policy.',
     questionsCount: 20,
   },
   {
@@ -554,7 +554,7 @@ const curatedMockExams: MockExam[] = [
     durationMinutes: 30,
     difficulty: 'intermediate',
     description:
-      'Reddit/Telegram tip focus: drug names, verb tenses (refer/referring), pluralisation — errors cost marks.',
+      'Drug names, verb forms, and pluralisation practice for the exact-response demands of Listening Part A.',
     questionsCount: 18,
   },
   {
@@ -565,7 +565,7 @@ const curatedMockExams: MockExam[] = [
     durationMinutes: 180,
     difficulty: 'advanced',
     description:
-      'IELTSMaterial recall: urgent pericarditis referral writing + COPD discharge + community nursing speaking.',
+      'Original urgent pericarditis referral, COPD discharge, and community nursing scenarios.',
     questionsCount: 42,
   },
   {
@@ -587,7 +587,7 @@ const curatedMockExams: MockExam[] = [
     durationMinutes: 180,
     difficulty: 'advanced',
     description:
-      'Chest pain cardiology referral, trial abstract reading, NAFLD lifestyle speaking — Doctors Hub debrief patterns.',
+      'Original chest-pain referral, trial-abstract reading, and NAFLD lifestyle-counselling scenarios.',
     questionsCount: 42,
   },
   {
@@ -675,7 +675,7 @@ const curatedMockExams: MockExam[] = [
     durationMinutes: 60,
     difficulty: 'advanced',
     description:
-      'Mental health policy Part C inference + consent forms Part B — common CBT recall combo.',
+      'Original mental-health policy Part C inference and consent-form Part B tasks under CBT timing.',
     questionsCount: 20,
   },
   {
@@ -730,7 +730,7 @@ const curatedMockExams: MockExam[] = [
     durationMinutes: 180,
     difficulty: 'advanced',
     description:
-      'High-intensity full mock for final fortnight — mixed recall themes, strict timing, no pauses.',
+      'High-intensity full mock for the final fortnight with unseen scenarios, strict timing, and no pauses.',
     questionsCount: 42,
   },
   {
@@ -741,7 +741,7 @@ const curatedMockExams: MockExam[] = [
     durationMinutes: 50,
     difficulty: 'intermediate',
     description:
-      'Simulates NMC/GMC retake booking — choose one sub-test, exam-length timing (Reddit r/OET pattern).',
+      'Single-sub-test simulation using the published exam-length timing and original tasks.',
     questionsCount: 12,
   },
   // ── EduBenchmark-aligned writing packs (case notes from benchmark blog) ──
@@ -1000,7 +1000,7 @@ const curatedMockExams: MockExam[] = [
     durationMinutes: 150,
     difficulty: 'intermediate',
     description:
-      'L/R/W at-home block without speaking — mirrors split-day CBT experience from Telegram nursing debriefs.',
+      'Original L/R/W at-home block without Speaking, following the published computer-test sub-test structure.',
     questionsCount: 36,
   },
   {
@@ -1011,7 +1011,7 @@ const curatedMockExams: MockExam[] = [
     durationMinutes: 180,
     difficulty: 'intermediate',
     description:
-      'Full paper-day simulation — Mumbai/Cairo venue style: bring watch, strict note paper for Listening Part A.',
+      'Full paper-format simulation using official timing and task counts; follow the rules provided by your test venue.',
     questionsCount: 42,
   },
 ];

@@ -1,12 +1,10 @@
 import { useState } from 'react';
 import { mockExams } from '../data/mockExams';
 import { practiceModules } from '../data/practice';
-import { examExperiences } from '../data/experiences';
 import { bookPdfs } from '../data/books';
-import { experiencePdfs } from '../data/experiencePdfs';
 import { tips } from '../data/tips';
 import { pearlsPitfalls } from '../data/pearlsPitfalls';
-import { usmleQBanks } from '../data/usmleCourses';
+import { studyResources } from '../data/studyResources';
 import { useProgress } from '../hooks/useProgress';
 import { matchesProfessionFilter } from '../lib/preferredProfession';
 import { buildSmartSession } from '../lib/sessionBuilder';
@@ -46,17 +44,13 @@ export function HomePage({ onNavigate, preferredProfession = 'Medicine' }: Props
   const medicinePractice = practiceModules.filter((m) =>
     matchesProfessionFilter(m.profession, preferredProfession),
   ).length;
-  const doctorsHubExperiences = examExperiences.filter(
-    (e) => e.profession === preferredProfession || e.telegramGroup === '@OETDoctorsHub',
-  ).length;
-
   const stats = [
     { label: 'Medicine mocks', value: medicineMocks, section: 'mock' as NavSection },
     { label: 'Medicine practice', value: medicinePractice, section: 'practice' as NavSection },
     { label: 'Tips', value: tips.length, section: 'tips' as NavSection },
     { label: 'Pearls', value: pearlsPitfalls.length, section: 'pearls' as NavSection },
-    { label: 'Doctor experiences', value: doctorsHubExperiences, section: 'experiences' as NavSection },
-    { label: 'PDFs', value: bookPdfs.length + experiencePdfs.length, section: 'books' as NavSection },
+    { label: 'Curated resources', value: studyResources.length, section: 'resources' as NavSection },
+    { label: 'Official PDFs', value: bookPdfs.length, section: 'books' as NavSection },
   ];
 
   return (
@@ -98,9 +92,8 @@ export function HomePage({ onNavigate, preferredProfession = 'Medicine' }: Props
           <span className="hero-eyebrow">OET for Physicians · Medicine</span>
           <h2>Your medicine-focused OET study partner</h2>
           <p>
-            Full-length mocks, referral-letter writing drills, GP role-play practice, and real exam
-            debriefs from <code>@OETDoctorsHub</code> — tailored for doctors preparing for UK, Australia,
-            and Ireland registration.
+            Full-length mocks, referral-letter writing drills, patient role-play practice, and
+            source-traceable guidance for doctors targeting Grade A performance.
           </p>
           <div className="hero-actions">
             <button type="button" className="btn btn-primary" onClick={() => onNavigate('mock')}>
@@ -108,6 +101,9 @@ export function HomePage({ onNavigate, preferredProfession = 'Medicine' }: Props
             </button>
             <button type="button" className="btn btn-secondary" onClick={() => startSmart()}>
               🎯 Smart Session (adaptive)
+            </button>
+            <button type="button" className="btn btn-secondary" onClick={() => onNavigate('planner')}>
+              Build my Grade A plan
             </button>
             <button type="button" className="btn btn-secondary" onClick={() => onNavigate('guide')}>
               Medicine study guide
@@ -146,46 +142,21 @@ export function HomePage({ onNavigate, preferredProfession = 'Medicine' }: Props
             <strong>Referral letter writing</strong>
             <span className="meta">Urgent referrals & discharge summaries</span>
           </button>
-          <button type="button" className="quick-link-tile" onClick={() => onNavigate('experiences')}>
-            <span className="quick-link-icon">💬</span>
-            <strong>@OETDoctorsHub experiences</strong>
-            <span className="meta">Real medicine exam recaps</span>
+          <button type="button" className="quick-link-tile" onClick={() => onNavigate('planner')}>
+            <span className="quick-link-icon">🧭</span>
+            <strong>Diagnostic study plan</strong>
+            <span className="meta">450+ target · weakest skills first</span>
           </button>
-          <button
-            type="button"
-            className="quick-link-tile"
-            onClick={() => onNavigate('guide', 'ashgan')}
-          >
-            <span className="quick-link-icon">📱</span>
-            <strong>Dr. Ashgan Telegram guide</strong>
-            <span className="meta">Instructor advice · join group for full history</span>
+          <button type="button" className="quick-link-tile" onClick={() => onNavigate('resources')}>
+            <span className="quick-link-icon">🗂️</span>
+            <strong>Curated resource library</strong>
+            <span className="meta">Official files and link-only community sources</span>
           </button>
           <button type="button" className="quick-link-tile" onClick={() => onNavigate('books')}>
             <span className="quick-link-icon">📚</span>
             <strong>Medicine PDF library</strong>
             <span className="meta">Official guides & graded samples</span>
           </button>
-        </div>
-      </section>
-
-      <section className="card usmle-home-teaser">
-        <h3>Also preparing for USMLE?</h3>
-        <p>
-          Browse {usmleQBanks.length} publicly announced Coursology Q-Banks — UWorld, AMBOSS, NBME, UWSA,
-          CMS, Mehlman HY, and medical libraries — for Step 1, Step 2 CK, and Step 3.
-        </p>
-        <div className="feature-links">
-          <button type="button" className="link-btn" onClick={() => onNavigate('usmle')}>
-            USMLE Q-Bank catalog →
-          </button>
-          <a
-            href="https://coursology-qbank.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="link-btn"
-          >
-            Open Coursology portal ↗
-          </a>
         </div>
       </section>
 
@@ -207,7 +178,7 @@ export function HomePage({ onNavigate, preferredProfession = 'Medicine' }: Props
         </article>
         <article className="card feature-card">
           <h3>💡 Tips, Pearls & Pitfalls</h3>
-          <p>Actionable strategies plus common mistakes gathered from candidates and educators.</p>
+          <p>Actionable strategies and common mistakes aligned with published OET criteria.</p>
           <div className="feature-links">
             <button type="button" className="link-btn" onClick={() => onNavigate('tips')}>
               Tips →
@@ -218,23 +189,23 @@ export function HomePage({ onNavigate, preferredProfession = 'Medicine' }: Props
           </div>
         </article>
         <article className="card feature-card">
-          <h3>💬 @OETDoctorsHub Experiences</h3>
+          <h3>🧭 Source-Governed Resources</h3>
           <p>
-            Medicine exam recaps — referral scenarios, speaking cards, and timing tips from doctor study
-            groups.
+            Official links, rights-aware community references, and original Medicine exercises with
+            clear provenance.
           </p>
           <div className="feature-links">
-            <button type="button" className="link-btn" onClick={() => onNavigate('experiences')}>
-              Doctor experiences →
+            <button type="button" className="link-btn" onClick={() => onNavigate('resources')}>
+              Browse resources →
             </button>
-            <button type="button" className="link-btn" onClick={() => onNavigate('experience-pdfs')}>
-              Experience PDFs →
+            <button type="button" className="link-btn" onClick={() => onNavigate('planner')}>
+              Build my plan →
             </button>
           </div>
         </article>
         <article className="card feature-card">
           <h3>📚 PDF Library</h3>
-          <p>Official OET medicine guides, model referral letters, role-play cards, and debrief PDFs.</p>
+          <p>Publication-cleared OET Medicine guides, samples, and original companion drills.</p>
           <div className="feature-links">
             <button type="button" className="link-btn" onClick={() => onNavigate('books')}>
               Medicine PDFs →

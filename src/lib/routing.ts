@@ -7,6 +7,8 @@ export interface AppRoute {
 
 const validSections = new Set<string>([
   'home',
+  'planner',
+  'resources',
   'mock',
   'practice',
   'guide',

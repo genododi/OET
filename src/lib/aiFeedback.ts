@@ -6,11 +6,12 @@ import type { SessionTask } from '../types/session';
  * see lib/apiKeyStore.ts). This app has no backend, so the key never touches any server of ours;
  * requests go straight from the browser to api.anthropic.com.
  *
- * Model id may need updating over time — check https://docs.claude.com for current model strings
+ * Model id may need updating over time — check https://platform.claude.com/docs for current model strings
  * if requests start failing with a "model not found" style error.
  */
 const MODEL = 'claude-sonnet-5';
 const API_URL = 'https://api.anthropic.com/v1/messages';
+const REQUEST_TIMEOUT_MS = 30_000;
 
 export interface AiFeedbackResult {
   estimatedGrade: string;
@@ -35,6 +36,8 @@ async function callClaude(system: string, userContent: string, apiKey: string): 
   }
 
   let response: Response;
+  const controller = new AbortController();
+  const timeout = window.setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
   try {
     response = await fetch(API_URL, {
       method: 'POST',
@@ -50,9 +53,17 @@ async function callClaude(system: string, userContent: string, apiKey: string): 
         system,
         messages: [{ role: 'user', content: userContent }],
       }),
+      signal: controller.signal,
     });
-  } catch {
-    return { error: 'Network error reaching the Anthropic API. Check your connection and try again.' };
+  } catch (error) {
+    return {
+      error:
+        error instanceof DOMException && error.name === 'AbortError'
+          ? 'The AI review timed out after 30 seconds. Your built-in tutor feedback is still available.'
+          : 'Network error reaching the Anthropic API. Your built-in tutor feedback is still available.',
+    };
+  } finally {
+    window.clearTimeout(timeout);
   }
 
   if (response.status === 401) {
@@ -73,23 +84,28 @@ async function callClaude(system: string, userContent: string, apiKey: string): 
     return { error: 'Received an empty response from the API.' };
   }
 
+  const parsed = parseAiFeedback(raw);
+  if (parsed) return parsed;
+  return {
+    error: 'The AI response did not match the required feedback format. Your built-in tutor feedback is still available.',
+  };
+}
+
+export function parseAiFeedback(raw: string): AiFeedbackResult | null {
   const cleaned = raw.replace(/```json|```/g, '').trim();
   try {
-    const parsed = JSON.parse(cleaned);
+    const parsed = JSON.parse(cleaned) as Record<string, unknown>;
+    if (typeof parsed.estimatedGrade !== 'string') return null;
+    if (typeof parsed.summary !== 'string') return null;
+    if (!Array.isArray(parsed.strengths) || !Array.isArray(parsed.improvements)) return null;
     return {
-      estimatedGrade: String(parsed.estimatedGrade ?? '—'),
-      summary: String(parsed.summary ?? ''),
-      strengths: Array.isArray(parsed.strengths) ? parsed.strengths.map(String) : [],
-      improvements: Array.isArray(parsed.improvements) ? parsed.improvements.map(String) : [],
+      estimatedGrade: parsed.estimatedGrade.slice(0, 80),
+      summary: parsed.summary.slice(0, 1_000),
+      strengths: parsed.strengths.map(String).map((value) => value.slice(0, 300)).slice(0, 6),
+      improvements: parsed.improvements.map(String).map((value) => value.slice(0, 300)).slice(0, 6),
     };
   } catch {
-    // Model didn't return clean JSON — surface the raw text rather than failing silently.
-    return {
-      estimatedGrade: '—',
-      summary: raw.slice(0, 800),
-      strengths: [],
-      improvements: [],
-    };
+    return null;
   }
 }
 

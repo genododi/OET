@@ -16,7 +16,7 @@ const allGuideSections: GuideSection[] = [
     title: 'The Four Sub-tests',
     category: 'subtest',
     content: [
-      'Listening (approx. 45 min): Part A note completion, Part B short extracts, Part C presentation extracts.',
+      'Listening (approx. 40 min, 42 questions): Part A note completion, Part B short extracts, Part C presentation extracts.',
       'Reading (60 min): Part A expeditious reading, Parts B & C careful reading of workplace and academic texts.',
       'Writing (45 min): One profession-specific letter — referral, discharge, transfer, or advice letter based on case notes.',
       'Speaking (approx. 20 min): Warm-up interview plus two role-plays based on typical workplace scenarios for your profession.',
@@ -30,7 +30,7 @@ const allGuideSections: GuideSection[] = [
       'Each sub-test is graded A (highest) through E. Many regulators require a minimum of grade B (350+) in all sub-tests, or a combined score policy.',
       'Writing and Speaking are assessed by trained examiners using detailed criteria: purpose, content, conciseness & clarity, genre & style, organisation & layout, language.',
       'Listening and Reading are computer-scored. There is no negative marking — always attempt every question.',
-      'Results are typically available within 16 business days (paper) or 10 days (computer-based at most venues).',
+      'Computer-test results can be released from 48 hours after all four sub-tests are complete, with OET reporting 95% within six calendar days. Paper-test timing varies by region; always check the current official results schedule.',
     ],
   },
   {
@@ -82,7 +82,7 @@ const allGuideSections: GuideSection[] = [
     content: [
       'Part A (15 min): Four short texts on a related topic; matching, sentence completion, and short-answer questions. Speed is critical.',
       'Part B (approx. 20 min): Six workplace-related texts (emails, policies, guidelines); one MCQ each testing gist or specific detail.',
-      'Part C (approx. 25 min): Two longer academic-style texts; eight MCQs total testing understanding, opinion, and reference.',
+      'Part C: Two longer academic-style texts with eight MCQs per text (16 total), testing understanding, opinion, and reference.',
       'Recommended order: Part A first with strict timer, then B, then C. Never spend more than 15 minutes on Part A.',
     ],
   },
@@ -157,7 +157,7 @@ const allGuideSections: GuideSection[] = [
     category: 'overview',
     content: [
       'Weeks 1–2: Learn format via Study Guide; complete one untimed practice module per sub-test daily.',
-      'Weeks 3–4: Two timed mini-mocks per week; start collecting Telegram experiences for pattern awareness.',
+      'Weeks 3–4: Complete two timed mini-mocks per week and turn every error into a targeted remedial drill.',
       'Week 5: Full mock under exam conditions; review Writing/Speaking against official criteria with a study partner.',
       'Week 6: Light review, pearls & pitfalls revision, rest 48 hours before test day. Avoid cramming new material.',
       'Daily minimum: 45–90 minutes focused study. Rotate sub-tests rather than blocking one skill for entire weeks.',
@@ -224,10 +224,32 @@ const allGuideSections: GuideSection[] = [
       'Your role is always the healthcare professional. The interlocutor plays the patient, carer, or relative. You will not see the patient\'s card — respond to what they say.',
     ],
   },
+  {
+    id: 'guide-speaking-masterclass',
+    title: 'Speaking Masterclass — Medicine Grade A Drills',
+    category: 'subtest',
+    sourceLabel: 'Official OET: Speaking for Doctors sample test',
+    sourceUrl: 'https://www.youtube.com/watch?v=Wo1lSFRrg-I',
+    classification: 'original-derived',
+    content: [
+      'Before each drill, underline the patient emotion, the clinical decision, and the final safety-net action. Use the card as a route map rather than a script.',
+      'Empathy drill: acknowledge the concern in one natural sentence before giving information. Repeat with worried, frustrated, uncertain, and reluctant patient cues.',
+      'Pace drill: record a two-minute explanation, mark rushed or unclear phrases, then repeat with shorter idea units and deliberate pauses.',
+      'Question drill: replace closed checklist questions with an open question, a focused follow-up, and a teach-back check.',
+      'Response drill: listen for the interlocutor’s new information and adapt your next sentence; do not simply continue down the card bullets.',
+    ],
+  },
 ];
 
 /** The guide is intentionally scoped to the Medicine OET pathway. */
-export const guideSections = allGuideSections.filter(
-  (section) =>
-    !['guide-nursing', 'guide-pharmacy', 'guide-physio', 'guide-dentistry'].includes(section.id),
-);
+export const guideSections = allGuideSections
+  .filter(
+    (section) =>
+      !['guide-nursing', 'guide-pharmacy', 'guide-physio', 'guide-dentistry'].includes(section.id),
+  )
+  .map((section): GuideSection => ({
+    ...section,
+    sourceLabel: section.sourceLabel ?? 'Official OET test overview and assessment criteria',
+    sourceUrl: section.sourceUrl ?? 'https://oet.com/test-information',
+    classification: section.classification ?? 'original-derived',
+  }));

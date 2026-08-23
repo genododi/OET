@@ -11,6 +11,13 @@ node_modules
 dist
 dist-ssr
 *.local
+output/playwright/
+playwright-report/
+test-results/
+.playwright-cli/
+*.rar.part
+__pycache__/
+*.py[cod]
 
 # Editor directories and files
 .vscode/*

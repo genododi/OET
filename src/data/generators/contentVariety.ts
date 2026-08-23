@@ -22,7 +22,7 @@ export const GENERATED_NON_MEDICINE_PROFESSIONS = GENERATED_PROFESSIONS.filter(
 export const MEDICINE_PRACTICE_TAG_POOL = [
   'medicine',
   'physician',
-  'doctors-hub',
+  'source-governed',
   'referral-letter',
   'case-notes',
   'discharge',
@@ -30,7 +30,7 @@ export const MEDICINE_PRACTICE_TAG_POOL = [
   'gp-handover',
   'colleague-role-play',
   'patient-role-play',
-  'telegram-recall',
+  'original-scenario',
   'official-style',
   'marathon',
   'sprint',
@@ -47,13 +47,13 @@ export const MEDICINE_PRACTICE_TAG_POOL = [
 export const MEDICINE_MOCK_TAG_POOL = [
   'medicine',
   'physician',
-  'doctors-hub',
+  'source-governed',
   'referral-letter',
   'case-notes',
   'full-mock',
   'mini-mock',
   'lrw',
-  'telegram-recall',
+  'original-scenario',
   'official-style',
   'marathon',
   'cbt',
@@ -67,12 +67,12 @@ export const MEDICINE_MOCK_TAG_POOL = [
 ] as const;
 
 export const MEDICINE_SOURCE_HINTS = [
-  'Telegram @OETDoctorsHub recall theme',
-  'Telegram @OETDoctorsHub debrief pattern',
-  'OET official medicine sample pattern',
-  'Physician recall log (pattern only)',
-  'GP referral letter recall style',
-  'Hospital medicine CBT debrief',
+  'Original task aligned with the official OET Medicine blueprint',
+  'Original task aligned with published OET assessment criteria',
+  'Official OET Medicine format inspiration; no copied questions',
+  'Original physician communication scenario',
+  'Original GP referral-letter scenario',
+  'Original hospital Medicine scenario',
 ] as const;
 
 export const MEDICINE_CLINICAL_THEMES = [
@@ -116,7 +116,7 @@ export const PRACTICE_TAG_POOL = [
   'medicine',
   'nursing',
   'allied-health',
-  'telegram-recall',
+  'original-scenario',
   'official-style',
   'marathon',
   'sprint',
@@ -139,7 +139,7 @@ export const MOCK_TAG_POOL = [
   'medicine',
   'nursing',
   'allied-health',
-  'telegram-recall',
+  'original-scenario',
   'official-style',
   'marathon',
   'mini-mock',
@@ -156,25 +156,25 @@ export const MOCK_TAG_POOL = [
 ] as const;
 
 export const SOURCE_HINTS = [
-  'OET official sample pattern',
-  'Telegram @OETDoctorsHub recall theme',
-  'Telegram @OETNursesUK debrief',
-  'Telegram @OETPharmacyPrep pattern',
-  'Telegram @OETAlliedHealth shared set',
-  'Community recall log (pattern only)',
-  'Book PDF companion drill',
-  'Ashgan library note style',
+  'Original task aligned with the official OET blueprint',
+  'Original task aligned with published OET assessment criteria',
+  'Official OET format inspiration; no copied questions',
+  'Original healthcare communication scenario',
+  'Original task authored for transferable skills practice',
+  'Publication-cleared companion drill',
+  'Original task with source-governed clinical context',
+  'Original task reviewed for format and relevance',
 ] as const;
 
 export const PRACTICE_PACK_LABELS = [
   'Drill',
   'Sprint',
-  'Recall Pack',
+  'Scenario Pack',
   'Skill Builder',
   'Timed Set',
   'Marathon Block',
   'Official-style Set',
-  'Telegram Recall Pack',
+  'Blueprint Practice Pack',
 ] as const;
 
 export const MOCK_PACK_LABELS = [
@@ -183,7 +183,7 @@ export const MOCK_PACK_LABELS = [
   'LRW Combo',
   'Sub-test Simulator',
   'Exam-Length Mock',
-  'Recall Simulation',
+  'Unseen Scenario Simulation',
   'CBT Block',
   'Paper-day Simulation',
 ] as const;
@@ -192,7 +192,7 @@ export const ADVANCED_PRACTICE_PACK_LABELS = [
   'Advanced Marathon Block',
   'Expert Combo Drill',
   'High-Stakes Timed Set',
-  'Recall Mega-Pack',
+  'Unseen Scenario Mega-Pack',
   'CBT Pressure Drill',
   'Grade-B+ Challenge Set',
   'Multi-Part Expert Sprint',
@@ -205,7 +205,7 @@ export const ADVANCED_MOCK_PACK_LABELS = [
   'Exam-Length Simulation',
   '14-Day Sprint Mock',
   'High-Stakes CBT Block',
-  'Recall Mega-Mock',
+  'Unseen Scenario Mega-Mock',
   'Grade-B+ Exam Simulation',
   'Paper-Day Advanced Mock',
 ] as const;

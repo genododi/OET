@@ -19,14 +19,14 @@ interface ExternalNavItem {
 
 const navItems: NavItem[] = [
   { id: 'home', label: 'Dashboard', icon: '🏠' },
+  { id: 'planner', label: 'Grade A Plan', icon: '🧭', group: 'Plan' },
   { id: 'mock', label: 'Mock Exams', icon: '📝', group: 'Practice' },
   { id: 'practice', label: 'Practice Modules', icon: '🎯', group: 'Practice' },
   { id: 'guide', label: 'Study Guide', icon: '📖', group: 'Learn' },
   { id: 'tips', label: 'Tips & Tricks', icon: '💡', group: 'Learn' },
   { id: 'pearls', label: 'Pearls & Pitfalls', icon: '⚕️', group: 'Learn' },
-  { id: 'experiences', label: 'Exam Experiences', icon: '💬', group: 'Community' },
+  { id: 'resources', label: 'Curated Resources', icon: '🗂️', group: 'Resources' },
   { id: 'books', label: 'Book PDFs', icon: '📚', group: 'Resources' },
-  { id: 'experience-pdfs', label: 'Experience PDFs', icon: '📋', group: 'Resources' },
   {
     id: 'usmle',
     label: 'USMLE Q-Banks',
@@ -132,7 +132,7 @@ export function Sidebar({ active, onNavigate, mobileOpen, onCloseMobile }: Props
         </nav>
 
         <div className="sidebar-footer">
-          <p>Curated from official OET materials, study groups & shared community PDFs.</p>
+          <p>Medicine-first preparation with source provenance and rights-aware curation.</p>
         </div>
       </aside>
     </>

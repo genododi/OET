@@ -95,9 +95,9 @@ export const tips: Tip[] = [
   {
     id: 'tip-gen-4',
     subtest: 'general',
-    title: 'Join Telegram groups selectively',
-    tip: 'Pick 1–2 active groups for your profession. Mute noise, pin official OET links, and read experiences within 48 hours of your own exam for freshness.',
-    category: 'Community',
+    title: 'Verify every study source',
+    tip: 'Start with official OET criteria and sample materials. Treat community posts as unverified until their claims, rights, and exam-format details can be checked against an official source.',
+    category: 'Source quality',
   },
   {
     id: 'tip-gen-5',

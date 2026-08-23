@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "archiveRoot": "/Volumes/GENODODI/oet-study-sources",
+  "sources": [
+    {
+      "id": "drive-1vJmNmLSAdB19npX2P8q5bspV5hKm_FMM",
+      "container": "google-drive",
+      "url": "https://drive.google.com/drive/folders/1vJmNmLSAdB19npX2P8q5bspV5hKm_FMM",
+      "rawDirectory": "raw/google-drive/1vJmNmLSAdB19npX2P8q5bspV5hKm_FMM",
+      "redistributionStatus": "rights-unclear",
+      "publicationEligible": false
+    },
+    {
+      "id": "drive-1Ucb79sZUycOJqmM-bZTku1QCzlAPhBot",
+      "container": "google-drive",
+      "url": "https://drive.google.com/drive/folders/1Ucb79sZUycOJqmM-bZTku1QCzlAPhBot",
+      "rawDirectory": "raw/google-drive/1Ucb79sZUycOJqmM-bZTku1QCzlAPhBot",
+      "redistributionStatus": "rights-unclear",
+      "publicationEligible": false
+    },
+    {
+      "id": "drive-1EZvkn35NuRVaSizepiqJp6NCGZKv_V9k",
+      "container": "google-drive",
+      "url": "https://drive.google.com/drive/folders/1EZvkn35NuRVaSizepiqJp6NCGZKv_V9k",
+      "rawDirectory": "raw/google-drive/1EZvkn35NuRVaSizepiqJp6NCGZKv_V9k",
+      "redistributionStatus": "rights-unclear",
+      "publicationEligible": false
+    },
+    {
+      "id": "drive-10cvKcazYuaNe01cSahOSHbflbOlAEN0t",
+      "container": "google-drive",
+      "url": "https://drive.google.com/drive/folders/10cvKcazYuaNe01cSahOSHbflbOlAEN0t",
+      "rawDirectory": "raw/google-drive/10cvKcazYuaNe01cSahOSHbflbOlAEN0t",
+      "redistributionStatus": "rights-unclear",
+      "publicationEligible": false
+    },
+    {
+      "id": "drive-1NVdBFWSqnswl58pr96BVwTkH1ceT6P-j",
+      "container": "google-drive",
+      "url": "https://drive.google.com/drive/folders/1NVdBFWSqnswl58pr96BVwTkH1ceT6P-j",
+      "rawDirectory": "raw/google-drive/1NVdBFWSqnswl58pr96BVwTkH1ceT6P-j",
+      "redistributionStatus": "rights-unclear",
+      "publicationEligible": false
+    },
+    {
+      "id": "drive-1v2Bza1LzG_Bp5NrMYpZ54CLDp6C-xhu8",
+      "container": "google-drive",
+      "url": "https://drive.google.com/drive/folders/1v2Bza1LzG_Bp5NrMYpZ54CLDp6C-xhu8",
+      "rawDirectory": "raw/google-drive/1v2Bza1LzG_Bp5NrMYpZ54CLDp6C-xhu8",
+      "redistributionStatus": "rights-unclear",
+      "publicationEligible": false
+    },
+    {
+      "id": "facebook-oet4all-files",
+      "container": "facebook",
+      "url": "https://www.facebook.com/groups/oet4all/files/files",
+      "rawDirectory": "raw/facebook",
+      "redistributionStatus": "rights-unclear",
+      "publicationEligible": false
+    },
+    {
+      "id": "telegram-oetimportantmaterials",
+      "container": "telegram",
+      "url": "https://t.me/OETimportantmaterials",
+      "rawDirectory": "raw/telegram",
+      "redistributionStatus": "rights-unclear",
+      "publicationEligible": false
+    },
+    {
+      "id": "mega-listening-audio",
+      "container": "mega",
+      "url": "https://mega.nz/file/4A5SxbwK#LNv6BQWNRzwbPEhiGfihAMj3bq2ebWeo2EuIbczlJUU",
+      "rawDirectory": "raw/mega",
+      "redistributionStatus": "rights-unclear",
+      "publicationEligible": false
+    },
+    {
+      "id": "google-doc-oet-resources",
+      "container": "google-doc",
+      "url": "https://docs.google.com/document/d/1tQAYd5LdFSMK_OVoNQkbk3Mr2KvnFbyeWRq0euHKi7I/edit",
+      "rawDirectory": "raw/references/google-doc",
+      "redistributionStatus": "link-only",
+      "publicationEligible": false
+    },
+    {
+      "id": "youtube-official-speaking-masterclass",
+      "container": "youtube",
+      "url": "https://www.youtube.com/watch?v=Wo1lSFRrg-I",
+      "rawDirectory": "raw/references/youtube",
+      "redistributionStatus": "link-only",
+      "publicationEligible": false
+    }
+  ]
+}

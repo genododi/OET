@@ -184,7 +184,7 @@ function buildMedicineTags(subtest: OetSubtest, index: number): string[] {
   const tags = new Set<string>([
     'medicine',
     'physician',
-    'doctors-hub',
+    'source-governed',
     subtest,
     ...pickMany(MEDICINE_PRACTICE_TAG_POOL, index, 5),
   ]);
@@ -195,7 +195,7 @@ function buildMedicineTags(subtest: OetSubtest, index: number): string[] {
   if (subtest === 'speaking') {
     tags.add(index % 2 === 0 ? 'patient-role-play' : 'colleague-role-play');
   }
-  if (index % 11 === 0) tags.add('telegram-recall');
+  if (index % 11 === 0) tags.add('unseen-scenario');
   if (index % 13 === 0) tags.add('official-style');
   if (index % 19 === 0) tags.add('marathon');
   const partTag = pick(['part-a', 'part-b', 'part-c'], index + subtest.length);
@@ -213,7 +213,7 @@ function buildTags(subtest: OetSubtest, profession: string, index: number): stri
   if (profession !== 'All professions' && profession !== 'Medicine' && profession !== 'Nursing') {
     tags.add('allied-health');
   }
-  if (index % 11 === 0) tags.add('telegram-recall');
+  if (index % 11 === 0) tags.add('unseen-scenario');
   if (index % 13 === 0) tags.add('official-style');
   if (index % 19 === 0) tags.add('marathon');
   const partTag = pick(['part-a', 'part-b', 'part-c'], index + subtest.length);
@@ -325,7 +325,7 @@ const ADVANCED_PRACTICE_PROFILES = [
   { suffix: 'Combo Expert', taskBump: 6, durationBump: 15, tag: 'combo' },
   { suffix: 'High-Stakes Sprint', taskBump: 4, durationBump: 10, tag: 'sprint' },
   { suffix: 'CBT Pressure Drill', taskBump: 5, durationBump: 12, tag: 'cbt' },
-  { suffix: 'Recall Mega-Pack', taskBump: 7, durationBump: 18, tag: 'telegram-recall' },
+  { suffix: 'Unseen Scenario Mega-Pack', taskBump: 7, durationBump: 18, tag: 'unseen-scenario' },
 ] as const;
 
 function advancedTasksCountFor(subtest: OetSubtest, index: number): number {
@@ -428,7 +428,7 @@ export function generateMedicineAdvancedPracticeModule(
   const ref = catalogRef(pool, serial, subtest);
 
   const title = `Medicine ${subtestName} ${pack} — ${profile.suffix} #${serial} [${ref}]`;
-  const topic = `${topicBase} · ${theme} · @OETDoctorsHub advanced`;
+  const topic = `${topicBase} · ${theme} · original advanced scenario`;
   const tags = new Set([
     ...buildMedicineTags(subtest, index),
     'advanced-only',

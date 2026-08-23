@@ -8,6 +8,10 @@ import {
   isAiFeedbackError,
   type AiFeedbackResult,
 } from '../lib/aiFeedback';
+import {
+  buildOfflineSpeakingFeedback,
+  buildOfflineWritingFeedback,
+} from '../lib/offlineTutor';
 
 interface Props {
   task: SessionTask;
@@ -22,6 +26,12 @@ export function AiFeedbackPanel({ task, mode, draft, transcript }: Props) {
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<AiFeedbackResult | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const responseText = mode === 'writing' ? draft ?? '' : transcript ?? '';
+  const offline = responseText.trim()
+    ? mode === 'writing'
+      ? buildOfflineWritingFeedback(task, responseText)
+      : buildOfflineSpeakingFeedback(task, responseText)
+    : null;
 
   const request = async () => {
     setLoading(true);
@@ -39,22 +49,45 @@ export function AiFeedbackPanel({ task, mode, draft, transcript }: Props) {
     }
   };
 
-  if (!hasKey) {
-    return (
-      <div className="ai-feedback-panel ai-feedback-locked">
-        <span>🤖 Want a genuine AI examiner read on this response?</span>
-        <button type="button" className="btn btn-ghost btn-sm" onClick={openSettings}>
-          Add your Anthropic API key
-        </button>
-      </div>
-    );
-  }
-
   return (
     <div className="ai-feedback-panel">
-      {!result && !loading && (
+      {offline && (
+        <div className="offline-tutor-result" data-testid="offline-tutor-result">
+          <div className="ai-feedback-header">
+            <strong>Built-in tutor: {offline.estimatedGrade}</strong>
+            <span className="tag">Works offline</span>
+          </div>
+          <div className="tutor-rubric-grid">
+            {offline.rubricScores.map((rubric) => (
+              <div key={rubric.dimension} className="tutor-rubric-item">
+                <span>{rubric.dimension}</span>
+                <strong>{rubric.score}%</strong>
+              </div>
+            ))}
+          </div>
+          {offline.strengths.length > 0 && (
+            <p><strong>Working well:</strong> {offline.strengths.join(' ')}</p>
+          )}
+          {offline.improvements.length > 0 && (
+            <p><strong>Improve next:</strong> {offline.improvements.join(' ')}</p>
+          )}
+          <p><strong>Next drill:</strong> {offline.nextDrill}</p>
+          <p className="meta ai-feedback-disclaimer">{offline.disclaimer}</p>
+        </div>
+      )}
+
+      {!hasKey && (
+        <div className="ai-feedback-locked">
+          <span>Optional: add your own Anthropic key for a second AI review.</span>
+          <button type="button" className="btn btn-ghost btn-sm" onClick={openSettings}>
+            AI settings
+          </button>
+        </div>
+      )}
+
+      {hasKey && !result && !loading && (
         <button type="button" className="btn btn-secondary btn-sm" onClick={request}>
-          🤖 Get AI examiner feedback
+          Get optional AI review
         </button>
       )}
       {loading && <p className="meta">Asking Claude for an examiner-style review…</p>}

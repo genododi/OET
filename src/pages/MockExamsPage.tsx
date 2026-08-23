@@ -1,6 +1,5 @@
 import { useMemo, useState } from 'react';
 import { mockExams, TARGET_ADVANCED_MOCK_COUNT, TARGET_MEDICINE_MOCK_COUNT } from '../data/mockExams';
-import { physicianRecallHint, recallSources } from '../data/recallSources';
 import { ListPagination } from '../components/ListPagination';
 import { buildMockSession } from '../lib/sessionBuilder';
 import { usePagination } from '../hooks/usePagination';
@@ -88,8 +87,6 @@ export function MockExamsPage({ defaultProfession = 'Medicine' }: Props) {
     );
   }
 
-  const doctorsHub = recallSources.find((s) => s.handle === '@OETDoctorsHub');
-
   return (
     <div className="page-section">
       <p className="page-intro">
@@ -113,13 +110,7 @@ export function MockExamsPage({ defaultProfession = 'Medicine' }: Props) {
             .{' '}
           </>
         )}
-        {physicianRecallHint}
-        {doctorsHub && (
-          <>
-            {' '}
-            Medicine debriefs often appear on <code>{doctorsHub.handle}</code>.
-          </>
-        )}
+        All scenarios are original, unofficial practice aligned with the published OET task structure.
       </p>
 
       <div className="card listening-audio-notice">

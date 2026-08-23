@@ -20,6 +20,16 @@
     "test:blueprint": "npx tsx scripts/verify-oet-blueprint.ts",
     "test:part-a-responses": "npx tsx scripts/verify-part-a-responses.ts",
     "test:oet": "npm run test:advanced-oet && npm run test:daily-oet && npm run test:grade-a && npm run test:productive-skills && npm run test:part-a-responses && npm run test:blueprint && npm run verify-no-duplicates && npm run test:audio-relevance && npm run test:audio-spoken",
+    "test:unit": "vitest run",
+    "test:e2e": "playwright test",
+    "test:governance": "npx tsx scripts/verify-source-governance.ts",
+    "test:source-manifest": "node scripts/verify-source-manifest.mjs",
+    "test:all": "npm run lint && npm run test:unit && npm run test:oet && npm run test:governance && npm run test:source-manifest && npm run build",
+    "sources:acquire": "node scripts/acquire-oet-sources.mjs",
+    "sources:inventory": "node scripts/inventory-oet-sources.mjs",
+    "sources:extract-mega": "node scripts/extract-mega-listening.mjs",
+    "sources:telegram": "python3 scripts/acquire-telegram-links.py",
+    "sources:drive-resilient": "uv run --with gdown python scripts/acquire-google-drive-resilient.py",
     "import-ashgan-telegram": "python3 scripts/import-ashgan-telegram.py",
     "import-ashgan": "python3 scripts/import-ashgan-assets.py",
     "import-ashgan:public": "python3 scripts/import-ashgan-assets.py --default-handles --download --write-ts --limit 12",
@@ -32,6 +42,9 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@playwright/test": "^1.62.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
     "@types/node": "^24.12.3",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
@@ -40,8 +53,10 @@
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.2",
     "globals": "^17.6.0",
+    "jsdom": "^29.1.1",
     "typescript": "~6.0.2",
     "typescript-eslint": "^8.59.2",
-    "vite": "^8.0.12"
+    "vite": "^8.0.12",
+    "vitest": "^4.1.11"
   }
 }

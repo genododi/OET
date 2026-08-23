@@ -16,6 +16,7 @@ import {
   oetMockDurationMinutes,
   oetMockTaskCount,
 } from './oetExamTiming';
+import type { PracticeProvenance } from '../types';
 
 /** Minimum content tasks (excluding intro/break) for every session. */
 export const MIN_CONTENT_TASKS = 10;
@@ -27,6 +28,23 @@ const subtestInstructions: Record<OetSubtest, string> = {
   writing: 'Plan 5 min, write 180–200 words, formal letter format.',
   speaking: 'Prepare 3 min, respond aloud, interact with the patient role.',
 };
+
+function provenanceFor(subtest: OetSubtest): PracticeProvenance {
+  return {
+    sourceLabel: subtest === 'speaking' ? 'Official OET Speaking criteria and masterclass' : 'Official OET test specifications',
+    sourceUrl:
+      subtest === 'speaking'
+        ? 'https://www.youtube.com/watch?v=Wo1lSFRrg-I'
+        : 'https://oet.com/test/test-overview',
+    classification: 'original-derived',
+    authoringStatus: 'original-adaptation',
+    reviewStatus: 'reviewed',
+  };
+}
+
+function withProvenance(task: SessionTask, subtest: OetSubtest): SessionTask {
+  return { ...task, provenance: task.provenance ?? provenanceFor(subtest) };
+}
 
 export function countContentTasks(tasks: SessionTask[]): number {
   return tasks.filter((t) => t.subtest !== 'intro' && t.subtest !== 'break').length;
@@ -57,7 +75,9 @@ function tasksForSubtest(
 ): SessionTask[] {
   const targetCount = resolveTaskCount(subtest, taskCount);
   const seed = sessionSeed(prefix, subtest, targetCount, title, topic);
-  return pickTasks(subtest, targetCount, prefix, seed, difficultyFilter);
+  return pickTasks(subtest, targetCount, prefix, seed, difficultyFilter).map((task) =>
+    withProvenance(task, subtest),
+  );
 }
 
 /** Split a target total across subtests — each gets at least one when possible. */
@@ -158,9 +178,13 @@ export function buildMockSession(exam: MockExam): SessionConfig {
               'advanced',
             ),
       );
-      tasks.push(...partTasks);
+      tasks.push(...partTasks.map((task) => withProvenance(task, subtest)));
     } else {
-      tasks.push(...pickTasks(subtest, capped, `${exam.id}-${subtest}`, seed, 'advanced'));
+      tasks.push(
+        ...pickTasks(subtest, capped, `${exam.id}-${subtest}`, seed, 'advanced').map((task) =>
+          withProvenance(task, subtest),
+        ),
+      );
     }
   });
 
@@ -220,7 +244,7 @@ export function buildSmartSession({ subtests, completed, totalTasks = 16 }: Smar
     const requested = Math.min(counts[index]!, bank.length);
     const picked = weightedPick(bank, requested, stats);
     picked.forEach((task) => {
-      tasks.push({ ...task, id: `${runId}-${task.id}` });
+      tasks.push({ ...withProvenance(task, subtest), id: `${runId}-${task.id}` });
     });
   });
 

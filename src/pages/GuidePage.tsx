@@ -46,8 +46,8 @@ export function GuidePage({
   return (
     <div className="page-section">
       <p className="page-intro">
-        Essential OET knowledge — format, timing, scoring, profession-specific advice, and curated
-        Telegram instructor guides.
+        Essential Medicine OET knowledge — format, timing, scoring, and original guidance with a
+        visible source trail.
       </p>
 
       <AshganGuideSection focus={focusAshgan} />
@@ -98,11 +98,22 @@ export function GuidePage({
                   </span>
                 </button>
                 {isOpen && (
-                  <ul>
-                    {section.content.map((paragraph, i) => (
-                      <li key={i}>{paragraph}</li>
-                    ))}
-                  </ul>
+                  <>
+                    <ul>
+                      {section.content.map((paragraph, i) => (
+                        <li key={i}>{paragraph}</li>
+                      ))}
+                    </ul>
+                    {section.sourceUrl && section.sourceLabel && (
+                      <p className="guide-source">
+                        <span>Source alignment:</span>{' '}
+                        <a href={section.sourceUrl} target="_blank" rel="noopener noreferrer">
+                          {section.sourceLabel}
+                        </a>
+                        {' '}· {section.classification === 'official' ? 'Official' : 'Original study guidance'}
+                      </p>
+                    )}
+                  </>
                 )}
               </article>
             );

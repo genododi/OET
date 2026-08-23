@@ -1,5 +1,6 @@
 import type { Difficulty, OetSubtest, SubtestType } from './index';
 import type { UsmleStep, UsmleDiscipline, UsmleQuestionFormat } from './usmle';
+import type { PracticeProvenance } from './study';
 
 export interface SessionOption {
   id: string;
@@ -57,6 +58,8 @@ export interface SessionTask {
   rubricChecklist?: WritingRubricItem[];
   writingCriteria?: WritingCriteria;
   perfectAnswerTips?: string[];
+  /** Authorship and source classification for learner-facing OET content. */
+  provenance?: PracticeProvenance;
   speakingCriteria?: SpeakingCriteria;
   /** Official or imported listening recording (path under public/ or CDN) */
   audioSrc?: string;
