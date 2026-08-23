@@ -1108,5 +1108,16 @@
       "decision support"
     ],
     "voice": "Moira"
+  },
+  "lis-108": {
+    "question": "Why does the speaker avoid attributing the reduction in falls to deprescribing alone?",
+    "correctAnswer": "Several interventions began together, so the medication component was not isolated",
+    "script": "Falls declined after the medication review programme began, but strength training and closer follow-up started at the same time. Because those interventions were bundled, we cannot attribute the improvement to deprescribing alone. I would preserve shared decisions and test the medication component separately before claiming a causal effect.",
+    "evidenceTerms": [
+      "interventions were bundled",
+      "cannot attribute",
+      "deprescribing alone"
+    ],
+    "voice": "Daniel"
   }
 }

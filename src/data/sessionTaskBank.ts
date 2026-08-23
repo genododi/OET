@@ -1060,6 +1060,35 @@ export const listeningTasks: SessionTask[] = [
     ),
     difficulty: 'advanced',
   },
+  {
+    ...mcq(
+      'lis-108',
+      'listening',
+      'Part C — Deprescribing grand round',
+      'Why does the speaker avoid attributing the reduction in falls to deprescribing alone?',
+      [
+        {
+          label: 'Several interventions began together, so the medication component was not isolated',
+          correct: true,
+          explanation:
+            'The speaker notes that medication review, strength training and closer follow-up were introduced as one bundle.',
+        },
+        {
+          label: 'The fall rate had already fallen before medication reviews began',
+          correct: false,
+          explanation:
+            'The recording does not describe a pre-existing fall in the outcome before the programme.',
+        },
+        {
+          label: 'Patients refused to discuss reducing medicines during the programme',
+          correct: false,
+          explanation:
+            'The speaker supports shared decisions but does not say that patients refused medication review.',
+        },
+      ],
+    ),
+    difficulty: 'advanced',
+  },
 ];
 
 export const readingTasks: SessionTask[] = [
@@ -1350,6 +1379,35 @@ export const readingTasks: SessionTask[] = [
     ),
     difficulty: 'advanced',
   },
+  {
+    ...readingMcq(
+      'read-44',
+      'Part C — Composite endpoint interpretation',
+      'passage-composite-endpoint-commentary',
+      'How does the writer interpret the trial\'s positive primary result?',
+      [
+        {
+          label: 'It is statistically valid but mainly driven by a softer outcome that may not justify the broadest claim',
+          correct: true,
+          explanation:
+            'The composite met its statistical threshold, but unscheduled contacts dominated while admission and mortality were unchanged.',
+        },
+        {
+          label: 'It proves that remote monitoring reduces mortality despite an underpowered sample',
+          correct: false,
+          explanation:
+            'Mortality was unchanged, and the writer explicitly rejects that interpretation.',
+        },
+        {
+          label: 'It should be disregarded because composite endpoints are always misleading',
+          correct: false,
+          explanation:
+            'The writer accepts that composites can be useful when components are clinically coherent and reported transparently.',
+        },
+      ],
+    ),
+    difficulty: 'advanced',
+  },
 ];
 
 export const writingTasks: SessionTask[] = [
@@ -1624,6 +1682,31 @@ He presented on 21 August after three weeks of intermittent fever, fatigue and a
 Following microbiology advice, intravenous vancomycin and ceftriaxone were commenced today. Renal function is normal. His history includes well-controlled hypertension treated with ramipril, and he has no known drug allergies. A dental extraction six weeks ago may be relevant.
 
 Please assess him today for transoesophageal echocardiography, ongoing antimicrobial management and early surgical opinion, particularly given the vegetation size and valve dysfunction. Mr Haddad and his wife understand the concern and need for inpatient investigation. Please contact me if further information is required.
+
+Yours sincerely,
+
+Dr Maya Hassan`,
+    difficulty: 'advanced',
+  },
+  {
+    ...writing(
+      'write-34',
+      'Emergency transfer — Suspected thrombotic thrombocytopenic purpura',
+      '23 Aug 2026 — Pt: Ms Linh Tran, 42y, teacher\n2 days headache, fatigue, bruising; transient confusion this morning\nTemp 38.1°C, HR 104, BP 146/88; petechiae, no focal neurology now\nHb 78 g/L, platelets 18 × 10^9/L, reticulocytes raised\nBlood film: schistocytes; LDH 1,240 U/L; bilirubin raised; haptoglobin low\nCreatinine 156 µmol/L (baseline 72); coagulation screen normal\nPregnancy test negative; blood cultures pending\nRecent diarrhoeal illness; no new prescribed medicines\nPMH: mild eczema; ankle sprain 2023\nNo known drug allergies; weekend hiking planned\nDiscussed with haematology: urgent transfer for ADAMTS13 sample and plasma exchange; do not await result',
+      'Dear Haematology Registrar,\n\nI am writing to arrange immediate transfer of Ms Linh Tran, aged 42, with suspected thrombotic thrombocytopenic purpura requiring urgent specialist treatment.',
+      'Emergency haematology transfer',
+    ),
+    modelAnswer: `Dear Haematology Registrar,
+
+I am writing to arrange immediate transfer of Ms Linh Tran, aged 42, with suspected thrombotic thrombocytopenic purpura requiring urgent specialist treatment.
+
+She presented today following two days of headache, fatigue and spontaneous bruising, with transient confusion this morning. Her temperature is 38.1°C, pulse 104 and blood pressure 146/88 mmHg. Petechiae are present, although she currently has no focal neurological deficit.
+
+Investigations demonstrate haemoglobin 78 g/L, platelets 18 × 10^9/L, reticulocytosis, schistocytes, LDH 1,240 U/L, raised bilirubin and low haptoglobin. Creatinine is 156 µmol/L compared with a baseline of 72; the coagulation screen is normal. Her pregnancy test is negative and blood cultures are pending. She reports a recent diarrhoeal illness but no new prescribed medicines.
+
+Following our discussion, an ADAMTS13 sample will be obtained before transfer without delaying treatment. Please assess her immediately for plasma exchange, corticosteroid therapy and further management. She is being closely observed for recurrent neurological symptoms, bleeding and clinical deterioration. Ms Tran has been informed that this is a serious suspected blood disorder requiring emergency inpatient care.
+
+Please contact me if you require any further information.
 
 Yours sincerely,
 
@@ -2170,6 +2253,45 @@ export const speakingTasks: SessionTask[] = [
           'A nodule is a small shadow, and this scan alone cannot tell us that it is cancer.',
           'Surgery gives tissue diagnosis but also carries harm, while interval scanning can show whether the nodule changes.',
           'Could you tell me how you understand the options, so we can choose the safest plan together?',
+        ],
+      },
+    ),
+    difficulty: 'advanced',
+  },
+  {
+    ...speaking(
+      'speak-34',
+      'Functional neurological symptoms — repairing trust',
+      'You are a doctor reviewing a patient with episodic leg weakness. Examination showed positive features of a functional neurological disorder and MRI excluded structural disease. The patient feels accused of imagining the symptoms and refuses further review.',
+      [
+        'Acknowledge the patient\'s hurt and explore what they understood from the diagnosis',
+        'Explain a positive functional diagnosis without suggesting the symptoms are fabricated',
+        'Negotiate multidisciplinary treatment, safety-net new symptoms and check understanding',
+      ],
+      {
+        expectedKeywords: [
+          'real',
+          'symptoms',
+          'functional',
+          'nervous system',
+          'MRI',
+          'treatment',
+          'recovery',
+          'choice',
+          'follow-up',
+          'understand',
+        ],
+        checklist: [
+          'Name and validate the rupture in trust before re-explaining the diagnosis',
+          'Use positive examination findings and a software-not-damage analogy carefully',
+          'Offer a collaborative treatment plan without withdrawing medical follow-up',
+          'Safety-net genuinely new persistent neurological features and use teach-back',
+        ],
+        samplePhrases: [
+          'I am sorry our explanation left you feeling disbelieved; your weakness is real and not something you are choosing.',
+          'The scan shows no structural damage, while the examination shows a problem with how movement signals are functioning.',
+          'This diagnosis can improve, and treatment retrains those movement patterns while we continue to review you medically.',
+          'Before we decide the next step, could you tell me what this explanation means to you?',
         ],
       },
     ),

@@ -494,6 +494,17 @@ Recalibration corrected the model's tendency to overestimate absolute risk but d
 
 Before wider rollout, the authors recommend external validation in hospitals with different case mixes, prospective monitoring of calibration and sensitivity by clinically relevant subgroup, and a defined response when thresholds are breached. They do not advocate abandoning decision support, nor do they suggest that every subgroup difference proves bias. Their narrower claim is operational: safety cannot be inferred from an unchanged aggregate metric when the data-generating process and clinical workflow continue to evolve.`,
   },
+  'passage-composite-endpoint-commentary': {
+    id: 'passage-composite-endpoint-commentary',
+    title: 'Commentary — What drove the positive composite endpoint?',
+    text: `A remote-monitoring trial in chronic heart failure reported a 17% relative reduction in its primary composite endpoint of cardiovascular death, unplanned admission, or an unscheduled clinical contact requiring treatment adjustment. The headline was accurate: time-to-first-event analysis crossed the prespecified boundary for statistical significance. Yet the components did not move together. Death was unchanged, admission showed a small non-significant reduction, and unscheduled contacts accounted for most events and nearly all of the between-group difference.
+
+This does not make the composite illegitimate. A prompt treatment adjustment may prevent deterioration and matter greatly to a patient. Composite endpoints can also increase efficiency when individual serious events are uncommon. The difficulty is interpretive. Components should be reasonably similar in clinical importance, expected frequency and likely treatment effect if the combined result is to support one broad claim. Otherwise, a frequent softer event can dominate a rare, consequential one.
+
+The intervention group was monitored more intensively, making treatment-triggering contact both an outcome and a likely consequence of the intervention itself. Blinded adjudication reduced some bias but could not remove this structural asymmetry. Moreover, the trial was not powered to establish effects on death or admission separately.
+
+The appropriate conclusion is therefore narrower than the promotional headline but stronger than dismissal. Remote monitoring changed the composite outcome, principally by generating earlier clinical contact and treatment adjustment. Whether it prevents admission or prolongs life remains uncertain. Future studies should report every component transparently, include patient-reported burden, and avoid presenting significance in the composite as proof that each clinically important outcome improved.`,
+  },
 };
 
 export function getReadingPassage(id: string): ReadingPassage | undefined {

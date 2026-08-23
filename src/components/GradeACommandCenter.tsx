@@ -2,7 +2,11 @@ import { useMemo } from 'react';
 import type { OetSubtest } from '../types';
 import type { CompletedSession } from '../types/session';
 import { summarizeSubtestHistory } from '../lib/taskHistory';
-import { GRADE_A_TRAINING_TARGETS } from '../lib/oetThresholds';
+import {
+  assessGradeATrainingReadiness,
+  GRADE_A_EVIDENCE_REQUIREMENTS,
+  GRADE_A_TRAINING_TARGETS,
+} from '../lib/oetThresholds';
 import { SubtestBadge } from './SubtestBadge';
 
 const SUBTESTS: OetSubtest[] = ['listening', 'reading', 'writing', 'speaking'];
@@ -10,19 +14,19 @@ const SUBTESTS: OetSubtest[] = ['listening', 'reading', 'writing', 'speaking'];
 const PRESCRIPTIONS: Record<OetSubtest, { focus: string; gate: string }> = {
   listening: {
     focus: 'Train evidence capture: numbers, names, negation, and speaker purpose.',
-    gate: 'Two timed sets at 90%+ with every error explained from the audio.',
+    gate: 'Three timed sets, with the latest two at 90%+ and every error explained from the audio.',
   },
   reading: {
     focus: 'Practise fast gist, synonym matching, and rejecting partial-match distractors.',
-    gate: 'Two timed sets at 90%+ without sacrificing Part A timing.',
+    gate: 'Three timed sets, with the latest two at 90%+ without sacrificing Part A timing.',
   },
   writing: {
     focus: 'Write purpose-first, select only relevant notes, and edit for clear professional English.',
-    gate: 'Three letters that meet every checklist point after independent review.',
+    gate: 'Three letters, with the latest two at 85%+ and every rubric dimension reviewed.',
   },
   speaking: {
     focus: 'Lead with empathy, use patient language, signpost clearly, and safety-net naturally.',
-    gate: 'Three recorded role-plays with a complete clinical-communication checklist.',
+    gate: 'Three recorded role-plays, with the latest two at 85%+ and a complete checklist.',
   },
 };
 
@@ -33,6 +37,19 @@ interface Props {
 
 export function GradeACommandCenter({ completed, onStartSmart }: Props) {
   const summaries = useMemo(() => summarizeSubtestHistory(completed, SUBTESTS, 6), [completed]);
+  const readinessBySubtest = useMemo(
+    () =>
+      new Map(
+        summaries.map((summary) => [
+          summary.subtest,
+          assessGradeATrainingReadiness(
+            summary.subtest,
+            summary.trend.map((point) => point.percentScore),
+          ),
+        ]),
+      ),
+    [summaries],
+  );
   const priority = useMemo(
     () =>
       [...summaries].sort((a, b) => {
@@ -44,7 +61,7 @@ export function GradeACommandCenter({ completed, onStartSmart }: Props) {
   );
 
   const masteredCount = summaries.filter(
-    (s) => s.rollingPercent !== null && s.rollingPercent >= GRADE_A_TRAINING_TARGETS[s.subtest],
+    (summary) => readinessBySubtest.get(summary.subtest)?.status === 'target-met',
   ).length;
   const hasAnyBaseline = summaries.some((s) => s.rollingPercent !== null);
   const nextPriority = hasAnyBaseline ? priority : undefined;
@@ -68,9 +85,10 @@ export function GradeACommandCenter({ completed, onStartSmart }: Props) {
       <div className="grade-a-grid">
         {summaries.map((summary) => {
           const target = GRADE_A_TRAINING_TARGETS[summary.subtest];
-          const score = summary.rollingPercent;
+          const readiness = readinessBySubtest.get(summary.subtest)!;
+          const score = readiness.rollingPercent;
           const gap = score === null ? null : target - score;
-          const isOnTarget = gap !== null && gap <= 0;
+          const isOnTarget = readiness.status === 'target-met';
           return (
             <article key={summary.subtest} className={`grade-a-skill ${isOnTarget ? 'grade-a-skill-ready' : ''}`}>
               <div className="grade-a-skill-top">
@@ -80,12 +98,18 @@ export function GradeACommandCenter({ completed, onStartSmart }: Props) {
                     ? 'Baseline needed'
                     : isOnTarget
                       ? 'Target met'
-                      : `${Math.max(0, gap ?? 0)} pts to target`}
+                      : readiness.attemptsStillNeeded > 0
+                        ? `${readiness.attemptsStillNeeded} more baseline set${readiness.attemptsStillNeeded === 1 ? '' : 's'}`
+                        : gap !== null && gap > 0
+                          ? `${gap} pts to target`
+                          : 'Repeat target once more'}
                 </span>
               </div>
               <div className="grade-a-progress-label">
                 <strong>{score === null ? '—' : `${score}%`}</strong>
-                <span>internal target {target}%</span>
+                <span>
+                  internal target {target}% · streak {Math.min(readiness.consecutiveAtTarget, GRADE_A_EVIDENCE_REQUIREMENTS.consecutiveAtTarget)}/{GRADE_A_EVIDENCE_REQUIREMENTS.consecutiveAtTarget}
+                </span>
               </div>
               <div className="grade-a-track" aria-hidden="true">
                 <span style={{ width: `${Math.min(100, score ?? 0)}%` }} />
@@ -112,7 +136,7 @@ export function GradeACommandCenter({ completed, onStartSmart }: Props) {
         </button>
       </div>
       <p className="grade-a-disclaimer">
-        Internal readiness targets, not an official OET score conversion. Use timed full mocks and qualified feedback to validate exam readiness.
+        Internal readiness targets require at least three recent attempts and two consecutive target-level results. They are not an official OET score conversion; use timed full mocks and qualified feedback to validate exam readiness.
       </p>
     </section>
   );

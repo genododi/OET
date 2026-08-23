@@ -27,4 +27,17 @@ export const dailyOetProgression: readonly DailyOetProgressionEntry[] = [
       speaking: 'speak-33',
     },
   },
+  {
+    date: '2026-08-23',
+    stage: 2,
+    level: 'advanced',
+    focus:
+      'Causal restraint and trust repair: separate bundled interventions, interpret composite endpoints, prioritise a haematological emergency, and explain a positive functional diagnosis without invalidation.',
+    taskIds: {
+      listening: 'lis-108',
+      reading: 'read-44',
+      writing: 'write-34',
+      speaking: 'speak-34',
+    },
+  },
 ];

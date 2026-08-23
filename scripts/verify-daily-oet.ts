@@ -27,7 +27,7 @@ function requireSingleCorrectOption(task: SessionTask): void {
 for (const [index, entry] of dailyOetProgression.entries()) {
   if (entry.stage !== index + 1) fail(`stage ${entry.stage} is out of sequence`);
   if (!/^\d{4}-\d{2}-\d{2}$/.test(entry.date)) fail(`${entry.date} is not an ISO date`);
-  if (entry.date <= previousDate) fail(`${entry.date} is not later than ${previousDate}`);
+  if (entry.date < previousDate) fail(`${entry.date} is earlier than ${previousDate}`);
   if (entry.level !== 'advanced') fail(`${entry.date} is not advanced`);
   if (entry.focus.trim().length < 80) fail(`${entry.date} needs a specific progression focus`);
   previousDate = entry.date;

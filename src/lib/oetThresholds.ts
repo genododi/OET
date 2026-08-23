@@ -22,6 +22,77 @@ export const GRADE_A_TRAINING_TARGETS = {
   speaking: 85,
 } as const;
 
+export const GRADE_A_EVIDENCE_REQUIREMENTS = {
+  minimumAttempts: 3,
+  consecutiveAtTarget: 2,
+  recentWindow: 6,
+} as const;
+
+export type GradeATrainingStatus =
+  | 'baseline-needed'
+  | 'building-consistency'
+  | 'target-met';
+
+export interface GradeATrainingReadiness {
+  status: GradeATrainingStatus;
+  target: number;
+  attemptCount: number;
+  rollingPercent: number | null;
+  consecutiveAtTarget: number;
+  attemptsStillNeeded: number;
+}
+
+/**
+ * A single excellent set is not enough to claim Grade A training mastery.
+ * Require a minimum sample, a recency-weighted average at target, and a current
+ * two-attempt streak. This remains an internal coaching gate, not an official
+ * OET score conversion or pass prediction.
+ */
+export function assessGradeATrainingReadiness(
+  subtest: keyof typeof GRADE_A_TRAINING_TARGETS,
+  chronologicalScores: readonly number[],
+): GradeATrainingReadiness {
+  const scores = chronologicalScores.filter(
+    (score) => Number.isFinite(score) && score >= 0 && score <= 100,
+  );
+  const recent = scores.slice(-GRADE_A_EVIDENCE_REQUIREMENTS.recentWindow);
+  const weights = recent.map((_, index) => index + 1);
+  const totalWeight = weights.reduce((sum, weight) => sum + weight, 0);
+  const rollingPercent = recent.length > 0
+    ? Math.round(
+        recent.reduce((sum, score, index) => sum + score * weights[index]!, 0) /
+          totalWeight,
+      )
+    : null;
+  const target = GRADE_A_TRAINING_TARGETS[subtest];
+  let consecutiveAtTarget = 0;
+  for (let index = scores.length - 1; index >= 0; index -= 1) {
+    if (scores[index]! < target) break;
+    consecutiveAtTarget += 1;
+  }
+  const attemptsStillNeeded = Math.max(
+    0,
+    GRADE_A_EVIDENCE_REQUIREMENTS.minimumAttempts - scores.length,
+  );
+  const status: GradeATrainingStatus =
+    attemptsStillNeeded > 0
+      ? 'baseline-needed'
+      : rollingPercent !== null &&
+          rollingPercent >= target &&
+          consecutiveAtTarget >= GRADE_A_EVIDENCE_REQUIREMENTS.consecutiveAtTarget
+        ? 'target-met'
+        : 'building-consistency';
+
+  return {
+    status,
+    target,
+    attemptCount: scores.length,
+    rollingPercent,
+    consecutiveAtTarget,
+    attemptsStillNeeded,
+  };
+}
+
 export type ReadinessLevel = 'below' | 'practice-pass' | 'exam-ready';
 
 export function getReadinessLevel(
