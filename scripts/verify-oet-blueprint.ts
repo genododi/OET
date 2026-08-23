@@ -1,13 +1,16 @@
 import assert from 'node:assert/strict';
 import { mockExams } from '../src/data/mockExams';
-import { bankBySubtest } from '../src/data/sessionTaskBank';
+import { bankBySubtest, oetTaskPart } from '../src/data/sessionTaskBank';
 import {
   OET_FULL_TEST_MINUTES,
+  OET_PARTS,
   OET_SUBTEST_MINUTES,
+  OET_SUBTEST_PART_TASK_COUNTS,
   OET_SUBTEST_TASK_COUNTS,
   OET_WRITTEN_BLOCK_MINUTES,
   oetMockDurationMinutes,
   oetMockTaskCount,
+  hasOetPartBlueprint,
 } from '../src/lib/oetExamTiming';
 import { buildMockSession } from '../src/lib/sessionBuilder';
 import type { OetSubtest } from '../src/types';
@@ -29,6 +32,14 @@ const minimumReserveTasks = 3;
 
 assert.deepEqual(OET_SUBTEST_MINUTES, officialMinutes, 'OET component timing has drifted');
 assert.deepEqual(OET_SUBTEST_TASK_COUNTS, officialTaskCounts, 'OET task blueprint has drifted');
+assert.deepEqual(
+  OET_SUBTEST_PART_TASK_COUNTS,
+  {
+    listening: { A: 24, B: 6, C: 12 },
+    reading: { A: 20, B: 6, C: 16 },
+  },
+  'Listening or Reading part blueprint has drifted',
+);
 assert.equal(OET_WRITTEN_BLOCK_MINUTES, 145, 'Written block must remain 145 minutes');
 assert.equal(OET_FULL_TEST_MINUTES, 165, 'Full test content time must remain 165 minutes');
 
@@ -38,6 +49,17 @@ for (const subtest of subtests) {
     bankBySubtest[subtest].length >= minimumBankSize,
     `${subtest} bank has ${bankBySubtest[subtest].length} task(s); a full blueprint plus ${minimumReserveTasks} reserve tasks requires ${minimumBankSize}`,
   );
+}
+
+for (const subtest of subtests.filter(hasOetPartBlueprint)) {
+  for (const part of OET_PARTS) {
+    const partCount = bankBySubtest[subtest].filter((task) => oetTaskPart(task) === part).length;
+    const minimumPartBankSize = OET_SUBTEST_PART_TASK_COUNTS[subtest][part] + minimumReserveTasks;
+    assert.ok(
+      partCount >= minimumPartBankSize,
+      `${subtest} Part ${part} has ${partCount} task(s); its official quota plus reserve requires ${minimumPartBankSize}`,
+    );
+  }
 }
 
 let fullMocks = 0;
@@ -64,6 +86,25 @@ for (const exam of mockExams) {
       officialTaskCounts[subtest],
       `${exam.id} does not contain the full ${subtest} blueprint`,
     );
+    if (hasOetPartBlueprint(subtest)) {
+      const subtestTasks = contentTasks.filter((task) => task.subtest === subtest);
+      for (const part of OET_PARTS) {
+        assert.equal(
+          subtestTasks.filter((task) => oetTaskPart(task) === part).length,
+          OET_SUBTEST_PART_TASK_COUNTS[subtest][part],
+          `${exam.id} has the wrong ${subtest} Part ${part} count`,
+        );
+      }
+      const actualPartOrder = subtestTasks.map(oetTaskPart);
+      const expectedPartOrder = OET_PARTS.flatMap((part) =>
+        Array.from({ length: OET_SUBTEST_PART_TASK_COUNTS[subtest][part] }, () => part),
+      );
+      assert.deepEqual(
+        actualPartOrder,
+        expectedPartOrder,
+        `${exam.id} does not present ${subtest} Parts A, B and C in exam order`,
+      );
+    }
   }
 
   assert.ok(

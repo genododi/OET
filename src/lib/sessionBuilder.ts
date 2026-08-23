@@ -1,10 +1,13 @@
 import type { Difficulty, MockExam, OetSubtest, PracticeModule } from '../types';
 import type { SessionConfig, SessionTask } from '../types/session';
 import type { CompletedSession } from '../types/session';
-import { pickTasks, bankBySubtest } from '../data/sessionTaskBank';
+import { pickTasks, pickTasksByPart, bankBySubtest } from '../data/sessionTaskBank';
 import { buildTaskStats, weightedPick, type TaskStat } from './taskHistory';
 import {
   OET_SUBTEST_TASK_COUNTS,
+  OET_PARTS,
+  OET_SUBTEST_PART_TASK_COUNTS,
+  hasOetPartBlueprint,
   oetMockDurationMinutes,
   oetMockTaskCount,
 } from './oetExamTiming';
@@ -137,7 +140,21 @@ export function buildMockSession(exam: MockExam): SessionConfig {
     const seed = sessionSeed(exam.id, subtest, capped, exam.title, exam.profession);
     // Full simulations retain the official component blueprint while enforcing
     // the catalog-wide advanced-only task policy.
-    tasks.push(...pickTasks(subtest, capped, `${exam.id}-${subtest}`, seed, 'advanced'));
+    if (hasOetPartBlueprint(subtest)) {
+      const partTasks = OET_PARTS.flatMap((part) =>
+        pickTasksByPart(
+          subtest,
+          part,
+          OET_SUBTEST_PART_TASK_COUNTS[subtest][part],
+          `${exam.id}-${subtest}`,
+          seed,
+          'advanced',
+        ),
+      );
+      tasks.push(...partTasks);
+    } else {
+      tasks.push(...pickTasks(subtest, capped, `${exam.id}-${subtest}`, seed, 'advanced'));
+    }
   });
 
   return {

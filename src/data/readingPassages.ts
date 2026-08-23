@@ -590,6 +590,21 @@ The investigators repeated their analysis among seven-day survivors and found a 
 
 The study can support a hypothesis that timely specialist input may help. It cannot justify translating the original association directly into “lives saved”. A credible causal estimate requires correct alignment of eligibility, exposure assignment and follow-up, followed by serious attention to time-dependent confounding and the clinical process that determined who was reviewed when.`,
   },
+  'passage-delirium-part-a-set': {
+    id: 'passage-delirium-part-a-set',
+    title: 'Part A texts — Delirium recognition, causes, management and follow-up',
+    text: `TEXT A — RECOGNITION AND BASELINE
+Delirium is an acute, fluctuating disturbance of attention and cognition. Hyperactive presentations attract attention through agitation or perceptual disturbance, whereas hypoactive delirium may present as withdrawal, slowed responses or unusual sleepiness and is easily missed. Establish the patient’s usual cognition and function from someone who knows them; a single low cognitive-test score during acute illness cannot establish dementia. The 4AT can support rapid screening, but a diagnosis still requires clinical assessment. Record fluctuation, inattention and altered arousal, and repeat assessment if concern persists despite an initially normal screen.
+
+TEXT B — CAUSES AND URGENT ASSESSMENT
+Search for several contributors rather than one convenient explanation. Common precipitants include infection, hypoxia, pain, dehydration, constipation, urinary retention, metabolic disturbance and recent medicine changes. Review prescribed, over-the-counter and recently stopped medicines, especially those with anticholinergic or sedative effects. Examine for retention and constipation rather than relying on the history alone. New focal neurology, meningism, head injury, hypoglycaemia or severe physiological disturbance requires immediate targeted assessment. Investigation should follow the clinical picture; indiscriminate testing can add burden without replacing bedside review.
+
+TEXT C — SUPPORTIVE MANAGEMENT
+Treat identified causes while protecting orientation, mobility, hydration, nutrition, hearing, vision and sleep. Use clocks, daylight, familiar objects and calm repeated explanations. Invite relatives or carers to provide reassurance when this helps the patient. Avoid unnecessary moves, catheters and physical restraint, which can intensify distress and harm. De-escalation and environmental measures come first. A short course of medicine for severe distress or immediate risk may occasionally be considered after reversible causes and contraindications have been reviewed; it is not routine treatment for confusion and must not substitute for observation or cause-specific care.
+
+TEXT D — DISCHARGE AND RECOVERY
+Delirium often improves before cognition fully returns to baseline. Discharge documentation should state the episode, likely contributors, relevant medicine changes, current cognitive and functional status, supervision needs and unresolved investigation. Give the patient and family clear advice about expected fluctuation and reasons to seek urgent help. Arrange early clinical review when recovery is incomplete. Formal assessment for persistent cognitive impairment is usually more informative after the acute episode has settled; if deficits remain, reassess and consider an appropriate cognitive service. Communicate any medicines withheld during admission and who will decide whether they should restart.`,
+  },
 };
 
 export function getReadingPassage(id: string): ReadingPassage | undefined {

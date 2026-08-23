@@ -86,4 +86,18 @@ export const dailyOetProgression: readonly DailyOetProgressionEntry[] = [
       speaking: 'speak-37',
     },
   },
+  {
+    date: '2026-08-23',
+    stage: 6,
+    complexityIndex: 6,
+    level: 'advanced',
+    focus:
+      'Exact blueprint performance under rapid switching: extract decisive details from consultation language and four linked Part A texts, distinguish delirium recovery from premature dementia labelling in a selective discharge letter, and reconcile patient autonomy with family anxiety during a high-stakes transition home.',
+    taskIds: {
+      listening: 'lis-112',
+      reading: 'read-66',
+      writing: 'write-38',
+      speaking: 'speak-38',
+    },
+  },
 ];

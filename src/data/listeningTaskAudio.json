@@ -1155,5 +1155,17 @@
       "immortal time"
     ],
     "voice": "Karen"
+  },
+  "lis-112": {
+    "question": "Complete: The symptom mainly disrupting the patient’s sleep was ___.",
+    "correctAnswer": "burning pain in both feet",
+    "script": "Doctor: Which symptom has troubled you most at night? Patient: The dizziness only happens when I stand and settles within seconds. I noticed my heart racing once, but that did not wake me. What keeps me awake is a burning pain across both soles, especially when the bedclothes touch them. I could not sleep because of that.",
+    "speechScript": "Doctor. Which symptom has troubled you most at night? Patient. The dizziness only happens when I stand and settles within seconds. I noticed my heart racing once, but that did not wake me. What keeps me awake is a burning pain across both soles, especially when the bedclothes touch them. I could not sleep because of that.",
+    "evidenceTerms": [
+      "burning pain",
+      "both soles",
+      "could not sleep"
+    ],
+    "voice": "Moira"
   }
 }

@@ -19,6 +19,7 @@ import { hashString } from './generators/uniqueness';
 import listeningTaskAudioDefinitions from './listeningTaskAudio.json';
 import { getReadingPassage } from './readingPassages';
 import { baseUrl } from '../lib/baseUrl';
+import type { OetPart } from '../lib/oetExamTiming';
 
 const subtestInstructions: Record<OetSubtest, string> = {
   listening:
@@ -223,6 +224,17 @@ const writingCriteriaByTaskId: Record<string, WritingCriteria> = {
       ['diazepam', 'toxicology', 'cardiac monitoring'],
     ],
     irrelevantTerms: ['hay fever', 'football'],
+  },
+  'write-38': {
+    requiredConceptGroups: [
+      ['delirium'],
+      ['urinary tract infection', 'UTI', 'urinary retention'],
+      ['oxybutynin', 'diphenhydramine'],
+      ['no previous dementia', 'no prior dementia', 'MoCA'],
+      ['daughter', 'supervision', 'home safety'],
+      ['72 hours', '4–6 weeks', '4-6 weeks', 'memory clinic'],
+    ],
+    irrelevantTerms: ['cataract', 'gardening'],
   },
 };
 
@@ -1285,6 +1297,35 @@ export const listeningTasks: SessionTask[] = [
     ),
     difficulty: 'advanced',
   },
+  {
+    ...mcq(
+      'lis-112',
+      'listening',
+      'Part A — Neuropathic symptom history',
+      'Complete: The symptom mainly disrupting the patient’s sleep was ___.',
+      [
+        {
+          label: 'burning pain in both feet',
+          correct: true,
+          explanation:
+            'The patient distinguishes brief daytime dizziness and one episode of palpitations from the bilateral burning pain that repeatedly prevented sleep.',
+        },
+        {
+          label: 'dizziness on standing',
+          correct: false,
+          explanation:
+            'The dizziness was brief, occurred on standing and settled within seconds; it was not the nocturnal problem.',
+        },
+        {
+          label: 'night-time palpitations',
+          correct: false,
+          explanation:
+            'The patient noticed palpitations only once and explicitly says they were not what caused waking.',
+        },
+      ],
+    ),
+    difficulty: 'advanced',
+  },
 ];
 
 export const readingTasks: SessionTask[] = [
@@ -1709,6 +1750,51 @@ export const readingTasks: SessionTask[] = [
     { label: 'The direction of the association reversed completely', correct: false },
     { label: 'A landmark analysis must include patients who died before the landmark', correct: false },
   ]),
+  advancedReadingMcq('read-66', 'Part A — Easily missed presentation', 'passage-delirium-part-a-set', 'Which text explains why a quiet, sleepy patient may still have delirium?', [
+    { label: 'Text A', correct: true }, { label: 'Text B', correct: false }, { label: 'Text C', correct: false }, { label: 'Text D', correct: false },
+  ]),
+  advancedReadingMcq('read-67', 'Part A — Multiple precipitants', 'passage-delirium-part-a-set', 'Which text warns against accepting one convenient cause?', [
+    { label: 'Text B', correct: true }, { label: 'Text A', correct: false }, { label: 'Text C', correct: false }, { label: 'Text D', correct: false },
+  ]),
+  advancedReadingMcq('read-68', 'Part A — Medicine is not routine', 'passage-delirium-part-a-set', 'Which text restricts medicine use to severe distress or immediate risk?', [
+    { label: 'Text C', correct: true }, { label: 'Text A', correct: false }, { label: 'Text B', correct: false }, { label: 'Text D', correct: false },
+  ]),
+  advancedReadingMcq('read-69', 'Part A — Post-acute cognition', 'passage-delirium-part-a-set', 'Which text recommends delaying formal cognitive assessment until the acute episode settles?', [
+    { label: 'Text D', correct: true }, { label: 'Text A', correct: false }, { label: 'Text B', correct: false }, { label: 'Text C', correct: false },
+  ]),
+  advancedReadingMcq('read-70', 'Part A — Establishing baseline', 'passage-delirium-part-a-set', 'Information about the patient’s usual cognition should be obtained from…', [
+    { label: 'someone who knows the patient', correct: true }, { label: 'a single screening score', correct: false }, { label: 'discharge documentation alone', correct: false },
+  ]),
+  advancedReadingMcq('read-71', 'Part A — Examination beyond history', 'passage-delirium-part-a-set', 'Which two contributors should be examined for rather than excluded from history alone?', [
+    { label: 'urinary retention and constipation', correct: true }, { label: 'hearing and vision loss', correct: false }, { label: 'head injury and meningism', correct: false },
+  ]),
+  advancedReadingMcq('read-72', 'Part A — Familiar reassurance', 'passage-delirium-part-a-set', 'Relatives or carers may help by providing…', [
+    { label: 'reassurance', correct: true }, { label: 'physical restraint', correct: false }, { label: 'routine sedatives', correct: false },
+  ]),
+  advancedReadingMcq('read-73', 'Part A — Discharge record', 'passage-delirium-part-a-set', 'The discharge document should identify who will decide whether withheld medicines are…', [
+    { label: 'restarted', correct: true }, { label: 'destroyed', correct: false }, { label: 'relabelled', correct: false },
+  ]),
+  advancedReadingMcq('read-74', 'Part A — Rapid screening tool', 'passage-delirium-part-a-set', 'Which tool is named as supporting rapid delirium screening?', [
+    { label: '4AT', correct: true }, { label: 'MoCA', correct: false }, { label: 'GCS', correct: false },
+  ]),
+  advancedReadingMcq('read-75', 'Part A — Medicine review scope', 'passage-delirium-part-a-set', 'The medicine review should include prescribed drugs, recently stopped drugs and…', [
+    { label: 'over-the-counter medicines', correct: true }, { label: 'only antimicrobial medicines', correct: false }, { label: 'future repeat prescriptions', correct: false },
+  ]),
+  advancedReadingMcq('read-76', 'Part A — Potentially harmful intervention', 'passage-delirium-part-a-set', 'Which intervention may intensify distress and harm?', [
+    { label: 'physical restraint', correct: true }, { label: 'familiar objects', correct: false }, { label: 'daylight exposure', correct: false },
+  ]),
+  advancedReadingMcq('read-77', 'Part A — Diagnostic restraint', 'passage-delirium-part-a-set', 'Why should a low cognitive score during acute illness be interpreted cautiously?', [
+    { label: 'It cannot by itself establish dementia', correct: true }, { label: 'It rules out hypoactive delirium', correct: false }, { label: 'It measures only functional status', correct: false },
+  ]),
+  advancedReadingMcq('read-78', 'Part A — Immediate targeted assessment', 'passage-delirium-part-a-set', 'Which finding specifically requires immediate targeted assessment?', [
+    { label: 'new focal neurology', correct: true }, { label: 'a familiar object at the bedside', correct: false }, { label: 'improving cognition at discharge', correct: false },
+  ]),
+  advancedReadingMcq('read-79', 'Part A — Protecting sleep', 'passage-delirium-part-a-set', 'Sleep is listed with hydration, nutrition, mobility and…', [
+    { label: 'orientation', correct: true }, { label: 'indiscriminate testing', correct: false }, { label: 'routine drug treatment', correct: false },
+  ]),
+  advancedReadingMcq('read-80', 'Part A — Incomplete recovery', 'passage-delirium-part-a-set', 'When recovery remains incomplete, the guidance recommends…', [
+    { label: 'early clinical review', correct: true }, { label: 'automatic dementia diagnosis', correct: false }, { label: 'restarting every withheld medicine', correct: false },
+  ]),
 ];
 
 export const writingTasks: SessionTask[] = [
@@ -2083,6 +2169,31 @@ Currently, his temperature is 38.7°C, pulse 124, blood pressure 168/94 mmHg and
 All serotonergic agents have been withheld. Intravenous crystalloid and diazepam have been administered, and continuous cardiac and temperature monitoring has commenced. Following toxicology advice, please assess him urgently for ongoing supportive care, serial neurological observations, temperature control and repeat creatine kinase and renal measurements. Please also review his longer-term antidepressant, analgesic and migraine therapy before discharge.
 
 Mr Cole’s family has been informed of the transfer. Please contact me if further information is required.
+
+Yours sincerely,
+
+Dr Maya Hassan`,
+    difficulty: 'advanced',
+  },
+  {
+    ...writing(
+      'write-38',
+      'Discharge — Delirium recovery with cognitive follow-up',
+      '23 Aug 2026 — Pt: Mrs Leila Rahman, 75y\nAdmitted 5 days ago: acute confusion, visual hallucinations, inattention\nContributors: E. coli UTI plus urinary retention\nTreated with antibiotics; retention resolved after temporary catheter\nOxybutynin and over-the-counter diphenhydramine stopped\nNow afebrile, eating, independently mobile; attention improved but not usual baseline\nNo previous dementia diagnosis\nDaughter reports mild forgetfulness for 3 months before admission; normally independent with medicines/finances\nMoCA deferred until delirium resolved\nDischarge: daughter staying for first week; medicines organised; falls advice given\nGP review within 72h; repeat cognition in 4–6 weeks; consider memory clinic if deficits persist\nReturn urgently for recurrent marked confusion, fever, inability to pass urine or reduced intake\nPMH: cataract surgery 2021; enjoys gardening\nWrite a GP discharge letter distinguishing current recovery from unresolved longer-term cognition and requesting follow-up',
+      'Dear Dr Malik,\n\nI am writing to update you regarding Mrs Leila Rahman, aged 75, who is being discharged following treatment of delirium precipitated by a urinary tract infection and urinary retention.',
+      'Discharge to GP',
+    ),
+    modelAnswer: `Dear Dr Malik,
+
+I am writing to update you regarding Mrs Leila Rahman, aged 75, who is being discharged following treatment of delirium precipitated by an E. coli urinary tract infection and urinary retention.
+
+She presented five days ago with acute confusion, visual hallucinations and inattention. The infection was treated with antibiotics, and retention resolved after temporary catheterisation. Oxybutynin and over-the-counter diphenhydramine were stopped because of their potential contribution.
+
+Mrs Rahman is now afebrile, eating and independently mobile. Her attention has improved, although cognition has not returned fully to her usual baseline. She has no previous dementia diagnosis. Her daughter reports mild forgetfulness during the three months before admission, but Mrs Rahman had remained independent with medicines and finances. Cognitive screening was therefore deferred until the delirium has resolved.
+
+Please review her within 72 hours, including hydration, urinary symptoms and the revised medication list. Reassess cognition in four to six weeks and consider memory-clinic referral if deficits persist. Her daughter will stay for the first week and supervise medicines. The family should seek urgent care for marked recurrent confusion, fever, inability to pass urine or reduced intake.
+
+Please contact me if further information is required.
 
 Yours sincerely,
 
@@ -2800,6 +2911,52 @@ export const speakingTasks: SessionTask[] = [
     ),
     difficulty: 'advanced',
   },
+  {
+    ...speaking(
+      'speak-38',
+      'Delirium recovery — family demands permanent placement',
+      'You are the hospital doctor speaking with the daughter of a 75-year-old patient recovering from delirium. The patient is improving, has decision-making capacity today and wants to return home with short-term support. The daughter believes delirium proves dementia and insists on permanent residential placement immediately.',
+      [
+        'Acknowledge the daughter’s fear and clarify what changes she observed before and during the illness',
+        'Explain delirium, fluctuation and why dementia cannot be diagnosed from the acute episode alone',
+        'Keep the capacitated patient central while addressing foreseeable home risks',
+        'Negotiate temporary support, early review and later cognitive reassessment with explicit safety-netting',
+      ],
+      {
+        expectedKeywords: [
+          'delirium',
+          'acute',
+          'fluctuating',
+          'infection',
+          'dementia',
+          'capacity',
+          'choice',
+          'home',
+          'support',
+          'medicines',
+          'review',
+          'reassess',
+          'safety',
+          'understand',
+        ],
+        checklist: [
+          'Validate the daughter’s concern without agreeing that delirium establishes dementia',
+          'Contrast acute fluctuating delirium with persistent cognitive impairment in plain language',
+          'Explain that a capacitated patient’s informed preference guides the discharge decision',
+          'Offer time-limited supervision, medication support and an early clinical review',
+          'Arrange later cognitive reassessment and identify changes requiring urgent help',
+        ],
+        samplePhrases: [
+          'I can see why the sudden hallucinations and confusion made home feel unsafe to you.',
+          'Delirium is an acute, fluctuating change during illness; it can take time to settle and does not by itself prove dementia.',
+          'Your mother can understand and weigh the plan today, so her wish to return home must remain central.',
+          'Let us make this a supported, reviewed transition rather than an all-or-nothing decision about permanent care.',
+          'Could you tell me which changes would make you call us urgently and when her cognition will be reassessed?',
+        ],
+      },
+    ),
+    difficulty: 'advanced',
+  },
 ];
 
 const ADVANCED_CHALLENGE: Record<OetSubtest, string> = {
@@ -2912,6 +3069,40 @@ export function pickTasks(
   const shuffled = seededShuffle(pool, shuffleSeed);
 
   return shuffled.slice(0, effectiveCount).map((task) => ({
+    ...task,
+    id: `${prefix}-${task.id}`,
+  }));
+}
+
+export function oetTaskPart(task: SessionTask): OetPart | null {
+  const match = task.title.match(/\bPart ([ABC])\b/i);
+  return (match?.[1]?.toUpperCase() as OetPart | undefined) ?? null;
+}
+
+/** Select an exact exam-part quota; fail loudly instead of silently shortening a mock. */
+export function pickTasksByPart(
+  subtest: Extract<OetSubtest, 'listening' | 'reading'>,
+  part: OetPart,
+  count: number,
+  prefix: string,
+  seed: string,
+  difficultyFilter?: Difficulty,
+): SessionTask[] {
+  let pool = bankBySubtest[subtest].filter((task) => oetTaskPart(task) === part);
+  if (difficultyFilter === 'advanced') {
+    pool = pool.filter((task) => task.difficulty === 'advanced');
+  } else if (difficultyFilter) {
+    pool = pool.filter((task) => !task.difficulty || task.difficulty === difficultyFilter);
+  }
+
+  if (pool.length < count) {
+    throw new Error(
+      `${subtest} Part ${part} needs ${count} task(s), but the live ${difficultyFilter ?? 'mixed'} bank has ${pool.length}`,
+    );
+  }
+
+  const shuffleSeed = `${prefix}|${seed}|${subtest}|Part ${part}|${pool.length}|${difficultyFilter ?? ''}`;
+  return seededShuffle(pool, shuffleSeed).slice(0, count).map((task) => ({
     ...task,
     id: `${prefix}-${task.id}`,
   }));
