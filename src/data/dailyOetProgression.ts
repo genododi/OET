@@ -205,4 +205,30 @@ export const dailyOetProgression: readonly DailyOetProgressionEntry[] = [
       speaking: 'speak-41',
     },
   },
+  {
+    date: '2026-08-23',
+    stage: 10,
+    complexityIndex: 10,
+    reasoningLayers: [
+      'exact-evidence discrimination',
+      'causal attribution across bundled interventions',
+      'conditional exception handling',
+      'methodological claim calibration',
+      'time-dependent bias detection',
+      'rapid response-format switching',
+      'produced-answer orthographic precision',
+      'triangulation of selection, detection and competing safety duties',
+      'reconciliation of aggregate and subgroup evidence with mediated disclosure',
+      'integration of competing-risk evidence with treatment-limitation language',
+    ],
+    level: 'advanced',
+    focus:
+      'Competing-risk interpretation and treatment-limitation language: infer why speed alone is an unsafe quality metric, recognise that death can prevent and distort a dialysis endpoint, transfer a multisystem immune-toxicity emergency with disciplined prioritisation, and explain that a resuscitation decision does not withdraw active care while eliciting the patient’s goals.',
+    taskIds: {
+      listening: 'lis-116',
+      reading: 'read-88',
+      writing: 'write-42',
+      speaking: 'speak-42',
+    },
+  },
 ];

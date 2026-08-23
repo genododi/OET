@@ -269,6 +269,17 @@ const writingCriteriaByTaskId: Record<string, WritingCriteria> = {
     ],
     irrelevantTerms: ['migraine', 'art teacher', 'watercolour'],
   },
+  'write-42': {
+    requiredConceptGroups: [
+      ['pembrolizumab', 'immune-checkpoint', 'checkpoint inhibitor'],
+      ['myocarditis', 'myositis', 'myasthenic'],
+      ['heart block', 'PR prolongation', 'troponin'],
+      ['ptosis', 'diplopia', 'dysphagia', 'proximal weakness'],
+      ['methylprednisolone', 'pembrolizumab withheld'],
+      ['pacing', 'respiratory monitoring', 'IVIG', 'plasma exchange', 'tertiary transfer'],
+    ],
+    irrelevantTerms: ['appendicectomy', 'birdwatching'],
+  },
 };
 
 const AUTO_WRITING_STOP_WORDS = new Set([
@@ -1446,6 +1457,35 @@ export const listeningTasks: SessionTask[] = [
     ),
     difficulty: 'advanced',
   },
+  {
+    ...mcq(
+      'lis-116',
+      'listening',
+      'Part C — Reconsidering an alert-speed metric',
+      'What limitation does the speaker identify in the alert audit?',
+      [
+        {
+          label: 'It equates faster treatment with better care without distinguishing appropriate reassessment from missed escalation',
+          correct: true,
+          explanation:
+            'The speaker explains that some delay reflected justified diagnostic review, while some rapid treatment was unnecessary; speed alone did not measure correctness.',
+        },
+        {
+          label: 'It excludes every patient who received antibiotics before an electronic alert',
+          correct: false,
+          explanation:
+            'No such exclusion is described; the criticism concerns what alert-to-treatment time means, not missing pre-alert prescriptions.',
+        },
+        {
+          label: 'It proves that electronic alerts should be withdrawn from all non-infectious cases',
+          correct: false,
+          explanation:
+            'The speaker explicitly retains time as a safety signal and recommends richer evaluation rather than abandoning alerts.',
+        },
+      ],
+    ),
+    difficulty: 'advanced',
+  },
 ];
 
 export const readingTasks: SessionTask[] = [
@@ -1982,6 +2022,32 @@ export const readingTasks: SessionTask[] = [
       },
     ],
   ),
+  advancedReadingMcq(
+    'read-88',
+    'Part C — Death as a competing dialysis risk',
+    'passage-competing-risk-dialysis',
+    'Why does the writer object to treating death before dialysis as ordinary censoring?',
+    [
+      {
+        label: 'Death prevents future dialysis and may differ by treatment group, so fewer dialysis events need not represent preserved kidney function alone',
+        correct: true,
+        explanation:
+          'The passage treats death as a competing event that changes the probability of observing dialysis and may contribute to the apparent treatment difference.',
+      },
+      {
+        label: 'A participant who dies should automatically be counted as having started dialysis on that date',
+        correct: false,
+        explanation:
+          'The writer recommends analysing death as a competing outcome, not relabelling it as dialysis.',
+      },
+      {
+        label: 'Conventional survival analysis is invalid whenever any participant leaves a study early',
+        correct: false,
+        explanation:
+          'The passage accepts censoring when loss to follow-up is compatible with its assumptions; death is different because dialysis becomes impossible.',
+      },
+    ],
+  ),
 ];
 
 export const writingTasks: SessionTask[] = [
@@ -2454,6 +2520,31 @@ She presented yesterday with progressive breathlessness, orthopnoea and bilatera
 Following intravenous furosemide, she is comfortable on two litres of oxygen with 96% saturation and blood pressure of 108/68 mmHg. Enalapril has been commenced, and she is receiving therapeutic low-molecular-weight heparin. She is breastfeeding and is anxious about medicine exposure and separation from her newborn, who is currently well and cared for by her partner.
 
 Please accept her for joint heart-failure and maternal-medicine care, including treatment optimisation, rhythm monitoring, a repeat-imaging plan, and decisions about anticoagulation duration and transition. She also requires counselling on breastfeeding-compatible therapy. Future-pregnancy risk and contraception should be discussed fully after stabilisation.
+
+Please contact me if further information is required.
+
+Yours sincerely,
+
+Dr Maya Hassan`,
+    difficulty: 'advanced',
+  },
+  {
+    ...writing(
+      'write-42',
+      'Urgent transfer — Immune-checkpoint myocarditis with neuromuscular overlap',
+      '23 Aug 2026 — Pt: Ms Lina Saad, 54y\nMetastatic melanoma; third pembrolizumab dose 8 days ago\nThree-day progression: ptosis, diplopia, proximal weakness, dysphagia\nToday: chest tightness; no previous cardiac disease\nECG: new PR prolongation with intermittent complete heart block\nTroponin 2,200 ng/L; CK 6,800 U/L\nEcho: new global LV impairment, EF 45% (baseline 65%)\nForced vital capacity declined to 1.4 L\nWorking diagnosis: immune-checkpoint myocarditis with myositis/myasthenic overlap\nPembrolizumab withheld\nAfter oncology discussion: IV methylprednisolone 1 g given\nCurrent ICU: pacing pads applied; alert; BP 112/70; SpO2 95% on 2 L oxygen\nSwallowing and respiratory muscle weakness progressing\nElectrolytes/renal function normal\nNeeds immediate tertiary cardio-oncology/neurology transfer\nRequests: continuous rhythm/respiratory monitoring, temporary pacing capability, cardiac MRI, decisions on further immunosuppression and IVIG/plasma exchange\nDaughter informed of suspected immune toxicity and urgency\nPMH: appendicectomy 1998; enjoys birdwatching\nNo known drug allergies\nWrite an urgent transfer letter prioritising the linked cardiac and neuromuscular emergency, treatment already given and requested capabilities',
+      'Dear Dr Evans,\n\nI am writing to request the urgent transfer of Ms Lina Saad, aged 54, for tertiary cardio-oncology and neurological management of suspected pembrolizumab-related myocarditis with myositis and myasthenic overlap.',
+      'Urgent tertiary transfer',
+    ),
+    modelAnswer: `Dear Dr Evans,
+
+I am writing to request urgent transfer of Ms Lina Saad, 54, for cardio-oncology and neurological management of suspected pembrolizumab-related myocarditis with myositis and myasthenic overlap.
+
+She received her third pembrolizumab dose for metastatic melanoma eight days ago. Over three days, she developed ptosis, diplopia, proximal weakness and dysphagia, followed today by chest tightness. ECG shows PR prolongation with intermittent complete heart block. Troponin is 2,200 ng/L and creatine kinase 6,800 U/L. Echocardiography demonstrates global impairment with an ejection fraction of 45%, compared with 65% previously. Her forced vital capacity has fallen to 1.4 L.
+
+Pembrolizumab has been withheld. Following oncology discussion, she received intravenous methylprednisolone 1 g and is monitored in intensive care with pacing pads applied. She is alert, with blood pressure 112/70 mmHg and oxygen saturation 95% on two litres; however, swallowing and respiratory muscle weakness are progressing. Electrolytes and renal function are normal.
+
+Please accept her immediately for continuous rhythm and respiratory monitoring, temporary pacing capability, cardiac MRI, and joint decisions regarding further immunosuppression and intravenous immunoglobulin or plasma exchange. Her daughter understands the suspected immune toxicity and urgency.
 
 Please contact me if further information is required.
 
@@ -3354,6 +3445,55 @@ export const speakingTasks: SessionTask[] = [
           'I can first ask how much detail she wants today and whether she would like you beside her; she can also ask us to pause at any point.',
           'Being honest does not mean removing hope. We can explain the result gently, allow silence, answer questions and focus on the treatment and support available next.',
           'Could you tell me how you might support her during the conversation and what you understand our plan to be?',
+        ],
+      },
+    ),
+    difficulty: 'advanced',
+  },
+  {
+    ...speaking(
+      'speak-42',
+      'Severe COPD — resuscitation discussion without loss of hope',
+      'You are a respiratory doctor speaking with a 68-year-old patient after their second intensive-care admission for severe COPD. The patient believes a do-not-attempt-resuscitation decision means staff will stop oxygen, antibiotics and symptom treatment. They request CPR because they hope to attend a grandchild’s wedding; their daughter avoids any discussion of deterioration.',
+      [
+        'Acknowledge the patient’s fear and clarify what they believe a resuscitation decision would change',
+        'Explain CPR, likely outcomes and uncertainty in plain, individualised language without coercion',
+        'Separate a CPR decision from all other active treatment, comfort and escalation decisions',
+        'Explore the patient’s goals, invite chosen family support and agree a reviewed plan using teach-back',
+      ],
+      {
+        expectedKeywords: [
+          'COPD',
+          'breathing',
+          'CPR',
+          'heart',
+          'restart',
+          'intensive care',
+          'chance',
+          'harm',
+          'oxygen',
+          'antibiotics',
+          'treatment',
+          'comfort',
+          'wedding',
+          'goals',
+          'choice',
+          'review',
+          'understand',
+        ],
+        checklist: [
+          'Explore the fear of abandonment and the meaning of the grandchild’s wedding before giving recommendations',
+          'Describe CPR and likely benefit or burden for this patient without false precision or euphemism',
+          'State clearly that a CPR decision does not stop appropriate oxygen, antibiotics, symptom relief or other agreed treatment',
+          'Distinguish CPR from broader escalation planning and invite the patient to choose who joins the discussion',
+          'Use teach-back, document the patient’s preference and arrange review as circumstances or goals change',
+        ],
+        samplePhrases: [
+          'I can hear that you are worried we might stop caring for you, and that being at your grandchild’s wedding matters deeply.',
+          'CPR means pressing on the chest and sometimes using shocks and a breathing tube if the heart stops; with lungs as fragile as yours, the chance of recovering well is low and the treatment can cause injury.',
+          'A decision not to attempt CPR would apply only if your heart or breathing stopped. It would not mean stopping oxygen, antibiotics, relief of breathlessness or other treatment we agree could help.',
+          'We can also discuss intensive care separately, because CPR and every other treatment are not one all-or-nothing decision.',
+          'Could you tell me what you understand would continue, what matters most to you, and whom you would like involved when we review the plan?',
         ],
       },
     ),

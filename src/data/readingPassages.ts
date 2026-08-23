@@ -616,6 +616,19 @@ The authors attempted regression adjustment using age, comorbidity and the first
 
 The pathway may still improve access, patient experience or speed of review, none of which was measured adequately in this audit. It may even reduce admission for particular patients. The defensible conclusion is narrower: the service coincided with a lower overall admission rate, largely explained by a shift towards lower-risk referrals. Claiming that it prevented a specific number of admissions requires stronger design and comparable populations, not simply a precise calculation from an incomparable denominator.`,
   },
+  'passage-competing-risk-dialysis': {
+    id: 'passage-competing-risk-dialysis',
+    title: 'Methods commentary — Death is not ordinary loss to follow-up before dialysis',
+    text: `A trial in advanced chronic kidney disease reported that an intensive blood-pressure strategy reduced progression to dialysis. The primary analysis used a conventional time-to-event curve and treated participants who died before dialysis as censored at death. The resulting hazard ratio was 0.74, and the authors described this as evidence that intensive treatment preserved kidney function.
+
+Censoring is not synonymous with removing an inconvenient observation. Standard survival methods assume that, conditional on measured information, a censored participant would have the same future chance of the event as someone who remained under observation. That interpretation is plausible when a participant moves away for reasons unrelated to kidney disease. It is impossible after death: a person who has died can never subsequently start dialysis. Death therefore competes with, rather than merely delays observation of, the kidney endpoint.
+
+The distinction matters because mortality was numerically higher in the intensive-treatment group. Fewer dialysis initiations could arise because kidney failure was genuinely delayed, because more participants died before reaching dialysis, or through both processes. A cause-specific hazard model can estimate the instantaneous rate of dialysis among people currently alive and dialysis-free, but it does not by itself answer how many patients will experience dialysis in practice. A cumulative-incidence analysis retains death as a competing outcome and estimates the probability of dialysis over time in the presence of that risk.
+
+Nor should death and dialysis automatically be combined into one undifferentiated endpoint. A composite can answer a useful question if its components and treatment effects are reported transparently, but preventing dialysis and increasing survival are not interchangeable experiences. Patient priorities may also include symptoms, hospitalisation and treatment burden.
+
+In this trial, the decline in estimated dialysis incidence became smaller after competing-risk analysis, while the mortality difference remained imprecise. Biomarkers moved in a direction consistent with slower renal decline, which supports biological plausibility but does not settle the patient-level trade-off. The appropriate conclusion is that intensive treatment may delay kidney progression, but the magnitude of benefit and its balance against mortality and adverse effects remain uncertain. “Censored at death” cannot be read as though those participants simply had not yet completed follow-up.`,
+  },
   'passage-delirium-part-a-set': {
     id: 'passage-delirium-part-a-set',
     title: 'Part A texts — Delirium recognition, causes, management and follow-up',

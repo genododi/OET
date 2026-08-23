@@ -1203,5 +1203,17 @@
       "outcomes improved for comparable patients"
     ],
     "voice": "Karen"
+  },
+  "lis-116": {
+    "question": "What limitation does the speaker identify in the alert audit?",
+    "correctAnswer": "It equates faster treatment with better care without distinguishing appropriate reassessment from missed escalation",
+    "script": "Our first audit celebrated the fall in median time from a sepsis alert to antibiotics. Interviews changed my view of that result. Some slower cases involved appropriate reassessment because inflammation was non-infectious, while some very fast responses produced unnecessary broad-spectrum treatment. The clock measures speed, not whether the decision was correct. We should classify whether escalation was clinically justified, examine reasons for override and include patient outcomes, rather than treating every delay as a failure. I am not suggesting that time no longer matters; a long unexplained delay remains a safety signal, but it is not a complete quality measure.",
+    "speechScript": "Our first audit celebrated the fall in median time from a sepsis alert to antibiotics. Interviews changed my view of that result. Some slower cases involved appropriate reassessment because inflammation was non infectious, while some very fast responses produced unnecessary broad spectrum treatment. The clock measures speed, not whether the decision was correct. We should classify whether escalation was clinically justified, examine reasons for override and include patient outcomes, rather than treating every delay as a failure. I am not suggesting that time no longer matters; a long unexplained delay remains a safety signal, but it is not a complete quality measure.",
+    "evidenceTerms": [
+      "appropriate reassessment",
+      "clock measures speed",
+      "not a complete quality measure"
+    ],
+    "voice": "Moira"
   }
 }
