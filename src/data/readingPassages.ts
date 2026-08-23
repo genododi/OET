@@ -590,6 +590,19 @@ The investigators repeated their analysis among seven-day survivors and found a 
 
 The study can support a hypothesis that timely specialist input may help. It cannot justify translating the original association directly into “lives saved”. A credible causal estimate requires correct alignment of eligibility, exposure assignment and follow-up, followed by serious attention to time-dependent confounding and the clinical process that determined who was reviewed when.`,
   },
+  'passage-diagnostic-follow-up-selection': {
+    id: 'passage-diagnostic-follow-up-selection',
+    title: 'Commentary — When earlier detection is not yet proof of safer diagnosis',
+    text: `A hospital introduced next-day telephone review for selected patients discharged from the emergency department with unresolved symptoms. The evaluation reported fewer “delayed diagnoses” among patients who received a call than among those managed conventionally. The authors concluded that the programme prevented diagnostic error. The direction of the finding is encouraging, but the causal claim outruns the design.
+
+Referral to the service was neither random nor automatic. Clinicians tended to enrol patients when concern persisted despite reassuring initial tests, but only if the patient could be contacted reliably and spoke a language covered by the available telephone team. Some patients with apparently lower clinical risk therefore entered usual care, while others with unstable housing, limited telephone access or unmet interpreting needs were also less likely to receive review. These influences point in different directions and cannot be repaired merely by adjusting for the triage category recorded at arrival.
+
+The programme also changed how outcomes were found. A structured call could identify persisting symptoms and arrange imaging before the patient otherwise returned. Earlier identification may represent a genuine benefit, yet it also gives the intervention group more opportunities to have a diagnosis documented. Conversely, a missed diagnosis in usual care may remain invisible if the patient attends another hospital. Comparing only diagnoses recorded in the original institution therefore mixes clinical effect with unequal surveillance.
+
+One secondary analysis included only patients who reattended within 30 days and again favoured the telephone service. This restriction is not automatically fairer. Reattendance can be influenced by symptom severity, access to care, advice given during the call and whether a diagnosis was already made. Conditioning on an event affected by both the intervention and prognosis can create a misleading association even when the original groups were similar.
+
+The evaluation still provides useful evidence. It shows that next-day review is feasible and can recover unresolved results, clarify safety-netting and accelerate reassessment. A stronger study would define eligibility before discharge, record reasons for non-enrolment, capture outcomes across hospitals and compare groups with similar opportunities for follow-up. Until then, the programme should be described as improving the process and timeliness of diagnostic follow-up, not as a quantified reduction in diagnostic error caused by the calls alone.`,
+  },
   'passage-delirium-part-a-set': {
     id: 'passage-delirium-part-a-set',
     title: 'Part A texts — Delirium recognition, causes, management and follow-up',

@@ -247,6 +247,17 @@ const writingCriteriaByTaskId: Record<string, WritingCriteria> = {
     ],
     irrelevantTerms: ['eczema', 'pottery'],
   },
+  'write-40': {
+    requiredConceptGroups: [
+      ['intracerebral haemorrhage', 'intracerebral hemorrhage', 'basal-ganglia haemorrhage'],
+      ['INR', '4.8', 'warfarin'],
+      ['prothrombin complex concentrate', 'PCC', 'vitamin K'],
+      ['repeat CT', 'no expansion', 'stable haematoma', 'stable hematoma'],
+      ['mechanical mitral valve', 'valve thrombosis'],
+      ['anticoagulation resumption', 'restart anticoagulation', 'neurovascular', 'cardiology'],
+    ],
+    irrelevantTerms: ['psoriasis', 'chess'],
+  },
 };
 
 const AUTO_WRITING_STOP_WORDS = new Set([
@@ -1366,6 +1377,35 @@ export const listeningTasks: SessionTask[] = [
     ),
     difficulty: 'advanced',
   },
+  {
+    ...mcq(
+      'lis-114',
+      'listening',
+      'Part C — Diagnostic-safety review',
+      'What is the speaker’s main recommendation for reviewing possible missed diagnoses?',
+      [
+        {
+          label: 'Assess how uncertainty and follow-up were managed, not simply count tests or later diagnoses',
+          correct: true,
+          explanation:
+            'The speaker rejects hindsight and test-volume metrics, recommending review of explained uncertainty, explicit follow-up triggers and ownership of outstanding results.',
+        },
+        {
+          label: 'Treat every later serious diagnosis as proof that the first clinician made an error',
+          correct: false,
+          explanation:
+            'The speaker says this hindsight-based classification is too crude because symptoms can evolve after a reasonable initial assessment.',
+        },
+        {
+          label: 'Reward departments that order the largest number of investigations at the first visit',
+          correct: false,
+          explanation:
+            'Indiscriminate testing can create false positives and does not guarantee safe follow-up.',
+        },
+      ],
+    ),
+    difficulty: 'advanced',
+  },
 ];
 
 export const readingTasks: SessionTask[] = [
@@ -1850,6 +1890,32 @@ export const readingTasks: SessionTask[] = [
   advancedReadingMcq('read-85', 'Part A short answer — Outstanding work', 'passage-delirium-part-a-set', 'Complete: Discharge documentation should state any unresolved ___.', [
     { label: 'investigation', correct: true }, { label: 'appointment', correct: false }, { label: 'prescription', correct: false },
   ]),
+  advancedReadingMcq(
+    'read-86',
+    'Part C — Follow-up selection and detection',
+    'passage-diagnostic-follow-up-selection',
+    'What is the writer’s main reason for rejecting the claim that the calls caused fewer diagnostic errors?',
+    [
+      {
+        label: 'Enrolment and diagnosis capture differed with clinical concern, access and intensity of follow-up',
+        correct: true,
+        explanation:
+          'The commentary combines non-random enrolment with unequal opportunities to detect outcomes, so the observed difference cannot be attributed to the calls alone.',
+      },
+      {
+        label: 'Telephone review cannot accelerate imaging or recover unresolved test results',
+        correct: false,
+        explanation:
+          'The writer explicitly accepts that the service can accelerate reassessment and recover unresolved results.',
+      },
+      {
+        label: 'Only a blinded trial can provide any useful evidence about a follow-up service',
+        correct: false,
+        explanation:
+          'The evaluation is described as useful process and feasibility evidence despite not proving the causal claim.',
+      },
+    ],
+  ),
 ];
 
 export const writingTasks: SessionTask[] = [
@@ -2274,6 +2340,31 @@ ECG shows sinus rhythm with a QTc of 526 ms and no acute ischaemic change. Elect
 Following discussion with your team, please assess her urgently for an inherited arrhythmia, ambulatory monitoring, exercise testing and genetic evaluation. She has been advised not to drive or undertake strenuous exercise pending review. She should seek immediate help for recurrent syncope, sustained palpitations or chest pain.
 
 Ms Farouk understands the concern and the need for prompt assessment. Please contact me if further information is required.
+
+Yours sincerely,
+
+Dr Maya Hassan`,
+    difficulty: 'advanced',
+  },
+  {
+    ...writing(
+      'write-40',
+      'Urgent transfer — Intracerebral haemorrhage with mechanical-valve anticoagulation conflict',
+      '23 Aug 2026 — Pt: Mr Kareem Nassar, 58y\nMechanical mitral valve inserted 2019 for rheumatic disease; usual warfarin target INR 2.5–3.5\nPresented today: sudden left weakness, dysarthria, severe headache\nCT brain: 22 ml right basal-ganglia intracerebral haemorrhage; no intraventricular extension/hydrocephalus\nINR 4.8; warfarin withheld\nGiven four-factor prothrombin complex concentrate plus IV vitamin K\nRepeat CT at 6h: no haematoma expansion\nNow alert, haemodynamically stable; persistent left arm weakness\nNeurosurgery recommends conservative treatment and strict blood-pressure control\nPlatelets/renal function normal; no previous stroke\nAnticoagulation remains withheld — competing rebleeding and mechanical-valve thrombosis risks\nLocal hospital cannot provide continuous joint neurovascular/cardiology review\nRequest urgent tertiary transfer to decide timing/method of anticoagulation resumption and whether interim heparin is appropriate\nFamily informed of uncertainty and transfer rationale\nPMH: mild psoriasis; plays chess weekly\nNo known drug allergies\nWrite an urgent tertiary transfer letter prioritising the haemorrhage, reversal, current stability, valve-related risk and requested joint decision',
+      'Dear Professor Chen,\n\nI am writing to request the urgent transfer of Mr Kareem Nassar, aged 58, for joint neurovascular and cardiology management following a warfarin-associated intracerebral haemorrhage in the context of a mechanical mitral valve.',
+      'Urgent tertiary transfer',
+    ),
+    modelAnswer: `Dear Professor Chen,
+
+I am writing to request urgent transfer of Mr Kareem Nassar, aged 58, for joint neurovascular and cardiology management following a warfarin-associated intracerebral haemorrhage in the context of a mechanical mitral valve.
+
+He presented today with sudden left-sided weakness, dysarthria and headache. CT showed a 22-ml right basal-ganglia haemorrhage without intraventricular extension or hydrocephalus. His INR was 4.8. Warfarin was withheld and reversed with four-factor prothrombin complex concentrate and intravenous vitamin K. Repeat CT at six hours shows no expansion.
+
+Mr Nassar is alert and haemodynamically stable, with persistent left-arm weakness. Neurosurgery advises conservative treatment and strict blood-pressure control. Platelets and renal function are normal. He has no previous stroke; his valve was inserted in 2019 for rheumatic disease, with a usual INR target of 2.5–3.5.
+
+Anticoagulation remains withheld, creating competing risks of recurrent haemorrhage and valve thrombosis. As continuous joint specialist review is unavailable locally, please accept him urgently to determine the timing and method of anticoagulation resumption, including whether interim heparin is appropriate. His family understands the uncertainty and transfer rationale.
+
+Please contact me if further information is required.
 
 Yours sincerely,
 
@@ -3078,6 +3169,53 @@ export const speakingTasks: SessionTask[] = [
           'Confidentiality is very important. I cannot make an absolute promise before we have considered the risk carefully, and I would involve senior and genetics colleagues before any exceptional disclosure.',
           'A family letter can explain the health information without sharing unnecessary details about you, and the genetics team can help you decide how it is passed on.',
           'Could you tell me what you understand about the risk and which option you might be willing to reconsider at our follow-up?',
+        ],
+      },
+    ),
+    difficulty: 'advanced',
+  },
+  {
+    ...speaking(
+      'speak-40',
+      'Adolescent sexual health — confidentiality with possible coercion',
+      'You are a GP seeing a mature 16-year-old whose chlamydia test is positive. They want treatment but refuse to involve a parent and ask for an absolute promise of secrecy. During the consultation, they mention that their older partner controls their phone and transport but insist the relationship is consensual.',
+      [
+        'Respond without judgement, clarify the young person’s concerns and assess understanding of the diagnosis and treatment',
+        'Explain confidentiality and its limits in clear, proportionate language without making an absolute promise',
+        'Explore immediate safety, coercion and support privately while preserving the young person’s voice',
+        'Agree treatment, partner notification, safer-sex advice and a supported follow-up plan',
+      ],
+      {
+        expectedKeywords: [
+          'chlamydia',
+          'infection',
+          'antibiotic',
+          'confidential',
+          'privacy',
+          'safety',
+          'pressure',
+          'control',
+          'partner',
+          'contact',
+          'condom',
+          'support',
+          'choice',
+          'follow-up',
+          'understand',
+        ],
+        checklist: [
+          'Use a calm, non-judgemental opening and check the young person can understand and weigh the plan',
+          'Explain confidentiality and possible safety-related limits before seeking further sensitive detail',
+          'Ask privately about pressure, age or power imbalance, immediate danger and safe ways to make contact',
+          'Explain treatment, abstinence or barrier protection and supported partner notification in accessible language',
+          'Offer a trusted support option, check understanding and arrange a contact method that will not increase risk',
+        ],
+        samplePhrases: [
+          'You have done the right thing by coming in, and I will not judge you or contact your family simply because you need sexual-health care.',
+          'What you tell me is private. If I became seriously worried that you or someone else was at risk of significant harm, I might need help from a safeguarding colleague, but I would explain that and involve you wherever it was safe to do so.',
+          'When you say your partner controls your phone and transport, can I ask whether you ever feel frightened, pressured or unable to say no?',
+          'We can treat the infection and help notify partners without using your name; let us choose a method of contact and follow-up that is safe for you.',
+          'Could you tell me in your own words what the treatment involves and what you would do if your safety or symptoms worsened?',
         ],
       },
     ),

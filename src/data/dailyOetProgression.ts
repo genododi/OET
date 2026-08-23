@@ -5,6 +5,8 @@ export interface DailyOetProgressionEntry {
   stage: number;
   /** Strictly increasing proof that each release adds a harder reasoning layer. */
   complexityIndex: number;
+  /** Cumulative reasoning demands retained from earlier stages plus one new layer. */
+  reasoningLayers: readonly string[];
   level: 'advanced';
   focus: string;
   taskIds: Record<OetSubtest, string>;
@@ -20,6 +22,7 @@ export const dailyOetProgression: readonly DailyOetProgressionEntry[] = [
     date: '2026-08-23',
     stage: 1,
     complexityIndex: 1,
+    reasoningLayers: ['exact-evidence discrimination'],
     level: 'advanced',
     focus:
       'Evidence under uncertainty: distinguish recalibration from external validation, interpret hidden subgroup drift, prioritise an urgent referral, and negotiate risk without false reassurance.',
@@ -34,6 +37,10 @@ export const dailyOetProgression: readonly DailyOetProgressionEntry[] = [
     date: '2026-08-23',
     stage: 2,
     complexityIndex: 2,
+    reasoningLayers: [
+      'exact-evidence discrimination',
+      'causal attribution across bundled interventions',
+    ],
     level: 'advanced',
     focus:
       'Causal restraint and trust repair: separate bundled interventions, interpret composite endpoints, prioritise a haematological emergency, and explain a positive functional diagnosis without invalidation.',
@@ -48,6 +55,11 @@ export const dailyOetProgression: readonly DailyOetProgressionEntry[] = [
     date: '2026-08-23',
     stage: 3,
     complexityIndex: 3,
+    reasoningLayers: [
+      'exact-evidence discrimination',
+      'causal attribution across bundled interventions',
+      'conditional exception handling',
+    ],
     level: 'advanced',
     focus:
       'Corrected evidence and conditional rules: act on a revised critical result, navigate policy exceptions under time pressure, prioritise euglycaemic ketoacidosis follow-up, and preserve autonomy through interpreted risk discussion.',
@@ -62,6 +74,12 @@ export const dailyOetProgression: readonly DailyOetProgressionEntry[] = [
     date: '2026-08-23',
     stage: 4,
     complexityIndex: 4,
+    reasoningLayers: [
+      'exact-evidence discrimination',
+      'causal attribution across bundled interventions',
+      'conditional exception handling',
+      'methodological claim calibration',
+    ],
     level: 'advanced',
     focus:
       'Inference across competing explanations: reject false equivalence in a research discussion, appraise non-inferiority bias, compress a toxicology emergency into a selective transfer letter, and negotiate a bereaved patient’s demand for low-value imaging without damaging trust.',
@@ -76,6 +94,13 @@ export const dailyOetProgression: readonly DailyOetProgressionEntry[] = [
     date: '2026-08-23',
     stage: 5,
     complexityIndex: 5,
+    reasoningLayers: [
+      'exact-evidence discrimination',
+      'causal attribution across bundled interventions',
+      'conditional exception handling',
+      'methodological claim calibration',
+      'time-dependent bias detection',
+    ],
     level: 'advanced',
     focus:
       'Validity under time-dependent exposure and autonomy under immediate risk: identify immortal-time bias from spoken and written evidence, select the decisive facts in a polypharmacy emergency transfer, and negotiate urgent assessment with a capacitated patient whose caregiving duties conflict with safety.',
@@ -90,6 +115,14 @@ export const dailyOetProgression: readonly DailyOetProgressionEntry[] = [
     date: '2026-08-23',
     stage: 6,
     complexityIndex: 6,
+    reasoningLayers: [
+      'exact-evidence discrimination',
+      'causal attribution across bundled interventions',
+      'conditional exception handling',
+      'methodological claim calibration',
+      'time-dependent bias detection',
+      'rapid response-format switching',
+    ],
     level: 'advanced',
     focus:
       'Exact blueprint performance under rapid switching: extract decisive details from consultation language and four linked Part A texts, distinguish delirium recovery from premature dementia labelling in a selective discharge letter, and reconcile patient autonomy with family anxiety during a high-stakes transition home.',
@@ -104,6 +137,15 @@ export const dailyOetProgression: readonly DailyOetProgressionEntry[] = [
     date: '2026-08-23',
     stage: 7,
     complexityIndex: 7,
+    reasoningLayers: [
+      'exact-evidence discrimination',
+      'causal attribution across bundled interventions',
+      'conditional exception handling',
+      'methodological claim calibration',
+      'time-dependent bias detection',
+      'rapid response-format switching',
+      'produced-answer orthographic precision',
+    ],
     level: 'advanced',
     focus:
       'Produced-answer precision and inherited-risk communication: switch accurately between note completion and single-choice listening, retrieve exact phrases under Reading Part A time pressure, prioritise exertional syncope and familial sudden death in an urgent referral, and preserve confidentiality while negotiating disclosure of actionable genetic risk.',
@@ -112,6 +154,30 @@ export const dailyOetProgression: readonly DailyOetProgressionEntry[] = [
       reading: 'read-81',
       writing: 'write-39',
       speaking: 'speak-39',
+    },
+  },
+  {
+    date: '2026-08-23',
+    stage: 8,
+    complexityIndex: 8,
+    reasoningLayers: [
+      'exact-evidence discrimination',
+      'causal attribution across bundled interventions',
+      'conditional exception handling',
+      'methodological claim calibration',
+      'time-dependent bias detection',
+      'rapid response-format switching',
+      'produced-answer orthographic precision',
+      'triangulation of selection, detection and competing safety duties',
+    ],
+    level: 'advanced',
+    focus:
+      'Triangulated safety reasoning under competing duties: infer a speaker’s audit standard rather than a memorable detail, reject a causal claim distorted by selection and differential detection, transfer a patient while balancing intracranial rebleeding against mechanical-valve thrombosis, and protect adolescent confidentiality while responding proportionately to possible coercion.',
+    taskIds: {
+      listening: 'lis-114',
+      reading: 'read-86',
+      writing: 'write-40',
+      speaking: 'speak-40',
     },
   },
 ];

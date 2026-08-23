@@ -1179,5 +1179,17 @@
       "pregnancy-specific thresholds"
     ],
     "voice": "Samantha"
+  },
+  "lis-114": {
+    "question": "What is the speaker’s main recommendation for reviewing possible missed diagnoses?",
+    "correctAnswer": "Assess how uncertainty and follow-up were managed, not simply count tests or later diagnoses",
+    "script": "When we reviewed possible missed diagnoses, the first dashboard treated any patient who later received a serious diagnosis as evidence that the original clinician should have ordered more tests. That is too crude. Symptoms evolve, and a reasonable initial assessment can still be followed by an unsafe process if nobody owns a pending result or the patient is not told what change should trigger review. Equally, indiscriminate testing adds false positives without guaranteeing safety. Our audit should therefore examine how uncertainty was explained, whether follow-up triggers were explicit and who owned outstanding results, rather than rewarding test volume or judging the first decision only with hindsight.",
+    "speechScript": "When we reviewed possible missed diagnoses, the first dashboard treated any patient who later received a serious diagnosis as evidence that the original clinician should have ordered more tests. That is too crude. Symptoms evolve, and a reasonable initial assessment can still be followed by an unsafe process if nobody owns a pending result or the patient is not told what change should trigger review. Equally, indiscriminate testing adds false positives without guaranteeing safety. Our audit should therefore examine how uncertainty was explained, whether follow up triggers were explicit and who owned outstanding results, rather than rewarding test volume or judging the first decision only with hindsight.",
+    "evidenceTerms": [
+      "too crude",
+      "follow-up triggers were explicit",
+      "owned outstanding results"
+    ],
+    "voice": "Daniel"
   }
 }

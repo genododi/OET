@@ -7,6 +7,7 @@ const SUBTESTS: readonly OetSubtest[] = ['listening', 'reading', 'writing', 'spe
 const seenTaskIds = new Set<string>();
 let previousDate = '';
 let previousComplexityIndex = 0;
+let previousReasoningLayers: readonly string[] = [];
 
 function fail(message: string): never {
   throw new Error(`Daily OET progression failed: ${message}`);
@@ -33,12 +34,22 @@ for (const [index, entry] of dailyOetProgression.entries()) {
   if (entry.complexityIndex <= previousComplexityIndex) {
     fail(`stage ${entry.stage} is not harder than the previous progression stage`);
   }
+  if (entry.reasoningLayers.length !== entry.complexityIndex) {
+    fail(`stage ${entry.stage} must contain ${entry.complexityIndex} cumulative reasoning layers`);
+  }
+  if (new Set(entry.reasoningLayers).size !== entry.reasoningLayers.length) {
+    fail(`stage ${entry.stage} repeats a reasoning layer`);
+  }
+  if (previousReasoningLayers.some((layer) => !entry.reasoningLayers.includes(layer))) {
+    fail(`stage ${entry.stage} drops a reasoning demand from the previous stage`);
+  }
   if (!/^\d{4}-\d{2}-\d{2}$/.test(entry.date)) fail(`${entry.date} is not an ISO date`);
   if (entry.date < previousDate) fail(`${entry.date} is earlier than ${previousDate}`);
   if (entry.level !== 'advanced') fail(`${entry.date} is not advanced`);
   if (entry.focus.trim().length < 80) fail(`${entry.date} needs a specific progression focus`);
   previousDate = entry.date;
   previousComplexityIndex = entry.complexityIndex;
+  previousReasoningLayers = entry.reasoningLayers;
 
   for (const subtest of SUBTESTS) {
     const taskId = entry.taskIds[subtest];
