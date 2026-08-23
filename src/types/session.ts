@@ -16,6 +16,14 @@ export interface WritingRubricItem {
   modelPoint: string;
 }
 
+/** Task-specific evidence needed before a Writing draft can earn a high content score. */
+export interface WritingCriteria {
+  /** Each group represents one clinical concept; any synonym in the group earns that concept. */
+  requiredConceptGroups: string[][];
+  /** Case-note details that should be omitted because they do not serve the reader or purpose. */
+  irrelevantTerms?: string[];
+}
+
 /** Criteria for client-side speaking evaluation (keyword / checklist matching). */
 export interface SpeakingCriteria {
   expectedKeywords: string[];
@@ -47,6 +55,7 @@ export interface SessionTask {
   modelAnswer?: string;
   checklist?: string[];
   rubricChecklist?: WritingRubricItem[];
+  writingCriteria?: WritingCriteria;
   perfectAnswerTips?: string[];
   speakingCriteria?: SpeakingCriteria;
   /** Official or imported listening recording (path under public/ or CDN) */

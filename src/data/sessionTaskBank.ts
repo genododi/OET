@@ -9,7 +9,12 @@
  */
 
 import type { Difficulty, OetSubtest } from '../types';
-import type { SessionTask, SpeakingCriteria, WritingRubricItem } from '../types/session';
+import type {
+  SessionTask,
+  SpeakingCriteria,
+  WritingCriteria,
+  WritingRubricItem,
+} from '../types/session';
 import { hashString } from './generators/uniqueness';
 import listeningTaskAudioDefinitions from './listeningTaskAudio.json';
 import { getReadingPassage } from './readingPassages';
@@ -163,6 +168,96 @@ const defaultWritingRubric = (letterType: string): WritingRubricItem[] => [
   },
 ];
 
+const writingCriteriaByTaskId: Record<string, WritingCriteria> = {
+  'write-33': {
+    requiredConceptGroups: [
+      ['endocarditis'],
+      ['culture-negative', 'no growth'],
+      ['vegetation'],
+      ['aortic regurgitation', 'valve dysfunction'],
+      ['vancomycin', 'ceftriaxone'],
+      ['transoesophageal', 'TOE', 'surgical opinion'],
+    ],
+    irrelevantTerms: ['tennis elbow', 'chess'],
+  },
+  'write-34': {
+    requiredConceptGroups: [
+      ['thrombotic thrombocytopenic purpura', 'TTP'],
+      ['confusion', 'neurological'],
+      ['platelets', 'thrombocytopenia'],
+      ['schistocytes', 'haemolysis', 'hemolysis'],
+      ['ADAMTS13'],
+      ['plasma exchange'],
+    ],
+    irrelevantTerms: ['eczema', 'ankle sprain', 'hiking'],
+  },
+  'write-35': {
+    requiredConceptGroups: [
+      ['euglycaemic diabetic ketoacidosis', 'euglycemic diabetic ketoacidosis', 'DKA'],
+      ['ketones', 'acidosis'],
+      ['empagliflozin', 'SGLT2'],
+      ['metformin'],
+      ['sick-day', 'sick day'],
+      ['48–72 hours', '48-72 hours', 'diabetes clinic'],
+    ],
+    irrelevantTerms: ['seasonal rhinitis', 'dental check'],
+  },
+  'write-36': {
+    requiredConceptGroups: [
+      ['lithium toxicity'],
+      ['confusion', 'tremor', 'gait instability'],
+      ['acute kidney injury', 'creatinine'],
+      ['dehydration', 'volume depletion'],
+      ['lithium has been withheld', 'lithium was withheld'],
+      ['dialysis', 'renal measurements'],
+    ],
+    irrelevantTerms: ['eczema', 'cataract', 'library'],
+  },
+  'write-37': {
+    requiredConceptGroups: [
+      ['serotonin toxicity', 'serotonin syndrome'],
+      ['sertraline'],
+      ['tramadol', 'sumatriptan'],
+      ['clonus', 'hyperreflexia'],
+      ['medicines have been withheld', 'agents have been withheld', 'stopped'],
+      ['diazepam', 'toxicology', 'cardiac monitoring'],
+    ],
+    irrelevantTerms: ['hay fever', 'football'],
+  },
+};
+
+const AUTO_WRITING_STOP_WORDS = new Set([
+  'advice', 'aged', 'after', 'arrange', 'current', 'daily', 'discharge', 'follow',
+  'letter', 'normal', 'patient', 'referral', 'request', 'review', 'today',
+  'transfer', 'urgent', 'write', 'years',
+]);
+
+function autoWritingConceptTerms(value: string): string[] {
+  return [
+    ...new Set(
+      value
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, ' ')
+        .split(' ')
+        .filter((word) => word.length >= 4 && !AUTO_WRITING_STOP_WORDS.has(word)),
+    ),
+  ].slice(0, 6);
+}
+
+function deriveWritingCriteria(title: string, caseNotes: string): WritingCriteria {
+  const titleFocus = title.split('—').at(-1) ?? title;
+  const noteGroups = caseNotes
+    .split('\n')
+    .filter((line) => !/^(pt:|pmh:|no known|write )/i.test(line.trim()))
+    .map(autoWritingConceptTerms)
+    .filter((group) => group.length > 0);
+  const groups = [autoWritingConceptTerms(titleFocus), ...noteGroups]
+    .filter((group) => group.length > 0)
+    .slice(0, 6);
+
+  return { requiredConceptGroups: groups };
+}
+
 function writing(
   id: string,
   title: string,
@@ -179,6 +274,7 @@ function writing(
     sampleAnswer: `Model opening:\n\n${sampleOpening}`,
     modelAnswer: sampleOpening,
     rubricChecklist: defaultWritingRubric(letterType),
+    writingCriteria: writingCriteriaByTaskId[id] ?? deriveWritingCriteria(title, caseNotes),
     checklist: [
       'Correct recipient and salutation',
       'State purpose in opening sentence',
@@ -1160,6 +1256,35 @@ export const listeningTasks: SessionTask[] = [
     ),
     difficulty: 'advanced',
   },
+  {
+    ...mcq(
+      'lis-111',
+      'listening',
+      'Part C — Time-dependent bias seminar',
+      'What is the speaker’s main concern about the reported survival benefit?',
+      [
+        {
+          label: 'Patients had to survive long enough to enter the specialist-review group',
+          correct: true,
+          explanation:
+            'The exposure was assigned from admission even though review happened later, so early deaths could only accumulate in the comparison group.',
+        },
+        {
+          label: 'The study adjusted for too many baseline measures of illness severity',
+          correct: false,
+          explanation:
+            'The speaker says baseline adjustment cannot correct the time-classification error; excessive adjustment is not the concern.',
+        },
+        {
+          label: 'Specialist review was offered to every patient immediately on admission',
+          correct: false,
+          explanation:
+            'Review occurred during a seven-day window, which is precisely why survival before exposure matters.',
+        },
+      ],
+    ),
+    difficulty: 'advanced',
+  },
 ];
 
 export const readingTasks: SessionTask[] = [
@@ -1569,6 +1694,21 @@ export const readingTasks: SessionTask[] = [
     { label: 'The participants were randomised only after they became clinically stable', correct: false },
     { label: 'The shorter course reduced treatment burden', correct: false },
   ]),
+  advancedReadingMcq('read-63', 'Part C — Immortal-time mechanism', 'passage-immortal-time-bias', 'Why is the period before specialist review described as “immortal” for the exposed group?', [
+    { label: 'A patient who died before review could never be classified into that group', correct: true },
+    { label: 'Specialist review prevented every death during the first seven days', correct: false },
+    { label: 'The investigators excluded all follow-up after consultation', correct: false },
+  ]),
+  advancedReadingMcq('read-64', 'Part C — Time-varying correction', 'passage-immortal-time-bias', 'What is the principal advantage of modelling review as a time-varying exposure?', [
+    { label: 'Person-time is classified according to whether review had actually occurred', correct: true },
+    { label: 'It guarantees removal of confounding by clinical deterioration', correct: false },
+    { label: 'It permits length of stay to be treated as a baseline characteristic', correct: false },
+  ]),
+  advancedReadingMcq('read-65', 'Part C — Landmark analysis restraint', 'passage-immortal-time-bias', 'Why does the reviewer not regard the seven-day survivor analysis as causal confirmation?', [
+    { label: 'It changes the population and leaves selection and unmeasured confounding unresolved', correct: true },
+    { label: 'The direction of the association reversed completely', correct: false },
+    { label: 'A landmark analysis must include patients who died before the landmark', correct: false },
+  ]),
 ];
 
 export const writingTasks: SessionTask[] = [
@@ -1918,6 +2058,31 @@ Her lithium concentration is 2.1 mmol/L and creatinine 196 µmol/L, compared wit
 Lithium has been withheld, intravenous 0.9% saline commenced and cardiac monitoring established. Following discussion with your team and toxicology, please assess her immediately for serial lithium and renal measurements, neurological monitoring and the need for dialysis. She requires careful fluid management and review of interacting medicines. Her family has been informed of the urgent transfer.
 
 Please contact me if further information is required.
+
+Yours sincerely,
+
+Dr Maya Hassan`,
+    difficulty: 'advanced',
+  },
+  {
+    ...writing(
+      'write-37',
+      'Emergency transfer — Suspected serotonin toxicity',
+      '23 Aug 2026 — Pt: Mr Adam Cole, 38y\nDepression: sertraline increased to 200 mg daily 3 weeks ago\nMigraine: used sumatriptan this morning\nTramadol commenced 3 days ago after dental extraction\nSince last night: agitation, sweating, diarrhoea, tremor\nTemp 38.7°C, HR 124, BP 168/94, RR 24, SpO2 98% RA\nGCS 14; inducible ankle clonus, lower-limb hyperreflexia; no lead-pipe rigidity\nCK 612 U/L; creatinine 105 µmol/L; glucose normal\nECG sinus tachycardia, QTc 458 ms\nAll serotonergic medicines withheld; IV crystalloid and diazepam given\nContinuous temperature/cardiac monitoring commenced\nToxicology recommends urgent acute-medical transfer and serial CK/renal tests\nPMH: hay fever; plays football weekly\nNo known drug allergies\nWrite an emergency transfer letter prioritising the suspected syndrome, interacting medicines, examination, immediate treatment and requested care',
+      'Dear Acute Medical Registrar,\n\nI am arranging immediate transfer of Mr Adam Cole, aged 38, with suspected serotonin toxicity following exposure to multiple serotonergic medicines.',
+      'Emergency acute-medical transfer',
+    ),
+    modelAnswer: `Dear Acute Medical Registrar,
+
+I am arranging immediate transfer of Mr Adam Cole, aged 38, with suspected serotonin toxicity following exposure to multiple serotonergic medicines.
+
+His sertraline was increased to 200 mg daily three weeks ago. Tramadol was commenced after dental extraction three days ago, and he used sumatriptan this morning. Since last night, he has developed agitation, diaphoresis, diarrhoea and tremor.
+
+Currently, his temperature is 38.7°C, pulse 124, blood pressure 168/94 mmHg and respiratory rate 24. He is mildly confused, with GCS 14, inducible ankle clonus and lower-limb hyperreflexia. There is no lead-pipe rigidity. Creatine kinase is 612 U/L and creatinine 105 µmol/L. ECG demonstrates sinus tachycardia with a QTc of 458 ms.
+
+All serotonergic agents have been withheld. Intravenous crystalloid and diazepam have been administered, and continuous cardiac and temperature monitoring has commenced. Following toxicology advice, please assess him urgently for ongoing supportive care, serial neurological observations, temperature control and repeat creatine kinase and renal measurements. Please also review his longer-term antidepressant, analgesic and migraine therapy before discharge.
+
+Mr Cole’s family has been informed of the transfer. Please contact me if further information is required.
 
 Yours sincerely,
 
@@ -2584,6 +2749,52 @@ export const speakingTasks: SessionTask[] = [
           'I am not trying to save money at the expense of your health; I want us to choose tests that are more likely to help than harm you.',
           'Let us review your symptoms, family history and the screening you are due, then agree exactly what should trigger further investigation.',
           'Could you tell me what you understand our plan to be and what would bring you back sooner?',
+        ],
+      },
+    ),
+    difficulty: 'advanced',
+  },
+  {
+    ...speaking(
+      'speak-37',
+      'Possible pulmonary embolism — informed refusal of transfer',
+      'You are a GP seeing a patient with sudden pleuritic chest pain, breathlessness and unilateral calf swelling after a long flight. Their observations are currently stable, but pulmonary embolism requires urgent hospital assessment. The patient refuses because they are the sole carer for a disabled spouse and say they understand the risk.',
+      [
+        'Acknowledge the caregiving conflict and explore the patient’s understanding and reasons for refusal',
+        'Explain the suspected diagnosis, uncertainty and potentially serious consequences without coercion',
+        'Assess decision-making capacity, mobilise practical support and negotiate urgent transfer',
+        'If refusal persists, document informed refusal and agree the safest possible contingency plan',
+      ],
+      {
+        expectedKeywords: [
+          'breathlessness',
+          'chest pain',
+          'calf swelling',
+          'blood clot',
+          'pulmonary embolism',
+          'risk',
+          'hospital',
+          'capacity',
+          'choice',
+          'spouse',
+          'support',
+          'ambulance',
+          'understand',
+          'worse',
+        ],
+        checklist: [
+          'Validate the caregiving responsibility and ask what makes transfer feel impossible',
+          'Explain the working diagnosis and material risk in plain, balanced language',
+          'Check the patient can understand, retain, weigh and communicate the decision',
+          'Offer immediate help for the spouse and recommend ambulance transfer without threats',
+          'Use teach-back, document informed refusal and safety-net if the patient still declines',
+        ],
+        samplePhrases: [
+          'I can see that leaving your spouse alone feels impossible, and I want us to solve that problem while keeping you safe.',
+          'Your symptoms could be caused by a blood clot in the lung; I cannot confirm that here, and it can become life-threatening even when observations are initially stable.',
+          'Could you explain what you believe may happen if you go home rather than to hospital?',
+          'With your permission, we can contact someone to support your spouse while an ambulance takes you for urgent tests.',
+          'If you still decide not to go, I will respect a capacitated decision, document our discussion and make the safest contingency plan we can.',
         ],
       },
     ),

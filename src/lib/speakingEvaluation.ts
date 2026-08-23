@@ -12,6 +12,8 @@ export interface SpeakingEvaluationResult {
   wordCount: number;
   suggestion: string;
   usedFallback: boolean;
+  /** True only when the score comes from a sufficiently long recorded response. */
+  evidenceQualified: boolean;
   /** OET speaking rubric dimension scores (0–100) */
   dimensions: {
     communication: number;
@@ -117,11 +119,13 @@ export function evaluateSpeakingResponse(
             : 65;
 
   const weights = criteria.dimensionWeights ?? DEFAULT_WEIGHTS;
-  const score = Math.round(
+  const rawScore = Math.round(
     communicationScore * weights.communication +
       clinicalCommunicationScore * weights.clinicalCommunication +
       languageScore * weights.language,
   );
+  const evidenceQualified = !usedFallback && durationSeconds >= 90 && wordCount >= 80;
+  const score = evidenceQualified ? rawScore : Math.min(rawScore, 74);
 
   const baseSuggestion =
     wordCount < 30
@@ -137,8 +141,10 @@ export function evaluateSpeakingResponse(
               : 'Good coverage of key points. Practice again focusing on natural interaction and teach-back.';
 
   const suggestion = usedFallback
-    ? `${baseSuggestion} (Evaluated from typed text — re-record when microphone access is available for fluency scoring.)`
-    : baseSuggestion;
+    ? `${baseSuggestion} Typed text can guide practice but cannot qualify as recorded Grade A evidence.`
+    : durationSeconds < 90 || wordCount < 80
+      ? `${baseSuggestion} Record at least 90 seconds and 80 words before this attempt can qualify as readiness evidence.`
+      : baseSuggestion;
 
   const thresholds = OET_THRESHOLDS.speaking;
 
@@ -162,6 +168,7 @@ export function evaluateSpeakingResponse(
     wordCount,
     suggestion,
     usedFallback,
+    evidenceQualified,
     dimensions: {
       communication: communicationScore,
       clinicalCommunication: clinicalCommunicationScore,

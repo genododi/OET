@@ -33,24 +33,30 @@ for (const subtest of subtests) {
   );
   assert.equal(
     assessGradeATrainingReadiness(subtest, [target, target, target]).status,
-    'target-met',
-    `${subtest} should pass with sustained target-level evidence`,
+    'baseline-needed',
+    `${subtest} must complete four scored attempts`,
   );
   assert.equal(
-    assessGradeATrainingReadiness(subtest, [100, 100, target - 1]).status,
+    assessGradeATrainingReadiness(subtest, [target, target, target, target]).status,
+    'target-met',
+    `${subtest} should pass with four sustained target-level results`,
+  );
+  assert.equal(
+    assessGradeATrainingReadiness(subtest, [100, 100, 100, target - 1]).status,
     'building-consistency',
     `${subtest} must lose mastery after the current streak breaks`,
   );
   assert.equal(
-    assessGradeATrainingReadiness(subtest, [target - 20, target, target]).status,
+    assessGradeATrainingReadiness(subtest, [target - 20, target, target, target]).status,
     'building-consistency',
     `${subtest} must also meet the rolling target`,
   );
 }
 
-assert.equal(GRADE_A_EVIDENCE_REQUIREMENTS.minimumAttempts, 3);
-assert.equal(GRADE_A_EVIDENCE_REQUIREMENTS.consecutiveAtTarget, 2);
+assert.equal(GRADE_A_EVIDENCE_REQUIREMENTS.minimumAttempts, 4);
+assert.equal(GRADE_A_EVIDENCE_REQUIREMENTS.consecutiveAtTarget, 3);
+assert.equal(GRADE_A_EVIDENCE_REQUIREMENTS.recentWindow, 8);
 
 console.log(
-  'Verified conservative Grade A training gates for all four OET sub-tests: minimum evidence, rolling target, and current streak.',
+  'Verified conservative Grade A training gates for all four OET sub-tests: four-attempt minimum, eight-result rolling target, and three-result streak.',
 );

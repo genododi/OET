@@ -84,6 +84,14 @@ function countWords(text: string): number {
   return n.split(' ').filter(Boolean).length;
 }
 
+function evidenceTermMatches(normalizedText: string, term: string): boolean {
+  const normalizedTerm = normalize(term);
+  if (!normalizedTerm) return false;
+  if (normalizedText.includes(normalizedTerm)) return true;
+  const words = normalizedTerm.split(' ').filter(Boolean);
+  return words.length > 1 && words.every((word) => normalizedText.includes(word));
+}
+
 function defaultOptionExplanation(
   optionLabel: string,
   correct: boolean,
@@ -159,7 +167,7 @@ function scoreWritingDimension(
   const n = normalize(text);
   const words = countWords(text);
   const hasDear = /\bdear\b/.test(n);
-  const hasPurpose = /\b(i am writing to|i write to|this letter is to|refer|discharge|transfer|notify)\b/.test(n);
+  const hasPurpose = /\b(i am writing to|i write to|this letter is to|refer|discharg(?:e|ed|ing)|transfer(?:red|ring)?|notify)\b/.test(n);
   const hasSignOff = /\b(yours sincerely|yours faithfully|kind regards)\b/.test(n);
   const hasPatientRef = /\b(mr|mrs|ms|patient|aged \d)\b/.test(n);
   const sentences = text.split(/[.!?]+/).filter((s) => s.trim().length > 8);
@@ -183,12 +191,31 @@ function scoreWritingDimension(
       if (!hasPurpose) gap = 'Missing explicit purpose in opening sentence.';
       break;
     case 'Content':
-      score = (hasPatientRef ? 40 : 0) + (words >= 140 ? 35 : words >= 80 ? 20 : 5) + (words <= 230 ? 20 : 5);
-      feedback =
-        words >= 150 && words <= 210
-          ? 'Word count and clinical content appear appropriate.'
-          : `Aim for 180–200 words with relevant case-note details only (${words} words now).`;
-      if (words < 140 || words > 230) gap = 'Adjust length to 180–200 words with only relevant notes.';
+      if (task.writingCriteria?.requiredConceptGroups.length) {
+        const groups = task.writingCriteria.requiredConceptGroups;
+        const matchedGroups = groups.filter((group) =>
+          group.some((term) => evidenceTermMatches(n, term)),
+        );
+        const irrelevantMatches = (task.writingCriteria.irrelevantTerms ?? []).filter((term) =>
+          evidenceTermMatches(n, term),
+        );
+        const coverage = matchedGroups.length / groups.length;
+        const relevancePoints = irrelevantMatches.length === 0 ? 10 : Math.max(0, 10 - irrelevantMatches.length * 5);
+        score = Math.round(coverage * 85 + relevancePoints);
+        feedback = `${matchedGroups.length}/${groups.length} essential clinical concepts included${irrelevantMatches.length > 0 ? `; omit ${irrelevantMatches.join(', ')}` : '; irrelevant case notes omitted'}.`;
+        if (coverage < 0.8) {
+          gap = `Include the missing purpose-critical case information (${matchedGroups.length}/${groups.length} concepts covered).`;
+        } else if (irrelevantMatches.length > 0) {
+          gap = `Remove irrelevant case-note detail: ${irrelevantMatches.join(', ')}.`;
+        }
+      } else {
+        score = (hasPatientRef ? 40 : 0) + (words >= 140 ? 35 : words >= 80 ? 20 : 5) + (words <= 230 ? 20 : 5);
+        feedback =
+          words >= 150 && words <= 210
+            ? 'Word count and clinical content appear appropriate.'
+            : `Aim for 180–200 words with relevant case-note details only (${words} words now).`;
+        if (words < 140 || words > 230) gap = 'Adjust length to 180–200 words with only relevant notes.';
+      }
       break;
     case 'Conciseness & Clarity':
       score = avgSentenceLen <= 22 && avgSentenceLen >= 8 ? 80 : avgSentenceLen > 28 ? 40 : 55;

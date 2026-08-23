@@ -14,19 +14,19 @@ const SUBTESTS: OetSubtest[] = ['listening', 'reading', 'writing', 'speaking'];
 const PRESCRIPTIONS: Record<OetSubtest, { focus: string; gate: string }> = {
   listening: {
     focus: 'Train evidence capture: numbers, names, negation, and speaker purpose.',
-    gate: 'Three timed sets, with the latest two at 90%+ and every error explained from the audio.',
+    gate: 'Four timed sets, with the latest three at 90%+ and every error explained from the audio.',
   },
   reading: {
     focus: 'Practise fast gist, synonym matching, and rejecting partial-match distractors.',
-    gate: 'Three timed sets, with the latest two at 90%+ without sacrificing Part A timing.',
+    gate: 'Four timed sets, with the latest three at 90%+ without sacrificing Part A timing.',
   },
   writing: {
     focus: 'Write purpose-first, select only relevant notes, and edit for clear professional English.',
-    gate: 'Three letters, with the latest two at 85%+ and every rubric dimension reviewed.',
+    gate: 'Four letters, with the latest three at 85%+ and every rubric dimension reviewed.',
   },
   speaking: {
     focus: 'Lead with empathy, use patient language, signpost clearly, and safety-net naturally.',
-    gate: 'Three recorded role-plays, with the latest two at 85%+ and a complete checklist.',
+    gate: 'Four recorded role-plays, with the latest three at 85%+ and a complete checklist.',
   },
 };
 
@@ -36,7 +36,10 @@ interface Props {
 }
 
 export function GradeACommandCenter({ completed, onStartSmart }: Props) {
-  const summaries = useMemo(() => summarizeSubtestHistory(completed, SUBTESTS, 6), [completed]);
+  const summaries = useMemo(
+    () => summarizeSubtestHistory(completed, SUBTESTS, GRADE_A_EVIDENCE_REQUIREMENTS.recentWindow),
+    [completed],
+  );
   const readinessBySubtest = useMemo(
     () =>
       new Map(
@@ -136,7 +139,7 @@ export function GradeACommandCenter({ completed, onStartSmart }: Props) {
         </button>
       </div>
       <p className="grade-a-disclaimer">
-        Internal readiness targets require at least three recent attempts and two consecutive target-level results. They are not an official OET score conversion; use timed full mocks and qualified feedback to validate exam readiness.
+        Internal readiness targets require at least four recent attempts and three consecutive target-level results. They are not an official OET score conversion; use timed full mocks and qualified feedback to validate exam readiness.
       </p>
     </section>
   );

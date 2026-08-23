@@ -577,6 +577,19 @@ In this study, rescue treatment was more frequent in the short-course group, yet
 
 The shorter course may still be reasonable for the population studied. The point is narrower: non-inferiority depends on an acceptable margin, unbiased conduct, appropriate analysis and an outcome definition that matches the clinical claim. “No significant difference” supplies none of those guarantees by itself.`,
   },
+  'passage-immortal-time-bias': {
+    id: 'passage-immortal-time-bias',
+    title: 'Methods review — Survival before treatment is not a treatment benefit',
+    text: `A retrospective study reported lower 30-day mortality among patients who received specialist review within seven days of admission. The authors classified anyone reviewed during that window as exposed from the day of admission. This creates a period during which a future member of the reviewed group must remain alive in order to receive the consultation. Death cannot occur during that interval for someone who will later be classified as exposed; if it does, the patient is placed in the comparison group instead. This survival time is “immortal” by construction, not because the consultation protected the patient.
+
+The bias can be substantial when early deaths are common or treatment timing varies. Conventional adjustment for baseline age, diagnosis and illness severity does not repair the misclassified time, because the problem concerns when exposure begins. Nor is the issue resolved by adding length of stay as an ordinary covariate: length of stay is partly determined after admission and may itself be affected by survival and treatment.
+
+One approach is to model consultation as a time-varying exposure. Each patient contributes unexposed person-time until review and exposed person-time afterwards. This aligns classification with what was known at each moment, although confounding remains possible because deterioration may trigger consultation. A landmark analysis offers a simpler alternative: include only patients alive at a prespecified time, classify exposure using information available by that landmark and measure subsequent outcomes. However, it changes the target question by excluding people who die early, and the landmark must not be selected after inspecting which choice gives the most favourable result.
+
+The investigators repeated their analysis among seven-day survivors and found a smaller association. They described this as confirmation because the direction of effect persisted. The methods review reaches a more cautious conclusion. Attenuation is compatible with removal of some immortal-time bias, but neither analysis settles whether consultation caused the remaining difference. Patients selected for review may have different prognoses, goals of care or access to services, including factors that were not measured reliably.
+
+The study can support a hypothesis that timely specialist input may help. It cannot justify translating the original association directly into “lives saved”. A credible causal estimate requires correct alignment of eligibility, exposure assignment and follow-up, followed by serious attention to time-dependent confounding and the clinical process that determined who was reviewed when.`,
+  },
 };
 
 export function getReadingPassage(id: string): ReadingPassage | undefined {

@@ -102,6 +102,14 @@ for (const task of bankBySubtest.reading) {
 }
 for (const task of bankBySubtest.writing) {
   assert.ok(task.rubricChecklist?.length, `${task.id} is missing a writing rubric`);
+  assert.ok(
+    task.writingCriteria?.requiredConceptGroups.length,
+    `${task.id} is missing task-specific clinical content criteria`,
+  );
+  assert.ok(
+    task.writingCriteria?.requiredConceptGroups.every((group) => group.length > 0),
+    `${task.id} has an empty clinical content group`,
+  );
 }
 for (const task of bankBySubtest.speaking) {
   assert.ok(task.speakingCriteria, `${task.id} is missing speaking assessment criteria`);

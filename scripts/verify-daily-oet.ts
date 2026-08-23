@@ -80,6 +80,12 @@ for (const [index, entry] of dailyOetProgression.entries()) {
       if (!task.rubricChecklist || task.rubricChecklist.length < 6) {
         fail(`${taskId} needs all six writing rubric dimensions`);
       }
+      if (!task.writingCriteria || task.writingCriteria.requiredConceptGroups.length < 6) {
+        fail(`${taskId} needs at least six task-specific clinical content groups`);
+      }
+      if (task.writingCriteria.requiredConceptGroups.some((group) => group.length === 0)) {
+        fail(`${taskId} has an empty clinical content group`);
+      }
     }
 
     if (subtest === 'speaking') {

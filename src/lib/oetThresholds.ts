@@ -23,9 +23,9 @@ export const GRADE_A_TRAINING_TARGETS = {
 } as const;
 
 export const GRADE_A_EVIDENCE_REQUIREMENTS = {
-  minimumAttempts: 3,
-  consecutiveAtTarget: 2,
-  recentWindow: 6,
+  minimumAttempts: 4,
+  consecutiveAtTarget: 3,
+  recentWindow: 8,
 } as const;
 
 export type GradeATrainingStatus =
@@ -45,7 +45,7 @@ export interface GradeATrainingReadiness {
 /**
  * A single excellent set is not enough to claim Grade A training mastery.
  * Require a minimum sample, a recency-weighted average at target, and a current
- * two-attempt streak. This remains an internal coaching gate, not an official
+ * three-attempt streak. This remains an internal coaching gate, not an official
  * OET score conversion or pass prediction.
  */
 export function assessGradeATrainingReadiness(

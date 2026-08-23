@@ -72,4 +72,18 @@ export const dailyOetProgression: readonly DailyOetProgressionEntry[] = [
       speaking: 'speak-36',
     },
   },
+  {
+    date: '2026-08-23',
+    stage: 5,
+    complexityIndex: 5,
+    level: 'advanced',
+    focus:
+      'Validity under time-dependent exposure and autonomy under immediate risk: identify immortal-time bias from spoken and written evidence, select the decisive facts in a polypharmacy emergency transfer, and negotiate urgent assessment with a capacitated patient whose caregiving duties conflict with safety.',
+    taskIds: {
+      listening: 'lis-111',
+      reading: 'read-63',
+      writing: 'write-37',
+      speaking: 'speak-37',
+    },
+  },
 ];

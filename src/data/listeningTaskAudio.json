@@ -1143,5 +1143,17 @@
       "equivalence"
     ],
     "voice": "Daniel"
+  },
+  "lis-111": {
+    "question": "What is the speaker’s main concern about the reported survival benefit?",
+    "correctAnswer": "Patients had to survive long enough to enter the specialist-review group",
+    "script": "The headline says specialist review within seven days improved survival, but look at how exposure was assigned. To enter the reviewed group, a patient had to survive long enough to receive the consultation. Early deaths could only enter the comparison group, creating immortal time. Adjusting baseline severity cannot repair that timing error. Consultation should be modelled as a time-varying exposure, while still addressing why some patients were reviewed earlier than others.",
+    "speechScript": "The headline says specialist review within seven days improved survival, but look at how exposure was assigned. To enter the reviewed group, a patient had to survive long enough to receive the consultation. Early deaths could only enter the comparison group, creating immortal time. Adjusting baseline severity cannot repair that timing error. Consultation should be modelled as a time varying exposure, while still addressing why some patients were reviewed earlier than others.",
+    "evidenceTerms": [
+      "survive long enough",
+      "comparison group",
+      "immortal time"
+    ],
+    "voice": "Karen"
   }
 }
