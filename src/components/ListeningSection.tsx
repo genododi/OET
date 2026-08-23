@@ -1,5 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { SessionTask } from '../types/session';
+import {
+  correctAnswerLabel,
+  isTaskAnswerCorrect,
+  oetResponseMode,
+} from '../lib/oetResponseMode';
 
 interface Props {
   tasks: SessionTask[];
@@ -9,14 +14,9 @@ interface Props {
   onReveal: (taskId: string) => void;
 }
 
-function correctLabel(task: SessionTask): string {
-  return task.options?.find((option) => option.correct)?.label ?? '';
-}
-
 function isCorrectAnswer(task: SessionTask, userText: string | undefined): boolean | null {
-  const label = correctLabel(task);
-  if (!label || !userText) return null;
-  return userText.trim().toLowerCase() === label.trim().toLowerCase();
+  if (!userText) return null;
+  return isTaskAnswerCorrect(task, userText);
 }
 
 export default function ListeningSection({ tasks, answers, onAnswer, revealed, onReveal }: Props) {
@@ -96,17 +96,46 @@ export default function ListeningSection({ tasks, answers, onAnswer, revealed, o
             </div>
             <p className="listening-question-prompt">{task.prompt}</p>
             <div className="session-response">
-              <label htmlFor={`ls-text-${task.id}`}>Your answer</label>
-              <input
-                id={`ls-text-${task.id}`}
-                type="text"
-                className="session-text-input"
-                value={answers[task.id] ?? ''}
-                onChange={(event) => onAnswer(task.id, event.target.value)}
-                placeholder="Type your answer..."
-                disabled={revealed[task.id]}
-                autoComplete="off"
-              />
+              {oetResponseMode(task) === 'short-text' ? (
+                <>
+                  <label htmlFor={`ls-text-${task.id}`}>Your answer</label>
+                  <input
+                    id={`ls-text-${task.id}`}
+                    type="text"
+                    className="session-text-input"
+                    value={answers[task.id] ?? ''}
+                    onChange={(event) => onAnswer(task.id, event.target.value)}
+                    placeholder="Type the word or short phrase..."
+                    disabled={revealed[task.id]}
+                    autoComplete="off"
+                  />
+                </>
+              ) : (
+                <fieldset className="session-mcq">
+                  <legend className="sr-only">Select an answer</legend>
+                  {task.options?.map((option) => {
+                    const selected = answers[task.id] === option.id;
+                    const isUserWrong = revealed[task.id] && selected && !option.correct;
+                    const isCorrect = revealed[task.id] && option.correct;
+                    return (
+                      <label
+                        key={option.id}
+                        className={`session-option ${selected ? 'session-option-selected' : ''} ${isUserWrong ? 'session-option-wrong' : ''} ${isCorrect ? 'session-option-correct' : ''}`}
+                      >
+                        <input
+                          type="radio"
+                          name={task.id}
+                          value={option.id}
+                          checked={selected}
+                          onChange={() => onAnswer(task.id, option.id)}
+                          disabled={revealed[task.id]}
+                        />
+                        {option.label}
+                      </label>
+                    );
+                  })}
+                </fieldset>
+              )}
               {!revealed[task.id] && (
                 <button
                   type="button"
@@ -121,7 +150,7 @@ export default function ListeningSection({ tasks, answers, onAnswer, revealed, o
                 <div className={`listening-feedback ${isCorrectAnswer(task, answers[task.id]) ? 'listening-feedback-correct' : 'listening-feedback-incorrect'}`}>
                   {isCorrectAnswer(task, answers[task.id])
                     ? '✓ Correct'
-                    : `✗ Incorrect — correct answer: "${correctLabel(task)}"`}
+                    : `✗ Incorrect — correct answer: "${correctAnswerLabel(task)}"`}
                 </div>
               )}
             </div>

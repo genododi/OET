@@ -20,6 +20,7 @@ import { saveUsmleSession } from '../lib/usmleAnalytics';
 import { LabValuesPanel } from './LabValuesPanel';
 import { CalculatorPanel } from './CalculatorPanel';
 import { QuestionFlagButton } from './QuestionFlagButton';
+import { isTaskAnswerCorrect, oetResponseMode } from '../lib/oetResponseMode';
 
 interface Props {
   config: SessionConfig;
@@ -117,9 +118,7 @@ export function SessionRunner({ config, onExit }: Props) {
     const mcqTasks = config.tasks.filter((t) => t.options?.length);
     let correct = 0;
     mcqTasks.forEach((t) => {
-      const selected = answers[t.id];
-      const right = t.options?.find((o) => o.correct);
-      if (selected && right && selected === right.id) correct += 1;
+      if (isTaskAnswerCorrect(t, answers[t.id])) correct += 1;
     });
 
     const isUsmle = config.kind === 'usmle-block' || config.kind === 'usmle-custom';
@@ -428,7 +427,7 @@ export function SessionRunner({ config, onExit }: Props) {
             </div>
           )}
 
-          {task.options && task.subtest === 'listening' && !listeningGroup && (
+          {task.options && oetResponseMode(task) === 'short-text' && !listeningGroup && (
             <div className="session-response">
               <label htmlFor={`text-${task.id}`}>Your answer</label>
               <input
@@ -454,7 +453,7 @@ export function SessionRunner({ config, onExit }: Props) {
             </div>
           )}
 
-          {task.options && task.subtest !== 'listening' && (
+          {task.options && oetResponseMode(task) === 'single-choice' && (
             <fieldset className="session-mcq">
               <legend className="sr-only">Select an answer</legend>
               {task.options.map((opt) => {

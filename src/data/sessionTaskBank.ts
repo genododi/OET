@@ -236,6 +236,17 @@ const writingCriteriaByTaskId: Record<string, WritingCriteria> = {
     ],
     irrelevantTerms: ['cataract', 'gardening'],
   },
+  'write-39': {
+    requiredConceptGroups: [
+      ['exertional syncope', 'collapsed while running'],
+      ['QTc', 'long QT', 'prolonged QT'],
+      ['father', 'sudden death'],
+      ['escitalopram', 'withheld'],
+      ['electrolytes', 'echocardiogram', 'structurally normal'],
+      ['inherited arrhythmia', 'driving', 'strenuous exercise'],
+    ],
+    irrelevantTerms: ['eczema', 'pottery'],
+  },
 };
 
 const AUTO_WRITING_STOP_WORDS = new Set([
@@ -1326,6 +1337,35 @@ export const listeningTasks: SessionTask[] = [
     ),
     difficulty: 'advanced',
   },
+  {
+    ...mcq(
+      'lis-113',
+      'listening',
+      'Part B — Maternity observation briefing',
+      'What is the main reason for introducing the new observation chart?',
+      [
+        {
+          label: 'Generic thresholds can conceal deterioration during pregnancy',
+          correct: true,
+          explanation:
+            'The speaker explains that physiological changes can make a generic chart appear reassuring, so pregnancy-specific triggers are needed.',
+        },
+        {
+          label: 'Staff have repeatedly failed to record routine observations',
+          correct: false,
+          explanation:
+            'The speaker explicitly says the change is not a response to missing observations or staff failure.',
+        },
+        {
+          label: 'Every abnormal observation will now require immediate intensive care',
+          correct: false,
+          explanation:
+            'The chart prompts appropriate escalation; it does not send every abnormal value directly to intensive care.',
+        },
+      ],
+    ),
+    difficulty: 'advanced',
+  },
 ];
 
 export const readingTasks: SessionTask[] = [
@@ -1762,38 +1802,53 @@ export const readingTasks: SessionTask[] = [
   advancedReadingMcq('read-69', 'Part A — Post-acute cognition', 'passage-delirium-part-a-set', 'Which text recommends delaying formal cognitive assessment until the acute episode settles?', [
     { label: 'Text D', correct: true }, { label: 'Text A', correct: false }, { label: 'Text B', correct: false }, { label: 'Text C', correct: false },
   ]),
-  advancedReadingMcq('read-70', 'Part A — Establishing baseline', 'passage-delirium-part-a-set', 'Information about the patient’s usual cognition should be obtained from…', [
+  advancedReadingMcq('read-70', 'Part A short answer — Establishing baseline', 'passage-delirium-part-a-set', 'Information about the patient’s usual cognition should be obtained from…', [
     { label: 'someone who knows the patient', correct: true }, { label: 'a single screening score', correct: false }, { label: 'discharge documentation alone', correct: false },
   ]),
-  advancedReadingMcq('read-71', 'Part A — Examination beyond history', 'passage-delirium-part-a-set', 'Which two contributors should be examined for rather than excluded from history alone?', [
+  advancedReadingMcq('read-71', 'Part A short answer — Examination beyond history', 'passage-delirium-part-a-set', 'Which two contributors should be examined for rather than excluded from history alone?', [
     { label: 'urinary retention and constipation', correct: true }, { label: 'hearing and vision loss', correct: false }, { label: 'head injury and meningism', correct: false },
   ]),
-  advancedReadingMcq('read-72', 'Part A — Familiar reassurance', 'passage-delirium-part-a-set', 'Relatives or carers may help by providing…', [
+  advancedReadingMcq('read-72', 'Part A short answer — Familiar reassurance', 'passage-delirium-part-a-set', 'Relatives or carers may help by providing…', [
     { label: 'reassurance', correct: true }, { label: 'physical restraint', correct: false }, { label: 'routine sedatives', correct: false },
   ]),
-  advancedReadingMcq('read-73', 'Part A — Discharge record', 'passage-delirium-part-a-set', 'The discharge document should identify who will decide whether withheld medicines are…', [
+  advancedReadingMcq('read-73', 'Part A short answer — Discharge record', 'passage-delirium-part-a-set', 'The discharge document should identify who will decide whether withheld medicines are…', [
     { label: 'restarted', correct: true }, { label: 'destroyed', correct: false }, { label: 'relabelled', correct: false },
   ]),
-  advancedReadingMcq('read-74', 'Part A — Rapid screening tool', 'passage-delirium-part-a-set', 'Which tool is named as supporting rapid delirium screening?', [
+  advancedReadingMcq('read-74', 'Part A short answer — Rapid screening tool', 'passage-delirium-part-a-set', 'Which tool is named as supporting rapid delirium screening?', [
     { label: '4AT', correct: true }, { label: 'MoCA', correct: false }, { label: 'GCS', correct: false },
   ]),
-  advancedReadingMcq('read-75', 'Part A — Medicine review scope', 'passage-delirium-part-a-set', 'The medicine review should include prescribed drugs, recently stopped drugs and…', [
+  advancedReadingMcq('read-75', 'Part A short answer — Medicine review scope', 'passage-delirium-part-a-set', 'The medicine review should include prescribed drugs, recently stopped drugs and…', [
     { label: 'over-the-counter medicines', correct: true }, { label: 'only antimicrobial medicines', correct: false }, { label: 'future repeat prescriptions', correct: false },
   ]),
-  advancedReadingMcq('read-76', 'Part A — Potentially harmful intervention', 'passage-delirium-part-a-set', 'Which intervention may intensify distress and harm?', [
+  advancedReadingMcq('read-76', 'Part A short answer — Potentially harmful intervention', 'passage-delirium-part-a-set', 'Which intervention may intensify distress and harm?', [
     { label: 'physical restraint', correct: true }, { label: 'familiar objects', correct: false }, { label: 'daylight exposure', correct: false },
   ]),
-  advancedReadingMcq('read-77', 'Part A — Diagnostic restraint', 'passage-delirium-part-a-set', 'Why should a low cognitive score during acute illness be interpreted cautiously?', [
+  advancedReadingMcq('read-77', 'Part A short answer — Diagnostic restraint', 'passage-delirium-part-a-set', 'Why should a low cognitive score during acute illness be interpreted cautiously?', [
     { label: 'It cannot by itself establish dementia', correct: true }, { label: 'It rules out hypoactive delirium', correct: false }, { label: 'It measures only functional status', correct: false },
   ]),
-  advancedReadingMcq('read-78', 'Part A — Immediate targeted assessment', 'passage-delirium-part-a-set', 'Which finding specifically requires immediate targeted assessment?', [
+  advancedReadingMcq('read-78', 'Part A short answer — Immediate targeted assessment', 'passage-delirium-part-a-set', 'Which finding specifically requires immediate targeted assessment?', [
     { label: 'new focal neurology', correct: true }, { label: 'a familiar object at the bedside', correct: false }, { label: 'improving cognition at discharge', correct: false },
   ]),
-  advancedReadingMcq('read-79', 'Part A — Protecting sleep', 'passage-delirium-part-a-set', 'Sleep is listed with hydration, nutrition, mobility and…', [
+  advancedReadingMcq('read-79', 'Part A short answer — Protecting sleep', 'passage-delirium-part-a-set', 'Sleep is listed with hydration, nutrition, mobility and…', [
     { label: 'orientation', correct: true }, { label: 'indiscriminate testing', correct: false }, { label: 'routine drug treatment', correct: false },
   ]),
-  advancedReadingMcq('read-80', 'Part A — Incomplete recovery', 'passage-delirium-part-a-set', 'When recovery remains incomplete, the guidance recommends…', [
+  advancedReadingMcq('read-80', 'Part A short answer — Incomplete recovery', 'passage-delirium-part-a-set', 'When recovery remains incomplete, the guidance recommends…', [
     { label: 'early clinical review', correct: true }, { label: 'automatic dementia diagnosis', correct: false }, { label: 'restarting every withheld medicine', correct: false },
+  ]),
+  advancedReadingMcq('read-81', 'Part A short answer — Medicine effects', 'passage-delirium-part-a-set', 'Complete: Medicines with ___ or sedative effects require particular review.', [
+    { label: 'anticholinergic', correct: true }, { label: 'antimicrobial', correct: false }, { label: 'anticoagulant', correct: false },
+  ]),
+  advancedReadingMcq('read-82', 'Part A short answer — Physiological emergency', 'passage-delirium-part-a-set', 'Which metabolic finding is named as requiring immediate targeted assessment?', [
+    { label: 'hypoglycaemia', correct: true }, { label: 'hyperlipidaemia', correct: false }, { label: 'hyperuricaemia', correct: false },
+  ]),
+  advancedReadingMcq('read-83', 'Part A short answer — Sensory support', 'passage-delirium-part-a-set', 'Which two senses should supportive management protect?', [
+    { label: 'hearing and vision', correct: true }, { label: 'taste and smell', correct: false }, { label: 'touch and balance', correct: false },
+  ]),
+  advancedReadingMcq('read-84', 'Part A short answer — First-line response', 'passage-delirium-part-a-set', 'What should come before medicine when a patient is distressed?', [
+    { label: 'de-escalation and environmental measures', correct: true }, { label: 'physical restraint', correct: false }, { label: 'routine sedation', correct: false },
+  ]),
+  advancedReadingMcq('read-85', 'Part A short answer — Outstanding work', 'passage-delirium-part-a-set', 'Complete: Discharge documentation should state any unresolved ___.', [
+    { label: 'investigation', correct: true }, { label: 'appointment', correct: false }, { label: 'prescription', correct: false },
   ]),
 ];
 
@@ -2194,6 +2249,31 @@ Mrs Rahman is now afebrile, eating and independently mobile. Her attention has i
 Please review her within 72 hours, including hydration, urinary symptoms and the revised medication list. Reassess cognition in four to six weeks and consider memory-clinic referral if deficits persist. Her daughter will stay for the first week and supervise medicines. The family should seek urgent care for marked recurrent confusion, fever, inability to pass urine or reduced intake.
 
 Please contact me if further information is required.
+
+Yours sincerely,
+
+Dr Maya Hassan`,
+    difficulty: 'advanced',
+  },
+  {
+    ...writing(
+      'write-39',
+      'Urgent referral — Exertional syncope with inherited arrhythmia risk',
+      '23 Aug 2026 — Pt: Ms Nadia Farouk, 29y\nCollapsed while running this morning; brief loss of consciousness, rapid recovery\nNo prodrome; reports intermittent exertional palpitations for 2 months\nNo tongue biting, incontinence or post-ictal confusion\nFather died suddenly aged 35; paternal aunt has an implanted defibrillator\nECG: sinus rhythm, QTc 526 ms; no acute ischaemic change\nElectrolytes including Mg/Ca normal; troponin negative\nEchocardiogram: structurally normal heart, preserved function\nEscitalopram started 4 weeks ago for anxiety — withheld today because of QT prolongation\nDiscussed with cardiology: urgent inherited-arrhythmia assessment\nNeeds ambulatory monitoring, exercise testing and consideration of genetic evaluation\nAdvised not to drive or undertake strenuous exercise pending specialist review\nReturn urgently for recurrent syncope, sustained palpitations or chest pain\nPMH: mild eczema; attends pottery class\nNo known drug allergies\nWrite an urgent cardiology referral prioritising risk, findings, medicine action and requested assessment',
+      'Dear Cardiology Registrar,\n\nI am referring Ms Nadia Farouk, aged 29, urgently following exertional syncope with marked QT prolongation and a concerning family history of sudden cardiac death.',
+      'Urgent cardiology referral',
+    ),
+    modelAnswer: `Dear Cardiology Registrar,
+
+I am writing to refer Ms Nadia Farouk, aged 29, urgently following exertional syncope with marked QT prolongation and a concerning family history of sudden cardiac death.
+
+She collapsed while running this morning, with brief loss of consciousness and rapid recovery. There was no prodrome, tongue biting, incontinence or post-ictal confusion. She also reports two months of intermittent exertional palpitations. Her father died suddenly aged 35, and a paternal aunt has an implanted defibrillator.
+
+ECG shows sinus rhythm with a QTc of 526 ms and no acute ischaemic change. Electrolytes, including magnesium and calcium, are normal, troponin is negative and echocardiography demonstrates a structurally normal heart with preserved function. Escitalopram, commenced four weeks ago, has been withheld because of its potential contribution to QT prolongation.
+
+Following discussion with your team, please assess her urgently for an inherited arrhythmia, ambulatory monitoring, exercise testing and genetic evaluation. She has been advised not to drive or undertake strenuous exercise pending review. She should seek immediate help for recurrent syncope, sustained palpitations or chest pain.
+
+Ms Farouk understands the concern and the need for prompt assessment. Please contact me if further information is required.
 
 Yours sincerely,
 
@@ -2957,6 +3037,52 @@ export const speakingTasks: SessionTask[] = [
     ),
     difficulty: 'advanced',
   },
+  {
+    ...speaking(
+      'speak-39',
+      'Inherited long-QT result — confidentiality and family risk',
+      'You are a cardiology doctor discussing a pathogenic long-QT result with a patient who has adult siblings at possible risk. The patient refuses to tell them because of longstanding family conflict and asks you to promise that nobody else will be contacted.',
+      [
+        'Acknowledge the family conflict and explore the patient’s fears about sharing the result',
+        'Explain variable expression, possible cardiac risk and the value of relatives seeking assessment in plain language',
+        'Discuss confidentiality and its limits neutrally without threats or promises you cannot keep',
+        'Offer genetics-supported disclosure options, follow-up and a clear check of understanding',
+      ],
+      {
+        expectedKeywords: [
+          'long QT',
+          'genetic',
+          'heart rhythm',
+          'fainting',
+          'sudden death',
+          'siblings',
+          'risk',
+          'confidential',
+          'choice',
+          'letter',
+          'genetics',
+          'support',
+          'follow-up',
+          'understand',
+        ],
+        checklist: [
+          'Explore the family conflict and what the patient fears would happen after disclosure',
+          'Explain actionable inherited risk without saying every relative will definitely be affected',
+          'Describe confidentiality limits calmly and offer senior or ethics review if the impasse persists',
+          'Offer a genetics-supported family letter or another disclosure route controlled by the patient',
+          'Use teach-back and arrange follow-up rather than forcing an immediate decision',
+        ],
+        samplePhrases: [
+          'I hear that contact with your family has been painful, and I would like to understand what you fear might happen if this information is shared.',
+          'The variant can affect the heart rhythm, but its effects vary; assessment could help your siblings understand and reduce their own risk.',
+          'Confidentiality is very important. I cannot make an absolute promise before we have considered the risk carefully, and I would involve senior and genetics colleagues before any exceptional disclosure.',
+          'A family letter can explain the health information without sharing unnecessary details about you, and the genetics team can help you decide how it is passed on.',
+          'Could you tell me what you understand about the risk and which option you might be willing to reconsider at our follow-up?',
+        ],
+      },
+    ),
+    difficulty: 'advanced',
+  },
 ];
 
 const ADVANCED_CHALLENGE: Record<OetSubtest, string> = {
@@ -3079,6 +3205,10 @@ export function oetTaskPart(task: SessionTask): OetPart | null {
   return (match?.[1]?.toUpperCase() as OetPart | undefined) ?? null;
 }
 
+export function isReadingPartAShortAnswer(task: SessionTask): boolean {
+  return task.subtest === 'reading' && /\bPart A short answer\b/i.test(task.title);
+}
+
 /** Select an exact exam-part quota; fail loudly instead of silently shortening a mock. */
 export function pickTasksByPart(
   subtest: Extract<OetSubtest, 'listening' | 'reading'>,
@@ -3106,4 +3236,34 @@ export function pickTasksByPart(
     ...task,
     id: `${prefix}-${task.id}`,
   }));
+}
+
+/** Reading Part A questions 1–7 match texts; questions 8–20 produce short answers. */
+export function pickReadingPartATasks(
+  prefix: string,
+  seed: string,
+  difficultyFilter?: Difficulty,
+): SessionTask[] {
+  let pool = bankBySubtest.reading.filter((task) => oetTaskPart(task) === 'A');
+  if (difficultyFilter === 'advanced') {
+    pool = pool.filter((task) => task.difficulty === 'advanced');
+  } else if (difficultyFilter) {
+    pool = pool.filter((task) => !task.difficulty || task.difficulty === difficultyFilter);
+  }
+
+  const matchingPool = pool.filter((task) => !isReadingPartAShortAnswer(task));
+  const shortAnswerPool = pool.filter(isReadingPartAShortAnswer);
+  const matchingCount = 7;
+  const shortAnswerCount = 13;
+  if (matchingPool.length < matchingCount || shortAnswerPool.length < shortAnswerCount) {
+    throw new Error(
+      `Reading Part A needs ${matchingCount} matching and ${shortAnswerCount} short-answer tasks; live bank has ${matchingPool.length} and ${shortAnswerPool.length}`,
+    );
+  }
+
+  const selected = [
+    ...seededShuffle(matchingPool, `${prefix}|${seed}|reading|Part A|matching`).slice(0, matchingCount),
+    ...seededShuffle(shortAnswerPool, `${prefix}|${seed}|reading|Part A|short`).slice(0, shortAnswerCount),
+  ];
+  return selected.map((task) => ({ ...task, id: `${prefix}-${task.id}` }));
 }

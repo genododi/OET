@@ -100,4 +100,18 @@ export const dailyOetProgression: readonly DailyOetProgressionEntry[] = [
       speaking: 'speak-38',
     },
   },
+  {
+    date: '2026-08-23',
+    stage: 7,
+    complexityIndex: 7,
+    level: 'advanced',
+    focus:
+      'Produced-answer precision and inherited-risk communication: switch accurately between note completion and single-choice listening, retrieve exact phrases under Reading Part A time pressure, prioritise exertional syncope and familial sudden death in an urgent referral, and preserve confidentiality while negotiating disclosure of actionable genetic risk.',
+    taskIds: {
+      listening: 'lis-113',
+      reading: 'read-81',
+      writing: 'write-39',
+      speaking: 'speak-39',
+    },
+  },
 ];

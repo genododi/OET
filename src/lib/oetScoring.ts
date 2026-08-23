@@ -6,6 +6,7 @@ import {
   type OetSpeakingEvaluation,
 } from './speakingEvaluation';
 import { OET_THRESHOLDS, getReadinessLevel, readinessLabel } from './oetThresholds';
+import { isTaskAnswerCorrect, oetResponseMode } from './oetResponseMode';
 
 export { OET_THRESHOLDS, getReadinessLevel, readinessLabel };
 export type { ReadinessLevel } from './oetThresholds';
@@ -112,8 +113,14 @@ export function evaluateMcqAnswer(task: SessionTask, userAnswerId: string | unde
   const correctOpt = task.options.find((o) => o.correct);
   if (!correctOpt) return null;
 
-  const selected = task.options.find((o) => o.id === userAnswerId);
-  const correct = selected?.correct === true;
+  const responseMode = oetResponseMode(task);
+  const selected = responseMode === 'single-choice'
+    ? task.options.find((o) => o.id === userAnswerId)
+    : undefined;
+  const selectedLabel = responseMode === 'short-text'
+    ? userAnswerId?.trim() || null
+    : selected?.label ?? null;
+  const correct = isTaskAnswerCorrect(task, userAnswerId);
 
   const optionFeedback = task.options.map((opt) => ({
     id: opt.id,
@@ -133,7 +140,7 @@ export function evaluateMcqAnswer(task: SessionTask, userAnswerId: string | unde
     task.explanation ??
     (correct
       ? `Correct. ${correctOpt.explanation ?? `"${correctOpt.label}" is the best-supported answer.`}`
-      : `Incorrect. ${selected ? `"${selected.label}" does not match the ${task.subtest === 'listening' ? 'recording' : 'text'}.` : 'No answer selected.'} ${correctOpt.explanation ?? `The correct answer is "${correctOpt.label}".`}`);
+      : `Incorrect. ${selectedLabel ? `"${selectedLabel}" does not match the ${task.subtest === 'listening' ? 'recording' : 'text'}.` : 'No answer selected.'} ${correctOpt.explanation ?? `The correct answer is "${correctOpt.label}".`}`);
 
   const perfectAnswerTips =
     task.perfectAnswerTips ??
@@ -151,7 +158,7 @@ export function evaluateMcqAnswer(task: SessionTask, userAnswerId: string | unde
 
   return {
     correct,
-    selectedLabel: selected?.label ?? null,
+    selectedLabel,
     correctLabel: correctOpt.label,
     explanation,
     optionFeedback,
@@ -323,9 +330,7 @@ export function computeSubtestScore(
   if (mcqTasks.length > 0) {
     let correct = 0;
     mcqTasks.forEach((t) => {
-      const selected = answers[t.id];
-      const right = t.options?.find((o) => o.correct);
-      if (selected && right && selected === right.id) correct += 1;
+      if (isTaskAnswerCorrect(t, answers[t.id])) correct += 1;
     });
     percentScore = Math.round((correct / mcqTasks.length) * 100);
     if (percentScore < OET_THRESHOLDS[subtest].examReady) {
@@ -412,30 +417,14 @@ export function computeSessionReview(
     .filter((t) => t.subtest !== 'intro' && t.subtest !== 'break')
     .map((t): TaskReviewSnapshot => {
       if (t.options?.length) {
-        if (t.subtest === 'listening') {
-          const userText = (answers[t.id] ?? '').trim();
-          const correctOpt = t.options.find((o) => o.correct);
-          const correctLabel = correctOpt?.label ?? '';
-          const passed = userText.toLowerCase() === correctLabel.toLowerCase();
-          return {
-            taskId: t.id,
-            subtest: t.subtest as SubtestType,
-            passed: userText ? passed : null,
-            scorePercent: userText ? (passed ? 100 : 0) : null,
-            summary: passed
-              ? `Correct — "${userText}"`
-              : userText
-                ? `Incorrect — you wrote "${userText}", correct is "${correctLabel}"`
-                : 'Not attempted',
-          } as TaskReviewSnapshot;
-        }
         const ev = evaluateMcqAnswer(t, answers[t.id]);
+        const hasAnswer = Boolean((answers[t.id] ?? '').trim());
         return {
           taskId: t.id,
           subtest: t.subtest as SubtestType,
-          passed: ev?.correct ?? null,
-          scorePercent: ev ? (ev.correct ? 100 : 0) : null,
-          summary: ev?.explanation ?? 'Not attempted',
+          passed: hasAnswer ? ev?.correct ?? false : null,
+          scorePercent: hasAnswer && ev ? (ev.correct ? 100 : 0) : null,
+          summary: hasAnswer ? ev?.explanation ?? 'Unable to score answer' : 'Not attempted',
         } as TaskReviewSnapshot;
       }
       if (t.subtest === 'writing') {

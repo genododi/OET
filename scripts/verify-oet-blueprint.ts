@@ -1,6 +1,10 @@
 import assert from 'node:assert/strict';
 import { mockExams } from '../src/data/mockExams';
-import { bankBySubtest, oetTaskPart } from '../src/data/sessionTaskBank';
+import {
+  bankBySubtest,
+  isReadingPartAShortAnswer,
+  oetTaskPart,
+} from '../src/data/sessionTaskBank';
 import {
   OET_FULL_TEST_MINUTES,
   OET_PARTS,
@@ -61,6 +65,15 @@ for (const subtest of subtests.filter(hasOetPartBlueprint)) {
     );
   }
 }
+const readingPartABank = bankBySubtest.reading.filter((task) => oetTaskPart(task) === 'A');
+assert.ok(
+  readingPartABank.filter((task) => !isReadingPartAShortAnswer(task)).length >= 10,
+  'Reading Part A needs seven matching tasks plus three reserves',
+);
+assert.ok(
+  readingPartABank.filter(isReadingPartAShortAnswer).length >= 16,
+  'Reading Part A needs thirteen short-answer tasks plus three reserves',
+);
 
 let fullMocks = 0;
 for (const exam of mockExams) {
@@ -104,6 +117,24 @@ for (const exam of mockExams) {
         expectedPartOrder,
         `${exam.id} does not present ${subtest} Parts A, B and C in exam order`,
       );
+      if (subtest === 'reading') {
+        const partA = subtestTasks.filter((task) => oetTaskPart(task) === 'A');
+        assert.equal(
+          partA.filter((task) => !isReadingPartAShortAnswer(task)).length,
+          7,
+          `${exam.id} Reading Part A needs seven text-matching questions`,
+        );
+        assert.equal(
+          partA.filter(isReadingPartAShortAnswer).length,
+          13,
+          `${exam.id} Reading Part A needs thirteen produced short answers`,
+        );
+        assert.ok(
+          partA.slice(0, 7).every((task) => !isReadingPartAShortAnswer(task)) &&
+            partA.slice(7).every(isReadingPartAShortAnswer),
+          `${exam.id} Reading Part A response modes are out of official order`,
+        );
+      }
     }
   }
 

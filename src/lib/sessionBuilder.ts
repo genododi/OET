@@ -1,7 +1,12 @@
 import type { Difficulty, MockExam, OetSubtest, PracticeModule } from '../types';
 import type { SessionConfig, SessionTask } from '../types/session';
 import type { CompletedSession } from '../types/session';
-import { pickTasks, pickTasksByPart, bankBySubtest } from '../data/sessionTaskBank';
+import {
+  pickReadingPartATasks,
+  pickTasks,
+  pickTasksByPart,
+  bankBySubtest,
+} from '../data/sessionTaskBank';
 import { buildTaskStats, weightedPick, type TaskStat } from './taskHistory';
 import {
   OET_SUBTEST_TASK_COUNTS,
@@ -142,14 +147,16 @@ export function buildMockSession(exam: MockExam): SessionConfig {
     // the catalog-wide advanced-only task policy.
     if (hasOetPartBlueprint(subtest)) {
       const partTasks = OET_PARTS.flatMap((part) =>
-        pickTasksByPart(
-          subtest,
-          part,
-          OET_SUBTEST_PART_TASK_COUNTS[subtest][part],
-          `${exam.id}-${subtest}`,
-          seed,
-          'advanced',
-        ),
+        subtest === 'reading' && part === 'A'
+          ? pickReadingPartATasks(`${exam.id}-${subtest}`, seed, 'advanced')
+          : pickTasksByPart(
+              subtest,
+              part,
+              OET_SUBTEST_PART_TASK_COUNTS[subtest][part],
+              `${exam.id}-${subtest}`,
+              seed,
+              'advanced',
+            ),
       );
       tasks.push(...partTasks);
     } else {

@@ -1167,5 +1167,17 @@
       "could not sleep"
     ],
     "voice": "Moira"
+  },
+  "lis-113": {
+    "question": "What is the main reason for introducing the new observation chart?",
+    "correctAnswer": "Generic thresholds can conceal deterioration during pregnancy",
+    "script": "This change is not because observations were being missed. During pregnancy, normal physiology shifts, so a generic early-warning chart can look reassuring while a patient is deteriorating. The new maternity chart uses pregnancy-specific thresholds and clearer escalation prompts. It should support judgement, not replace it, and an abnormal score does not send every patient directly to intensive care.",
+    "speechScript": "This change is not because observations were being missed. During pregnancy, normal physiology shifts, so a generic early warning chart can look reassuring while a patient is deteriorating. The new maternity chart uses pregnancy specific thresholds and clearer escalation prompts. It should support judgement, not replace it, and an abnormal score does not send every patient directly to intensive care.",
+    "evidenceTerms": [
+      "generic early-warning chart",
+      "look reassuring",
+      "pregnancy-specific thresholds"
+    ],
+    "voice": "Samantha"
   }
 }
