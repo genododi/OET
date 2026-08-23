@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
 
 test('first-run diagnostic creates a Grade A plan', async ({ page }) => {
-  await page.goto('#/planner');
+  await page.goto('./#planner');
   await page.getByLabel('writing baseline score').fill('300');
   await page.getByRole('button', { name: 'Generate Grade A plan' }).click();
   await expect(page.getByTestId('study-plan-results')).toContainText('Target 450+');
@@ -9,7 +9,7 @@ test('first-run diagnostic creates a Grade A plan', async ({ page }) => {
 });
 
 test('resource search preserves link-only governance', async ({ page }) => {
-  await page.goto('#/resources');
+  await page.goto('./#resources');
   await page.getByLabel('Search resources').fill('letter type');
   await expect(page.getByTestId('resource-grid')).toContainText('Writing Tasks by Letter Type');
   await expect(page.getByTestId('resource-grid')).toContainText('Link only');
@@ -17,7 +17,7 @@ test('resource search preserves link-only governance', async ({ page }) => {
 });
 
 test('timed writing session provides built-in feedback while offline', async ({ context, page }) => {
-  await page.goto('#/practice/writing');
+  await page.goto('./#practice/writing');
   await page.getByRole('button', { name: 'Practise' }).first().click();
   await page.getByRole('button', { name: /Start \d+-minute session/ }).click();
   await expect(page.locator('.session-timer')).toContainText(/\d+:\d{2}/);
@@ -35,7 +35,7 @@ test('speaking text fallback produces a review without microphone access', async
       value: () => Promise.reject(new DOMException('denied', 'NotAllowedError')),
     });
   });
-  await page.goto('#/practice/speaking');
+  await page.goto('./#practice/speaking');
   await page.getByRole('button', { name: 'Practise' }).first().click();
   await page.getByRole('button', { name: /Start \d+-minute session/ }).click();
   await page.getByRole('button', { name: '● Record response' }).click();
