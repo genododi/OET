@@ -7,7 +7,7 @@ import {
   pickTasksByPart,
   bankBySubtest,
 } from '../data/sessionTaskBank';
-import { buildTaskStats, weightedPick, type TaskStat } from './taskHistory';
+import { buildTaskStats, dueReviewStats, weightedPick, type TaskStat } from './taskHistory';
 import {
   OET_SUBTEST_TASK_COUNTS,
   OET_PARTS,
@@ -204,6 +204,84 @@ export interface SmartSessionOptions {
   completed: CompletedSession[];
   /** Total content tasks across all chosen subtests. Default 16 (≈4 per subtest). */
   totalTasks?: number;
+}
+
+export interface ReviewSessionOptions {
+  completed: CompletedSession[];
+  /** Maximum number of due mistakes to retrieve in one focused session. */
+  totalTasks?: number;
+  /** Keeps a mixed review session practical even when several letters are due. */
+  maxMinutes?: number;
+  now?: Date;
+}
+
+const reviewMinutesBySubtest: Record<OetSubtest, number> = {
+  listening: 2,
+  reading: 3,
+  writing: 45,
+  speaking: 10,
+};
+
+/**
+ * Builds a focused retrieval session from mistakes that are due now. Returns
+ * null when the learner's correction queue is clear.
+ */
+export function buildReviewSession({
+  completed,
+  totalTasks = 8,
+  maxMinutes = 45,
+  now = new Date(),
+}: ReviewSessionOptions): SessionConfig | null {
+  const stats = buildTaskStats(completed, now.getTime());
+  const taskById = new Map(
+    Object.values(bankBySubtest).flatMap((bank) => bank.map((task) => [task.id, task] as const)),
+  );
+  const candidates = dueReviewStats(stats)
+    .map((stat) => taskById.get(stat.canonicalId))
+    .filter((task): task is SessionTask => Boolean(task));
+  const selected: SessionTask[] = [];
+  let plannedMinutes = 0;
+  for (const task of candidates) {
+    const taskMinutes = reviewMinutesBySubtest[task.subtest as OetSubtest];
+    if (selected.length > 0 && plannedMinutes + taskMinutes > maxMinutes) continue;
+    selected.push(task);
+    plannedMinutes += taskMinutes;
+    if (selected.length >= Math.max(1, totalTasks)) break;
+  }
+
+  if (selected.length === 0) return null;
+
+  const runId = `review-${now.getTime().toString(36)}`;
+  const activeSubtests = [...new Set(selected.map((task) => task.subtest))] as OetSubtest[];
+  const tasks: SessionTask[] = [
+    {
+      id: `${runId}-intro`,
+      subtest: 'intro',
+      title: 'Mistake Review',
+      instructions:
+        'Retrieve the answer before opening feedback. These items are due because you previously missed them or because a successful correction now needs spaced reinforcement.',
+      checklist: [
+        `${selected.length} due mistake${selected.length === 1 ? '' : 's'}`,
+        'Explain why your previous answer failed',
+        'State the evidence or rubric rule before submitting',
+      ],
+    },
+    ...selected.map((task) => ({
+      ...withProvenance(task, task.subtest as OetSubtest),
+      id: `${runId}-${task.id}`,
+    })),
+  ];
+  const durationMinutes = Math.max(10, plannedMinutes);
+
+  return {
+    id: runId,
+    kind: 'practice',
+    title: 'Mistake Review',
+    subtitle: 'Spaced retrieval — corrections due now',
+    durationMinutes,
+    subtests: activeSubtests,
+    tasks,
+  };
 }
 
 /**

@@ -33,9 +33,16 @@ const PRESCRIPTIONS: Record<OetSubtest, { focus: string; gate: string }> = {
 interface Props {
   completed: CompletedSession[];
   onStartSmart: (subtests?: OetSubtest[]) => void;
+  dueReviewCount: number;
+  onStartReview: () => void;
 }
 
-export function GradeACommandCenter({ completed, onStartSmart }: Props) {
+export function GradeACommandCenter({
+  completed,
+  onStartSmart,
+  dueReviewCount,
+  onStartReview,
+}: Props) {
   const summaries = useMemo(
     () => summarizeSubtestHistory(completed, SUBTESTS, GRADE_A_EVIDENCE_REQUIREMENTS.recentWindow),
     [completed],
@@ -131,11 +138,31 @@ export function GradeACommandCenter({ completed, onStartSmart }: Props) {
       <div className="grade-a-next">
         <div>
           <span className="grade-a-next-label">Next best move</span>
-          <strong>{nextPriority ? `Prioritise ${nextPriority.subtest}` : 'Establish your baseline'}</strong>
-          <p>{nextPriority ? PRESCRIPTIONS[nextPriority.subtest].focus : 'Complete a mixed Smart Session to reveal your starting point.'}</p>
+          <strong>
+            {dueReviewCount > 0
+              ? `Correct ${dueReviewCount} due mistake${dueReviewCount === 1 ? '' : 's'}`
+              : nextPriority
+                ? `Prioritise ${nextPriority.subtest}`
+                : 'Establish your baseline'}
+          </strong>
+          <p>
+            {dueReviewCount > 0
+              ? 'Retrieve these answers before adding new material; corrected errors return after 1, 3, 7 and 14 days.'
+              : nextPriority
+                ? PRESCRIPTIONS[nextPriority.subtest].focus
+                : 'Complete a mixed Smart Session to reveal your starting point.'}
+          </p>
         </div>
-        <button type="button" className="btn btn-primary" onClick={() => onStartSmart(nextPriority ? [nextPriority.subtest] : undefined)}>
-          {nextPriority ? `Start ${nextPriority.subtest} focus` : 'Start baseline session'}
+        <button
+          type="button"
+          className="btn btn-primary"
+          onClick={dueReviewCount > 0 ? onStartReview : () => onStartSmart(nextPriority ? [nextPriority.subtest] : undefined)}
+        >
+          {dueReviewCount > 0
+            ? `Start mistake review (${dueReviewCount})`
+            : nextPriority
+              ? `Start ${nextPriority.subtest} focus`
+              : 'Start baseline session'}
         </button>
       </div>
       <p className="grade-a-disclaimer">

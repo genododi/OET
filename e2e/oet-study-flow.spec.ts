@@ -44,3 +44,55 @@ test('speaking text fallback produces a review without microphone access', async
   await expect(page.getByText('Speaking practice review')).toBeVisible();
   await expect(page.getByTestId('offline-tutor-result')).toContainText('Typed transcripts');
 });
+
+test('a recent mistake becomes the next best move and opens focused review', async ({ page }) => {
+  await page.addInitScript(() => {
+    localStorage.setItem(
+      'oet-study-partner-progress',
+      JSON.stringify({
+        schemaVersion: 1,
+        completed: [
+          {
+            id: 'seed-listening-attempt',
+            kind: 'practice',
+            title: 'Listening evidence practice',
+            completedAt: new Date().toISOString(),
+            durationMinutes: 20,
+            review: {
+              subtestScores: [
+                {
+                  subtest: 'listening',
+                  percentScore: 0,
+                  correct: 0,
+                  total: 1,
+                  practicePass: false,
+                  examReady: false,
+                  weakAreas: ['Listening: evidence discrimination'],
+                },
+              ],
+              overallPercent: 0,
+              overallPracticePass: false,
+              overallExamReady: false,
+              weakAreas: ['Listening: evidence discrimination'],
+              taskReviews: [
+                {
+                  taskId: 'seed-lis-118',
+                  subtest: 'listening',
+                  passed: false,
+                  scorePercent: 0,
+                  summary: 'Missed the outcome-dependent exclusion evidence',
+                },
+              ],
+            },
+          },
+        ],
+      }),
+    );
+  });
+
+  await page.goto('./');
+  await expect(page.getByText('Correct 1 due mistake')).toBeVisible();
+  await page.getByRole('button', { name: 'Start mistake review (1)' }).click();
+  await expect(page.getByRole('heading', { name: 'Mistake Review' })).toBeVisible();
+  await expect(page.getByText('1 due mistake')).toBeVisible();
+});

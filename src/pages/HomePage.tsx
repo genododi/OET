@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { mockExams } from '../data/mockExams';
 import { practiceModules } from '../data/practice';
 import { bookPdfs } from '../data/books';
@@ -7,7 +7,8 @@ import { pearlsPitfalls } from '../data/pearlsPitfalls';
 import { studyResources } from '../data/studyResources';
 import { useProgress } from '../hooks/useProgress';
 import { matchesProfessionFilter } from '../lib/preferredProfession';
-import { buildSmartSession } from '../lib/sessionBuilder';
+import { buildReviewSession, buildSmartSession } from '../lib/sessionBuilder';
+import { countDueReviewTasks } from '../lib/taskHistory';
 import { SessionRunner } from '../components/SessionRunner';
 import { ReadinessDashboard } from '../components/ReadinessDashboard';
 import { GradeACommandCenter } from '../components/GradeACommandCenter';
@@ -29,9 +30,15 @@ const subtestNav: { name: string; subtest: OetSubtest; time: string; icon: strin
 export function HomePage({ onNavigate, preferredProfession = 'Medicine' }: Props) {
   const { completed, completedCount } = useProgress();
   const [smartConfig, setSmartConfig] = useState<SessionConfig | null>(null);
+  const dueReviewCount = useMemo(() => countDueReviewTasks(completed), [completed]);
 
   const startSmart = (subtests?: OetSubtest[]) => {
     setSmartConfig(buildSmartSession({ subtests: subtests ?? [], completed }));
+  };
+
+  const startReview = () => {
+    const review = buildReviewSession({ completed });
+    if (review) setSmartConfig(review);
   };
 
   if (smartConfig) {
@@ -67,7 +74,12 @@ export function HomePage({ onNavigate, preferredProfession = 'Medicine' }: Props
         </section>
       )}
 
-      <GradeACommandCenter completed={completed} onStartSmart={startSmart} />
+      <GradeACommandCenter
+        completed={completed}
+        onStartSmart={startSmart}
+        dueReviewCount={dueReviewCount}
+        onStartReview={startReview}
+      />
       <ReadinessDashboard completed={completed} onStartSmart={startSmart} />
 
       {completedCount > 0 && (

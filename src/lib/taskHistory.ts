@@ -9,8 +9,13 @@ export interface TaskStat {
   subtest: OetSubtest;
   timesSeen: number;
   timesPassed: number;
+  mistakeCount: number;
+  consecutivePasses: number;
   lastSeenAt: number;
+  lastPassed: boolean;
   lastScorePercent: number | null;
+  nextReviewAt: number | null;
+  dueForReview: boolean;
   /** Higher = weaker/staler = higher priority to resurface. */
   priority: number;
 }
@@ -27,15 +32,20 @@ export interface SubtestHistorySummary {
   trend: SubtestTrendPoint[];
 }
 
+const DAY_MS = 86_400_000;
+const REVIEW_INTERVAL_DAYS = [1, 3, 7, 14] as const;
+
 function canonicalIdOf(taskId: string): string | null {
   const match = taskId.match(CANONICAL_ID_PATTERN);
   return match ? match[0] : null;
 }
 
 /** Build per-content-item stats (seen count, pass rate, recency) across all history, keyed by canonical id. */
-export function buildTaskStats(completed: CompletedSession[]): Map<string, TaskStat> {
+export function buildTaskStats(
+  completed: CompletedSession[],
+  now: number = Date.now(),
+): Map<string, TaskStat> {
   const stats = new Map<string, TaskStat>();
-  const now = Date.now();
 
   // Oldest first so "lastSeenAt" ends up as the most recent attempt.
   const chronological = [...completed].sort(
@@ -56,14 +66,26 @@ export function buildTaskStats(completed: CompletedSession[]): Map<string, TaskS
         subtest,
         timesSeen: 0,
         timesPassed: 0,
+        mistakeCount: 0,
+        consecutivePasses: 0,
         lastSeenAt: 0,
+        lastPassed: false,
         lastScorePercent: null,
+        nextReviewAt: null,
+        dueForReview: false,
         priority: 0,
       };
 
       existing.timesSeen += 1;
-      if (t.passed) existing.timesPassed += 1;
+      if (t.passed) {
+        existing.timesPassed += 1;
+        existing.consecutivePasses += 1;
+      } else {
+        existing.mistakeCount += 1;
+        existing.consecutivePasses = 0;
+      }
       existing.lastSeenAt = seenAt;
+      existing.lastPassed = Boolean(t.passed);
       existing.lastScorePercent = t.scorePercent;
       stats.set(canonicalId, existing);
     });
@@ -72,14 +94,42 @@ export function buildTaskStats(completed: CompletedSession[]): Map<string, TaskS
   // Priority: unseen items are handled separately (max priority). Seen items get higher
   // priority the weaker and staler they are — this is what drives spaced repetition.
   stats.forEach((s) => {
-    const daysSinceSeen = Math.max(0, (now - s.lastSeenAt) / (1000 * 60 * 60 * 24));
+    const daysSinceSeen = Math.max(0, (now - s.lastSeenAt) / DAY_MS);
     const passRate = s.timesSeen > 0 ? s.timesPassed / s.timesSeen : 0;
     const weaknessBoost = (1 - passRate) * 3; // 0..3, higher when consistently wrong
     const staleness = Math.min(daysSinceSeen / 3, 3); // caps out after ~9 days
-    s.priority = weaknessBoost + staleness;
+    if (s.mistakeCount > 0) {
+      const intervalIndex = Math.max(0, Math.min(s.consecutivePasses - 1, REVIEW_INTERVAL_DAYS.length - 1));
+      const intervalDays = s.lastPassed ? REVIEW_INTERVAL_DAYS[intervalIndex]! : 0;
+      s.nextReviewAt = s.lastSeenAt + intervalDays * DAY_MS;
+      s.dueForReview = s.nextReviewAt <= now;
+    }
+    const dueBoost = s.dueForReview ? 4 : 0;
+    s.priority = weaknessBoost + staleness + dueBoost;
   });
 
   return stats;
+}
+
+/**
+ * Mistakes that are due for active recall, ordered by urgency. A failed answer is
+ * due immediately; successful corrections expand to 1, 3, 7 and 14-day reviews.
+ */
+export function dueReviewStats(
+  stats: Map<string, TaskStat>,
+  subtests?: readonly OetSubtest[],
+): TaskStat[] {
+  const allowed = subtests ? new Set(subtests) : null;
+  return [...stats.values()]
+    .filter((stat) => stat.dueForReview && (!allowed || allowed.has(stat.subtest)))
+    .sort((a, b) => b.priority - a.priority || a.nextReviewAt! - b.nextReviewAt!);
+}
+
+export function countDueReviewTasks(
+  completed: CompletedSession[],
+  now: number = Date.now(),
+): number {
+  return dueReviewStats(buildTaskStats(completed, now)).length;
 }
 
 /**
