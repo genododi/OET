@@ -4,9 +4,18 @@ import type {
   StudyPlan,
   StudyPlanAssignment,
 } from '../types';
+import type { CompletedSession } from '../types/session';
+import { GRADE_A_TRAINING_TARGETS } from './oetThresholds';
+import { buildTaskStats, dueReviewStats, summarizeSubtestHistory } from './taskHistory';
 
 export const GRADE_A_TARGET = 450 as const;
 const subtests: readonly OetSubtest[] = ['listening', 'reading', 'writing', 'speaking'];
+
+interface StudyPlanOptions {
+  priority?: OetSubtest[];
+  adaptedFromProgress?: boolean;
+  dueReviewCount?: number;
+}
 
 const focusBySubtest: Record<OetSubtest, string[]> = {
   listening: [
@@ -81,6 +90,7 @@ export function createDiagnosticProfile(input: {
 export function generateStudyPlan(
   profile: DiagnosticProfile,
   now: Date = new Date(),
+  options: StudyPlanOptions = {},
 ): StudyPlan {
   const exam = new Date(`${profile.examDate}T12:00:00`);
   const start = new Date(`${dateOnly(now)}T12:00:00`);
@@ -88,7 +98,11 @@ export function generateStudyPlan(
     1,
     Math.min(84, Math.ceil((exam.getTime() - start.getTime()) / 86_400_000)),
   );
-  const priority = profile.weakAreas.length > 0 ? profile.weakAreas : [...subtests];
+  const baselinePriority = [
+    ...profile.weakAreas,
+    ...subtests.filter((subtest) => !profile.weakAreas.includes(subtest)),
+  ];
+  const priority = options.priority?.length ? options.priority : baselinePriority;
   const assignments: StudyPlanAssignment[] = [];
   let studyIndex = 0;
 
@@ -97,7 +111,8 @@ export function generateStudyPlan(
     const subtest = priority[studyIndex % priority.length] ?? subtests[studyIndex % subtests.length]!;
     const focusOptions = focusBySubtest[subtest];
     const isMock = studyIndex > 0 && studyIndex % Math.max(4, profile.studyDaysPerWeek) === 0;
-    const isReview = !isMock && studyIndex > 1 && studyIndex % 3 === 0;
+    const isDueReview = !isMock && studyIndex === 0 && (options.dueReviewCount ?? 0) > 0;
+    const isReview = isDueReview || (!isMock && studyIndex > 1 && studyIndex % 3 === 0);
     const kind: StudyPlanAssignment['kind'] = isMock
       ? 'mock'
       : isReview
@@ -105,17 +120,22 @@ export function generateStudyPlan(
         : studyIndex < profile.studyDaysPerWeek
           ? 'learn'
           : 'practice';
-    const focus = isMock
-      ? `Timed ${subtest} simulation followed by error review`
-      : focusOptions[studyIndex % focusOptions.length]!;
+    const focus = isDueReview
+      ? `${options.dueReviewCount} due correction${options.dueReviewCount === 1 ? '' : 's'} before new material`
+      : isMock
+        ? `Timed ${subtest} simulation followed by error review`
+        : focusOptions[studyIndex % focusOptions.length]!;
     assignments.push({
       id: `plan-${dayOffset}-${subtest}`,
       dayOffset,
       subtest,
-      title: `${kind === 'mock' ? 'Timed' : kind === 'review' ? 'Review' : 'Grade A'} ${subtest}`,
+      title: isDueReview
+        ? 'Due mistake review'
+        : `${kind === 'mock' ? 'Timed' : kind === 'review' ? 'Review' : 'Grade A'} ${subtest}`,
       minutes: profile.minutesPerDay,
       focus,
       kind,
+      dueNow: isDueReview,
     });
     studyIndex += 1;
   }
@@ -127,7 +147,56 @@ export function generateStudyPlan(
     examDate: profile.examDate,
     weeklyMinutes: profile.studyDaysPerWeek * profile.minutesPerDay,
     assignments,
+    prioritySubtests: priority,
+    adaptedFromProgress: options.adaptedFromProgress ?? false,
+    dueReviewCount: options.dueReviewCount ?? 0,
   };
+}
+
+/**
+ * Reorders the calendar from actual session evidence. Four attempts progressively
+ * replace the self-entered baseline; due corrections always move ahead of new work.
+ */
+export function generateAdaptiveStudyPlan(
+  profile: DiagnosticProfile,
+  completed: CompletedSession[],
+  now: Date = new Date(),
+): StudyPlan {
+  const summaries = summarizeSubtestHistory(completed, [...subtests], 8);
+  const due = dueReviewStats(buildTaskStats(completed, now.getTime()));
+  const dueBySubtest = new Map<OetSubtest, number>();
+  due.forEach((stat) => {
+    dueBySubtest.set(stat.subtest, (dueBySubtest.get(stat.subtest) ?? 0) + 1);
+  });
+  const summaryBySubtest = new Map(summaries.map((summary) => [summary.subtest, summary]));
+  const baseOrder = new Map(
+    [
+      ...profile.weakAreas,
+      ...subtests.filter((subtest) => !profile.weakAreas.includes(subtest)),
+    ].map((subtest, index) => [subtest, index]),
+  );
+
+  const priority = [...subtests].sort((a, b) => {
+    const priorityScore = (subtest: OetSubtest) => {
+      const summary = summaryBySubtest.get(subtest)!;
+      const baselineDeficit = Math.max(0, GRADE_A_TARGET - profile.baseline[subtest]) / GRADE_A_TARGET;
+      const observedDeficit = summary.rollingPercent === null
+        ? baselineDeficit
+        : Math.max(0, GRADE_A_TRAINING_TARGETS[subtest] - summary.rollingPercent)
+          / GRADE_A_TRAINING_TARGETS[subtest];
+      const evidenceWeight = Math.min(summary.attemptCount / 4, 1);
+      const dueCount = dueBySubtest.get(subtest) ?? 0;
+      const dueBoost = dueCount > 0 ? 2 + Math.min(dueCount, 3) * 0.1 : 0;
+      return baselineDeficit * (1 - evidenceWeight) + observedDeficit * evidenceWeight + dueBoost;
+    };
+    return priorityScore(b) - priorityScore(a) || baseOrder.get(a)! - baseOrder.get(b)!;
+  });
+
+  return generateStudyPlan(profile, now, {
+    priority,
+    adaptedFromProgress: summaries.some((summary) => summary.attemptCount > 0) || due.length > 0,
+    dueReviewCount: due.length,
+  });
 }
 
 export function assignmentDate(plan: StudyPlan, assignment: StudyPlanAssignment): string {

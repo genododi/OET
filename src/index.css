@@ -3631,6 +3631,17 @@ button {
   color: var(--teal-700);
 }
 
+.planner-adaptive-note {
+  margin-top: 0.75rem;
+  padding: 0.65rem 0.8rem;
+  border-left: 3px solid var(--teal-500);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  background: var(--teal-50);
+  color: var(--teal-800);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
 .plan-assignment-list {
   display: grid;
   gap: 0.65rem;

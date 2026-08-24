@@ -96,6 +96,7 @@ export interface StudyPlanAssignment {
   minutes: number;
   focus: string;
   kind: 'learn' | 'practice' | 'mock' | 'review';
+  dueNow?: boolean;
 }
 
 export interface StudyPlan {
@@ -105,6 +106,10 @@ export interface StudyPlan {
   examDate: string;
   weeklyMinutes: number;
   assignments: StudyPlanAssignment[];
+  /** Current priority order after blending baseline and completed-session evidence. */
+  prioritySubtests?: OetSubtest[];
+  adaptedFromProgress?: boolean;
+  dueReviewCount?: number;
 }
 
 export interface TutorRubricScore {

@@ -1,11 +1,16 @@
 import { useMemo, useState, type FormEvent } from 'react';
-import type { NavSection, OetSubtest } from '../types';
+import type { NavSection, OetSubtest, StudyPlanAssignment } from '../types';
 import { useStudyPlan } from '../hooks/useStudyPlan';
+import { useProgress } from '../hooks/useProgress';
 import {
   assignmentDate,
   createDiagnosticProfile,
+  generateAdaptiveStudyPlan,
   validateDiagnosticProfile,
 } from '../lib/studyPlanner';
+import { buildReviewSession, buildSmartSession } from '../lib/sessionBuilder';
+import { SessionRunner } from '../components/SessionRunner';
+import type { SessionConfig } from '../types/session';
 
 interface Props {
   onNavigate: (section: NavSection, itemId?: string) => void;
@@ -20,7 +25,9 @@ function defaultExamDate(): string {
 }
 
 export function StudyPlannerPage({ onNavigate }: Props) {
-  const { profile, plan, saveProfile, clearPlan } = useStudyPlan();
+  const { profile, plan: savedPlan, saveProfile, clearPlan } = useStudyPlan();
+  const { completed } = useProgress();
+  const [activeSession, setActiveSession] = useState<SessionConfig | null>(null);
   const [examDate, setExamDate] = useState(profile?.examDate ?? defaultExamDate());
   const [studyDaysPerWeek, setStudyDaysPerWeek] = useState(profile?.studyDaysPerWeek ?? 5);
   const [minutesPerDay, setMinutesPerDay] = useState(profile?.minutesPerDay ?? 60);
@@ -33,6 +40,10 @@ export function StudyPlannerPage({ onNavigate }: Props) {
     () => subtests.map((subtest) => ({ subtest, gap: Math.max(0, 450 - baseline[subtest]) })),
     [baseline],
   );
+  const plan = useMemo(
+    () => (profile ? generateAdaptiveStudyPlan(profile, completed) : savedPlan),
+    [completed, profile, savedPlan],
+  );
 
   const submit = (event: FormEvent) => {
     event.preventDefault();
@@ -41,6 +52,31 @@ export function StudyPlannerPage({ onNavigate }: Props) {
     setErrors(nextErrors);
     if (nextErrors.length === 0) saveProfile(nextProfile);
   };
+
+  const startAssignment = (assignment: StudyPlanAssignment) => {
+    if (assignment.dueNow && (plan?.dueReviewCount ?? 0) > 0) {
+      const review = buildReviewSession({ completed, maxMinutes: assignment.minutes });
+      if (review) {
+        setActiveSession(review);
+        return;
+      }
+    }
+    if (assignment.kind === 'practice' || assignment.kind === 'review') {
+      setActiveSession(
+        buildSmartSession({
+          subtests: [assignment.subtest],
+          completed,
+          totalTasks: Math.max(10, Math.min(20, Math.round(assignment.minutes / 3))),
+        }),
+      );
+      return;
+    }
+    onNavigate(assignment.kind === 'mock' ? 'mock' : 'guide');
+  };
+
+  if (activeSession) {
+    return <SessionRunner config={activeSession} onExit={() => setActiveSession(null)} />;
+  }
 
   return (
     <div className="page-section planner-page">
@@ -109,8 +145,13 @@ export function StudyPlannerPage({ onNavigate }: Props) {
             <div className="plan-target">Target <strong>450+</strong></div>
           </div>
           <p className="meta">
-            {plan.weeklyMinutes} minutes per week · priority: {profile.weakAreas.join(', ') || 'balanced maintenance'}
+            {plan.weeklyMinutes} minutes per week · priority: {(plan.prioritySubtests?.join(', ') ?? profile.weakAreas.join(', ')) || 'balanced maintenance'}
           </p>
+          {plan.adaptedFromProgress && (
+            <p className="planner-adaptive-note">
+              Adapted from completed sessions{plan.dueReviewCount ? ` · ${plan.dueReviewCount} correction${plan.dueReviewCount === 1 ? '' : 's'} due now` : ''}.
+            </p>
+          )}
           <div className="plan-assignment-list">
             {plan.assignments.slice(0, 14).map((assignment) => (
               <article key={assignment.id} className="plan-assignment">
@@ -123,8 +164,14 @@ export function StudyPlannerPage({ onNavigate }: Props) {
                   <strong>{assignment.title}</strong>
                   <p className="meta">{assignment.focus} · {assignment.minutes} min</p>
                 </div>
-                <button type="button" className="btn btn-secondary btn-sm" onClick={() => onNavigate('practice', assignment.subtest)}>
-                  Start
+                <button type="button" className="btn btn-secondary btn-sm" onClick={() => startAssignment(assignment)}>
+                  {assignment.dueNow && (plan.dueReviewCount ?? 0) > 0
+                    ? 'Review now'
+                    : assignment.kind === 'practice' || assignment.kind === 'review'
+                      ? 'Start adaptive drill'
+                      : assignment.kind === 'mock'
+                        ? 'Choose mock'
+                        : 'Open guide'}
                 </button>
               </article>
             ))}

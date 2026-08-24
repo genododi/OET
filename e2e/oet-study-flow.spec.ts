@@ -96,3 +96,74 @@ test('a recent mistake becomes the next best move and opens focused review', asy
   await expect(page.getByRole('heading', { name: 'Mistake Review' })).toBeVisible();
   await expect(page.getByText('1 due mistake')).toBeVisible();
 });
+
+test('dated Grade A plan adapts to a due mistake and launches it directly', async ({ page }) => {
+  await page.addInitScript(() => {
+    const examDate = new Date();
+    examDate.setDate(examDate.getDate() + 42);
+    localStorage.setItem(
+      'oet-study-partner-study-plan',
+      JSON.stringify({
+        schemaVersion: 1,
+        profile: {
+          schemaVersion: 1,
+          targetScore: 450,
+          examDate: examDate.toISOString().slice(0, 10),
+          studyDaysPerWeek: 5,
+          minutesPerDay: 60,
+          baseline: { listening: 450, reading: 450, writing: 300, speaking: 450 },
+          weakAreas: ['writing'],
+          completedAt: new Date().toISOString(),
+        },
+        plan: null,
+      }),
+    );
+    localStorage.setItem(
+      'oet-study-partner-progress',
+      JSON.stringify({
+        schemaVersion: 1,
+        completed: [
+          {
+            id: 'planner-listening-mistake',
+            kind: 'practice',
+            title: 'Listening evidence practice',
+            completedAt: new Date().toISOString(),
+            durationMinutes: 20,
+            review: {
+              subtestScores: [
+                {
+                  subtest: 'listening',
+                  percentScore: 0,
+                  correct: 0,
+                  total: 1,
+                  practicePass: false,
+                  examReady: false,
+                  weakAreas: ['Listening: evidence discrimination'],
+                },
+              ],
+              overallPercent: 0,
+              overallPracticePass: false,
+              overallExamReady: false,
+              weakAreas: ['Listening: evidence discrimination'],
+              taskReviews: [
+                {
+                  taskId: 'planner-lis-118',
+                  subtest: 'listening',
+                  passed: false,
+                  scorePercent: 0,
+                  summary: 'Missed the outcome-dependent exclusion evidence',
+                },
+              ],
+            },
+          },
+        ],
+      }),
+    );
+  });
+
+  await page.goto('./#planner');
+  await expect(page.getByText(/Adapted from completed sessions · 1 correction due now/)).toBeVisible();
+  await expect(page.getByText('Due mistake review')).toBeVisible();
+  await page.getByRole('button', { name: 'Review now' }).click();
+  await expect(page.getByRole('heading', { name: 'Mistake Review' })).toBeVisible();
+});
