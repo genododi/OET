@@ -7,8 +7,13 @@ import { pearlsPitfalls } from '../data/pearlsPitfalls';
 import { studyResources } from '../data/studyResources';
 import { useProgress } from '../hooks/useProgress';
 import { matchesProfessionFilter } from '../lib/preferredProfession';
-import { buildReviewSession, buildSmartSession } from '../lib/sessionBuilder';
+import {
+  buildPartFocusSession,
+  buildReviewSession,
+  buildSmartSession,
+} from '../lib/sessionBuilder';
 import { countDueReviewTasks } from '../lib/taskHistory';
+import type { OetPart } from '../lib/oetExamTiming';
 import { SessionRunner } from '../components/SessionRunner';
 import { ReadinessDashboard } from '../components/ReadinessDashboard';
 import { GradeACommandCenter } from '../components/GradeACommandCenter';
@@ -39,6 +44,13 @@ export function HomePage({ onNavigate, preferredProfession = 'Medicine' }: Props
   const startReview = () => {
     const review = buildReviewSession({ completed });
     if (review) setSmartConfig(review);
+  };
+
+  const startPart = (
+    subtest: Extract<OetSubtest, 'listening' | 'reading'>,
+    part: OetPart,
+  ) => {
+    setSmartConfig(buildPartFocusSession({ subtest, part, completed }));
   };
 
   if (smartConfig) {
@@ -80,7 +92,11 @@ export function HomePage({ onNavigate, preferredProfession = 'Medicine' }: Props
         dueReviewCount={dueReviewCount}
         onStartReview={startReview}
       />
-      <ReadinessDashboard completed={completed} onStartSmart={startSmart} />
+      <ReadinessDashboard
+        completed={completed}
+        onStartSmart={startSmart}
+        onStartPart={startPart}
+      />
 
       {completedCount > 0 && (
         <section className="card recent-progress">

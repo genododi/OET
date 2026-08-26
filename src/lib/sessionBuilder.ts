@@ -6,6 +6,7 @@ import {
   pickTasks,
   pickTasksByPart,
   bankBySubtest,
+  oetTaskPart,
 } from '../data/sessionTaskBank';
 import { buildTaskStats, dueReviewStats, weightedPick, type TaskStat } from './taskHistory';
 import {
@@ -15,6 +16,7 @@ import {
   hasOetPartBlueprint,
   oetMockDurationMinutes,
   oetMockTaskCount,
+  type OetPart,
 } from './oetExamTiming';
 import type { PracticeProvenance } from '../types';
 
@@ -215,12 +217,77 @@ export interface ReviewSessionOptions {
   now?: Date;
 }
 
+export interface PartFocusSessionOptions {
+  subtest: Extract<OetSubtest, 'listening' | 'reading'>;
+  part: OetPart;
+  completed: CompletedSession[];
+  totalTasks?: number;
+  now?: Date;
+}
+
 const reviewMinutesBySubtest: Record<OetSubtest, number> = {
   listening: 2,
   reading: 3,
   writing: 45,
   speaking: 10,
 };
+
+const partFocusInstructions: Record<
+  Extract<OetSubtest, 'listening' | 'reading'>,
+  Record<OetPart, string>
+> = {
+  listening: {
+    A: 'Capture exact clinical words, numbers and spelling while following the consultation.',
+    B: 'Identify the purpose, action or main point in each short workplace extract.',
+    C: 'Track speaker attitude, inference and the evidence that qualifies a conclusion.',
+  },
+  reading: {
+    A: 'Retrieve exact information rapidly across short texts without reading every line.',
+    B: 'Identify the purpose and main message of each short workplace text.',
+    C: 'Infer writer attitude and distinguish fully supported claims from partial matches.',
+  },
+};
+
+/** Build a history-weighted micro-session for one Listening or Reading exam part. */
+export function buildPartFocusSession({
+  subtest,
+  part,
+  completed,
+  totalTasks = 10,
+  now = new Date(),
+}: PartFocusSessionOptions): SessionConfig {
+  const stats = buildTaskStats(completed, now.getTime());
+  const pool = bankBySubtest[subtest].filter((task) => oetTaskPart(task) === part);
+  const selected = weightedPick(pool, Math.min(Math.max(1, totalTasks), pool.length), stats);
+  const runId = `part-${subtest}-${part.toLowerCase()}-${now.getTime().toString(36)}`;
+  const label = `${subtest[0]!.toUpperCase()}${subtest.slice(1)} Part ${part}`;
+
+  return {
+    id: runId,
+    kind: 'practice',
+    title: `${label} Focus`,
+    subtitle: 'Precision drill — selected from your item history',
+    durationMinutes: Math.max(20, Math.ceil(selected.length * 2.5)),
+    subtests: [subtest],
+    tasks: [
+      {
+        id: `${runId}-intro`,
+        subtest: 'intro',
+        title: `${label} precision target`,
+        instructions: partFocusInstructions[subtest][part],
+        checklist: [
+          `${selected.length} Part ${part} task${selected.length === 1 ? '' : 's'}`,
+          'Previously weak and stale items receive priority',
+          'Explain the evidence for every corrected answer',
+        ],
+      },
+      ...selected.map((task) => ({
+        ...withProvenance(task, subtest),
+        id: `${runId}-${task.id}`,
+      })),
+    ],
+  };
+}
 
 /**
  * Builds a focused retrieval session from mistakes that are due now. Returns

@@ -1239,5 +1239,17 @@
       "overstate benefit"
     ],
     "voice": "Karen"
+  },
+  "lis-119": {
+    "question": "Why does the speaker reject the claim that continued exposure proved the new medicine protected kidney function?",
+    "correctAnswer": "Early deterioration prompted patients to switch treatment, moving their later risk into the comparator group and selecting healthier continuers",
+    "script": "The as-treated analysis looks impressive until we examine why patients changed therapy. Clinicians switched people away from the new medicine when creatinine rose quickly or potassium became unsafe. Those early changes predicted later kidney events. Reclassifying these patients under rescue treatment moved their subsequent risk into the comparator group, while the people who remained exposed were increasingly those doing well. The association among continuers may therefore reflect post-randomisation selection, not protection. We should retain the treatment-policy analysis and define any hypothetical or per-protocol question before choosing a method for treatment switching.",
+    "speechScript": "The as treated analysis looks impressive until we examine why patients changed therapy. Clinicians switched people away from the new medicine when creatinine rose quickly or potassium became unsafe. Those early changes predicted later kidney events. Reclassifying these patients under rescue treatment moved their subsequent risk into the comparator group, while the people who remained exposed were increasingly those doing well. The association among continuers may therefore reflect post randomisation selection, not protection. We should retain the treatment policy analysis and define any hypothetical or per protocol question before choosing a method for treatment switching.",
+    "evidenceTerms": [
+      "early changes predicted later kidney events",
+      "moved their subsequent risk into the comparator group",
+      "post-randomisation selection"
+    ],
+    "voice": "Daniel"
   }
 }

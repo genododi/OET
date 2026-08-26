@@ -286,4 +286,33 @@ export const dailyOetProgression: readonly DailyOetProgressionEntry[] = [
       speaking: 'speak-44',
     },
   },
+  {
+    date: '2026-08-26',
+    stage: 13,
+    complexityIndex: 13,
+    reasoningLayers: [
+      'exact-evidence discrimination',
+      'causal attribution across bundled interventions',
+      'conditional exception handling',
+      'methodological claim calibration',
+      'time-dependent bias detection',
+      'rapid response-format switching',
+      'produced-answer orthographic precision',
+      'triangulation of selection, detection and competing safety duties',
+      'reconciliation of aggregate and subgroup evidence with mediated disclosure',
+      'integration of competing-risk evidence with treatment-limitation language',
+      'separation of regression to the mean from effect with probabilistic counselling',
+      'analysis of informative missingness with interpreter-mediated autonomous consent',
+      'estimand alignment after treatment switching with supported decision-making under fluctuating capacity',
+    ],
+    level: 'advanced',
+    focus:
+      'Post-randomisation treatment switching and supported emergency decisions: detect how outcome-driven crossover distorts an as-treated claim, distinguish treatment-policy from hypothetical estimands in dense prose, compress prosthetic-valve infection with neurological complications into a selective tertiary transfer, and support a hearing-impaired patient to decide about emergency dialysis while capacity may fluctuate.',
+    taskIds: {
+      listening: 'lis-119',
+      reading: 'read-91',
+      writing: 'write-45',
+      speaking: 'speak-45',
+    },
+  },
 ];

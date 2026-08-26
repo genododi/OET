@@ -32,6 +32,8 @@
   --rose-100: #ffe4e6;
   --rose-800: #9f1239;
   --violet-500: #8b5cf6;
+  --sky-50: #f0f9ff;
+  --sky-200: #bae6fd;
   --sky-500: #0ea5e9;
   --orange-500: #f97316;
 
@@ -3038,6 +3040,33 @@ button {
   padding-left: 1.125rem;
 }
 
+.readiness-part-focus {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--sky-200);
+  border-radius: var(--radius-sm);
+  background: linear-gradient(135deg, var(--sky-50), var(--surface));
+}
+
+.readiness-part-focus strong {
+  display: block;
+  margin-top: 0.15rem;
+  color: var(--text-h);
+}
+
+.readiness-part-focus p {
+  margin: 0.2rem 0 0;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.readiness-part-focus .btn {
+  flex-shrink: 0;
+}
+
 .readiness-actions {
   display: flex;
   flex-wrap: wrap;
@@ -3050,6 +3079,13 @@ button {
 
 .readiness-empty {
   text-align: left;
+}
+
+@media (max-width: 700px) {
+  .readiness-part-focus {
+    align-items: flex-start;
+    flex-direction: column;
+  }
 }
 
 .smart-practice-card {

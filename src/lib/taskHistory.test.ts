@@ -1,8 +1,13 @@
 import { describe, expect, it } from 'vitest';
 import type { OetSubtest } from '../types';
 import type { CompletedSession } from '../types/session';
-import { buildReviewSession } from './sessionBuilder';
-import { buildTaskStats, countDueReviewTasks, dueReviewStats } from './taskHistory';
+import { buildPartFocusSession, buildReviewSession } from './sessionBuilder';
+import {
+  buildTaskStats,
+  countDueReviewTasks,
+  dueReviewStats,
+  summarizePartHistory,
+} from './taskHistory';
 
 function completedAttempt(
   completedAt: string,
@@ -88,5 +93,39 @@ describe('mistake review spacing', () => {
     expect(review?.durationMinutes).toBe(45);
     expect(review?.tasks).toHaveLength(2);
     expect(review?.subtests).toEqual(['writing']);
+  });
+});
+
+describe('Listening and Reading part precision', () => {
+  const completed = [
+    completedAttempt('2026-08-21T08:00:00.000Z', false, 'practice-lis-3'),
+    completedAttempt('2026-08-22T08:00:00.000Z', false, 'practice-lis-118'),
+    completedAttempt('2026-08-23T08:00:00.000Z', true, 'practice-lis-1'),
+  ];
+
+  it('identifies the weakest exam part from canonical task history', () => {
+    const summaries = summarizePartHistory(completed);
+    expect(summaries.find((item) => item.subtest === 'listening' && item.part === 'C')).toMatchObject({
+      attemptCount: 2,
+      accuracyPercent: 0,
+    });
+    expect(summaries.find((item) => item.subtest === 'listening' && item.part === 'B')).toMatchObject({
+      attemptCount: 1,
+      accuracyPercent: 100,
+    });
+  });
+
+  it('builds an adaptive drill containing only the requested part', () => {
+    const session = buildPartFocusSession({
+      subtest: 'listening',
+      part: 'C',
+      completed,
+      totalTasks: 5,
+      now: new Date('2026-08-24T08:00:00.000Z'),
+    });
+
+    expect(session.title).toBe('Listening Part C Focus');
+    expect(session.tasks).toHaveLength(6);
+    expect(session.tasks.slice(1).every((task) => /Part C/i.test(task.title))).toBe(true);
   });
 });

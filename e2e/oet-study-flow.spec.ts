@@ -167,3 +167,71 @@ test('dated Grade A plan adapts to a due mistake and launches it directly', asyn
   await page.getByRole('button', { name: 'Review now' }).click();
   await expect(page.getByRole('heading', { name: 'Mistake Review' })).toBeVisible();
 });
+
+test('readiness history targets the weakest Listening or Reading part', async ({ page }) => {
+  await page.addInitScript(() => {
+    localStorage.setItem(
+      'oet-study-partner-progress',
+      JSON.stringify({
+        schemaVersion: 1,
+        completed: [
+          {
+            id: 'part-precision-seed',
+            kind: 'practice',
+            title: 'Listening part evidence set',
+            completedAt: new Date().toISOString(),
+            durationMinutes: 20,
+            review: {
+              subtestScores: [
+                {
+                  subtest: 'listening',
+                  percentScore: 33,
+                  correct: 1,
+                  total: 3,
+                  practicePass: false,
+                  examReady: false,
+                  weakAreas: ['Listening Part C: viewpoint and implication'],
+                },
+              ],
+              overallPercent: 33,
+              overallPracticePass: false,
+              overallExamReady: false,
+              weakAreas: ['Listening Part C: viewpoint and implication'],
+              taskReviews: [
+                {
+                  taskId: 'part-seed-lis-3',
+                  subtest: 'listening',
+                  passed: false,
+                  scorePercent: 0,
+                  summary: 'Missed the speaker viewpoint',
+                },
+                {
+                  taskId: 'part-seed-lis-118',
+                  subtest: 'listening',
+                  passed: false,
+                  scorePercent: 0,
+                  summary: 'Missed the implication',
+                },
+                {
+                  taskId: 'part-seed-lis-1',
+                  subtest: 'listening',
+                  passed: true,
+                  scorePercent: 100,
+                  summary: 'Correctly selected the short extract answer',
+                },
+              ],
+            },
+          },
+        ],
+      }),
+    );
+  });
+
+  await page.goto('./');
+  await expect(page.getByTestId('part-focus-target')).toContainText('Listening Part C: 0%');
+  await page.getByRole('button', { name: 'Drill listening Part C' }).click();
+  await expect(page.getByRole('heading', { name: 'Listening Part C Focus' })).toBeVisible();
+  await expect(
+    page.getByText('Track speaker attitude, inference and the evidence that qualifies a conclusion.'),
+  ).toBeVisible();
+});

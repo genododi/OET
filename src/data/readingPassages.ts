@@ -657,6 +657,19 @@ The investigators should first report follow-up by treatment group and give reas
 
 None of this proves the treatment is ineffective. The observed improvement remains useful evidence about participants who continued and responded. It does mean that a complete-case average cannot be generalised confidently to everyone who started therapy. Effectiveness claims must integrate retention, adverse effects and plausible outcomes among those no longer observed, rather than treating their absence as though no clinical outcome occurred.`,
   },
+  'passage-treatment-switching-estimand': {
+    id: 'passage-treatment-switching-estimand',
+    title: 'Methods commentary — Treatment switching changes the question, not only the answer',
+    text: `A randomised trial compared two medicines for preventing deterioration in chronic kidney disease. During follow-up, clinicians could stop the assigned medicine or switch patients to rescue treatment when creatinine rose rapidly, potassium became unsafe or symptoms were unacceptable. The primary intention-to-treat analysis found little difference between groups. An as-treated analysis, however, associated continued use of the new medicine with substantially fewer kidney events, prompting claims that adherence revealed its true protective effect.
+
+That interpretation ignores why treatment changed. Early deterioration made switching more likely and also predicted the later outcome. Once a deteriorating participant was reclassified according to rescue treatment, part of the risk that arose while assigned to the new medicine travelled with them into the comparator group. Meanwhile, people well enough to continue formed a progressively selected population. Simply updating a treatment indicator does not recover the comparison created by randomisation; conventional adjustment may also fail when evolving laboratory values are both affected by earlier treatment and influence later switching.
+
+Different analyses can still answer legitimate questions, but the question must be named. A treatment-policy estimand asks about the effect of assignment regardless of later switching and is naturally aligned with intention-to-treat. A hypothetical estimand asks what might have happened had rescue treatment not been available, requiring explicit assumptions and methods for time-varying confounding. A per-protocol effect concerns following a specified strategy, not merely deleting everyone who deviated. Such deletion can condition on prognosis and exchange the protection of randomisation for a biased comparison.
+
+Nor is treatment switching merely statistical inconvenience. Rescue may be a clinically necessary response to harm or insufficient benefit. An estimate that imagines no switching can inform a biological question while poorly representing the care pathway patients will actually experience. Conversely, the treatment-policy estimate can dilute the effect of sustained exposure when crossover is extensive. Neither estimand is universally superior.
+
+The trial should therefore report assignment, discontinuation, switching, reasons and timing by group; retain the treatment-policy analysis; and add prespecified sensitivity analyses matched to clearly defined estimands. The as-treated association is not proof of protection because post-randomisation prognosis helped determine who remained exposed. Precision about the clinical question must precede sophistication in the model.`,
+  },
   'passage-delirium-part-a-set': {
     id: 'passage-delirium-part-a-set',
     title: 'Part A texts — Delirium recognition, causes, management and follow-up',

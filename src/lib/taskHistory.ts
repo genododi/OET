@@ -1,5 +1,7 @@
 import type { CompletedSession } from '../types/session';
 import type { OetSubtest } from '../types';
+import type { OetPart } from './oetExamTiming';
+import { bankBySubtest, oetTaskPart } from '../data/sessionTaskBank';
 
 /** Matches the bank id suffix embedded in every generated task id, e.g. "...-lis-3" -> "lis-3". */
 const CANONICAL_ID_PATTERN = /(lis|read|write|speak)-\d+$/;
@@ -30,6 +32,13 @@ export interface SubtestHistorySummary {
   attemptCount: number;
   rollingPercent: number | null;
   trend: SubtestTrendPoint[];
+}
+
+export interface PartHistorySummary {
+  subtest: Extract<OetSubtest, 'listening' | 'reading'>;
+  part: OetPart;
+  attemptCount: number;
+  accuracyPercent: number | null;
 }
 
 const DAY_MS = 86_400_000;
@@ -205,6 +214,52 @@ export function summarizeSubtestHistory(
       trend: recent,
     };
   });
+}
+
+/** Rolling item accuracy for Listening and Reading Parts A, B and C. */
+export function summarizePartHistory(
+  completed: CompletedSession[],
+  windowSize = 20,
+): PartHistorySummary[] {
+  const eligibleSubtests = ['listening', 'reading'] as const;
+  const parts = ['A', 'B', 'C'] as const;
+  const taskById = new Map(
+    eligibleSubtests.flatMap((subtest) =>
+      bankBySubtest[subtest].map((task) => [task.id, task] as const),
+    ),
+  );
+  const outcomes = new Map<string, boolean[]>();
+
+  [...completed]
+    .sort((a, b) => new Date(a.completedAt).getTime() - new Date(b.completedAt).getTime())
+    .forEach((session) => {
+      session.review?.taskReviews.forEach((review) => {
+        if (review.passed === null) return;
+        const canonicalId = canonicalIdOf(review.taskId);
+        if (!canonicalId) return;
+        const task = taskById.get(canonicalId);
+        if (!task || (task.subtest !== 'listening' && task.subtest !== 'reading')) return;
+        const part = oetTaskPart(task);
+        if (!part) return;
+        const key = `${task.subtest}-${part}`;
+        const values = outcomes.get(key) ?? [];
+        values.push(review.passed);
+        outcomes.set(key, values);
+      });
+    });
+
+  return eligibleSubtests.flatMap((subtest) =>
+    parts.map((part): PartHistorySummary => {
+      const recent = (outcomes.get(`${subtest}-${part}`) ?? []).slice(-windowSize);
+      const correct = recent.filter(Boolean).length;
+      return {
+        subtest,
+        part,
+        attemptCount: recent.length,
+        accuracyPercent: recent.length > 0 ? Math.round((correct / recent.length) * 100) : null,
+      };
+    }),
+  );
 }
 
 /** Most frequently recurring weak-area strings across recent sessions — the "what to fix next" list. */

@@ -299,6 +299,17 @@ const writingCriteriaByTaskId: Record<string, WritingCriteria> = {
     ],
     irrelevantTerms: ['eczema', 'accountant', 'gardening'],
   },
+  'write-45': {
+    requiredConceptGroups: [
+      ['prosthetic-valve endocarditis', 'prosthetic valve endocarditis', 'endocarditis'],
+      ['aortic-root abscess', 'aortic root abscess', 'root abscess'],
+      ['Staphylococcus aureus', 'S. aureus', 'positive blood cultures'],
+      ['embolic infarct', 'cerebral embolus', 'haemorrhagic transformation', 'hemorrhagic transformation'],
+      ['flucloxacillin', 'gentamicin', 'antibiotics'],
+      ['cardiac surgery', 'neurology', 'multidisciplinary', 'tertiary transfer'],
+    ],
+    irrelevantTerms: ['hay fever', 'architect', 'photography'],
+  },
 };
 
 const AUTO_WRITING_STOP_WORDS = new Set([
@@ -1563,6 +1574,35 @@ export const listeningTasks: SessionTask[] = [
     ),
     difficulty: 'advanced',
   },
+  {
+    ...mcq(
+      'lis-119',
+      'listening',
+      'Part C — Treatment switching and kidney outcomes',
+      'Why does the speaker reject the claim that continued exposure proved the new medicine protected kidney function?',
+      [
+        {
+          label: 'Early deterioration prompted patients to switch treatment, moving their later risk into the comparator group and selecting healthier continuers',
+          correct: true,
+          explanation:
+            'The speaker links switching to early prognostic changes, so the as-treated groups are selected after randomisation and no longer provide the original fair comparison.',
+        },
+        {
+          label: 'The intention-to-treat analysis excluded every participant who received rescue treatment',
+          correct: false,
+          explanation:
+            'The treatment-policy analysis retains participants according to assignment; exclusion is not the criticism described.',
+        },
+        {
+          label: 'Any treatment switch makes a randomised trial incapable of answering a clinically useful question',
+          correct: false,
+          explanation:
+            'The speaker supports several estimands, provided the question and assumptions are defined before selecting the analysis.',
+        },
+      ],
+    ),
+    difficulty: 'advanced',
+  },
 ];
 
 export const readingTasks: SessionTask[] = [
@@ -2177,6 +2217,32 @@ export const readingTasks: SessionTask[] = [
       },
     ],
   ),
+  advancedReadingMcq(
+    'read-91',
+    'Part C — Treatment switching and the target estimand',
+    'passage-treatment-switching-estimand',
+    'Why does the writer say the as-treated association cannot establish that the new medicine was protective?',
+    [
+      {
+        label: 'Prognostic changes influenced switching, so later risk was redistributed and those who continued became a selected group',
+        correct: true,
+        explanation:
+          'Early renal deterioration influenced both treatment switching and later outcomes, breaking the randomised comparison in the as-treated groups.',
+      },
+      {
+        label: 'An intention-to-treat estimate is always the biological effect of uninterrupted treatment',
+        correct: false,
+        explanation:
+          'The passage distinguishes a treatment-policy effect from the effect of sustained exposure and says extensive crossover can dilute the latter.',
+      },
+      {
+        label: 'Rescue treatment should have been withheld so that the trial could preserve statistical purity',
+        correct: false,
+        explanation:
+          'The writer treats rescue as potentially necessary clinical care and argues for analyses matched to explicit questions, not withholding it.',
+      },
+    ],
+  ),
 ];
 
 export const writingTasks: SessionTask[] = [
@@ -2724,6 +2790,33 @@ Over three days, he repeatedly exceeded the recommended dose for dental pain; th
 N-acetylcysteine was commenced immediately following toxicology and liver-team discussion. He is currently oriented with GCS 14, blood pressure 106/66 mmHg, heart rate 104 and oxygen saturation 97% on air. Viral hepatitis screening is pending.
 
 Please accept him immediately for continued acetylcysteine, transplant assessment, serial glucose, blood-gas and INR monitoring, renal support, and close observation for encephalopathy.
+
+Please contact me if further information is required.
+
+Yours sincerely,
+
+Dr Maya Hassan`,
+    difficulty: 'advanced',
+  },
+  {
+    ...writing(
+      'write-45',
+      'Urgent transfer — Prosthetic-valve endocarditis with cerebral emboli',
+      '26 Aug 2026 — Pt: Ms Nadia Farouk, 65y\nBioprosthetic aortic-valve replacement 2024\nSeven days fever, malaise; today transient confusion and left-arm weakness\nThree blood-culture sets: methicillin-sensitive Staphylococcus aureus\nTransoesophageal echo: 14-mm mobile prosthetic-valve vegetation, moderate aortic regurgitation, probable aortic-root abscess\nMRI brain: multiple embolic infarcts; 6-mm haemorrhagic transformation in right parietal lesion, no mass effect\nPersistent fever and positive cultures after 48 hours of treatment\nCurrent: alert, mild left pronator drift; temp 38.3°C, HR 104, BP 108/66, SpO2 97% room air\nIV flucloxacillin 2 g four-hourly plus synergistic gentamicin commenced after microbiology review\nAspirin withheld after intracranial bleeding; renal function currently normal\nLocal cardiology, microbiology and neurology agree immediate tertiary transfer\nNeeds cardiac-surgery assessment for uncontrolled infection/root abscess and specialist neurological input on operative timing given haemorrhagic transformation\nContinuous rhythm/neuro monitoring; repeat cultures taken\nDaughter informed of urgency and competing risks\nPMH: seasonal hay fever; architect; enjoys photography\nNo known drug allergies\nWrite an urgent tertiary transfer letter prioritising the uncontrolled prosthetic infection, neurological complication, treatment and multidisciplinary decision required',
+      'Dear Cardiac Surgery Registrar,\n\nI am writing to request the urgent transfer of Ms Nadia Farouk, aged 65, with uncontrolled prosthetic aortic-valve endocarditis complicated by cerebral emboli and a small haemorrhagic transformation.',
+      'Urgent tertiary transfer',
+    ),
+    modelAnswer: `Dear Cardiac Surgery Registrar,
+
+I am writing to request urgent transfer of Ms Nadia Farouk, 65, with uncontrolled prosthetic aortic-valve endocarditis complicated by cerebral emboli and haemorrhagic transformation.
+
+Ms Farouk had a bioprosthetic aortic-valve replacement in 2024. After seven days of fever and malaise, she developed transient confusion and left-arm weakness today. Three blood-culture sets grew methicillin-sensitive Staphylococcus aureus. Transoesophageal echocardiography shows a 14-mm mobile vegetation, moderate aortic regurgitation and a probable aortic-root abscess. Despite 48 hours of treatment, fever and positive cultures persist.
+
+MRI demonstrates multiple embolic infarcts, including a 6-mm haemorrhagic transformation in the right parietal lesion without mass effect. She is currently alert with mild left pronator drift; temperature is 38.3°C, pulse 104 and blood pressure 108/66 mmHg.
+
+Following microbiology advice, intravenous flucloxacillin 2 g four-hourly and synergistic gentamicin have commenced. Aspirin is withheld, repeat cultures are pending, and rhythm and neurological monitoring continue. Renal function is normal.
+
+Please assess her immediately for surgery to control the root infection, with neurology and neurosurgical input regarding timing given the intracranial bleeding. Her daughter understands the urgency and competing risks.
 
 Please contact me if further information is required.
 
@@ -3769,6 +3862,54 @@ export const speakingTasks: SessionTask[] = [
           'The operation aims to treat the blockage, but we should discuss bleeding, infection, recovery, the alternatives and what delaying treatment could mean for you.',
           'Please ask anything that is unclear. Family agreement and a signature do not replace your own informed choice.',
           'Using the interpreter, could you explain in your own words the options and tell me which matters most to you before we agree the next step?',
+        ],
+      },
+    ),
+    difficulty: 'advanced',
+  },
+  {
+    ...speaking(
+      'speak-45',
+      'Emergency dialysis — supported decision with fluctuating capacity',
+      'You are the acute physician speaking with a 72-year-old patient who has severe acute kidney injury, potassium 6.8 mmol/L and worsening pulmonary oedema. They repeatedly say “no dialysis” but cannot hear the explanation because their hearing-aid battery is flat and they drift in and out of attention. Their daughter says they once feared permanent dialysis. Emergency treatment has stabilised the heart rhythm briefly, but renal replacement therapy may soon be needed.',
+      [
+        'Address distress, restore communication support and establish what the patient believes is being proposed',
+        'Explain the immediate danger, temporary emergency dialysis and alternatives or consequences in plain language',
+        'Assess decision-specific capacity after reversible barriers are treated without assuming refusal equals incapacity',
+        'Elicit prior values and family knowledge, then agree and safety-net the least restrictive urgent plan',
+      ],
+      {
+        expectedKeywords: [
+          'hearing',
+          'battery',
+          'kidney',
+          'potassium',
+          'fluid',
+          'heart',
+          'breathing',
+          'dialysis',
+          'temporary',
+          'choice',
+          'understand',
+          'capacity',
+          'values',
+          'daughter',
+          'urgent',
+          'review',
+        ],
+        checklist: [
+          'Acknowledge fear and correct the hearing barrier before treating the first refusal as an informed decision',
+          'Explain hyperkalaemia, fluid overload, the proposed temporary treatment and consequences of delay without jargon',
+          'Assess whether the patient can understand, retain, weigh and communicate this specific decision after reversible causes are addressed',
+          'Respect a capacitous refusal while using prior values and family knowledge—not family authority—if an urgent best-interests decision is required',
+          'Use teach-back, document the reasoning and arrange repeated review because attention and capacity may fluctuate',
+        ],
+        samplePhrases: [
+          'I can see this is frightening. Before we decide anything, let us replace the hearing-aid battery and make sure you can hear and follow the explanation.',
+          'Your kidneys are not clearing potassium or fluid; that can affect your heart and breathing. The dialysis we are discussing is emergency support and does not automatically mean permanent dialysis.',
+          'I will ask you to explain the options in your own words so I can check my explanation. Saying no does not by itself mean you cannot decide.',
+          'If you can understand and weigh the immediate risks, your decision is yours. If you cannot do that despite support and delay would be dangerous, we must use what we know about your values to choose the least restrictive safe treatment.',
+          'We will involve your daughter for what she knows about your wishes, document the decision and reassess you as your attention changes.',
         ],
       },
     ),
