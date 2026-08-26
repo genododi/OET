@@ -1,7 +1,12 @@
 import { useMemo } from 'react';
 import type { OetSubtest } from '../types';
 import type { CompletedSession } from '../types/session';
-import { summarizeSubtestHistory } from '../lib/taskHistory';
+import {
+  recommendGradeAFocus,
+  summarizeSubtestHistory,
+  type ProductiveCriterion,
+} from '../lib/taskHistory';
+import type { OetPart } from '../lib/oetExamTiming';
 import {
   assessGradeATrainingReadiness,
   GRADE_A_EVIDENCE_REQUIREMENTS,
@@ -33,6 +38,14 @@ const PRESCRIPTIONS: Record<OetSubtest, { focus: string; gate: string }> = {
 interface Props {
   completed: CompletedSession[];
   onStartSmart: (subtests?: OetSubtest[]) => void;
+  onStartPart: (
+    subtest: Extract<OetSubtest, 'listening' | 'reading'>,
+    part: OetPart,
+  ) => void;
+  onStartProductive: (
+    subtest: Extract<OetSubtest, 'writing' | 'speaking'>,
+    criterion: ProductiveCriterion,
+  ) => void;
   dueReviewCount: number;
   onStartReview: () => void;
 }
@@ -40,6 +53,8 @@ interface Props {
 export function GradeACommandCenter({
   completed,
   onStartSmart,
+  onStartPart,
+  onStartProductive,
   dueReviewCount,
   onStartReview,
 }: Props) {
@@ -60,21 +75,63 @@ export function GradeACommandCenter({
       ),
     [summaries],
   );
-  const priority = useMemo(
-    () =>
-      [...summaries].sort((a, b) => {
-        const aGap = a.rollingPercent === null ? 999 : GRADE_A_TRAINING_TARGETS[a.subtest] - a.rollingPercent;
-        const bGap = b.rollingPercent === null ? 999 : GRADE_A_TRAINING_TARGETS[b.subtest] - b.rollingPercent;
-        return bGap - aGap;
-      })[0],
-    [summaries],
-  );
+  const focus = useMemo(() => recommendGradeAFocus(completed), [completed]);
 
   const masteredCount = summaries.filter(
     (summary) => readinessBySubtest.get(summary.subtest)?.status === 'target-met',
   ).length;
-  const hasAnyBaseline = summaries.some((s) => s.rollingPercent !== null);
-  const nextPriority = hasAnyBaseline ? priority : undefined;
+  const focusCopy = (() => {
+    if (focus.kind === 'baseline') {
+      return {
+        title: 'Establish your four-skill baseline',
+        description: 'Complete one time-calibrated mixed session before specialising.',
+        button: 'Start baseline session',
+      };
+    }
+    if (focus.kind === 'part') {
+      const label = `${focus.subtest[0]!.toUpperCase()}${focus.subtest.slice(1)} Part ${focus.part}`;
+      return {
+        title: `Repair ${label} · ${focus.scorePercent}%`,
+        description: `Your weakest sub-test contains a measured part gap across ${focus.attemptCount} recent item attempts.`,
+        button: `Start ${label} focus`,
+      };
+    }
+    if (focus.kind === 'criterion') {
+      const label = `${focus.subtest[0]!.toUpperCase()}${focus.subtest.slice(1)} ${focus.criterion}`;
+      return {
+        title: `Repair ${label} · ${focus.scorePercent}%`,
+        description: `${focus.attemptCount} scored attempt${focus.attemptCount === 1 ? '' : 's'} identify this as the most actionable gap inside your weakest sub-test.`,
+        button: `Start ${label} focus`,
+      };
+    }
+    return {
+      title:
+        focus.scorePercent === null
+          ? `Establish a ${focus.subtest} baseline`
+          : `Prioritise ${focus.subtest} · ${focus.scorePercent}%`,
+      description:
+        focus.scorePercent === null
+          ? `Sample ${focus.subtest} before adding more practice to measured sub-tests.`
+          : PRESCRIPTIONS[focus.subtest].focus,
+      button: `Start ${focus.subtest} focus`,
+    };
+  })();
+
+  const startRecommended = () => {
+    if (dueReviewCount > 0) {
+      onStartReview();
+      return;
+    }
+    if (focus.kind === 'baseline') {
+      onStartSmart();
+    } else if (focus.kind === 'part') {
+      onStartPart(focus.subtest, focus.part);
+    } else if (focus.kind === 'criterion') {
+      onStartProductive(focus.subtest, focus.criterion);
+    } else {
+      onStartSmart([focus.subtest]);
+    }
+  };
 
   return (
     <section className="card grade-a-command" aria-labelledby="grade-a-title">
@@ -141,28 +198,22 @@ export function GradeACommandCenter({
           <strong>
             {dueReviewCount > 0
               ? `Correct ${dueReviewCount} due mistake${dueReviewCount === 1 ? '' : 's'}`
-              : nextPriority
-                ? `Prioritise ${nextPriority.subtest}`
-                : 'Establish your baseline'}
+              : focusCopy.title}
           </strong>
           <p>
             {dueReviewCount > 0
               ? 'Retrieve these answers before adding new material; corrected errors return after 1, 3, 7 and 14 days.'
-              : nextPriority
-                ? PRESCRIPTIONS[nextPriority.subtest].focus
-                : 'Complete a mixed Smart Session to reveal your starting point.'}
+              : focusCopy.description}
           </p>
         </div>
         <button
           type="button"
           className="btn btn-primary"
-          onClick={dueReviewCount > 0 ? onStartReview : () => onStartSmart(nextPriority ? [nextPriority.subtest] : undefined)}
+          onClick={startRecommended}
         >
           {dueReviewCount > 0
             ? `Start mistake review (${dueReviewCount})`
-            : nextPriority
-              ? `Start ${nextPriority.subtest} focus`
-              : 'Start baseline session'}
+            : focusCopy.button}
         </button>
       </div>
       <p className="grade-a-disclaimer">

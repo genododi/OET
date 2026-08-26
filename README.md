@@ -25,6 +25,8 @@ npm run preview
 - Grade A diagnostic and plan based on exam date, available days, daily time, and four baseline scaled scores.
 - Medicine resource library with sub-test, format, source, and text filters.
 - Timed Listening, Reading, Writing, and Speaking sessions with review evidence and provenance.
+- A single next-best-move prescription that samples unmeasured skills first, then routes the weakest sub-test to its lowest measured Part A/B/C or productive rubric score.
+- Time-calibrated adaptive workloads: at most one full Writing letter, one Speaking role-play in a mixed set, or the two-role-play workload when Speaking is trained alone.
 - Original referral, discharge, transfer, advice, and patient-role-play practice.
 - Offline rubric feedback, corrections, vocabulary cues, model structures, and next drills.
 - Optional bring-your-own Anthropic key for a second writing or speaking review. The key stays in browser storage and the app remains usable if the provider times out or fails.
@@ -87,7 +89,7 @@ npm run build
 npm run test:e2e
 ```
 
-`test:oet` verifies official blueprint counts/timing, question uniqueness and answers, productive-skill coverage, Part A responses, audio mappings, spoken relevance, and Grade A readiness. `test:governance` blocks unsafe, quarantined, oversized, and unverifiable public assets. `test:source-manifest` validates the checked-in source register and automatically validates the detailed external manifest when GENODODI is mounted; use `npm run test:source-manifest -- --require-external` for final archive acceptance. Playwright covers diagnostic planning, resource search, timed writing, speaking fallback, offline tutoring, and hash routing.
+`test:oet` verifies official blueprint counts/timing, question uniqueness and answers, productive-skill coverage, Part A responses, audio mappings, spoken relevance, and Grade A readiness. `test:governance` blocks unsafe, quarantined, oversized, and unverifiable public assets. `test:source-manifest` validates the checked-in source register and automatically validates the detailed external manifest when GENODODI is mounted; use `npm run test:source-manifest -- --require-external` for final archive acceptance. Playwright covers diagnostic planning, resource search, timed writing, speaking fallback, offline tutoring, precision recommendations, and hash routing.
 
 For a fresh Playwright installation:
 

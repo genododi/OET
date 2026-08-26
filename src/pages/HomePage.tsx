@@ -97,6 +97,8 @@ export function HomePage({ onNavigate, preferredProfession = 'Medicine' }: Props
       <GradeACommandCenter
         completed={completed}
         onStartSmart={startSmart}
+        onStartPart={startPart}
+        onStartProductive={startProductive}
         dueReviewCount={dueReviewCount}
         onStartReview={startReview}
       />

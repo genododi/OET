@@ -2,6 +2,7 @@ import type { CompletedSession } from '../types/session';
 import type { OetSubtest } from '../types';
 import type { OetPart } from './oetExamTiming';
 import { bankBySubtest, oetTaskPart } from '../data/sessionTaskBank';
+import { GRADE_A_TRAINING_TARGETS } from './oetThresholds';
 
 /** Matches the bank id suffix embedded in every generated task id, e.g. "...-lis-3" -> "lis-3". */
 const CANONICAL_ID_PATTERN = /(lis|read|write|speak)-\d+$/;
@@ -62,6 +63,24 @@ export interface ProductiveCriterionHistorySummary {
   attemptCount: number;
   rollingPercent: number | null;
 }
+
+export type GradeAFocusRecommendation =
+  | { kind: 'baseline' }
+  | { kind: 'subtest'; subtest: OetSubtest; scorePercent: number | null }
+  | {
+      kind: 'part';
+      subtest: Extract<OetSubtest, 'listening' | 'reading'>;
+      part: OetPart;
+      scorePercent: number;
+      attemptCount: number;
+    }
+  | {
+      kind: 'criterion';
+      subtest: Extract<OetSubtest, 'writing' | 'speaking'>;
+      criterion: ProductiveCriterion;
+      scorePercent: number;
+      attemptCount: number;
+    };
 
 export const PRODUCTIVE_CRITERIA: Record<
   Extract<OetSubtest, 'writing' | 'speaking'>,
@@ -342,6 +361,89 @@ export function summarizeProductiveCriterionHistory(
       return { subtest, criterion, attemptCount: recent.length, rollingPercent };
     }),
   );
+}
+
+/**
+ * Select the most specific usable training target inside the weakest sub-test.
+ * Unknown sub-tests are sampled before more practice is added elsewhere; once a
+ * baseline exists everywhere, part/rubric evidence replaces broad drilling.
+ */
+export function recommendGradeAFocus(
+  completed: CompletedSession[],
+): GradeAFocusRecommendation {
+  const subtests: OetSubtest[] = ['listening', 'reading', 'writing', 'speaking'];
+  const summaries = summarizeSubtestHistory(completed, subtests, 8);
+  if (summaries.every((summary) => summary.rollingPercent === null)) {
+    return { kind: 'baseline' };
+  }
+
+  const weakest = [...summaries].sort((a, b) => {
+    if (a.rollingPercent === null || b.rollingPercent === null) {
+      if (a.rollingPercent === null && b.rollingPercent === null) return 0;
+      return a.rollingPercent === null ? -1 : 1;
+    }
+    const aGap = GRADE_A_TRAINING_TARGETS[a.subtest] - a.rollingPercent;
+    const bGap = GRADE_A_TRAINING_TARGETS[b.subtest] - b.rollingPercent;
+    return bGap - aGap;
+  })[0]!;
+
+  if (weakest.rollingPercent === null) {
+    return { kind: 'subtest', subtest: weakest.subtest, scorePercent: null };
+  }
+
+  if (weakest.subtest === 'listening' || weakest.subtest === 'reading') {
+    const part = summarizePartHistory(completed)
+      .filter(
+        (summary) =>
+          summary.subtest === weakest.subtest &&
+          summary.attemptCount >= 2 &&
+          summary.accuracyPercent !== null &&
+          summary.accuracyPercent < GRADE_A_TRAINING_TARGETS[weakest.subtest],
+      )
+      .sort(
+        (a, b) =>
+          a.accuracyPercent! - b.accuracyPercent! ||
+          b.attemptCount - a.attemptCount,
+      )[0];
+    if (part?.accuracyPercent !== null && part?.accuracyPercent !== undefined) {
+      return {
+        kind: 'part',
+        subtest: part.subtest,
+        part: part.part,
+        scorePercent: part.accuracyPercent,
+        attemptCount: part.attemptCount,
+      };
+    }
+  } else {
+    const criterion = summarizeProductiveCriterionHistory(completed)
+      .filter(
+        (summary) =>
+          summary.subtest === weakest.subtest &&
+          summary.attemptCount > 0 &&
+          summary.rollingPercent !== null &&
+          summary.rollingPercent < GRADE_A_TRAINING_TARGETS[weakest.subtest],
+      )
+      .sort(
+        (a, b) =>
+          a.rollingPercent! - b.rollingPercent! ||
+          b.attemptCount - a.attemptCount,
+      )[0];
+    if (criterion?.rollingPercent !== null && criterion?.rollingPercent !== undefined) {
+      return {
+        kind: 'criterion',
+        subtest: criterion.subtest,
+        criterion: criterion.criterion,
+        scorePercent: criterion.rollingPercent,
+        attemptCount: criterion.attemptCount,
+      };
+    }
+  }
+
+  return {
+    kind: 'subtest',
+    subtest: weakest.subtest,
+    scorePercent: weakest.rollingPercent,
+  };
 }
 
 /** Most frequently recurring weak-area strings across recent sessions — the "what to fix next" list. */

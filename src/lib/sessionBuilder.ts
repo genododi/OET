@@ -27,8 +27,27 @@ import {
 } from './oetExamTiming';
 import type { PracticeProvenance } from '../types';
 
-/** Minimum content tasks (excluding intro/break) for every session. */
+/** Minimum content tasks for catalog-derived receptive practice modules. */
 export const MIN_CONTENT_TASKS = 10;
+
+/**
+ * Productive tasks are full performances, not MCQ-sized items. Adaptive sets
+ * therefore cap Writing at one letter and Speaking at the live-test two-role-play
+ * workload; a mixed set uses one role-play so all four skills remain practical.
+ */
+export const SMART_SESSION_TASK_CAPS: Record<OetSubtest, number> = {
+  listening: 20,
+  reading: 20,
+  writing: 1,
+  speaking: 2,
+};
+
+export const SMART_TASK_MINUTES: Record<OetSubtest, number> = {
+  listening: 2,
+  reading: 3,
+  writing: 45,
+  speaking: 10,
+};
 
 const subtestInstructions: Record<OetSubtest, string> = {
   listening:
@@ -211,7 +230,7 @@ export function buildMockSession(exam: MockExam): SessionConfig {
 export interface SmartSessionOptions {
   subtests: OetSubtest[];
   completed: CompletedSession[];
-  /** Total content tasks across all chosen subtests. Default 16 (≈4 per subtest). */
+  /** Upper selection target before full-performance caps are applied. */
   totalTasks?: number;
 }
 
@@ -437,7 +456,18 @@ export function buildReviewSession({
 export function buildSmartSession({ subtests, completed, totalTasks = 16 }: SmartSessionOptions): SessionConfig {
   const stats: Map<string, TaskStat> = buildTaskStats(completed);
   const activeSubtests = subtests.length > 0 ? subtests : (['listening', 'reading', 'writing', 'speaking'] as OetSubtest[]);
-  const counts = distributeTaskCounts(activeSubtests, totalTasks);
+  const distributed = distributeTaskCounts(activeSubtests, totalTasks);
+  const counts = activeSubtests.map((subtest, index) => {
+    const cap = subtest === 'speaking' && activeSubtests.length > 1
+      ? 1
+      : SMART_SESSION_TASK_CAPS[subtest];
+    return Math.min(distributed[index]!, cap, bankBySubtest[subtest].length);
+  });
+  const plannedMinutes = activeSubtests.reduce(
+    (sum, subtest, index) => sum + counts[index]! * SMART_TASK_MINUTES[subtest],
+    0,
+  );
+  const selectedTaskCount = counts.reduce((sum, count) => sum + count, 0);
   const runId = `smart-${Date.now().toString(36)}`;
 
   const tasks: SessionTask[] = [
@@ -449,7 +479,8 @@ export function buildSmartSession({ subtests, completed, totalTasks = 16 }: Smar
         'Built from your history: unseen and previously-weak items are prioritised, mastered items appear less often. Mixed across the sub-tests you selected.',
       checklist: [
         `Sub-tests: ${activeSubtests.join(', ')}`,
-        `${totalTasks} task(s), adaptive selection`,
+        `${selectedTaskCount} task(s), weighted to fit ${Math.max(20, plannedMinutes)} minutes`,
+        'One full Writing letter maximum; Speaking uses one role-play in mixed sets or two alone',
       ],
     },
   ];
@@ -464,7 +495,7 @@ export function buildSmartSession({ subtests, completed, totalTasks = 16 }: Smar
       });
     }
     const bank = bankBySubtest[subtest];
-    const requested = Math.min(counts[index]!, bank.length);
+    const requested = counts[index]!;
     const picked = weightedPick(bank, requested, stats);
     picked.forEach((task) => {
       tasks.push({ ...withProvenance(task, subtest), id: `${runId}-${task.id}` });
@@ -476,7 +507,7 @@ export function buildSmartSession({ subtests, completed, totalTasks = 16 }: Smar
     kind: 'practice',
     title: 'Smart Session',
     subtitle: 'Adaptive — built from your progress',
-    durationMinutes: Math.max(20, totalTasks * 3),
+    durationMinutes: Math.max(20, plannedMinutes),
     subtests: activeSubtests,
     tasks,
   };

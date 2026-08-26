@@ -5,11 +5,13 @@ import {
   buildPartFocusSession,
   buildProductiveFocusSession,
   buildReviewSession,
+  buildSmartSession,
 } from './sessionBuilder';
 import {
   buildTaskStats,
   countDueReviewTasks,
   dueReviewStats,
+  recommendGradeAFocus,
   summarizePartHistory,
   summarizeProductiveCriterionHistory,
   summarizeSubtestHistory,
@@ -99,6 +101,130 @@ describe('mistake review spacing', () => {
     expect(review?.durationMinutes).toBe(45);
     expect(review?.tasks).toHaveLength(2);
     expect(review?.subtests).toEqual(['writing']);
+  });
+});
+
+describe('Grade A next-action precision', () => {
+  const allSkillEvidence = (
+    weakestSubtest: OetSubtest,
+    taskReviews: NonNullable<CompletedSession['review']>['taskReviews'],
+  ): CompletedSession => ({
+    id: `all-skills-${weakestSubtest}`,
+    kind: 'practice',
+    title: 'All-skill evidence',
+    completedAt: '2026-08-26T08:00:00.000Z',
+    durationMinutes: 75,
+    review: {
+      subtestScores: (['listening', 'reading', 'writing', 'speaking'] as OetSubtest[]).map(
+        (subtest) => ({
+          subtest,
+          percentScore: subtest === weakestSubtest ? 55 : 92,
+          practicePass: subtest !== weakestSubtest,
+          examReady: subtest !== weakestSubtest,
+          weakAreas: [],
+        }),
+      ),
+      overallPercent: 83,
+      overallPracticePass: false,
+      overallExamReady: false,
+      weakAreas: [],
+      taskReviews,
+    },
+  });
+
+  it('starts with a balanced baseline and samples any unmeasured sub-test next', () => {
+    expect(recommendGradeAFocus([])).toEqual({ kind: 'baseline' });
+    const partialEvidence = allSkillEvidence('writing', []);
+    partialEvidence.review!.subtestScores = partialEvidence.review!.subtestScores.filter(
+      (score) => score.subtest === 'writing',
+    );
+    expect(recommendGradeAFocus([partialEvidence])).toMatchObject({
+      kind: 'subtest',
+      scorePercent: null,
+    });
+  });
+
+  it('routes the weakest productive sub-test to its lowest scored criterion', () => {
+    const recommendation = recommendGradeAFocus([
+      allSkillEvidence('writing', [
+        {
+          taskId: 'writing-evidence-letter',
+          subtest: 'writing',
+          passed: false,
+          scorePercent: 55,
+          summary: 'Writing criterion evidence',
+          criteriaScores: [
+            { criterion: 'Purpose', scorePercent: 80 },
+            { criterion: 'Content', scorePercent: 35 },
+          ],
+        },
+      ]),
+    ]);
+
+    expect(recommendation).toEqual({
+      kind: 'criterion',
+      subtest: 'writing',
+      criterion: 'Content',
+      scorePercent: 35,
+      attemptCount: 1,
+    });
+  });
+
+  it('routes the weakest receptive sub-test to a reliably measured part', () => {
+    const recommendation = recommendGradeAFocus([
+      allSkillEvidence('listening', [
+        {
+          taskId: 'part-evidence-lis-3',
+          subtest: 'listening',
+          passed: false,
+          scorePercent: 0,
+          summary: 'Part C miss',
+        },
+        {
+          taskId: 'part-evidence-lis-118',
+          subtest: 'listening',
+          passed: false,
+          scorePercent: 0,
+          summary: 'Part C miss',
+        },
+      ]),
+    ]);
+
+    expect(recommendation).toEqual({
+      kind: 'part',
+      subtest: 'listening',
+      part: 'C',
+      scorePercent: 0,
+      attemptCount: 2,
+    });
+  });
+});
+
+describe('time-calibrated Smart Sessions', () => {
+  it('uses one full productive performance per skill in a mixed baseline', () => {
+    const session = buildSmartSession({ subtests: [], completed: [], totalTasks: 16 });
+    const content = session.tasks.filter(
+      (task) => task.subtest !== 'intro' && task.subtest !== 'break',
+    );
+    const count = (subtest: OetSubtest) =>
+      content.filter((task) => task.subtest === subtest).length;
+
+    expect(count('listening')).toBe(4);
+    expect(count('reading')).toBe(4);
+    expect(count('writing')).toBe(1);
+    expect(count('speaking')).toBe(1);
+    expect(session.durationMinutes).toBe(75);
+    expect(session.tasks[0]?.checklist).toContain('10 task(s), weighted to fit 75 minutes');
+  });
+
+  it('caps single-skill productive sessions at live-test workloads', () => {
+    const writing = buildSmartSession({ subtests: ['writing'], completed: [] });
+    const speaking = buildSmartSession({ subtests: ['speaking'], completed: [] });
+
+    expect(writing.tasks.filter((task) => task.subtest === 'writing')).toHaveLength(1);
+    expect(writing.durationMinutes).toBe(45);
+    expect(speaking.tasks.filter((task) => task.subtest === 'speaking')).toHaveLength(2);
+    expect(speaking.durationMinutes).toBe(20);
   });
 });
 

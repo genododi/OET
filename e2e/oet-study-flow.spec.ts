@@ -236,7 +236,7 @@ test('readiness history targets the weakest Listening or Reading part', async ({
   ).toBeVisible();
 });
 
-test('scored writing history launches the weakest rubric-dimension drill', async ({ page }) => {
+test('the next-best-move button launches the weakest writing criterion', async ({ page }) => {
   await page.addInitScript(() => {
     localStorage.setItem(
       'oet-study-partner-progress',
@@ -252,11 +252,36 @@ test('scored writing history launches the weakest rubric-dimension drill', async
             review: {
               subtestScores: [
                 {
+                  subtest: 'listening',
+                  percentScore: 92,
+                  correct: 39,
+                  total: 42,
+                  practicePass: true,
+                  examReady: true,
+                  weakAreas: [],
+                },
+                {
+                  subtest: 'reading',
+                  percentScore: 92,
+                  correct: 39,
+                  total: 42,
+                  practicePass: true,
+                  examReady: true,
+                  weakAreas: [],
+                },
+                {
                   subtest: 'writing',
                   percentScore: 62,
                   practicePass: false,
                   examReady: false,
                   weakAreas: ['Writing Content: purpose-critical facts omitted'],
+                },
+                {
+                  subtest: 'speaking',
+                  percentScore: 90,
+                  practicePass: true,
+                  examReady: true,
+                  weakAreas: [],
                 },
               ],
               overallPercent: 62,
@@ -265,7 +290,7 @@ test('scored writing history launches the weakest rubric-dimension drill', async
               weakAreas: ['Writing Content: purpose-critical facts omitted'],
               taskReviews: [
                 {
-                  taskId: 'criterion-seed-write-45',
+                  taskId: 'criterion-seed-letter',
                   subtest: 'writing',
                   passed: false,
                   scorePercent: 62,
@@ -291,7 +316,8 @@ test('scored writing history launches the weakest rubric-dimension drill', async
   await expect(page.getByTestId('productive-focus-target')).toContainText(
     'Writing · Content: 35%',
   );
-  await page.getByRole('button', { name: 'Drill writing Content' }).click();
+  await expect(page.getByText('Repair Writing Content · 35%')).toBeVisible();
+  await page.getByRole('button', { name: 'Start Writing Content focus' }).click();
   await expect(page.getByRole('heading', { name: 'Writing Content Focus' })).toBeVisible();
   await expect(
     page.getByText('Select and synthesise only the facts the recipient needs for safe next care.'),
