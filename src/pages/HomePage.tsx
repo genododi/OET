@@ -9,10 +9,11 @@ import { useProgress } from '../hooks/useProgress';
 import { matchesProfessionFilter } from '../lib/preferredProfession';
 import {
   buildPartFocusSession,
+  buildProductiveFocusSession,
   buildReviewSession,
   buildSmartSession,
 } from '../lib/sessionBuilder';
-import { countDueReviewTasks } from '../lib/taskHistory';
+import { countDueReviewTasks, type ProductiveCriterion } from '../lib/taskHistory';
 import type { OetPart } from '../lib/oetExamTiming';
 import { SessionRunner } from '../components/SessionRunner';
 import { ReadinessDashboard } from '../components/ReadinessDashboard';
@@ -51,6 +52,13 @@ export function HomePage({ onNavigate, preferredProfession = 'Medicine' }: Props
     part: OetPart,
   ) => {
     setSmartConfig(buildPartFocusSession({ subtest, part, completed }));
+  };
+
+  const startProductive = (
+    subtest: Extract<OetSubtest, 'writing' | 'speaking'>,
+    criterion: ProductiveCriterion,
+  ) => {
+    setSmartConfig(buildProductiveFocusSession({ subtest, criterion, completed }));
   };
 
   if (smartConfig) {
@@ -96,6 +104,7 @@ export function HomePage({ onNavigate, preferredProfession = 'Medicine' }: Props
         completed={completed}
         onStartSmart={startSmart}
         onStartPart={startPart}
+        onStartProductive={startProductive}
       />
 
       {completedCount > 0 && (

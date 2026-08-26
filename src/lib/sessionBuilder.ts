@@ -8,7 +8,14 @@ import {
   bankBySubtest,
   oetTaskPart,
 } from '../data/sessionTaskBank';
-import { buildTaskStats, dueReviewStats, weightedPick, type TaskStat } from './taskHistory';
+import {
+  buildTaskStats,
+  dueReviewStats,
+  PRODUCTIVE_CRITERIA,
+  weightedPick,
+  type ProductiveCriterion,
+  type TaskStat,
+} from './taskHistory';
 import {
   OET_SUBTEST_TASK_COUNTS,
   OET_PARTS,
@@ -225,6 +232,13 @@ export interface PartFocusSessionOptions {
   now?: Date;
 }
 
+export interface ProductiveFocusSessionOptions {
+  subtest: Extract<OetSubtest, 'writing' | 'speaking'>;
+  criterion: ProductiveCriterion;
+  completed: CompletedSession[];
+  now?: Date;
+}
+
 const reviewMinutesBySubtest: Record<OetSubtest, number> = {
   listening: 2,
   reading: 3,
@@ -246,6 +260,18 @@ const partFocusInstructions: Record<
     B: 'Identify the purpose and main message of each short workplace text.',
     C: 'Infer writer attitude and distinguish fully supported claims from partial matches.',
   },
+};
+
+const productiveFocusInstructions: Record<ProductiveCriterion, string> = {
+  Purpose: 'Make the clinical reason and requested action unmistakable in the opening sentence.',
+  Content: 'Select and synthesise only the facts the recipient needs for safe next care.',
+  'Conciseness & Clarity': 'Use direct sentences, remove repetition and keep the letter within 180–200 words.',
+  Genre: 'Maintain the correct professional letter format, reader relationship and formal register.',
+  Organisation: 'Sequence purpose, essential history, current status and requested action into logical paragraphs.',
+  Language: 'Use accurate grammar, clinical vocabulary, tense and cohesive professional phrasing.',
+  'Relationship & structure': 'Acknowledge emotion, signpost the conversation and check understanding naturally.',
+  'Clinical communication': 'Elicit the patient perspective, explain precisely in plain language and negotiate a safe plan.',
+  'Language & pace': 'Use fluent, intelligible patient-centred language at a controlled conversational pace.',
 };
 
 /** Build a history-weighted micro-session for one Listening or Reading exam part. */
@@ -285,6 +311,58 @@ export function buildPartFocusSession({
         ...withProvenance(task, subtest),
         id: `${runId}-${task.id}`,
       })),
+    ],
+  };
+}
+
+/** Build one full productive-skill attempt with an explicit weakest-criterion brief. */
+export function buildProductiveFocusSession({
+  subtest,
+  criterion,
+  completed,
+  now = new Date(),
+}: ProductiveFocusSessionOptions): SessionConfig {
+  if (!PRODUCTIVE_CRITERIA[subtest].includes(criterion)) {
+    throw new Error(`${criterion} is not a ${subtest} practice criterion`);
+  }
+  const stats = buildTaskStats(completed, now.getTime());
+  const selected = weightedPick(bankBySubtest[subtest], 1, stats)[0]!;
+  const criterionSlug = criterion.toLowerCase().replace(/[^a-z]+/g, '-').replace(/^-|-$/g, '');
+  const runId = `criterion-${subtest}-${criterionSlug}-${now.getTime().toString(36)}`;
+  const label = `${subtest[0]!.toUpperCase()}${subtest.slice(1)} ${criterion}`;
+  const task = withProvenance(selected, subtest);
+
+  return {
+    id: runId,
+    kind: 'practice',
+    title: `${label} Focus`,
+    subtitle: 'Criterion precision — selected from your scored history',
+    durationMinutes: subtest === 'writing' ? 45 : 15,
+    subtests: [subtest],
+    tasks: [
+      {
+        id: `${runId}-intro`,
+        subtest: 'intro',
+        title: `${label} precision target`,
+        instructions: productiveFocusInstructions[criterion],
+        checklist:
+          subtest === 'writing'
+            ? [
+                'Plan against the reader and purpose before drafting',
+                'Complete one timed 180–200-word Medicine letter',
+                `Edit specifically for ${criterion}`,
+              ]
+            : [
+                'Use the full 3-minute preparation time',
+                'Record at least 90 seconds and 80 words',
+                `Review the ${criterion} score after submitting`,
+              ],
+      },
+      {
+        ...task,
+        id: `${runId}-${task.id}`,
+        instructions: `${task.instructions}\n\nCriterion focus: ${productiveFocusInstructions[criterion]}`,
+      },
     ],
   };
 }

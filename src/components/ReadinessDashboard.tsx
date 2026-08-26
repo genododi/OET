@@ -4,8 +4,10 @@ import type { CompletedSession } from '../types/session';
 import type { OetPart } from '../lib/oetExamTiming';
 import {
   summarizePartHistory,
+  summarizeProductiveCriterionHistory,
   summarizeSubtestHistory,
   topRecurringWeakAreas,
+  type ProductiveCriterion,
   type SubtestHistorySummary,
 } from '../lib/taskHistory';
 import { OET_THRESHOLDS, getReadinessLevel, readinessLabel } from '../lib/oetThresholds';
@@ -19,6 +21,10 @@ interface Props {
   onStartPart: (
     subtest: Extract<OetSubtest, 'listening' | 'reading'>,
     part: OetPart,
+  ) => void;
+  onStartProductive: (
+    subtest: Extract<OetSubtest, 'writing' | 'speaking'>,
+    criterion: ProductiveCriterion,
   ) => void;
 }
 
@@ -44,7 +50,12 @@ function Sparkline({ summary }: { summary: SubtestHistorySummary }) {
   );
 }
 
-export function ReadinessDashboard({ completed, onStartSmart, onStartPart }: Props) {
+export function ReadinessDashboard({
+  completed,
+  onStartSmart,
+  onStartPart,
+  onStartProductive,
+}: Props) {
   const summaries = useMemo(
     () => summarizeSubtestHistory(completed, ALL_SUBTESTS, 8),
     [completed],
@@ -57,6 +68,16 @@ export function ReadinessDashboard({ completed, onStartSmart, onStartPart }: Pro
         .sort(
           (a, b) =>
             a.accuracyPercent! - b.accuracyPercent! || b.attemptCount - a.attemptCount,
+        )[0],
+    [completed],
+  );
+  const weakestProductive = useMemo(
+    () =>
+      summarizeProductiveCriterionHistory(completed)
+        .filter((summary) => summary.attemptCount > 0 && summary.rollingPercent !== null)
+        .sort(
+          (a, b) =>
+            a.rollingPercent! - b.rollingPercent! || b.attemptCount - a.attemptCount,
         )[0],
     [completed],
   );
@@ -163,6 +184,38 @@ export function ReadinessDashboard({ completed, onStartSmart, onStartPart }: Pro
             onClick={() => onStartPart(weakestPart.subtest, weakestPart.part)}
           >
             Drill {weakestPart.subtest} Part {weakestPart.part}
+          </button>
+        </div>
+      )}
+
+      {weakestProductive && (
+        <div
+          className="readiness-part-focus readiness-criterion-focus"
+          data-testid="productive-focus-target"
+        >
+          <div>
+            <span className="grade-a-next-label">Productive-skill target</span>
+            <strong>
+              {weakestProductive.subtest[0]!.toUpperCase()}
+              {weakestProductive.subtest.slice(1)} · {weakestProductive.criterion}:{' '}
+              {weakestProductive.rollingPercent}%
+            </strong>
+            <p>
+              Based on {weakestProductive.attemptCount} scored attempt
+              {weakestProductive.attemptCount === 1 ? '' : 's'}.
+              {weakestProductive.subtest === 'speaking'
+                ? ' Recorded evidence only.'
+                : ' Practise this rubric dimension under full letter timing.'}
+            </p>
+          </div>
+          <button
+            type="button"
+            className="btn btn-secondary"
+            onClick={() =>
+              onStartProductive(weakestProductive.subtest, weakestProductive.criterion)
+            }
+          >
+            Drill {weakestProductive.subtest} {weakestProductive.criterion}
           </button>
         </div>
       )}

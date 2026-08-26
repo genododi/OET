@@ -1,12 +1,18 @@
 import { describe, expect, it } from 'vitest';
 import type { OetSubtest } from '../types';
 import type { CompletedSession } from '../types/session';
-import { buildPartFocusSession, buildReviewSession } from './sessionBuilder';
+import {
+  buildPartFocusSession,
+  buildProductiveFocusSession,
+  buildReviewSession,
+} from './sessionBuilder';
 import {
   buildTaskStats,
   countDueReviewTasks,
   dueReviewStats,
   summarizePartHistory,
+  summarizeProductiveCriterionHistory,
+  summarizeSubtestHistory,
 } from './taskHistory';
 
 function completedAttempt(
@@ -127,5 +133,116 @@ describe('Listening and Reading part precision', () => {
     expect(session.title).toBe('Listening Part C Focus');
     expect(session.tasks).toHaveLength(6);
     expect(session.tasks.slice(1).every((task) => /Part C/i.test(task.title))).toBe(true);
+  });
+});
+
+describe('Writing and Speaking criterion precision', () => {
+  const completed: CompletedSession[] = [
+    {
+      id: 'productive-older',
+      kind: 'practice',
+      title: 'Productive practice',
+      completedAt: '2026-08-24T08:00:00.000Z',
+      durationMinutes: 45,
+      review: {
+        subtestScores: [
+          {
+            subtest: 'writing',
+            percentScore: 60,
+            practicePass: false,
+            examReady: false,
+            weakAreas: [],
+          },
+          {
+            subtest: 'speaking',
+            percentScore: 74,
+            practicePass: true,
+            examReady: false,
+            weakAreas: [],
+          },
+        ],
+        overallPercent: 67,
+        overallPracticePass: false,
+        overallExamReady: false,
+        weakAreas: [],
+        taskReviews: [
+          {
+            taskId: 'productive-write-44',
+            subtest: 'writing',
+            passed: false,
+            scorePercent: 60,
+            summary: 'Writing rubric review',
+            criteriaScores: [
+              { criterion: 'Purpose', scorePercent: 80 },
+              { criterion: 'Content', scorePercent: 40 },
+            ],
+          },
+          {
+            taskId: 'productive-speak-44',
+            subtest: 'speaking',
+            passed: true,
+            scorePercent: 74,
+            summary: 'Typed transcript review',
+            evidenceQualified: false,
+            criteriaScores: [{ criterion: 'Clinical communication', scorePercent: 30 }],
+          },
+        ],
+      },
+    },
+    {
+      id: 'productive-newer',
+      kind: 'practice',
+      title: 'Writing practice',
+      completedAt: '2026-08-25T08:00:00.000Z',
+      durationMinutes: 45,
+      review: {
+        subtestScores: [],
+        overallPercent: 0,
+        overallPracticePass: false,
+        overallExamReady: false,
+        weakAreas: [],
+        taskReviews: [
+          {
+            taskId: 'productive-write-45',
+            subtest: 'writing',
+            passed: false,
+            scorePercent: 65,
+            summary: 'Writing rubric review',
+            criteriaScores: [{ criterion: 'Content', scorePercent: 60 }],
+          },
+        ],
+      },
+    },
+  ];
+
+  it('weights recent writing criteria and excludes typed speaking evidence', () => {
+    const summaries = summarizeProductiveCriterionHistory(completed);
+    expect(summaries.find((item) => item.subtest === 'writing' && item.criterion === 'Content')).toMatchObject({
+      attemptCount: 2,
+      rollingPercent: 53,
+    });
+    expect(
+      summaries.find(
+        (item) => item.subtest === 'speaking' && item.criterion === 'Clinical communication',
+      ),
+    ).toMatchObject({ attemptCount: 0, rollingPercent: null });
+    expect(summarizeSubtestHistory(completed, ['speaking'])[0]).toMatchObject({
+      attemptCount: 0,
+      rollingPercent: null,
+    });
+  });
+
+  it('builds a full task around the selected productive criterion', () => {
+    const session = buildProductiveFocusSession({
+      subtest: 'writing',
+      criterion: 'Content',
+      completed,
+      now: new Date('2026-08-26T08:00:00.000Z'),
+    });
+    expect(session.title).toBe('Writing Content Focus');
+    expect(session.durationMinutes).toBe(45);
+    expect(session.tasks).toHaveLength(2);
+    expect(session.tasks[1]?.subtest).toBe('writing');
+    expect(session.tasks[1]?.instructions).toContain('Criterion focus:');
   });
 });

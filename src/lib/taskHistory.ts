@@ -41,6 +41,36 @@ export interface PartHistorySummary {
   accuracyPercent: number | null;
 }
 
+export type WritingCriterion =
+  | 'Purpose'
+  | 'Content'
+  | 'Conciseness & Clarity'
+  | 'Genre'
+  | 'Organisation'
+  | 'Language';
+
+export type SpeakingCriterion =
+  | 'Relationship & structure'
+  | 'Clinical communication'
+  | 'Language & pace';
+
+export type ProductiveCriterion = WritingCriterion | SpeakingCriterion;
+
+export interface ProductiveCriterionHistorySummary {
+  subtest: Extract<OetSubtest, 'writing' | 'speaking'>;
+  criterion: ProductiveCriterion;
+  attemptCount: number;
+  rollingPercent: number | null;
+}
+
+export const PRODUCTIVE_CRITERIA: Record<
+  Extract<OetSubtest, 'writing' | 'speaking'>,
+  readonly ProductiveCriterion[]
+> = {
+  writing: ['Purpose', 'Content', 'Conciseness & Clarity', 'Genre', 'Organisation', 'Language'],
+  speaking: ['Relationship & structure', 'Clinical communication', 'Language & pace'],
+};
+
 const DAY_MS = 86_400_000;
 const REVIEW_INTERVAL_DAYS = [1, 3, 7, 14] as const;
 
@@ -192,6 +222,17 @@ export function summarizeSubtestHistory(
       .sort((a, b) => new Date(a.completedAt).getTime() - new Date(b.completedAt).getTime())
       .forEach((session) => {
         const score = session.review?.subtestScores.find((s) => s.subtest === subtest);
+        if (
+          subtest === 'speaking' &&
+          session.review?.taskReviews.some(
+            (review) => review.subtest === 'speaking' && review.evidenceQualified === false,
+          ) &&
+          !session.review.taskReviews.some(
+            (review) => review.subtest === 'speaking' && review.evidenceQualified === true,
+          )
+        ) {
+          return;
+        }
         if (score && (score.percentScore > 0 || score.total)) {
           points.push({ completedAt: session.completedAt, percentScore: score.percentScore });
         }
@@ -258,6 +299,47 @@ export function summarizePartHistory(
         attemptCount: recent.length,
         accuracyPercent: recent.length > 0 ? Math.round((correct / recent.length) * 100) : null,
       };
+    }),
+  );
+}
+
+/** Rolling Writing and recorded-Speaking criterion evidence from recent task reviews. */
+export function summarizeProductiveCriterionHistory(
+  completed: CompletedSession[],
+  windowSize = 8,
+): ProductiveCriterionHistorySummary[] {
+  const values = new Map<string, number[]>();
+  [...completed]
+    .sort((a, b) => new Date(a.completedAt).getTime() - new Date(b.completedAt).getTime())
+    .forEach((session) => {
+      session.review?.taskReviews.forEach((review) => {
+        if (review.subtest !== 'writing' && review.subtest !== 'speaking') return;
+        const subtest = review.subtest;
+        if (subtest === 'speaking' && review.evidenceQualified !== true) return;
+        review.criteriaScores?.forEach((score) => {
+          const allowed = PRODUCTIVE_CRITERIA[subtest];
+          if (!allowed.includes(score.criterion as ProductiveCriterion)) return;
+          if (!Number.isFinite(score.scorePercent)) return;
+          const key = `${subtest}-${score.criterion}`;
+          const history = values.get(key) ?? [];
+          history.push(Math.max(0, Math.min(100, score.scorePercent)));
+          values.set(key, history);
+        });
+      });
+    });
+
+  return (['writing', 'speaking'] as const).flatMap((subtest) =>
+    PRODUCTIVE_CRITERIA[subtest].map((criterion): ProductiveCriterionHistorySummary => {
+      const recent = (values.get(`${subtest}-${criterion}`) ?? []).slice(-windowSize);
+      if (recent.length === 0) {
+        return { subtest, criterion, attemptCount: 0, rollingPercent: null };
+      }
+      const weights = recent.map((_, index) => index + 1);
+      const totalWeight = weights.reduce((sum, weight) => sum + weight, 0);
+      const rollingPercent = Math.round(
+        recent.reduce((sum, score, index) => sum + score * weights[index]!, 0) / totalWeight,
+      );
+      return { subtest, criterion, attemptCount: recent.length, rollingPercent };
     }),
   );
 }

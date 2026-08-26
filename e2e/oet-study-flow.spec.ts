@@ -235,3 +235,65 @@ test('readiness history targets the weakest Listening or Reading part', async ({
     page.getByText('Track speaker attitude, inference and the evidence that qualifies a conclusion.'),
   ).toBeVisible();
 });
+
+test('scored writing history launches the weakest rubric-dimension drill', async ({ page }) => {
+  await page.addInitScript(() => {
+    localStorage.setItem(
+      'oet-study-partner-progress',
+      JSON.stringify({
+        schemaVersion: 1,
+        completed: [
+          {
+            id: 'writing-criterion-seed',
+            kind: 'practice',
+            title: 'Medicine referral practice',
+            completedAt: new Date().toISOString(),
+            durationMinutes: 45,
+            review: {
+              subtestScores: [
+                {
+                  subtest: 'writing',
+                  percentScore: 62,
+                  practicePass: false,
+                  examReady: false,
+                  weakAreas: ['Writing Content: purpose-critical facts omitted'],
+                },
+              ],
+              overallPercent: 62,
+              overallPracticePass: false,
+              overallExamReady: false,
+              weakAreas: ['Writing Content: purpose-critical facts omitted'],
+              taskReviews: [
+                {
+                  taskId: 'criterion-seed-write-45',
+                  subtest: 'writing',
+                  passed: false,
+                  scorePercent: 62,
+                  summary: 'Writing rubric 62%',
+                  criteriaScores: [
+                    { criterion: 'Purpose', scorePercent: 85 },
+                    { criterion: 'Content', scorePercent: 35 },
+                    { criterion: 'Conciseness & Clarity', scorePercent: 70 },
+                    { criterion: 'Genre', scorePercent: 80 },
+                    { criterion: 'Organisation', scorePercent: 75 },
+                    { criterion: 'Language', scorePercent: 72 },
+                  ],
+                },
+              ],
+            },
+          },
+        ],
+      }),
+    );
+  });
+
+  await page.goto('./');
+  await expect(page.getByTestId('productive-focus-target')).toContainText(
+    'Writing · Content: 35%',
+  );
+  await page.getByRole('button', { name: 'Drill writing Content' }).click();
+  await expect(page.getByRole('heading', { name: 'Writing Content Focus' })).toBeVisible();
+  await expect(
+    page.getByText('Select and synthesise only the facts the recipient needs for safe next care.'),
+  ).toBeVisible();
+});

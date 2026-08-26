@@ -116,12 +116,21 @@ export interface SubtestReviewScore {
   weakAreas: string[];
 }
 
+export interface CriterionScoreSnapshot {
+  criterion: string;
+  scorePercent: number;
+}
+
 export interface TaskReviewSnapshot {
   taskId: string;
   subtest: SubtestType;
   passed: boolean | null;
   scorePercent: number | null;
   summary: string;
+  /** Persisted productive-skill evidence used for criterion-level adaptive practice. */
+  criteriaScores?: CriterionScoreSnapshot[];
+  /** Speaking readiness evidence is qualified only when it came from a sufficient recording. */
+  evidenceQualified?: boolean;
 }
 
 export interface SessionReviewData {

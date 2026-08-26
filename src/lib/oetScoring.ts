@@ -1,5 +1,5 @@
 import type { OetSubtest, SubtestType } from '../types';
-import type { SessionTask } from '../types/session';
+import type { SessionTask, TaskReviewSnapshot } from '../types/session';
 import {
   evaluateSpeakingResponse,
   type SpeakingEvaluationResult,
@@ -47,14 +47,6 @@ export interface SubtestScoreSummary {
   practicePass: boolean;
   examReady: boolean;
   weakAreas: string[];
-}
-
-export interface TaskReviewSnapshot {
-  taskId: string;
-  subtest: OetSubtest | 'intro' | 'break';
-  passed: boolean | null;
-  scorePercent: number | null;
-  summary: string;
 }
 
 export interface SessionReviewSummary {
@@ -438,6 +430,12 @@ export function computeSessionReview(
           summary: hasText
             ? `Writing rubric ${ev.overallScore}% — ${ev.gaps[0] ?? 'Review model answer.'}`
             : 'No draft submitted',
+          criteriaScores: hasText
+            ? ev.rubricScores.map((score) => ({
+                criterion: score.dimension,
+                scorePercent: score.score,
+              }))
+            : undefined,
         };
       }
       if (t.subtest === 'speaking') {
@@ -448,6 +446,20 @@ export function computeSessionReview(
           passed: r ? r.practicePass : null,
           scorePercent: r?.score ?? null,
           summary: r?.suggestion ?? 'Record or type a response to evaluate',
+          criteriaScores: r
+            ? [
+                {
+                  criterion: 'Relationship & structure',
+                  scorePercent: r.dimensions.communication,
+                },
+                {
+                  criterion: 'Clinical communication',
+                  scorePercent: r.dimensions.clinicalCommunication,
+                },
+                { criterion: 'Language & pace', scorePercent: r.dimensions.language },
+              ]
+            : undefined,
+          evidenceQualified: r?.evidenceQualified,
         };
       }
       return {
