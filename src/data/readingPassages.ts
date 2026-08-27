@@ -670,6 +670,21 @@ Nor is treatment switching merely statistical inconvenience. Rescue may be a cli
 
 The trial should therefore report assignment, discontinuation, switching, reasons and timing by group; retain the treatment-policy analysis; and add prespecified sensitivity analyses matched to clearly defined estimands. The as-treated association is not proof of protection because post-randomisation prognosis helped determine who remained exposed. Precision about the clinical question must precede sophistication in the model.`,
   },
+  'passage-positivity-transportability': {
+    id: 'passage-positivity-transportability',
+    title: 'Methods commentary — Adjustment cannot manufacture an absent comparison',
+    text: `A hospital network evaluated an early vasopressor pathway for adults with septic shock using routinely collected data. Investigators estimated each patient's probability of receiving the pathway from age, lactate, blood pressure, comorbidity, arrival time and hospital characteristics, then weighted the analysis by the inverse of that probability. Measured covariates appeared closely balanced after weighting, and the pathway was associated with lower 30-day mortality. The report presented this as a network-wide effect that could guide every emergency department.
+
+Balance is necessary for many observational comparisons, but it does not show that every clinically important patient had a realistic chance of receiving either strategy. In tertiary centres with an on-site critical-care team, patients with profound hypotension and lactate above 6 mmol/L almost always entered the pathway. In small hospitals overnight, the same pathway was almost never available before transfer. Within those severity-and-setting combinations, there were few or no patients following the alternative strategy. This practical failure of positivity is not repaired by adding the same variables to a more elaborate outcome model.
+
+Inverse-probability weighting makes the limitation visible when a handful of unusual patients receive enormous weights. Truncating those weights can improve precision, but it also changes the comparison: the estimate increasingly describes patients whose treatment options overlapped, not necessarily the sickest tertiary cases or resource-constrained overnight presentations. A smooth model may still produce a number for those groups, but that number is extrapolated from different patients rather than learned from a genuine within-group contrast.
+
+The target population must therefore be named. Restricting analysis to common support can estimate an effect among patients for whom both strategies were observed. It cannot prove that the same effect applies to excluded settings. Transporting the estimate to the whole network additionally requires assumptions about effect modifiers, staffing, transfer delay and whether the pathway can be delivered as specified. An intervention may work differently when the clinical team or rescue capacity that makes it safe is absent.
+
+The investigators should display treatment probabilities by key severity-and-setting strata, report how many patients are removed or down-weighted, and compare conclusions under prespecified overlap restrictions. Results for unsupported groups should be labelled uncertain rather than filled in by confident modelling. A pragmatic rollout or phased implementation could create more informative comparisons if clinical equipoise and safety permit.
+
+The mortality association remains relevant evidence for patients represented on both sides of the comparison. It is not, by itself, a network-wide answer. Covariate balance describes the weighted data that exist; it cannot create the counterfactual outcomes that were never observed where treatment was effectively predetermined.`,
+  },
   'passage-delirium-part-a-set': {
     id: 'passage-delirium-part-a-set',
     title: 'Part A texts — Delirium recognition, causes, management and follow-up',

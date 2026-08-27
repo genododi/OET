@@ -310,6 +310,17 @@ const writingCriteriaByTaskId: Record<string, WritingCriteria> = {
     ],
     irrelevantTerms: ['hay fever', 'architect', 'photography'],
   },
+  'write-46': {
+    requiredConceptGroups: [
+      ['high-risk pulmonary embolism', 'massive pulmonary embolism', 'saddle pulmonary embolus'],
+      ['craniotomy', 'intracranial surgery', 'postoperative haemorrhage', 'postoperative hemorrhage'],
+      ['shock', 'hypotension', 'norepinephrine', 'noradrenaline'],
+      ['right-ventricular strain', 'right ventricular strain', 'RV/LV', 'right-ventricular failure'],
+      ['thrombolysis contraindicated', 'systemic thrombolysis', 'intracranial bleeding'],
+      ['mechanical thrombectomy', 'surgical embolectomy', 'ECMO', 'PERT', 'tertiary transfer'],
+    ],
+    irrelevantTerms: ['gout', 'teacher', 'woodworking'],
+  },
 };
 
 const AUTO_WRITING_STOP_WORDS = new Set([
@@ -1603,6 +1614,35 @@ export const listeningTasks: SessionTask[] = [
     ),
     difficulty: 'advanced',
   },
+  {
+    ...mcq(
+      'lis-120',
+      'listening',
+      'Part C — Positivity and network transportability',
+      "What is the speaker's principal concern about the network-wide effect estimate?",
+      [
+        {
+          label: 'Some severity-setting combinations have no genuine treatment alternative, so adjustment extrapolates beyond observed comparisons',
+          correct: true,
+          explanation:
+            'The speaker identifies absent overlap in clinically important strata: weighting or modelling cannot recover an unobserved alternative outcome where treatment was effectively predetermined.',
+        },
+        {
+          label: 'Different hospitals treated unequal numbers of patients, which automatically invalidates any adjusted comparison',
+          correct: false,
+          explanation:
+            'Unequal sample sizes are not automatically fatal; the specific problem is the absence of both treatment strategies within some severity-and-setting combinations.',
+        },
+        {
+          label: 'Restricting to common support would prove that the same benefit applies to the hospitals excluded from that analysis',
+          correct: false,
+          explanation:
+            'Restriction can support an estimate for the overlap population, but the speaker says effects in excluded settings remain uncertain rather than automatically transportable.',
+        },
+      ],
+    ),
+    difficulty: 'advanced',
+  },
 ];
 
 export const readingTasks: SessionTask[] = [
@@ -2243,6 +2283,32 @@ export const readingTasks: SessionTask[] = [
       },
     ],
   ),
+  advancedReadingMcq(
+    'read-92',
+    'Part C — Positivity, overlap and transportability',
+    'passage-positivity-transportability',
+    'Why does the writer say excellent weighted covariate balance is insufficient to justify a network-wide treatment effect?',
+    [
+      {
+        label: 'Some severity-and-setting strata contain no observed alternative strategy, so unsupported effects are model extrapolations rather than comparisons created by adjustment',
+        correct: true,
+        explanation:
+          'The passage separates balance from positivity: measured covariates can balance in the weighted data while clinically important strata still lack a genuine treated-versus-untreated comparison.',
+      },
+      {
+        label: 'Covariate balance is useful only in randomised trials and has no role in observational evaluations',
+        correct: false,
+        explanation:
+          'The writer calls balance necessary for many observational comparisons; the limitation is that balance does not manufacture missing overlap.',
+      },
+      {
+        label: 'Truncating extreme weights guarantees an unbiased estimate for every patient originally included in the hospital network',
+        correct: false,
+        explanation:
+          'The passage says truncation can stabilise estimates but changes the population represented and cannot establish effects in unsupported groups.',
+      },
+    ],
+  ),
 ];
 
 export const writingTasks: SessionTask[] = [
@@ -2817,6 +2883,33 @@ MRI demonstrates multiple embolic infarcts, including a 6-mm haemorrhagic transf
 Following microbiology advice, intravenous flucloxacillin 2 g four-hourly and synergistic gentamicin have commenced. Aspirin is withheld, repeat cultures are pending, and rhythm and neurological monitoring continue. Renal function is normal.
 
 Please assess her immediately for surgery to control the root infection, with neurology and neurosurgical input regarding timing given the intracranial bleeding. Her daughter understands the urgency and competing risks.
+
+Please contact me if further information is required.
+
+Yours sincerely,
+
+Dr Maya Hassan`,
+    difficulty: 'advanced',
+  },
+  {
+    ...writing(
+      'write-46',
+      'Immediate transfer — High-risk pulmonary embolism after recent craniotomy',
+      '27 Aug 2026 — Pt: Mr Karim Dawoud, 59y\nBifrontal craniotomy for meningioma 9 days ago\nPostoperative CT: stable 8-mm right frontal haemorrhage, no mass effect\nToday: sudden syncope, severe dyspnoea, pleuritic pain\nCurrent: BP 78/46 despite cautious fluids; HR 132; RR 34; SpO2 86% room air, 94% on high-flow oxygen\nCT pulmonary angiography: saddle embolus with extensive bilateral clot\nBedside echo: severe RV dilatation and dysfunction; RV/LV ratio 1.7\nTroponin 420 ng/L; lactate 5.6 mmol/L\nRepeat CT head: postoperative haemorrhage unchanged\nSystemic thrombolysis contraindicated because of recent intracranial surgery and haemorrhage\nNorepinephrine infusion commenced; arterial line inserted\nAfter joint PERT/neurosurgical discussion: unfractionated heparin infusion started without bolus, intensive neurological observations\nNo new focal deficit; GCS 15\nNeeds immediate ECMO-capable tertiary transfer for catheter thrombectomy versus surgical embolectomy and concurrent neurosurgical oversight\nWife informed of life-threatening clot and bleeding trade-off\nPMH: gout; secondary-school teacher; enjoys woodworking\nNo known drug allergies\nWrite an immediate transfer letter prioritising haemodynamic collapse, thrombolysis contraindication, treatment already given and the multidisciplinary intervention required',
+      'Dear Pulmonary Embolism Response Team,\n\nI am writing to request the immediate transfer of Mr Karim Dawoud, aged 59, with high-risk pulmonary embolism and obstructive shock nine days after craniotomy.',
+      'Immediate ECMO-capable tertiary transfer',
+    ),
+    modelAnswer: `Dear Pulmonary Embolism Response Team,
+
+I am writing to request immediate transfer of Mr Karim Dawoud, 59, with high-risk pulmonary embolism and obstructive shock nine days after bifrontal craniotomy.
+
+He developed sudden syncope, severe dyspnoea and pleuritic pain today. Blood pressure remains 78/46 mmHg despite cautious fluids, with heart rate 132, respiratory rate 34 and lactate 5.6 mmol/L. Oxygen saturation improved from 86% on air to 94% with high-flow oxygen. CT pulmonary angiography shows a saddle embolus with extensive bilateral clot, while echocardiography demonstrates severe right-ventricular dilatation and dysfunction (RV/LV ratio 1.7). Troponin is 420 ng/L.
+
+Craniotomy for meningioma was performed nine days ago. Repeat head CT confirms an unchanged 8-mm right-frontal postoperative haemorrhage without mass effect. He remains GCS 15 without focal deficit. Systemic thrombolysis is therefore contraindicated.
+
+Norepinephrine and arterial monitoring have commenced. Following joint PERT and neurosurgical discussion, unfractionated heparin was started without a bolus with intensive neurological observations.
+
+Please accept him immediately for catheter thrombectomy versus surgical embolectomy, with ECMO capability and concurrent neurosurgical oversight. His wife understands the life-threatening thrombotic and bleeding risks.
 
 Please contact me if further information is required.
 
@@ -3910,6 +4003,55 @@ export const speakingTasks: SessionTask[] = [
           'I will ask you to explain the options in your own words so I can check my explanation. Saying no does not by itself mean you cannot decide.',
           'If you can understand and weigh the immediate risks, your decision is yours. If you cannot do that despite support and delay would be dangerous, we must use what we know about your values to choose the least restrictive safe treatment.',
           'We will involve your daughter for what she knows about your wishes, document the decision and reassess you as your attention changes.',
+        ],
+      },
+    ),
+    difficulty: 'advanced',
+  },
+  {
+    ...speaking(
+      'speak-46',
+      'Time-limited ventilation — prior wishes and surrogate conflict',
+      'You are the intensive-care physician speaking with the spouse of a 71-year-old patient with advanced motor neurone disease and severe aspiration pneumonia. The patient lacks decision-making capacity because of hypoxia and delirium and is deteriorating despite non-invasive ventilation. An advance-care note says they would accept treatment for a reversible infection but would not want prolonged ventilation or tracheostomy if unable to communicate. The spouse insists on “everything forever”, disputes the note and believes any treatment limit means abandonment. The ICU team considers a short, goal-defined trial of invasive ventilation clinically reasonable, but prolonged support is unlikely to restore the function the patient valued.',
+      [
+        'Acknowledge fear and clarify what the spouse believes treatment limitation and the prior note mean',
+        'Explain current illness, likely benefits and burdens, and the difference between a time-limited trial and open-ended ventilation',
+        'Centre the patient’s values while exploring the spouse’s evidence and role without asking them to carry the decision alone',
+        'Negotiate objective review criteria, continuing care and support if the trial fails to meet the patient-centred goals',
+      ],
+      {
+        expectedKeywords: [
+          'fear',
+          'pneumonia',
+          'reversible',
+          'ventilation',
+          'time-limited trial',
+          'breathing tube',
+          'burden',
+          'communication',
+          'tracheostomy',
+          'capacity',
+          'wishes',
+          'values',
+          'review criteria',
+          'comfort',
+          'not abandonment',
+          'support',
+          'understand',
+        ],
+        checklist: [
+          'Validate the spouse’s fear and ask what they understand about the deterioration and prior note before correcting assumptions',
+          'Explain invasive ventilation, realistic reversibility and burdens without false precision or framing treatment as all-or-nothing',
+          'Clarify that the spouse helps represent the patient’s values and evidence rather than choosing according to their own preference or carrying sole responsibility',
+          'Offer a clinically appropriate time-limited trial with observable patient-centred goals, a defined review point and an agreed response if goals are not met',
+          'State explicitly that symptom relief, dignity, communication and family support continue whatever decision is reached, then use teach-back',
+        ],
+        samplePhrases: [
+          'I can hear how frightened you are and that “not forever” sounds to you like giving up; could you tell me what you believe the earlier note meant to your partner?',
+          'A breathing tube may give the antibiotics time to treat a reversible pneumonia, but it also brings sedation and may lead to prolonged ventilation or a tracheostomy that your partner previously said they would not want.',
+          'Your role is to help us understand their wishes and values, not to carry this decision alone or decide what you personally should want.',
+          'One option is a time-limited trial with a clear review point and goals such as improving oxygen needs, alertness and a realistic chance of communicating again.',
+          'If those goals are not met, we would discuss stopping burdensome ventilation while continuing comfort, dignity and support; that is not abandonment. Could you explain how you understand this plan?',
         ],
       },
     ),

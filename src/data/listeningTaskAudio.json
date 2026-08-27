@@ -1251,5 +1251,17 @@
       "post-randomisation selection"
     ],
     "voice": "Daniel"
+  },
+  "lis-120": {
+    "question": "What is the speaker's principal concern about the network-wide effect estimate?",
+    "correctAnswer": "Some severity-setting combinations have no genuine treatment alternative, so adjustment extrapolates beyond observed comparisons",
+    "script": "The weighted analysis reports a network-wide benefit, and the measured covariates look balanced. My concern is overlap. In tertiary units, the sickest patients almost always received the early vasopressor pathway. In smaller hospitals overnight, that pathway was almost never available. Those severity-and-setting combinations contain no comparable untreated or treated patients. Weighting can magnify a few unusual cases, and an outcome model can produce a number, but neither creates the missing counterfactual comparison. We should restrict the primary estimate to common support, show who is excluded and describe effects in unsupported settings as uncertain rather than assuming the average transports to them.",
+    "speechScript": "The weighted analysis reports a network wide benefit, and the measured covariates look balanced. My concern is overlap. In tertiary units, the sickest patients almost always received the early vasopressor pathway. In smaller hospitals overnight, that pathway was almost never available. Those severity and setting combinations contain no comparable untreated or treated patients. Weighting can magnify a few unusual cases, and an outcome model can produce a number, but neither creates the missing counterfactual comparison. We should restrict the primary estimate to common support, show who is excluded and describe effects in unsupported settings as uncertain rather than assuming the average transports to them.",
+    "evidenceTerms": [
+      "almost always received",
+      "no comparable untreated or treated patients",
+      "missing counterfactual comparison"
+    ],
+    "voice": "Samantha"
   }
 }

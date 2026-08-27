@@ -17,8 +17,23 @@ function wordCount(value: string): number {
   return value.trim().split(/\s+/).filter(Boolean).length;
 }
 
+function normalize(value: string): string {
+  return value.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+}
+
+function containsEvidence(value: string, term: string): boolean {
+  const haystack = normalize(value);
+  const needle = normalize(term);
+  if (!needle) return false;
+  if (haystack.includes(needle)) return true;
+  const words = needle.split(' ').filter(Boolean);
+  return words.length > 1 && words.every((word) => haystack.includes(word));
+}
+
 function requireSingleCorrectOption(task: SessionTask): void {
   if (!task.options || task.options.length < 3) fail(`${task.id} needs at least three options`);
+  const labels = task.options.map((option) => normalize(option.label));
+  if (new Set(labels).size !== labels.length) fail(`${task.id} repeats an answer option`);
   const correctCount = task.options.filter((option) => option.correct).length;
   if (correctCount !== 1) fail(`${task.id} must have exactly one correct option`);
   if (task.options.some((option) => !option.explanation?.trim())) {
@@ -96,6 +111,18 @@ for (const [index, entry] of dailyOetProgression.entries()) {
       }
       if (task.writingCriteria.requiredConceptGroups.some((group) => group.length === 0)) {
         fail(`${taskId} has an empty clinical content group`);
+      }
+      const conceptsCovered = task.writingCriteria.requiredConceptGroups.filter((group) =>
+        group.some((term) => containsEvidence(task.modelAnswer!, term)),
+      ).length;
+      if (conceptsCovered < 5) {
+        fail(`${taskId} model covers only ${conceptsCovered}/6 required clinical concepts`);
+      }
+      const leakedIrrelevant = (task.writingCriteria.irrelevantTerms ?? []).filter((term) =>
+        containsEvidence(task.modelAnswer!, term),
+      );
+      if (leakedIrrelevant.length > 0) {
+        fail(`${taskId} model includes irrelevant case-note detail: ${leakedIrrelevant.join(', ')}`);
       }
     }
 
