@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { SessionConfig, SessionTask, SpeakingCriteria } from '../types/session';
 import { useProgress } from '../hooks/useProgress';
 import { SubtestBadge } from './SubtestBadge';
@@ -69,6 +69,7 @@ export function SessionRunner({ config, onExit }: Props) {
   const [writingSubmitted, setWritingSubmitted] = useState<Record<string, boolean>>({});
   const [speakingResults, setSpeakingResults] = useState<Record<string, SpeakingEvaluationResult>>({});
   const [flaggedTasks, setFlaggedTasks] = useState<Record<string, boolean>>({});
+  const completionStarted = useRef(false);
 
   const task = config.tasks[taskIndex];
   const listeningGroup = useMemo(() => getListeningGroup(config.tasks, taskIndex), [config.tasks, taskIndex]);
@@ -108,12 +109,16 @@ export function SessionRunner({ config, onExit }: Props) {
   }, [phase, secondsLeft]);
 
   const startSession = () => {
+    completionStarted.current = false;
     setPhase('active');
     setTaskIndex(1);
     setSecondsLeft(config.durationMinutes * 60);
   };
 
   const finishSession = useCallback(() => {
+    if (completionStarted.current) return;
+    completionStarted.current = true;
+
     const review = computeSessionReview(config, answers, notes, speakingResults);
     const mcqTasks = config.tasks.filter((t) => t.options?.length);
     let correct = 0;
@@ -153,6 +158,10 @@ export function SessionRunner({ config, onExit }: Props) {
 
     setPhase('done');
   }, [config, markComplete, answers, notes, speakingResults]);
+
+  useEffect(() => {
+    if (phase === 'active' && secondsLeft === 0) finishSession();
+  }, [finishSession, phase, secondsLeft]);
 
   const goNext = () => {
     const nextIndex = taskIndex + groupSize;
@@ -205,7 +214,6 @@ export function SessionRunner({ config, onExit }: Props) {
     secondsLeft <= 60 && phase === 'active'
       ? 'session-timer session-timer-urgent'
       : 'session-timer';
-  const visiblePhase = phase === 'active' && secondsLeft <= 0 ? 'done' : phase;
   const progressTaskIndex = listeningGroup ? taskIndex + groupSize - 1 : taskIndex;
 
   if (phase === 'intro') {
@@ -257,7 +265,7 @@ export function SessionRunner({ config, onExit }: Props) {
     );
   }
 
-  if (visiblePhase === 'done') {
+  if (phase === 'done') {
     return (
       <div className="session">
         <article className="card session-done-card">
@@ -304,6 +312,7 @@ export function SessionRunner({ config, onExit }: Props) {
               type="button"
               className="btn btn-secondary"
               onClick={() => {
+                completionStarted.current = false;
                 setPhase('intro');
                 setTaskIndex(0);
                 setAnswers({});
