@@ -2,6 +2,7 @@ import { useCallback, useSyncExternalStore } from 'react';
 import type { CompletedSession } from '../types/session';
 
 const STORAGE_KEY = 'oet-study-partner-progress';
+export const MAX_COMPLETED_SESSIONS = 200;
 
 interface ProgressState {
   schemaVersion: 1;
@@ -55,13 +56,30 @@ function getSnapshot() {
   return cache;
 }
 
+/**
+ * Preserve separate attempts of the same module so readiness trends and spaced
+ * review can use every performance. Only an exact duplicate completion event is
+ * replaced, which also keeps the write idempotent if a completion callback fires twice.
+ */
+export function mergeCompletedSession(
+  completed: readonly CompletedSession[],
+  session: CompletedSession,
+): CompletedSession[] {
+  const withoutExactDuplicate = completed.filter(
+    (item) => item.id !== session.id || item.completedAt !== session.completedAt,
+  );
+  return [session, ...withoutExactDuplicate].slice(0, MAX_COMPLETED_SESSIONS);
+}
+
 export function useProgress() {
   const state = useSyncExternalStore(subscribe, getSnapshot, getSnapshot);
 
   const markComplete = useCallback((session: CompletedSession) => {
     const next = readProgress();
-    const without = next.completed.filter((c) => c.id !== session.id);
-    writeProgress({ schemaVersion: 1, completed: [session, ...without].slice(0, 50) });
+    writeProgress({
+      schemaVersion: 1,
+      completed: mergeCompletedSession(next.completed, session),
+    });
   }, []);
 
   const isComplete = useCallback(
