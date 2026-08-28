@@ -28,6 +28,7 @@ export const GRADE_A_EVIDENCE_REQUIREMENTS = {
   recentWindow: 8,
   minimumReceptiveItems: 10,
   minimumReceptiveParts: 3,
+  minimumSpeakingRolePlays: 2,
 } as const;
 
 export type GradeATrainingStatus =

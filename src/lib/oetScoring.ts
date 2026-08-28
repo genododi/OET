@@ -5,7 +5,12 @@ import {
   type SpeakingEvaluationResult,
   type OetSpeakingEvaluation,
 } from './speakingEvaluation';
-import { OET_THRESHOLDS, getReadinessLevel, readinessLabel } from './oetThresholds';
+import {
+  GRADE_A_EVIDENCE_REQUIREMENTS,
+  OET_THRESHOLDS,
+  getReadinessLevel,
+  readinessLabel,
+} from './oetThresholds';
 import { isTaskAnswerCorrect, oetResponseMode } from './oetResponseMode';
 
 export { OET_THRESHOLDS, getReadinessLevel, readinessLabel };
@@ -318,6 +323,7 @@ export function computeSubtestScore(
 
   const weakAreas: string[] = [];
   let percentScore = 0;
+  let evidenceComplete = true;
 
   if (mcqTasks.length > 0) {
     let correct = 0;
@@ -356,6 +362,14 @@ export function computeSubtestScore(
         weakAreas.push(`Speaking: ${r.missingChecklist.slice(0, 2).join('; ')}`);
       }
     });
+    if (speakingTasks.length >= GRADE_A_EVIDENCE_REQUIREMENTS.minimumSpeakingRolePlays) {
+      evidenceComplete = speakingTasks.every(
+        (task) => speakingResults[task.id]?.evidenceQualified === true,
+      );
+      if (!evidenceComplete) {
+        weakAreas.push('Speaking: complete both role-plays with sufficient recordings');
+      }
+    }
   }
 
   const thresholds = OET_THRESHOLDS[subtest];
@@ -363,7 +377,7 @@ export function computeSubtestScore(
     subtest,
     percentScore,
     practicePass: percentScore >= thresholds.practicePass,
-    examReady: percentScore >= thresholds.examReady,
+    examReady: percentScore >= thresholds.examReady && evidenceComplete,
     weakAreas,
   };
 }

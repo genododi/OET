@@ -127,6 +127,19 @@ function hasReceptivePartCoverage(
   return parts.size >= GRADE_A_EVIDENCE_REQUIREMENTS.minimumReceptiveParts;
 }
 
+function hasQualifiedSpeakingSet(session: CompletedSession): boolean {
+  const speakingReviews = session.review?.taskReviews.filter(
+    (review) => review.subtest === 'speaking',
+  ) ?? [];
+  const explicitEvidence = speakingReviews.filter(
+    (review) => review.evidenceQualified !== undefined,
+  );
+  // Preserve older saved sessions that predate recorded-evidence metadata.
+  if (explicitEvidence.length === 0) return true;
+  return explicitEvidence.filter((review) => review.evidenceQualified === true).length >=
+    GRADE_A_EVIDENCE_REQUIREMENTS.minimumSpeakingRolePlays;
+}
+
 /** Build per-content-item stats (seen count, pass rate, recency) across all history, keyed by canonical id. */
 export function buildTaskStats(
   completed: CompletedSession[],
@@ -282,15 +295,7 @@ export function summarizeSubtestHistory(
           unqualifiedAttemptCount += 1;
           return;
         }
-        if (
-          subtest === 'speaking' &&
-          session.review?.taskReviews.some(
-            (review) => review.subtest === 'speaking' && review.evidenceQualified === false,
-          ) &&
-          !session.review.taskReviews.some(
-            (review) => review.subtest === 'speaking' && review.evidenceQualified === true,
-          )
-        ) {
+        if (subtest === 'speaking' && !hasQualifiedSpeakingSet(session)) {
           unqualifiedAttemptCount += 1;
           return;
         }

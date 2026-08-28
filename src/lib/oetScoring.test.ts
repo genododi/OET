@@ -74,4 +74,36 @@ Dr Khan`;
       ],
     });
   });
+
+  it('does not mark a two-role-play set ready when only one recording qualifies', () => {
+    const secondSpeakingTask: SessionTask = {
+      ...speakingTask,
+      id: 'criterion-speak-2',
+      title: 'Explain follow-up care',
+    };
+    const strongTranscript = Array(6)
+      .fill(
+        'I understand your concern. I will explain the urgent treatment and risk, check your understanding, answer your questions, and help you follow the plan safely.',
+      )
+      .join(' ');
+    const firstResult = evaluateSpeakingForOet(
+      strongTranscript,
+      120,
+      speakingTask.speakingCriteria!,
+      false,
+    );
+    const review = computeSessionReview(
+      { tasks: [speakingTask, secondSpeakingTask], subtests: ['speaking'] },
+      {},
+      {},
+      { [speakingTask.id]: firstResult },
+    );
+
+    expect(firstResult.evidenceQualified).toBe(true);
+    expect(review.subtestScores[0]).toMatchObject({
+      examReady: false,
+      weakAreas: ['Speaking: complete both role-plays with sufficient recordings'],
+    });
+    expect(review.overallExamReady).toBe(false);
+  });
 });

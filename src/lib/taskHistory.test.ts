@@ -253,8 +253,8 @@ describe('time-calibrated Smart Sessions', () => {
     expect(count('listening')).toBe(10);
     expect(count('reading')).toBe(10);
     expect(count('writing')).toBe(1);
-    expect(count('speaking')).toBe(1);
-    expect(session.durationMinutes).toBe(105);
+    expect(count('speaking')).toBe(2);
+    expect(session.durationMinutes).toBe(115);
     (['listening', 'reading'] as const).forEach((subtest) => {
       expect(
         new Set(
@@ -265,8 +265,81 @@ describe('time-calibrated Smart Sessions', () => {
       ).toEqual(new Set(['A', 'B', 'C']));
     });
     expect(session.tasks[0]?.checklist).toContain(
-      'Qualified baseline: 10 Listening + 10 Reading + one letter + one recorded role-play',
+      'Qualified baseline: 10 Listening + 10 Reading + one letter + two recorded role-plays',
     );
+  });
+});
+
+describe('qualified Speaking readiness evidence', () => {
+  function speakingAttempt(
+    id: string,
+    evidence: Array<boolean | undefined>,
+  ): CompletedSession {
+    return {
+      id,
+      kind: 'practice',
+      title: 'Speaking evidence',
+      completedAt: `2026-08-${id === 'single' ? '27' : '28'}T08:00:00.000Z`,
+      durationMinutes: 20,
+      review: {
+        subtestScores: [
+          {
+            subtest: 'speaking',
+            percentScore: 90,
+            practicePass: true,
+            examReady: true,
+            weakAreas: [],
+          },
+        ],
+        overallPercent: 90,
+        overallPracticePass: true,
+        overallExamReady: true,
+        weakAreas: [],
+        taskReviews: evidence.map((evidenceQualified, index) => ({
+          taskId: `${id}-speak-${index + 1}`,
+          subtest: 'speaking' as const,
+          passed: true,
+          scorePercent: 90,
+          summary: 'Recorded role-play',
+          evidenceQualified,
+        })),
+      },
+    };
+  }
+
+  it('keeps a single strong recording as a drill, not a qualified Speaking set', () => {
+    const summary = summarizeSubtestHistory(
+      [speakingAttempt('single', [true])],
+      ['speaking'],
+    )[0]!;
+
+    expect(summary).toMatchObject({
+      attemptCount: 0,
+      unqualifiedAttemptCount: 1,
+      rollingPercent: null,
+    });
+  });
+
+  it('qualifies a set only when both Speaking role-plays have sufficient recordings', () => {
+    const incomplete = speakingAttempt('incomplete', [true, false]);
+    const complete = speakingAttempt('complete', [true, true]);
+    const summary = summarizeSubtestHistory([incomplete, complete], ['speaking'])[0]!;
+
+    expect(summary).toMatchObject({
+      attemptCount: 1,
+      unqualifiedAttemptCount: 1,
+      rollingPercent: 90,
+    });
+  });
+
+  it('preserves legacy Speaking evidence without recorded-evidence metadata', () => {
+    const summary = summarizeSubtestHistory(
+      [speakingAttempt('legacy', [undefined])],
+      ['speaking'],
+    )[0]!;
+
+    expect(summary.attemptCount).toBe(1);
+    expect(summary.unqualifiedAttemptCount).toBe(0);
   });
 });
 

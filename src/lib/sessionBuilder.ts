@@ -463,7 +463,9 @@ function buildAdaptiveSession(
   const distributed = distributeTaskCounts(activeSubtests, totalTasks);
   const counts = activeSubtests.map((subtest, index) => {
     const cap = subtest === 'speaking' && activeSubtests.length > 1
-      ? 1
+      ? gradeABaseline
+        ? GRADE_A_EVIDENCE_REQUIREMENTS.minimumSpeakingRolePlays
+        : 1
       : SMART_SESSION_TASK_CAPS[subtest];
     const minimum = gradeABaseline && (subtest === 'listening' || subtest === 'reading')
       ? GRADE_A_EVIDENCE_REQUIREMENTS.minimumReceptiveItems
@@ -491,11 +493,13 @@ function buildAdaptiveSession(
         `${selectedTaskCount} task(s), weighted to fit ${Math.max(20, plannedMinutes)} minutes`,
         ...(gradeABaseline
           ? [
-              'Qualified baseline: 10 Listening + 10 Reading + one letter + one recorded role-play',
+              'Qualified baseline: 10 Listening + 10 Reading + one letter + two recorded role-plays',
               'Listening and Reading each cover Parts A, B and C',
             ]
           : []),
-        'One full Writing letter maximum; Speaking uses one role-play in mixed sets or two alone',
+        gradeABaseline
+          ? 'Speaking mirrors the live two-role-play workload'
+          : 'One full Writing letter maximum; Speaking uses one role-play in mixed sets or two alone',
       ],
     },
   ];

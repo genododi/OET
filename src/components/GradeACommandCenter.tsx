@@ -31,7 +31,7 @@ const PRESCRIPTIONS: Record<OetSubtest, { focus: string; gate: string }> = {
   },
   speaking: {
     focus: 'Lead with empathy, use patient language, signpost clearly, and safety-net naturally.',
-    gate: 'Four recorded role-plays, with the latest three at 85%+ and a complete checklist.',
+    gate: 'Four two-role-play recorded sets, with the latest three at 85%+ and both checklists complete.',
   },
 };
 
@@ -86,7 +86,7 @@ export function GradeACommandCenter({
     if (focus.kind === 'baseline') {
       return {
         title: 'Establish your four-skill baseline',
-        description: 'Complete a 105-minute qualified baseline: 10 Listening, 10 Reading, one letter and one recorded role-play.',
+        description: 'Complete a 115-minute qualified baseline: 10 Listening, 10 Reading, one letter and two recorded role-plays.',
         button: 'Start baseline session',
       };
     }
@@ -221,7 +221,7 @@ export function GradeACommandCenter({
         </button>
       </div>
       <p className="grade-a-disclaimer">
-        Internal readiness targets require at least four recent attempts and three consecutive target-level results. Listening and Reading attempts need at least 10 scored items across Parts A–C; Speaking needs a sufficient recording. These are not an official OET score conversion—use timed full mocks and qualified feedback to validate exam readiness.
+        Internal readiness targets require at least four recent attempts and three consecutive target-level results. Listening and Reading attempts need at least 10 scored items across Parts A–C; Speaking attempts need two sufficient recordings. These are not an official OET score conversion—use timed full mocks and qualified feedback to validate exam readiness.
       </p>
     </section>
   );
