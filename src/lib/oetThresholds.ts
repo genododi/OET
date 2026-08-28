@@ -28,6 +28,8 @@ export const GRADE_A_EVIDENCE_REQUIREMENTS = {
   recentWindow: 8,
   minimumReceptiveItems: 10,
   minimumReceptiveParts: 3,
+  minimumWritingWords: 180,
+  maximumWritingWords: 200,
   minimumSpeakingRolePlays: 2,
 } as const;
 

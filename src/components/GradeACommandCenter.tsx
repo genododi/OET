@@ -27,7 +27,7 @@ const PRESCRIPTIONS: Record<OetSubtest, { focus: string; gate: string }> = {
   },
   writing: {
     focus: 'Write purpose-first, select only relevant notes, and edit for clear professional English.',
-    gate: 'Four letters, with the latest three at 85%+ and every rubric dimension reviewed.',
+    gate: 'Four complete 180–200-word letters, with the latest three at 85%+ and every rubric dimension reviewed.',
   },
   speaking: {
     focus: 'Lead with empathy, use patient language, signpost clearly, and safety-net naturally.',
@@ -221,7 +221,7 @@ export function GradeACommandCenter({
         </button>
       </div>
       <p className="grade-a-disclaimer">
-        Internal readiness targets require at least four recent attempts and three consecutive target-level results. Listening and Reading attempts need at least 10 scored items across Parts A–C; Speaking attempts need two sufficient recordings. These are not an official OET score conversion—use timed full mocks and qualified feedback to validate exam readiness.
+        Internal readiness targets require at least four recent attempts and three consecutive target-level results. Listening and Reading attempts need at least 10 scored items across Parts A–C; Writing needs a complete 180–200-word letter; Speaking needs two sufficient recordings. These are not an official OET score conversion—use timed full mocks and qualified feedback to validate exam readiness.
       </p>
     </section>
   );

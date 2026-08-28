@@ -129,7 +129,7 @@ export interface TaskReviewSnapshot {
   summary: string;
   /** Persisted productive-skill evidence used for criterion-level adaptive practice. */
   criteriaScores?: CriterionScoreSnapshot[];
-  /** Speaking readiness evidence is qualified only when it came from a sufficient recording. */
+  /** Productive-skill evidence qualifies only after a complete letter or sufficient recording. */
   evidenceQualified?: boolean;
 }
 

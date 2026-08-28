@@ -58,8 +58,10 @@ assert.equal(GRADE_A_EVIDENCE_REQUIREMENTS.consecutiveAtTarget, 3);
 assert.equal(GRADE_A_EVIDENCE_REQUIREMENTS.recentWindow, 8);
 assert.equal(GRADE_A_EVIDENCE_REQUIREMENTS.minimumReceptiveItems, 10);
 assert.equal(GRADE_A_EVIDENCE_REQUIREMENTS.minimumReceptiveParts, 3);
+assert.equal(GRADE_A_EVIDENCE_REQUIREMENTS.minimumWritingWords, 180);
+assert.equal(GRADE_A_EVIDENCE_REQUIREMENTS.maximumWritingWords, 200);
 assert.equal(GRADE_A_EVIDENCE_REQUIREMENTS.minimumSpeakingRolePlays, 2);
 
 console.log(
-  'Verified conservative Grade A training gates for all four OET sub-tests: four-attempt minimum, eight-result rolling target, three-result streak, 10-item/three-part receptive evidence, and two-role-play Speaking evidence.',
+  'Verified conservative Grade A training gates for all four OET sub-tests: four-attempt minimum, eight-result rolling target, three-result streak, 10-item/three-part receptive evidence, 180–200-word Writing evidence, and two-role-play Speaking evidence.',
 );

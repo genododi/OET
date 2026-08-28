@@ -1,6 +1,10 @@
 import { describe, expect, it } from 'vitest';
 import type { SessionTask } from '../types/session';
-import { computeSessionReview, evaluateSpeakingForOet } from './oetScoring';
+import {
+  computeSessionReview,
+  evaluateSpeakingForOet,
+  evaluateWritingDraft,
+} from './oetScoring';
 
 const writingTask: SessionTask = {
   id: 'criterion-write-1',
@@ -25,6 +29,27 @@ const speakingTask: SessionTask = {
 };
 
 describe('criterion evidence persistence', () => {
+  it('keeps a short keyword-dense letter below qualified Grade A evidence', () => {
+    const shortRelevantDraft = `Dear Dr Lee,
+
+I am writing to request urgent transfer of this patient with sepsis. Antibiotics have commenced. The patient remains hypotensive and requires immediate specialist assessment, monitoring, and ongoing treatment.
+
+Current observations show fever, tachycardia, and worsening clinical status. Please arrange urgent transfer today and continue antibiotics while the receiving team prepares definitive management.
+
+Please contact me if further information is required.
+
+Yours sincerely,
+
+Dr Khan`;
+    const evaluation = evaluateWritingDraft(writingTask, shortRelevantDraft);
+
+    expect(evaluation.wordCount).toBeLessThan(180);
+    expect(evaluation.evidenceQualified).toBe(false);
+    expect(evaluation.overallScore).toBe(84);
+    expect(evaluation.examReady).toBe(false);
+    expect(evaluation.gaps).toContainEqual(expect.stringContaining('180–200-word'));
+  });
+
   it('records all six writing rubric dimensions in the task review', () => {
     const draft = `Dear Dr Lee,
 

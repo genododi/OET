@@ -35,6 +35,7 @@ test('timed writing session provides built-in feedback while offline', async ({ 
   await page.getByRole('button', { name: 'Submit draft & review' }).click();
   await expect(page.getByTestId('offline-tutor-result')).toContainText('Works offline');
   await expect(page.getByTestId('offline-tutor-result')).toContainText('not an official OET score');
+  await expect(page.getByTestId('offline-tutor-result')).toContainText('180-200 words');
 });
 
 test('catalog Speaking workload matches the available session time', async ({ page }) => {

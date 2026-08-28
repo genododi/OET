@@ -22,6 +22,7 @@ for (const stage of dailyOetProgression) {
     evaluation.overallScore >= GRADE_A_TRAINING_TARGETS.writing,
     `${task.id} model answer does not clear the internal Grade A target`,
   );
+  assert.ok(evaluation.evidenceQualified, `${task.id} model is outside 180–200 words`);
   assert.ok(content && content.score >= 90, `${task.id} model omits required clinical evidence`);
 }
 

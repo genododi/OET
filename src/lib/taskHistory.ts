@@ -140,6 +140,20 @@ function hasQualifiedSpeakingSet(session: CompletedSession): boolean {
     GRADE_A_EVIDENCE_REQUIREMENTS.minimumSpeakingRolePlays;
 }
 
+function hasQualifiedWritingSet(session: CompletedSession): boolean {
+  const writingReviews = session.review?.taskReviews.filter(
+    (review) => review.subtest === 'writing',
+  ) ?? [];
+  const explicitEvidence = writingReviews.filter(
+    (review) => review.evidenceQualified !== undefined,
+  );
+  // Preserve older saved sessions that predate Writing evidence metadata.
+  if (explicitEvidence.length === 0) return true;
+  return writingReviews.length > 0 && writingReviews.every(
+    (review) => review.evidenceQualified === true,
+  );
+}
+
 /** Build per-content-item stats (seen count, pass rate, recency) across all history, keyed by canonical id. */
 export function buildTaskStats(
   completed: CompletedSession[],
@@ -292,6 +306,10 @@ export function summarizeSubtestHistory(
           (score.total < GRADE_A_EVIDENCE_REQUIREMENTS.minimumReceptiveItems ||
             !hasReceptivePartCoverage(session, subtest))
         ) {
+          unqualifiedAttemptCount += 1;
+          return;
+        }
+        if (subtest === 'writing' && !hasQualifiedWritingSet(session)) {
           unqualifiedAttemptCount += 1;
           return;
         }

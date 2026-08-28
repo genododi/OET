@@ -7,6 +7,7 @@ import {
 } from './speakingEvaluation';
 import {
   GRADE_A_EVIDENCE_REQUIREMENTS,
+  GRADE_A_TRAINING_TARGETS,
   OET_THRESHOLDS,
   getReadinessLevel,
   readinessLabel,
@@ -40,6 +41,8 @@ export interface WritingEvaluation {
   gaps: string[];
   modelPoints: string[];
   perfectAnswerTips: string[];
+  /** True only when the complete letter is within the internal 180–200-word evidence range. */
+  evidenceQualified: boolean;
   practicePass: boolean;
   examReady: boolean;
 }
@@ -269,11 +272,25 @@ function scoreWritingDimension(
 
 export function evaluateWritingDraft(task: SessionTask, text: string): WritingEvaluation {
   const trimmed = text.trim();
+  const wordCount = countWords(trimmed);
   const rubricScores = WRITING_DIMENSIONS.map((d) => scoreWritingDimension(d, trimmed, task));
-  const overallScore = Math.round(
+  const rawOverallScore = Math.round(
     rubricScores.reduce((sum, r) => sum + r.score, 0) / rubricScores.length,
   );
-  const gaps = rubricScores.filter((r) => r.gap).map((r) => `${r.dimension}: ${r.gap}`);
+  const evidenceQualified =
+    wordCount >= GRADE_A_EVIDENCE_REQUIREMENTS.minimumWritingWords &&
+    wordCount <= GRADE_A_EVIDENCE_REQUIREMENTS.maximumWritingWords;
+  const overallScore = evidenceQualified
+    ? rawOverallScore
+    : Math.min(rawOverallScore, GRADE_A_TRAINING_TARGETS.writing - 1);
+  const gaps = [
+    ...rubricScores.filter((r) => r.gap).map((r) => `${r.dimension}: ${r.gap}`),
+    ...(!evidenceQualified
+      ? [
+          `Length: Complete a ${GRADE_A_EVIDENCE_REQUIREMENTS.minimumWritingWords}–${GRADE_A_EVIDENCE_REQUIREMENTS.maximumWritingWords}-word letter before this can count as Grade A readiness evidence (${wordCount} words now).`,
+        ]
+      : []),
+  ];
   const modelPoints =
     task.rubricChecklist?.map((r) => `${r.dimension}: ${r.modelPoint}`) ??
     task.checklist?.map((c) => c) ??
@@ -288,13 +305,14 @@ export function evaluateWritingDraft(task: SessionTask, text: string): WritingEv
 
   return {
     overallScore,
-    wordCount: countWords(trimmed),
+    wordCount,
     rubricScores,
     gaps,
     modelPoints,
     perfectAnswerTips,
+    evidenceQualified,
     practicePass: overallScore >= thresholds.practicePass,
-    examReady: overallScore >= thresholds.examReady,
+    examReady: evidenceQualified && overallScore >= thresholds.examReady,
   };
 }
 
@@ -347,9 +365,16 @@ export function computeSubtestScore(
   }
 
   if (writingTasks.length > 0) {
-    const scores = writingTasks.map((t) => evaluateWritingDraft(t, notes[t.id] ?? '').overallScore);
+    const evaluations = writingTasks.map((task) =>
+      evaluateWritingDraft(task, notes[task.id] ?? ''),
+    );
+    const scores = evaluations.map((evaluation) => evaluation.overallScore);
     percentScore = Math.round(scores.reduce((a, b) => a + b, 0) / scores.length);
     rubricWeakAreas(writingTasks, notes).forEach((w) => weakAreas.push(w));
+    evidenceComplete = evaluations.every((evaluation) => evaluation.evidenceQualified);
+    if (!evidenceComplete) {
+      weakAreas.push('Writing: complete every letter within 180–200 words');
+    }
   } else if (speakingTasks.length > 0) {
     const scores = speakingTasks
       .map((t) => speakingResults[t.id]?.score ?? 0)
@@ -450,6 +475,7 @@ export function computeSessionReview(
                 scorePercent: score.score,
               }))
             : undefined,
+          evidenceQualified: hasText ? ev.evidenceQualified : false,
         };
       }
       if (t.subtest === 'speaking') {

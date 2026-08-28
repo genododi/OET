@@ -343,6 +343,68 @@ describe('qualified Speaking readiness evidence', () => {
   });
 });
 
+describe('qualified Writing readiness evidence', () => {
+  function writingAttempt(
+    id: string,
+    evidenceQualified: boolean | undefined,
+  ): CompletedSession {
+    return {
+      id,
+      kind: 'practice',
+      title: 'Writing evidence',
+      completedAt: `2026-08-${id === 'complete' ? '28' : '27'}T08:00:00.000Z`,
+      durationMinutes: 40,
+      review: {
+        subtestScores: [
+          {
+            subtest: 'writing',
+            percentScore: 90,
+            practicePass: true,
+            examReady: true,
+            weakAreas: [],
+          },
+        ],
+        overallPercent: 90,
+        overallPracticePass: true,
+        overallExamReady: true,
+        weakAreas: [],
+        taskReviews: [
+          {
+            taskId: `${id}-write-1`,
+            subtest: 'writing',
+            passed: true,
+            scorePercent: 90,
+            summary: 'Writing letter',
+            evidenceQualified,
+          },
+        ],
+      },
+    };
+  }
+
+  it('keeps an incomplete letter as a drill while counting a complete letter', () => {
+    const incomplete = writingAttempt('incomplete', false);
+    const complete = writingAttempt('complete', true);
+    const summary = summarizeSubtestHistory([incomplete, complete], ['writing'])[0]!;
+
+    expect(summary).toMatchObject({
+      attemptCount: 1,
+      unqualifiedAttemptCount: 1,
+      rollingPercent: 90,
+    });
+  });
+
+  it('preserves legacy Writing evidence without length metadata', () => {
+    const summary = summarizeSubtestHistory(
+      [writingAttempt('legacy', undefined)],
+      ['writing'],
+    )[0]!;
+
+    expect(summary.attemptCount).toBe(1);
+    expect(summary.unqualifiedAttemptCount).toBe(0);
+  });
+});
+
 describe('qualified receptive readiness evidence', () => {
   function receptiveAttempt(
     id: string,
