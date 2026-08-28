@@ -9,7 +9,11 @@ import { DifficultyBadge } from '../components/DifficultyBadge';
 import { ListPagination } from '../components/ListPagination';
 import { SubtestBadge } from '../components/SubtestBadge';
 import { SessionRunner } from '../components/SessionRunner';
-import { buildPracticeSession, buildSmartSession } from '../lib/sessionBuilder';
+import {
+  buildPracticeSession,
+  buildSmartSession,
+  practiceSessionWorkload,
+} from '../lib/sessionBuilder';
 import { usePagination } from '../hooks/usePagination';
 import type { SessionConfig } from '../types/session';
 import {
@@ -264,32 +268,36 @@ export function PracticePage({
             onPageChange={setPage}
           />
           <div className="card-grid">
-          {pageItems.map((mod) => (
-            <article key={mod.id} className="card exam-card">
-              <div className="card-header-row">
-                <SubtestBadge subtest={mod.subtest} />
-                <DifficultyBadge difficulty={mod.difficulty} />
-                {isComplete(mod.id) && <span className="tag tag-complete">Completed</span>}
-              </div>
-              <h3>{mod.title}</h3>
-              <p className="meta">
-                {mod.topic} · {moduleProfession(mod.profession)}
-              </p>
-              <p className="description">{mod.description}</p>
-              <div className="card-footer">
-                <span>
-                  {mod.tasksCount} task{mod.tasksCount !== 1 ? 's' : ''} · {mod.durationMinutes} min
-                </span>
-                <button
-                  type="button"
-                  className="btn btn-primary btn-sm"
-                  onClick={() => setActiveModule(mod)}
-                >
-                  Practise
-                </button>
-              </div>
-            </article>
-          ))}
+          {pageItems.map((mod) => {
+            const workload = practiceSessionWorkload(mod);
+            return (
+              <article key={mod.id} className="card exam-card">
+                <div className="card-header-row">
+                  <SubtestBadge subtest={mod.subtest} />
+                  <DifficultyBadge difficulty={mod.difficulty} />
+                  {isComplete(mod.id) && <span className="tag tag-complete">Completed</span>}
+                </div>
+                <h3>{mod.title}</h3>
+                <p className="meta">
+                  {mod.topic} · {moduleProfession(mod.profession)}
+                </p>
+                <p className="description">{mod.description}</p>
+                <div className="card-footer">
+                  <span>
+                    {workload.taskCount} task{workload.taskCount !== 1 ? 's' : ''} ·{' '}
+                    {workload.durationMinutes} min
+                  </span>
+                  <button
+                    type="button"
+                    className="btn btn-primary btn-sm"
+                    onClick={() => setActiveModule(mod)}
+                  >
+                    Practise
+                  </button>
+                </div>
+              </article>
+            );
+          })}
           </div>
           <ListPagination
             page={page}

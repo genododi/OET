@@ -27,6 +27,7 @@ test('resource search preserves link-only governance', async ({ page }) => {
 test('timed writing session provides built-in feedback while offline', async ({ context, page }) => {
   await page.goto('./#practice/writing');
   await page.getByRole('button', { name: 'Practise' }).first().click();
+  await expect(page.getByText('1 task(s)')).toBeVisible();
   await page.getByRole('button', { name: /Start \d+-minute session/ }).click();
   await expect(page.locator('.session-timer')).toContainText(/\d+:\d{2}/);
   await context.setOffline(true);
@@ -34,6 +35,15 @@ test('timed writing session provides built-in feedback while offline', async ({ 
   await page.getByRole('button', { name: 'Submit draft & review' }).click();
   await expect(page.getByTestId('offline-tutor-result')).toContainText('Works offline');
   await expect(page.getByTestId('offline-tutor-result')).toContainText('not an official OET score');
+});
+
+test('catalog Speaking workload matches the available session time', async ({ page }) => {
+  await page.goto('./#practice/speaking');
+  await page.getByLabel('Search practice modules').fill('Anticoagulation Safety Role-Plays');
+  await expect(page.getByText('2 tasks · 20 min')).toBeVisible();
+  await page.getByRole('button', { name: 'Practise' }).click();
+  await expect(page.getByText('2 task(s)')).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Start 20-minute session' })).toBeVisible();
 });
 
 test('speaking text fallback produces a review without microphone access', async ({ page }) => {

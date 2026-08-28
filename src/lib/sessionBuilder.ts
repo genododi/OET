@@ -89,9 +89,31 @@ function sessionSeed(
   return `${moduleId}|${subtest}|${taskCount}|${title}|${topic ?? ''}`;
 }
 
-function resolveTaskCount(subtest: OetSubtest, taskCount: number): number {
+function resolveTaskCount(
+  subtest: OetSubtest,
+  taskCount: number,
+  durationMinutes: number,
+): number {
   const bankSize = bankBySubtest[subtest].length;
+  if (subtest === 'writing' || subtest === 'speaking') {
+    const fullPerformanceMinutes = SMART_TASK_MINUTES[subtest];
+    const timeCalibratedCap = Math.max(1, Math.floor(durationMinutes / fullPerformanceMinutes));
+    return Math.min(Math.max(1, taskCount), timeCalibratedCap, bankSize);
+  }
   return Math.min(Math.max(taskCount, MIN_CONTENT_TASKS), bankSize);
+}
+
+export interface PracticeSessionWorkload {
+  taskCount: number;
+  durationMinutes: number;
+}
+
+/** The workload the learner will actually receive after exam-time calibration. */
+export function practiceSessionWorkload(module: PracticeModule): PracticeSessionWorkload {
+  return {
+    taskCount: resolveTaskCount(module.subtest, module.tasksCount, module.durationMinutes),
+    durationMinutes: module.durationMinutes,
+  };
 }
 
 function tasksForSubtest(
@@ -99,10 +121,11 @@ function tasksForSubtest(
   prefix: string,
   taskCount: number,
   title: string,
+  durationMinutes: number,
   topic?: string,
   difficultyFilter?: Difficulty,
 ): SessionTask[] {
-  const targetCount = resolveTaskCount(subtest, taskCount);
+  const targetCount = resolveTaskCount(subtest, taskCount, durationMinutes);
   const seed = sessionSeed(prefix, subtest, targetCount, title, topic);
   return pickTasks(subtest, targetCount, prefix, seed, difficultyFilter).map((task) =>
     withProvenance(task, subtest),
@@ -125,6 +148,7 @@ function resolveMockTaskCounts(exam: MockExam): number[] {
 }
 
 export function buildPracticeSession(module: PracticeModule): SessionConfig {
+  const workload = practiceSessionWorkload(module);
   const tasks: SessionTask[] = [
     {
       id: `${module.id}-intro`,
@@ -133,8 +157,8 @@ export function buildPracticeSession(module: PracticeModule): SessionConfig {
       instructions: subtestInstructions[module.subtest],
       checklist: [
         `Topic: ${module.topic}`,
-        `Duration: ${module.durationMinutes} min`,
-        `${module.tasksCount} task(s)`,
+        `Duration: ${workload.durationMinutes} min`,
+        `${workload.taskCount} task(s)`,
       ],
     },
     ...tasksForSubtest(
@@ -142,6 +166,7 @@ export function buildPracticeSession(module: PracticeModule): SessionConfig {
       module.id,
       module.tasksCount,
       module.title,
+      module.durationMinutes,
       module.topic,
       module.difficulty,
     ),
@@ -152,7 +177,7 @@ export function buildPracticeSession(module: PracticeModule): SessionConfig {
     kind: 'practice',
     title: module.title,
     subtitle: module.topic,
-    durationMinutes: module.durationMinutes,
+    durationMinutes: workload.durationMinutes,
     subtests: [module.subtest],
     tasks,
   };
