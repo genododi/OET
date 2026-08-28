@@ -16,6 +16,15 @@ test('command center launches a qualifying four-skill baseline', async ({ page }
   await expect(page.getByRole('button', { name: 'Start 115-minute session' })).toBeVisible();
 });
 
+test('command center launches the latest balanced daily challenge', async ({ page }) => {
+  await page.goto('./');
+  await expect(page.getByText('New today · Stage 15')).toBeVisible();
+  await page.getByRole('button', { name: 'Start Stage 15 challenge' }).click();
+  await expect(page.getByRole('heading', { name: 'Daily Grade A Challenge · Stage 15' })).toBeVisible();
+  await expect(page.getByText('One new advanced Medicine task in every OET sub-test')).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Start 60-minute session' })).toBeVisible();
+});
+
 test('resource search preserves link-only governance', async ({ page }) => {
   await page.goto('./#resources');
   await page.getByLabel('Search resources').fill('letter type');

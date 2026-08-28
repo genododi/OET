@@ -27,6 +27,7 @@ import {
 } from './oetExamTiming';
 import type { PracticeProvenance } from '../types';
 import { GRADE_A_EVIDENCE_REQUIREMENTS } from './oetThresholds';
+import { dailyOetProgression } from '../data/dailyOetProgression';
 
 /** Minimum content tasks for catalog-derived receptive practice modules. */
 export const MIN_CONTENT_TASKS = 10;
@@ -585,4 +586,49 @@ export function buildGradeABaselineSession(completed: CompletedSession[]): Sessi
     },
     true,
   );
+}
+
+/** Launch the newest balanced progression stage directly instead of leaving it buried in the pool. */
+export function buildLatestDailyChallengeSession(): SessionConfig {
+  const stage = dailyOetProgression.at(-1);
+  if (!stage) throw new Error('Daily OET progression is empty');
+
+  const subtests: OetSubtest[] = ['listening', 'reading', 'writing', 'speaking'];
+  const runId = `daily-stage-${stage.stage}`;
+  const contentTasks = subtests.map((subtest) => {
+    const task = bankBySubtest[subtest].find((candidate) => candidate.id === stage.taskIds[subtest]);
+    if (!task) throw new Error(`Daily OET stage ${stage.stage} is missing ${subtest}`);
+    return {
+      ...withProvenance(task, subtest),
+      id: `${runId}-${task.id}`,
+    };
+  });
+  const durationMinutes = subtests.reduce(
+    (total, subtest) => total + SMART_TASK_MINUTES[subtest],
+    0,
+  );
+
+  return {
+    id: runId,
+    kind: 'practice',
+    title: `Daily Grade A Challenge · Stage ${stage.stage}`,
+    subtitle: stage.focus,
+    durationMinutes,
+    subtests,
+    tasks: [
+      {
+        id: `${runId}-intro`,
+        subtest: 'intro',
+        title: `Stage ${stage.stage} challenge brief`,
+        instructions: stage.focus,
+        checklist: [
+          'One new advanced Medicine task in every OET sub-test',
+          `${durationMinutes} minutes under continuous timing`,
+          `New reasoning layer: ${stage.reasoningLayers.at(-1)}`,
+          'This compact challenge is a drill; use qualifying sets for Grade A readiness evidence',
+        ],
+      },
+      ...contentTasks,
+    ],
+  };
 }

@@ -1263,5 +1263,17 @@
       "missing counterfactual comparison"
     ],
     "voice": "Samantha"
+  },
+  "lis-121": {
+    "question": "Why does the speaker reject the claim that home oximetry prevented intensive-care transfer?",
+    "correctAnswer": "Admission was influenced by both monitoring alerts and illness severity, so restricting analysis to admitted patients can create a non-causal association",
+    "script": "The hospital report says home oximetry halved intensive-care transfer among patients who were eventually admitted. That sounds protective, but admission is not a baseline characteristic. A device alert could bring a monitored patient into hospital while illness was still moderate. Without monitoring, people tended to be admitted only after symptoms had become clinically severe. Both monitoring and severity influence entry to the hospitalised sample. If we restrict to admitted patients, monitored and unmonitored groups can differ in underlying severity even when the device has no protective effect. Adjustment for oxygen saturation on arrival may miss the earlier trajectory and the reason admission occurred. We should analyse everyone who entered the home-care pathway and report admission and intensive-care outcomes separately before making a causal claim.",
+    "speechScript": "The hospital report says home oximetry halved intensive care transfer among patients who were eventually admitted. That sounds protective, but admission is not a baseline characteristic. A device alert could bring a monitored patient into hospital while illness was still moderate. Without monitoring, people tended to be admitted only after symptoms had become clinically severe. Both monitoring and severity influence entry to the hospitalised sample. If we restrict to admitted patients, monitored and unmonitored groups can differ in underlying severity even when the device has no protective effect. Adjustment for oxygen saturation on arrival may miss the earlier trajectory and the reason admission occurred. We should analyse everyone who entered the home care pathway and report admission and intensive care outcomes separately before making a causal claim.",
+    "evidenceTerms": [
+      "both monitoring and severity influence entry",
+      "restrict to admitted patients",
+      "no protective effect"
+    ],
+    "voice": "Karen"
   }
 }

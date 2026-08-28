@@ -685,6 +685,19 @@ The investigators should display treatment probabilities by key severity-and-set
 
 The mortality association remains relevant evidence for patients represented on both sides of the comparison. It is not, by itself, a network-wide answer. Covariate balance describes the weighted data that exist; it cannot create the counterfactual outcomes that were never observed where treatment was effectively predetermined.`,
   },
+  'passage-partial-verification-diagnostic-accuracy': {
+    id: 'passage-partial-verification-diagnostic-accuracy',
+    title: 'Diagnostic evaluation — When verification follows suspicion',
+    text: `A rapid blood test was evaluated for giant cell arteritis in adults referred to an urgent headache clinic. Every attendee had the index test, but the reference procedure was not applied consistently. Temporal-artery biopsy or vascular imaging was arranged when the blood test was positive or when the clinician remained strongly suspicious despite the result. People with a negative test and an apparently reassuring assessment usually returned to primary care without either procedure. Among patients whose diagnosis was verified, the test showed 92% sensitivity and 88% specificity. The investigators concluded that it could safely exclude disease across the clinic population.
+
+Those figures describe a selected subgroup. Verification was influenced by the index-test result and by clinical features related to true disease. A patient with giant cell arteritis and a negative blood test could still enter the verified group if their symptoms were striking; a patient with subtler disease and the same negative result was more likely to disappear into the unverified group. False negatives are therefore not merely missing at random. Conversely, many people with negative tests and no disease were never counted as confirmed true negatives. The direction and size of the resulting distortion cannot be inferred from the verified cases alone.
+
+Blinding the pathologist to the blood result protects interpretation of biopsies that were performed, but it does not repair selective referral for biopsy. Nor does adjusting the verified analysis for recorded headache features reveal the diagnoses of patients who were never assessed with an adequate reference standard. Multiple imputation would still depend on untestable assumptions about how disease was distributed among those unverified.
+
+A credible evaluation should define the target population before results are known and seek reference-standard information independently of the index test. Universal biopsy may be unethical or impractical, so a prespecified random sample of test-negative, low-suspicion patients could receive enhanced reference assessment and follow-up. A composite reference may be defensible if its components are applied consistently and adjudicated without knowledge of the index result. At minimum, the report should show verification rates for each test-and-suspicion stratum and examine plausible disease rates among unverified patients.
+
+The blood test may still contribute useful information alongside history, examination and inflammatory markers. What the study has not established is safe rule-out performance in everyone attending the clinic. High agreement among selectively verified patients cannot substitute for knowing what happened to test-negative people whom the care pathway chose not to investigate further.`,
+  },
   'passage-delirium-part-a-set': {
     id: 'passage-delirium-part-a-set',
     title: 'Part A texts — Delirium recognition, causes, management and follow-up',

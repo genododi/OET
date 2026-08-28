@@ -2908,6 +2908,44 @@ button {
   background: var(--teal-600);
 }
 
+.grade-a-daily {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 0.75rem;
+  padding: 1rem;
+  border: 1px solid var(--teal-200);
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.grade-a-daily .grade-a-next-label {
+  color: var(--teal-800);
+}
+
+.grade-a-daily strong {
+  display: block;
+  color: var(--text-h);
+}
+
+.grade-a-daily p {
+  max-width: 95ch;
+  margin: 0.2rem 0;
+  color: var(--slate-700);
+  font-size: 0.8rem;
+  line-height: 1.45;
+}
+
+.grade-a-daily small {
+  color: var(--text-muted);
+  font-size: 0.72rem;
+}
+
+.grade-a-daily .btn {
+  flex-shrink: 0;
+}
+
 .grade-a-disclaimer {
   margin-top: 0.75rem;
   color: var(--text-muted);
@@ -2917,7 +2955,8 @@ button {
 
 @media (max-width: 700px) {
   .grade-a-head,
-  .grade-a-next {
+  .grade-a-next,
+  .grade-a-daily {
     align-items: flex-start;
     flex-direction: column;
   }

@@ -13,6 +13,7 @@ import {
   GRADE_A_TRAINING_TARGETS,
 } from '../lib/oetThresholds';
 import { SubtestBadge } from './SubtestBadge';
+import { dailyOetProgression } from '../data/dailyOetProgression';
 
 const SUBTESTS: OetSubtest[] = ['listening', 'reading', 'writing', 'speaking'];
 
@@ -38,6 +39,7 @@ const PRESCRIPTIONS: Record<OetSubtest, { focus: string; gate: string }> = {
 interface Props {
   completed: CompletedSession[];
   onStartBaseline: () => void;
+  onStartDailyChallenge: () => void;
   onStartSmart: (subtests?: OetSubtest[]) => void;
   onStartPart: (
     subtest: Extract<OetSubtest, 'listening' | 'reading'>,
@@ -54,6 +56,7 @@ interface Props {
 export function GradeACommandCenter({
   completed,
   onStartBaseline,
+  onStartDailyChallenge,
   onStartSmart,
   onStartPart,
   onStartProductive,
@@ -78,6 +81,7 @@ export function GradeACommandCenter({
     [summaries],
   );
   const focus = useMemo(() => recommendGradeAFocus(completed), [completed]);
+  const latestStage = dailyOetProgression.at(-1)!;
 
   const masteredCount = summaries.filter(
     (summary) => readinessBySubtest.get(summary.subtest)?.status === 'target-met',
@@ -218,6 +222,17 @@ export function GradeACommandCenter({
           {dueReviewCount > 0
             ? `Start mistake review (${dueReviewCount})`
             : focusCopy.button}
+        </button>
+      </div>
+      <div className="grade-a-daily">
+        <div>
+          <span className="grade-a-next-label">New today · Stage {latestStage.stage}</span>
+          <strong>Four-skill advanced challenge</strong>
+          <p>{latestStage.focus}</p>
+          <small>One new task per skill · 60 minutes · compact drill, not a qualifying full set</small>
+        </div>
+        <button type="button" className="btn btn-secondary" onClick={onStartDailyChallenge}>
+          Start Stage {latestStage.stage} challenge
         </button>
       </div>
       <p className="grade-a-disclaimer">

@@ -321,6 +321,17 @@ const writingCriteriaByTaskId: Record<string, WritingCriteria> = {
     ],
     irrelevantTerms: ['gout', 'teacher', 'woodworking'],
   },
+  'write-47': {
+    requiredConceptGroups: [
+      ['anti-NMDA receptor encephalitis', 'NMDA-receptor encephalitis', 'autoimmune encephalitis'],
+      ['seizure', 'reduced consciousness', 'GCS 11'],
+      ['autonomic instability', 'heart rate 58–142', 'blood pressure 86/50–168/96'],
+      ['extreme delta brush', 'EEG'],
+      ['ovarian teratoma', '4.2-cm'],
+      ['continuous EEG', 'immunotherapy', 'tumour removal', 'tumor removal', 'neurocritical'],
+    ],
+    irrelevantTerms: ['wrist sprain', 'graphic designer', 'yoga'],
+  },
 };
 
 const AUTO_WRITING_STOP_WORDS = new Set([
@@ -1643,6 +1654,35 @@ export const listeningTasks: SessionTask[] = [
     ),
     difficulty: 'advanced',
   },
+  {
+    ...mcq(
+      'lis-121',
+      'listening',
+      'Part C — Admission-pathway selection in home monitoring',
+      'Why does the speaker reject the claim that home oximetry prevented intensive-care transfer?',
+      [
+        {
+          label: 'Admission was influenced by both monitoring alerts and illness severity, so restricting analysis to admitted patients can create a non-causal association',
+          correct: true,
+          explanation:
+            'The hospitalised subgroup was selected through two routes: device alerts admitted some monitored patients earlier, while unmonitored patients were more often admitted after severe clinical deterioration.',
+        },
+        {
+          label: 'Every oximeter alert used exactly the same physiological threshold as an intensive-care referral',
+          correct: false,
+          explanation:
+            'The speaker distinguishes the lower threshold for hospital review from the later clinical decision about intensive care.',
+        },
+        {
+          label: 'Increasing the number of admitted patients would automatically make the two monitoring groups exchangeable',
+          correct: false,
+          explanation:
+            'A larger selected sample can estimate the same biased subgroup association more precisely; it does not remove selection caused by the admission pathway.',
+        },
+      ],
+    ),
+    difficulty: 'advanced',
+  },
 ];
 
 export const readingTasks: SessionTask[] = [
@@ -2309,6 +2349,32 @@ export const readingTasks: SessionTask[] = [
       },
     ],
   ),
+  advancedReadingMcq(
+    'read-93',
+    'Part C — Partial verification in diagnostic accuracy',
+    'passage-partial-verification-diagnostic-accuracy',
+    'Why does the writer say high agreement among verified patients cannot establish safe rule-out performance across the headache clinic?',
+    [
+      {
+        label: 'The index result and disease-related clinical suspicion influenced who received a reference standard, selectively concealing outcomes among test-negative patients',
+        correct: true,
+        explanation:
+          'Verification followed both the test result and features related to true disease, so the verified subgroup underrepresents uninvestigated false negatives and true negatives in ways the observed cases cannot resolve.',
+      },
+      {
+        label: 'Every diagnostic-accuracy study is invalid unless all participants receive both temporal-artery biopsy and vascular imaging',
+        correct: false,
+        explanation:
+          'The writer allows ethical alternatives such as prespecified sampling, consistent composite reference standards and follow-up; the problem is outcome-dependent verification, not failure to perform both procedures universally.',
+      },
+      {
+        label: 'Blinding the pathologist makes the verified subgroup representative of patients who never underwent a reference procedure',
+        correct: false,
+        explanation:
+          'Blinding reduces interpretation bias for completed biopsies but cannot recover diagnoses missing because the care pathway did not select those patients for verification.',
+      },
+    ],
+  ),
 ];
 
 export const writingTasks: SessionTask[] = [
@@ -2910,6 +2976,33 @@ Craniotomy for meningioma was performed nine days ago. Repeat head CT confirms a
 Norepinephrine and arterial monitoring have commenced. Following joint PERT and neurosurgical discussion, unfractionated heparin was started without a bolus with intensive neurological observations.
 
 Please accept him immediately for catheter thrombectomy versus surgical embolectomy, with ECMO capability and concurrent neurosurgical oversight. His wife understands the life-threatening thrombotic and bleeding risks.
+
+Please contact me if further information is required.
+
+Yours sincerely,
+
+Dr Maya Hassan`,
+    difficulty: 'advanced',
+  },
+  {
+    ...writing(
+      'write-47',
+      'Immediate transfer — Probable anti-NMDA receptor encephalitis with discordant early tests',
+      '28 Aug 2026 — Pt: Ms Salma Nasser, 27y\n10 days progressive insomnia and behavioural change, then mutism, confusion and orofacial dyskinesia\nGeneralised seizure today; consciousness fluctuating around GCS 11, no focal weakness\nAutonomic instability: HR 58–142, BP 86/50–168/96 mmHg\nCSF: 18 lymphocytes/µL, normal glucose/protein\nInitial HSV PCR negative; repeat PCR pending\nMRI brain normal\nEEG: extreme delta brush pattern\nPelvic ultrasound: 4.2-cm right ovarian teratoma\nSerum and CSF NMDA-receptor antibodies pending\nReceiving IV aciclovir pending repeat virology, levetiracetam, close airway/cardiac monitoring and intermittent sedation for severe agitation\nCurrently self-ventilating; possible need for intubation if consciousness or dysautonomia worsens\nNeeds immediate neurocritical transfer for continuous EEG, neurology and gynaecological-oncology review, consideration of immunotherapy and tumour removal while infection is excluded\nParents informed of diagnostic uncertainty and possible ventilation\nPMH: wrist sprain 2022; graphic designer; attends yoga weekly\nNo known drug allergies\nWrite an immediate transfer letter that reconciles the normal MRI and pending antibodies with the compelling clinical, EEG and tumour evidence',
+      'Dear Neurocritical Care Team,\n\nI am writing to request immediate transfer of Ms Salma Nasser, aged 27, with probable anti-NMDA receptor encephalitis causing seizures, reduced consciousness and autonomic instability.',
+      'Immediate neurocritical-care transfer',
+    ),
+    modelAnswer: `Dear Neurocritical Care Team,
+
+I am writing to request immediate transfer of Ms Salma Nasser, 27, with probable anti-NMDA receptor encephalitis causing seizures, reduced consciousness and autonomic instability.
+
+Over ten days, she developed insomnia and behavioural change, followed by mutism, confusion and orofacial dyskinesia. Today she had a generalised seizure. Her consciousness now fluctuates around GCS 11, with heart rate 58–142 and blood pressure 86/50–168/96 mmHg; no focal weakness is present.
+
+CSF contains 18 lymphocytes/µL with normal glucose and protein. Initial HSV PCR was negative, although a repeat is pending. Brain MRI is normal; EEG demonstrates extreme delta brush. Pelvic ultrasound identified a 4.2-cm right ovarian teratoma. Serum and CSF NMDA-receptor antibodies remain pending.
+
+She is receiving intravenous aciclovir pending repeat virology, levetiracetam and close airway and cardiac monitoring. She currently requires intermittent sedation for severe agitation but is self-ventilating.
+
+Please accept her urgently for continuous EEG, neurocritical support and coordinated neurology and gynaecological-oncology assessment. The treating teams should consider immunotherapy and tumour removal while infection is excluded and antibody results are awaited. Her parents understand the diagnostic uncertainty and possible need for ventilation.
 
 Please contact me if further information is required.
 
@@ -4052,6 +4145,55 @@ export const speakingTasks: SessionTask[] = [
           'Your role is to help us understand their wishes and values, not to carry this decision alone or decide what you personally should want.',
           'One option is a time-limited trial with a clear review point and goals such as improving oxygen needs, alertness and a realistic chance of communicating again.',
           'If those goals are not met, we would discuss stopping burdensome ventilation while continuing comfort, dignity and support; that is not abandonment. Could you explain how you understand this plan?',
+        ],
+      },
+    ),
+    difficulty: 'advanced',
+  },
+  {
+    ...speaking(
+      'speak-47',
+      'Open disclosure — pulmonary embolism after an earlier discharge',
+      'You are the emergency physician speaking with a 44-year-old patient who returned two days after being discharged with chest pain attributed to anxiety and muscle strain. CT pulmonary angiography now shows a segmental pulmonary embolism. The earlier record did not include recently started oestrogen therapy, and no D-dimer was ordered. The patient is haemodynamically stable and anticoagulation is recommended, but they are angry, say “you nearly killed me”, demand to know who is to blame and want a guarantee that treatment will prevent another clot.',
+      [
+        'Acknowledge the harm and anger, apologise for the experience, and establish the patient’s immediate concerns before explaining',
+        'Explain the confirmed clot, what was understood at the first visit and why the omitted risk factor matters without excusing or speculating',
+        'Describe anticoagulation benefits, bleeding risks, uncertainty and urgent warning symptoms in plain language',
+        'Outline open-disclosure review, support and follow-up, then use teach-back and agree the next steps',
+      ],
+      {
+        expectedKeywords: [
+          'sorry',
+          'anger',
+          'pulmonary embolism',
+          'blood clot',
+          'oestrogen',
+          'risk factor',
+          'first visit',
+          'review',
+          'open disclosure',
+          'anticoagulation',
+          'bleeding',
+          'benefit',
+          'cannot guarantee',
+          'breathlessness',
+          'fainting',
+          'follow-up',
+          'understand',
+        ],
+        checklist: [
+          'Allow the patient to describe the impact, validate anger and apologise without becoming defensive or making an unsupported admission of individual blame',
+          'Explain the current pulmonary embolism and the earlier reasoning, explicitly identifying the missing oestrogen history as relevant while separating known facts from what the formal review must establish',
+          'Describe anticoagulation as risk reduction rather than a guarantee, discuss material bleeding risk and invite questions or preferences',
+          'Give specific escalation advice for worsening breathlessness, chest pain, fainting or significant bleeding and arrange prompt clinical follow-up',
+          'Explain the open-disclosure and incident-review process, offer a named contact and written information, then use teach-back to agree the immediate plan',
+        ],
+        samplePhrases: [
+          'I am sorry that you were sent home and have now returned with a blood clot; I can understand why you feel angry and frightened. What is worrying you most right now?',
+          'The scan confirms a clot in the lung. At the first visit the record described a low-risk picture, but your recently started oestrogen was not documented, and that is a relevant risk factor.',
+          'I do not want to speculate about individual blame before the records and decisions are reviewed, but I will be open about what we know, what remains uncertain and how you will receive the findings.',
+          'Anticoagulation substantially lowers the chance of this clot growing or another forming, but no treatment can give a complete guarantee and it also carries a bleeding risk.',
+          'Please seek urgent help for worsening breathlessness, severe chest pain, fainting or significant bleeding. Could you tell me how you understand the treatment and what will happen after today?',
         ],
       },
     ),

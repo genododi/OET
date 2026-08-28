@@ -9,6 +9,7 @@ import { useProgress } from '../hooks/useProgress';
 import { matchesProfessionFilter } from '../lib/preferredProfession';
 import {
   buildGradeABaselineSession,
+  buildLatestDailyChallengeSession,
   buildPartFocusSession,
   buildProductiveFocusSession,
   buildReviewSession,
@@ -45,6 +46,10 @@ export function HomePage({ onNavigate, preferredProfession = 'Medicine' }: Props
 
   const startBaseline = () => {
     setSmartConfig(buildGradeABaselineSession(completed));
+  };
+
+  const startDailyChallenge = () => {
+    setSmartConfig(buildLatestDailyChallengeSession());
   };
 
   const startReview = () => {
@@ -102,6 +107,7 @@ export function HomePage({ onNavigate, preferredProfession = 'Medicine' }: Props
       <GradeACommandCenter
         completed={completed}
         onStartBaseline={startBaseline}
+        onStartDailyChallenge={startDailyChallenge}
         onStartSmart={startSmart}
         onStartPart={startPart}
         onStartProductive={startProductive}
