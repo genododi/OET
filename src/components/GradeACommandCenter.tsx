@@ -19,11 +19,11 @@ const SUBTESTS: OetSubtest[] = ['listening', 'reading', 'writing', 'speaking'];
 const PRESCRIPTIONS: Record<OetSubtest, { focus: string; gate: string }> = {
   listening: {
     focus: 'Train evidence capture: numbers, names, negation, and speaker purpose.',
-    gate: 'Four timed sets, with the latest three at 90%+ and every error explained from the audio.',
+    gate: 'Four timed 10+ item sets covering Parts A–C, with the latest three at 90%+ and every error explained from the audio.',
   },
   reading: {
     focus: 'Practise fast gist, synonym matching, and rejecting partial-match distractors.',
-    gate: 'Four timed sets, with the latest three at 90%+ without sacrificing Part A timing.',
+    gate: 'Four timed 10+ item sets covering Parts A–C, with the latest three at 90%+ without sacrificing Part A timing.',
   },
   writing: {
     focus: 'Write purpose-first, select only relevant notes, and edit for clear professional English.',
@@ -37,6 +37,7 @@ const PRESCRIPTIONS: Record<OetSubtest, { focus: string; gate: string }> = {
 
 interface Props {
   completed: CompletedSession[];
+  onStartBaseline: () => void;
   onStartSmart: (subtests?: OetSubtest[]) => void;
   onStartPart: (
     subtest: Extract<OetSubtest, 'listening' | 'reading'>,
@@ -52,6 +53,7 @@ interface Props {
 
 export function GradeACommandCenter({
   completed,
+  onStartBaseline,
   onStartSmart,
   onStartPart,
   onStartProductive,
@@ -84,7 +86,7 @@ export function GradeACommandCenter({
     if (focus.kind === 'baseline') {
       return {
         title: 'Establish your four-skill baseline',
-        description: 'Complete one time-calibrated mixed session before specialising.',
+        description: 'Complete a 105-minute qualified baseline: 10 Listening, 10 Reading, one letter and one recorded role-play.',
         button: 'Start baseline session',
       };
     }
@@ -123,7 +125,7 @@ export function GradeACommandCenter({
       return;
     }
     if (focus.kind === 'baseline') {
-      onStartSmart();
+      onStartBaseline();
     } else if (focus.kind === 'part') {
       onStartPart(focus.subtest, focus.part);
     } else if (focus.kind === 'criterion') {
@@ -162,7 +164,9 @@ export function GradeACommandCenter({
                 <SubtestBadge subtest={summary.subtest} small />
                 <span className={isOnTarget ? 'grade-a-status-ready' : 'grade-a-status'}>
                   {score === null
-                    ? 'Baseline needed'
+                    ? summary.unqualifiedAttemptCount > 0
+                      ? `${summary.unqualifiedAttemptCount} drill${summary.unqualifiedAttemptCount === 1 ? '' : 's'} logged · qualified set needed`
+                      : 'Baseline needed'
                     : isOnTarget
                       ? 'Target met'
                       : readiness.attemptsStillNeeded > 0
@@ -217,7 +221,7 @@ export function GradeACommandCenter({
         </button>
       </div>
       <p className="grade-a-disclaimer">
-        Internal readiness targets require at least four recent attempts and three consecutive target-level results. They are not an official OET score conversion; use timed full mocks and qualified feedback to validate exam readiness.
+        Internal readiness targets require at least four recent attempts and three consecutive target-level results. Listening and Reading attempts need at least 10 scored items across Parts A–C; Speaking needs a sufficient recording. These are not an official OET score conversion—use timed full mocks and qualified feedback to validate exam readiness.
       </p>
     </section>
   );

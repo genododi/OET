@@ -8,6 +8,14 @@ test('first-run diagnostic creates a Grade A plan', async ({ page }) => {
   await expect.poll(() => page.evaluate(() => localStorage.getItem('oet-study-partner-study-plan'))).toContain('"targetScore":450');
 });
 
+test('command center launches a qualifying four-skill baseline', async ({ page }) => {
+  await page.goto('./');
+  await page.getByRole('button', { name: 'Start baseline session' }).click();
+  await expect(page.getByRole('heading', { name: 'Grade A Baseline' })).toBeVisible();
+  await expect(page.getByText('10 Listening + 10 Reading + one letter + one recorded role-play')).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Start 105-minute session' })).toBeVisible();
+});
+
 test('resource search preserves link-only governance', async ({ page }) => {
   await page.goto('./#resources');
   await page.getByLabel('Search resources').fill('letter type');

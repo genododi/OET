@@ -83,6 +83,9 @@ export function ReadinessDashboard({
   );
 
   const attempted = summaries.filter((s) => s.attemptCount > 0);
+  const hasAnyActivity = summaries.some(
+    (summary) => summary.attemptCount > 0 || summary.unqualifiedAttemptCount > 0,
+  );
 
   const weakest = attempted.reduce<SubtestHistorySummary | null>((worst, s) => {
     if (s.rollingPercent === null) return worst;
@@ -90,7 +93,7 @@ export function ReadinessDashboard({
     return worst;
   }, null);
 
-  if (attempted.length === 0) {
+  if (!hasAnyActivity) {
     return (
       <section className="card readiness-dashboard readiness-empty">
         <h3>Readiness dashboard</h3>
@@ -142,7 +145,9 @@ export function ReadinessDashboard({
               <div className="readiness-row-bottom">
                 <span className="meta">
                   {s.attemptCount === 0
-                    ? 'Not attempted yet'
+                    ? s.unqualifiedAttemptCount > 0
+                      ? `${s.unqualifiedAttemptCount} short/non-qualifying attempt${s.unqualifiedAttemptCount === 1 ? '' : 's'}`
+                      : 'Not attempted yet'
                     : level
                       ? readinessLabel(level)
                       : ''}

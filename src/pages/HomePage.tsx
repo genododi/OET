@@ -8,6 +8,7 @@ import { studyResources } from '../data/studyResources';
 import { useProgress } from '../hooks/useProgress';
 import { matchesProfessionFilter } from '../lib/preferredProfession';
 import {
+  buildGradeABaselineSession,
   buildPartFocusSession,
   buildProductiveFocusSession,
   buildReviewSession,
@@ -40,6 +41,10 @@ export function HomePage({ onNavigate, preferredProfession = 'Medicine' }: Props
 
   const startSmart = (subtests?: OetSubtest[]) => {
     setSmartConfig(buildSmartSession({ subtests: subtests ?? [], completed }));
+  };
+
+  const startBaseline = () => {
+    setSmartConfig(buildGradeABaselineSession(completed));
   };
 
   const startReview = () => {
@@ -96,6 +101,7 @@ export function HomePage({ onNavigate, preferredProfession = 'Medicine' }: Props
 
       <GradeACommandCenter
         completed={completed}
+        onStartBaseline={startBaseline}
         onStartSmart={startSmart}
         onStartPart={startPart}
         onStartProductive={startProductive}

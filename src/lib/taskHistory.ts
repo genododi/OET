@@ -2,7 +2,10 @@ import type { CompletedSession } from '../types/session';
 import type { OetSubtest } from '../types';
 import type { OetPart } from './oetExamTiming';
 import { bankBySubtest, oetTaskPart } from '../data/sessionTaskBank';
-import { GRADE_A_TRAINING_TARGETS } from './oetThresholds';
+import {
+  GRADE_A_EVIDENCE_REQUIREMENTS,
+  GRADE_A_TRAINING_TARGETS,
+} from './oetThresholds';
 
 /** Matches the bank id suffix embedded in every generated task id, e.g. "...-lis-3" -> "lis-3". */
 const CANONICAL_ID_PATTERN = /(lis|read|write|speak)-\d+$/;
@@ -31,6 +34,7 @@ export interface SubtestTrendPoint {
 export interface SubtestHistorySummary {
   subtest: OetSubtest;
   attemptCount: number;
+  unqualifiedAttemptCount: number;
   rollingPercent: number | null;
   trend: SubtestTrendPoint[];
 }
@@ -92,10 +96,35 @@ export const PRODUCTIVE_CRITERIA: Record<
 
 const DAY_MS = 86_400_000;
 const REVIEW_INTERVAL_DAYS = [1, 3, 7, 14] as const;
+const receptiveTaskById = new Map(
+  (['listening', 'reading'] as const).flatMap((subtest) =>
+    bankBySubtest[subtest].map((task) => [task.id, task] as const),
+  ),
+);
 
 function canonicalIdOf(taskId: string): string | null {
   const match = taskId.match(CANONICAL_ID_PATTERN);
   return match ? match[0] : null;
+}
+
+function hasReceptivePartCoverage(
+  session: CompletedSession,
+  subtest: Extract<OetSubtest, 'listening' | 'reading'>,
+): boolean {
+  const relevantReviews = session.review?.taskReviews.filter(
+    (review) => review.subtest === subtest,
+  ) ?? [];
+  // Older saved sessions may predate task-level snapshots; preserve their prior status.
+  if (relevantReviews.length === 0) return true;
+  const parts = new Set(
+    relevantReviews.flatMap((review) => {
+      const canonicalId = canonicalIdOf(review.taskId);
+      const task = canonicalId ? receptiveTaskById.get(canonicalId) : undefined;
+      const part = task ? oetTaskPart(task) : null;
+      return part ? [part] : [];
+    }),
+  );
+  return parts.size >= GRADE_A_EVIDENCE_REQUIREMENTS.minimumReceptiveParts;
 }
 
 /** Build per-content-item stats (seen count, pass rate, recency) across all history, keyed by canonical id. */
@@ -237,10 +266,22 @@ export function summarizeSubtestHistory(
 ): SubtestHistorySummary[] {
   return subtests.map((subtest) => {
     const points: SubtestTrendPoint[] = [];
+    let unqualifiedAttemptCount = 0;
     [...completed]
       .sort((a, b) => new Date(a.completedAt).getTime() - new Date(b.completedAt).getTime())
       .forEach((session) => {
         const score = session.review?.subtestScores.find((s) => s.subtest === subtest);
+        const hasScore = Boolean(score && (score.percentScore > 0 || score.total));
+        if (!score || !hasScore) return;
+        if (
+          (subtest === 'listening' || subtest === 'reading') &&
+          score.total !== undefined &&
+          (score.total < GRADE_A_EVIDENCE_REQUIREMENTS.minimumReceptiveItems ||
+            !hasReceptivePartCoverage(session, subtest))
+        ) {
+          unqualifiedAttemptCount += 1;
+          return;
+        }
         if (
           subtest === 'speaking' &&
           session.review?.taskReviews.some(
@@ -250,16 +291,21 @@ export function summarizeSubtestHistory(
             (review) => review.subtest === 'speaking' && review.evidenceQualified === true,
           )
         ) {
+          unqualifiedAttemptCount += 1;
           return;
         }
-        if (score && (score.percentScore > 0 || score.total)) {
-          points.push({ completedAt: session.completedAt, percentScore: score.percentScore });
-        }
+        points.push({ completedAt: session.completedAt, percentScore: score.percentScore });
       });
 
     const recent = points.slice(-windowSize);
     if (recent.length === 0) {
-      return { subtest, attemptCount: 0, rollingPercent: null, trend: recent };
+      return {
+        subtest,
+        attemptCount: 0,
+        unqualifiedAttemptCount,
+        rollingPercent: null,
+        trend: recent,
+      };
     }
 
     // Weight more recent attempts slightly higher (simple linear weighting).
@@ -270,6 +316,7 @@ export function summarizeSubtestHistory(
     return {
       subtest,
       attemptCount: points.length,
+      unqualifiedAttemptCount,
       rollingPercent: Math.round(weighted),
       trend: recent,
     };

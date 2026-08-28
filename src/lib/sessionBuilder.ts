@@ -26,6 +26,7 @@ import {
   type OetPart,
 } from './oetExamTiming';
 import type { PracticeProvenance } from '../types';
+import { GRADE_A_EVIDENCE_REQUIREMENTS } from './oetThresholds';
 
 /** Minimum content tasks for catalog-derived receptive practice modules. */
 export const MIN_CONTENT_TASKS = 10;
@@ -453,7 +454,10 @@ export function buildReviewSession({
  * user hasn't seen yet or has scored poorly/staled on — a lightweight spaced-repetition
  * pass over the whole bank rather than a fixed named exam.
  */
-export function buildSmartSession({ subtests, completed, totalTasks = 16 }: SmartSessionOptions): SessionConfig {
+function buildAdaptiveSession(
+  { subtests, completed, totalTasks = 16 }: SmartSessionOptions,
+  gradeABaseline: boolean,
+): SessionConfig {
   const stats: Map<string, TaskStat> = buildTaskStats(completed);
   const activeSubtests = subtests.length > 0 ? subtests : (['listening', 'reading', 'writing', 'speaking'] as OetSubtest[]);
   const distributed = distributeTaskCounts(activeSubtests, totalTasks);
@@ -461,25 +465,36 @@ export function buildSmartSession({ subtests, completed, totalTasks = 16 }: Smar
     const cap = subtest === 'speaking' && activeSubtests.length > 1
       ? 1
       : SMART_SESSION_TASK_CAPS[subtest];
-    return Math.min(distributed[index]!, cap, bankBySubtest[subtest].length);
+    const minimum = gradeABaseline && (subtest === 'listening' || subtest === 'reading')
+      ? GRADE_A_EVIDENCE_REQUIREMENTS.minimumReceptiveItems
+      : distributed[index]!;
+    return Math.min(Math.max(distributed[index]!, minimum), cap, bankBySubtest[subtest].length);
   });
   const plannedMinutes = activeSubtests.reduce(
     (sum, subtest, index) => sum + counts[index]! * SMART_TASK_MINUTES[subtest],
     0,
   );
   const selectedTaskCount = counts.reduce((sum, count) => sum + count, 0);
-  const runId = `smart-${Date.now().toString(36)}`;
+  const runId = `${gradeABaseline ? 'baseline' : 'smart'}-${Date.now().toString(36)}`;
 
   const tasks: SessionTask[] = [
     {
       id: `${runId}-intro`,
       subtest: 'intro',
-      title: 'Smart Session',
+      title: gradeABaseline ? 'Grade A Baseline' : 'Smart Session',
       instructions:
-        'Built from your history: unseen and previously-weak items are prioritised, mastered items appear less often. Mixed across the sub-tests you selected.',
+        gradeABaseline
+          ? 'Complete all four sections under timing. Listening and Reading contain enough scored items to count as qualified readiness evidence; Speaking counts only with a sufficient recording.'
+          : 'Built from your history: unseen and previously-weak items are prioritised, mastered items appear less often. Mixed across the sub-tests you selected.',
       checklist: [
         `Sub-tests: ${activeSubtests.join(', ')}`,
         `${selectedTaskCount} task(s), weighted to fit ${Math.max(20, plannedMinutes)} minutes`,
+        ...(gradeABaseline
+          ? [
+              'Qualified baseline: 10 Listening + 10 Reading + one letter + one recorded role-play',
+              'Listening and Reading each cover Parts A, B and C',
+            ]
+          : []),
         'One full Writing letter maximum; Speaking uses one role-play in mixed sets or two alone',
       ],
     },
@@ -496,7 +511,20 @@ export function buildSmartSession({ subtests, completed, totalTasks = 16 }: Smar
     }
     const bank = bankBySubtest[subtest];
     const requested = counts[index]!;
-    const picked = weightedPick(bank, requested, stats);
+    const shouldBalanceReceptive =
+      (subtest === 'listening' || subtest === 'reading') &&
+      (gradeABaseline || activeSubtests.length === 1);
+    const picked = shouldBalanceReceptive
+      ? OET_PARTS.flatMap((part, partIndex) => {
+          const partTarget = Math.floor(requested / OET_PARTS.length) +
+            (partIndex < requested % OET_PARTS.length ? 1 : 0);
+          return weightedPick(
+            bank.filter((task) => oetTaskPart(task) === part),
+            partTarget,
+            stats,
+          );
+        })
+      : weightedPick(bank, requested, stats);
     picked.forEach((task) => {
       tasks.push({ ...withProvenance(task, subtest), id: `${runId}-${task.id}` });
     });
@@ -505,10 +533,27 @@ export function buildSmartSession({ subtests, completed, totalTasks = 16 }: Smar
   return {
     id: runId,
     kind: 'practice',
-    title: 'Smart Session',
-    subtitle: 'Adaptive — built from your progress',
+    title: gradeABaseline ? 'Grade A Baseline' : 'Smart Session',
+    subtitle: gradeABaseline
+      ? 'Qualified four-skill diagnostic'
+      : 'Adaptive — built from your progress',
     durationMinutes: Math.max(20, plannedMinutes),
     subtests: activeSubtests,
     tasks,
   };
+}
+
+export function buildSmartSession(options: SmartSessionOptions): SessionConfig {
+  return buildAdaptiveSession(options, false);
+}
+
+export function buildGradeABaselineSession(completed: CompletedSession[]): SessionConfig {
+  return buildAdaptiveSession(
+    {
+      subtests: ['listening', 'reading', 'writing', 'speaking'],
+      completed,
+      totalTasks: 16,
+    },
+    true,
+  );
 }

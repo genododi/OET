@@ -1,7 +1,10 @@
 import { describe, expect, it } from 'vitest';
 import type { OetSubtest } from '../types';
 import type { CompletedSession } from '../types/session';
+import { bankBySubtest, oetTaskPart } from '../data/sessionTaskBank';
+import type { OetPart } from './oetExamTiming';
 import {
+  buildGradeABaselineSession,
   buildPartFocusSession,
   buildProductiveFocusSession,
   buildReviewSession,
@@ -225,6 +228,137 @@ describe('time-calibrated Smart Sessions', () => {
     expect(writing.durationMinutes).toBe(45);
     expect(speaking.tasks.filter((task) => task.subtest === 'speaking')).toHaveLength(2);
     expect(speaking.durationMinutes).toBe(20);
+  });
+
+  it('balances single-skill receptive sessions across all three OET parts', () => {
+    const session = buildSmartSession({ subtests: ['reading'], completed: [] });
+    const content = session.tasks.filter((task) => task.subtest === 'reading');
+
+    expect(content).toHaveLength(16);
+    expect(new Set(content.map((task) => oetTaskPart(task)))).toEqual(
+      new Set(['A', 'B', 'C']),
+    );
+    expect(session.durationMinutes).toBe(48);
+  });
+
+  it('builds a genuinely qualifying four-skill Grade A baseline', () => {
+    const session = buildGradeABaselineSession([]);
+    const content = session.tasks.filter(
+      (task) => task.subtest !== 'intro' && task.subtest !== 'break',
+    );
+    const count = (subtest: OetSubtest) =>
+      content.filter((task) => task.subtest === subtest).length;
+
+    expect(session.title).toBe('Grade A Baseline');
+    expect(count('listening')).toBe(10);
+    expect(count('reading')).toBe(10);
+    expect(count('writing')).toBe(1);
+    expect(count('speaking')).toBe(1);
+    expect(session.durationMinutes).toBe(105);
+    (['listening', 'reading'] as const).forEach((subtest) => {
+      expect(
+        new Set(
+          content
+            .filter((task) => task.subtest === subtest)
+            .map((task) => oetTaskPart(task)),
+        ),
+      ).toEqual(new Set(['A', 'B', 'C']));
+    });
+    expect(session.tasks[0]?.checklist).toContain(
+      'Qualified baseline: 10 Listening + 10 Reading + one letter + one recorded role-play',
+    );
+  });
+});
+
+describe('qualified receptive readiness evidence', () => {
+  function receptiveAttempt(
+    id: string,
+    completedAt: string,
+    total: number,
+    percentScore: number,
+    parts: OetPart[] = [],
+  ): CompletedSession {
+    return {
+      id,
+      kind: 'practice',
+      title: 'Receptive evidence',
+      completedAt,
+      durationMinutes: 30,
+      review: {
+        subtestScores: [
+          {
+            subtest: 'reading',
+            percentScore,
+            correct: Math.round((percentScore / 100) * total),
+            total,
+            practicePass: percentScore >= 70,
+            examReady: percentScore >= 80,
+            weakAreas: [],
+          },
+        ],
+        overallPercent: percentScore,
+        overallPracticePass: percentScore >= 70,
+        overallExamReady: percentScore >= 80,
+        weakAreas: [],
+        taskReviews: parts.map((part) => {
+          const task = bankBySubtest.reading.find((candidate) => oetTaskPart(candidate) === part)!;
+          return {
+            taskId: `evidence-${task.id}`,
+            subtest: 'reading' as const,
+            passed: true,
+            scorePercent: 100,
+            summary: `Reading Part ${part} evidence`,
+          };
+        }),
+      },
+    };
+  }
+
+  it('keeps short drills out of readiness while preserving a 10-item set', () => {
+    const shortDrill = receptiveAttempt('short', '2026-08-26T08:00:00.000Z', 4, 100);
+    const qualifiedSet = receptiveAttempt(
+      'qualified',
+      '2026-08-27T08:00:00.000Z',
+      10,
+      90,
+      ['A', 'B', 'C'],
+    );
+    const summary = summarizeSubtestHistory([qualifiedSet, shortDrill], ['reading'])[0]!;
+
+    expect(summary).toMatchObject({
+      attemptCount: 1,
+      unqualifiedAttemptCount: 1,
+      rollingPercent: 90,
+      trend: [{ completedAt: qualifiedSet.completedAt, percentScore: 90 }],
+    });
+  });
+
+  it('does not let four perfect micro-drills satisfy the Grade A gate', () => {
+    const microDrills = [1, 2, 3, 4].map((day) =>
+      receptiveAttempt(`micro-${day}`, `2026-08-${20 + day}T08:00:00.000Z`, 4, 100),
+    );
+    const summary = summarizeSubtestHistory(microDrills, ['reading'])[0]!;
+
+    expect(summary.attemptCount).toBe(0);
+    expect(summary.unqualifiedAttemptCount).toBe(4);
+    expect(summary.rollingPercent).toBeNull();
+  });
+
+  it('keeps a 10-item single-part drill out of overall readiness', () => {
+    const partCOnly = receptiveAttempt(
+      'part-c-only',
+      '2026-08-27T08:00:00.000Z',
+      10,
+      100,
+      ['C'],
+    );
+    const summary = summarizeSubtestHistory([partCOnly], ['reading'])[0]!;
+
+    expect(summary).toMatchObject({
+      attemptCount: 0,
+      unqualifiedAttemptCount: 1,
+      rollingPercent: null,
+    });
   });
 });
 

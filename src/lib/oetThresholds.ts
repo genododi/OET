@@ -26,6 +26,8 @@ export const GRADE_A_EVIDENCE_REQUIREMENTS = {
   minimumAttempts: 4,
   consecutiveAtTarget: 3,
   recentWindow: 8,
+  minimumReceptiveItems: 10,
+  minimumReceptiveParts: 3,
 } as const;
 
 export type GradeATrainingStatus =
