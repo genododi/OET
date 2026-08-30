@@ -7,9 +7,11 @@ import path from 'node:path';
 
 const archiveRoot = process.env.OET_SOURCE_ARCHIVE_ROOT ?? '/Volumes/GENODODI/oet-study-sources';
 const rawRoot = path.join(archiveRoot, 'raw');
+const quarantinedSourceRoot = path.join(archiveRoot, 'quarantine', 'source-files');
 const generatedAt = new Date().toISOString();
 
 const sourceUrls = new Map([
+  ['browser-recovery', 'https://drive.google.com/file/d/1TCJ3FMPmegvvXUUDKrskoWD9GhV0EBe8/view'],
   ['1vJmNmLSAdB19npX2P8q5bspV5hKm_FMM', 'https://drive.google.com/drive/folders/1vJmNmLSAdB19npX2P8q5bspV5hKm_FMM'],
   ['1Ucb79sZUycOJqmM-bZTku1QCzlAPhBot', 'https://drive.google.com/drive/folders/1Ucb79sZUycOJqmM-bZTku1QCzlAPhBot'],
   ['1EZvkn35NuRVaSizepiqJp6NCGZKv_V9k', 'https://drive.google.com/drive/folders/1EZvkn35NuRVaSizepiqJp6NCGZKv_V9k'],
@@ -71,6 +73,7 @@ function normalizedFilename(value) {
 }
 
 const files = await walk(rawRoot);
+const quarantinedFiles = await walk(quarantinedSourceRoot);
 const hashes = new Map();
 const assets = [];
 for (const filename of files.sort()) {
@@ -106,6 +109,35 @@ for (const filename of files.sort()) {
   });
 }
 
+for (const filename of quarantinedFiles.sort()) {
+  const originalPath = path.relative(quarantinedSourceRoot, filename);
+  const metadata = await stat(filename);
+  const digest = await sha256(filename);
+  const typeResult = spawnSync('file', ['-b', '--mime-type', filename], { encoding: 'utf8' });
+  const classification = classify(originalPath);
+  const firstId = hashes.get(digest);
+  const id = `asset-${assets.length + 1}`;
+  if (!firstId) hashes.set(digest, id);
+  assets.push({
+    id,
+    sourceUrl: classification.sourceUrl,
+    sourceContainer: classification.sourceContainer,
+    originalPath,
+    filename: path.basename(filename),
+    mimeType: typeResult.status === 0 ? typeResult.stdout.trim() : 'application/octet-stream',
+    bytes: metadata.size,
+    sha256: digest,
+    acquiredAt: metadata.birthtime.toISOString(),
+    extractionStatus: 'not-required',
+    ...(firstId ? { duplicateOf: firstId } : {}),
+    profession: classification.profession,
+    subtest: classification.subtest,
+    redistributionStatus: 'quarantined',
+    publicationEligible: false,
+    normalizedPath: path.relative(archiveRoot, filename),
+  });
+}
+
 const facebookIndexPath = path.join(archiveRoot, 'manifests', 'facebook-file-index.json');
 if (existsSync(facebookIndexPath)) {
   const facebookIndex = JSON.parse(await readFile(facebookIndexPath, 'utf8'));
@@ -135,6 +167,28 @@ if (existsSync(facebookIndexPath)) {
   }
 }
 
+const driveManifestRoot = path.join(archiveRoot, 'manifests', 'google-drive');
+const assetsBySha256 = new Map(assets.map((asset) => [asset.sha256, asset]));
+for (const manifestFilename of await readdir(driveManifestRoot).catch(() => [])) {
+  if (!manifestFilename.endsWith('.json') || manifestFilename.startsWith('._')) continue;
+  const driveManifest = JSON.parse(
+    await readFile(path.join(driveManifestRoot, manifestFilename), 'utf8'),
+  );
+  for (const record of driveManifest.records ?? []) {
+    if (record.status !== 'deduplicated' || !record.sha256) continue;
+    const base = assetsBySha256.get(record.sha256);
+    if (!base) continue;
+    assets.push({
+      ...base,
+      id: `asset-${assets.length + 1}`,
+      sourceUrl: driveManifest.sourceUrl ?? base.sourceUrl,
+      originalPath: `drive-source-paths/${driveManifest.folderId ?? 'direct-files'}/${record.originalPath ?? record.fileId}`,
+      duplicateOf: base.duplicateOf ?? base.id,
+      sourcePathRecord: true,
+    });
+  }
+}
+
 const manifest = { schemaVersion: 1, generatedAt, archiveRoot, assets };
 await writeFile(path.join(archiveRoot, 'manifests', 'source-manifest.json'), `${JSON.stringify(manifest, null, 2)}\n`);
 const uniqueAssets = assets.filter((asset) => !asset.duplicateOf);
@@ -152,6 +206,8 @@ const report = [
   '## Files by source',
   '',
   ...Object.entries(counts).map(([container, count]) => `- ${container}: ${count}`),
+  '',
+  `Quarantined source records: ${assets.filter((asset) => asset.redistributionStatus === 'quarantined').length}`,
   '',
   'All downloaded third-party binaries default to rights-unclear and are not eligible for public application publication.',
   '',

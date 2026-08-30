@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import assert from 'node:assert/strict';
 import { existsSync } from 'node:fs';
-import { readFile } from 'node:fs/promises';
+import { readFile, readdir } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -10,6 +10,15 @@ const registerPath = path.join(root, 'sources', 'source-register.json');
 const register = JSON.parse(await readFile(registerPath, 'utf8'));
 const allowedContainers = new Set(['google-drive', 'google-doc', 'facebook', 'telegram', 'mega', 'youtube']);
 const allowedRights = new Set(['official-public', 'permission-confirmed', 'link-only', 'rights-unclear', 'quarantined']);
+const unsafeExtensions = new Set(['.aes', '.app', '.bat', '.cmd', '.com', '.dmg', '.enc', '.exe', '.gpg', '.msi', '.pgp', '.pkg', '.ps1', '.scr']);
+const unsafeMimeTypes = new Set([
+  'application/vnd.microsoft.portable-executable',
+  'application/x-dosexec',
+  'application/x-executable',
+  'application/x-mach-binary',
+  'application/x-msdownload',
+  'application/x-sharedlib',
+]);
 const isSafeRelative = (value) => value && !path.isAbsolute(value) && !value.split(/[\\/]/).includes('..');
 
 assert.equal(register.schemaVersion, 1, 'Source register schema must be version 1');
@@ -62,6 +71,12 @@ for (const asset of manifest.assets) {
   if (['rights-unclear', 'quarantined'].includes(asset.redistributionStatus)) {
     assert.equal(asset.publicationEligible, false, `${asset.id} cannot publish rights-unclear/quarantined bytes`);
   }
+  if (unsafeExtensions.has(path.extname(asset.filename).toLowerCase()) || unsafeMimeTypes.has(asset.mimeType)) {
+    assert.equal(asset.redistributionStatus, 'quarantined', `${asset.id} unsafe bytes must be quarantined`);
+  }
+  if (asset.redistributionStatus === 'quarantined') {
+    assert.ok(asset.normalizedPath?.startsWith('quarantine/source-files/'), `${asset.id} needs a quarantine path`);
+  }
 }
 
 for (const required of ['google-drive', 'facebook', 'telegram', 'mega', 'google-doc', 'youtube']) {
@@ -69,5 +84,14 @@ for (const required of ['google-drive', 'facebook', 'telegram', 'mega', 'google-
 }
 assert.ok(manifest.assets.filter((asset) => asset.sourceContainer === 'facebook' && asset.sourcePathRecord).length >= 67, 'Facebook source-path inventory is incomplete');
 assert.ok(manifest.assets.some((asset) => asset.sourceContainer === 'mega' && asset.extractionStatus === 'extracted'), 'MEGA archive is not recorded as safely extracted');
+
+const driveManifestRoot = path.join(register.archiveRoot, 'manifests', 'google-drive');
+for (const filename of await readdir(driveManifestRoot).catch(() => [])) {
+  if (!filename.endsWith('.json') || filename.startsWith('._')) continue;
+  const driveManifest = JSON.parse(await readFile(path.join(driveManifestRoot, filename), 'utf8'));
+  const records = driveManifest.records ?? [];
+  const fileIds = records.map((record) => record.fileId).filter(Boolean);
+  assert.equal(new Set(fileIds).size, fileIds.length, `${filename} contains duplicate file IDs after re-import`);
+}
 
 console.log(`Verified ${register.sources.length} registered sources and ${manifest.assets.length} external manifest records.`);

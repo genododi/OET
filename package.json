@@ -28,6 +28,7 @@
     "sources:acquire": "node scripts/acquire-oet-sources.mjs",
     "sources:inventory": "node scripts/inventory-oet-sources.mjs",
     "sources:extract-mega": "node scripts/extract-mega-listening.mjs",
+    "sources:quarantine": "node scripts/quarantine-oet-sources.mjs --apply",
     "sources:telegram": "python3 scripts/acquire-telegram-links.py",
     "sources:drive-resilient": "uv run --with gdown python scripts/acquire-google-drive-resilient.py",
     "import-ashgan-telegram": "python3 scripts/import-ashgan-telegram.py",

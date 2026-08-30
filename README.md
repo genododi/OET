@@ -59,17 +59,21 @@ GENODODI must be mounted. The scripts refuse an archive root outside that volume
 ```bash
 npm run sources:acquire -- --references
 npm run sources:acquire -- --drive
-npm run sources:drive-resilient -- --default-sources
+npm run sources:drive-resilient -- --default-sources --retry-blocked --max-workers 4
 npm run sources:acquire -- --mega
 python3 scripts/acquire-telegram-links.py --download-drive
-npm run sources:drive-resilient -- --from-telegram-manifest /Volumes/GENODODI/oet-study-sources/manifests/telegram-link-index.json --destination /Volumes/GENODODI/oet-study-sources/raw/telegram/google-drive
+npm run sources:drive-resilient -- --from-telegram-manifest /Volumes/GENODODI/oet-study-sources/manifests/telegram-link-index.json --destination /Volumes/GENODODI/oet-study-sources/raw/telegram/google-drive --retry-blocked --max-workers 4
+# Later retries can add: --incomplete-only --skip-direct-files
 npm run sources:extract-mega
+npm run sources:quarantine
 npm run sources:inventory
 ```
 
 Facebook files use the account owner's signed-in Safari session. Set Safari's download location to `raw/facebook`, download from the group's Files view, then run the inventory command. Credentials and signed download URLs must never be copied into the repository or manifest.
 
 Source import is resumable. Checksums drive duplicate relationships; every original source-path record is retained. Encrypted, executable, corrupt, path-traversing, unverifiable, or rights-unclear material is quarantined or marked private.
+
+The reconciled delivery checklist and remaining external-access exceptions are maintained in [the source-driven upgrade status](docs/source-driven-upgrade-status.md).
 
 ## Tutoring and privacy
 
