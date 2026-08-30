@@ -332,6 +332,17 @@ const writingCriteriaByTaskId: Record<string, WritingCriteria> = {
     ],
     irrelevantTerms: ['wrist sprain', 'graphic designer', 'yoga'],
   },
+  'write-48': {
+    requiredConceptGroups: [
+      ['Stanford type A aortic dissection', 'type A aortic dissection', 'ascending aortic dissection'],
+      ['hypotension', 'haemodynamically unstable', 'hemodynamically unstable', 'tamponade', 'pericardial effusion'],
+      ['severe aortic regurgitation', 'aortic regurgitation'],
+      ['right coronary ostium', 'coronary malperfusion', 'initially suspected acute coronary syndrome'],
+      ['heparin', 'aspirin', 'protamine', 'antithrombotic'],
+      ['right-limb malperfusion', 'right limb malperfusion', 'iliac', 'emergency surgery', 'cardiothoracic transfer'],
+    ],
+    irrelevantTerms: ['cataract', 'surveyor', 'fishing'],
+  },
 };
 
 const AUTO_WRITING_STOP_WORDS = new Set([
@@ -1683,6 +1694,35 @@ export const listeningTasks: SessionTask[] = [
     ),
     difficulty: 'advanced',
   },
+  {
+    ...mcq(
+      'lis-122',
+      'listening',
+      'Part C — Observation timing after acute kidney injury',
+      'Why does the speaker reject the claim that remote monitoring made renal function recover six days faster?',
+      [
+        {
+          label: 'Recovery was dated by the first qualifying blood test, so more frequent sampling could record the same biological change earlier',
+          correct: true,
+          explanation:
+            'The speaker distinguishes the unobserved time at which renal function crossed the threshold from the later visit at which a sample first documented it.',
+        },
+        {
+          label: 'A creatinine result within 10% of baseline can never represent clinically meaningful renal recovery',
+          correct: false,
+          explanation:
+            'The speaker accepts the threshold as a possible outcome but challenges comparing its recorded date under unequal measurement schedules.',
+        },
+        {
+          label: 'Every usual-care patient was tested only after their kidney function had already deteriorated again',
+          correct: false,
+          explanation:
+            'Testing could be prompted by symptoms or routine appointments; the speaker does not claim that all usual-care samples followed recurrent deterioration.',
+        },
+      ],
+    ),
+    difficulty: 'advanced',
+  },
 ];
 
 export const readingTasks: SessionTask[] = [
@@ -2375,6 +2415,32 @@ export const readingTasks: SessionTask[] = [
       },
     ],
   ),
+  advancedReadingMcq(
+    'read-94',
+    'Part C — Informative observation and recorded recovery',
+    'passage-informative-observation-recovery',
+    'Why does the writer say the six-day difference cannot by itself establish accelerated biological recovery?',
+    [
+      {
+        label: 'Unequal and prognosis-related testing schedules changed when recovery could be observed, while monitoring also triggered care that was inseparable from surveillance',
+        correct: true,
+        explanation:
+          'The recorded event depends on the first qualifying sample: sampling opportunities differed, measurement timing was informative, and alerts could alter care as well as reveal results sooner.',
+      },
+      {
+        label: 'Creatinine changes too continuously for any prespecified threshold or common assessment window to support comparison',
+        correct: false,
+        explanation:
+          'The writer proposes a common assessment window and interval-censored methods; the objection concerns unequal observation, not the impossibility of defining an outcome.',
+      },
+      {
+        label: 'Random allocation to the virtual pathway would prove that each component independently restored kidney function',
+        correct: false,
+        explanation:
+          'Randomising a package could estimate the whole strategy, but it would not separate surveillance from the medication, hydration and review actions prompted by alerts.',
+      },
+    ],
+  ),
 ];
 
 export const writingTasks: SessionTask[] = [
@@ -3005,6 +3071,31 @@ She is receiving intravenous aciclovir pending repeat virology, levetiracetam an
 Please accept her urgently for continuous EEG, neurocritical support and coordinated neurology and gynaecological-oncology assessment. The treating teams should consider immunotherapy and tumour removal while infection is excluded and antibody results are awaited. Her parents understand the diagnostic uncertainty and possible need for ventilation.
 
 Please contact me if further information is required.
+
+Yours sincerely,
+
+Dr Maya Hassan`,
+    difficulty: 'advanced',
+  },
+  {
+    ...writing(
+      'write-48',
+      'Immediate transfer — Type A aortic dissection after initial acute-coronary treatment',
+      '30 Aug 2026 — Pt: Mr Hany Salem, 61y\nAbrupt tearing central chest pain radiating between shoulder blades; subsequent right-leg pain and numbness\nInitial ECG: inferolateral ST depression; troponin 190 ng/L\nInitially treated as acute coronary syndrome: aspirin 300 mg and unfractionated heparin 5,000 units given\nUnequal arm pressures and widened mediastinum then recognised\nCT angiography: Stanford type A dissection from aortic root to iliac bifurcation; right-coronary ostium involved; right common-iliac true lumen severely compressed\nBedside echo: severe aortic regurgitation; 14-mm pericardial effusion with early tamponade physiology\nCurrent: right-arm BP 104/62, left-arm BP 82/48; HR 116; lactate 4.2 mmol/L; SpO2 95% on 4 L oxygen\nRight foot cool with absent dorsalis-pedis pulse and reduced sensation; movement preserved\nHeparin stopped; protamine administered after cardiothoracic advice\nTwo large-bore IV lines, arterial monitoring, crossmatched blood and cautious norepinephrine commenced\nEsmolol withheld because of hypotension\nNeeds immediate cardiothoracic transfer for emergency repair with coronary and limb-perfusion planning\nWife informed of critical diagnosis and operative urgency\nPMH: cataract surgery 2021; retired surveyor; enjoys fishing\nNo known drug allergies\nWrite an immediate transfer letter that reconciles the initial acute-coronary treatment with the revised diagnosis and prioritises shock, tamponade and malperfusion',
+      'Dear Cardiothoracic Surgery Team,\n\nI am writing to request immediate transfer of Mr Hany Salem, aged 61, with haemodynamically unstable Stanford type A aortic dissection complicated by coronary, pericardial and right-limb malperfusion.',
+      'Immediate cardiothoracic transfer',
+    ),
+    modelAnswer: `Dear Cardiothoracic Surgery Team,
+
+I am writing to request immediate transfer of Mr Hany Salem, 61, with haemodynamically unstable Stanford type A aortic dissection complicated by coronary, pericardial and right-limb malperfusion.
+
+He developed abrupt tearing central chest pain radiating between the shoulder blades, followed by right-leg pain and numbness. Initially suspected acute coronary syndrome, he received aspirin 300 mg and unfractionated heparin 5,000 units. Unequal arm pressures and a widened mediastinum prompted CT angiography, which shows dissection from the aortic root to the iliac bifurcation, involving the right-coronary ostium and severely compressing the right common-iliac true lumen. Echocardiography demonstrates severe aortic regurgitation and a 14-mm pericardial effusion with early tamponade.
+
+His right-arm pressure is 104/62 mmHg versus 82/48 on the left, heart rate 116 and lactate 4.2 mmol/L. The right foot is cool and pulseless with reduced sensation, although movement is preserved.
+
+Heparin was stopped and protamine administered after cardiothoracic advice. Arterial monitoring, crossmatched blood and cautious norepinephrine are in place; esmolol was withheld because of hypotension.
+
+Please accept him immediately for emergency repair with coronary and limb-perfusion planning. His wife understands the critical diagnosis and operative urgency.
 
 Yours sincerely,
 
@@ -4194,6 +4285,59 @@ export const speakingTasks: SessionTask[] = [
           'I do not want to speculate about individual blame before the records and decisions are reviewed, but I will be open about what we know, what remains uncertain and how you will receive the findings.',
           'Anticoagulation substantially lowers the chance of this clot growing or another forming, but no treatment can give a complete guarantee and it also carries a bleeding risk.',
           'Please seek urgent help for worsening breathlessness, severe chest pain, fainting or significant bleeding. Could you tell me how you understand the treatment and what will happen after today?',
+        ],
+      },
+    ),
+    difficulty: 'advanced',
+  },
+  {
+    ...speaking(
+      'speak-48',
+      'Uncertain genetic result — phenotype-led family planning',
+      'You are a cardiology doctor speaking with a 39-year-old patient whose brother died suddenly at 42. Their own ECG and echocardiogram are normal, but a cardiomyopathy panel found a variant of uncertain significance in MYH7. The patient believes this confirms a fatal inherited condition, demands an implantable defibrillator and wants both children tested immediately. The laboratory may reclassify the variant as evidence develops.',
+      [
+        'Explore the patient’s grief, feared meaning of the result and understanding of the family history before correcting assumptions',
+        'Explain what a variant of uncertain significance does and does not establish, using plain and probabilistic language',
+        'Separate phenotype-led clinical surveillance from predictive testing or invasive treatment based solely on the variant',
+        'Negotiate genetics review, family assessment, reclassification follow-up and symptom safety-netting',
+      ],
+      {
+        expectedKeywords: [
+          'sorry',
+          'brother',
+          'grief',
+          'variant',
+          'uncertain',
+          'gene',
+          'does not confirm',
+          'heart tests',
+          'normal',
+          'family history',
+          'screening',
+          'children',
+          'defibrillator',
+          'benefit',
+          'harm',
+          'genetics',
+          'reclassification',
+          'fainting',
+          'palpitations',
+          'follow-up',
+          'understand',
+        ],
+        checklist: [
+          'Acknowledge the bereavement and ask what the patient believes the result predicts before supplying technical detail',
+          'Explain that a variant of uncertain significance is neither a confirmed disease-causing finding nor proof that the family is unaffected',
+          'Use the normal current phenotype and family history to justify proportionate surveillance without false reassurance',
+          'Explain why an implantable defibrillator or predictive testing of children is not justified by this result alone, including potential harms',
+          'Offer genetics review, clinically appropriate family assessment, reclassification contact and clear symptom escalation advice, then use teach-back',
+        ],
+        samplePhrases: [
+          'I am sorry your brother died so suddenly; what did you understand this result to mean for you and your children?',
+          'A variant of uncertain significance means we found a genetic difference, but current evidence cannot tell us whether it causes disease or is harmless.',
+          'Your normal heart tests are reassuring for today, but your family history still supports planned clinical follow-up; neither fact gives us absolute certainty.',
+          'A defibrillator can prevent some dangerous rhythms but also carries procedural and device harms, so this uncertain variant alone is not enough reason to implant one or predictively test your children.',
+          'We can review the family history with genetics, arrange appropriate heart checks and contact you if the classification changes. Could you explain how you now understand the result and when you would seek urgent help?',
         ],
       },
     ),

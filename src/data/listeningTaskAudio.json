@@ -1275,5 +1275,17 @@
       "no protective effect"
     ],
     "voice": "Karen"
+  },
+  "lis-122": {
+    "question": "Why does the speaker reject the claim that remote monitoring made renal function recover six days faster?",
+    "correctAnswer": "Recovery was dated by the first qualifying blood test, so more frequent sampling could record the same biological change earlier",
+    "script": "The audit reports that patients using remote creatinine monitoring recovered six days earlier. But recovery was assigned to the date of the first qualifying sample, not to the unobserved moment when renal function actually crossed the threshold. The monitored group was tested twice weekly; usual-care patients often waited for a routine appointment unless symptoms prompted an earlier test. More frequent testing creates more opportunities to document improvement. Two patients could follow the same biological trajectory yet receive different recorded recovery dates simply because their next samples were taken on different days. Alerts may still improve care by prompting hydration or medication review, but this endpoint mixes those actions with observation timing. Compare renal status at common time points or account for the interval between the last abnormal and first qualifying sample before claiming faster biological recovery.",
+    "speechScript": "The audit reports that patients using remote creatinine monitoring recovered six days earlier. But recovery was assigned to the date of the first qualifying sample, not to the unobserved moment when renal function actually crossed the threshold. The monitored group was tested twice weekly; usual care patients often waited for a routine appointment unless symptoms prompted an earlier test. More frequent testing creates more opportunities to document improvement. Two patients could follow the same biological trajectory yet receive different recorded recovery dates simply because their next samples were taken on different days. Alerts may still improve care by prompting hydration or medication review, but this endpoint mixes those actions with observation timing. Compare renal status at common time points or account for the interval between the last abnormal and first qualifying sample before claiming faster biological recovery.",
+    "evidenceTerms": [
+      "first qualifying sample",
+      "more frequent testing",
+      "same biological trajectory"
+    ],
+    "voice": "Samantha"
   }
 }

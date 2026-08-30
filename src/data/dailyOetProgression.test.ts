@@ -22,9 +22,9 @@ function normalized(value: string): string {
 describe('latest daily OET progression stage', () => {
   it('adds one distinct advanced physician task for every sub-test', () => {
     expect(latestStage).toMatchObject({
-      date: '2026-08-28',
-      stage: 15,
-      complexityIndex: 15,
+      date: '2026-08-30',
+      stage: 16,
+      complexityIndex: 16,
       level: 'advanced',
     });
     expect(new Set(Object.values(latestStage.taskIds)).size).toBe(4);
@@ -40,15 +40,15 @@ describe('latest daily OET progression stage', () => {
     const session = buildLatestDailyChallengeSession();
 
     expect(session).toMatchObject({
-      id: 'daily-stage-15',
-      title: 'Daily Grade A Challenge · Stage 15',
+      id: 'daily-stage-16',
+      title: 'Daily Grade A Challenge · Stage 16',
       durationMinutes: 60,
       subtests,
       enforceSinglePlayListening: true,
     });
     expect(countContentTasks(session.tasks)).toBe(4);
     expect(session.tasks.slice(1).map((task) => task.id)).toEqual(
-      subtests.map((subtest) => `daily-stage-15-${latestStage.taskIds[subtest]}`),
+      subtests.map((subtest) => `daily-stage-16-${latestStage.taskIds[subtest]}`),
     );
     expect(session.tasks[0]?.checklist).toContain(
       'This compact challenge is a drill; use qualifying sets for Grade A readiness evidence',
@@ -59,13 +59,16 @@ describe('latest daily OET progression stage', () => {
     const listening = latestTasks.listening;
     const transcript = normalized(listening.audioTranscript ?? '');
     expect(listening.audioEvidenceTerms).toHaveLength(3);
+    expect(new Set(listening.audioEvidenceTerms?.map(normalized)).size).toBe(3);
     listening.audioEvidenceTerms?.forEach((term) => {
       expect(transcript).toContain(normalized(term));
     });
     expect(listening.options?.filter((option) => option.correct)).toHaveLength(1);
+    const correctListeningAnswer = listening.options?.find((option) => option.correct)?.label ?? '';
+    expect(transcript).not.toContain(normalized(correctListeningAnswer));
 
     const reading = latestTasks.reading;
-    expect(reading.readingPassage?.trim().split(/\s+/).length).toBeGreaterThanOrEqual(350);
+    expect(reading.readingPassage?.trim().split(/\s+/).length).toBeGreaterThanOrEqual(400);
     expect(reading.options?.filter((option) => option.correct)).toHaveLength(1);
     expect(reading.options?.every((option) => Boolean(option.explanation?.trim()))).toBe(true);
   });
@@ -86,6 +89,9 @@ describe('latest daily OET progression stage', () => {
     expect(criteria.expectedKeywords.length).toBeGreaterThanOrEqual(15);
     expect(criteria.checklist).toHaveLength(5);
     expect(criteria.samplePhrases).toHaveLength(5);
+    expect(new Set(criteria.expectedKeywords.map(normalized)).size).toBe(criteria.expectedKeywords.length);
+    expect(new Set(criteria.checklist.map(normalized)).size).toBe(criteria.checklist.length);
+    expect(new Set(criteria.samplePhrases.map(normalized)).size).toBe(criteria.samplePhrases.length);
     expect(
       criteria.dimensionWeights!.communication +
         criteria.dimensionWeights!.clinicalCommunication +

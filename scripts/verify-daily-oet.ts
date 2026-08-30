@@ -41,6 +41,14 @@ function requireSingleCorrectOption(task: SessionTask): void {
   }
 }
 
+function requireUniqueValues(values: readonly string[], label: string): void {
+  const normalizedValues = values.map(normalize);
+  if (normalizedValues.some((value) => !value)) fail(`${label} contains an empty value`);
+  if (new Set(normalizedValues).size !== normalizedValues.length) {
+    fail(`${label} contains duplicate evidence`);
+  }
+}
+
 for (const [index, entry] of dailyOetProgression.entries()) {
   if (entry.stage !== index + 1) fail(`stage ${entry.stage} is out of sequence`);
   if (entry.complexityIndex !== entry.stage) {
@@ -88,6 +96,7 @@ for (const [index, entry] of dailyOetProgression.entries()) {
       if (!task.audioEvidenceTerms || task.audioEvidenceTerms.length < 3) {
         fail(`${taskId} needs at least three audio evidence terms`);
       }
+      requireUniqueValues(task.audioEvidenceTerms, `${taskId} audio evidence terms`);
     }
 
     if (subtest === 'reading') {
@@ -132,6 +141,9 @@ for (const [index, entry] of dailyOetProgression.entries()) {
       if (criteria.expectedKeywords.length < 8 || criteria.samplePhrases.length < 3) {
         fail(`${taskId} needs richer language evidence and model phrases`);
       }
+      requireUniqueValues(criteria.expectedKeywords, `${taskId} speaking keywords`);
+      requireUniqueValues(criteria.checklist, `${taskId} speaking checklist`);
+      requireUniqueValues(criteria.samplePhrases, `${taskId} speaking sample phrases`);
       const weights = criteria.dimensionWeights;
       if (!weights) fail(`${taskId} needs dimension weights`);
       const total = weights.communication + weights.clinicalCommunication + weights.language;

@@ -698,6 +698,21 @@ A credible evaluation should define the target population before results are kno
 
 The blood test may still contribute useful information alongside history, examination and inflammatory markers. What the study has not established is safe rule-out performance in everyone attending the clinic. High agreement among selectively verified patients cannot substitute for knowing what happened to test-negative people whom the care pathway chose not to investigate further.`,
   },
+  'passage-informative-observation-recovery': {
+    id: 'passage-informative-observation-recovery',
+    title: 'Methods analysis — When the observation schedule moves the recorded event',
+    text: `A virtual follow-up service for acute kidney injury reported that enrolled patients recovered renal function six days sooner than patients receiving usual follow-up. Participants in the service had creatinine measured twice weekly for three weeks, with an alert prompting medication review and hydration advice. In usual care, clinicians arranged blood tests at varying intervals, often at a planned appointment or when symptoms caused concern. Recovery was defined as the date of the first measured creatinine within 10% of the patient’s baseline. Median recorded time to recovery was 12 days with virtual follow-up and 18 days with usual care. The report described this difference as accelerated biological recovery.
+
+That wording overlooks how an event becomes visible. Renal function changes continuously, but the threshold can only be observed when blood is sampled. A patient whose true recovery occurs on day 11 will be recorded as recovered on day 12 under twice-weekly testing but perhaps on day 18 if usual care schedules the next sample then. The later recorded event does not establish six additional days of kidney injury. More frequent testing narrows the interval in which recovery could have occurred and creates more opportunities to document the first qualifying result.
+
+The observation process is also clinically informative. In usual care, worsening oedema or nausea may bring a test forward, whereas an apparently well patient may wait for a routine appointment. Within the virtual service, an abnormal result triggers another result sooner. Measurement times therefore relate to prognosis and prior measurements rather than occurring independently. Adjusting only for admission creatinine, age and comorbidity cannot reconstruct the unobserved trajectory between samples or make the schedules equivalent.
+
+If allocation to the complete virtual strategy were random, a difference in patient outcomes could still be important. Alerts may cause clinicians to withhold nephrotoxic medicines, change diuretics or address dehydration, so the package might genuinely improve care. However, its effect would combine surveillance with actions produced by surveillance. The recorded threshold date alone cannot separate a biological treatment effect from earlier detection. In this evaluation, enrolment additionally depended on digital access and clinician referral, leaving baseline selection as another concern.
+
+Better analysis begins by stating the question. A common assessment window—for example, renal status at day 14—would compare groups at the same time, although deaths and missing samples would need transparent handling. Interval-censored methods can acknowledge that recovery occurred between the last abnormal and first qualifying measurements. Repeated-measurement models may use the creatinine trajectory, but they still require assumptions about why and when samples were taken. A validation subset with the same prespecified schedule in both groups would help distinguish surveillance from physiology.
+
+The service may improve safety through earlier review and more reliable follow-up. The defensible claim is that it documented recovery earlier within a monitoring-and-response pathway. Claiming that kidneys recovered six days faster requires evidence that aligns observation opportunities, accounts for informative testing and distinguishes the effect of clinical actions from the timing of measurement itself.`,
+  },
   'passage-delirium-part-a-set': {
     id: 'passage-delirium-part-a-set',
     title: 'Part A texts — Delirium recognition, causes, management and follow-up',
