@@ -1287,5 +1287,17 @@
       "same biological trajectory"
     ],
     "voice": "Samantha"
+  },
+  "lis-123": {
+    "question": "Complete: The visual disturbance was a ___ that expanded over about fifteen minutes.",
+    "correctAnswer": "shimmering crescent",
+    "script": "Clinician: You mentioned something moving across your sight. Was it like a dark curtain coming down? Patient: No, not a dark curtain. It began as a tiny bright spot near the centre. I first called it an arc, but crescent is more accurate—a shimmering crescent with zigzag edges. It slowly expanded across both eyes over about fifteen minutes, even when I covered one eye and then the other. Clinician: So the corrected description is a shimmering crescent, rather than darkness, and it affected both visual fields? Patient: Exactly. The headache started afterwards, not before.",
+    "speechScript": "You mentioned something moving across your sight. Was it like a dark curtain coming down? No, not a dark curtain. It began as a tiny bright spot near the centre. I first called it an arc, but crescent is more accurate, a shimmering crescent with zigzag edges. It slowly expanded across both eyes over about fifteen minutes, even when I covered one eye and then the other. So the corrected description is a shimmering crescent, rather than darkness, and it affected both visual fields? Exactly. The headache started afterwards, not before.",
+    "evidenceTerms": [
+      "not a dark curtain",
+      "shimmering crescent",
+      "expanded across both eyes over about fifteen minutes"
+    ],
+    "voice": "Karen"
   }
 }

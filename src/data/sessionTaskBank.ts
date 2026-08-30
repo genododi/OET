@@ -343,6 +343,17 @@ const writingCriteriaByTaskId: Record<string, WritingCriteria> = {
     ],
     irrelevantTerms: ['cataract', 'surveyor', 'fishing'],
   },
+  'write-49': {
+    requiredConceptGroups: [
+      ['euglycaemic diabetic ketoacidosis', 'euglycemic diabetic ketoacidosis', 'euglycaemic DKA', 'euglycemic DKA'],
+      ['empagliflozin', 'SGLT2 inhibitor'],
+      ['fasting', 'colonoscopy', 'reduced intake'],
+      ['ketones', '5.6', 'pH 7.19', 'bicarbonate 11', 'anion gap'],
+      ['insulin', 'dextrose', 'intravenous fluids', 'resolved'],
+      ['do not restart', 'endocrinology review', 'sick-day', 'ketone', 'follow-up'],
+    ],
+    irrelevantTerms: ['ankle sprain', 'librarian', 'chess'],
+  },
 };
 
 const AUTO_WRITING_STOP_WORDS = new Set([
@@ -1723,6 +1734,35 @@ export const listeningTasks: SessionTask[] = [
     ),
     difficulty: 'advanced',
   },
+  {
+    ...mcq(
+      'lis-123',
+      'listening',
+      'Part A — Corrected visual-symptom description',
+      'Complete: The visual disturbance was a ___ that expanded over about fifteen minutes.',
+      [
+        {
+          label: 'shimmering crescent',
+          correct: true,
+          explanation:
+            'The patient rejects the clinician’s “dark curtain” summary and settles on “shimmering crescent”; Part A requires that exact corrected wording.',
+        },
+        {
+          label: 'shivering crescent',
+          correct: false,
+          explanation:
+            'This is an orthographic distractor. The recording says “shimmering”, describing the visual quality rather than bodily shivering.',
+        },
+        {
+          label: 'shimmering present',
+          correct: false,
+          explanation:
+            'The final noun is “crescent”, not “present”; the note must preserve both words accurately.',
+        },
+      ],
+    ),
+    difficulty: 'advanced',
+  },
 ];
 
 export const readingTasks: SessionTask[] = [
@@ -2441,6 +2481,32 @@ export const readingTasks: SessionTask[] = [
       },
     ],
   ),
+  advancedReadingMcq(
+    'read-95',
+    'Part B — Critical-result identifier mismatch',
+    'passage-critical-result-identifier-mismatch',
+    'What does the procedure require when a critical result cannot be matched to the patient using all identifiers?',
+    [
+      {
+        label: 'Escalate and recollect urgently without assigning the disputed value to a guessed record, while treating any clinical emergency on bedside evidence',
+        correct: true,
+        explanation:
+          'The SOP separates verification from urgent clinical care: the mismatch is escalated and recollected, while a genuinely unstable patient is treated without pretending the unverified value belongs to them.',
+      },
+      {
+        label: 'Enter the value into the closest matching record so treatment can begin, then correct the record if verification later fails',
+        correct: false,
+        explanation:
+          'The policy explicitly prohibits entering a disputed value into the most likely record or using it alone for non-emergency treatment.',
+      },
+      {
+        label: 'Wait for identity confirmation before assessing the patient or responding to signs of immediate physiological danger',
+        correct: false,
+        explanation:
+          'The exception requires clinical assessment and treatment of an immediate emergency while verification continues; it does not justify withholding bedside care.',
+      },
+    ],
+  ),
 ];
 
 export const writingTasks: SessionTask[] = [
@@ -3096,6 +3162,31 @@ His right-arm pressure is 104/62 mmHg versus 82/48 on the left, heart rate 116 a
 Heparin was stopped and protamine administered after cardiothoracic advice. Arterial monitoring, crossmatched blood and cautious norepinephrine are in place; esmolol was withheld because of hypotension.
 
 Please accept him immediately for emergency repair with coronary and limb-perfusion planning. His wife understands the critical diagnosis and operative urgency.
+
+Yours sincerely,
+
+Dr Maya Hassan`,
+    difficulty: 'advanced',
+  },
+  {
+    ...writing(
+      'write-49',
+      'Discharge — Euglycaemic diabetic ketoacidosis and medication safety',
+      '30 Aug 2026 — Pt: Mr Tarek Amin, 52y\nType 2 diabetes for 8 years; empagliflozin 10 mg daily and metformin 1 g twice daily\nFast followed by low-residue intake for planned colonoscopy; continued empagliflozin until morning of admission\nPresented with nausea, abdominal pain, deep breathing and marked fatigue\nGlucose 10.8 mmol/L; capillary ketones 5.6 mmol/L; venous pH 7.19; bicarbonate 11 mmol/L; anion gap 24\nDiagnosis: euglycaemic diabetic ketoacidosis associated with SGLT2 inhibitor, fasting and reduced carbohydrate intake\nColonoscopy cancelled\nManaged with IV insulin plus dextrose, fluids and electrolyte replacement\nNow eating and drinking; ketones 0.4; pH 7.38; anion gap closed; renal function normal\nEmpagliflozin stopped; must not restart before endocrinology review\nMetformin 1 g twice daily resumed\nInsulin glargine 12 units nightly commenced; patient demonstrated injection and glucose monitoring\nEducation: ketone testing during illness, maintain carbohydrate/fluid intake, seek urgent help for vomiting, abdominal pain, rapid breathing or positive ketones even if glucose is not high\nGP review within 72 hours: glucose/ketone record, insulin tolerance and medication reconciliation\nEndocrinology appointment in 2 weeks; colonoscopy to be rescheduled with a documented diabetes medication plan\nPMH: ankle sprain 2020; librarian; plays chess\nNo known drug allergies\nWrite a discharge letter prioritising the misleading near-normal glucose, precipitating medication/fasting combination, treatment changes and specific follow-up',
+      'Dear Dr Mansour,\n\nI am writing to update you following Mr Tarek Amin’s admission with euglycaemic diabetic ketoacidosis associated with empagliflozin and fasting, and to request review within 72 hours.',
+      'Discharge to general practitioner',
+    ),
+    modelAnswer: `Dear Dr Mansour,
+
+I am writing to update you following Mr Tarek Amin’s admission with euglycaemic diabetic ketoacidosis associated with empagliflozin and fasting, and to request review within 72 hours.
+
+Mr Amin, 52, fasted with reduced carbohydrate intake for a colonoscopy but continued empagliflozin until admission. He developed nausea, abdominal pain, deep breathing and fatigue. Despite glucose of only 10.8 mmol/L, ketones were 5.6 mmol/L, venous pH 7.19, bicarbonate 11 mmol/L and anion gap 24. The colonoscopy was cancelled.
+
+He received intravenous insulin with dextrose, fluids and electrolyte replacement. He is eating and drinking; ketones are 0.4 mmol/L, pH 7.38 and the anion gap has closed. Renal function is normal.
+
+Empagliflozin was stopped and must not be restarted before endocrinology review. Metformin 1 g twice daily has resumed, and insulin glargine 12 units nightly commenced. He demonstrated injection, glucose and ketone monitoring.
+
+Please review his records, insulin tolerance and medicines within 72 hours. He understands to maintain fluid and carbohydrate intake during illness and seek urgent care for vomiting, abdominal pain, rapid breathing or positive ketones even without hyperglycaemia. Endocrinology review is booked in two weeks; colonoscopy requires a documented diabetes medication plan before rescheduling.
 
 Yours sincerely,
 
@@ -4338,6 +4429,60 @@ export const speakingTasks: SessionTask[] = [
           'Your normal heart tests are reassuring for today, but your family history still supports planned clinical follow-up; neither fact gives us absolute certainty.',
           'A defibrillator can prevent some dangerous rhythms but also carries procedural and device harms, so this uncertain variant alone is not enough reason to implant one or predictively test your children.',
           'We can review the family history with genetics, arrange appropriate heart checks and contact you if the classification changes. Could you explain how you now understand the result and when you would seek urgent help?',
+        ],
+      },
+    ),
+    difficulty: 'advanced',
+  },
+  {
+    ...speaking(
+      'speak-49',
+      'Early opioid replacement — safety boundary without stigma',
+      'You are a GP speaking with a 58-year-old patient taking long-term oxycodone for post-laminectomy pain. They request a replacement prescription ten days early, saying their bag was stolen but declining to report it. Their spouse recently found them unusually drowsy after diazepam, which was prescribed elsewhere. The patient feels accused of addiction, threatens to buy tablets online and fears uncontrolled pain or withdrawal. Clinic policy does not allow automatic early replacement, but the immediate risks require assessment and a safe plan.',
+      [
+        'Acknowledge pain, fear and perceived stigma before exploring what happened and what the patient has taken',
+        'Assess withdrawal, sedation, overdose, other medicines, alcohol, illicit supply and immediate mental-health risk',
+        'Explain the prescribing boundary and combined sedative risk without accusation, punishment or abrupt dismissal',
+        'Negotiate a proportionate supervised plan with the regular prescriber, dispensing service, non-opioid support, naloxone and close review',
+      ],
+      {
+        expectedKeywords: [
+          'pain',
+          'believe',
+          'stigma',
+          'oxycodone',
+          'diazepam',
+          'drowsy',
+          'breathing',
+          'overdose',
+          'withdrawal',
+          'alcohol',
+          'online tablets',
+          'unsafe',
+          'policy',
+          'not punishment',
+          'regular prescriber',
+          'dispensing record',
+          'supervised',
+          'naloxone',
+          'support',
+          'review',
+          'urgent help',
+          'understand',
+        ],
+        checklist: [
+          'Validate the pain and fear of being labelled before asking neutral, specific questions about the missing supply',
+          'Check last doses, withdrawal symptoms, sedation, breathing, diazepam, alcohol or other substances, illicit access and self-harm risk',
+          'Explain that combining opioids with sedatives and buying unknown tablets can suppress breathing, without implying guilt or using the policy as punishment',
+          'State that an automatic full replacement is unsafe while offering immediate symptom assessment and contact with the usual prescriber and dispensing service',
+          'Agree a documented short-interval or supervised plan if clinically authorised, provide overdose prevention and non-opioid support, arrange close review and use teach-back',
+        ],
+        samplePhrases: [
+          'I can hear that your pain and the feeling of not being believed are both distressing; I would like to understand exactly what happened without making assumptions.',
+          'Before we decide about medication, when was your last oxycodone dose, are you feeling withdrawal, and have you had unusual sleepiness, slow breathing, alcohol or any other tablets?',
+          'Oxycodone with diazepam can slow breathing, and tablets bought online may contain an unknown dose; my concern is safety, not punishment or a label.',
+          'I cannot safely issue an automatic full replacement today, but I will not leave you without a plan: we can contact your regular prescriber and dispensing service now and assess what supervised option is clinically appropriate.',
+          'We should also discuss naloxone, non-opioid pain support and an early review. Could you tell me what you will avoid tonight and when you would seek urgent help?',
         ],
       },
     ),

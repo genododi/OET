@@ -713,6 +713,17 @@ Better analysis begins by stating the question. A common assessment window—for
 
 The service may improve safety through earlier review and more reliable follow-up. The defensible claim is that it documented recovery earlier within a monitoring-and-response pathway. Claiming that kidneys recovered six days faster requires evidence that aligns observation opportunities, accounts for informative testing and distinguishes the effect of clinical actions from the timing of measurement itself.`,
   },
+  'passage-critical-result-identifier-mismatch': {
+    id: 'passage-critical-result-identifier-mismatch',
+    title: 'SOP extract — Critical result with an identifier mismatch',
+    text: `Before accepting a critical laboratory result, the recipient must read back the patient’s full name, date of birth, hospital identifier, specimen time and result. If any identifier conflicts with the clinical record, do not enter the value into the most likely record or start non-emergency treatment solely from that value.
+
+Keep the caller connected while the laboratory stops electronic release and alerts the senior biomedical scientist. Inform the responsible clinician immediately, record the mismatch in the incident log and arrange urgent recollection using two identifiers. State who will collect the replacement and how rapidly it will reach the laboratory.
+
+If the patient has signs of an immediately life-threatening disorder, assess and treat the clinical condition while verification continues. This exception does not make the disputed result attributable to that patient.
+
+After identity and analysis are confirmed, the laboratory must telephone the result again. The clinician should repeat the read-back and document the verified value, notification time, actions taken and follow-up plan in the correct record.`,
+  },
   'passage-delirium-part-a-set': {
     id: 'passage-delirium-part-a-set',
     title: 'Part A texts — Delirium recognition, causes, management and follow-up',

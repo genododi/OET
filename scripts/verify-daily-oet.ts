@@ -1,7 +1,8 @@
 import { dailyOetProgression } from '../src/data/dailyOetProgression';
-import { bankBySubtest } from '../src/data/sessionTaskBank';
+import { bankBySubtest, oetTaskPart } from '../src/data/sessionTaskBank';
 import type { OetSubtest } from '../src/types';
 import type { SessionTask } from '../src/types/session';
+import { OET_PARTS } from '../src/lib/oetExamTiming';
 
 const SUBTESTS: readonly OetSubtest[] = ['listening', 'reading', 'writing', 'speaking'];
 const seenTaskIds = new Set<string>();
@@ -90,6 +91,7 @@ for (const [index, entry] of dailyOetProgression.entries()) {
 
     if (subtest === 'listening') {
       requireSingleCorrectOption(task);
+      if (!oetTaskPart(task)) fail(`${taskId} is missing its Listening part label`);
       if (!task.audioSrc || !task.audioTranscript || !task.audioRevision) {
         fail(`${taskId} is missing question-matched audio metadata`);
       }
@@ -101,8 +103,11 @@ for (const [index, entry] of dailyOetProgression.entries()) {
 
     if (subtest === 'reading') {
       requireSingleCorrectOption(task);
-      if (!task.readingPassage || wordCount(task.readingPassage) < 180) {
-        fail(`${taskId} needs a substantial Part C passage`);
+      const part = oetTaskPart(task);
+      if (!part) fail(`${taskId} is missing its Reading part label`);
+      const minimumWords = part === 'B' ? 80 : 180;
+      if (!task.readingPassage || wordCount(task.readingPassage) < minimumWords) {
+        fail(`${taskId} needs at least ${minimumWords} words for Reading Part ${part}`);
       }
     }
 
@@ -148,6 +153,23 @@ for (const [index, entry] of dailyOetProgression.entries()) {
       if (!weights) fail(`${taskId} needs dimension weights`);
       const total = weights.communication + weights.clinicalCommunication + weights.language;
       if (Math.abs(total - 1) > Number.EPSILON) fail(`${taskId} weights must total 1`);
+    }
+  }
+}
+
+const recentFormatWindow = dailyOetProgression.slice(-12);
+for (const subtest of ['listening', 'reading'] as const) {
+  const recentParts = new Set(
+    recentFormatWindow.map((entry) => {
+      const task = bankBySubtest[subtest].find(
+        (candidate) => candidate.id === entry.taskIds[subtest],
+      );
+      return task ? oetTaskPart(task) : null;
+    }),
+  );
+  for (const part of OET_PARTS) {
+    if (!recentParts.has(part)) {
+      fail(`the last ${recentFormatWindow.length} stages omit ${subtest} Part ${part}`);
     }
   }
 }

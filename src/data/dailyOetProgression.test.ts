@@ -3,8 +3,9 @@ import type { OetSubtest } from '../types';
 import { evaluateWritingDraft } from '../lib/oetScoring';
 import { GRADE_A_TRAINING_TARGETS } from '../lib/oetThresholds';
 import { buildLatestDailyChallengeSession, countContentTasks } from '../lib/sessionBuilder';
+import { oetResponseMode } from '../lib/oetResponseMode';
 import { dailyOetProgression } from './dailyOetProgression';
-import { bankBySubtest } from './sessionTaskBank';
+import { bankBySubtest, oetTaskPart } from './sessionTaskBank';
 
 const subtests: readonly OetSubtest[] = ['listening', 'reading', 'writing', 'speaking'];
 const latestStage = dailyOetProgression.at(-1)!;
@@ -23,8 +24,8 @@ describe('latest daily OET progression stage', () => {
   it('adds one distinct advanced physician task for every sub-test', () => {
     expect(latestStage).toMatchObject({
       date: '2026-08-30',
-      stage: 16,
-      complexityIndex: 16,
+      stage: 17,
+      complexityIndex: 17,
       level: 'advanced',
     });
     expect(new Set(Object.values(latestStage.taskIds)).size).toBe(4);
@@ -40,15 +41,15 @@ describe('latest daily OET progression stage', () => {
     const session = buildLatestDailyChallengeSession();
 
     expect(session).toMatchObject({
-      id: 'daily-stage-16',
-      title: 'Daily Grade A Challenge · Stage 16',
+      id: 'daily-stage-17',
+      title: 'Daily Grade A Challenge · Stage 17',
       durationMinutes: 60,
       subtests,
       enforceSinglePlayListening: true,
     });
     expect(countContentTasks(session.tasks)).toBe(4);
     expect(session.tasks.slice(1).map((task) => task.id)).toEqual(
-      subtests.map((subtest) => `daily-stage-16-${latestStage.taskIds[subtest]}`),
+      subtests.map((subtest) => `daily-stage-17-${latestStage.taskIds[subtest]}`),
     );
     expect(session.tasks[0]?.checklist).toContain(
       'This compact challenge is a drill; use qualifying sets for Grade A readiness evidence',
@@ -65,12 +66,31 @@ describe('latest daily OET progression stage', () => {
     });
     expect(listening.options?.filter((option) => option.correct)).toHaveLength(1);
     const correctListeningAnswer = listening.options?.find((option) => option.correct)?.label ?? '';
-    expect(transcript).not.toContain(normalized(correctListeningAnswer));
+    expect(oetResponseMode(listening)).toBe('short-text');
+    expect(transcript).toContain(normalized(correctListeningAnswer));
 
     const reading = latestTasks.reading;
-    expect(reading.readingPassage?.trim().split(/\s+/).length).toBeGreaterThanOrEqual(400);
+    const readingWords = reading.readingPassage?.trim().split(/\s+/).length ?? 0;
+    expect(oetTaskPart(reading)).toBe('B');
+    expect(readingWords).toBeGreaterThanOrEqual(100);
+    expect(readingWords).toBeLessThanOrEqual(200);
     expect(reading.options?.filter((option) => option.correct)).toHaveLength(1);
     expect(reading.options?.every((option) => Boolean(option.explanation?.trim()))).toBe(true);
+  });
+
+  it('keeps all receptive response parts active across the recent progression window', () => {
+    const recent = dailyOetProgression.slice(-12);
+    (['listening', 'reading'] as const).forEach((subtest) => {
+      const parts = new Set(
+        recent.map((entry) => {
+          const task = bankBySubtest[subtest].find(
+            (candidate) => candidate.id === entry.taskIds[subtest],
+          )!;
+          return oetTaskPart(task);
+        }),
+      );
+      expect(parts).toEqual(new Set(['A', 'B', 'C']));
+    });
   });
 
   it('provides a complete clinically selective Writing model above the internal target', () => {
