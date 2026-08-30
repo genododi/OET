@@ -21,6 +21,7 @@ import { LabValuesPanel } from './LabValuesPanel';
 import { CalculatorPanel } from './CalculatorPanel';
 import { QuestionFlagButton } from './QuestionFlagButton';
 import { isTaskAnswerCorrect, oetResponseMode } from '../lib/oetResponseMode';
+import { GRADE_A_EVIDENCE_REQUIREMENTS } from '../lib/oetThresholds';
 
 interface Props {
   config: SessionConfig;
@@ -69,11 +70,20 @@ export function SessionRunner({ config, onExit }: Props) {
   const [writingSubmitted, setWritingSubmitted] = useState<Record<string, boolean>>({});
   const [speakingResults, setSpeakingResults] = useState<Record<string, SpeakingEvaluationResult>>({});
   const [flaggedTasks, setFlaggedTasks] = useState<Record<string, boolean>>({});
+  const [consumedListeningPlayback, setConsumedListeningPlayback] = useState<Record<string, boolean>>({});
   const completionStarted = useRef(false);
 
   const task = config.tasks[taskIndex];
   const listeningGroup = useMemo(() => getListeningGroup(config.tasks, taskIndex), [config.tasks, taskIndex]);
   const groupSize = listeningGroup?.length ?? 1;
+  const listeningTaskCount = useMemo(
+    () => config.tasks.filter((candidate) => candidate.subtest === 'listening').length,
+    [config.tasks],
+  );
+  const enforceSinglePlayListening =
+    config.kind === 'mock' ||
+    Boolean(config.enforceSinglePlayListening) ||
+    listeningTaskCount >= GRADE_A_EVIDENCE_REQUIREMENTS.minimumReceptiveItems;
 
   const sessionReview = useMemo(
     () => computeSessionReview(config, answers, notes, speakingResults),
@@ -176,11 +186,12 @@ export function SessionRunner({ config, onExit }: Props) {
     if (taskIndex <= 1) return;
     const prev = taskIndex - 1;
     if (prev >= 1 && config.tasks[prev]?.subtest === 'listening') {
-      const group = getListeningGroup(config.tasks, prev);
-      if (group) {
-        setTaskIndex(prev);
-        return;
+      let groupStart = prev;
+      while (groupStart > 1 && config.tasks[groupStart - 1]?.subtest === 'listening') {
+        groupStart -= 1;
       }
+      setTaskIndex(groupStart);
+      return;
     }
     setTaskIndex(Math.max(1, prev));
   };
@@ -245,7 +256,7 @@ export function SessionRunner({ config, onExit }: Props) {
           <p className="meta session-threshold-note">
             {config.kind === 'usmle-block' || config.kind === 'usmle-custom'
               ? 'Answers are hidden until you submit. A three-digit estimated score and pass/fail assessment are shown at the end of each block.'
-              : 'Exam-like mode: answers are hidden until you submit. Practice signals are coaching indicators, not official OET score predictions; use the Grade A command center for stricter internal targets.'}
+              : `Exam-like mode: answers are hidden until you submit.${enforceSinglePlayListening ? ' Listening audio is one-use in this session.' : ''} Practice signals are coaching indicators, not official OET score predictions; use the Grade A command center for stricter internal targets.`}
           </p>
           <div className="badge-row">
             {config.subtests.map((s) => (
@@ -320,6 +331,7 @@ export function SessionRunner({ config, onExit }: Props) {
                 setRevealed({});
                 setWritingSubmitted({});
                 setSpeakingResults({});
+                setConsumedListeningPlayback({});
                 setSecondsLeft(config.durationMinutes * 60);
               }}
             >
@@ -365,6 +377,14 @@ export function SessionRunner({ config, onExit }: Props) {
           onAnswer={(taskId, optionId) => setAnswers((a) => ({ ...a, [taskId]: optionId }))}
           revealed={revealed}
           onReveal={(taskId) => setRevealed((r) => ({ ...r, [taskId]: true }))}
+          examMode={enforceSinglePlayListening}
+          playbackConsumed={Boolean(consumedListeningPlayback[listeningGroup[0]!.id])}
+          onPlaybackStart={() =>
+            setConsumedListeningPlayback((current) => ({
+              ...current,
+              [listeningGroup[0]!.id]: true,
+            }))
+          }
         />
       ) : (
         <article className="card session-task-card">
@@ -409,7 +429,11 @@ export function SessionRunner({ config, onExit }: Props) {
               externalUrl={task.audioExternalUrl}
               label={task.audioLabel ?? task.title}
               note={task.audioNote}
-              examMode={task.subtest === 'listening' && config.kind === 'mock'}
+              examMode={task.subtest === 'listening' && enforceSinglePlayListening}
+              examPlayed={Boolean(consumedListeningPlayback[task.id])}
+              onExamPlay={() =>
+                setConsumedListeningPlayback((current) => ({ ...current, [task.id]: true }))
+              }
               scenarioId={task.id}
               revision={task.audioRevision}
             />

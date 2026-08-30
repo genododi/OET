@@ -14,6 +14,18 @@ test('command center launches a qualifying four-skill baseline', async ({ page }
   await expect(page.getByRole('heading', { name: 'Grade A Baseline' })).toBeVisible();
   await expect(page.getByText('10 Listening + 10 Reading + one letter + two recorded role-plays')).toBeVisible();
   await expect(page.getByRole('button', { name: 'Start 115-minute session' })).toBeVisible();
+  await expect(page.getByText('Listening audio is one-use in this session.')).toBeVisible();
+  await page.getByRole('button', { name: 'Start 115-minute session' }).click();
+  const playback = page.locator('.listening-player button');
+  await expect(playback).toHaveText('▶ Play all audio once');
+  await playback.click();
+  await expect(playback).toBeDisabled();
+  await expect(playback).toHaveText('Audio sequence playing…');
+  await page.getByRole('button', { name: 'Next task' }).click();
+  await expect(page.getByRole('heading', { name: 'Short break' })).toBeVisible();
+  await page.getByRole('button', { name: 'Previous' }).click();
+  await expect(page.locator('.listening-player button')).toBeDisabled();
+  await expect(page.locator('.listening-player button')).toHaveText('Playback used');
 });
 
 test('command center launches the latest balanced daily challenge', async ({ page }) => {
@@ -23,6 +35,13 @@ test('command center launches the latest balanced daily challenge', async ({ pag
   await expect(page.getByRole('heading', { name: 'Daily Grade A Challenge · Stage 15' })).toBeVisible();
   await expect(page.getByText('One new advanced Medicine task in every OET sub-test')).toBeVisible();
   await expect(page.getByRole('button', { name: 'Start 60-minute session' })).toBeVisible();
+  await page.getByRole('button', { name: 'Start 60-minute session' }).click();
+  const playback = page.getByRole('button', {
+    name: 'Play Question-matched listening clip once',
+  });
+  await playback.click();
+  await expect(playback).toBeDisabled();
+  await expect(playback).toHaveText('Audio playing…');
 });
 
 test('resource search preserves link-only governance', async ({ page }) => {

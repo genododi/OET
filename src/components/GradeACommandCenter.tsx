@@ -20,7 +20,7 @@ const SUBTESTS: OetSubtest[] = ['listening', 'reading', 'writing', 'speaking'];
 const PRESCRIPTIONS: Record<OetSubtest, { focus: string; gate: string }> = {
   listening: {
     focus: 'Train evidence capture: numbers, names, negation, and speaker purpose.',
-    gate: 'Four timed 10+ item sets covering Parts A–C, with the latest three at 90%+ and every error explained from the audio.',
+    gate: 'Four timed, single-play 10+ item sets covering Parts A–C, with the latest three at 90%+ and every error explained from the audio.',
   },
   reading: {
     focus: 'Practise fast gist, synonym matching, and rejecting partial-match distractors.',
@@ -236,7 +236,7 @@ export function GradeACommandCenter({
         </button>
       </div>
       <p className="grade-a-disclaimer">
-        Internal readiness targets require at least four recent attempts and three consecutive target-level results. Listening and Reading attempts need at least 10 scored items across Parts A–C; Writing needs a complete 180–200-word letter; Speaking needs two sufficient recordings. These are not an official OET score conversion—use timed full mocks and qualified feedback to validate exam readiness.
+        Internal readiness targets require at least four recent attempts and three consecutive target-level results. Listening attempts use single-play audio; Listening and Reading each need at least 10 scored items across Parts A–C. Writing needs a complete 180–200-word letter; Speaking needs two sufficient recordings. These are not an official OET score conversion—use timed full mocks and qualified feedback to validate exam readiness.
       </p>
     </section>
   );

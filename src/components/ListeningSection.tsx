@@ -12,6 +12,9 @@ interface Props {
   onAnswer: (taskId: string, text: string) => void;
   revealed: Record<string, boolean>;
   onReveal: (taskId: string) => void;
+  examMode?: boolean;
+  playbackConsumed?: boolean;
+  onPlaybackStart?: () => void;
 }
 
 function isCorrectAnswer(task: SessionTask, userText: string | undefined): boolean | null {
@@ -19,8 +22,18 @@ function isCorrectAnswer(task: SessionTask, userText: string | undefined): boole
   return isTaskAnswerCorrect(task, userText);
 }
 
-export default function ListeningSection({ tasks, answers, onAnswer, revealed, onReveal }: Props) {
+export default function ListeningSection({
+  tasks,
+  answers,
+  onAnswer,
+  revealed,
+  onReveal,
+  examMode = false,
+  playbackConsumed = false,
+  onPlaybackStart,
+}: Props) {
   const [playing, setPlaying] = useState(false);
+  const [playbackFinished, setPlaybackFinished] = useState(false);
   const [currentIdx, setCurrentIdx] = useState<number | null>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
@@ -33,7 +46,10 @@ export default function ListeningSection({ tasks, answers, onAnswer, revealed, o
 
   function playTask(index: number) {
     if (index >= tasks.length) {
-      stopPlayback();
+      audioRef.current = null;
+      setPlaying(false);
+      setCurrentIdx(null);
+      setPlaybackFinished(true);
       return;
     }
 
@@ -51,10 +67,12 @@ export default function ListeningSection({ tasks, answers, onAnswer, revealed, o
   }
 
   const togglePlay = () => {
+    if (examMode && (playing || playbackConsumed || playbackFinished)) return;
     if (playing) {
       stopPlayback();
       return;
     }
+    if (examMode) onPlaybackStart?.();
     setPlaying(true);
     playTask(0);
   };
@@ -66,14 +84,28 @@ export default function ListeningSection({ tasks, answers, onAnswer, revealed, o
       <div className="listening-section-header">
         <h3>Listening — continuous playback</h3>
         <p className="session-instructions">
-          The original question-matched clips play once in sequence, like a complete listening
-          section. Do not pause or replay in exam practice mode.
+          {examMode
+            ? 'The original question-matched clips play once in sequence. Once started, the set cannot be stopped, restarted or replayed in this session.'
+            : 'The original question-matched clips play in sequence. Use replay for coached practice, then use a qualifying set for strict one-use playback.'}
         </p>
       </div>
 
       <div className="listening-player">
-        <button type="button" className="btn btn-primary" onClick={togglePlay}>
-          {playing ? '⏹ Stop' : '▶ Play all audio once'}
+        <button
+          type="button"
+          className="btn btn-primary"
+          disabled={examMode && (playing || playbackConsumed || playbackFinished)}
+          onClick={togglePlay}
+        >
+          {examMode
+            ? playing
+              ? 'Audio sequence playing…'
+              : playbackConsumed || playbackFinished
+                ? 'Playback used'
+                : '▶ Play all audio once'
+            : playing
+              ? '⏹ Stop'
+              : '▶ Play audio'}
         </button>
         {currentIdx !== null && (
           <span className="listening-time">

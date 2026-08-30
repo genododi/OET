@@ -102,6 +102,8 @@ export interface SessionConfig {
   durationMinutes: number;
   subtests: SubtestType[];
   tasks: SessionTask[];
+  /** Enforce one-use Listening audio even when this compact practice set is below readiness size. */
+  enforceSinglePlayListening?: boolean;
   /** Full-length official audio for listening mocks/practice (shown on intro + listening steps) */
   listeningAudio?: SessionListeningAudio;
 }

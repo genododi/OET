@@ -569,6 +569,8 @@ function buildAdaptiveSession(
       : 'Adaptive — built from your progress',
     durationMinutes: Math.max(20, plannedMinutes),
     subtests: activeSubtests,
+    enforceSinglePlayListening:
+      gradeABaseline && activeSubtests.includes('listening') ? true : undefined,
     tasks,
   };
 }
@@ -615,6 +617,7 @@ export function buildLatestDailyChallengeSession(): SessionConfig {
     subtitle: stage.focus,
     durationMinutes,
     subtests,
+    enforceSinglePlayListening: true,
     tasks: [
       {
         id: `${runId}-intro`,

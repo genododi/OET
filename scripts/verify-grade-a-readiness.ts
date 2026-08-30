@@ -6,6 +6,10 @@ import {
   OET_THRESHOLDS,
 } from '../src/lib/oetThresholds';
 import type { OetSubtest } from '../src/types';
+import {
+  buildGradeABaselineSession,
+  buildLatestDailyChallengeSession,
+} from '../src/lib/sessionBuilder';
 
 const subtests: readonly OetSubtest[] = ['listening', 'reading', 'writing', 'speaking'];
 
@@ -62,6 +66,18 @@ assert.equal(GRADE_A_EVIDENCE_REQUIREMENTS.minimumWritingWords, 180);
 assert.equal(GRADE_A_EVIDENCE_REQUIREMENTS.maximumWritingWords, 200);
 assert.equal(GRADE_A_EVIDENCE_REQUIREMENTS.minimumSpeakingRolePlays, 2);
 
+const gradeABaseline = buildGradeABaselineSession([]);
+assert.equal(
+  gradeABaseline.enforceSinglePlayListening,
+  true,
+  'The qualified four-skill baseline must enforce one-use Listening audio',
+);
+assert.equal(
+  buildLatestDailyChallengeSession().enforceSinglePlayListening,
+  true,
+  'The daily advanced challenge must enforce one-use Listening audio',
+);
+
 console.log(
-  'Verified conservative Grade A training gates for all four OET sub-tests: four-attempt minimum, eight-result rolling target, three-result streak, 10-item/three-part receptive evidence, 180–200-word Writing evidence, and two-role-play Speaking evidence.',
+  'Verified conservative Grade A training gates for all four OET sub-tests: four-attempt minimum, eight-result rolling target, three-result streak, single-play 10-item/three-part Listening evidence, 10-item/three-part Reading evidence, 180–200-word Writing evidence, and two-role-play Speaking evidence.',
 );

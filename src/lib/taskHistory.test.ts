@@ -250,6 +250,7 @@ describe('time-calibrated Smart Sessions', () => {
       content.filter((task) => task.subtest === subtest).length;
 
     expect(session.title).toBe('Grade A Baseline');
+    expect(session.enforceSinglePlayListening).toBe(true);
     expect(count('listening')).toBe(10);
     expect(count('reading')).toBe(10);
     expect(count('writing')).toBe(1);

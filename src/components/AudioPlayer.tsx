@@ -5,8 +5,11 @@ interface Props {
   externalUrl?: string;
   label: string;
   note?: string;
-  /** Exam-style: discourage seeking (honour system — HTML5 cannot fully lock) */
+  /** Exam-style: replace native controls with a one-use play action. */
   examMode?: boolean;
+  /** Controlled session-level guard so navigating away cannot reset a consumed play. */
+  examPlayed?: boolean;
+  onExamPlay?: () => void;
   scenarioId?: string;
   revision?: string;
 }
@@ -17,6 +20,8 @@ export function AudioPlayer({
   label,
   note,
   examMode = false,
+  examPlayed = false,
+  onExamPlay,
   scenarioId,
   revision,
 }: Props) {
@@ -29,6 +34,7 @@ export function AudioPlayer({
     src: string | undefined;
     message: string | null;
   }>({ src, message: null });
+  const [examPlayback, setExamPlayback] = useState<'ready' | 'playing' | 'finished'>('ready');
   const available = availability.src === src ? availability.value : src ? null : false;
   const error = errorState.src === src ? errorState.message : null;
 
@@ -82,6 +88,18 @@ export function AudioPlayer({
   }
 
   const playSrc = available ? src : undefined;
+
+  const startExamPlayback = async () => {
+    if (examPlayed || examPlayback !== 'ready' || !audioRef.current) return;
+    try {
+      await audioRef.current.play();
+      setExamPlayback('playing');
+      onExamPlay?.();
+    } catch {
+      setErrorState({ src, message: 'Could not start this question-matched audio clip.' });
+      setExamPlayback('ready');
+    }
+  };
 
   if (!playSrc && externalUrl) {
     return (
@@ -144,7 +162,7 @@ export function AudioPlayer({
           <strong>{label}</strong>
           {examMode && (
             <p className="meta audio-player-note">
-              Play once only — same as exam conditions. Do not pause or rewind during the test.
+              One-use playback — once started, this clip cannot be paused, restarted or replayed in this session.
             </p>
           )}
           {note && !examMode && <p className="meta audio-player-note">{note}</p>}
@@ -154,16 +172,34 @@ export function AudioPlayer({
       <audio
         key={src}
         ref={audioRef}
-        controls
+        controls={!examMode}
         preload="metadata"
         src={playSrc}
         className="audio-player-element"
         onError={() =>
           setErrorState({ src, message: 'Could not load this question-matched audio clip.' })
         }
+        onEnded={() => {
+          if (examMode) setExamPlayback('finished');
+        }}
       >
         <track kind="captions" />
       </audio>
+      {examMode && (
+        <button
+          type="button"
+          className="btn btn-primary btn-sm"
+          aria-label={`Play ${label} once`}
+          disabled={examPlayed || examPlayback !== 'ready'}
+          onClick={() => void startExamPlayback()}
+        >
+          {examPlayback === 'playing'
+            ? 'Audio playing…'
+            : examPlayed || examPlayback === 'finished'
+              ? 'Playback used'
+              : '▶ Play once'}
+        </button>
+      )}
       {error && <p className="meta audio-player-error">{error}</p>}
       {externalUrl && (
         <a href={externalUrl} target="_blank" rel="noopener noreferrer" className="link-btn audio-fallback-link">

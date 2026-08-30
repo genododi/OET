@@ -44,6 +44,7 @@ describe('latest daily OET progression stage', () => {
       title: 'Daily Grade A Challenge · Stage 15',
       durationMinutes: 60,
       subtests,
+      enforceSinglePlayListening: true,
     });
     expect(countContentTasks(session.tasks)).toBe(4);
     expect(session.tasks.slice(1).map((task) => task.id)).toEqual(
