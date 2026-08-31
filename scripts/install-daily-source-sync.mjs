@@ -18,7 +18,6 @@ const plist = `<?xml version="1.0" encoding="UTF-8"?>
   <key>Label</key><string>com.oet-workstation.daily-source-sync</string>
   <key>ProgramArguments</key>
   <array><string>/bin/zsh</string><string>-lc</string><string>${escapeXml(shellCommand)}</string></array>
-  <key>StartCalendarInterval</key><dict><key>Hour</key><integer>6</integer><key>Minute</key><integer>30</integer></dict>
   <key>WatchPaths</key><array><string>/Volumes/GENODODI/oet-study-sources/raw</string></array>
 </dict>
 </plist>

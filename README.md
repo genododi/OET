@@ -83,11 +83,15 @@ npm run sources:inventory
 npm run sources:sync-local
 ```
 
-Install the macOS daily refresh (06:30, plus an immediate refresh when the raw source folder changes):
+Install the macOS source watcher for an immediate local refresh when the raw source folder changes:
 
 ```bash
 npm run sources:install-daily
 ```
+
+The Codex automation **OET daily source deploy** owns the 06:30 daily run. It inventories and
+verifies generated source changes in isolation, commits only the two generated catalog files,
+pushes to `main`, waits for GitHub Pages, and reports failures without force-pushing.
 
 The reconciled delivery checklist and remaining external-access exceptions are maintained in [the source-driven upgrade status](docs/source-driven-upgrade-status.md).
 
