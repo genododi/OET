@@ -3,6 +3,7 @@ import type { NavSection } from '../types';
 import { Sidebar } from './Sidebar';
 import { SettingsModal } from './SettingsModal';
 import { SettingsContext } from '../lib/settingsContext';
+import { AppIcon } from './AppIcon';
 
 interface Props {
   active: NavSection;
@@ -33,21 +34,28 @@ export function Layout({ active, onNavigate, title, subtitle, children }: Props)
               aria-label="Open menu"
               onClick={() => setMobileOpen(true)}
             >
-              ☰
+              <span aria-hidden="true">☰</span>
             </button>
             <div className="topbar-titles">
+              <span className="topbar-kicker">OET medicine workspace</span>
               <h1>{title}</h1>
               {subtitle && <p>{subtitle}</p>}
             </div>
-            <button
-              type="button"
-              className="settings-toggle"
-              aria-label="Open settings"
-              title="Settings — AI feedback API key"
-              onClick={() => setSettingsOpen(true)}
-            >
-              ⚙️
-            </button>
+            <div className="topbar-actions">
+              <button type="button" className="topbar-practice" onClick={() => onNavigate('practice')}>
+                <AppIcon name="sparkles" />
+                <span>Practice now</span>
+              </button>
+              <button
+                type="button"
+                className="settings-toggle"
+                aria-label="Open settings"
+                title="Settings — AI feedback API key"
+                onClick={() => setSettingsOpen(true)}
+              >
+                <AppIcon name="settings" />
+              </button>
+            </div>
           </header>
           <main className="page-content">{children}</main>
         </div>

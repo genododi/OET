@@ -156,7 +156,7 @@ export function PracticePage({
             {total.toLocaleString()} of {medicineCatalogCount.toLocaleString()} medicine practice
             modules shown
             {medicineCatalogCount >= TARGET_MEDICINE_PRACTICE_COUNT
-              ? ` (${TARGET_MEDICINE_PRACTICE_COUNT.toLocaleString()}+ physician-focused)`
+              ? ` (${TARGET_ADVANCED_PRACTICE_COUNT.toLocaleString()}+ physician-focused across all four fields)`
               : ''}
             . Build referral writing and patient/colleague speaking before full mocks.
           </>

@@ -22,6 +22,8 @@ import { ReadinessDashboard } from '../components/ReadinessDashboard';
 import { GradeACommandCenter } from '../components/GradeACommandCenter';
 import type { SessionConfig } from '../types/session';
 import type { NavSection, OetSubtest } from '../types';
+import { AppIcon, type AppIconName } from '../components/AppIcon';
+import sourceCatalog from '../data/sourceCatalog.generated.json';
 
 interface Props {
   onNavigate: (section: NavSection, itemId?: string) => void;
@@ -34,6 +36,13 @@ const subtestNav: { name: string; subtest: OetSubtest; time: string; icon: strin
   { name: 'Writing', subtest: 'writing', time: '45 min', icon: '✍️' },
   { name: 'Speaking', subtest: 'speaking', time: '~20 min', icon: '🗣️' },
 ];
+
+const skillVisuals: Record<OetSubtest, { icon: AppIconName; accent: string; description: string }> = {
+  listening: { icon: 'headphones', accent: 'blue', description: 'Consultations, handovers & talks' },
+  reading: { icon: 'book', accent: 'violet', description: 'Parts A, B & C clinical texts' },
+  writing: { icon: 'pen', accent: 'orange', description: 'Referral, transfer & discharge' },
+  speaking: { icon: 'message', accent: 'pink', description: 'Patient-centred role-plays' },
+};
 
 export function HomePage({ onNavigate, preferredProfession = 'Medicine' }: Props) {
   const { completed, completedCount } = useProgress();
@@ -89,9 +98,79 @@ export function HomePage({ onNavigate, preferredProfession = 'Medicine' }: Props
     { label: 'Curated resources', value: studyResources.length, section: 'resources' as NavSection },
     { label: 'Official PDFs', value: bookPdfs.length, section: 'books' as NavSection },
   ];
+  const testsBySkill = subtestNav.map((skill) => ({
+    ...skill,
+    count: practiceModules.filter((module) => module.subtest === skill.subtest).length,
+    ...skillVisuals[skill.subtest],
+  }));
 
   return (
     <div className="home">
+      <section className="workspace-hero">
+        <div className="workspace-hero-copy">
+          <div className="workspace-eyebrow"><AppIcon name="sparkles" /> Your personalised OET command desk</div>
+          <h2>Build Grade A confidence,<br /><span>one clinical skill at a time.</span></h2>
+          <p>
+            A focused medicine workspace with adaptive practice, realistic timing, and a test
+            library refreshed from your private source archive.
+          </p>
+          <div className="workspace-actions">
+            <button type="button" className="btn btn-primary btn-workspace" onClick={() => startSmart()}>
+              <AppIcon name="target" /> Start smart practice
+            </button>
+            <button type="button" className="btn btn-glass btn-workspace" onClick={startDailyChallenge}>
+              <AppIcon name="sparkles" /> Today’s challenge
+            </button>
+          </div>
+          <div className="workspace-trust-row">
+            <span><i className="status-dot" /> Source archive synced</span>
+            <span>{sourceCatalog.totalSourceRecords.toLocaleString()} indexed records</span>
+            <span>Updated {new Date(sourceCatalog.generatedAt).toLocaleDateString()}</span>
+          </div>
+        </div>
+        <div className="workspace-focus-card" aria-label="Today's focus">
+          <div className="focus-card-head">
+            <span>Today’s focus</span>
+            <span className="focus-live">LIVE</span>
+          </div>
+          <div className="focus-score-ring"><span>450<small>goal</small></span></div>
+          <strong>Grade A momentum</strong>
+          <p>Complete one adaptive set to establish your next best move.</p>
+          <div className="focus-progress"><span /></div>
+          <div className="focus-meta"><span>Daily plan</span><b>0 / 1</b></div>
+        </div>
+      </section>
+
+      <section className="skill-library" aria-labelledby="skill-library-title">
+        <div className="section-heading-row">
+          <div>
+            <span className="section-kicker">Practice library</span>
+            <h2 id="skill-library-title">Choose your training lane</h2>
+          </div>
+          <button type="button" className="text-action" onClick={() => onNavigate('practice')}>
+            View all tests <span aria-hidden="true">→</span>
+          </button>
+        </div>
+        <div className="skill-card-grid">
+          {testsBySkill.map((skill) => (
+            <button
+              key={skill.subtest}
+              type="button"
+              className={`skill-card skill-${skill.accent}`}
+              onClick={() => onNavigate('practice', skill.subtest)}
+            >
+              <span className="skill-card-icon"><AppIcon name={skill.icon} /></span>
+              <span className="skill-card-copy">
+                <strong>{skill.name}</strong>
+                <small>{skill.description}</small>
+              </span>
+              <span className="skill-card-count"><b>{skill.count.toLocaleString()}+</b><small>tests</small></span>
+              <span className="skill-card-arrow">→</span>
+            </button>
+          ))}
+        </div>
+      </section>
+
       {completedCount > 0 && (
         <section className="card progress-banner">
           <div>
@@ -138,42 +217,12 @@ export function HomePage({ onNavigate, preferredProfession = 'Medicine' }: Props
         </section>
       )}
 
-      <section className="hero card">
-        <div className="hero-content">
-          <span className="hero-eyebrow">OET for Physicians · Medicine</span>
-          <h2>Your medicine-focused OET study partner</h2>
-          <p>
-            Full-length mocks, referral-letter writing drills, patient role-play practice, and
-            source-traceable guidance for doctors targeting Grade A performance.
-          </p>
-          <div className="hero-actions">
-            <button type="button" className="btn btn-primary" onClick={() => onNavigate('mock')}>
-              Start a medicine mock
-            </button>
-            <button type="button" className="btn btn-secondary" onClick={() => startSmart()}>
-              🎯 Smart Session (adaptive)
-            </button>
-            <button type="button" className="btn btn-secondary" onClick={() => onNavigate('planner')}>
-              Build my Grade A plan
-            </button>
-            <button type="button" className="btn btn-secondary" onClick={() => onNavigate('guide')}>
-              Medicine study guide
-            </button>
-          </div>
-        </div>
-        <div className="hero-stats hero-stats-6">
-          {stats.map((s) => (
-            <button
-              key={s.label}
-              type="button"
-              className="stat-card"
-              onClick={() => onNavigate(s.section)}
-            >
-              <span className="stat-value">{s.value}</span>
-              <span className="stat-label">{s.label}</span>
-            </button>
-          ))}
-        </div>
+      <section className="workspace-metrics" aria-label="Library overview">
+        {stats.map((stat) => (
+          <button key={stat.label} type="button" onClick={() => onNavigate(stat.section)}>
+            <span>{stat.value.toLocaleString()}</span>{stat.label}
+          </button>
+        ))}
       </section>
 
       <section className="card physician-quick-links">

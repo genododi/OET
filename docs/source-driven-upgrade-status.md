@@ -1,6 +1,6 @@
 # Source-driven OET upgrade: revised delivery plan
 
-Last reconciled: 2026-08-30
+Last reconciled: 2026-08-31
 
 ## Objective
 
@@ -111,5 +111,7 @@ isolated in quarantine; duplicate source-path records retain their provenance.
 - All four Medicine sub-tests and offline tutoring: complete.
 - Automated tests and Pages deployment: complete.
 - Accessible external archive: complete with checksums and source-path records.
+- The complete 4,737-record external ledger is mirrored into the project and refreshed daily; rights-unclear binaries remain private on GENODODI.
+- The workstation catalog provides more than 1,000 Medicine test sessions for each of Listening, Reading, Writing, and Speaking.
 - Owner-restricted, deleted, or otherwise inaccessible Drive items: documented
   exceptions until the owner changes access.

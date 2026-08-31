@@ -5,10 +5,8 @@ import {
   generateMedicinePracticeModules,
 } from './generators/practiceGenerator';
 
-// NOTE: see matching comment in mockExams.ts — reduced from 1000 each to avoid implying more
-// distinct question content than the underlying task bank actually contains.
 export const TARGET_MEDICINE_PRACTICE_COUNT = 30;
-export const TARGET_ADVANCED_PRACTICE_COUNT = 16;
+export const TARGET_ADVANCED_PRACTICE_COUNT = TARGET_MEDICINE_ADVANCED_PER_SUBTEST * 4;
 export { TARGET_MEDICINE_ADVANCED_PER_SUBTEST } from '../lib/preferredProfession';
 
 const curatedPracticeModules: PracticeModule[] = [

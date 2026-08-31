@@ -1,10 +1,11 @@
 import { coursologyPortalUrl } from '../data/usmleCourses';
 import type { NavSection } from '../types';
+import { AppIcon, type AppIconName } from './AppIcon';
 
 interface NavItem {
   id: NavSection;
   label: string;
-  icon: string;
+  icon: AppIconName;
   group?: string;
   description?: string;
 }
@@ -18,19 +19,19 @@ interface ExternalNavItem {
 }
 
 const navItems: NavItem[] = [
-  { id: 'home', label: 'Dashboard', icon: '🏠' },
-  { id: 'planner', label: 'Grade A Plan', icon: '🧭', group: 'Plan' },
-  { id: 'mock', label: 'Mock Exams', icon: '📝', group: 'Practice' },
-  { id: 'practice', label: 'Practice Modules', icon: '🎯', group: 'Practice' },
-  { id: 'guide', label: 'Study Guide', icon: '📖', group: 'Learn' },
-  { id: 'tips', label: 'Tips & Tricks', icon: '💡', group: 'Learn' },
-  { id: 'pearls', label: 'Pearls & Pitfalls', icon: '⚕️', group: 'Learn' },
-  { id: 'resources', label: 'Curated Resources', icon: '🗂️', group: 'Resources' },
-  { id: 'books', label: 'Book PDFs', icon: '📚', group: 'Resources' },
+  { id: 'home', label: 'Dashboard', icon: 'dashboard' },
+  { id: 'planner', label: 'Grade A Plan', icon: 'plan', group: 'Plan' },
+  { id: 'mock', label: 'Mock Exams', icon: 'exam', group: 'Practice' },
+  { id: 'practice', label: 'Practice Library', icon: 'target', group: 'Practice' },
+  { id: 'guide', label: 'Study Guide', icon: 'guide', group: 'Learn' },
+  { id: 'tips', label: 'Tips & Tricks', icon: 'lightbulb', group: 'Learn' },
+  { id: 'pearls', label: 'Pearls & Pitfalls', icon: 'pulse', group: 'Learn' },
+  { id: 'resources', label: 'Source Library', icon: 'folder', group: 'Resources' },
+  { id: 'books', label: 'Book PDFs', icon: 'book', group: 'Resources' },
   {
     id: 'usmle',
     label: 'USMLE Q-Banks',
-    icon: '🇺🇸',
+    icon: 'activity',
     group: 'Related exams',
     description: 'Catalog of Coursology Q-Banks for USMLE prep',
   },
@@ -71,12 +72,10 @@ export function Sidebar({ active, onNavigate, mobileOpen, onCloseMobile }: Props
       )}
       <aside className={`sidebar ${mobileOpen ? 'sidebar-open' : ''}`}>
         <div className="sidebar-brand">
-          <span className="brand-icon" aria-hidden="true">
-            🩺
-          </span>
+          <span className="brand-icon"><AppIcon name="stethoscope" /></span>
           <div>
-            <strong>OET Study Partner</strong>
-            <span className="brand-sub">Exam preparation hub</span>
+            <strong>OET Workstation</strong>
+            <span className="brand-sub">Medicine · Grade A</span>
           </div>
         </div>
 
@@ -94,7 +93,7 @@ export function Sidebar({ active, onNavigate, mobileOpen, onCloseMobile }: Props
                   title={item.description}
                 >
                   <span className="nav-icon" aria-hidden="true">
-                    {item.icon}
+                    <AppIcon name={item.icon} />
                   </span>
                   <span className="nav-label">{item.label}</span>
                 </button>
@@ -132,7 +131,8 @@ export function Sidebar({ active, onNavigate, mobileOpen, onCloseMobile }: Props
         </nav>
 
         <div className="sidebar-footer">
-          <p>Medicine-first preparation with source provenance and rights-aware curation.</p>
+          <div className="sidebar-status"><span /> Source sync active</div>
+          <p>Private archive indexed daily. Public study content stays rights-aware.</p>
         </div>
       </aside>
     </>

@@ -25,6 +25,7 @@ npm run preview
 - Grade A diagnostic and plan based on exam date, available days, daily time, and four baseline scaled scores.
 - Medicine resource library with sub-test, format, source, and text filters.
 - Timed Listening, Reading, Writing, and Speaking sessions with review evidence and provenance.
+- More than 1,000 browsable Medicine test sessions in each of Listening, Reading, Writing, and Speaking.
 - A single next-best-move prescription that samples unmeasured skills first, then routes the weakest sub-test to its lowest measured Part A/B/C or productive rubric score.
 - Time-calibrated adaptive workloads: at most one full Writing letter, one Speaking role-play in a mixed set, or the two-role-play workload when Speaking is trained alone.
 - Original referral, discharge, transfer, advice, and patient-role-play practice.
@@ -72,6 +73,21 @@ npm run sources:inventory
 Facebook files use the account owner's signed-in Safari session. Set Safari's download location to `raw/facebook`, download from the group's Files view, then run the inventory command. Credentials and signed download URLs must never be copied into the repository or manifest.
 
 Source import is resumable. Checksums drive duplicate relationships; every original source-path record is retained. Encrypted, executable, corrupt, path-traversing, unverifiable, or rights-unclear material is quarantined or marked private.
+
+The project mirrors every external source record into `sources/source-manifest.generated.json` and publishes only an aggregate dashboard summary. The source binaries remain on GENODODI because the archive is larger than a normal GitHub repository and its third-party files are not cleared for redistribution.
+
+Refresh the complete local ledger manually:
+
+```bash
+npm run sources:inventory
+npm run sources:sync-local
+```
+
+Install the macOS daily refresh (06:30, plus an immediate refresh when the raw source folder changes):
+
+```bash
+npm run sources:install-daily
+```
 
 The reconciled delivery checklist and remaining external-access exceptions are maintained in [the source-driven upgrade status](docs/source-driven-upgrade-status.md).
 
