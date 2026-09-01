@@ -112,6 +112,7 @@ isolated in quarantine; duplicate source-path records retain their provenance.
 - Automated tests and Pages deployment: complete.
 - Accessible external archive: complete with checksums and source-path records.
 - The complete 4,737-record external ledger is mirrored into the project and refreshed daily; rights-unclear binaries remain private on GENODODI.
+- The explicitly supplied `Google drive Folder` is covered entry-for-entry: 993 real study files plus 1,088 macOS metadata sidecars. The app provides a searchable, checksummed index of all 993 study files while keeping the 6.7 GB of rights-unclear binaries private.
 - The workstation catalog provides more than 1,000 Medicine test sessions for each of Listening, Reading, Writing, and Speaking.
 - Owner-restricted, deleted, or otherwise inaccessible Drive items: documented
   exceptions until the owner changes access.

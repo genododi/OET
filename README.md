@@ -76,6 +76,8 @@ Source import is resumable. Checksums drive duplicate relationships; every origi
 
 The project mirrors every external source record into `sources/source-manifest.generated.json` and publishes only an aggregate dashboard summary. The source binaries remain on GENODODI because the archive is larger than a normal GitHub repository and its third-party files are not cleared for redistribution.
 
+The explicitly supplied `/Volumes/GENODODI/oet-study-sources/Google drive Folder` is also covered entry-for-entry. Its generated manifest records every filesystem entry, while the app exposes a searchable private index of every real study file. macOS `._` sidecars are checksummed and accounted for but excluded from learner search results. Raw third-party bytes remain private because this folder is about 6.7 GB, contains files above GitHub's normal per-file limit, and has no blanket redistribution clearance.
+
 Refresh the complete local ledger manually:
 
 ```bash
@@ -90,7 +92,7 @@ npm run sources:install-daily
 ```
 
 The Codex automation **OET daily source deploy** owns the 06:30 daily run. It inventories and
-verifies generated source changes in isolation, commits only the two generated catalog files,
+verifies generated source changes in isolation, commits only the generated manifest and catalog files,
 pushes to `main`, waits for GitHub Pages, and reports failures without force-pushing.
 
 The reconciled delivery checklist and remaining external-access exceptions are maintained in [the source-driven upgrade status](docs/source-driven-upgrade-status.md).

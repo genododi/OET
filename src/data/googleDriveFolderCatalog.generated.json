@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "sourceFolder": "GENODODI/oet-study-sources/Google drive Folder",
+  "totalFilesystemEntries": 2081,
+  "sourceFiles": 993,
+  "macosMetadataFiles": 1088,
+  "totalSourceBytes": 7119057341,
+  "archiveMatchedFiles": 984,
+  "unsafeRecordedFiles": 10,
+  "bySubtest": {
+    "listening": 309,
+    "reading": 152,
+    "writing": 46,
+    "speaking": 33,
+    "general": 453
+  },
+  "byFormat": {
+    "pdf": 437,
+    "audio": 247,
+    "video": 37,
+    "image": 74,
+    "document": 87,
+    "archive": 4,
+    "other": 107
+  },
+  "generatedAt": "2026-09-01T07:15:47.666Z"
+}

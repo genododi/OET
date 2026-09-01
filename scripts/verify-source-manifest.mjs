@@ -23,6 +23,13 @@ const isSafeRelative = (value) => value && !path.isAbsolute(value) && !value.spl
 
 assert.equal(register.schemaVersion, 1, 'Source register schema must be version 1');
 assert.ok(register.archiveRoot.startsWith('/Volumes/GENODODI/'), 'Archive root must remain on GENODODI');
+assert.ok(Array.isArray(register.localFolders) && register.localFolders.length > 0, 'Local source folder is not registered');
+const googleDriveFolder = register.localFolders.find((folder) => folder.id === 'genododi-google-drive-folder');
+assert.equal(googleDriveFolder?.path, '/Volumes/GENODODI/oet-study-sources/Google drive Folder', 'Exact Google Drive folder is not registered');
+assert.ok(isSafeRelative(googleDriveFolder?.manifest), 'Local folder manifest path is unsafe');
+assert.ok(isSafeRelative(googleDriveFolder?.library), 'Local folder library path is unsafe');
+assert.equal(googleDriveFolder?.redistributionStatus, 'rights-unclear', 'Local folder needs a redistribution decision');
+assert.equal(googleDriveFolder?.publicationEligible, false, 'Local third-party bytes must remain private');
 assert.ok(Array.isArray(register.sources) && register.sources.length >= 11, 'Source register is incomplete');
 assert.equal(new Set(register.sources.map((source) => source.id)).size, register.sources.length, 'Source IDs must be unique');
 assert.equal(new Set(register.sources.map((source) => source.url)).size, register.sources.length, 'Duplicate source URLs must be removed');

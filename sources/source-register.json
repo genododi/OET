@@ -1,6 +1,16 @@
 {
   "schemaVersion": 1,
   "archiveRoot": "/Volumes/GENODODI/oet-study-sources",
+  "localFolders": [
+    {
+      "id": "genododi-google-drive-folder",
+      "path": "/Volumes/GENODODI/oet-study-sources/Google drive Folder",
+      "manifest": "sources/google-drive-folder.manifest.generated.json",
+      "library": "src/data/googleDriveFolderLibrary.generated.json",
+      "redistributionStatus": "rights-unclear",
+      "publicationEligible": false
+    }
+  ],
   "sources": [
     {
       "id": "drive-1vJmNmLSAdB19npX2P8q5bspV5hKm_FMM",

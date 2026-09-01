@@ -62,6 +62,18 @@ const summary = {
   byContainer,
 };
 
+const existingLedger = await readFile(ledgerPath, 'utf8')
+  .then((value) => JSON.parse(value))
+  .catch(() => null);
+if (
+  existingLedger
+  && JSON.stringify(existingLedger.assets ?? []) === JSON.stringify(assets)
+  && await readFile(summaryPath, 'utf8').then(() => true).catch(() => false)
+) {
+  console.log(`External source ledger unchanged: ${assets.length.toLocaleString()} source records.`);
+  process.exit(0);
+}
+
 await mkdir(dirname(ledgerPath), { recursive: true });
 await mkdir(dirname(summaryPath), { recursive: true });
 await writeFile(ledgerPath, `${JSON.stringify(ledger, null, 2)}\n`);

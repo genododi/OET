@@ -18,7 +18,10 @@ const plist = `<?xml version="1.0" encoding="UTF-8"?>
   <key>Label</key><string>com.oet-workstation.daily-source-sync</string>
   <key>ProgramArguments</key>
   <array><string>/bin/zsh</string><string>-lc</string><string>${escapeXml(shellCommand)}</string></array>
-  <key>WatchPaths</key><array><string>/Volumes/GENODODI/oet-study-sources/raw</string></array>
+  <key>WatchPaths</key><array>
+    <string>/Volumes/GENODODI/oet-study-sources/raw</string>
+    <string>/Volumes/GENODODI/oet-study-sources/Google drive Folder</string>
+  </array>
 </dict>
 </plist>
 `;
