@@ -31,7 +31,13 @@ const imageExtensions = new Set(['.jpg', '.jpeg', '.png']);
 const documentExtensions = new Set(['.doc', '.docx', '.pptx', '.txt', '.html']);
 
 async function walk(directory) {
-  const entries = await readdir(directory, { withFileTypes: true });
+  let entries;
+  try {
+    entries = await readdir(directory, { withFileTypes: true });
+  } catch (error) {
+    if (error?.code === 'ENOENT') return [];
+    throw error;
+  }
   const files = [];
   for (const entry of entries) {
     const fullPath = path.join(directory, entry.name);
@@ -39,6 +45,10 @@ async function walk(directory) {
     else if (entry.isFile()) files.push(fullPath);
   }
   return files;
+}
+
+function isMissingFile(error) {
+  return error?.code === 'ENOENT';
 }
 
 async function sha256(filename) {
@@ -76,13 +86,23 @@ const entries = [];
 let hashed = 0;
 for (const filename of filenames) {
   const relativePath = path.relative(sourceRoot, filename);
-  const metadata = await stat(filename);
+  let metadata;
+  let digest;
   const previousEntry = previousByPath.get(relativePath);
-  const unchanged = previousEntry
-    && previousEntry.bytes === metadata.size
-    && previousEntry.modifiedAt === metadata.mtime.toISOString();
-  const digest = unchanged ? previousEntry.sha256 : await sha256(filename);
-  if (!unchanged) hashed += 1;
+  try {
+    metadata = await stat(filename);
+    const unchanged = previousEntry
+      && previousEntry.bytes === metadata.size
+      && previousEntry.modifiedAt === metadata.mtime.toISOString();
+    digest = unchanged ? previousEntry.sha256 : await sha256(filename);
+    if (!unchanged) hashed += 1;
+  } catch (error) {
+    // External drives and sync clients can remove temporary files between
+    // directory enumeration and metadata/hash reads. The next watch refresh
+    // will pick up any file that still exists.
+    if (isMissingFile(error)) continue;
+    throw error;
+  }
   const extension = path.extname(filename).toLowerCase();
   const isMetadata = path.basename(filename).startsWith('._') || path.basename(filename) === '.DS_Store';
   entries.push({

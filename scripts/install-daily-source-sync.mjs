@@ -8,7 +8,7 @@ const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const launchAgents = resolve(homedir(), 'Library/LaunchAgents');
 const plistPath = resolve(launchAgents, 'com.oet-workstation.daily-source-sync.plist');
 const logPath = resolve(projectRoot, 'logs/source-sync.log');
-const shellCommand = `cd ${JSON.stringify(projectRoot)} && (/usr/bin/env npm run sources:inventory && /usr/bin/env npm run sources:sync-local) >> ${JSON.stringify(logPath)} 2>&1`;
+const shellCommand = `cd ${JSON.stringify(projectRoot)} && (/usr/bin/env npm run sources:inventory && /usr/bin/env npm run sources:sync-local && /usr/bin/env npm run sources:import-real-listening) >> ${JSON.stringify(logPath)} 2>&1`;
 const escapeXml = (value) => value.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
 
 const plist = `<?xml version="1.0" encoding="UTF-8"?>

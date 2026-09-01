@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { mockExams, TARGET_ADVANCED_MOCK_COUNT, TARGET_MEDICINE_MOCK_COUNT } from '../data/mockExams';
 import { ListPagination } from '../components/ListPagination';
 import { buildMockSession } from '../lib/sessionBuilder';
@@ -13,7 +13,9 @@ import {
 import { DifficultyBadge } from '../components/DifficultyBadge';
 import { SubtestBadge } from '../components/SubtestBadge';
 import { SessionRunner } from '../components/SessionRunner';
+import { RealListeningTestRunner } from '../components/RealListeningTestRunner';
 import { useProgress } from '../hooks/useProgress';
+import { getRealListeningTestForMock, realListeningTests } from '../data/realListeningTests';
 import type { Difficulty, MockExam, OetSubtest } from '../types';
 
 const difficulties: Array<Difficulty | 'all'> = ['all', 'advanced'];
@@ -29,6 +31,10 @@ export function MockExamsPage({ defaultProfession = 'Medicine' }: Props) {
   const [difficulty, setDifficulty] = useState<Difficulty | 'all'>('all');
   const [subtest, setSubtest] = useState<OetSubtest | 'all'>('all');
   const { isComplete } = useProgress();
+
+  useEffect(() => {
+    if (activeExam) window.scrollTo({ top: 0 });
+  }, [activeExam]);
 
   const professions = ['Medicine'];
   const [profession, setProfession] = useState(defaultProfession);
@@ -82,6 +88,10 @@ export function MockExamsPage({ defaultProfession = 'Medicine' }: Props) {
   }, []);
 
   if (activeExam) {
+    const realListeningTest = getRealListeningTestForMock(activeExam.id);
+    if (realListeningTest) {
+      return <RealListeningTestRunner test={realListeningTest} onExit={() => setActiveExam(null)} />;
+    }
     return (
       <SessionRunner config={buildMockSession(activeExam)} onExit={() => setActiveExam(null)} />
     );
@@ -110,17 +120,46 @@ export function MockExamsPage({ defaultProfession = 'Medicine' }: Props) {
             .{' '}
           </>
         )}
-        All scenarios are original, unofficial practice aligned with the published OET task structure.
+        Generated catalog scenarios are original, unofficial practice aligned with the published OET task structure. The featured real-audio tests are official public sample packs with source-matched papers and recordings.
       </p>
 
       <div className="card listening-audio-notice">
-        <strong>🎧 Listening mocks &amp; audio</strong>
+        <strong>🎧 Real listening audio is ready</strong>
         <p className="meta">
-          In-app listening tasks now use generated question-matched audio clips, so the recording
-          matches the active mock or practice question. Official sample-test recordings remain in{' '}
-          <strong>Book PDFs</strong> for paper-based listening practice.
+          Two complete 42-question tests now pair the exact official question papers with continuous
+          Part A, B and C recordings imported from the GENODODI source folder.
         </p>
       </div>
+
+      <section className="real-listening-featured" aria-labelledby="real-listening-heading">
+        <div className="section-heading-row">
+          <div>
+            <span className="section-kicker">Source-matched tests</span>
+            <h2 id="real-listening-heading">Real audio listening exams</h2>
+          </div>
+          <span className="tag">{realListeningTests.length} verified packs · 84 questions</span>
+        </div>
+        <div className="card-grid real-listening-card-grid">
+          {realListeningTests.map((test) => {
+            const exam = mockExams.find((candidate) => candidate.id === test.mockId);
+            if (!exam) return null;
+            return (
+              <article key={test.id} className="card real-listening-card">
+                <div className="real-listening-card-icon" aria-hidden="true">🎧</div>
+                <div>
+                  <span className="tag tag-available">Real source audio</span>
+                  <h3>{test.title}</h3>
+                  <p>42 scored answers · one-use audio · embedded official paper</p>
+                  <div className="real-listening-source-proof">
+                    {test.sourceParts.map((sourcePart) => <span key={sourcePart.part}>Part {sourcePart.part} ✓</span>)}
+                  </div>
+                </div>
+                <button type="button" className="btn btn-primary" onClick={() => setActiveExam(exam)}>Start real test</button>
+              </article>
+            );
+          })}
+        </div>
+      </section>
 
       <div className="search-bar">
         <input

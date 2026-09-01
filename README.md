@@ -76,7 +76,7 @@ Source import is resumable. Checksums drive duplicate relationships; every origi
 
 The project mirrors every external source record into `sources/source-manifest.generated.json` and publishes only an aggregate dashboard summary. The source binaries remain on GENODODI because the archive is larger than a normal GitHub repository and its third-party files are not cleared for redistribution.
 
-The explicitly supplied `/Volumes/GENODODI/oet-study-sources/Google drive Folder` is also covered entry-for-entry. Its generated manifest records every filesystem entry, while the app exposes a searchable private index of every real study file. macOS `._` sidecars are checksummed and accounted for but excluded from learner search results. Raw third-party bytes remain private because this folder is about 6.7 GB, contains files above GitHub's normal per-file limit, and has no blanket redistribution clearance.
+The explicitly supplied `/Volumes/GENODODI/oet-study-sources/Google drive Folder` is also covered entry-for-entry. Its generated manifest records every filesystem entry, while the app exposes a searchable private index of every real study file. macOS `._` sidecars are checksummed and accounted for but excluded from learner search results. Raw third-party bytes remain private because the multi-gigabyte folder contains files above GitHub's normal per-file limit and has no blanket redistribution clearance. Current counts and bytes come from the generated catalog rather than documentation so daily additions cannot make the UI stale.
 
 Refresh the complete local ledger manually:
 
@@ -84,6 +84,15 @@ Refresh the complete local ledger manually:
 npm run sources:inventory
 npm run sources:sync-local
 ```
+
+Import the verified real Listening Sample Test 1 and 2 recordings from the mounted source folder. The importer joins each matched Part A, B, and C set into one exam recording and records checksums for the source tracks, script, answer key, and generated audio:
+
+```bash
+npm run sources:import-real-listening
+npm run test:real-listening
+```
+
+These two official-public sample packs power 84 scored answers in the Mock Exams workspace. Other recordings in the folder remain private until their question paper, answer key, and redistribution status can be verified.
 
 Install the macOS source watcher for an immediate local refresh when the raw source folder changes:
 

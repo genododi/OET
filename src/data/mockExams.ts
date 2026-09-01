@@ -321,25 +321,29 @@ const curatedMockExams: MockExam[] = [
   },
   {
     id: 'mock-official-listening-1',
-    title: 'Official-Style Listening Mock (Sample 1)',
+    title: 'Real Audio Listening Test 1',
     profession: 'All professions',
     subtests: ['listening'],
     durationMinutes: 45,
     difficulty: 'intermediate',
     description:
-      'Mirrors official Listening Sample Test 1 structure: 2× Part A, 6× Part B, 2× Part C. Pair with book PDF audio.',
-    questionsCount: 24,
+      'Exact official Sample Test 1 paper and answer key paired with continuous Part A, B and C audio imported from the GENODODI source folder.',
+    questionsCount: 42,
+    tags: ['real audio', 'official sample', 'source matched'],
+    sourceHint: 'Official OET Sample Test 1 · GENODODI source folder',
   },
   {
     id: 'mock-official-listening-2',
-    title: 'Official-Style Listening Mock (Sample 2)',
+    title: 'Real Audio Listening Test 2',
     profession: 'All professions',
     subtests: ['listening'],
     durationMinutes: 45,
     difficulty: 'intermediate',
     description:
-      'Second listening mock aligned with official Sample Test 2 format for repeat timed practice.',
-    questionsCount: 24,
+      'Exact official Sample Test 2 paper and answer key paired with continuous Part A, B and C audio imported from the GENODODI source folder.',
+    questionsCount: 42,
+    tags: ['real audio', 'official sample', 'source matched'],
+    sourceHint: 'Official OET Sample Test 2 · GENODODI source folder',
   },
   {
     id: 'mock-official-listening-3',
@@ -1035,7 +1039,9 @@ function promoteToAdvanced(exam: MockExam): MockExam {
 
 export const mockExams: MockExam[] = [
   ...curatedMockExams.filter(
-    (exam) => exam.profession === 'Medicine' && isPhysicianMock(exam),
+    (exam) =>
+      (exam.profession === 'Medicine' || exam.id === 'mock-official-listening-1' || exam.id === 'mock-official-listening-2')
+      && isPhysicianMock(exam),
   ),
   ...medicineMockExams,
   ...medicineAdvancedMockExams,

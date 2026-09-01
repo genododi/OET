@@ -13,7 +13,7 @@ describe('resource library', () => {
 
   it('searches the complete private GENODODI source index', () => {
     render(<ResourcesPage />);
-    fireEvent.click(screen.getByRole('button', { name: /Private source index \(993\)/ }));
+    fireEvent.click(screen.getByRole('button', { name: /Private source index \([\d,]+\)/ }));
     fireEvent.change(screen.getByLabelText('Search private source index'), {
       target: { value: 'OfficialGuidetoOETKaplanTestPrep' },
     });

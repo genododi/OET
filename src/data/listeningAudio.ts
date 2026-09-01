@@ -1,4 +1,4 @@
-/** Official OET listening audio — run `npm run import-audio` to refresh local copies. */
+/** Official OET listening audio, including source-folder-matched real test recordings. */
 
 import type { MockExam, PracticeModule } from '../types';
 import { baseUrl } from '../lib/baseUrl';
@@ -19,16 +19,16 @@ export const listeningAudioTracks: ListeningAudioTrack[] = [
   {
     id: 'sample-test-1',
     label: 'Listening Sample Test 1 — full official recording (~40 min)',
-    localPath: '/audio/listening/listening-sample-test-1.mp3',
+    localPath: '/audio/real-listening/source-sample-test-1.mp3',
     cdnUrl: 'https://soundcloud.com/oet-450564055/oet-sample-test-1-new',
-    note: 'Pair with Book PDF “Listening Sample Test 1” and official-style mocks.',
+    note: 'Imported from the matched GENODODI Part A/B/C source tracks and paired with the official question paper.',
   },
   {
     id: 'sample-test-2',
     label: 'Listening Sample Test 2 — full official recording (~40 min)',
-    localPath: '/audio/listening/listening-sample-test-2.mp3',
+    localPath: '/audio/real-listening/source-sample-test-2.mp3',
     cdnUrl: 'https://soundcloud.com/oet-450564055/oet-listening-sample-test-2',
-    note: 'Pair with Book PDF “Listening Sample Test 2”. Part B clip Q28 also available separately.',
+    note: 'Imported from the matched GENODODI Part A/B/C source tracks and paired with the official question paper.',
   },
   {
     id: 'sample-test-3',

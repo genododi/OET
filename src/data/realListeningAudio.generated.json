@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-01T07:44:10.958Z",
+  "tests": [
+    {
+      "id": "source-sample-test-1",
+      "title": "Real Listening Sample Test 1",
+      "audioPath": "/audio/real-listening/source-sample-test-1.mp3",
+      "questionPdf": "/pdfs/books/oet-listening-sample-test-1.pdf",
+      "sourceRootLabel": "GENODODI/oet-study-sources/Google drive Folder",
+      "sourceScriptRelativePath": "‪Jahshan‬‏/OET Listening/Script/3- Sample Test 1.pdf",
+      "sourceScriptSha256": "c9354af850b9df8ecdcc90930c8f75f99786499bd1e0ba11033ea48593be9c7e",
+      "answerKeyRelativePath": "Listening-Sample-Test-1-Answer-Key.pdf",
+      "answerKeySha256": "34c7d05b28deb4608782af7f6cbca6faa5f99bb4350f6b26853940e4c622c950",
+      "sourceUrl": "https://oet.com/ready/sample-tests",
+      "redistributionStatus": "official-public",
+      "inputRevision": "cb824630d678d14dac0cb0e05ce00523239cee5861e6f6fd8ef1c94b3cdfc555",
+      "outputSha256": "9fe9a81376eb20bbaf334a6bbbf857317ecfa5892b340115c1f421fcc22fbb12",
+      "outputBytes": 17337332,
+      "outputDurationSeconds": 2167.092,
+      "parts": [
+        {
+          "part": "A",
+          "sourceRelativePath": "‪Jahshan‬‏/OET Listening/Audio/3- Sample Test 1/3-Part A.mp3",
+          "bytes": 10694015,
+          "durationSeconds": 661.238,
+          "sha256": "5b49f7fd305c756f61fd9a011f72b36a8d900d770540e0df0a59af87c73165cc"
+        },
+        {
+          "part": "B",
+          "sourceRelativePath": "‪Jahshan‬‏/OET Listening/Audio/3- Sample Test 1/3-Part B.mp3",
+          "bytes": 8548631,
+          "durationSeconds": 527.151,
+          "sha256": "a3f03042f4f360d49224bd88e5b6258ea78f6aa948ff797e37f9e3ca2c46311d"
+        },
+        {
+          "part": "C",
+          "sourceRelativePath": "‪Jahshan‬‏/OET Listening/Audio/3- Sample Test 1/3-Part C.mp3",
+          "bytes": 15773473,
+          "durationSeconds": 978.704,
+          "sha256": "baa17ff1fde9dd371651f00b897d8656a840fd44783a003fc2a5feab047238d5"
+        }
+      ]
+    },
+    {
+      "id": "source-sample-test-2",
+      "title": "Real Listening Sample Test 2",
+      "audioPath": "/audio/real-listening/source-sample-test-2.mp3",
+      "questionPdf": "/pdfs/books/oet-listening-sample-test-2.pdf",
+      "sourceRootLabel": "GENODODI/oet-study-sources/Google drive Folder",
+      "sourceScriptRelativePath": "‪Jahshan‬‏/OET Listening/Script/4- Sample Test 2.pdf",
+      "sourceScriptSha256": "46baf8792bd2152513d21facb547be9a53bd955be5beb2e946d2db962f5cb780",
+      "answerKeyRelativePath": "Listening-Sample-Test-2-Answer-Key.pdf",
+      "answerKeySha256": "84a9533b82e13ebe8cc8ad6f2a63381b7d1aeede19d8bd4f33cd2eef9cfa52a9",
+      "sourceUrl": "https://oet.com/ready/sample-tests",
+      "redistributionStatus": "official-public",
+      "inputRevision": "904e317893b79f8788dcbeb572a370e47ad2185400cbf40fdba78647e658ade9",
+      "outputSha256": "6f49c39c27132da74690c0a6a25d9f47c709c6c5cf387b9fb3064da02d27e054",
+      "outputBytes": 18695700,
+      "outputDurationSeconds": 2336.888,
+      "parts": [
+        {
+          "part": "A",
+          "sourceRelativePath": "‪Jahshan‬‏/OET Listening/Audio/4- Sample Test 2/4-Part A.mp3",
+          "bytes": 12253839,
+          "durationSeconds": 758.727,
+          "sha256": "49d8190a73c357f0ebc3587b91443fec5676399ae6714322f835f9e9ab9057ca"
+        },
+        {
+          "part": "B",
+          "sourceRelativePath": "‪Jahshan‬‏/OET Listening/Audio/4- Sample Test 2/4-Part B.mp3",
+          "bytes": 8332546,
+          "durationSeconds": 513.646,
+          "sha256": "ee34c40828319f3133bde933230caf92a96c0c242c17589a96630b86a5191988"
+        },
+        {
+          "part": "C",
+          "sourceRelativePath": "‪Jahshan‬‏/OET Listening/Audio/4- Sample Test 2/4-Part C.mp3",
+          "bytes": 17146469,
+          "durationSeconds": 1064.516,
+          "sha256": "887cfd3669f99bba383271743d9ca2075f172acdfbce22db6a1391bf118a7107"
+        }
+      ]
+    }
+  ]
+}

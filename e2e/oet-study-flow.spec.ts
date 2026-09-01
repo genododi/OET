@@ -53,6 +53,26 @@ test('resource search preserves link-only governance', async ({ page }) => {
   await expect(page.getByTestId('resource-grid').getByRole('link')).toHaveAttribute('href', /drive\.google\.com/);
 });
 
+test('real listening mock pairs the imported audio with its 42-question paper', async ({ page, request }) => {
+  await page.goto('./');
+  await page.getByRole('button', { name: 'Mock Exams' }).click();
+  await expect(page.getByRole('heading', { name: 'Real audio listening exams' })).toBeVisible();
+  await page.getByRole('button', { name: 'Start real test' }).first().click();
+  await expect(page.getByRole('heading', { name: 'Real Audio Listening Test 1' })).toBeVisible();
+  await expect(page.getByText('Part A · 11 min')).toBeVisible();
+  await page.getByRole('button', { name: 'Start real listening test' }).click();
+  await expect(page.getByRole('button', { name: /Play Real Audio Listening Test 1.*once/ })).toBeVisible();
+  await expect(page.getByRole('region', { name: 'Listening answer sheet' })).toBeVisible();
+  await expect(page.getByRole('tab', { name: 'Part A' })).toHaveAttribute('aria-selected', 'true');
+  await expect(page.locator('iframe[title="Real Audio Listening Test 1 question paper"]')).toBeVisible();
+
+  const audioResponse = await request.head('./audio/real-listening/source-sample-test-1.mp3');
+  const paperResponse = await request.head('./pdfs/books/oet-listening-sample-test-1.pdf');
+  expect(audioResponse.ok()).toBeTruthy();
+  expect(Number(audioResponse.headers()['content-length'])).toBeGreaterThan(10_000_000);
+  expect(paperResponse.ok()).toBeTruthy();
+});
+
 test('timed writing session provides built-in feedback while offline', async ({ context, page }) => {
   await page.goto('./#practice/writing');
   await page.getByRole('button', { name: 'Practise' }).first().click();
