@@ -1,6 +1,6 @@
 # Source-driven OET upgrade: revised delivery plan
 
-Last reconciled: 2026-08-31
+Last reconciled: 2026-09-02
 
 ## Objective
 
@@ -113,6 +113,8 @@ isolated in quarantine; duplicate source-path records retain their provenance.
 - Accessible external archive: complete with checksums and source-path records.
 - The complete 4,737-record external ledger is mirrored into the project and refreshed daily; rights-unclear binaries remain private on GENODODI.
 - The explicitly supplied `Google drive Folder` is covered entry-for-entry. The generated catalog supplies the current study-file, macOS metadata, byte, skill, and archive-match counts; the app searches every current study-file record while keeping rights-unclear binaries private.
+- Every current real source file has a deterministic learning role, OET route, GitHub-size decision, and integration status. Safe records rotate through the generated advanced Practice and Mock catalogs by stable source ID; restricted exam scans and unsafe files remain indexed but cannot enter learner sessions.
+- The Source Library now visualises the complete source-to-practice pipeline and filters private records by format, learning role, skill route, and integration decision.
 - Two official-public Listening sample packs are imported from six source-matched Part A/B/C tracks. Their continuous recordings, official papers, and 84 scored answers now run directly in Mock Exams.
 - The workstation catalog provides more than 1,000 Medicine test sessions for each of Listening, Reading, Writing, and Speaking.
 - Owner-restricted, deleted, or otherwise inaccessible Drive items: documented

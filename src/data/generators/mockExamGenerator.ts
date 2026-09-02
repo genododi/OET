@@ -2,11 +2,9 @@ import type { MockExam, OetSubtest } from '../../types';
 import {
   DIFFICULTIES,
   MEDICINE_MOCK_TAG_POOL,
-  MEDICINE_SOURCE_HINTS,
   ADVANCED_MOCK_PACK_LABELS,
   MOCK_PACK_LABELS,
   MOCK_TAG_POOL,
-  SOURCE_HINTS,
   SUBTESTS,
   pick,
   pickMany,
@@ -18,6 +16,7 @@ import {
   stampDescription,
   type MockContentPool,
 } from './uniqueness';
+import { sourceLearningReference } from '../sourceLearningMap';
 
 type MockProfile = {
   label: string;
@@ -210,8 +209,9 @@ export function generateMockExam(serial: number): MockExam {
   const difficulty = pick(DIFFICULTIES, index + 1);
   const pack = pick(MOCK_PACK_LABELS, index + 7);
   const theme = pick(RECALL_THEMES, index);
-  const sourceHint = pick(SOURCE_HINTS, index + 4);
-  const tags = [...buildMockTags(profile, profession, index), catalogRef(pool, serial)];
+  const source = sourceLearningReference(profile.subtests[index % profile.subtests.length]!, serial);
+  const sourceHint = source.label;
+  const tags = [...buildMockTags(profile, profession, index), ...source.tags, catalogRef(pool, serial)];
   const setLetter = String.fromCharCode(65 + (index % 26));
   const displayNum = serial;
   const ref = catalogRef(pool, serial);
@@ -256,6 +256,7 @@ export function generateMockExam(serial: number): MockExam {
     questionsCount: Math.max(10, questionsCount),
     tags,
     sourceHint,
+    sourceFileId: source.id,
   };
 }
 
@@ -267,9 +268,10 @@ export function generateMedicineMockExam(serial: number): MockExam {
   const difficulty = pick(DIFFICULTIES, index + 1);
   const pack = pick(MOCK_PACK_LABELS, index + 7);
   const theme = pick(MEDICINE_RECALL_THEMES, index);
-  const sourceHint = pick(MEDICINE_SOURCE_HINTS, index + 4);
+  const source = sourceLearningReference(profile.subtests[index % profile.subtests.length]!, serial);
+  const sourceHint = source.label;
   const ref = catalogRef(pool, serial);
-  const tags = [...buildMedicineMockTags(profile, index), ref];
+  const tags = [...buildMedicineMockTags(profile, index), ...source.tags, ref];
   const setLetter = String.fromCharCode(65 + (index % 26));
   const displayNum = serial;
 
@@ -313,6 +315,7 @@ export function generateMedicineMockExam(serial: number): MockExam {
     questionsCount: Math.max(10, questionsCount),
     tags,
     sourceHint,
+    sourceFileId: source.id,
   };
 }
 
@@ -374,13 +377,15 @@ export function generateAdvancedMockExam(serial: number): MockExam {
   const profession = 'Medicine';
   const pack = pick(ADVANCED_MOCK_PACK_LABELS, index);
   const theme = pick(RECALL_THEMES, index + 3);
-  const sourceHint = pick(SOURCE_HINTS, index + 8);
+  const source = sourceLearningReference(profile.subtests[index % profile.subtests.length]!, serial);
+  const sourceHint = source.label;
   const ref = catalogRef(pool, serial);
   const tags = new Set([
     ...buildMockTags(profile, profession, index),
     'advanced-only',
     'grade-b-challenge',
     ref,
+    ...source.tags,
   ]);
   if (profile.subtests.length >= 3) tags.add('combo');
   if (profile.tag === 'marathon' || index % 4 === 0) tags.add('marathon');
@@ -427,6 +432,7 @@ export function generateAdvancedMockExam(serial: number): MockExam {
     questionsCount,
     tags: [...tags],
     sourceHint,
+    sourceFileId: source.id,
   };
 }
 
@@ -448,7 +454,8 @@ export function generateMedicineAdvancedMockExam(subtest: OetSubtest, serial: nu
   const profile = pick(SINGLE_SUBTEST_MOCK_PROFILES[subtest], index);
   const pack = pick(ADVANCED_MOCK_PACK_LABELS, index);
   const theme = pick(MEDICINE_RECALL_THEMES, index + 3);
-  const sourceHint = pick(MEDICINE_SOURCE_HINTS, index + 8);
+  const source = sourceLearningReference(subtest, serial);
+  const sourceHint = source.label;
   const ref = catalogRef(pool, serial, subtest);
   const tags = new Set([
     ...buildMedicineMockTags(profile, index),
@@ -457,6 +464,7 @@ export function generateMedicineAdvancedMockExam(subtest: OetSubtest, serial: nu
     'grade-b-challenge',
     subtest,
     ref,
+    ...source.tags,
   ]);
   if (profile.tag === 'marathon' || index % 4 === 0) tags.add('marathon');
 
@@ -497,6 +505,7 @@ export function generateMedicineAdvancedMockExam(subtest: OetSubtest, serial: nu
     questionsCount,
     tags: [...tags],
     sourceHint,
+    sourceFileId: source.id,
   };
 }
 

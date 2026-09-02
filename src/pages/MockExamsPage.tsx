@@ -241,6 +241,7 @@ export function MockExamsPage({ defaultProfession = 'Medicine' }: Props) {
               <h3>{exam.title}</h3>
               <p className="meta">{exam.profession}</p>
               <p className="description">{exam.description}</p>
+              {exam.sourceFileId && <p className="source-map-trace">Source map · {exam.sourceFileId.replace('google-drive-folder-', '').slice(0, 12)}</p>}
               <div className="badge-row">
                 {exam.subtests.map((s) => (
                   <SubtestBadge key={s} subtest={s} small />

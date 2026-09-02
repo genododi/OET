@@ -103,7 +103,7 @@ function App() {
       case 'planner':
         return <StudyPlannerPage onNavigate={navigate} />;
       case 'resources':
-        return <ResourcesPage />;
+        return <ResourcesPage onNavigate={navigate} />;
       case 'mock':
         return <MockExamsPage defaultProfession={preferredProfession} />;
       case 'practice':
@@ -135,7 +135,7 @@ function App() {
         );
       case 'experiences':
       case 'experience-pdfs':
-        return <ResourcesPage />;
+        return <ResourcesPage onNavigate={navigate} />;
       case 'usmle':
         return <UsmlePage />;
     }

@@ -12,6 +12,8 @@ const archiveManifestPath = process.env.OET_SOURCE_MANIFEST
 const detailedPath = path.join(projectRoot, 'sources/google-drive-folder.manifest.generated.json');
 const libraryPath = path.join(projectRoot, 'src/data/googleDriveFolderLibrary.generated.json');
 const summaryPath = path.join(projectRoot, 'src/data/googleDriveFolderCatalog.generated.json');
+const practiceMapPath = path.join(projectRoot, 'src/data/sourcePracticeMap.generated.json');
+const realListeningManifestPath = path.join(projectRoot, 'src/data/realListeningAudio.generated.json');
 
 if (!existsSync(sourceRoot)) throw new Error(`Local OET source folder is not mounted: ${sourceRoot}`);
 
@@ -29,6 +31,8 @@ const unsafeExtensions = new Set(['.db', '.enc', '.part']);
 const audioExtensions = new Set(['.mp3', '.m4a', '.ogg', '.mpeg']);
 const imageExtensions = new Set(['.jpg', '.jpeg', '.png']);
 const documentExtensions = new Set(['.doc', '.docx', '.pptx', '.txt', '.html']);
+const learningRoutes = ['listening', 'reading', 'writing', 'speaking'];
+const githubBlobLimitBytes = 100 * 1024 * 1024;
 
 async function walk(directory) {
   let entries;
@@ -72,6 +76,34 @@ function formatFor(extension) {
   return 'other';
 }
 
+function learningRoleFor(relativePath, extension, format) {
+  const normalized = relativePath.toLowerCase();
+  const filename = path.basename(normalized);
+  if (unsafeExtensions.has(extension)) return 'unsafe-file';
+  if (audioExtensions.has(extension)) return 'audio-track';
+  if (format === 'video') return 'video-lesson';
+  if (/answer|key|model|corrected|solution/.test(filename)) return 'answer-or-model';
+  if (/script|transcript/.test(filename)) return 'script-or-transcript';
+  if (/question|paper|test|mock|practice/.test(filename)) return 'test-material';
+  if (/speaking|role[ -]?play|cue|card/.test(normalized)) return 'speaking-role-play';
+  if (/writing|case[ -]?note|referral|discharge|transfer|letter/.test(normalized)) return 'writing-material';
+  if (/reading|text[ -]?booklet|article|abstract/.test(normalized)) return 'reading-material';
+  if (/guide|tips?|criteria|strategy|overview|grammar|vocab/.test(normalized)) return 'study-guide';
+  if (format === 'image') return 'visual-reference';
+  if (format === 'archive') return 'source-archive';
+  return 'general-reference';
+}
+
+function learningRouteFor(relativePath, detectedSubtest) {
+  if (detectedSubtest !== 'general') return detectedSubtest;
+  const firstByte = createHash('sha256').update(relativePath).digest()[0];
+  return learningRoutes[firstByte % learningRoutes.length];
+}
+
+function isRestrictedExamMaterial(relativePath) {
+  return /watermark|actual(?:[ -]?test)?|candidate[ -]?paper|question[ -]?paper|answer[ -]?keys?/i.test(relativePath);
+}
+
 const previous = existsSync(detailedPath)
   ? JSON.parse(await readFile(detailedPath, 'utf8'))
   : { entries: [] };
@@ -80,6 +112,14 @@ const archiveManifest = existsSync(archiveManifestPath)
   ? JSON.parse(await readFile(archiveManifestPath, 'utf8'))
   : { assets: [] };
 const archivedHashes = new Set((archiveManifest.assets ?? []).map((asset) => asset.sha256).filter(Boolean));
+const realListeningManifest = existsSync(realListeningManifestPath)
+  ? JSON.parse(await readFile(realListeningManifestPath, 'utf8'))
+  : { tests: [] };
+const verifiedRealTestHashes = new Set((realListeningManifest.tests ?? []).flatMap((test) => [
+  test.sourceScriptSha256,
+  test.answerKeySha256,
+  ...(test.parts ?? []).map((part) => part.sha256),
+]).filter(Boolean));
 
 const filenames = (await walk(sourceRoot)).sort((a, b) => a.localeCompare(b));
 const entries = [];
@@ -105,6 +145,19 @@ for (const filename of filenames) {
   }
   const extension = path.extname(filename).toLowerCase();
   const isMetadata = path.basename(filename).startsWith('._') || path.basename(filename) === '.DS_Store';
+  const subtest = isMetadata ? 'general' : subtestFor(relativePath);
+  const format = isMetadata ? 'metadata' : formatFor(extension);
+  const learningRole = isMetadata ? 'macos-metadata' : learningRoleFor(relativePath, extension, format);
+  const learningRoute = isMetadata ? 'general' : learningRouteFor(relativePath, subtest);
+  const integrationStatus = isMetadata
+    ? 'metadata-recorded'
+    : unsafeExtensions.has(extension)
+      ? 'blocked-unsafe'
+      : verifiedRealTestHashes.has(digest)
+        ? 'verified-real-test'
+        : isRestrictedExamMaterial(relativePath)
+          ? 'restricted-private'
+          : 'practice-blueprint';
   entries.push({
     id: `google-drive-folder-${createHash('sha256').update(relativePath).digest('hex').slice(0, 16)}`,
     relativePath,
@@ -114,8 +167,12 @@ for (const filename of filenames) {
     bytes: metadata.size,
     modifiedAt: metadata.mtime.toISOString(),
     sha256: digest,
-    subtest: isMetadata ? 'general' : subtestFor(relativePath),
-    format: isMetadata ? 'metadata' : formatFor(extension),
+    subtest,
+    format,
+    learningRole,
+    learningRoute,
+    integrationStatus,
+    githubBlobStatus: metadata.size > githubBlobLimitBytes ? 'requires-lfs' : 'regular-git-size',
     archiveMatched: archivedHashes.has(digest),
     ingestionStatus: isMetadata
       ? 'metadata-recorded'
@@ -131,6 +188,11 @@ const sourceEntries = entries.filter((entry) => entry.kind === 'source');
 const countBy = (key, values) => Object.fromEntries(
   values.map((value) => [value, sourceEntries.filter((entry) => entry[key] === value).length]),
 );
+const countDynamic = (key) => Object.fromEntries(
+  [...new Set(sourceEntries.map((entry) => entry[key]))]
+    .sort()
+    .map((value) => [value, sourceEntries.filter((entry) => entry[key] === value).length]),
+);
 const summaryBase = {
   schemaVersion: 1,
   sourceFolder: 'GENODODI/oet-study-sources/Google drive Folder',
@@ -140,16 +202,30 @@ const summaryBase = {
   totalSourceBytes: sourceEntries.reduce((total, entry) => total + entry.bytes, 0),
   archiveMatchedFiles: sourceEntries.filter((entry) => entry.archiveMatched).length,
   unsafeRecordedFiles: sourceEntries.filter((entry) => entry.ingestionStatus === 'unsafe-recorded-not-published').length,
+  practiceBlueprintFiles: sourceEntries.filter((entry) => ['practice-blueprint', 'verified-real-test'].includes(entry.integrationStatus)).length,
+  restrictedPrivateFiles: sourceEntries.filter((entry) => entry.integrationStatus === 'restricted-private').length,
+  verifiedRealTestFiles: sourceEntries.filter((entry) => entry.integrationStatus === 'verified-real-test').length,
+  overGithubBlobLimitFiles: sourceEntries.filter((entry) => entry.githubBlobStatus === 'requires-lfs').length,
   bySubtest: countBy('subtest', ['listening', 'reading', 'writing', 'speaking', 'general']),
   byFormat: countBy('format', ['pdf', 'audio', 'video', 'image', 'document', 'archive', 'other']),
+  byLearningRoute: countBy('learningRoute', learningRoutes),
+  byLearningRole: countDynamic('learningRole'),
+  byIntegrationStatus: countDynamic('integrationStatus'),
 };
-const library = sourceEntries.map(({ id, filename, relativePath, mimeType, bytes, sha256, subtest, format, archiveMatched, ingestionStatus }) => ({
-  id, filename, relativePath, mimeType, bytes, sha256, subtest, format, archiveMatched, ingestionStatus,
+const library = sourceEntries.map(({ id, filename, relativePath, mimeType, bytes, sha256, subtest, format, learningRole, learningRoute, integrationStatus, githubBlobStatus, archiveMatched, ingestionStatus }) => ({
+  id, filename, relativePath, mimeType, bytes, sha256, subtest, format, learningRole, learningRoute, integrationStatus, githubBlobStatus, archiveMatched, ingestionStatus,
 }));
+const practiceMap = Object.fromEntries(learningRoutes.map((route) => [
+  route,
+  sourceEntries
+    .filter((entry) => entry.learningRoute === route && ['practice-blueprint', 'verified-real-test'].includes(entry.integrationStatus))
+    .sort((a, b) => a.id.localeCompare(b.id))
+    .map(({ id, format, learningRole, sha256 }) => ({ id, format, learningRole, sourceCode: sha256.slice(0, 10) })),
+]));
 
 const previousComparable = JSON.stringify((previous.entries ?? []));
 const currentComparable = JSON.stringify(entries);
-if (previousComparable === currentComparable && existsSync(libraryPath) && existsSync(summaryPath)) {
+if (previousComparable === currentComparable && existsSync(libraryPath) && existsSync(summaryPath) && existsSync(practiceMapPath)) {
   console.log(`Local Google Drive folder unchanged: ${sourceEntries.length.toLocaleString()} source files; reused every cached checksum.`);
   process.exit(0);
 }
@@ -162,4 +238,5 @@ await mkdir(path.dirname(libraryPath), { recursive: true });
 await writeFile(detailedPath, `${JSON.stringify(detailed, null, 2)}\n`);
 await writeFile(libraryPath, `${JSON.stringify(library, null, 2)}\n`);
 await writeFile(summaryPath, `${JSON.stringify(summary, null, 2)}\n`);
+await writeFile(practiceMapPath, `${JSON.stringify(practiceMap, null, 2)}\n`);
 console.log(`Indexed every ${entries.length.toLocaleString()} filesystem entry: ${sourceEntries.length.toLocaleString()} source files and ${(entries.length - sourceEntries.length).toLocaleString()} macOS metadata files (${hashed.toLocaleString()} checksums calculated).`);

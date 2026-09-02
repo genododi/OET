@@ -282,6 +282,7 @@ export function PracticePage({
                   {mod.topic} · {moduleProfession(mod.profession)}
                 </p>
                 <p className="description">{mod.description}</p>
+                {mod.sourceFileId && <p className="source-map-trace">Source map · {mod.sourceFileId.replace('google-drive-folder-', '').slice(0, 12)}</p>}
                 <div className="card-footer">
                   <span>
                     {workload.taskCount} task{workload.taskCount !== 1 ? 's' : ''} ·{' '}

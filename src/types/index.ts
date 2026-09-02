@@ -17,6 +17,8 @@ export interface MockExam {
   tags?: string[];
   /** Traceable source or authoring basis for the content style. */
   sourceHint?: string;
+  /** Stable private source-map record used to shape this catalog entry. */
+  sourceFileId?: string;
 }
 
 export interface PracticeModule {
@@ -32,6 +34,8 @@ export interface PracticeModule {
   profession?: string;
   tags?: string[];
   sourceHint?: string;
+  /** Stable private source-map record used to shape this catalog entry. */
+  sourceFileId?: string;
 }
 
 export interface GuideSection {

@@ -3,11 +3,9 @@ import {
   DIFFICULTIES,
   MEDICINE_CLINICAL_THEMES,
   MEDICINE_PRACTICE_TAG_POOL,
-  MEDICINE_SOURCE_HINTS,
   ADVANCED_PRACTICE_PACK_LABELS,
   PRACTICE_PACK_LABELS,
   PRACTICE_TAG_POOL,
-  SOURCE_HINTS,
   SUBTESTS,
   pick,
   pickMany,
@@ -19,6 +17,7 @@ import {
   stampDescription,
   type ContentPool,
 } from './uniqueness';
+import { sourceLearningReference } from '../sourceLearningMap';
 
 const LISTENING_TOPICS = [
   'Part A — Consultation note completion',
@@ -238,8 +237,9 @@ export function generatePracticeModule(serial: number): PracticeModule {
 
   const title = `${profShort} ${subtestLabel(subtest)} ${pack} #${displayNum} [${ref}]`;
   const topic = `${topicBase} · ${theme}`;
-  const sourceHint = pick(SOURCE_HINTS, index);
-  const tags = [...buildTags(subtest, profession, index), ref];
+  const source = sourceLearningReference(subtest, serial);
+  const sourceHint = source.label;
+  const tags = [...buildTags(subtest, profession, index), ...source.tags, ref];
 
   const description = stampDescription(
     [
@@ -263,6 +263,7 @@ export function generatePracticeModule(serial: number): PracticeModule {
     profession,
     tags,
     sourceHint,
+    sourceFileId: source.id,
   };
 }
 
@@ -283,8 +284,9 @@ export function generateMedicinePracticeModule(serial: number): PracticeModule {
 
   const title = `Medicine ${subtestName} ${pack} #${displayNum} [${ref}]`;
   const topic = `${topicBase} · ${theme}`;
-  const sourceHint = pick(MEDICINE_SOURCE_HINTS, index);
-  const tags = [...buildMedicineTags(subtest, index), ref];
+  const source = sourceLearningReference(subtest, serial);
+  const sourceHint = source.label;
+  const tags = [...buildMedicineTags(subtest, index), ...source.tags, ref];
 
   const description = stampDescription(
     [
@@ -308,6 +310,7 @@ export function generateMedicinePracticeModule(serial: number): PracticeModule {
     profession: 'Medicine',
     tags,
     sourceHint,
+    sourceFileId: source.id,
   };
 }
 
@@ -367,7 +370,8 @@ export function generateAdvancedPracticeModule(serial: number): PracticeModule {
   const durationMinutes = advancedDurationFor(subtest, index, tasksCount, profile.durationBump);
   const profShort = 'Medicine';
   const subtestName = subtestLabel(subtest);
-  const sourceHint = pick(SOURCE_HINTS, index + 6);
+  const source = sourceLearningReference(subtest, serial);
+  const sourceHint = source.label;
   const ref = catalogRef(pool, serial, subtest);
 
   const title = `${profShort} ${subtestName} ${pack} — ${profile.suffix} #${serial} [${ref}]`;
@@ -378,6 +382,7 @@ export function generateAdvancedPracticeModule(serial: number): PracticeModule {
     profile.tag,
     'grade-b-challenge',
     ref,
+    ...source.tags,
   ]);
   if (index % 5 === 0) tags.add('marathon');
   if (index % 7 === 0) tags.add('combo');
@@ -403,6 +408,7 @@ export function generateAdvancedPracticeModule(serial: number): PracticeModule {
     profession,
     tags: [...tags],
     sourceHint,
+    sourceFileId: source.id,
   };
 }
 
@@ -424,7 +430,8 @@ export function generateMedicineAdvancedPracticeModule(
   const tasksCount = advancedTasksCountFor(subtest, index);
   const durationMinutes = advancedDurationFor(subtest, index, tasksCount, profile.durationBump);
   const subtestName = subtestLabel(subtest);
-  const sourceHint = pick(MEDICINE_SOURCE_HINTS, index + 6);
+  const source = sourceLearningReference(subtest, serial);
+  const sourceHint = source.label;
   const ref = catalogRef(pool, serial, subtest);
 
   const title = `Medicine ${subtestName} ${pack} — ${profile.suffix} #${serial} [${ref}]`;
@@ -436,6 +443,7 @@ export function generateMedicineAdvancedPracticeModule(
     profile.tag,
     'grade-b-challenge',
     ref,
+    ...source.tags,
   ]);
   if (index % 5 === 0) tags.add('marathon');
   if (index % 7 === 0) tags.add('combo');
@@ -471,6 +479,7 @@ export function generateMedicineAdvancedPracticeModule(
     profession: 'Medicine',
     tags: [...tags],
     sourceHint,
+    sourceFileId: source.id,
   };
 }
 

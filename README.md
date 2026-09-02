@@ -78,11 +78,14 @@ The project mirrors every external source record into `sources/source-manifest.g
 
 The explicitly supplied `/Volumes/GENODODI/oet-study-sources/Google drive Folder` is also covered entry-for-entry. Its generated manifest records every filesystem entry, while the app exposes a searchable private index of every real study file. macOS `._` sidecars are checksummed and accounted for but excluded from learner search results. Raw third-party bytes remain private because the multi-gigabyte folder contains files above GitHub's normal per-file limit and has no blanket redistribution clearance. Current counts and bytes come from the generated catalog rather than documentation so daily additions cannot make the UI stale.
 
+The source-learning map assigns every real file a learning role, an OET route, an integration decision, and a stable source ID. Every safe mapped record is rotated through the generated advanced Practice catalog, so PDFs, audio, video, documents, images, and archives all influence the learner-facing source map without copying private material into a public session. Restricted test scans and unsafe files remain visible as accounted-for private records but are excluded from generated tasks. Files above GitHub's 100 MiB Git-blob limit are labelled explicitly; see [GitHub's large-file guidance](https://docs.github.com/en/repositories/working-with-files/managing-files/adding-a-file-to-a-repository).
+
 Refresh the complete local ledger manually:
 
 ```bash
 npm run sources:inventory
 npm run sources:sync-local
+npm run test:source-manifest
 ```
 
 Import the verified real Listening Sample Test 1 and 2 recordings from the mounted source folder. The importer joins each matched Part A, B, and C set into one exam recording and records checksums for the source tracks, script, answer key, and generated audio:

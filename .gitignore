@@ -15,6 +15,7 @@ output/playwright/
 playwright-report/
 test-results/
 .playwright-cli/
+tmp/
 *.rar.part
 __pycache__/
 *.py[cod]

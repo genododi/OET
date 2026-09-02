@@ -3790,6 +3790,37 @@ button {
   background: linear-gradient(135deg, #f2fffb, #f7fafc);
 }
 
+.source-learning-pipeline {
+  display: grid;
+  gap: 1rem;
+  padding: clamp(1.1rem, 2vw, 1.5rem);
+  border: 1px solid rgba(14, 116, 144, 0.2);
+  border-radius: 20px;
+  background:
+    radial-gradient(circle at 100% 0, rgba(14, 116, 144, 0.12), transparent 32%),
+    linear-gradient(145deg, #f8fffe, #f5f8fc);
+  box-shadow: var(--shadow-sm);
+}
+
+.source-learning-pipeline h3 { margin: 0.2rem 0 0; }
+.source-pipeline-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.7rem; }
+.source-pipeline-grid article { display: grid; min-height: 112px; align-content: center; gap: 0.2rem; padding: 0.85rem; border: 1px solid rgba(13, 148, 136, 0.14); border-radius: 15px; background: rgba(255,255,255,.86); }
+.source-pipeline-grid article > span { color: var(--teal-600); font-size: 0.62rem; font-weight: 800; letter-spacing: 0.12em; }
+.source-pipeline-grid strong { color: var(--text-h); font-size: 1.35rem; }
+.source-pipeline-grid small { color: var(--text-muted); font-size: 0.67rem; line-height: 1.35; }
+.source-route-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.7rem; }
+.source-route-grid button { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 0.65rem; padding: 0.75rem; border: 1px solid var(--border); border-radius: 14px; background: #fff; color: var(--text-h); font: inherit; text-align: left; transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease; }
+.source-route-grid button:hover { transform: translateY(-2px); border-color: rgba(13, 148, 136, 0.42); box-shadow: var(--shadow-sm); }
+.source-route-grid button > span:nth-child(2) { display: grid; gap: 0.12rem; }
+.source-route-grid strong { font-size: 0.76rem; }
+.source-route-grid small { color: var(--text-muted); font-size: 0.6rem; line-height: 1.25; }
+.source-route-icon { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 10px; color: #fff; font-size: 0.75rem; font-weight: 850; }
+.source-route-listening { background: #0f766e; }
+.source-route-reading { background: #0369a1; }
+.source-route-writing { background: #7c3aed; }
+.source-route-speaking { background: #c2410c; }
+.source-github-note { margin: 0; padding: 0.7rem 0.85rem; border-left: 3px solid #64748b; border-radius: 0 10px 10px 0; background: rgba(226, 232, 240, 0.55); color: var(--text-muted); font-size: 0.68rem; }
+
 .source-vault-copy { display: flex; align-items: center; gap: 0.9rem; }
 .source-vault-copy h3 { margin-bottom: 0.2rem; }
 .source-vault-copy p { color: var(--text-muted); font-size: 0.78rem; }
@@ -3808,15 +3839,27 @@ button {
 .private-source-path { display: -webkit-box; overflow: hidden; color: var(--text-muted); font-size: 0.68rem; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
 .private-source-meta { display: flex; justify-content: space-between; gap: 0.5rem; margin-top: auto; color: var(--text-muted); font-size: 0.66rem; }
 .private-source-card code { align-self: flex-start; font-size: 0.65rem; }
+.source-file-flags { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.source-file-flags > span { padding: 0.26rem 0.42rem; border-radius: 999px; background: #eef2f7; color: #475569; font-size: 0.58rem; font-weight: 750; }
+.source-file-flags .source-status-practice-blueprint { background: #e5f8f2; color: #0f766e; }
+.source-file-flags .source-status-verified-real-test { background: #dff4ff; color: #075985; }
+.source-file-flags .source-status-restricted-private,
+.source-file-flags .source-status-blocked-unsafe,
+.source-file-flags .source-status-large { background: #fff0e5; color: #9a3412; }
+.source-map-trace { display: inline-flex; align-self: flex-start; margin: 0; padding: 0.25rem 0.45rem; border-radius: 999px; background: #edf9f6; color: #0f766e; font-size: 0.61rem; font-weight: 750; letter-spacing: 0.02em; }
 
 @media (max-width: 900px) {
   .source-vault-overview { grid-template-columns: 1fr; }
+  .source-pipeline-grid,
+  .source-route-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (max-width: 560px) {
   .source-vault-stats { grid-template-columns: repeat(2, 1fr); }
   .library-view-switch { display: grid; width: 100%; }
   .private-vault-note { flex-direction: column; }
+  .source-pipeline-grid,
+  .source-route-grid { grid-template-columns: 1fr; }
 }
 
 .resource-card {

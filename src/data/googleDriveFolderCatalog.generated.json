@@ -7,6 +7,10 @@
   "totalSourceBytes": 7607680411,
   "archiveMatchedFiles": 1178,
   "unsafeRecordedFiles": 10,
+  "practiceBlueprintFiles": 1449,
+  "restrictedPrivateFiles": 53,
+  "verifiedRealTestFiles": 20,
+  "overGithubBlobLimitFiles": 6,
   "bySubtest": {
     "listening": 312,
     "reading": 186,
@@ -23,5 +27,31 @@
     "archive": 4,
     "other": 108
   },
-  "generatedAt": "2026-09-01T15:07:27.337Z"
+  "byLearningRoute": {
+    "listening": 470,
+    "reading": 353,
+    "writing": 355,
+    "speaking": 334
+  },
+  "byLearningRole": {
+    "answer-or-model": 96,
+    "audio-track": 270,
+    "general-reference": 252,
+    "reading-material": 101,
+    "script-or-transcript": 1,
+    "speaking-role-play": 176,
+    "study-guide": 6,
+    "test-material": 145,
+    "unsafe-file": 10,
+    "video-lesson": 37,
+    "visual-reference": 69,
+    "writing-material": 349
+  },
+  "byIntegrationStatus": {
+    "blocked-unsafe": 10,
+    "practice-blueprint": 1429,
+    "restricted-private": 53,
+    "verified-real-test": 20
+  },
+  "generatedAt": "2026-09-02T16:07:19.059Z"
 }

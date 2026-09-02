@@ -53,6 +53,16 @@ test('resource search preserves link-only governance', async ({ page }) => {
   await expect(page.getByTestId('resource-grid').getByRole('link')).toHaveAttribute('href', /drive\.google\.com/);
 });
 
+test('source learning map accounts for the folder and routes into practice', async ({ page }) => {
+  await page.goto('./#resources');
+  await expect(page.getByRole('heading', { name: 'Every file accounted for, every safe file mapped' })).toBeVisible();
+  await expect(page.getByText('Files indexed + checksummed')).toBeVisible();
+  await page.getByRole('button', { name: /Listening.*mapped source records/ }).click();
+  await expect(page).toHaveURL(/#practice\/listening$/);
+  await expect(page.getByRole('heading', { name: 'Practice Modules' })).toBeVisible();
+  await expect(page.locator('.source-map-trace').first()).toContainText('Source map');
+});
+
 test('real listening mock pairs the imported audio with its 42-question paper', async ({ page, request }) => {
   await page.goto('./');
   await page.getByRole('button', { name: 'Mock Exams' }).click();
