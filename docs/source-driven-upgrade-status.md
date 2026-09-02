@@ -1,6 +1,6 @@
 # Source-driven OET upgrade: revised delivery plan
 
-Last reconciled: 2026-09-02
+Last reconciled: 2026-09-03
 
 ## Objective
 
@@ -116,6 +116,7 @@ isolated in quarantine; duplicate source-path records retain their provenance.
 - Every current real source file has a deterministic learning role, OET route, GitHub-size decision, and integration status. Safe records rotate through the generated advanced Practice and Mock catalogs by stable source ID; restricted exam scans and unsafe files remain indexed but cannot enter learner sessions.
 - The Source Library now visualises the complete source-to-practice pipeline and filters private records by format, learning role, skill route, and integration decision.
 - Two official-public Listening sample packs are imported from six source-matched Part A/B/C tracks. Their continuous recordings, official papers, and 84 scored answers now run directly in Mock Exams.
+- Generated mocks now reproduce the mounted sample papers' phase behavior: exact A/B/C quotas and response types, coherent four-text Reading Part A, two-text Reading Part C, phase-specific clocks, Writing read-only time, Speaking preparation/performance, and feedback hidden until submission.
 - The workstation catalog provides more than 1,000 Medicine test sessions for each of Listening, Reading, Writing, and Speaking.
 - Owner-restricted, deleted, or otherwise inaccessible Drive items: documented
   exceptions until the owner changes access.

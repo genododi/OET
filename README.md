@@ -25,6 +25,7 @@ npm run preview
 - Grade A diagnostic and plan based on exam date, available days, daily time, and four baseline scaled scores.
 - Medicine resource library with sub-test, format, source, and text filters.
 - Timed Listening, Reading, Writing, and Speaking sessions with review evidence and provenance.
+- Authentic mock orchestration derived from the mounted official sample papers: locked Listening/Reading/Writing/Speaking phases, exact task quotas, phase clocks, one-use audio, and no in-test answer reveal.
 - More than 1,000 browsable Medicine test sessions in each of Listening, Reading, Writing, and Speaking.
 - A single next-best-move prescription that samples unmeasured skills first, then routes the weakest sub-test to its lowest measured Part A/B/C or productive rubric score.
 - Time-calibrated adaptive workloads: at most one full Writing letter, one Speaking role-play in a mixed set, or the two-role-play workload when Speaking is trained alone.
@@ -107,7 +108,7 @@ The Codex automation **OET daily source deploy** owns the 06:30 daily run. It in
 verifies generated source changes in isolation, commits only the generated manifest and catalog files,
 pushes to `main`, waits for GitHub Pages, and reports failures without force-pushing.
 
-The reconciled delivery checklist and remaining external-access exceptions are maintained in [the source-driven upgrade status](docs/source-driven-upgrade-status.md).
+The authentic mock blueprint is documented in [the OET exam simulation specification](docs/authentic-oet-simulation.md). The reconciled delivery checklist and remaining external-access exceptions are maintained in [the source-driven upgrade status](docs/source-driven-upgrade-status.md).
 
 ## Tutoring and privacy
 

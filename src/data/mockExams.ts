@@ -441,7 +441,7 @@ const curatedMockExams: MockExam[] = [
     durationMinutes: 45,
     difficulty: 'beginner',
     description:
-      'Shorter extracts for beginners — build note-completion speed before full 45-minute papers.',
+      'Shorter extracts for beginners — build note-completion speed before full 40-minute papers.',
     questionsCount: 18,
   },
   {

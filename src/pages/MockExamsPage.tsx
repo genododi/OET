@@ -120,8 +120,30 @@ export function MockExamsPage({ defaultProfession = 'Medicine' }: Props) {
             .{' '}
           </>
         )}
-        Generated catalog scenarios are original, unofficial practice aligned with the published OET task structure. The featured real-audio tests are official public sample packs with source-matched papers and recordings.
+        Every generated simulation now reproduces the authentic OET phase order, task counts,
+        response controls and section clocks derived from the source sample papers. Scenario content
+        remains original and unofficial; the featured real-audio tests use source-matched public sample
+        papers and recordings.
       </p>
+
+      <section className="oet-blueprint-strip" aria-label="Authentic OET exam blueprint">
+        <article>
+          <span>L</span>
+          <div><strong>Listening · 40 min</strong><small>A 24 · B 6 · C 12 · audio once</small></div>
+        </article>
+        <article>
+          <span>R</span>
+          <div><strong>Reading · 60 min</strong><small>A 20 / 15 min · B+C 22 / 45 min</small></div>
+        </article>
+        <article>
+          <span>W</span>
+          <div><strong>Writing · 45 min</strong><small>5 min read · 40 min write · one letter</small></div>
+        </article>
+        <article>
+          <span>S</span>
+          <div><strong>Speaking · ≈20 min</strong><small>warm-up · 3+5 min × two role-plays</small></div>
+        </article>
+      </section>
 
       <div className="card listening-audio-notice">
         <strong>🎧 Real listening audio is ready</strong>

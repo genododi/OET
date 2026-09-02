@@ -94,6 +94,30 @@ export interface SessionListeningAudio {
   examMode?: boolean;
 }
 
+export type OetSessionStageMode =
+  | 'objective'
+  | 'reading-only'
+  | 'writing'
+  | 'speaking-warmup'
+  | 'speaking-preparation'
+  | 'speaking-roleplay';
+
+/**
+ * A locked phase in an authentic OET mock. Task ids may repeat across phases:
+ * Writing shows the same case notes during reading and writing time, while each
+ * Speaking card is shown first for preparation and then for the role-play.
+ */
+export interface OetSessionStage {
+  id: string;
+  label: string;
+  subtest: OetSubtest;
+  part?: 'A' | 'B' | 'C';
+  durationSeconds: number;
+  taskIds: string[];
+  mode: OetSessionStageMode;
+  instructions: string;
+}
+
 export interface SessionConfig {
   id: string;
   kind: 'mock' | 'practice' | 'usmle-block' | 'usmle-custom';
@@ -106,6 +130,8 @@ export interface SessionConfig {
   enforceSinglePlayListening?: boolean;
   /** Full-length official audio for listening mocks/practice (shown on intro + listening steps) */
   listeningAudio?: SessionListeningAudio;
+  /** Locked, official-format phase sequence. Present on every mock simulation. */
+  stages?: OetSessionStage[];
 }
 
 export interface SubtestReviewScore {

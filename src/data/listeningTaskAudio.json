@@ -1299,5 +1299,53 @@
       "expanded across both eyes over about fifteen minutes"
     ],
     "voice": "Karen"
+  },
+  "lis-124": {
+    "question": "What does the registrar want the clinical team to do before giving the lunchtime insulin?",
+    "correctAnswer": "Repeat the glucose check and confirm that the patient can eat",
+    "script": "Registrar: Before lunchtime insulin, please repeat the capillary glucose and make sure Mister Bell can manage his meal. The first reading was unexpectedly low and he has been nauseated. Do not simply add the breakfast dose that was omitted. Once you have the repeat result and know whether he can eat, call me and we will decide the dose. This is a pause for verification, not a plan to stop all insulin.",
+    "speechScript": "Registrar. Before lunchtime insulin, please repeat the capillary glucose and make sure Mister Bell can manage his meal. The first reading was unexpectedly low and he has been nauseated. Do not simply add the breakfast dose that was omitted. Once you have the repeat result and know whether he can eat, call me and we will decide the dose. This is a pause for verification, not a plan to stop all insulin.",
+    "evidenceTerms": [
+      "repeat the capillary glucose",
+      "make sure Mister Bell can manage his meal",
+      "pause for verification"
+    ],
+    "voice": "Daniel"
+  },
+  "lis-125": {
+    "question": "Why does the medicines-safety doctor ask for the discharge prescription to be amended?",
+    "correctAnswer": "It contains two brands with the same anticoagulant ingredient",
+    "script": "Medicines-safety doctor: Could you amend Mrs Rahman's discharge prescription before it is issued? Apixaban appears once under its generic name and again under the brand name Eliquis. They are the same anticoagulant, so leaving both active could lead her to take a double dose. Supply is not a problem, and the intended dose itself is correct. Please discontinue the duplicate brand entry and update the medicines list.",
+    "speechScript": "Medicines safety doctor. Could you amend Mrs Rahman's discharge prescription before it is issued? Apixaban appears once under its generic name and again under the brand name Eliquis. They are the same anticoagulant, so leaving both active could lead her to take a double dose. Supply is not a problem, and the intended dose itself is correct. Please discontinue the duplicate brand entry and update the medicines list.",
+    "evidenceTerms": [
+      "same anticoagulant",
+      "double dose",
+      "discontinue the duplicate"
+    ],
+    "voice": "Samantha"
+  },
+  "lis-126": {
+    "question": "What change is the radiology lead asking doctors to make?",
+    "correctAnswer": "Record that an unexpected result has been received and acted on",
+    "script": "Radiology lead: When we telephone an unexpected finding, the electronic report still needs a closed communication loop. Please add a note confirming that you received the result and what clinical action followed. This is not a request to telephone us before every urgent scan. Nor should you delay an appropriate treatment change while waiting for the final typed report. The key change is to acknowledge the alert and document the response.",
+    "speechScript": "Radiology lead. When we telephone an unexpected finding, the electronic report still needs a closed communication loop. Please add a note confirming that you received the result and what clinical action followed. This is not a request to telephone us before every urgent scan. Nor should you delay an appropriate treatment change while waiting for the final typed report. The key change is to acknowledge the alert and document the response.",
+    "evidenceTerms": [
+      "confirming that you received the result",
+      "what clinical action followed",
+      "document the response"
+    ],
+    "voice": "Moira"
+  },
+  "lis-127": {
+    "question": "What is the main point of the safety huddle?",
+    "correctAnswer": "A verbal handover must accompany the electronic isolation alert",
+    "script": "Clinical lead: Yesterday a patient reached the receiving ward before staff noticed the isolation flag in the transfer record. The electronic alert remains useful, so we are not removing it. From today, the sending doctor must also state the isolation requirement directly during verbal handover and ask the receiver to confirm it. Infection-control staff do not need to conduct every transfer. The change is simply to make sure the electronic warning is reinforced aloud.",
+    "speechScript": "Clinical lead. Yesterday a patient reached the receiving ward before staff noticed the isolation flag in the transfer record. The electronic alert remains useful, so we are not removing it. From today, the sending doctor must also state the isolation requirement directly during verbal handover and ask the receiver to confirm it. Infection control staff do not need to conduct every transfer. The change is simply to make sure the electronic warning is reinforced aloud.",
+    "evidenceTerms": [
+      "state the isolation requirement directly",
+      "during verbal handover",
+      "reinforced aloud"
+    ],
+    "voice": "Karen"
   }
 }

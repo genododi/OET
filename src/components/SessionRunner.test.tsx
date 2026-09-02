@@ -63,4 +63,71 @@ describe('timed session completion', () => {
     });
     expect(storageWrite).toHaveBeenCalledTimes(1);
   });
+
+  it('locks Writing reading time and withholds review during an authentic mock', async () => {
+    vi.useFakeTimers();
+    const mockConfig: SessionConfig = {
+      id: 'mock-stage-regression',
+      kind: 'mock',
+      title: 'Authentic Writing Mock',
+      subtitle: 'Medicine',
+      durationMinutes: 2 / 60,
+      subtests: ['writing'],
+      tasks: [
+        {
+          id: 'mock-stage-intro',
+          subtest: 'intro',
+          title: 'Instructions',
+          instructions: 'Follow the authentic phases.',
+        },
+        {
+          id: 'mock-stage-writing',
+          subtest: 'writing',
+          title: 'Referral letter',
+          instructions: 'Read and write.',
+          prompt: 'Case notes',
+          rubricChecklist: [],
+        },
+      ],
+      stages: [
+        {
+          id: 'mock-read',
+          label: 'Writing · Reading time',
+          subtest: 'writing',
+          durationSeconds: 1,
+          taskIds: ['mock-stage-writing'],
+          mode: 'reading-only',
+          instructions: 'Read only.',
+        },
+        {
+          id: 'mock-write',
+          label: 'Writing · Writing time',
+          subtest: 'writing',
+          durationSeconds: 1,
+          taskIds: ['mock-stage-writing'],
+          mode: 'writing',
+          instructions: 'Write now.',
+        },
+      ],
+    };
+
+    render(<SessionRunner config={mockConfig} onExit={vi.fn()} />);
+    fireEvent.click(screen.getByRole('button', { name: /start .*minute session/i }));
+
+    expect(screen.getByRole('heading', { name: 'Writing · Reading time' })).toBeInTheDocument();
+    expect(screen.getByLabelText('Your letter draft')).toBeDisabled();
+
+    await act(async () => {
+      await vi.advanceTimersByTimeAsync(1_000);
+    });
+
+    expect(screen.getByRole('heading', { name: 'Writing · Writing time' })).toBeInTheDocument();
+    expect(screen.getByLabelText('Your letter draft')).toBeEnabled();
+    expect(screen.queryByRole('button', { name: /submit draft/i })).not.toBeInTheDocument();
+
+    await act(async () => {
+      await vi.advanceTimersByTimeAsync(1_000);
+    });
+    expect(screen.getByRole('heading', { name: 'Session complete' })).toBeInTheDocument();
+  });
 });

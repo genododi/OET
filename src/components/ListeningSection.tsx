@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { Fragment, useCallback, useEffect, useRef, useState } from 'react';
 import type { SessionTask } from '../types/session';
 import {
   correctAnswerLabel,
@@ -15,6 +15,8 @@ interface Props {
   examMode?: boolean;
   playbackConsumed?: boolean;
   onPlaybackStart?: () => void;
+  /** A live mock never reveals answers before final submission. */
+  hideFeedback?: boolean;
 }
 
 function isCorrectAnswer(task: SessionTask, userText: string | undefined): boolean | null {
@@ -31,6 +33,7 @@ export default function ListeningSection({
   examMode = false,
   playbackConsumed = false,
   onPlaybackStart,
+  hideFeedback = false,
 }: Props) {
   const [playing, setPlaying] = useState(false);
   const [playbackFinished, setPlaybackFinished] = useState(false);
@@ -82,10 +85,11 @@ export default function ListeningSection({
   return (
     <div className="card listening-section">
       <div className="listening-section-header">
-        <h3>Listening — continuous playback</h3>
+        <span className="oet-paper-label">LISTENING SUB-TEST · QUESTION PAPER</span>
+        <h3>Listening — Parts A, B and C</h3>
         <p className="session-instructions">
           {examMode
-            ? 'The original question-matched clips play once in sequence. Once started, the set cannot be stopped, restarted or replayed in this session.'
+            ? 'You will hear each extract once only. Complete your answers as you listen. You have two minutes to check answers at the end of the recording.'
             : 'The original question-matched clips play in sequence. Use replay for coached practice, then use a qualifying set for strict one-use playback.'}
         </p>
       </div>
@@ -116,11 +120,44 @@ export default function ListeningSection({
       </div>
 
       <ol className="listening-questions">
-        {tasks.map((task, idx) => (
-          <li
-            key={task.id}
-            className={`listening-question-item ${currentIdx === idx ? 'listening-question-active' : ''}`}
-          >
+        {tasks.map((task, idx) => {
+          const part = task.title.match(/\bPart ([ABC])\b/i)?.[1]?.toUpperCase() ?? 'A';
+          const previousPart = idx > 0
+            ? tasks[idx - 1]?.title.match(/\bPart ([ABC])\b/i)?.[1]?.toUpperCase()
+            : undefined;
+          const partIndex = tasks.slice(0, idx).filter((candidate) =>
+            candidate.title.match(/\bPart ([ABC])\b/i)?.[1]?.toUpperCase() === part,
+          ).length;
+          const showPartHeading = idx === 0 || part !== previousPart;
+          const extractNumber =
+            part === 'A' ? Math.floor(partIndex / 12) + 1 : part === 'C' ? Math.floor(partIndex / 6) + 1 : partIndex + 1;
+          const showExtractHeading =
+            (part === 'A' && partIndex % 12 === 0) ||
+            part === 'B' ||
+            (part === 'C' && partIndex % 6 === 0);
+
+          return (
+          <Fragment key={task.id}>
+            {showPartHeading && (
+              <li className="oet-listening-part-heading">
+                <span>Part {part}</span>
+                <strong>
+                  {part === 'A'
+                    ? 'Two patient consultations · Questions 1–24'
+                    : part === 'B'
+                      ? 'Six workplace extracts · Questions 25–30'
+                      : 'Two presentation or interview extracts · Questions 31–42'}
+                </strong>
+              </li>
+            )}
+            {showExtractHeading && (
+              <li className="oet-listening-extract-heading">
+                Extract {extractNumber}
+              </li>
+            )}
+            <li
+              className={`listening-question-item ${currentIdx === idx ? 'listening-question-active' : ''}`}
+            >
             <div className="listening-question-header">
               <span className="listening-question-num">Question {idx + 1}</span>
               <span className="listening-question-type">{task.title}</span>
@@ -168,7 +205,7 @@ export default function ListeningSection({
                   })}
                 </fieldset>
               )}
-              {!revealed[task.id] && (
+              {!hideFeedback && !revealed[task.id] && (
                 <button
                   type="button"
                   className="btn btn-secondary btn-sm"
@@ -178,7 +215,7 @@ export default function ListeningSection({
                   Check answer
                 </button>
               )}
-              {revealed[task.id] && (
+              {!hideFeedback && revealed[task.id] && (
                 <div className={`listening-feedback ${isCorrectAnswer(task, answers[task.id]) ? 'listening-feedback-correct' : 'listening-feedback-incorrect'}`}>
                   {isCorrectAnswer(task, answers[task.id])
                     ? '✓ Correct'
@@ -186,8 +223,10 @@ export default function ListeningSection({
                 </div>
               )}
             </div>
-          </li>
-        ))}
+            </li>
+          </Fragment>
+          );
+        })}
       </ol>
     </div>
   );

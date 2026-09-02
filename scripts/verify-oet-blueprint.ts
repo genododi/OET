@@ -7,6 +7,7 @@ import {
 } from '../src/data/sessionTaskBank';
 import {
   OET_FULL_TEST_MINUTES,
+  OET_MOCK_STAGE_SECONDS,
   OET_PARTS,
   OET_SUBTEST_MINUTES,
   OET_SUBTEST_PART_TASK_COUNTS,
@@ -17,7 +18,9 @@ import {
   hasOetPartBlueprint,
 } from '../src/lib/oetExamTiming';
 import { buildMockSession } from '../src/lib/sessionBuilder';
+import { oetResponseMode } from '../src/lib/oetResponseMode';
 import type { OetSubtest } from '../src/types';
+import type { OetSessionStage } from '../src/types/session';
 
 const subtests: OetSubtest[] = ['listening', 'reading', 'writing', 'speaking'];
 const officialMinutes: Record<OetSubtest, number> = {
@@ -92,6 +95,17 @@ for (const exam of mockExams) {
     oetMockTaskCount(exam.subtests),
     `${exam.id} silently caps its scored task count`,
   );
+  assert.ok(session.stages?.length, `${exam.id} is missing its locked OET phase sequence`);
+  assert.equal(
+    session.stages?.reduce((sum, stage) => sum + stage.durationSeconds, 0),
+    session.durationMinutes * 60,
+    `${exam.id} phase clocks do not add up to the published component time`,
+  );
+  assert.equal(
+    session.tasks.some((task) => task.subtest === 'break'),
+    false,
+    `${exam.id} contains a fabricated scored-block break`,
+  );
 
   for (const subtest of exam.subtests) {
     assert.equal(
@@ -134,7 +148,98 @@ for (const exam of mockExams) {
             partA.slice(7).every(isReadingPartAShortAnswer),
           `${exam.id} Reading Part A response modes are out of official order`,
         );
+        assert.equal(
+          new Set(partA.map((task) => task.readingPassageTitle)).size,
+          1,
+          `${exam.id} Reading Part A must use one shared four-text booklet`,
+        );
+        assert.ok(
+          partA.slice(0, 7).every((task) => task.options?.length === 4),
+          `${exam.id} Reading Part A matching questions must offer Texts A-D`,
+        );
+
+        const partB = subtestTasks.filter((task) => oetTaskPart(task) === 'B');
+        assert.ok(
+          partB.every((task) => task.options?.length === 3),
+          `${exam.id} Reading Part B must use three-option questions`,
+        );
+        const partC = subtestTasks.filter((task) => oetTaskPart(task) === 'C');
+        const partCTextCounts = new Map<string, number>();
+        for (const task of partC) {
+          const title = task.readingPassageTitle ?? '';
+          partCTextCounts.set(title, (partCTextCounts.get(title) ?? 0) + 1);
+        }
+        assert.deepEqual(
+          [...partCTextCounts.values()].sort((a, b) => a - b),
+          [8, 8],
+          `${exam.id} Reading Part C must use two texts with eight questions each`,
+        );
+        assert.ok(
+          partC.every((task) => task.options?.length === 4),
+          `${exam.id} Reading Part C must use four-option questions`,
+        );
+      } else {
+        const partA = subtestTasks.filter((task) => oetTaskPart(task) === 'A');
+        const partB = subtestTasks.filter((task) => oetTaskPart(task) === 'B');
+        const partC = subtestTasks.filter((task) => oetTaskPart(task) === 'C');
+        assert.ok(
+          partA.every((task) => oetResponseMode(task) === 'short-text'),
+          `${exam.id} Listening Part A must use note completion`,
+        );
+        assert.ok(
+          [...partB, ...partC].every(
+            (task) => oetResponseMode(task) === 'single-choice' && task.options?.length === 3,
+          ),
+          `${exam.id} Listening Parts B/C must use three-option questions`,
+        );
+        assert.ok(
+          [...partB, ...partC].every(
+            (task) => !/^\s*Complete:/i.test(task.prompt ?? ''),
+          ),
+          `${exam.id} Listening Parts B/C must test gist, purpose or inference rather than note completion`,
+        );
       }
+    }
+
+    const allStages: OetSessionStage[] = session.stages ?? [];
+    const subtestStages: OetSessionStage[] = allStages.filter(
+      (stage: OetSessionStage) => stage.subtest === subtest,
+    );
+    if (subtest === 'listening') {
+      assert.deepEqual(
+        subtestStages.map((stage) => stage.durationSeconds),
+        [OET_MOCK_STAGE_SECONDS.listening],
+        `${exam.id} has incorrect Listening phase timing`,
+      );
+    } else if (subtest === 'reading') {
+      assert.deepEqual(
+        subtestStages.map((stage) => stage.durationSeconds),
+        [OET_MOCK_STAGE_SECONDS.readingPartA, OET_MOCK_STAGE_SECONDS.readingPartsBC],
+        `${exam.id} has incorrect Reading phase timing`,
+      );
+    } else if (subtest === 'writing') {
+      assert.deepEqual(
+        subtestStages.map((stage) => stage.durationSeconds),
+        [OET_MOCK_STAGE_SECONDS.writingReading, OET_MOCK_STAGE_SECONDS.writingResponse],
+        `${exam.id} has incorrect Writing phase timing`,
+      );
+      assert.deepEqual(
+        subtestStages[0]?.taskIds,
+        subtestStages[1]?.taskIds,
+        `${exam.id} must show the same Writing paper before and after typing unlocks`,
+      );
+    } else {
+      assert.deepEqual(
+        subtestStages.map((stage) => stage.durationSeconds),
+        [
+          OET_MOCK_STAGE_SECONDS.speakingWarmup,
+          OET_MOCK_STAGE_SECONDS.speakingPreparation,
+          OET_MOCK_STAGE_SECONDS.speakingRoleplay,
+          OET_MOCK_STAGE_SECONDS.speakingPreparation,
+          OET_MOCK_STAGE_SECONDS.speakingRoleplay,
+        ],
+        `${exam.id} has incorrect Speaking preparation/role-play timing`,
+      );
     }
   }
 

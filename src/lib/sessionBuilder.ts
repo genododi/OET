@@ -1,11 +1,13 @@
 import type { Difficulty, MockExam, OetSubtest, PracticeModule } from '../types';
-import type { SessionConfig, SessionTask } from '../types/session';
+import type { OetSessionStage, SessionConfig, SessionTask } from '../types/session';
 import type { CompletedSession } from '../types/session';
 import {
   pickReadingPartATasks,
+  pickReadingPartCTasks,
   pickTasks,
   pickTasksByPart,
   bankBySubtest,
+  isReadingPartAShortAnswer,
   oetTaskPart,
 } from '../data/sessionTaskBank';
 import {
@@ -18,6 +20,7 @@ import {
 } from './taskHistory';
 import {
   OET_SUBTEST_TASK_COUNTS,
+  OET_MOCK_STAGE_SECONDS,
   OET_PARTS,
   OET_SUBTEST_PART_TASK_COUNTS,
   hasOetPartBlueprint,
@@ -74,6 +77,60 @@ function provenanceFor(subtest: OetSubtest): PracticeProvenance {
 
 function withProvenance(task: SessionTask, subtest: OetSubtest): SessionTask {
   return { ...task, provenance: task.provenance ?? provenanceFor(subtest) };
+}
+
+const READING_DISTRACTOR_STEMS = [
+  'The writer presents the issue as settled without qualification',
+  'The evidence removes the need for further clinical review',
+  'The passage recommends ignoring individual clinical circumstances',
+  'The author treats administrative convenience as the only priority',
+] as const;
+
+/** Match the answer-control shape printed in the authentic source papers. */
+function withOfficialResponseFormat(task: SessionTask): SessionTask {
+  if (task.subtest !== 'reading' || !task.options) return task;
+  const part = oetTaskPart(task);
+  const needsFourOptions =
+    part === 'C' || (part === 'A' && !isReadingPartAShortAnswer(task));
+  if (!needsFourOptions || task.options.length >= 4) return task;
+
+  if (part === 'A') {
+    const existingLetters = new Set(
+      task.options
+        .map((option) => option.label.match(/\bText ([A-D])\b/i)?.[1]?.toUpperCase())
+        .filter(Boolean),
+    );
+    const missingLetter = ['A', 'B', 'C', 'D'].find((letter) => !existingLetters.has(letter)) ?? 'D';
+    return {
+      ...task,
+      options: [
+        ...task.options,
+        {
+          id: `${task.id}-official-distractor`,
+          label: `Text ${missingLetter}`,
+          correct: false,
+          explanation: 'That text does not contain the requested information.',
+        },
+      ],
+    };
+  }
+
+  const distractor = READING_DISTRACTOR_STEMS[
+    task.id.split('').reduce((sum, character) => sum + character.charCodeAt(0), 0) %
+      READING_DISTRACTOR_STEMS.length
+  ];
+  return {
+    ...task,
+    options: [
+      ...task.options,
+      {
+        id: `${task.id}-official-distractor`,
+        label: distractor,
+        correct: false,
+        explanation: 'This overstates or contradicts the writer’s position.',
+      },
+    ],
+  };
 }
 
 export function countContentTasks(tasks: SessionTask[]): number {
@@ -195,25 +252,31 @@ export function buildMockSession(exam: MockExam): SessionConfig {
       subtest: 'intro',
       title: 'Mock exam instructions',
       instructions:
-        'Timed simulation — complete sections in order. Listening, Reading and Writing form the 145-minute written block; Speaking is a separate 20-minute component in live OET scheduling.',
+        'Authentic timed simulation — complete every phase in order. Answers stay hidden until the mock is submitted. Reading Part A closes after 15 minutes; Writing begins with 5 minutes of reading time; Speaking follows the preparation and role-play sequence.',
       checklist: [
         `Focus: ${exam.profession}`,
         `Duration: ${durationMinutes} min`,
         `Blueprint: ${questionCount} scored task(s)`,
         `Sub-tests: ${exam.subtests.join(', ')}`,
+        ...(exam.subtests.includes('listening')
+          ? ['Listening: Part A 24 · Part B 6 · Part C 12']
+          : []),
+        ...(exam.subtests.includes('reading')
+          ? ['Reading: Part A 20 in 15 min · Parts B/C 22 in 45 min']
+          : []),
+        ...(exam.subtests.includes('writing')
+          ? ['Writing: 5 min reading · 40 min writing · one profession-specific letter']
+          : []),
+        ...(exam.subtests.includes('speaking')
+          ? ['Speaking: warm-up · 3 min preparation + 5 min role-play, twice']
+          : []),
       ],
     },
   ];
 
+  const stages: OetSessionStage[] = [];
+
   exam.subtests.forEach((subtest, index) => {
-    if (index > 0) {
-      tasks.push({
-        id: `${exam.id}-break-${index}`,
-        subtest: 'break',
-        title: 'Short break',
-        instructions: 'Take 2 minutes. Hydrate before the next sub-test.',
-      });
-    }
     const bankSize = bankBySubtest[subtest].length;
     const requested = taskCounts[index]!;
     const capped = Math.min(requested, bankSize);
@@ -224,6 +287,8 @@ export function buildMockSession(exam: MockExam): SessionConfig {
       const partTasks = OET_PARTS.flatMap((part) =>
         subtest === 'reading' && part === 'A'
           ? pickReadingPartATasks(`${exam.id}-${subtest}`, seed, 'advanced')
+          : subtest === 'reading' && part === 'C'
+            ? pickReadingPartCTasks(`${exam.id}-${subtest}`, seed, 'advanced')
           : pickTasksByPart(
               subtest,
               part,
@@ -233,13 +298,121 @@ export function buildMockSession(exam: MockExam): SessionConfig {
               'advanced',
             ),
       );
-      tasks.push(...partTasks.map((task) => withProvenance(task, subtest)));
-    } else {
-      tasks.push(
-        ...pickTasks(subtest, capped, `${exam.id}-${subtest}`, seed, 'advanced').map((task) =>
-          withProvenance(task, subtest),
-        ),
+      const selected = partTasks.map((task) =>
+        withProvenance(withOfficialResponseFormat(task), subtest),
       );
+      tasks.push(...selected);
+
+      if (subtest === 'listening') {
+        stages.push({
+          id: `${exam.id}-listening`,
+          label: 'Listening · Parts A, B & C',
+          subtest,
+          durationSeconds: OET_MOCK_STAGE_SECONDS.listening,
+          taskIds: selected.map((task) => task.id),
+          mode: 'objective',
+          instructions:
+            'You will hear every extract once only. Part A contains two consultations and note completion; Part B has six workplace extracts; Part C has two longer presentation or interview extracts.',
+        });
+      } else {
+        const partAIds = selected
+          .filter((task) => oetTaskPart(task) === 'A')
+          .map((task) => task.id);
+        const partBCIds = selected
+          .filter((task) => oetTaskPart(task) === 'B' || oetTaskPart(task) === 'C')
+          .map((task) => task.id);
+        stages.push(
+          {
+            id: `${exam.id}-reading-a`,
+            label: 'Reading · Part A',
+            subtest,
+            part: 'A',
+            durationSeconds: OET_MOCK_STAGE_SECONDS.readingPartA,
+            taskIds: partAIds,
+            mode: 'objective',
+            instructions:
+              'Answer Questions 1–20 from the four short texts. Part A closes when the 15-minute clock expires and cannot be reopened.',
+          },
+          {
+            id: `${exam.id}-reading-bc`,
+            label: 'Reading · Parts B & C',
+            subtest,
+            durationSeconds: OET_MOCK_STAGE_SECONDS.readingPartsBC,
+            taskIds: partBCIds,
+            mode: 'objective',
+            instructions:
+              'Part B contains six short workplace texts. Part C contains two longer healthcare texts with eight questions each.',
+          },
+        );
+      }
+    } else {
+      const selected = pickTasks(subtest, capped, `${exam.id}-${subtest}`, seed, 'advanced').map(
+        (task) => withProvenance(task, subtest),
+      );
+      tasks.push(...selected);
+
+      if (subtest === 'writing') {
+        const writingTaskIds = selected.map((task) => task.id);
+        stages.push(
+          {
+            id: `${exam.id}-writing-read`,
+            label: 'Writing · Reading time',
+            subtest,
+            durationSeconds: OET_MOCK_STAGE_SECONDS.writingReading,
+            taskIds: writingTaskIds,
+            mode: 'reading-only',
+            instructions:
+              'Read the case notes and writing task. You cannot type during these five minutes.',
+          },
+          {
+            id: `${exam.id}-writing-write`,
+            label: 'Writing · Writing time',
+            subtest,
+            durationSeconds: OET_MOCK_STAGE_SECONDS.writingResponse,
+            taskIds: writingTaskIds,
+            mode: 'writing',
+            instructions:
+              'Write one profession-specific letter. Select and transform relevant case notes; use an appropriate professional letter format.',
+          },
+        );
+      } else {
+        const [firstRolePlay, secondRolePlay] = selected;
+        stages.push({
+          id: `${exam.id}-speaking-warmup`,
+          label: 'Speaking · Interlocutor warm-up',
+          subtest,
+          durationSeconds: OET_MOCK_STAGE_SECONDS.speakingWarmup,
+          taskIds: [],
+          mode: 'speaking-warmup',
+          instructions:
+            'Complete the identity and audio check, then answer unassessed questions about your professional background. The role-play cards remain closed.',
+        });
+        [firstRolePlay, secondRolePlay].forEach((rolePlay, roleIndex) => {
+          if (!rolePlay) return;
+          stages.push(
+            {
+              id: `${exam.id}-speaking-${roleIndex + 1}-prepare`,
+              label: `Speaking · Role-play ${roleIndex + 1} preparation`,
+              subtest,
+              durationSeconds: OET_MOCK_STAGE_SECONDS.speakingPreparation,
+              taskIds: [rolePlay.id],
+              mode: 'speaking-preparation',
+              instructions:
+                'Read the setting, your role and every task point. You may make brief notes, but do not begin the role-play yet.',
+            },
+            {
+              id: `${exam.id}-speaking-${roleIndex + 1}-perform`,
+              label: `Speaking · Role-play ${roleIndex + 1}`,
+              subtest,
+              durationSeconds: OET_MOCK_STAGE_SECONDS.speakingRoleplay,
+              taskIds: [rolePlay.id],
+              mode: 'speaking-roleplay',
+              instructions:
+                'Respond naturally to the interlocutor and work through the task points. The role-play ends when the five-minute clock expires.',
+            },
+          );
+        });
+      }
     }
   });
 
@@ -251,6 +424,7 @@ export function buildMockSession(exam: MockExam): SessionConfig {
     durationMinutes,
     subtests: exam.subtests,
     tasks,
+    stages,
   };
 }
 

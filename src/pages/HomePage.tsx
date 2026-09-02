@@ -31,7 +31,7 @@ interface Props {
 }
 
 const subtestNav: { name: string; subtest: OetSubtest; time: string; icon: string }[] = [
-  { name: 'Listening', subtest: 'listening', time: '~45 min', icon: '🎧' },
+  { name: 'Listening', subtest: 'listening', time: '~40 min', icon: '🎧' },
   { name: 'Reading', subtest: 'reading', time: '60 min', icon: '📄' },
   { name: 'Writing', subtest: 'writing', time: '45 min', icon: '✍️' },
   { name: 'Speaking', subtest: 'speaking', time: '~20 min', icon: '🗣️' },

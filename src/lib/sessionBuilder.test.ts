@@ -2,11 +2,13 @@ import { describe, expect, it } from 'vitest';
 import { practiceModules } from '../data/practice';
 import type { PracticeModule } from '../types';
 import {
+  buildMockSession,
   buildPracticeSession,
   countContentTasks,
   MIN_CONTENT_TASKS,
   practiceSessionWorkload,
 } from './sessionBuilder';
+import type { MockExam } from '../types';
 
 function moduleById(id: string): PracticeModule {
   const module = practiceModules.find((candidate) => candidate.id === id);
@@ -54,5 +56,41 @@ describe('catalog practice workload calibration', () => {
         workload.taskCount,
       );
     }
+  });
+});
+
+describe('authentic OET mock phase calibration', () => {
+  it('builds the official Medicine phase sequence and locks repeated productive tasks', () => {
+    const exam: MockExam = {
+      id: 'authentic-blueprint-test',
+      title: 'Authentic Medicine Mock',
+      profession: 'Medicine',
+      subtests: ['listening', 'reading', 'writing', 'speaking'],
+      durationMinutes: 165,
+      difficulty: 'advanced',
+      description: 'Test fixture',
+      questionsCount: 87,
+    };
+    const session = buildMockSession(exam);
+
+    expect(session.stages?.map((stage) => stage.mode)).toEqual([
+      'objective',
+      'objective',
+      'objective',
+      'reading-only',
+      'writing',
+      'speaking-warmup',
+      'speaking-preparation',
+      'speaking-roleplay',
+      'speaking-preparation',
+      'speaking-roleplay',
+    ]);
+    expect(session.stages?.reduce((sum, stage) => sum + stage.durationSeconds, 0)).toBe(
+      165 * 60,
+    );
+    expect(session.stages?.[1]?.taskIds).toHaveLength(20);
+    expect(session.stages?.[2]?.taskIds).toHaveLength(22);
+    expect(session.stages?.[3]?.taskIds).toEqual(session.stages?.[4]?.taskIds);
+    expect(session.stages?.[6]?.taskIds).toEqual(session.stages?.[7]?.taskIds);
   });
 });

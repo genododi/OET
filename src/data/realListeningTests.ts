@@ -106,7 +106,7 @@ function createTest(
     title,
     questionPdf: media.questionPdf,
     audioPath: media.audioPath,
-    durationMinutes: 45,
+    durationMinutes: 40,
     sourceUrl: media.sourceUrl,
     sourceLabel: 'Official OET sample test, imported from the GENODODI source folder',
     sourceParts: media.parts,

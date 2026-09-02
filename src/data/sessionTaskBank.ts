@@ -1763,6 +1763,122 @@ export const listeningTasks: SessionTask[] = [
     ),
     difficulty: 'advanced',
   },
+  {
+    ...mcq(
+      'lis-124',
+      'listening',
+      'Part B — Diabetes ward handover',
+      'What does the registrar want the clinical team to do before giving the lunchtime insulin?',
+      [
+        {
+          label: 'Repeat the glucose check and confirm that the patient can eat',
+          correct: true,
+          explanation:
+            'The registrar asks the team to verify both the unexpectedly low reading and the patient’s oral intake before deciding on the lunchtime dose.',
+        },
+        {
+          label: 'Give the prescribed dose immediately because breakfast insulin was omitted',
+          correct: false,
+          explanation:
+            'The registrar explicitly says not to compensate automatically for the omitted breakfast dose.',
+        },
+        {
+          label: 'Stop all insulin until the diabetes clinic reviews the patient',
+          correct: false,
+          explanation:
+            'Only the immediate lunchtime decision is paused; the speaker does not discontinue the entire regimen.',
+        },
+      ],
+    ),
+    difficulty: 'advanced',
+  },
+  {
+    ...mcq(
+      'lis-125',
+      'listening',
+      'Part B — Medicines-safety call',
+      'Why does the medicines-safety doctor ask for the discharge prescription to be amended?',
+      [
+        {
+          label: 'It contains two brands with the same anticoagulant ingredient',
+          correct: true,
+          explanation:
+            'The caller identifies a duplication by active ingredient, despite the different brand names.',
+        },
+        {
+          label: 'The anticoagulant dose is lower than the patient received before admission',
+          correct: false,
+          explanation:
+            'The dose is not the concern described; the risk comes from duplicate products being listed together.',
+        },
+        {
+          label: 'Neither anticoagulant brand is available for the patient to take home',
+          correct: false,
+          explanation:
+            'Availability is not mentioned as the reason for the requested amendment.',
+        },
+      ],
+    ),
+    difficulty: 'advanced',
+  },
+  {
+    ...mcq(
+      'lis-126',
+      'listening',
+      'Part B — Imaging-results briefing',
+      'What change is the radiology lead asking doctors to make?',
+      [
+        {
+          label: 'Record that an unexpected result has been received and acted on',
+          correct: true,
+          explanation:
+            'The briefing focuses on closing the communication loop by documenting receipt and the resulting clinical action.',
+        },
+        {
+          label: 'Telephone radiology before requesting every urgent scan',
+          correct: false,
+          explanation:
+            'The speaker discusses acknowledging unexpected findings, not pre-authorising all urgent imaging.',
+        },
+        {
+          label: 'Wait for the final written report before changing treatment',
+          correct: false,
+          explanation:
+            'The lead warns against leaving an actionable verbal finding unattended while waiting for the final report.',
+        },
+      ],
+    ),
+    difficulty: 'advanced',
+  },
+  {
+    ...mcq(
+      'lis-127',
+      'listening',
+      'Part B — Isolation-room safety huddle',
+      'What is the main point of the safety huddle?',
+      [
+        {
+          label: 'A verbal handover must accompany the electronic isolation alert',
+          correct: true,
+          explanation:
+            'The team is asked to retain the electronic flag but add direct verbal confirmation during transfer.',
+        },
+        {
+          label: 'The electronic isolation alert should be removed from transfer records',
+          correct: false,
+          explanation:
+            'The speaker says the electronic alert remains useful; it is not sufficient by itself.',
+        },
+        {
+          label: 'Only infection-control staff may transfer patients to isolation rooms',
+          correct: false,
+          explanation:
+            'The huddle changes the communication process, not which staff are authorised to transfer patients.',
+        },
+      ],
+    ),
+    difficulty: 'advanced',
+  },
 ];
 
 export const readingTasks: SessionTask[] = [
@@ -1928,6 +2044,36 @@ export const readingTasks: SessionTask[] = [
     ]),
     difficulty: 'advanced',
   },
+  advancedReadingMcq('read-99', 'Part C — Decision-specific capacity', 'passage-capacity-fluctuation', 'What is the writer emphasising by describing capacity as decision-specific and time-specific?', [
+    { label: 'A person’s ability must be assessed for the particular decision at the relevant time', correct: true },
+    { label: 'Capacity can be decided permanently from one difficult clinical encounter', correct: false },
+    { label: 'Only complex surgical decisions require an assessment of capacity', correct: false },
+  ]),
+  advancedReadingMcq('read-100', 'Part C — Practical support', 'passage-capacity-fluctuation', 'Before concluding that a patient lacks capacity, the assessor should…', [
+    { label: 'Try practical measures that may help the patient make the decision', correct: true },
+    { label: 'Ask the nearest relative to complete the assessment instead', correct: false },
+    { label: 'Test whether the patient agrees with the clinician’s recommendation', correct: false },
+  ]),
+  advancedReadingMcq('read-101', 'Part C — Four abilities', 'passage-capacity-fluctuation', 'Which ability is included in the assessment described?', [
+    { label: 'Using or weighing the relevant information', correct: true },
+    { label: 'Recalling every previous treatment decision', correct: false },
+    { label: 'Explaining the clinical evidence in professional terminology', correct: false },
+  ]),
+  advancedReadingMcq('read-102', 'Part C — Timing a decision', 'passage-capacity-fluctuation', 'What does the guidance suggest for a non-urgent decision when alertness may improve?', [
+    { label: 'Delay it and reassess when the patient is better able to decide', correct: true },
+    { label: 'Treat the first failed assessment as conclusive', correct: false },
+    { label: 'Proceed immediately under best interests in every case', correct: false },
+  ]),
+  advancedReadingMcq('read-103', 'Part C — Best interests threshold', 'passage-capacity-fluctuation', 'A best interests decision is appropriate when…', [
+    { label: 'Capacity is absent and harmful delay is not reasonable', correct: true },
+    { label: 'A capacitous patient chooses an option the clinician dislikes', correct: false },
+    { label: 'The family prefers a faster decision', correct: false },
+  ]),
+  advancedReadingMcq('read-104', 'Part C — Transient refusal', 'passage-capacity-fluctuation', 'How should an apparent refusal during transient confusion be handled?', [
+    { label: 'Prompt reassessment rather than immediate acceptance as a settled capacitous refusal', correct: true },
+    { label: 'Be overridden permanently by the patient’s family', correct: false },
+    { label: 'Be treated as proof that the patient lacks capacity for all decisions', correct: false },
+  ]),
   {
     ...readingMcq('read-31', 'Part B — Necrotising infection escalation', 'passage-nec-fasc-triage', 'If necrotising infection is suspected, MRI should…', [
       { label: 'Not delay surgical escalation and treatment', correct: true },
@@ -2172,6 +2318,31 @@ export const readingTasks: SessionTask[] = [
     { label: 'The participants were randomised only after they became clinically stable', correct: false },
     { label: 'The shorter course reduced treatment burden', correct: false },
   ]),
+  advancedReadingMcq('read-105', 'Part C — Purpose of the margin', 'passage-noninferiority-interpretation', 'What should the non-inferiority margin represent?', [
+    { label: 'The largest clinically acceptable loss in efficacy for the expected advantages', correct: true },
+    { label: 'The smallest numerical difference observed after the data are analysed', correct: false },
+    { label: 'A guarantee that both treatments work identically for every patient', correct: false },
+  ]),
+  advancedReadingMcq('read-106', 'Part C — Timing the margin', 'passage-noninferiority-interpretation', 'Why must the margin be set before outcomes are examined?', [
+    { label: 'Choosing it afterwards would allow the success standard to move with the result', correct: true },
+    { label: 'Clinical judgement is prohibited once recruitment starts', correct: false },
+    { label: 'Confidence intervals cannot be calculated with a later margin', correct: false },
+  ]),
+  advancedReadingMcq('read-107', 'Part C — Protocol dilution', 'passage-noninferiority-interpretation', 'Why can crossover make non-inferiority easier to declare?', [
+    { label: 'It can make the treatment groups appear more similar', correct: true },
+    { label: 'It always increases the observed treatment difference', correct: false },
+    { label: 'It preserves randomisation more effectively than intention-to-treat analysis', correct: false },
+  ]),
+  advancedReadingMcq('read-108', 'Part C — Generalising the findings', 'passage-noninferiority-interpretation', 'Which limitation most restricts applying the result to severe infection?', [
+    { label: 'Participants were low risk and already improving before randomisation', correct: true },
+    { label: 'The trial compared courses of different lengths', correct: false },
+    { label: 'The shorter course reduced treatment burden', correct: false },
+  ]),
+  advancedReadingMcq('read-109', 'Part C — Writer’s final position', 'passage-noninferiority-interpretation', 'Which statement best reflects the writer’s conclusion?', [
+    { label: 'The shorter course may be reasonable, but the claim depends on design, analysis and a clinically defensible margin', correct: true },
+    { label: 'Every non-inferiority result should be rejected because it cannot prove superiority', correct: false },
+    { label: 'A non-significant superiority result is sufficient evidence that treatments are equivalent', correct: false },
+  ]),
   advancedReadingMcq('read-63', 'Part C — Immortal-time mechanism', 'passage-immortal-time-bias', 'Why is the period before specialist review described as “immortal” for the exposed group?', [
     { label: 'A patient who died before review could never be classified into that group', correct: true },
     { label: 'Specialist review prevented every death during the first seven days', correct: false },
@@ -2198,6 +2369,15 @@ export const readingTasks: SessionTask[] = [
   ]),
   advancedReadingMcq('read-69', 'Part A — Post-acute cognition', 'passage-delirium-part-a-set', 'Which text recommends delaying formal cognitive assessment until the acute episode settles?', [
     { label: 'Text D', correct: true }, { label: 'Text A', correct: false }, { label: 'Text B', correct: false }, { label: 'Text C', correct: false },
+  ]),
+  advancedReadingMcq('read-96', 'Part A — Screening and diagnosis', 'passage-delirium-part-a-set', 'Which text distinguishes rapid screening from the clinical diagnosis of delirium?', [
+    { label: 'Text A', correct: true }, { label: 'Text B', correct: false }, { label: 'Text C', correct: false }, { label: 'Text D', correct: false },
+  ]),
+  advancedReadingMcq('read-97', 'Part A — Targeted investigation', 'passage-delirium-part-a-set', 'Which text cautions that broad testing cannot replace assessment at the bedside?', [
+    { label: 'Text B', correct: true }, { label: 'Text A', correct: false }, { label: 'Text C', correct: false }, { label: 'Text D', correct: false },
+  ]),
+  advancedReadingMcq('read-98', 'Part A — Supporting orientation', 'passage-delirium-part-a-set', 'Which text recommends clocks, daylight and familiar objects?', [
+    { label: 'Text C', correct: true }, { label: 'Text A', correct: false }, { label: 'Text B', correct: false }, { label: 'Text D', correct: false },
   ]),
   advancedReadingMcq('read-70', 'Part A short answer — Establishing baseline', 'passage-delirium-part-a-set', 'Information about the patient’s usual cognition should be obtained from…', [
     { label: 'someone who knows the patient', correct: true }, { label: 'a single screening score', correct: false }, { label: 'discharge documentation alone', correct: false },
@@ -4630,6 +4810,13 @@ export function pickTasksByPart(
     pool = pool.filter((task) => !task.difficulty || task.difficulty === difficultyFilter);
   }
 
+  if (subtest === 'listening' && (part === 'B' || part === 'C')) {
+    const authenticChoicePool = pool.filter(
+      (task) => !/^\s*Complete:/i.test(task.prompt ?? ''),
+    );
+    if (authenticChoicePool.length >= count) pool = authenticChoicePool;
+  }
+
   if (pool.length < count) {
     throw new Error(
       `${subtest} Part ${part} needs ${count} task(s), but the live ${difficultyFilter ?? 'mixed'} bank has ${pool.length}`,
@@ -4656,10 +4843,24 @@ export function pickReadingPartATasks(
     pool = pool.filter((task) => !task.difficulty || task.difficulty === difficultyFilter);
   }
 
-  const matchingPool = pool.filter((task) => !isReadingPartAShortAnswer(task));
-  const shortAnswerPool = pool.filter(isReadingPartAShortAnswer);
   const matchingCount = 7;
   const shortAnswerCount = 13;
+  const passageGroups = new Map<string, SessionTask[]>();
+  for (const task of pool) {
+    const key = task.readingPassageTitle ?? task.readingPassage ?? task.id;
+    passageGroups.set(key, [...(passageGroups.get(key) ?? []), task]);
+  }
+  const completeBundles = [...passageGroups.values()].filter(
+    (group) =>
+      group.filter((task) => !isReadingPartAShortAnswer(task)).length >= matchingCount &&
+      group.filter(isReadingPartAShortAnswer).length >= shortAnswerCount,
+  );
+  const bundle = seededShuffle(completeBundles, `${prefix}|${seed}|reading|Part A|bundle`)[0];
+  if (!bundle) {
+    throw new Error('Reading Part A requires one coherent four-text booklet with 7 matching and 13 short-answer tasks');
+  }
+  const matchingPool = bundle.filter((task) => !isReadingPartAShortAnswer(task));
+  const shortAnswerPool = bundle.filter(isReadingPartAShortAnswer);
   if (matchingPool.length < matchingCount || shortAnswerPool.length < shortAnswerCount) {
     throw new Error(
       `Reading Part A needs ${matchingCount} matching and ${shortAnswerCount} short-answer tasks; live bank has ${matchingPool.length} and ${shortAnswerPool.length}`,
@@ -4671,4 +4872,39 @@ export function pickReadingPartATasks(
     ...seededShuffle(shortAnswerPool, `${prefix}|${seed}|reading|Part A|short`).slice(0, shortAnswerCount),
   ];
   return selected.map((task) => ({ ...task, id: `${prefix}-${task.id}` }));
+}
+
+/** Reading Part C is exactly two long texts with eight questions per text. */
+export function pickReadingPartCTasks(
+  prefix: string,
+  seed: string,
+  difficultyFilter?: Difficulty,
+): SessionTask[] {
+  let pool = bankBySubtest.reading.filter((task) => oetTaskPart(task) === 'C');
+  if (difficultyFilter === 'advanced') {
+    pool = pool.filter((task) => task.difficulty === 'advanced');
+  } else if (difficultyFilter) {
+    pool = pool.filter((task) => !task.difficulty || task.difficulty === difficultyFilter);
+  }
+
+  const passageGroups = new Map<string, SessionTask[]>();
+  for (const task of pool) {
+    const key = task.readingPassageTitle ?? task.readingPassage ?? task.id;
+    passageGroups.set(key, [...(passageGroups.get(key) ?? []), task]);
+  }
+  const completeTexts = seededShuffle(
+    [...passageGroups.values()].filter((group) => group.length >= 8),
+    `${prefix}|${seed}|reading|Part C|texts`,
+  ).slice(0, 2);
+  if (completeTexts.length < 2) {
+    throw new Error(
+      `Reading Part C requires two coherent eight-question texts; live bank has ${completeTexts.length}`,
+    );
+  }
+
+  return completeTexts.flatMap((group, textIndex) =>
+    seededShuffle(group, `${prefix}|${seed}|reading|Part C|text-${textIndex + 1}`)
+      .slice(0, 8)
+      .map((task) => ({ ...task, id: `${prefix}-${task.id}` })),
+  );
 }

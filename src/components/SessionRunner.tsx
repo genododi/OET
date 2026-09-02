@@ -1,5 +1,10 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import type { SessionConfig, SessionTask, SpeakingCriteria } from '../types/session';
+import type {
+  OetSessionStage,
+  SessionConfig,
+  SessionTask,
+  SpeakingCriteria,
+} from '../types/session';
 import { useProgress } from '../hooks/useProgress';
 import { SubtestBadge } from './SubtestBadge';
 import { AudioPlayer } from './AudioPlayer';
@@ -40,6 +45,13 @@ function subtestLabel(task: SessionTask): string {
   return task.subtest.charAt(0).toUpperCase() + task.subtest.slice(1);
 }
 
+function firstTaskIndexForStage(config: SessionConfig, stage: OetSessionStage): number {
+  const firstTaskId = stage.taskIds[0];
+  if (!firstTaskId) return Math.min(1, config.tasks.length - 1);
+  const index = config.tasks.findIndex((task) => task.id === firstTaskId);
+  return index >= 0 ? index : Math.min(1, config.tasks.length - 1);
+}
+
 function getListeningGroup(
   tasks: SessionTask[],
   startIndex: number,
@@ -63,7 +75,10 @@ export function SessionRunner({ config, onExit }: Props) {
   const { markComplete } = useProgress();
   const [phase, setPhase] = useState<'intro' | 'active' | 'done'>('intro');
   const [taskIndex, setTaskIndex] = useState(0);
-  const [secondsLeft, setSecondsLeft] = useState(config.durationMinutes * 60);
+  const [stageIndex, setStageIndex] = useState(0);
+  const [secondsLeft, setSecondsLeft] = useState(
+    config.stages?.[0]?.durationSeconds ?? config.durationMinutes * 60,
+  );
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [notes, setNotes] = useState<Record<string, string>>({});
   const [revealed, setRevealed] = useState<Record<string, boolean>>({});
@@ -74,6 +89,7 @@ export function SessionRunner({ config, onExit }: Props) {
   const completionStarted = useRef(false);
 
   const task = config.tasks[taskIndex];
+  const currentStage = config.stages?.[stageIndex];
   const listeningGroup = useMemo(() => getListeningGroup(config.tasks, taskIndex), [config.tasks, taskIndex]);
   const groupSize = listeningGroup?.length ?? 1;
   const listeningTaskCount = useMemo(
@@ -102,6 +118,11 @@ export function SessionRunner({ config, onExit }: Props) {
 
   const speakingEval = speakingResults[task?.id ?? ''] ?? null;
   const taskRevealed = task ? revealed[task.id] : false;
+  const allowImmediateReview = config.kind !== 'mock';
+  const responseLocked =
+    currentStage?.mode === 'reading-only' ||
+    currentStage?.mode === 'speaking-preparation' ||
+    currentStage?.mode === 'speaking-warmup';
 
   const usmleScore = useMemo(() => {
     if (config.kind !== 'usmle-block' && config.kind !== 'usmle-custom') return null;
@@ -109,20 +130,13 @@ export function SessionRunner({ config, onExit }: Props) {
     return computeUsmleScore(config.tasks, answers);
   }, [config, answers, phase]);
 
-  useEffect(() => {
-    if (phase !== 'active' || secondsLeft <= 0) return;
-    const timer = window.setTimeout(
-      () => setSecondsLeft((seconds) => Math.max(0, seconds - 1)),
-      1000,
-    );
-    return () => clearTimeout(timer);
-  }, [phase, secondsLeft]);
-
   const startSession = () => {
     completionStarted.current = false;
     setPhase('active');
-    setTaskIndex(1);
-    setSecondsLeft(config.durationMinutes * 60);
+    const firstStage = config.stages?.[0];
+    setStageIndex(0);
+    setTaskIndex(firstStage ? firstTaskIndexForStage(config, firstStage) : 1);
+    setSecondsLeft(firstStage?.durationSeconds ?? config.durationMinutes * 60);
   };
 
   const finishSession = useCallback(() => {
@@ -169,11 +183,49 @@ export function SessionRunner({ config, onExit }: Props) {
     setPhase('done');
   }, [config, markComplete, answers, notes, speakingResults]);
 
+  const enterStage = useCallback(
+    (nextStageIndex: number) => {
+      const nextStage = config.stages?.[nextStageIndex];
+      if (!nextStage) {
+        finishSession();
+        return;
+      }
+      setStageIndex(nextStageIndex);
+      setSecondsLeft(nextStage.durationSeconds);
+      setTaskIndex(firstTaskIndexForStage(config, nextStage));
+      if (!window.navigator.userAgent.toLowerCase().includes('jsdom')) {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    },
+    [config, finishSession],
+  );
+
   useEffect(() => {
-    if (phase === 'active' && secondsLeft === 0) finishSession();
-  }, [finishSession, phase, secondsLeft]);
+    if (phase !== 'active' || secondsLeft <= 0) return;
+    const timer = window.setTimeout(() => {
+      if (secondsLeft > 1) {
+        setSecondsLeft(secondsLeft - 1);
+      } else if (currentStage && config.stages && stageIndex + 1 < config.stages.length) {
+        enterStage(stageIndex + 1);
+      } else {
+        finishSession();
+      }
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, [config.stages, currentStage, enterStage, finishSession, phase, secondsLeft, stageIndex]);
 
   const goNext = () => {
+    if (currentStage && config.stages) {
+      const visibleTaskIds = currentStage.taskIds;
+      const currentPosition = task ? visibleTaskIds.indexOf(task.id) : -1;
+      const listeningPosition = listeningGroup
+        ? currentPosition + listeningGroup.length - 1
+        : currentPosition;
+      if (visibleTaskIds.length === 0 || listeningPosition >= visibleTaskIds.length - 1) {
+        enterStage(stageIndex + 1);
+        return;
+      }
+    }
     const nextIndex = taskIndex + groupSize;
     if (nextIndex >= config.tasks.length) {
       finishSession();
@@ -184,6 +236,10 @@ export function SessionRunner({ config, onExit }: Props) {
 
   const goPrev = () => {
     if (taskIndex <= 1) return;
+    if (currentStage?.taskIds.length && task) {
+      const currentPosition = currentStage.taskIds.indexOf(task.id);
+      if (currentPosition <= 0) return;
+    }
     const prev = taskIndex - 1;
     if (prev >= 1 && config.tasks[prev]?.subtest === 'listening') {
       let groupStart = prev;
@@ -215,10 +271,12 @@ export function SessionRunner({ config, onExit }: Props) {
       if (!task || task.subtest !== 'speaking') return;
       if (result) {
         setSpeakingResults((prev) => ({ ...prev, [task.id]: result }));
-        setRevealed((r) => ({ ...r, [task.id]: true }));
+        if (config.kind !== 'mock') {
+          setRevealed((r) => ({ ...r, [task.id]: true }));
+        }
       }
     },
-    [task],
+    [config.kind, task],
   );
 
   const timerClass =
@@ -226,6 +284,24 @@ export function SessionRunner({ config, onExit }: Props) {
       ? 'session-timer session-timer-urgent'
       : 'session-timer';
   const progressTaskIndex = listeningGroup ? taskIndex + groupSize - 1 : taskIndex;
+  const currentStageTaskPosition =
+    currentStage && task ? currentStage.taskIds.indexOf(task.id) : -1;
+  const stageProgressCurrent = currentStage
+    ? currentStage.taskIds.length === 0
+      ? 1
+      : Math.max(1, currentStageTaskPosition + groupSize)
+    : progressTaskIndex;
+  const stageProgressMax = currentStage
+    ? Math.max(1, currentStage.taskIds.length)
+    : config.tasks.length - 1;
+  const nextStage = config.stages?.[stageIndex + 1];
+  const nextButtonLabel =
+    currentStage &&
+    (currentStage.taskIds.length === 0 || stageProgressCurrent >= currentStage.taskIds.length)
+      ? nextStage
+        ? `Begin ${nextStage.label}`
+        : 'Finish mock'
+      : 'Next task';
 
   if (phase === 'intro') {
     return (
@@ -326,13 +402,16 @@ export function SessionRunner({ config, onExit }: Props) {
                 completionStarted.current = false;
                 setPhase('intro');
                 setTaskIndex(0);
+                setStageIndex(0);
                 setAnswers({});
                 setNotes({});
                 setRevealed({});
                 setWritingSubmitted({});
                 setSpeakingResults({});
                 setConsumedListeningPlayback({});
-                setSecondsLeft(config.durationMinutes * 60);
+                setSecondsLeft(
+                  config.stages?.[0]?.durationSeconds ?? config.durationMinutes * 60,
+                );
               }}
             >
               Retry session
@@ -353,24 +432,67 @@ export function SessionRunner({ config, onExit }: Props) {
           {formatTime(secondsLeft)}
         </div>
         <span className="session-progress">
-          Step {taskIndex} / {config.tasks.length - 1}
+          {currentStage && config.stages
+            ? `Phase ${stageIndex + 1} / ${config.stages.length}`
+            : `Step ${taskIndex} / ${config.tasks.length - 1}`}
         </span>
       </div>
+
+      {currentStage && (
+        <section className="oet-stage-banner" aria-label="Current OET exam phase">
+          <div>
+            <span className="oet-stage-kicker">OET simulation · {config.subtitle}</span>
+            <h2>{currentStage.label}</h2>
+            <p>{currentStage.instructions}</p>
+          </div>
+          <div className="oet-stage-sequence" aria-label="OET phase sequence">
+            {config.stages?.map((stage, index) => (
+              <span
+                key={stage.id}
+                className={
+                  index === stageIndex
+                    ? 'oet-stage-dot oet-stage-dot-current'
+                    : index < stageIndex
+                      ? 'oet-stage-dot oet-stage-dot-complete'
+                      : 'oet-stage-dot'
+                }
+                title={stage.label}
+              >
+                {index + 1}
+              </span>
+            ))}
+          </div>
+        </section>
+      )}
 
       <div
         className="session-progress-bar"
         role="progressbar"
-        aria-valuenow={progressTaskIndex}
+        aria-valuenow={stageProgressCurrent}
         aria-valuemin={1}
-        aria-valuemax={config.tasks.length - 1}
+        aria-valuemax={stageProgressMax}
       >
         <div
           className="session-progress-fill"
-          style={{ width: `${(progressTaskIndex / (config.tasks.length - 1)) * 100}%` }}
+          style={{ width: `${(stageProgressCurrent / stageProgressMax) * 100}%` }}
         />
       </div>
 
-      {listeningGroup ? (
+      {currentStage?.mode === 'speaking-warmup' ? (
+        <article className="card session-task-card oet-warmup-card">
+          <span className="session-task-type">Unassessed warm-up</span>
+          <h3>Professional introduction and equipment check</h3>
+          <p className="session-instructions">
+            Introduce yourself and answer a few general questions about your work. This phase is not
+            scored. Your first role-play card opens when you continue or when the clock expires.
+          </p>
+          <ul className="session-checklist">
+            <li>Confirm that your microphone is working</li>
+            <li>State your profession and current clinical setting</li>
+            <li>Do not rehearse or preview the role-play cards</li>
+          </ul>
+        </article>
+      ) : listeningGroup ? (
         <ListeningSection
           tasks={listeningGroup}
           answers={answers}
@@ -378,6 +500,7 @@ export function SessionRunner({ config, onExit }: Props) {
           revealed={revealed}
           onReveal={(taskId) => setRevealed((r) => ({ ...r, [taskId]: true }))}
           examMode={enforceSinglePlayListening}
+          hideFeedback={config.kind === 'mock'}
           playbackConsumed={Boolean(consumedListeningPlayback[listeningGroup[0]!.id])}
           onPlaybackStart={() =>
             setConsumedListeningPlayback((current) => ({
@@ -479,10 +602,10 @@ export function SessionRunner({ config, onExit }: Props) {
                 value={answers[task.id] ?? ''}
                 onChange={(e) => setAnswers((a) => ({ ...a, [task.id]: e.target.value }))}
                 placeholder="Type your answer..."
-                disabled={taskRevealed}
+                disabled={taskRevealed || responseLocked}
                 autoComplete="off"
               />
-              {!taskRevealed && (
+              {allowImmediateReview && !taskRevealed && (
                 <button
                   type="button"
                   className="btn btn-secondary btn-sm"
@@ -516,13 +639,13 @@ export function SessionRunner({ config, onExit }: Props) {
                       value={opt.id}
                       checked={selected}
                       onChange={() => setAnswers((a) => ({ ...a, [task.id]: opt.id }))}
-                      disabled={taskRevealed}
+                      disabled={taskRevealed || responseLocked}
                     />
                     {opt.label}
                   </label>
                 );
               })}
-              {!taskRevealed && (
+              {allowImmediateReview && !taskRevealed && (
                 <button
                   type="button"
                   className="btn btn-secondary btn-sm"
@@ -543,8 +666,8 @@ export function SessionRunner({ config, onExit }: Props) {
                 rows={8}
                 value={notes[task.id] ?? ''}
                 onChange={(e) => setNotes((n) => ({ ...n, [task.id]: e.target.value }))}
-                placeholder="Write your letter here..."
-                disabled={writingSubmitted[task.id]}
+                placeholder={responseLocked ? 'Writing is locked during reading time.' : 'Write your letter here...'}
+                disabled={writingSubmitted[task.id] || responseLocked}
               />
               {task.checklist && !writingSubmitted[task.id] && (
                 <ul className="session-checklist">
@@ -553,7 +676,7 @@ export function SessionRunner({ config, onExit }: Props) {
                   ))}
                 </ul>
               )}
-              {!writingSubmitted[task.id] && (
+              {allowImmediateReview && !writingSubmitted[task.id] && !responseLocked && (
                 <button
                   type="button"
                   className="btn btn-secondary btn-sm"
@@ -575,13 +698,19 @@ export function SessionRunner({ config, onExit }: Props) {
                   ))}
                 </ul>
               )}
-              <SpeakingRecorder
-                key={task.id}
-                taskId={task.id}
-                criteria={task.speakingCriteria ?? defaultSpeakingCriteria}
-                onResult={handleSpeakingResult}
-                showDetailedReview={taskRevealed}
-              />
+              {currentStage?.mode === 'speaking-preparation' ? (
+                <div className="oet-response-lock" role="status">
+                  Preparation time — read and plan now. Recording unlocks in the role-play phase.
+                </div>
+              ) : (
+                <SpeakingRecorder
+                  key={task.id}
+                  taskId={task.id}
+                  criteria={task.speakingCriteria ?? defaultSpeakingCriteria}
+                  onResult={handleSpeakingResult}
+                  showDetailedReview={allowImmediateReview && taskRevealed}
+                />
+              )}
             </div>
           )}
 
@@ -589,7 +718,7 @@ export function SessionRunner({ config, onExit }: Props) {
             <p className="session-break-note">Pause the screen if needed, then continue when ready.</p>
           )}
 
-          {(mcqEval || writingEval || (speakingEval && taskRevealed)) && (
+          {allowImmediateReview && (mcqEval || writingEval || (speakingEval && taskRevealed)) && (
             <TaskReviewPanel
               task={task}
               mcqEval={mcqEval}
@@ -602,11 +731,23 @@ export function SessionRunner({ config, onExit }: Props) {
       )}
 
       <div className="session-nav">
-        <button type="button" className="btn btn-secondary btn-sm" disabled={taskIndex <= 1} onClick={goPrev}>
+        <button
+          type="button"
+          className="btn btn-secondary btn-sm"
+          disabled={
+            taskIndex <= 1 ||
+            Boolean(
+              currentStage &&
+                (currentStage.taskIds.length === 0 || currentStageTaskPosition <= 0),
+            ) ||
+            responseLocked
+          }
+          onClick={goPrev}
+        >
           Previous
         </button>
         <button type="button" className="btn btn-primary btn-sm" onClick={goNext}>
-          {taskIndex + groupSize >= config.tasks.length ? 'Finish session' : 'Next task'}
+          {currentStage ? nextButtonLabel : taskIndex + groupSize >= config.tasks.length ? 'Finish session' : 'Next task'}
         </button>
       </div>
     </div>

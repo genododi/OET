@@ -40,6 +40,18 @@ export const OET_WRITTEN_BLOCK_MINUTES =
 
 export const OET_FULL_TEST_MINUTES = OET_WRITTEN_BLOCK_MINUTES + OET_SUBTEST_MINUTES.speaking;
 
+/** Exact phase clocks reproduced by the mock runner. */
+export const OET_MOCK_STAGE_SECONDS = {
+  listening: 40 * 60,
+  readingPartA: 15 * 60,
+  readingPartsBC: 45 * 60,
+  writingReading: 5 * 60,
+  writingResponse: 40 * 60,
+  speakingWarmup: 4 * 60,
+  speakingPreparation: 3 * 60,
+  speakingRoleplay: 5 * 60,
+} as const;
+
 export function oetMockDurationMinutes(subtests: readonly OetSubtest[]): number {
   return subtests.reduce((total, subtest) => total + OET_SUBTEST_MINUTES[subtest], 0);
 }
