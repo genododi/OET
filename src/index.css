@@ -4035,6 +4035,7 @@ button {
 .private-source-path { display: -webkit-box; overflow: hidden; color: var(--text-muted); font-size: 0.68rem; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
 .private-source-meta { display: flex; justify-content: space-between; gap: 0.5rem; margin-top: auto; color: var(--text-muted); font-size: 0.66rem; }
 .private-source-card code { align-self: flex-start; font-size: 0.65rem; }
+.private-source-open { align-self: stretch; justify-content: center; margin-top: 0.1rem; }
 .source-file-flags { display: flex; flex-wrap: wrap; gap: 0.35rem; }
 .source-file-flags > span { padding: 0.26rem 0.42rem; border-radius: 999px; background: #eef2f7; color: #475569; font-size: 0.58rem; font-weight: 750; }
 .source-file-flags .source-status-practice-blueprint { background: #e5f8f2; color: #0f766e; }

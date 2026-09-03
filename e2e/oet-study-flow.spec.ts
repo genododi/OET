@@ -53,6 +53,17 @@ test('resource search preserves link-only governance', async ({ page }) => {
   await expect(page.getByTestId('resource-grid').getByRole('link')).toHaveAttribute('href', /drive\.google\.com/);
 });
 
+test('private source index links mounted files through the local gateway', async ({ page }) => {
+  await page.goto('./#resources');
+  await page.getByRole('button', { name: /Private source index/ }).click();
+  await page.getByLabel('Search private source index').fill('(1) OET Masterclass Reading Section Overview.mp4');
+  await expect(page.getByText('1 indexed private files')).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Open local file' })).toHaveAttribute(
+    'href',
+    /^http:\/\/127\.0\.0\.1:4318\/file\?path=.*OET%20Masterclass%20Reading/,
+  );
+});
+
 test('source learning map accounts for the folder and routes into practice', async ({ page }) => {
   await page.goto('./#resources');
   await expect(page.getByRole('heading', { name: 'Every file accounted for, every safe file mapped' })).toBeVisible();

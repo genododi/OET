@@ -21,5 +21,11 @@ describe('resource library', () => {
     const grid = screen.getByTestId('private-source-grid');
     expect(within(grid).getAllByText(/OfficialGuidetoOETKaplanTestPrep/)).toHaveLength(2);
     expect(within(grid).getByText(/SHA-256/)).toBeInTheDocument();
+    const openLinks = within(grid).getAllByRole('link', { name: 'Open local file' });
+    expect(openLinks).toHaveLength(1);
+    expect(openLinks[0]).toHaveAttribute(
+      'href',
+      expect.stringMatching(/^http:\/\/127\.0\.0\.1:4318\/file\?path=/),
+    );
   });
 });

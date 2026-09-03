@@ -39,6 +39,7 @@ jobs:
       - run: npm run test:oet
       - run: npm run test:governance
       - run: npm run test:source-manifest
+      - run: npm run test:local-source-gateway
       - run: npm run build
       - run: npx playwright install --with-deps chromium
       - run: npm run test:e2e

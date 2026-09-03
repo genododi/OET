@@ -5,6 +5,7 @@ import localSourceFiles from '../data/googleDriveFolderLibrary.generated.json';
 import localSourceSummary from '../data/googleDriveFolderCatalog.generated.json';
 import { ListPagination } from '../components/ListPagination';
 import { usePagination } from '../hooks/usePagination';
+import { localSourceFileUrl } from '../lib/localSourceGateway';
 
 const subtests: Array<OetSubtest | 'general' | 'all'> = ['all', 'general', 'listening', 'reading', 'writing', 'speaking'];
 const formats: Array<StudyResourceFormat | 'all'> = ['all', 'guide', 'sample-test', 'video', 'reference'];
@@ -180,7 +181,7 @@ export function ResourcesPage({ onNavigate }: Props) {
         <>
           <div className="private-vault-note">
             <strong>{privateFiles.length.toLocaleString()} indexed private files</strong>
-            <span>Mapped into the learning system by stable source ID. Raw third-party bytes are not exposed by the public site.</span>
+            <span>Open files through the read-only local gateway when GENODODI is mounted. Private bytes stay on this Mac and are never uploaded by the public site.</span>
           </div>
           <ListPagination {...privatePagination} onPageChange={privatePagination.setPage} />
           <div className="private-source-grid" data-testid="private-source-grid">
@@ -202,6 +203,13 @@ export function ResourcesPage({ onNavigate }: Props) {
                   <span>{file.archiveMatched ? 'Archive matched' : 'Direct folder record'}</span>
                 </div>
                 <code>SHA-256 {file.sha256.slice(0, 16)}…</code>
+                <a
+                  className="btn btn-primary btn-sm private-source-open"
+                  href={localSourceFileUrl(file.relativePath)}
+                  title="Requires the GENODODI drive and OET local source gateway on this Mac"
+                >
+                  Open local file
+                </a>
               </article>
             ))}
           </div>
