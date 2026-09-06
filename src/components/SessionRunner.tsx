@@ -27,6 +27,7 @@ import { CalculatorPanel } from './CalculatorPanel';
 import { QuestionFlagButton } from './QuestionFlagButton';
 import { isTaskAnswerCorrect, oetResponseMode } from '../lib/oetResponseMode';
 import { GRADE_A_EVIDENCE_REQUIREMENTS } from '../lib/oetThresholds';
+import { SessionMentor } from './SessionMentor';
 
 interface Props {
   config: SessionConfig;
@@ -72,7 +73,8 @@ const defaultSpeakingCriteria: SpeakingCriteria = {
 };
 
 export function SessionRunner({ config, onExit }: Props) {
-  const { markComplete } = useProgress();
+  const { markComplete, completed } = useProgress();
+  const [coached, setCoached] = useState(false);
   const [phase, setPhase] = useState<'intro' | 'active' | 'done'>('intro');
   const [taskIndex, setTaskIndex] = useState(0);
   const [stageIndex, setStageIndex] = useState(0);
@@ -102,8 +104,11 @@ export function SessionRunner({ config, onExit }: Props) {
     listeningTaskCount >= GRADE_A_EVIDENCE_REQUIREMENTS.minimumReceptiveItems;
 
   const sessionReview = useMemo(
-    () => computeSessionReview(config, answers, notes, speakingResults),
-    [config, answers, notes, speakingResults],
+    () => {
+      const review = computeSessionReview(config, answers, notes, speakingResults);
+      return coached ? { ...review, overallExamReady: false, subtestScores: review.subtestScores.map((score) => ({ ...score, examReady: false })) } : review;
+    },
+    [config, answers, notes, speakingResults, coached],
   );
 
   const mcqEval = useMemo(() => {
@@ -158,14 +163,15 @@ export function SessionRunner({ config, onExit }: Props) {
       title: config.title,
       completedAt: new Date().toISOString(),
       durationMinutes: config.durationMinutes,
+      coached,
       score: mcqTasks.length > 0 ? { correct, total: mcqTasks.length } : undefined,
       review: {
-        subtestScores: review.subtestScores,
+        subtestScores: coached ? review.subtestScores.map((score) => ({ ...score, examReady: false })) : review.subtestScores,
         overallPercent: review.overallPercent,
         overallPracticePass: review.overallPracticePass,
-        overallExamReady: review.overallExamReady,
+        overallExamReady: coached ? false : review.overallExamReady,
         weakAreas: review.weakAreas,
-        taskReviews: review.taskReviews,
+        taskReviews: coached ? review.taskReviews.map((item) => ({ ...item, evidenceQualified: false })) : review.taskReviews,
       },
     });
 
@@ -181,7 +187,7 @@ export function SessionRunner({ config, onExit }: Props) {
     }
 
     setPhase('done');
-  }, [config, markComplete, answers, notes, speakingResults]);
+  }, [config, markComplete, answers, notes, speakingResults, coached]);
 
   const enterStage = useCallback(
     (nextStageIndex: number) => {
@@ -364,6 +370,14 @@ export function SessionRunner({ config, onExit }: Props) {
             {config.title} — progress and review saved locally on this device.
           </p>
           <SessionSummaryPanel title={config.title} review={sessionReview} />
+          {coached && <p className="mentor-coached-note">Coached learning saved. Complete a fresh timed session without mentor help to measure independent readiness.</p>}
+          {config.kind === 'mock' && config.tasks.some((item) => ['listening', 'reading', 'writing', 'speaking'].includes(item.subtest)) && <SessionMentor
+            tasks={config.tasks.filter((item) => ['listening', 'reading', 'writing', 'speaking'].includes(item.subtest))}
+            responses={{ ...answers, ...notes, ...Object.fromEntries(Object.entries(speakingResults).map(([id, result]) => [id, result.transcript ?? ''])) }}
+            completed={completed}
+            onOpen={() => {}}
+            completedReview
+          />}
           {usmleScore && (
             <div className="card usmle-score-card">
               <h3>USMLE Performance</h3>
@@ -401,6 +415,7 @@ export function SessionRunner({ config, onExit }: Props) {
               onClick={() => {
                 completionStarted.current = false;
                 setPhase('intro');
+                setCoached(false);
                 setTaskIndex(0);
                 setStageIndex(0);
                 setAnswers({});
@@ -728,6 +743,16 @@ export function SessionRunner({ config, onExit }: Props) {
             />
           )}
         </article>
+      )}
+
+      {config.kind === 'practice' && ['listening', 'reading', 'writing', 'speaking'].includes(task.subtest) && (
+        <SessionMentor
+          key={task.id}
+          tasks={listeningGroup ?? [task]}
+          responses={{ ...answers, ...notes, ...Object.fromEntries(Object.entries(speakingResults).map(([id, result]) => [id, result.transcript ?? ''])) }}
+          completed={completed}
+          onOpen={() => setCoached(true)}
+        />
       )}
 
       <div className="session-nav">

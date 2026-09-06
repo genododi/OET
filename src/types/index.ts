@@ -143,6 +143,8 @@ export interface ExperiencePdf {
 
 export type NavSection =
   | 'home'
+  | 'mentor'
+  | 'mistakes'
   | 'planner'
   | 'resources'
   | 'mock'

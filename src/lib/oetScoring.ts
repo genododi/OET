@@ -174,7 +174,7 @@ function scoreWritingDimension(
   const n = normalize(text);
   const words = countWords(text);
   const hasDear = /\bdear\b/.test(n);
-  const hasPurpose = /\b(i am writing to|i write to|this letter is to|refer|discharg(?:e|ed|ing)|transfer(?:red|ring)?|notify)\b/.test(n);
+  const hasPurpose = /\b(i am writing to|i write to|this letter is to|refer(?:ral|red|ring)?|discharg(?:e|ed|ing)|transfer(?:red|ring)?|notify)\b/.test(n);
   const hasSignOff = /\b(yours sincerely|yours faithfully|kind regards)\b/.test(n);
   const hasPatientRef = /\b(mr|mrs|ms|patient|aged \d)\b/.test(n);
   const sentences = text.split(/[.!?]+/).filter((s) => s.trim().length > 8);
@@ -254,6 +254,7 @@ function scoreWritingDimension(
         ? 'Avoid contractions and informal phrasing in OET writing.'
         : 'Register appears formal and professional.';
       if (informal) gap = 'Use formal register — no contractions or casual phrases.';
+      else if (words < 50) gap = 'This short sample gives limited evidence of language range; review a fuller draft using only supplied case facts.';
       break;
     default:
       score = 50;
@@ -456,6 +457,8 @@ export function computeSessionReview(
           passed: hasAnswer ? ev?.correct ?? false : null,
           scorePercent: hasAnswer && ev ? (ev.correct ? 100 : 0) : null,
           summary: hasAnswer ? ev?.explanation ?? 'Unable to score answer' : 'Not attempted',
+          response: hasAnswer ? ev?.selectedLabel ?? answers[t.id] : undefined,
+          expectedResponse: ev?.correctLabel,
         } as TaskReviewSnapshot;
       }
       if (t.subtest === 'writing') {
@@ -476,6 +479,7 @@ export function computeSessionReview(
               }))
             : undefined,
           evidenceQualified: hasText ? ev.evidenceQualified : false,
+          response: hasText ? notes[t.id].slice(0, 12000) : undefined,
         };
       }
       if (t.subtest === 'speaking') {
@@ -500,6 +504,7 @@ export function computeSessionReview(
               ]
             : undefined,
           evidenceQualified: r?.evidenceQualified,
+          response: r?.transcript?.slice(0, 12000),
         };
       }
       return {

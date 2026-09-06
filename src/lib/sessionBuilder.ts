@@ -437,6 +437,8 @@ export interface SmartSessionOptions {
 
 export interface ReviewSessionOptions {
   completed: CompletedSession[];
+  /** Restrict retrieval to the notebook selection, while preserving due dates. */
+  taskIds?: readonly string[];
   /** Maximum number of due mistakes to retrieve in one focused session. */
   totalTasks?: number;
   /** Keeps a mixed review session practical even when several letters are due. */
@@ -593,6 +595,7 @@ export function buildProductiveFocusSession({
  */
 export function buildReviewSession({
   completed,
+  taskIds,
   totalTasks = 8,
   maxMinutes = 45,
   now = new Date(),
@@ -602,6 +605,7 @@ export function buildReviewSession({
     Object.values(bankBySubtest).flatMap((bank) => bank.map((task) => [task.id, task] as const)),
   );
   const candidates = dueReviewStats(stats)
+    .filter((stat) => !taskIds || taskIds.includes(stat.canonicalId))
     .map((stat) => taskById.get(stat.canonicalId))
     .filter((task): task is SessionTask => Boolean(task));
   const selected: SessionTask[] = [];
@@ -643,6 +647,7 @@ export function buildReviewSession({
     kind: 'practice',
     title: 'Mistake Review',
     subtitle: 'Spaced retrieval — corrections due now',
+    enforceSinglePlayListening: activeSubtests.includes('listening'),
     durationMinutes,
     subtests: activeSubtests,
     tasks,

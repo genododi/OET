@@ -36,4 +36,12 @@ describe('offline hybrid tutor', () => {
     expect(result.nextDrill.length).toBeGreaterThan(10);
     expect(result.disclaimer).toContain('Typed transcripts');
   });
+
+  it('recognises referring as an explicit purpose and explains limited short-draft evidence', () => {
+    const result = buildOfflineWritingFeedback(writingTask, 'Dear Dr Lee, I am referring Mr Adams with diabetes for urgent review. Yours sincerely, Doctor.');
+    expect(result.rubricScores.find((score) => score.dimension === 'Purpose')?.score).toBeGreaterThanOrEqual(75);
+    expect(result.improvements.join(' ')).not.toContain('Missing explicit purpose');
+    expect(result.improvements.join(' ')).toContain('limited evidence');
+    expect(result.nextDrill).toContain('Do not add invented facts');
+  });
 });

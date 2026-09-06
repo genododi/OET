@@ -102,7 +102,7 @@ const receptiveTaskById = new Map(
   ),
 );
 
-function canonicalIdOf(taskId: string): string | null {
+export function canonicalIdOf(taskId: string): string | null {
   const match = taskId.match(CANONICAL_ID_PATTERN);
   return match ? match[0] : null;
 }
@@ -167,6 +167,7 @@ export function buildTaskStats(
   );
 
   chronological.forEach((session) => {
+    if (session.coached) return;
     const seenAt = new Date(session.completedAt).getTime();
     session.review?.taskReviews.forEach((t) => {
       const canonicalId = canonicalIdOf(t.taskId);
@@ -300,6 +301,10 @@ export function summarizeSubtestHistory(
         const score = session.review?.subtestScores.find((s) => s.subtest === subtest);
         const hasScore = Boolean(score && (score.percentScore > 0 || score.total));
         if (!score || !hasScore) return;
+        if (session.coached) {
+          unqualifiedAttemptCount += 1;
+          return;
+        }
         if (
           (subtest === 'listening' || subtest === 'reading') &&
           score.total !== undefined &&

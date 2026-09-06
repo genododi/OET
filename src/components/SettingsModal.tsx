@@ -31,10 +31,11 @@ export function SettingsModal({ open, onClose }: Props) {
         </div>
 
         <section className="settings-section">
-          <h4>AI examiner feedback (optional)</h4>
+          <h4>Live AI mentor & response feedback</h4>
           <p className="meta">
-            Paste your own Anthropic API key to get Claude-generated OET examiner feedback on
-            Writing and Speaking tasks, on top of the built-in rubric scoring. This app has no
+            Paste your own Anthropic API key for live conversational mentoring across Listening,
+            Reading, Writing and Speaking, including patient role-play and response feedback. API usage
+            is billed by Anthropic to your account. This app has no
             server — your key is stored only in this browser's local storage and requests go
             directly from your browser to Anthropic's API. Get a key at{' '}
             <a href="https://console.anthropic.com/" target="_blank" rel="noopener noreferrer">
@@ -53,7 +54,7 @@ export function SettingsModal({ open, onClose }: Props) {
               </button>
             </div>
           ) : (
-            <p className="meta">No API key saved — AI feedback buttons are hidden until you add one.</p>
+            <p className="meta">No API key saved. Built-in guided lessons work now; add a key to enable Live AI conversation.</p>
           )}
 
           <div className="settings-key-input-row">

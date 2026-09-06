@@ -24,6 +24,9 @@ import type { SessionConfig } from '../types/session';
 import type { NavSection, OetSubtest } from '../types';
 import { AppIcon, type AppIconName } from '../components/AppIcon';
 import sourceCatalog from '../data/sourceCatalog.generated.json';
+import { DailyStudyBrief } from '../components/DailyStudyBrief';
+import { useStudyClock } from '../hooks/useStudyClock';
+import { summarizeStudyActivity } from '../lib/studyActivity';
 
 interface Props {
   onNavigate: (section: NavSection, itemId?: string) => void;
@@ -47,7 +50,9 @@ const skillVisuals: Record<OetSubtest, { icon: AppIconName; accent: string; desc
 export function HomePage({ onNavigate, preferredProfession = 'Medicine' }: Props) {
   const { completed, completedCount } = useProgress();
   const [smartConfig, setSmartConfig] = useState<SessionConfig | null>(null);
-  const dueReviewCount = useMemo(() => countDueReviewTasks(completed), [completed]);
+  const now = useStudyClock();
+  const dueReviewCount = useMemo(() => countDueReviewTasks(completed, now.getTime()), [completed, now]);
+  const activity = useMemo(() => summarizeStudyActivity(completed, now), [completed, now]);
 
   const startSmart = (subtests?: OetSubtest[]) => {
     setSmartConfig(buildSmartSession({ subtests: subtests ?? [], completed }));
@@ -115,6 +120,9 @@ export function HomePage({ onNavigate, preferredProfession = 'Medicine' }: Props
             library refreshed from your private source archive.
           </p>
           <div className="workspace-actions">
+            <button type="button" className="btn btn-primary btn-workspace" onClick={() => onNavigate('mentor')}>
+              <AppIcon name="message" /> Learn with my mentor
+            </button>
             <button type="button" className="btn btn-primary btn-workspace" onClick={() => startSmart()}>
               <AppIcon name="target" /> Start smart practice
             </button>
@@ -131,15 +139,17 @@ export function HomePage({ onNavigate, preferredProfession = 'Medicine' }: Props
         <div className="workspace-focus-card" aria-label="Today's focus">
           <div className="focus-card-head">
             <span>Today’s focus</span>
-            <span className="focus-live">LIVE</span>
+            <span className="focus-live">{activity.todaySessions > 0 ? 'COMPLETE' : 'READY'}</span>
           </div>
           <div className="focus-score-ring"><span>450<small>goal</small></span></div>
-          <strong>Grade A momentum</strong>
-          <p>Complete one adaptive set to establish your next best move.</p>
-          <div className="focus-progress"><span /></div>
-          <div className="focus-meta"><span>Daily plan</span><b>0 / 1</b></div>
+          <strong>{activity.todaySessions > 0 ? 'You showed up today' : 'Build Grade A momentum'}</strong>
+          <p>{activity.todaySessions > 0 ? 'Review your feedback and turn one mistake into a rule for next time.' : 'Complete one scored OET session to reach today’s practice goal.'}</p>
+          <progress className="daily-goal-progress" value={Math.min(1, activity.todaySessions)} max={1} aria-label="Daily scored session goal" />
+          <div className="focus-meta"><span>Daily practice goal</span><b>{Math.min(1, activity.todaySessions)} / 1</b></div>
         </div>
       </section>
+
+      <DailyStudyBrief completed={completed} dueReviewCount={dueReviewCount} now={now} onNavigate={onNavigate} onStartPractice={() => startSmart()} />
 
       <section className="skill-library" aria-labelledby="skill-library-title">
         <div className="section-heading-row">

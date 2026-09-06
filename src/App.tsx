@@ -5,6 +5,8 @@ import { buildHash, isPracticeFilter, parseRoute } from './lib/routing';
 import { initPreferredProfession } from './lib/preferredProfession';
 
 const HomePage = lazy(() => import('./pages/HomePage').then((module) => ({ default: module.HomePage })));
+const MentorPage = lazy(() => import('./pages/MentorPage').then((module) => ({ default: module.MentorPage })));
+const MistakeNotebookPage = lazy(() => import('./pages/MistakeNotebookPage').then((module) => ({ default: module.MistakeNotebookPage })));
 const StudyPlannerPage = lazy(() => import('./pages/StudyPlannerPage').then((module) => ({ default: module.StudyPlannerPage })));
 const ResourcesPage = lazy(() => import('./pages/ResourcesPage').then((module) => ({ default: module.ResourcesPage })));
 const MockExamsPage = lazy(() => import('./pages/MockExamsPage').then((module) => ({ default: module.MockExamsPage })));
@@ -16,6 +18,11 @@ const BooksPage = lazy(() => import('./pages/BooksPage').then((module) => ({ def
 const UsmlePage = lazy(() => import('./pages/UsmlePage').then((module) => ({ default: module.UsmlePage })));
 
 const pageMeta: Record<NavSection, { title: string; subtitle?: string }> = {
+  mentor: { title: 'Your OET Mentor', subtitle: 'Interactive lessons, guided answers, and patient conversations' },
+  mistakes: {
+    title: 'Mistake Notebook',
+    subtitle: 'Learn from feedback and make corrections stick',
+  },
   home: {
     title: 'Dashboard',
     subtitle: 'Medicine-focused OET preparation for physicians',
@@ -98,6 +105,10 @@ function App() {
 
   const renderPage = () => {
     switch (route.section) {
+      case 'mentor':
+        return <MentorPage onNavigate={navigate} />;
+      case 'mistakes':
+        return <MistakeNotebookPage onNavigate={navigate} />;
       case 'home':
         return <HomePage onNavigate={navigate} preferredProfession={preferredProfession} />;
       case 'planner':

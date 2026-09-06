@@ -155,6 +155,9 @@ export interface TaskReviewSnapshot {
   passed: boolean | null;
   scorePercent: number | null;
   summary: string;
+  /** Saved answer evidence for later reflection in the mistake notebook. */
+  response?: string;
+  expectedResponse?: string;
   /** Persisted productive-skill evidence used for criterion-level adaptive practice. */
   criteriaScores?: CriterionScoreSnapshot[];
   /** Productive-skill evidence qualifies only after a complete letter or sufficient recording. */
@@ -171,6 +174,8 @@ export interface SessionReviewData {
 }
 
 export interface CompletedSession {
+  /** Tutor-assisted work is learning activity, never independent readiness evidence. */
+  coached?: boolean;
   id: string;
   kind: 'mock' | 'practice' | 'usmle-block' | 'usmle-custom';
   title: string;

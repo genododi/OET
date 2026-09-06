@@ -22,6 +22,11 @@ npm run preview
 
 ## Learner features
 
+- An English-only interactive mentor across Listening, Reading, Writing and Speaking, with 14 focused lessons, progressive hints, response review, worked examples and saved conversations. Recent lessons can be resumed from the mentor home.
+- Coach and patient modes, editable voice dictation and spoken replies where the browser supports speech. Optional streaming AI adapts its follow-up to the current task, conversation, recent skill gaps and saved mistake reflections.
+- Task mentoring inside practice and a review mentor after completed mocks. Using help marks practice as coached; coached results do not qualify as independent readiness evidence or advance mistake-recall intervals.
+- Daily routine with a live exam countdown, a scored-session goal, calendar-day study streaks, and seven-day coverage of all four OET skills.
+- Mistake Notebook with task/feedback search, skill and due-date filters, saved error reasons and next-time rules, answer evidence, and individual or selected spaced retries. Failed retries remain due; successful corrections follow the existing 1/3/7/14-day schedule. New responses are saved locally with feedback; older attempts remain readable without response text.
 - Grade A diagnostic and plan based on exam date, available days, daily time, and four baseline scaled scores.
 - Medicine resource library with sub-test, format, source, and text filters.
 - Timed Listening, Reading, Writing, and Speaking sessions with review evidence and provenance.
@@ -121,7 +126,15 @@ The authentic mock blueprint is documented in [the OET exam simulation specifica
 
 The built-in tutor is deterministic and fully client-side. Optional AI review calls Anthropic directly from the browser with the learner's own key, validates the structured response, limits output sizes, and times out after 30 seconds. Provider failure never blocks offline study.
 
-Learner settings, diagnostic profile, plan, and progress use versioned local-storage schemas. No application backend is required.
+For the conversational mentor, open **Your OET Mentor**, choose a lesson, and try an answer before requesting a review. To activate open-ended conversation, add an Anthropic API key in **Settings**, then choose **Live AI** under **Tutor connection**. Requests use Claude Sonnet 5 and stream text, with a 60-second limit covering both connection and reply. Stop and retry are supported. API use is billed to the key's account. Without a key, structured strategies, hints and rubric feedback remain available; the built-in patient has limited scripted replies.
+
+Live mentoring sends the current task, answer, bounded recent conversation and a short study summary directly to Anthropic. Answer keys, listening transcripts and worked models are withheld from fresh strategy/hint requests; they become available when reviewing an attempted response. The mentor receives text, not microphone audio, and cannot judge pronunciation. Browser dictation may use the browser's speech service; the learner can edit the transcript before sending.
+
+Public instructor references are attributed links and a small number of source-checked teaching notes, not imported courses or video transcripts. The mentor is independent and does not impersonate Dr Ashgan or Dr Elghazouly. References and verification notes are recorded in `src/data/mentorReferences.ts`.
+
+Learner settings, diagnostic profile, plan, and progress use versioned local-storage schemas. Mentor memory retains up to 12 recent conversations with at most 40 messages each, plus their current drafts, on the same browser. No application backend is required.
+
+Mentor checks cover prompt evidence boundaries, exact answer feedback, coached-score exclusion, bounded memory, streaming events, timeouts, cancellation and retry. Automated API checks use simulated responses; they do not verify a paid account or real microphone permission.
 
 ## Verification
 

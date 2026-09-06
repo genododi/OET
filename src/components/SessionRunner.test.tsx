@@ -116,6 +116,8 @@ describe('timed session completion', () => {
 
     expect(screen.getByRole('heading', { name: 'Writing · Reading time' })).toBeInTheDocument();
     expect(screen.getByLabelText('Your letter draft')).toBeDisabled();
+    expect(screen.queryByRole('button', { name: 'Open task mentor' })).not.toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: 'Open review mentor' })).not.toBeInTheDocument();
 
     await act(async () => {
       await vi.advanceTimersByTimeAsync(1_000);
@@ -124,10 +126,29 @@ describe('timed session completion', () => {
     expect(screen.getByRole('heading', { name: 'Writing · Writing time' })).toBeInTheDocument();
     expect(screen.getByLabelText('Your letter draft')).toBeEnabled();
     expect(screen.queryByRole('button', { name: /submit draft/i })).not.toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: 'Open task mentor' })).not.toBeInTheDocument();
 
     await act(async () => {
       await vi.advanceTimersByTimeAsync(1_000);
     });
     expect(screen.getByRole('heading', { name: 'Session complete' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Open review mentor' })).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: 'Open review mentor' }));
+    expect(screen.getByRole('region', { name: 'Interactive OET mentor' })).toBeInTheDocument();
+    const saved = JSON.parse(localStorage.getItem('oet-study-partner-progress') ?? '{}');
+    expect(saved.completed[0].coached).not.toBe(true);
+  });
+
+  it('keeps a practice attempt coached after closing its mentor', async () => {
+    vi.useFakeTimers();
+    render(<SessionRunner config={timedConfig} onExit={vi.fn()} />);
+    fireEvent.click(screen.getByRole('button', { name: /start .*minute session/i }));
+    fireEvent.click(screen.getByRole('button', { name: 'Open task mentor' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Close task mentor' }));
+    await act(async () => { await vi.advanceTimersByTimeAsync(1_000); });
+    const saved = JSON.parse(localStorage.getItem('oet-study-partner-progress') ?? '{}');
+    expect(saved.completed[0].coached).toBe(true);
+    expect(saved.completed[0].review.overallExamReady).toBe(false);
+    expect(saved.completed[0].review.taskReviews.every((task: { evidenceQualified: boolean }) => task.evidenceQualified === false)).toBe(true);
   });
 });

@@ -32,7 +32,7 @@ export function buildOfflineWritingFeedback(task: SessionTask, draft: string): T
     improvements: improvements.length > 0 ? improvements : ['Compare the final letter against the task-specific model points.'],
     nextDrill:
       result.wordCount < 180 || result.wordCount > 200
-        ? `Rewrite to 180-200 words; the current draft has ${result.wordCount}.`
+        ? `Your draft has ${result.wordCount} words. For a complete letter, aim for approximately 180–200 words using relevant supplied case notes. Do not add invented facts or padding to reach the target.`
         : 'Rewrite the weakest paragraph using one purpose-critical point per sentence.',
     disclaimer: DISCLAIMER,
   };

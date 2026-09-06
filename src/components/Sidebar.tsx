@@ -20,9 +20,11 @@ interface ExternalNavItem {
 
 const navItems: NavItem[] = [
   { id: 'home', label: 'Dashboard', icon: 'dashboard' },
+  { id: 'mentor', label: 'Your OET Mentor', icon: 'message', group: 'Learn with me' },
   { id: 'planner', label: 'Grade A Plan', icon: 'plan', group: 'Plan' },
   { id: 'mock', label: 'Mock Exams', icon: 'exam', group: 'Practice' },
   { id: 'practice', label: 'Practice Library', icon: 'target', group: 'Practice' },
+  { id: 'mistakes', label: 'Mistake Notebook', icon: 'pen', group: 'Practice' },
   { id: 'guide', label: 'Study Guide', icon: 'guide', group: 'Learn' },
   { id: 'tips', label: 'Tips & Tricks', icon: 'lightbulb', group: 'Learn' },
   { id: 'pearls', label: 'Pearls & Pitfalls', icon: 'pulse', group: 'Learn' },
