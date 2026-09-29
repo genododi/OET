@@ -37,6 +37,7 @@ jobs:
       - run: npm run lint
       - run: npm run test:unit
       - run: npm run test:oet
+      - run: npm run test:desktop-materials
       - run: npm run test:governance
       - run: npm run test:source-manifest
       - run: npm run test:local-source-gateway

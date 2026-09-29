@@ -1,0 +1,2 @@
+# Preserve supplied originals byte-for-byte, including line endings.
+public/supplied-materials/files/* binary

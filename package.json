@@ -28,7 +28,7 @@
     "test:local-source-gateway": "node scripts/verify-local-source-gateway.mjs",
     "test:local-source-folder": "node scripts/verify-local-source-folder.mjs",
     "test:real-listening": "node scripts/verify-real-listening-tests.mjs",
-    "test:all": "npm run lint && npm run test:unit && npm run test:oet && npm run test:governance && npm run test:source-manifest && npm run test:local-source-gateway && npm run build",
+    "test:all": "npm run lint && npm run test:unit && npm run test:oet && npm run test:governance && npm run test:source-manifest && npm run test:local-source-gateway && npm run test:desktop-materials && npm run build",
     "sources:acquire": "node scripts/acquire-oet-sources.mjs",
     "sources:inventory": "node scripts/inventory-oet-sources.mjs",
     "sources:sync-local": "node scripts/sync-local-source-catalog.mjs && node scripts/inventory-local-google-drive-folder.mjs",
@@ -44,7 +44,9 @@
     "import-ashgan": "python3 scripts/import-ashgan-assets.py",
     "import-ashgan:public": "python3 scripts/import-ashgan-assets.py --default-handles --download --write-ts --limit 12",
     "import-ashgan:test-export": "python3 scripts/import-ashgan-assets.py --test-export-fixture",
-    "verify-no-duplicates": "npx tsx scripts/verify-no-duplicates.ts"
+    "verify-no-duplicates": "npx tsx scripts/verify-no-duplicates.ts",
+    "sources:import-desktop": "python3 scripts/import-desktop-materials.py",
+    "test:desktop-materials": "node scripts/verify-desktop-materials.mjs"
   },
   "dependencies": {
     "react": "^19.2.6",

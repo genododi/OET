@@ -4,6 +4,26 @@ A static, Medicine-first OET study system for learners targeting Grade A / 450+.
 
 This is an independent preparation tool. Practice scores and tutor feedback are coaching indicators, not official OET results.
 
+## Supplied OET and AMR collection
+
+Open **My OET & AMR Files** in the sidebar, or go directly to [the supplied collection](https://genododi.github.io/OET/#materials). The 2026-09-29 import includes every one of the 99 study files supplied in the local OET folder, including all 35 files in `AMR oet`. All filenames are retained; 85 distinct originals are stored once by checksum in `public/supplied-materials/files`. The catalog records the original relative paths and duplicate relationships.
+
+Each source opens beside a saved practice response. Writing has a letter draft and word count; Reading and Listening have answer sheets; Speaking includes microphone recording, playback and a recording download, plus a transcript field. All four modes include a configurable practice timer, notes, self-review and text export. Drafts are saved per file and skill in this browser. These sessions are self-directed and do not produce an official score or count toward independent readiness. Audio recordings must be downloaded before leaving the workspace.
+
+PDFs and images can be previewed; DOCX and PPTX text is extracted. Scanned PDFs remain available as original scans. HTML is published with a `.txt` extension and displayed as plain text, never executed. Anki decks can be downloaded for use in Anki. There are no audio files in this supplied collection; the Listening workspace links to the app's existing real audio tests. Historic source instructions and errors are retained rather than silently rewritten.
+
+To import additions from this connected local folder:
+
+```bash
+npm run sources:import-desktop
+npm run test:desktop-materials
+npm run build
+```
+
+The importer requires Poppler (`pdftotext`). It reads only study-file extensions in the folder root and `AMR oet`, and never reads credentials, Git internals or the external source archive. Working originals remain in place and are ignored by Git because their checksummed publication copies are tracked. On a different computer, pass the source folder to `python3 scripts/import-desktop-materials.py /path/to/OET`.
+
+Publication of this collection was explicitly requested by the repository owner. This collection is a documented exception to the earlier archive's link-only policy, not a claim that third-party materials are openly licensed. The source manifest records that distinction. Existing GENODODI private-archive files remain governed by the archive policy below.
+
 ## Run locally
 
 Requirements: Node.js 20+ and npm.

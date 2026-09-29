@@ -30,3 +30,13 @@ __pycache__/
 *.njsproj
 *.sln
 *.sw?
+
+# Supplied working originals are published once under public/supplied-materials.
+/AMR oet/
+/*.pdf
+/*.docx
+/*.pptx
+/*.jpg
+/*.PNG
+/*.apkg
+/658966428.html

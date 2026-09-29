@@ -70,6 +70,9 @@ export function ResourcesPage({ onNavigate }: Props) {
   return (
     <div className="page-section resources-page">
       <section className="card source-policy-banner">
+        <div><span className="hero-eyebrow">Your supplied study collection</span><h2>OET &amp; AMR files are ready to practise</h2><p>All 99 supplied files, including 35 AMR files, are available online with saved drafts, source previews and four practice modes.</p><button className="btn btn-primary" onClick={() => onNavigate?.('materials')}>Open my OET &amp; AMR files</button></div>
+      </section>
+      <section className="card source-policy-banner">
         <div>
           <span className="hero-eyebrow">Curated and traceable</span>
           <h2>Medicine resource library</h2>

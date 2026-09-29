@@ -4,6 +4,7 @@ import type { NavSection } from './types';
 import { buildHash, isPracticeFilter, parseRoute } from './lib/routing';
 import { initPreferredProfession } from './lib/preferredProfession';
 
+const MaterialsPage = lazy(() => import('./pages/MaterialsPage').then((module) => ({ default: module.MaterialsPage })));
 const HomePage = lazy(() => import('./pages/HomePage').then((module) => ({ default: module.HomePage })));
 const MentorPage = lazy(() => import('./pages/MentorPage').then((module) => ({ default: module.MentorPage })));
 const MistakeNotebookPage = lazy(() => import('./pages/MistakeNotebookPage').then((module) => ({ default: module.MistakeNotebookPage })));
@@ -18,6 +19,7 @@ const BooksPage = lazy(() => import('./pages/BooksPage').then((module) => ({ def
 const UsmlePage = lazy(() => import('./pages/UsmlePage').then((module) => ({ default: module.UsmlePage })));
 
 const pageMeta: Record<NavSection, { title: string; subtitle?: string }> = {
+  materials: { title: 'My OET & AMR Files', subtitle: 'Your supplied materials, with saved practice for every skill' },
   mentor: { title: 'Your OET Mentor', subtitle: 'Interactive lessons, guided answers, and patient conversations' },
   mistakes: {
     title: 'Mistake Notebook',
@@ -105,6 +107,8 @@ function App() {
 
   const renderPage = () => {
     switch (route.section) {
+      case 'materials':
+        return <MaterialsPage key={route.itemId ?? 'library'} itemId={route.itemId} onNavigate={navigate} />;
       case 'mentor':
         return <MentorPage onNavigate={navigate} />;
       case 'mistakes':

@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { readdir, stat } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import desktopMaterials from '../src/data/desktopMaterials.generated.json';
 import { guideSections } from '../src/data/guide';
 import { studyResources } from '../src/data/studyResources';
 import { examExperiences } from '../src/data/experiences';
@@ -11,6 +12,8 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const publicRoot = path.join(root, 'public');
 const forbiddenExtensions = new Set(['.rar', '.7z', '.exe', '.dmg', '.pkg']);
 const maxPublicBytes = 30 * 1024 * 1024;
+// Owner-requested desktop uploads have an explicit catalog and a separate checksum gate.
+const suppliedAssets = new Set(desktopMaterials.files.map((file) => path.join(publicRoot, file.assetPath)));
 
 async function walk(directory: string): Promise<string[]> {
   const entries = await readdir(directory, { withFileTypes: true });
@@ -26,7 +29,7 @@ async function walk(directory: string): Promise<string[]> {
 const publicFiles = await walk(publicRoot);
 for (const filename of publicFiles) {
   assert.ok(!forbiddenExtensions.has(path.extname(filename).toLowerCase()), `Forbidden archive/executable in public: ${filename}`);
-  assert.ok((await stat(filename)).size <= maxPublicBytes, `Oversized public asset: ${filename}`);
+  assert.ok((await stat(filename)).size <= (suppliedAssets.has(filename) ? 100 * 1024 * 1024 - 1 : maxPublicBytes), `Oversized public asset: ${filename}`);
   assert.ok(!filename.includes(`${path.sep}pdfs${path.sep}experiences${path.sep}`), `Unverified experience PDF remains public: ${filename}`);
 }
 

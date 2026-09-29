@@ -22,6 +22,7 @@ const navItems: NavItem[] = [
   { id: 'home', label: 'Dashboard', icon: 'dashboard' },
   { id: 'mentor', label: 'Your OET Mentor', icon: 'message', group: 'Learn with me' },
   { id: 'planner', label: 'Grade A Plan', icon: 'plan', group: 'Plan' },
+  { id: 'materials', label: 'My OET & AMR Files', icon: 'folder', group: 'Practice' },
   { id: 'mock', label: 'Mock Exams', icon: 'exam', group: 'Practice' },
   { id: 'practice', label: 'Practice Library', icon: 'target', group: 'Practice' },
   { id: 'mistakes', label: 'Mistake Notebook', icon: 'pen', group: 'Practice' },

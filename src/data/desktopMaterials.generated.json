@@ -1,0 +1,1676 @@
+{
+  "version": 1,
+  "source": "User-supplied Desktop/OET and AMR oet folders",
+  "publicationBasis": "Repository owner explicitly requested upload and deployment of all supplied files on 2026-09-29. This does not assert third-party ownership or an open license.",
+  "fileCount": 99,
+  "uniqueFileCount": 85,
+  "amrCount": 35,
+  "totalBytes": 430947292,
+  "files": [
+    {
+      "id": "desktop-c4a271d0a477ac1d",
+      "filename": "151011_OET.pdf",
+      "relativePath": "AMR oet/151011_OET.pdf",
+      "collection": "AMR",
+      "format": "pdf",
+      "bytes": 323501,
+      "sha256": "1738c7beccbc24ab6e9085939807643bc5c0ab5d51e3a2eca635ee061c9cf603",
+      "assetPath": "supplied-materials/files/1738c7beccbc24ab6e9085939807643bc5c0ab5d51e3a2eca635ee061c9cf603.pdf",
+      "textPath": "supplied-materials/text/1738c7beccbc24ab6e9085939807643bc5c0ab5d51e3a2eca635ee061c9cf603.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": true,
+      "excerpt": "Ticket Id: 151011 10/09/2022 Admission Officer Queensland Royal Hospital Re: Mrs. Julia Smith, 21 years old Dear Sir/Madam, I am writing to refer Mrs. Julia Smith, a 21 year old lady who has recently delivered her baby, for your Comment [OET1]: new mother who has th kind assessment. Kindly admit the baby in NICU. deliv",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-f284a506dfaa9670",
+      "filename": "151175_OET.pdf",
+      "relativePath": "AMR oet/151175_OET.pdf",
+      "collection": "AMR",
+      "format": "pdf",
+      "bytes": 218719,
+      "sha256": "c09ad399f4ea46f9c0e7a2e40fb459ddf08496e38645128539d144a81e322d67",
+      "assetPath": "supplied-materials/files/c09ad399f4ea46f9c0e7a2e40fb459ddf08496e38645128539d144a81e322d67.pdf",
+      "textPath": "supplied-materials/text/c09ad399f4ea46f9c0e7a2e40fb459ddf08496e38645128539d144a81e322d67.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": true,
+      "excerpt": "Ticket Id: 151175 19/01/2022 Dr Anita Arora Obstetric Department Melbourne Maternity Centre East Melbourne 3007 Re: Mrs. Kathy Jonnas Shawn, 26 years old Commented [ESL1]: (Mention the patient's full Dear Dr Arora, name in the reference line and introduction paragraph.) I am writing to refer Mrs Kathy Jonnas Shawn, a 2",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-db2e2105c141cc0c",
+      "filename": "151408_OET.pdf",
+      "relativePath": "AMR oet/151408_OET.pdf",
+      "collection": "AMR",
+      "format": "pdf",
+      "bytes": 210054,
+      "sha256": "5923593fe15ee1b992d1b95b382b618c19bfadfaafde83838a6aa166987a0a14",
+      "assetPath": "supplied-materials/files/5923593fe15ee1b992d1b95b382b618c19bfadfaafde83838a6aa166987a0a14.pdf",
+      "textPath": "supplied-materials/text/5923593fe15ee1b992d1b95b382b618c19bfadfaafde83838a6aa166987a0a14.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": true,
+      "excerpt": "Ticket Id: 151408 24/12/2021 Mr. Edward Collins Director Mary Curie Physical and Mental Health Rehabilitation Center Re: Mr. Peter Berry, 30 years old Dear Mr. Collins, I am writing to refer Mr. Peter Berry, who has been admitted in our our hospital for six months with head Commented [ESL1]: transfer trauma following a",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-1b68bbdcd860b0e4",
+      "filename": "152388_OET.pdf",
+      "relativePath": "AMR oet/152388_OET.pdf",
+      "collection": "AMR",
+      "format": "pdf",
+      "bytes": 398867,
+      "sha256": "ec02a83e3e9043a37dad0ae67ff51721f787da0335ee72830843b33b6ec5120d",
+      "assetPath": "supplied-materials/files/ec02a83e3e9043a37dad0ae67ff51721f787da0335ee72830843b33b6ec5120d.pdf",
+      "textPath": "supplied-materials/text/ec02a83e3e9043a37dad0ae67ff51721f787da0335ee72830843b33b6ec5120d.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": true,
+      "excerpt": "Ticket Id: 152388 25/01/2022 Dr Aneel Kumar Melbourne City Clinic 98 Brick Road West Melbourne 3007 Dear Dr Kumar, Re: Mr. Henry Mathews, aged 24 years I am writing to update you on Mr. Mathews, who has been diagnosed with secondary syphilis for your kind follow-up. Comment [OET1]: . Treatment has been commenced and he",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-1ad205ace5407223",
+      "filename": "152836_OET-1.pdf",
+      "relativePath": "AMR oet/152836_OET-1.pdf",
+      "collection": "AMR",
+      "format": "pdf",
+      "bytes": 404561,
+      "sha256": "fb56cef0e4f41bdce0b84ea73faa89bd0e83aba7666fc184279028a1415faaac",
+      "assetPath": "supplied-materials/files/fb56cef0e4f41bdce0b84ea73faa89bd0e83aba7666fc184279028a1415faaac.pdf",
+      "textPath": "supplied-materials/text/fb56cef0e4f41bdce0b84ea73faa89bd0e83aba7666fc184279028a1415faaac.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": true,
+      "excerpt": "Ticket Id: 152836 27 December 2021 Dr. Mark Gregory Psychiatrist 127/55 Modbury Road North Eastern Adelaide 6007, SA Dear Dr. Gregory, Re: Ms. Olivia Grace, D.O.B.: 17/09/1988 I am writing to update you on Ms. Grace, who will be discharged today after successfully treating her Comment [OET1]: being decompensated schizo",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-8e3b59855b66321b",
+      "filename": "152836_OET.pdf",
+      "relativePath": "AMR oet/152836_OET.pdf",
+      "collection": "AMR",
+      "format": "pdf",
+      "bytes": 404561,
+      "sha256": "fb56cef0e4f41bdce0b84ea73faa89bd0e83aba7666fc184279028a1415faaac",
+      "assetPath": "supplied-materials/files/fb56cef0e4f41bdce0b84ea73faa89bd0e83aba7666fc184279028a1415faaac.pdf",
+      "textPath": "supplied-materials/text/fb56cef0e4f41bdce0b84ea73faa89bd0e83aba7666fc184279028a1415faaac.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": true,
+      "excerpt": "Ticket Id: 152836 27 December 2021 Dr. Mark Gregory Psychiatrist 127/55 Modbury Road North Eastern Adelaide 6007, SA Dear Dr. Gregory, Re: Ms. Olivia Grace, D.O.B.: 17/09/1988 I am writing to update you on Ms. Grace, who will be discharged today after successfully treating her Comment [OET1]: being decompensated schizo",
+      "duplicateOf": "desktop-1ad205ace5407223"
+    },
+    {
+      "id": "desktop-166a0dd416203c03",
+      "filename": "4- WRITING ALL NEEDED NOTES.pdf",
+      "relativePath": "AMR oet/4- WRITING ALL NEEDED NOTES.pdf",
+      "collection": "AMR",
+      "format": "pdf",
+      "bytes": 10255509,
+      "sha256": "5ff175cdc7cf5a2395f8f760781fadde0c6ded0a903b78c54eaace90bd3a2d9b",
+      "assetPath": "supplied-materials/files/5ff175cdc7cf5a2395f8f760781fadde0c6ded0a903b78c54eaace90bd3a2d9b.pdf",
+      "textPath": "supplied-materials/text/5ff175cdc7cf5a2395f8f760781fadde0c6ded0a903b78c54eaace90bd3a2d9b.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": true,
+      "excerpt": "Medical Letter - Writing phrases Page 1 of 6 Writing Phrases for Medical Letter OPEN ING SALUTATION Dear Doctor / Registrar / Dr. Smith / Michael, Re: Patient … (John Smith) , DOB … (1.2.1950) [DOB – Date of birth] OPENING CLAUSE [Referral/Admission plus Patient data] Thank you for (urgently) seeing … (the above patien",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-27374efa343338ee",
+      "filename": "oet writing 19pages-1.pdf",
+      "relativePath": "AMR oet/oet writing 19pages-1.pdf",
+      "collection": "AMR",
+      "format": "pdf",
+      "bytes": 638396,
+      "sha256": "4776edeb94689a68f2efd597d6f6fae8b620973117be3d1c99bc45ed7de4e22d",
+      "assetPath": "supplied-materials/files/4776edeb94689a68f2efd597d6f6fae8b620973117be3d1c99bc45ed7de4e22d.pdf",
+      "textPath": "supplied-materials/text/4776edeb94689a68f2efd597d6f6fae8b620973117be3d1c99bc45ed7de4e22d.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": false,
+      "excerpt": "",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-36fe9e5d441d2031",
+      "filename": "oet writing 19pages.pdf",
+      "relativePath": "AMR oet/oet writing 19pages.pdf",
+      "collection": "AMR",
+      "format": "pdf",
+      "bytes": 638396,
+      "sha256": "4776edeb94689a68f2efd597d6f6fae8b620973117be3d1c99bc45ed7de4e22d",
+      "assetPath": "supplied-materials/files/4776edeb94689a68f2efd597d6f6fae8b620973117be3d1c99bc45ed7de4e22d.pdf",
+      "textPath": "supplied-materials/text/4776edeb94689a68f2efd597d6f6fae8b620973117be3d1c99bc45ed7de4e22d.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": false,
+      "excerpt": "",
+      "duplicateOf": "desktop-27374efa343338ee"
+    },
+    {
+      "id": "desktop-84c8c8f069ce3c3c",
+      "filename": "OET-Writing for all professions wz answer-1.pdf",
+      "relativePath": "AMR oet/OET-Writing for all professions wz answer-1.pdf",
+      "collection": "AMR",
+      "format": "pdf",
+      "bytes": 223709,
+      "sha256": "1271cfaf315fc592827595ff7aebd5680c2a8f8ebaa17c2ce6c0c25a4bbea628",
+      "assetPath": "supplied-materials/files/1271cfaf315fc592827595ff7aebd5680c2a8f8ebaa17c2ce6c0c25a4bbea628.pdf",
+      "textPath": "supplied-materials/text/1271cfaf315fc592827595ff7aebd5680c2a8f8ebaa17c2ce6c0c25a4bbea628.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": true,
+      "excerpt": "Subtest General information Writing Time allocation 40 minutes. An extra 5 minutes is allowed as reading time. Test format and procedure The Writing subtest is specific to each profession. This subtest requires candidates to write a letter of referral, transfer or advice based on case notes which are provided. The case",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-41990cf0f9b465b5",
+      "filename": "OET-Writing for all professions wz answer.pdf",
+      "relativePath": "AMR oet/OET-Writing for all professions wz answer.pdf",
+      "collection": "AMR",
+      "format": "pdf",
+      "bytes": 223709,
+      "sha256": "1271cfaf315fc592827595ff7aebd5680c2a8f8ebaa17c2ce6c0c25a4bbea628",
+      "assetPath": "supplied-materials/files/1271cfaf315fc592827595ff7aebd5680c2a8f8ebaa17c2ce6c0c25a4bbea628.pdf",
+      "textPath": "supplied-materials/text/1271cfaf315fc592827595ff7aebd5680c2a8f8ebaa17c2ce6c0c25a4bbea628.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": true,
+      "excerpt": "Subtest General information Writing Time allocation 40 minutes. An extra 5 minutes is allowed as reading time. Test format and procedure The Writing subtest is specific to each profession. This subtest requires candidates to write a letter of referral, transfer or advice based on case notes which are provided. The case",
+      "duplicateOf": "desktop-84c8c8f069ce3c3c"
+    },
+    {
+      "id": "desktop-55a32aa957108d38",
+      "filename": "OET-Writing-1.pptx",
+      "relativePath": "AMR oet/OET-Writing-1.pptx",
+      "collection": "AMR",
+      "format": "pptx",
+      "bytes": 112677,
+      "sha256": "bc6612d93b3e6c4ff20ce3d37b4a959c2324a187b705a121460b83575e4cf556",
+      "assetPath": "supplied-materials/files/bc6612d93b3e6c4ff20ce3d37b4a959c2324a187b705a121460b83575e4cf556.pptx",
+      "textPath": "supplied-materials/text/bc6612d93b3e6c4ff20ce3d37b4a959c2324a187b705a121460b83575e4cf556.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": true,
+      "excerpt": "OET Writing Medicine What is the Writing Sub-test: The Writing sub-test takes 45 minutes The Writing sub-test is specific to each profession. In each test, there is one task set for each profession based on a typical workplace situation and the demands of the profession. This sub-test requires candidates to write a let",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-e37c67fdaaa5c8a1",
+      "filename": "OET-Writing.pptx",
+      "relativePath": "AMR oet/OET-Writing.pptx",
+      "collection": "AMR",
+      "format": "pptx",
+      "bytes": 112677,
+      "sha256": "bc6612d93b3e6c4ff20ce3d37b4a959c2324a187b705a121460b83575e4cf556",
+      "assetPath": "supplied-materials/files/bc6612d93b3e6c4ff20ce3d37b4a959c2324a187b705a121460b83575e4cf556.pptx",
+      "textPath": "supplied-materials/text/bc6612d93b3e6c4ff20ce3d37b4a959c2324a187b705a121460b83575e4cf556.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": true,
+      "excerpt": "OET Writing Medicine What is the Writing Sub-test: The Writing sub-test takes 45 minutes The Writing sub-test is specific to each profession. In each test, there is one task set for each profession based on a typical workplace situation and the demands of the profession. This sub-test requires candidates to write a let",
+      "duplicateOf": "desktop-55a32aa957108d38"
+    },
+    {
+      "id": "desktop-9357e21291ad1e37",
+      "filename": "oet_writing_tasks_final-1.pdf",
+      "relativePath": "AMR oet/oet_writing_tasks_final-1.pdf",
+      "collection": "AMR",
+      "format": "pdf",
+      "bytes": 3067566,
+      "sha256": "197590d43186d3e148fb1dfd964f856276ca082987701dc71e87acca88bc00dd",
+      "assetPath": "supplied-materials/files/197590d43186d3e148fb1dfd964f856276ca082987701dc71e87acca88bc00dd.pdf",
+      "textPath": "supplied-materials/text/197590d43186d3e148fb1dfd964f856276ca082987701dc71e87acca88bc00dd.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": true,
+      "excerpt": "Click here - Medicine Click here - Nursing Click here - Pharmacy Click here - Physiotherapy email info@benchmarkedu.com.au if your occupation is not on the list above. Medicine Medicine Letter 1 Read the case notes and complete the writing task which follows John Elvin is a 48-year-old patient in your General Practice ",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-b15829378f18a0a1",
+      "filename": "oet_writing_tasks_final.pdf",
+      "relativePath": "AMR oet/oet_writing_tasks_final.pdf",
+      "collection": "AMR",
+      "format": "pdf",
+      "bytes": 3067566,
+      "sha256": "197590d43186d3e148fb1dfd964f856276ca082987701dc71e87acca88bc00dd",
+      "assetPath": "supplied-materials/files/197590d43186d3e148fb1dfd964f856276ca082987701dc71e87acca88bc00dd.pdf",
+      "textPath": "supplied-materials/text/197590d43186d3e148fb1dfd964f856276ca082987701dc71e87acca88bc00dd.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": true,
+      "excerpt": "Click here - Medicine Click here - Nursing Click here - Pharmacy Click here - Physiotherapy email info@benchmarkedu.com.au if your occupation is not on the list above. Medicine Medicine Letter 1 Read the case notes and complete the writing task which follows John Elvin is a 48-year-old patient in your General Practice ",
+      "duplicateOf": "desktop-9357e21291ad1e37"
+    },
+    {
+      "id": "desktop-a2a6c6e4ef5e7812",
+      "filename": "Sample Writing Task 1.docx",
+      "relativePath": "AMR oet/Sample Writing Task 1.docx",
+      "collection": "AMR",
+      "format": "docx",
+      "bytes": 7304,
+      "sha256": "11fc6f7d4d3663531d7a2eb4743e56bdfe303745b784aa2d80381efc006067ce",
+      "assetPath": "supplied-materials/files/11fc6f7d4d3663531d7a2eb4743e56bdfe303745b784aa2d80381efc006067ce.docx",
+      "textPath": "supplied-materials/text/11fc6f7d4d3663531d7a2eb4743e56bdfe303745b784aa2d80381efc006067ce.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": true,
+      "excerpt": "Sample Writing Task 1 Read the cases notes below and complete the writing task which follows Time allowed: 40 minutes Today's Date 15.08.09 Patient History Darren Walker DOB 05.07.69 Regular patient in your General Practice 09.07. 09 Subjective Regular check up, Family man, wife, two sons aged 5 and 3 Parents alive - f",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-e4a0c5edc79b348d",
+      "filename": "Sample Writing task 2.docx",
+      "relativePath": "AMR oet/Sample Writing task 2.docx",
+      "collection": "AMR",
+      "format": "docx",
+      "bytes": 8211,
+      "sha256": "0094a2adbc2f999378f457d55d96de175bc2d22d8f55eecb7bbfeb41b22721ea",
+      "assetPath": "supplied-materials/files/0094a2adbc2f999378f457d55d96de175bc2d22d8f55eecb7bbfeb41b22721ea.docx",
+      "textPath": "supplied-materials/text/0094a2adbc2f999378f457d55d96de175bc2d22d8f55eecb7bbfeb41b22721ea.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": true,
+      "excerpt": "Sample Writing task 2 Read the cases notes below and complete the writing task that follows Time allowed: 40 minutes Today's Date 03.07.09 Patient History Margaret Leon 01 .08. 49 Gender: Female Regular patient in your General Practice . 14.01.09 Subjective Wants general check up, single, lives with and takes care of e",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-0fccc3bb6511ade5",
+      "filename": "Sample Writing Task 3 (1).docx",
+      "relativePath": "AMR oet/Sample Writing Task 3 (1).docx",
+      "collection": "AMR",
+      "format": "docx",
+      "bytes": 8252,
+      "sha256": "e7c57962554c50600c49b41b8ab4848760787a2121206918deb2e547b4ab640d",
+      "assetPath": "supplied-materials/files/e7c57962554c50600c49b41b8ab4848760787a2121206918deb2e547b4ab640d.docx",
+      "textPath": "supplied-materials/text/e7c57962554c50600c49b41b8ab4848760787a2121206918deb2e547b4ab640d.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": true,
+      "excerpt": "Sample Writing Task 3 Read the cases notes below and complete the writing task which follows: Time allowed: 40 minutes Today's Date 08.08.09 Patient History Dulcie Wood DOB 15.07.43 New patient in your General Practice. Moved recently to be near family. 03.07. 09 Subjective Widowed January 06, three children, wants reg",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-0f741328e94e7e51",
+      "filename": "Sample Writing Task 3.docx",
+      "relativePath": "AMR oet/Sample Writing Task 3.docx",
+      "collection": "AMR",
+      "format": "docx",
+      "bytes": 8252,
+      "sha256": "e7c57962554c50600c49b41b8ab4848760787a2121206918deb2e547b4ab640d",
+      "assetPath": "supplied-materials/files/e7c57962554c50600c49b41b8ab4848760787a2121206918deb2e547b4ab640d.docx",
+      "textPath": "supplied-materials/text/e7c57962554c50600c49b41b8ab4848760787a2121206918deb2e547b4ab640d.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": true,
+      "excerpt": "Sample Writing Task 3 Read the cases notes below and complete the writing task which follows: Time allowed: 40 minutes Today's Date 08.08.09 Patient History Dulcie Wood DOB 15.07.43 New patient in your General Practice. Moved recently to be near family. 03.07. 09 Subjective Widowed January 06, three children, wants reg",
+      "duplicateOf": "desktop-0fccc3bb6511ade5"
+    },
+    {
+      "id": "desktop-7f285d1ac3932fa3",
+      "filename": "Sample Writing Task 5.docx",
+      "relativePath": "AMR oet/Sample Writing Task 5.docx",
+      "collection": "AMR",
+      "format": "docx",
+      "bytes": 8346,
+      "sha256": "a04d8a77ce10d892825636cd1e0eed44410aee7ba6cfe4ffe5bedf9ef9b647ae",
+      "assetPath": "supplied-materials/files/a04d8a77ce10d892825636cd1e0eed44410aee7ba6cfe4ffe5bedf9ef9b647ae.docx",
+      "textPath": "supplied-materials/text/a04d8a77ce10d892825636cd1e0eed44410aee7ba6cfe4ffe5bedf9ef9b647ae.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": true,
+      "excerpt": "Sample Writing Task 5: Amina Ahmed Time allowed: 40 minutes Read the case notes below and complete the writing task that follows: Today’s Date 14.10.10 Patient History Amina Ahmed aged 8 years – new patient at your clinic Parents – Mother Ayama, house-wife. Father Talan, cab driver Brothers Dalma aged 4 and Roble aged ",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-7e903d10edd82618",
+      "filename": "StudyPlan_OET 2.0_Temp_301275_9806.pdf",
+      "relativePath": "AMR oet/StudyPlan_OET 2.0_Temp_301275_9806.pdf",
+      "collection": "AMR",
+      "format": "pdf",
+      "bytes": 56267,
+      "sha256": "67a571ce69d8bb094f5e247979452cf8a7584e6d1541f25b7e96bb7ba2eb819b",
+      "assetPath": "supplied-materials/files/67a571ce69d8bb094f5e247979452cf8a7584e6d1541f25b7e96bb7ba2eb819b.pdf",
+      "textPath": "supplied-materials/text/67a571ce69d8bb094f5e247979452cf8a7584e6d1541f25b7e96bb7ba2eb819b.json",
+      "skills": [
+        "writing",
+        "speaking"
+      ],
+      "hasText": true,
+      "excerpt": "OET STUDY PLAN Target Score: B Focus Areas: Speaking,Writing Length of Preparation: WHAT YOU NEED TO DO 1. Understand the OET “tasks” OET Writing OET Speaking OET Listening Part A OET Listening Part B OET Reading Part A OET Reading Part B 2. Learn the OET “methods” Click OET > Task > Method OET Writing OET Speaking OET",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-d7f58401600ee3da",
+      "filename": "Writing August 2015.pdf",
+      "relativePath": "AMR oet/Writing August 2015.pdf",
+      "collection": "AMR",
+      "format": "pdf",
+      "bytes": 1934590,
+      "sha256": "e3b9573b89b1784a2c02fd79fe1689cca5db96aea82668e7d1a61251cf523078",
+      "assetPath": "supplied-materials/files/e3b9573b89b1784a2c02fd79fe1689cca5db96aea82668e7d1a61251cf523078.pdf",
+      "textPath": "supplied-materials/text/e3b9573b89b1784a2c02fd79fe1689cca5db96aea82668e7d1a61251cf523078.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": false,
+      "excerpt": "",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-edc728c3f1eabee7",
+      "filename": "Writing July 2015.pdf",
+      "relativePath": "AMR oet/Writing July 2015.pdf",
+      "collection": "AMR",
+      "format": "pdf",
+      "bytes": 2463766,
+      "sha256": "55ed637a4e37c74c568b4bc4ec963fbd1a53255f4db0d4b135818d304a1e7d6a",
+      "assetPath": "supplied-materials/files/55ed637a4e37c74c568b4bc4ec963fbd1a53255f4db0d4b135818d304a1e7d6a.pdf",
+      "textPath": "supplied-materials/text/55ed637a4e37c74c568b4bc4ec963fbd1a53255f4db0d4b135818d304a1e7d6a.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": false,
+      "excerpt": "",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-4aa8f8f576188c27",
+      "filename": "Writing March 2015.pdf",
+      "relativePath": "AMR oet/Writing March 2015.pdf",
+      "collection": "AMR",
+      "format": "pdf",
+      "bytes": 4574930,
+      "sha256": "c422dd38a4eb3d34787d2302919878e5236e6e4e90ebd16cea1b3d8b15c87722",
+      "assetPath": "supplied-materials/files/c422dd38a4eb3d34787d2302919878e5236e6e4e90ebd16cea1b3d8b15c87722.pdf",
+      "textPath": "supplied-materials/text/c422dd38a4eb3d34787d2302919878e5236e6e4e90ebd16cea1b3d8b15c87722.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": false,
+      "excerpt": "",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-1e3478dfcdc5e2c1",
+      "filename": "Writing September 2015.pdf",
+      "relativePath": "AMR oet/Writing September 2015.pdf",
+      "collection": "AMR",
+      "format": "pdf",
+      "bytes": 2432561,
+      "sha256": "7c5093b753032dd2779b06a039665bf298725d001447132a776ff6ba7b4a7855",
+      "assetPath": "supplied-materials/files/7c5093b753032dd2779b06a039665bf298725d001447132a776ff6ba7b4a7855.pdf",
+      "textPath": "supplied-materials/text/7c5093b753032dd2779b06a039665bf298725d001447132a776ff6ba7b4a7855.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": false,
+      "excerpt": "",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-6c3bf6f33c6b45e4",
+      "filename": "Writing Sub Test Medicine__answer (1).pdf",
+      "relativePath": "AMR oet/Writing Sub Test Medicine__answer (1).pdf",
+      "collection": "AMR",
+      "format": "pdf",
+      "bytes": 93161,
+      "sha256": "2afff87e0c3e11397caac0cdf79212941c15d11eab21368799b16aa8d572fbe2",
+      "assetPath": "supplied-materials/files/2afff87e0c3e11397caac0cdf79212941c15d11eab21368799b16aa8d572fbe2.pdf",
+      "textPath": "supplied-materials/text/2afff87e0c3e11397caac0cdf79212941c15d11eab21368799b16aa8d572fbe2.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": true,
+      "excerpt": "Occupational English Test WRITING SUB-TEST Medicine Practice test Please print in BLOCK LETTERS Candidate number – – Family name Other name(s) City Date of test Candidate’s signature YOU MUST NOT REMOVE OET MATERIAL FROM THE TEST ROOM. The OET Centre Telephone: +613 9652 0800 GPO Box 372 Facsimile: +613 9654 5329 Melbo",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-4d8d778c92df656e",
+      "filename": "Writing Task 4 Jane MacIntyre.docx",
+      "relativePath": "AMR oet/Writing Task 4 Jane MacIntyre.docx",
+      "collection": "AMR",
+      "format": "docx",
+      "bytes": 8643,
+      "sha256": "1924081ca0ad84f16a3a250581b0397a8da6eef00d7966eed74335b7098b9a92",
+      "assetPath": "supplied-materials/files/1924081ca0ad84f16a3a250581b0397a8da6eef00d7966eed74335b7098b9a92.docx",
+      "textPath": "supplied-materials/text/1924081ca0ad84f16a3a250581b0397a8da6eef00d7966eed74335b7098b9a92.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": true,
+      "excerpt": "Writing Task 4 Jane MacIntyre Time allowed: 40 minutes Read the cases notes below and complete the writing task that follows: Today's Date 24/08/10 Patient History Mrs. Jane MacIntyre (DOB 01.03.71) Two children age 5 and 3 Two miscarriages First pregnancy developed severe pre-eclampsia delivered by emergency Caesarean",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-752997bdc1cbf8f2",
+      "filename": "Writing Tasks _Model Letters  (5).pdf",
+      "relativePath": "AMR oet/Writing Tasks _Model Letters  (5).pdf",
+      "collection": "AMR",
+      "format": "pdf",
+      "bytes": 54798,
+      "sha256": "1f99bd0f39bd1ff04f85bd9d52e9a346b07775ebd5fc359d7bc4f8a2775bce5a",
+      "assetPath": "supplied-materials/files/1f99bd0f39bd1ff04f85bd9d52e9a346b07775ebd5fc359d7bc4f8a2775bce5a.pdf",
+      "textPath": "supplied-materials/text/1f99bd0f39bd1ff04f85bd9d52e9a346b07775ebd5fc359d7bc4f8a2775bce5a.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": true,
+      "excerpt": "Writing Task 1 Doctors Read the cases notes below and complete the writing task that follows Time allowed: 40 minutes Today's Date 16.02.09 Patient History Miss Cathy Jones - 25 year old single woman Occupation - receptionist Family history of deep vein thrombosis On progesterone-only pill (POP) for contraception No pr",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-8867bf11f46a2034",
+      "filename": "writing مهم جدا.pdf",
+      "relativePath": "AMR oet/writing مهم جدا.pdf",
+      "collection": "AMR",
+      "format": "pdf",
+      "bytes": 3057100,
+      "sha256": "07960e7ae81a455b8a878a64a351eca0c689f8a19b480cde61e115ba6e3919fb",
+      "assetPath": "supplied-materials/files/07960e7ae81a455b8a878a64a351eca0c689f8a19b480cde61e115ba6e3919fb.pdf",
+      "textPath": "supplied-materials/text/07960e7ae81a455b8a878a64a351eca0c689f8a19b480cde61e115ba6e3919fb.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": true,
+      "excerpt": "Doctors: Writing Course Assessment Criteria Your writing will be rated by at least 2 assessors who will use the criteria below to determine your writing level. Therefore study this information carefully so that you can develop the skills to write at A or B level. Category Strategy Self Assessment Overall Task Fulﬁllmen",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-b5177c72757414c2",
+      "filename": "writing-assessment-criteria-2018.pdf",
+      "relativePath": "AMR oet/writing-assessment-criteria-2018.pdf",
+      "collection": "AMR",
+      "format": "pdf",
+      "bytes": 103266,
+      "sha256": "5405fa06dd7abdd95588c8aa7ca5be476b50df9ef6def6fbeaf2843686fd6428",
+      "assetPath": "supplied-materials/files/5405fa06dd7abdd95588c8aa7ca5be476b50df9ef6def6fbeaf2843686fd6428.pdf",
+      "textPath": "supplied-materials/text/5405fa06dd7abdd95588c8aa7ca5be476b50df9ef6def6fbeaf2843686fd6428.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": true,
+      "excerpt": "WRITING Assessment Criteria and Level Descriptors (public version) Presentation Features Appropriateness of Linguistic Features Band Overall Task Fulfilment Comprehension of Stimulus (Spelling, Punctuation & Language (Grammar & Cohesion) Layout) • All aspects of the task • Entirely appropriate register, • Complete unde",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-adf9db7598c6c6ed",
+      "filename": "writing-August-2014.pdf",
+      "relativePath": "AMR oet/writing-August-2014.pdf",
+      "collection": "AMR",
+      "format": "pdf",
+      "bytes": 1613303,
+      "sha256": "027efa4d82cf1110d8208038c324922f1e0b234cdc812c6fb569c25f58bc3bf2",
+      "assetPath": "supplied-materials/files/027efa4d82cf1110d8208038c324922f1e0b234cdc812c6fb569c25f58bc3bf2.pdf",
+      "textPath": "supplied-materials/text/027efa4d82cf1110d8208038c324922f1e0b234cdc812c6fb569c25f58bc3bf2.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": false,
+      "excerpt": "",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-77699a4235288a89",
+      "filename": "Writing-Letters-of-Recommendation.pdf",
+      "relativePath": "AMR oet/Writing-Letters-of-Recommendation.pdf",
+      "collection": "AMR",
+      "format": "pdf",
+      "bytes": 238963,
+      "sha256": "bef4e97415540de6b8d3252a70028e5224d7777b8d37e007f313211099107182",
+      "assetPath": "supplied-materials/files/bef4e97415540de6b8d3252a70028e5224d7777b8d37e007f313211099107182.pdf",
+      "textPath": "supplied-materials/text/bef4e97415540de6b8d3252a70028e5224d7777b8d37e007f313211099107182.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": true,
+      "excerpt": "Tips for Writing Strong Letters of Recommendation Important: If you cannot write a supportive letter of recommendation (e.g., if you did not work with the student very long or did not have a good experience), please let the student know that he/she should request a letter from someone else. The tips below assume that y",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-4470117657ae10df",
+      "filename": "Writing-Medicine-Sample-Test-1.pdf",
+      "relativePath": "AMR oet/Writing-Medicine-Sample-Test-1.pdf",
+      "collection": "AMR",
+      "format": "pdf",
+      "bytes": 206518,
+      "sha256": "c41fee324d23b14d6893fe26a8ac03e88cbe59d6e60e889721a0d19eb6298301",
+      "assetPath": "supplied-materials/files/c41fee324d23b14d6893fe26a8ac03e88cbe59d6e60e889721a0d19eb6298301.pdf",
+      "textPath": "supplied-materials/text/c41fee324d23b14d6893fe26a8ac03e88cbe59d6e60e889721a0d19eb6298301.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": true,
+      "excerpt": "Writing sub-test Medicine Sample Test Please print in BLOCK LETTERS Candidate number – – Family name Other name(s) City Date of test Candidate’s signature YOU MUST NOT REMOVE OET MATERIAL FROM THE TEST ROOM The OET Centre GPO Box 372 Telephone: +613 8656 4000 Melbourne VIC 3001 Facsimile: +613 8656 4020 Australia www.o",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-8a6cf7a3975b0a2b",
+      "filename": "Writing_Answer-Booklet_For-Website-All-Professions.pdf",
+      "relativePath": "AMR oet/Writing_Answer-Booklet_For-Website-All-Professions.pdf",
+      "collection": "AMR",
+      "format": "pdf",
+      "bytes": 555942,
+      "sha256": "86767c3fca2c0a46940127f549203f522ca57aec623ff01825f6d6ff5f8bb370",
+      "assetPath": "supplied-materials/files/86767c3fca2c0a46940127f549203f522ca57aec623ff01825f6d6ff5f8bb370.pdf",
+      "textPath": "supplied-materials/text/86767c3fca2c0a46940127f549203f522ca57aec623ff01825f6d6ff5f8bb370.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": true,
+      "excerpt": "WANS000000 WRITING SUB-TEST – ANSWER BOOKLET CANDIDATE NUMBER: LAST NAME: FIRST NAME: MIDDLE NAMES: Passport Photo PROFESSION: Candidate details and photo will be printed here. VENUE: TEST DATE: CANDIDATE DECLARATION By signing this, you agree not to disclose or use in any way (other than to take the test) or assist an",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-eb0bd99c1a0e6b98",
+      "filename": "writing_letter_3 -cv.pdf",
+      "relativePath": "AMR oet/writing_letter_3 -cv.pdf",
+      "collection": "AMR",
+      "format": "pdf",
+      "bytes": 92773,
+      "sha256": "203a6fa51964931b04f62e12fb895356dfff5ca75a2e69411cafa0b734ba7d97",
+      "assetPath": "supplied-materials/files/203a6fa51964931b04f62e12fb895356dfff5ca75a2e69411cafa0b734ba7d97.pdf",
+      "textPath": "supplied-materials/text/203a6fa51964931b04f62e12fb895356dfff5ca75a2e69411cafa0b734ba7d97.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": true,
+      "excerpt": "Dr. Peta Cassimatis 1414 Logan Rd Mt Gravatt 4222 10/02/2010 Dear Dr. Cassimatis: Re: Mrs. Alison Martin; a 28 year old teacher. I am writing to refer Mrs. Martin who has signs and symptoms consistent with schizophrenia. Mrs. Martin is married with two children aged 4 years and 10 months. She is living with her husband",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-12e3132a98775cc6",
+      "filename": "0001.jpg",
+      "relativePath": "0001.jpg",
+      "collection": "OET",
+      "format": "jpg",
+      "bytes": 376208,
+      "sha256": "3f72982c6e93567f4fd5db67485616f236ecf3efa24c13f46a234eeb585ecbe2",
+      "assetPath": "supplied-materials/files/3f72982c6e93567f4fd5db67485616f236ecf3efa24c13f46a234eeb585ecbe2.jpg",
+      "textPath": "supplied-materials/text/3f72982c6e93567f4fd5db67485616f236ecf3efa24c13f46a234eeb585ecbe2.json",
+      "skills": [],
+      "hasText": false,
+      "excerpt": "",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-601c7ac3292032c1",
+      "filename": "03-22-2020-14.57.00(2).pdf",
+      "relativePath": "03-22-2020-14.57.00(2).pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 897046,
+      "sha256": "f34948b496cb34858b73bf9d3f583ac2d24883818488a377b94ea8f6c344b204",
+      "assetPath": "supplied-materials/files/f34948b496cb34858b73bf9d3f583ac2d24883818488a377b94ea8f6c344b204.pdf",
+      "textPath": "supplied-materials/text/f34948b496cb34858b73bf9d3f583ac2d24883818488a377b94ea8f6c344b204.json",
+      "skills": [],
+      "hasText": true,
+      "excerpt": "Scanned by TapScanner Scanned by TapScanner",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-4b0e6ea276939a73",
+      "filename": "05-14-2020-01.52.50(2).pdf",
+      "relativePath": "05-14-2020-01.52.50(2).pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 490400,
+      "sha256": "5042e6f4c778fae2378d1310c369fed762b388067cac60e96e0317bb2d2e4d08",
+      "assetPath": "supplied-materials/files/5042e6f4c778fae2378d1310c369fed762b388067cac60e96e0317bb2d2e4d08.pdf",
+      "textPath": "supplied-materials/text/5042e6f4c778fae2378d1310c369fed762b388067cac60e96e0317bb2d2e4d08.json",
+      "skills": [],
+      "hasText": true,
+      "excerpt": "Scanned by TapScanner Scanned by TapScanner",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-431af6a633f49bba",
+      "filename": "06-2020 writing task.pdf",
+      "relativePath": "06-2020 writing task.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 694575,
+      "sha256": "d0491410e62a7ef3640d169eb0a58c0fde35420eee1a5bd6189c8271cabe5a61",
+      "assetPath": "supplied-materials/files/d0491410e62a7ef3640d169eb0a58c0fde35420eee1a5bd6189c8271cabe5a61.pdf",
+      "textPath": "supplied-materials/text/d0491410e62a7ef3640d169eb0a58c0fde35420eee1a5bd6189c8271cabe5a61.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": true,
+      "excerpt": "WRITING SUB-TEST – TEST BOOKLET INSTRUCTIONS TO CANDIDATES You must write your answer for the Writing sub-test in the Writing Answer Booklet. You must NOT remove OET material from the test room. Occupational English Test WRITING SUB-TEST: MEDICINE TIME ALLOWED: READING TIME: 5 MINUTES WRITING TIME: 40 MINUTES Read the ",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-8fec5d134fd2a867",
+      "filename": "1 Dr. Clifton.docx",
+      "relativePath": "1 Dr. Clifton.docx",
+      "collection": "OET",
+      "format": "docx",
+      "bytes": 12514,
+      "sha256": "be1a88a4a5cfcfaf0fc13a1cc8eb796fdf5e73d1ea6ec38d5df5a5e0479028de",
+      "assetPath": "supplied-materials/files/be1a88a4a5cfcfaf0fc13a1cc8eb796fdf5e73d1ea6ec38d5df5a5e0479028de.docx",
+      "textPath": "supplied-materials/text/be1a88a4a5cfcfaf0fc13a1cc8eb796fdf5e73d1ea6ec38d5df5a5e0479028de.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": true,
+      "excerpt": "Dr. Penny Clifton Department of Cardiothoracic Surgery Central Hospital Main Street Stillwater 22.08.2015 Dear Dr. Clifton Re: Mrs. Mary Clarke , DOB 17.09.1960 I am pleased to refer Mrs. Clarke whose signs and symptoms are suggestive of bronchogenic carcinoma to you for further assessment and investigations as you thi",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-4acbae963d062810",
+      "filename": "11-07-2020 writing test (1).pdf",
+      "relativePath": "11-07-2020 writing test (1).pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 1341592,
+      "sha256": "f8ee5ceca2a4791412a5af24d4f3dd64a3c4dec5dbec806e7ea7568857255d4d",
+      "assetPath": "supplied-materials/files/f8ee5ceca2a4791412a5af24d4f3dd64a3c4dec5dbec806e7ea7568857255d4d.pdf",
+      "textPath": "supplied-materials/text/f8ee5ceca2a4791412a5af24d4f3dd64a3c4dec5dbec806e7ea7568857255d4d.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": true,
+      "excerpt": "WRITING SUB-TEST – TEST BOOKLET INSTRUCTIONS TO CANDIDATES You must write your answer for the Writing sub-test in the Writing Answer Booklet. You must NOT remove OET material from the test room. Occupational English Test WRITING SUB-TEST: MEDICINE TIME ALLOWED: READING TIME: 5 MINUTES WRITING TIME: 40 MINUTES Read the ",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-7414d959deadd169",
+      "filename": "11-07-2020 writing test.pdf",
+      "relativePath": "11-07-2020 writing test.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 1341592,
+      "sha256": "f8ee5ceca2a4791412a5af24d4f3dd64a3c4dec5dbec806e7ea7568857255d4d",
+      "assetPath": "supplied-materials/files/f8ee5ceca2a4791412a5af24d4f3dd64a3c4dec5dbec806e7ea7568857255d4d.pdf",
+      "textPath": "supplied-materials/text/f8ee5ceca2a4791412a5af24d4f3dd64a3c4dec5dbec806e7ea7568857255d4d.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": true,
+      "excerpt": "WRITING SUB-TEST – TEST BOOKLET INSTRUCTIONS TO CANDIDATES You must write your answer for the Writing sub-test in the Writing Answer Booklet. You must NOT remove OET material from the test room. Occupational English Test WRITING SUB-TEST: MEDICINE TIME ALLOWED: READING TIME: 5 MINUTES WRITING TIME: 40 MINUTES Read the ",
+      "duplicateOf": "desktop-4acbae963d062810"
+    },
+    {
+      "id": "desktop-15eb41142e5a59a6",
+      "filename": "2019 writing recalls.pdf",
+      "relativePath": "2019 writing recalls.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 6679913,
+      "sha256": "a42f1a828d5017edf3ff88302ce33ff553afdceae735a486d5e668c803e85d60",
+      "assetPath": "supplied-materials/files/a42f1a828d5017edf3ff88302ce33ff553afdceae735a486d5e668c803e85d60.pdf",
+      "textPath": "supplied-materials/text/a42f1a828d5017edf3ff88302ce33ff553afdceae735a486d5e668c803e85d60.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": true,
+      "excerpt": "OCCUPATIONAL ENGLISH TEST WRITING SUB-TEST: MEDICINE TIME ALLOWED: READING TIME : 5 MINUTES WRITING TIME : 45 MINUTES Read the case notes below and complete the writing task which follows. Notes: You are a plastic surgeon at Newtown Hospital. Doris White a 64 years woman. Patient: Doris White Adress: 5 Woods St, Stillw",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-05e51ce48b1bfac1",
+      "filename": "22-08-2020 writing task.pdf",
+      "relativePath": "22-08-2020 writing task.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 1808535,
+      "sha256": "57992cf5bf26da9e0c331aef510ecf84b80b29c6fd781fc6818cae0d1320427e",
+      "assetPath": "supplied-materials/files/57992cf5bf26da9e0c331aef510ecf84b80b29c6fd781fc6818cae0d1320427e.pdf",
+      "textPath": "supplied-materials/text/57992cf5bf26da9e0c331aef510ecf84b80b29c6fd781fc6818cae0d1320427e.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": true,
+      "excerpt": "WRITING SUB-TEST – TEST BOOKLET Dr Ashgan, I would like to express my thanks to: Dr Wesam, for her great efforts. Dr Iman. Dr Munir. INSTRUCTIONS TO CANDIDATES You must write your answer for the Writing sub-test in the Writing Answer Booklet. You must NOT remove OET material from the test room. Occupational English Tes",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-cf4e85a2aecec686",
+      "filename": "29-05-2021 Task - Dr Ashgan-1.pdf",
+      "relativePath": "29-05-2021 Task - Dr Ashgan-1.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 2267339,
+      "sha256": "ee66e4565eb61d031a9abd54ec1139b501ac50ca08fad9aa8e3c21a2aa317174",
+      "assetPath": "supplied-materials/files/ee66e4565eb61d031a9abd54ec1139b501ac50ca08fad9aa8e3c21a2aa317174.pdf",
+      "textPath": "supplied-materials/text/ee66e4565eb61d031a9abd54ec1139b501ac50ca08fad9aa8e3c21a2aa317174.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": true,
+      "excerpt": "WRITING SUB-TEST – TEST BOOKLET an Dr Ashgan, g I would like to express my thanks to: sh Dr Adel rA Dr Abd Allah Samir Dr Alaa Moawad Dr Nuha Altigani Dr Samer Khedr Dr Doha Salah D ith Dr Asmaa Fayez w y INSTRUCTIONS TO CANDIDATES or You must write your answer for the Writing sub-test in the Writing Answer Booklet. Yo",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-df04e603d399c42b",
+      "filename": "2nd Book Listening.pdf",
+      "relativePath": "2nd Book Listening.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 16719850,
+      "sha256": "52bced770255eb782a57b420fc834428ca0bd509dc71cb8bc4bd8f8062b4ed6c",
+      "assetPath": "supplied-materials/files/52bced770255eb782a57b420fc834428ca0bd509dc71cb8bc4bd8f8062b4ed6c.pdf",
+      "textPath": "supplied-materials/text/52bced770255eb782a57b420fc834428ca0bd509dc71cb8bc4bd8f8062b4ed6c.json",
+      "skills": [
+        "listening"
+      ],
+      "hasText": true,
+      "excerpt": "Page 1 24 Listening Tests Page 2 Test No: 26 Page 3 Page 4 Page 5 Page 6 Page 7 Page 8 Page 9 Test No: 27 Page 10 Page 11 Page 12 Page 13 Page 14 Page 15 Page 16 Page 17 Page 18 Test No: 29 Patient Mr Lajowski Details about  removal of lump from back procedure  lump located near (1) ……………………  worried about (2) ……………",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-3bd1b3b64ed10057",
+      "filename": "4_5940248990833444480.pdf",
+      "relativePath": "4_5940248990833444480.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 181860,
+      "sha256": "6aa32bc0c680a2184620de24836d4038f1214a233b582e2446a39581a41e75f1",
+      "assetPath": "supplied-materials/files/6aa32bc0c680a2184620de24836d4038f1214a233b582e2446a39581a41e75f1.pdf",
+      "textPath": "supplied-materials/text/6aa32bc0c680a2184620de24836d4038f1214a233b582e2446a39581a41e75f1.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": true,
+      "excerpt": "WRITING SUBTEST – ANSWER BOOKLET CANDIDATE NUMBER: LAST NAME: FIRST NAME: Passport Photo OTHER NAMES: Your details and photo will be printed here. PROFESSION: E VENUE: L TEST DATE: P CANDIDATE SIGNATURE: M TIME ALLOWED READING TIME: 5 MINUTES WRITING TIME: 40 MINUTES A INSTRUCTIONS TO CANDIDATES S 1. Reading time: 5 mi",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-e3ab6bf6bc829ba0",
+      "filename": "658966428.html",
+      "relativePath": "658966428.html",
+      "collection": "OET",
+      "format": "html",
+      "bytes": 4094,
+      "sha256": "230bee1facc0791a5548f7a2455f07a20d4dbd19ae45990c4a63bb47d03a2f45",
+      "assetPath": "supplied-materials/files/230bee1facc0791a5548f7a2455f07a20d4dbd19ae45990c4a63bb47d03a2f45.html.txt",
+      "textPath": "supplied-materials/text/230bee1facc0791a5548f7a2455f07a20d4dbd19ae45990c4a63bb47d03a2f45.json",
+      "skills": [],
+      "hasText": true,
+      "excerpt": "Supplied HTML file. Download or read as plain text.",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-d1242a5090ef16a6",
+      "filename": "Answers All tests PDF.pdf",
+      "relativePath": "Answers All tests PDF.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 4932825,
+      "sha256": "13ceff95427265831cc4c631228b3f22a1fcd8e8501948dea884c85260f90286",
+      "assetPath": "supplied-materials/files/13ceff95427265831cc4c631228b3f22a1fcd8e8501948dea884c85260f90286.pdf",
+      "textPath": "supplied-materials/text/13ceff95427265831cc4c631228b3f22a1fcd8e8501948dea884c85260f90286.json",
+      "skills": [],
+      "hasText": false,
+      "excerpt": "",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-5d5e924126df0d68",
+      "filename": "Avoided Words - Dr Ashgan - OET (1).pdf",
+      "relativePath": "Avoided Words - Dr Ashgan - OET (1).pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 3188747,
+      "sha256": "f10e6c06b636b399a847f00b231be8c578736f87dfb98dceacc5717f97c976af",
+      "assetPath": "supplied-materials/files/f10e6c06b636b399a847f00b231be8c578736f87dfb98dceacc5717f97c976af.pdf",
+      "textPath": "supplied-materials/text/f10e6c06b636b399a847f00b231be8c578736f87dfb98dceacc5717f97c976af.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": true,
+      "excerpt": "Avoided Words N . Cause Word Alternative A 1- Sympathy Suffering experiencing G surprisingly fortunately unfortunately SH 2- So Formal Moreover In addition Furthermore Additionally 3- Others Besides rA In addition Additionally Whereas While subsequently consequently D 4- Informal 1- got worsen His condition has deterio",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-6b92fa68643d3f08",
+      "filename": "Avoided Words - Dr Ashgan - OET.pdf",
+      "relativePath": "Avoided Words - Dr Ashgan - OET.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 3188747,
+      "sha256": "f10e6c06b636b399a847f00b231be8c578736f87dfb98dceacc5717f97c976af",
+      "assetPath": "supplied-materials/files/f10e6c06b636b399a847f00b231be8c578736f87dfb98dceacc5717f97c976af.pdf",
+      "textPath": "supplied-materials/text/f10e6c06b636b399a847f00b231be8c578736f87dfb98dceacc5717f97c976af.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": true,
+      "excerpt": "Avoided Words N . Cause Word Alternative A 1- Sympathy Suffering experiencing G surprisingly fortunately unfortunately SH 2- So Formal Moreover In addition Furthermore Additionally 3- Others Besides rA In addition Additionally Whereas While subsequently consequently D 4- Informal 1- got worsen His condition has deterio",
+      "duplicateOf": "desktop-5d5e924126df0d68"
+    },
+    {
+      "id": "desktop-f98a8841b93817e8",
+      "filename": "Avoided Words - Dr Ashgan.pdf",
+      "relativePath": "Avoided Words - Dr Ashgan.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 3393373,
+      "sha256": "8bb0bae360d48f4d28de8d0f2412c0138bcf4c6e502f18caa859e2a591fb29b4",
+      "assetPath": "supplied-materials/files/8bb0bae360d48f4d28de8d0f2412c0138bcf4c6e502f18caa859e2a591fb29b4.pdf",
+      "textPath": "supplied-materials/text/8bb0bae360d48f4d28de8d0f2412c0138bcf4c6e502f18caa859e2a591fb29b4.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": true,
+      "excerpt": "OET Victory with Dr Ashgan Avoided Words N . Cause Word Alternative A 1- Sympathy Suffering experiencing G surprisingly fortunately unfortunately SH 2- So Formal Moreover In addition Furthermore Additionally 3- Others Besides rA In addition Additionally Whereas While subsequently consequently D 4- Informal 1- got worse",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-ad6e1d9a37cf5d47",
+      "filename": "Benchmark Reading Tests online.pdf",
+      "relativePath": "Benchmark Reading Tests online.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 13880450,
+      "sha256": "7268d841fa82ad89f59b5a6d946840cec2e0a0b7e933e8fae8909875daede3c4",
+      "assetPath": "supplied-materials/files/7268d841fa82ad89f59b5a6d946840cec2e0a0b7e933e8fae8909875daede3c4.pdf",
+      "textPath": "supplied-materials/text/7268d841fa82ad89f59b5a6d946840cec2e0a0b7e933e8fae8909875daede3c4.json",
+      "skills": [
+        "reading"
+      ],
+      "hasText": false,
+      "excerpt": "",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-96601cf403768faf",
+      "filename": "BenchMark Reading Tests.pdf",
+      "relativePath": "BenchMark Reading Tests.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 4137567,
+      "sha256": "95285b9293f59f01ca355eeb805ba4f009dab84c4cd53643ec85435c4db7f4a5",
+      "assetPath": "supplied-materials/files/95285b9293f59f01ca355eeb805ba4f009dab84c4cd53643ec85435c4db7f4a5.pdf",
+      "textPath": "supplied-materials/text/95285b9293f59f01ca355eeb805ba4f009dab84c4cd53643ec85435c4db7f4a5.json",
+      "skills": [
+        "reading"
+      ],
+      "hasText": true,
+      "excerpt": "TEST-1 Skin Cancer PART A TEXT A Skin cancer (melanoma of the skin) is the third most commonly diagnosed cancer in males (after prostate and bowel cancer) and females (after breast and bowel cancer). In Australia. In 2016, an estimated 13,280 new cases of melanoma will be diagnosed in Australia, and 1,770 people will d",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-82564815b95d1b0d",
+      "filename": "CamScanner 05-22-2020 21.25.09.pdf",
+      "relativePath": "CamScanner 05-22-2020 21.25.09.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 519458,
+      "sha256": "7d1dfc257da308772857d1c6a007ee4cfa8bd43a72a4a3bc873097062c57b1a1",
+      "assetPath": "supplied-materials/files/7d1dfc257da308772857d1c6a007ee4cfa8bd43a72a4a3bc873097062c57b1a1.pdf",
+      "textPath": "supplied-materials/text/7d1dfc257da308772857d1c6a007ee4cfa8bd43a72a4a3bc873097062c57b1a1.json",
+      "skills": [],
+      "hasText": false,
+      "excerpt": "",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-f417ff9773246a98",
+      "filename": "CamScanner 05-22-2020 21.25.09_2.pdf",
+      "relativePath": "CamScanner 05-22-2020 21.25.09_2.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 515432,
+      "sha256": "b6db601f7ef1350dc17db704a311354fa49c7d6043f1538ffad34041ea346ff8",
+      "assetPath": "supplied-materials/files/b6db601f7ef1350dc17db704a311354fa49c7d6043f1538ffad34041ea346ff8.pdf",
+      "textPath": "supplied-materials/text/b6db601f7ef1350dc17db704a311354fa49c7d6043f1538ffad34041ea346ff8.json",
+      "skills": [],
+      "hasText": false,
+      "excerpt": "",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-0a99fdef27dabd64",
+      "filename": "CamScanner 05-22-2020 21.25.09_3.pdf",
+      "relativePath": "CamScanner 05-22-2020 21.25.09_3.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 520237,
+      "sha256": "11d4c483d4c2e97c6a8bbc28d59ff90f44b521ada970d767d035abd1370037b9",
+      "assetPath": "supplied-materials/files/11d4c483d4c2e97c6a8bbc28d59ff90f44b521ada970d767d035abd1370037b9.pdf",
+      "textPath": "supplied-materials/text/11d4c483d4c2e97c6a8bbc28d59ff90f44b521ada970d767d035abd1370037b9.json",
+      "skills": [],
+      "hasText": false,
+      "excerpt": "",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-d59d890a7ac89ab2",
+      "filename": "CamScanner 05-29-2020 16.14.20.pdf",
+      "relativePath": "CamScanner 05-29-2020 16.14.20.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 736108,
+      "sha256": "8a9dd6ac9150d433ac971af28c3d9ec0045ee32dc275086c9288c3a4aad580b3",
+      "assetPath": "supplied-materials/files/8a9dd6ac9150d433ac971af28c3d9ec0045ee32dc275086c9288c3a4aad580b3.pdf",
+      "textPath": "supplied-materials/text/8a9dd6ac9150d433ac971af28c3d9ec0045ee32dc275086c9288c3a4aad580b3.json",
+      "skills": [],
+      "hasText": false,
+      "excerpt": "",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-d9a6c7ae2cbf9471",
+      "filename": "CamScanner 09-02-2020 17.18.47.pdf",
+      "relativePath": "CamScanner 09-02-2020 17.18.47.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 734187,
+      "sha256": "233e3dc4d851cb957dc1e5a062b0a39619ac787ff000b8249ec7801368e272fe",
+      "assetPath": "supplied-materials/files/233e3dc4d851cb957dc1e5a062b0a39619ac787ff000b8249ec7801368e272fe.pdf",
+      "textPath": "supplied-materials/text/233e3dc4d851cb957dc1e5a062b0a39619ac787ff000b8249ec7801368e272fe.json",
+      "skills": [],
+      "hasText": false,
+      "excerpt": "",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-501ba32b99b8abca",
+      "filename": "Doctor’s_Guide_and_practic_material.pdf",
+      "relativePath": "Doctor’s_Guide_and_practic_material.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 46074466,
+      "sha256": "895a99ec9a12a223b681d08d578290046bdecffd24587ae5148244add0d20a4e",
+      "assetPath": "supplied-materials/files/895a99ec9a12a223b681d08d578290046bdecffd24587ae5148244add0d20a4e.pdf",
+      "textPath": "supplied-materials/text/895a99ec9a12a223b681d08d578290046bdecffd24587ae5148244add0d20a4e.json",
+      "skills": [
+        "listening",
+        "reading",
+        "writing",
+        "speaking"
+      ],
+      "hasText": true,
+      "excerpt": "Doctor’s Guide and Practice Materials to the updated OET 2.0 This book contain Reading, Writing, Listening and Speaking materials for Health Professionals Its included Instructions to candidates General Strategies and An Overview of OET Tips for success in OET 2.0 OET assessment criteria Notes in each sub-test OET test",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-f3bdcd4180f2c23c",
+      "filename": "Document (1).pdf",
+      "relativePath": "Document (1).pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 68410,
+      "sha256": "6de26d355eba321ba7e11692df1885c51576e49dc6ba8afd37b862fed4e51478",
+      "assetPath": "supplied-materials/files/6de26d355eba321ba7e11692df1885c51576e49dc6ba8afd37b862fed4e51478.pdf",
+      "textPath": "supplied-materials/text/6de26d355eba321ba7e11692df1885c51576e49dc6ba8afd37b862fed4e51478.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": true,
+      "excerpt": "Dr.B Townsed The Emergency Department Newtown Children Hospital 10/04/2010 Dear Dr. Townsed, Re:Emma Johnson I am writing to urgently refer Emma, an 11-year-old girl, whose symptoms and signs are consistent with sever asthma. Your expert assessment would be valued. Today, Emma presented at my clinic with worsening shor",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-86417566a7b2d1b4",
+      "filename": "Dr Ashgan - Writing L - Pharmacy_260323_085534.pdf",
+      "relativePath": "Dr Ashgan - Writing L - Pharmacy_260323_085534.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 11977607,
+      "sha256": "c43d03741179aa161f0ad5569df06c1e879ec653b0c0a2057cc42793272d9b16",
+      "assetPath": "supplied-materials/files/c43d03741179aa161f0ad5569df06c1e879ec653b0c0a2057cc42793272d9b16.pdf",
+      "textPath": "supplied-materials/text/c43d03741179aa161f0ad5569df06c1e879ec653b0c0a2057cc42793272d9b16.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": true,
+      "excerpt": "OET Victory with Dr Ashgan OET Victory with Dr Ashgan OET Victory with Dr Ashgan OET Victory with Dr Ashgan OET Victory with Dr Ashgan OET Victory with Dr Ashgan OET Victory with Dr Ashgan OET Victory with Dr Ashgan OET Victory with Dr Ashgan OET Victory with Dr Ashgan OET Victory with Dr Ashgan OET Victory with Dr Ash",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-416183ad3cf97714",
+      "filename": "Dr Ashgan’s listening test- 2nd Book.pdf",
+      "relativePath": "Dr Ashgan’s listening test- 2nd Book.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 16719850,
+      "sha256": "52bced770255eb782a57b420fc834428ca0bd509dc71cb8bc4bd8f8062b4ed6c",
+      "assetPath": "supplied-materials/files/52bced770255eb782a57b420fc834428ca0bd509dc71cb8bc4bd8f8062b4ed6c.pdf",
+      "textPath": "supplied-materials/text/52bced770255eb782a57b420fc834428ca0bd509dc71cb8bc4bd8f8062b4ed6c.json",
+      "skills": [
+        "listening"
+      ],
+      "hasText": true,
+      "excerpt": "Page 1 24 Listening Tests Page 2 Test No: 26 Page 3 Page 4 Page 5 Page 6 Page 7 Page 8 Page 9 Test No: 27 Page 10 Page 11 Page 12 Page 13 Page 14 Page 15 Page 16 Page 17 Page 18 Test No: 29 Patient Mr Lajowski Details about  removal of lump from back procedure  lump located near (1) ……………………  worried about (2) ……………",
+      "duplicateOf": "desktop-df04e603d399c42b"
+    },
+    {
+      "id": "desktop-6829749b0c59c3d4",
+      "filename": "Dr ashgan’s speaking notes .pdf",
+      "relativePath": "Dr ashgan’s speaking notes .pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 2629692,
+      "sha256": "e3df292fbbcaab74e7a8e18d7d496fce4094033ed68b81b9fa85c0db3f4c8902",
+      "assetPath": "supplied-materials/files/e3df292fbbcaab74e7a8e18d7d496fce4094033ed68b81b9fa85c0db3f4c8902.pdf",
+      "textPath": "supplied-materials/text/e3df292fbbcaab74e7a8e18d7d496fce4094033ed68b81b9fa85c0db3f4c8902.json",
+      "skills": [
+        "speaking"
+      ],
+      "hasText": true,
+      "excerpt": " Hello, I'm doctor Ashgan \"mention your name\"  I'm the treating Dr. for you today Or I'm the Dr. in charge today  How may I address you?  Nice to meet you sir/madam  Could you tell me in your own words what brings you here today? When the patient tells you his complaint, Listen to him carefully, please. ♥1 → he ta",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-ee9492ec6bbba846",
+      "filename": "Dr ASHGAN’s Speaking Notes copy.pdf",
+      "relativePath": "Dr ASHGAN’s Speaking Notes copy.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 1743541,
+      "sha256": "9db1805295ce7045e8268d3415c8fac9cc4544a63ec740bcaaf688618340a4ff",
+      "assetPath": "supplied-materials/files/9db1805295ce7045e8268d3415c8fac9cc4544a63ec740bcaaf688618340a4ff.pdf",
+      "textPath": "supplied-materials/text/9db1805295ce7045e8268d3415c8fac9cc4544a63ec740bcaaf688618340a4ff.json",
+      "skills": [
+        "speaking"
+      ],
+      "hasText": false,
+      "excerpt": "",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-355648e74f9461b6",
+      "filename": "Dr ASHGAN’s Speaking Notes.pdf",
+      "relativePath": "Dr ASHGAN’s Speaking Notes.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 1743541,
+      "sha256": "9db1805295ce7045e8268d3415c8fac9cc4544a63ec740bcaaf688618340a4ff",
+      "assetPath": "supplied-materials/files/9db1805295ce7045e8268d3415c8fac9cc4544a63ec740bcaaf688618340a4ff.pdf",
+      "textPath": "supplied-materials/text/9db1805295ce7045e8268d3415c8fac9cc4544a63ec740bcaaf688618340a4ff.json",
+      "skills": [
+        "speaking"
+      ],
+      "hasText": false,
+      "excerpt": "",
+      "duplicateOf": "desktop-ee9492ec6bbba846"
+    },
+    {
+      "id": "desktop-94b90ad84443f586",
+      "filename": "Dr ASHGAN’s Speaking Notes_230415_141158.pdf",
+      "relativePath": "Dr ASHGAN’s Speaking Notes_230415_141158.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 1771139,
+      "sha256": "4ba0c02c6e855696caeb754e3f3ad55f1142798d743637d680e6b458fa99e243",
+      "assetPath": "supplied-materials/files/4ba0c02c6e855696caeb754e3f3ad55f1142798d743637d680e6b458fa99e243.pdf",
+      "textPath": "supplied-materials/text/4ba0c02c6e855696caeb754e3f3ad55f1142798d743637d680e6b458fa99e243.json",
+      "skills": [
+        "speaking"
+      ],
+      "hasText": false,
+      "excerpt": "",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-58e51908205de4f9",
+      "filename": "Emma Johnson.pdf",
+      "relativePath": "Emma Johnson.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 324613,
+      "sha256": "77f4a0886889e83e314b730bc959a8ce2aa3b092696a5cc8e1f23cb6d61cf960",
+      "assetPath": "supplied-materials/files/77f4a0886889e83e314b730bc959a8ce2aa3b092696a5cc8e1f23cb6d61cf960.pdf",
+      "textPath": "supplied-materials/text/77f4a0886889e83e314b730bc959a8ce2aa3b092696a5cc8e1f23cb6d61cf960.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": false,
+      "excerpt": "",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-a990c62948886361",
+      "filename": "file.pdf",
+      "relativePath": "file.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 15322,
+      "sha256": "2ccca15e9df0bce675a47ea7cc579d3c9e15d040d47000f84001fe7601ad8868",
+      "assetPath": "supplied-materials/files/2ccca15e9df0bce675a47ea7cc579d3c9e15d040d47000f84001fe7601ad8868.pdf",
+      "textPath": "supplied-materials/text/2ccca15e9df0bce675a47ea7cc579d3c9e15d040d47000f84001fe7601ad8868.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": true,
+      "excerpt": "Dr B Townsend Emergency Department Newtown Children’s Hospital 10-04-10 Dear Dr Townsend, R: Emma Johnson, aged 11 Thank you for urgently seeing Emma, who has exacerbated asthma which triggered by viral URTI. Your urgent assessment would be highly appreciated. Emma has presented at my practice today with complaint of d",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-2678e87d518b1de7",
+      "filename": "IMG_7864.jpg",
+      "relativePath": "IMG_7864.jpg",
+      "collection": "OET",
+      "format": "jpg",
+      "bytes": 127621,
+      "sha256": "1b9a0cd7a9e4cfb033304bd020e9a0d5da5d7c0710a9154e394eff333f31c15b",
+      "assetPath": "supplied-materials/files/1b9a0cd7a9e4cfb033304bd020e9a0d5da5d7c0710a9154e394eff333f31c15b.jpg",
+      "textPath": "supplied-materials/text/1b9a0cd7a9e4cfb033304bd020e9a0d5da5d7c0710a9154e394eff333f31c15b.json",
+      "skills": [],
+      "hasText": false,
+      "excerpt": "",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-88ead0f062e9691c",
+      "filename": "introduction.docx",
+      "relativePath": "introduction.docx",
+      "collection": "OET",
+      "format": "docx",
+      "bytes": 54592,
+      "sha256": "cf3df37bf31093da5dc7a2442f730897c4f4c4c0a95cfbc418d2496eca49915e",
+      "assetPath": "supplied-materials/files/cf3df37bf31093da5dc7a2442f730897c4f4c4c0a95cfbc418d2496eca49915e.docx",
+      "textPath": "supplied-materials/text/cf3df37bf31093da5dc7a2442f730897c4f4c4c0a95cfbc418d2496eca49915e.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": true,
+      "excerpt": " Zagazig University Faculty of medicine Cardiology department Slow flow and No Reflow Post Primary Percutaneous Coronary Intervention: Prediction and Short term Impact Protocol of Thesis Submitted for partial fulfillment of master degree in cardiology By Ahmed Osama Mohamed El Hefnawi M.B.B.CH Faculty of medicine, Zaga",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-092be0f172777179",
+      "filename": "JE PROMETS - READING 10.pdf",
+      "relativePath": "JE PROMETS - READING 10.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 24288963,
+      "sha256": "b81181d299e2d21abf47d612f34c11260a1cbd4261e43309781f5cd5bdf943db",
+      "assetPath": "supplied-materials/files/b81181d299e2d21abf47d612f34c11260a1cbd4261e43309781f5cd5bdf943db.pdf",
+      "textPath": "supplied-materials/text/b81181d299e2d21abf47d612f34c11260a1cbd4261e43309781f5cd5bdf943db.json",
+      "skills": [
+        "reading"
+      ],
+      "hasText": true,
+      "excerpt": "INDEX • DIABETES • IRRITABLE BOWEL SYNDROME (IBS) • HYPERTENSION • MIGRAINES • VITAMIN C DEFICIENCY • ACUTE DIARRHEA • DENGUE FEVER • BED BUGS • OBSTETRIC ULTARSOUND • SURVEY ON SKIN-LIGHTENING CREAMS PART A DIABEITES TEXT A Diabetes is a defect in the body’s ability to convert glucose (sugar) into energy. Glucose is t",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-2f949479b32d3f8d",
+      "filename": "letter writing Mr kerry.pdf",
+      "relativePath": "letter writing Mr kerry.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 1195725,
+      "sha256": "5b37da6742b396e754b460a21279600a80d5b87c96530b28c6e9b83e0f288272",
+      "assetPath": "supplied-materials/files/5b37da6742b396e754b460a21279600a80d5b87c96530b28c6e9b83e0f288272.pdf",
+      "textPath": "supplied-materials/text/5b37da6742b396e754b460a21279600a80d5b87c96530b28c6e9b83e0f288272.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": false,
+      "excerpt": "",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-ec6a010c98286d42",
+      "filename": "letter.docx",
+      "relativePath": "letter.docx",
+      "collection": "OET",
+      "format": "docx",
+      "bytes": 13737,
+      "sha256": "1896778740eec5a840d9bbe6ff0793fa324351d7e9624cf0d06ef26bdc6fa39b",
+      "assetPath": "supplied-materials/files/1896778740eec5a840d9bbe6ff0793fa324351d7e9624cf0d06ef26bdc6fa39b.docx",
+      "textPath": "supplied-materials/text/1896778740eec5a840d9bbe6ff0793fa324351d7e9624cf0d06ef26bdc6fa39b.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": true,
+      "excerpt": "Dr B Townsend Emergency Department Newtown Children`s Hospital 10/04/2010 Dear Doctor Townsend Re: Emma Johnson, aged: 11 years I am writing to refer Emma; whose signs and symptoms are indicative of asthma aggravated by viral upper respiratory infection . Your urgent assessment would be greatly valued. Today, Emma pres",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-30d43cb66506f86a",
+      "filename": "letter2.docx",
+      "relativePath": "letter2.docx",
+      "collection": "OET",
+      "format": "docx",
+      "bytes": 13763,
+      "sha256": "d255ad165bbdbbdb0c5433b3894aa829e911fb143c97391a67f62e2c496b6910",
+      "assetPath": "supplied-materials/files/d255ad165bbdbbdb0c5433b3894aa829e911fb143c97391a67f62e2c496b6910.docx",
+      "textPath": "supplied-materials/text/d255ad165bbdbbdb0c5433b3894aa829e911fb143c97391a67f62e2c496b6910.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": true,
+      "excerpt": "Dr. Ben Hinds Psychiatrist Marboura Hospital Lakes Road Marboura 7/03/2011 Dear Dr. Hinds, Re: Yuxiang Meng , 21 years old Thank you for seeing Mr . Meng , a 21- year- old chinese student, who is presented with an acute manic episode. Your e xpert management would be appreciated. Initially, Mr. Meng presented 5 days ag",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-30f48b9604c0eb86",
+      "filename": "me weil.docx",
+      "relativePath": "me weil.docx",
+      "collection": "OET",
+      "format": "docx",
+      "bytes": 11620,
+      "sha256": "3940ae190418f9f05a2ee08ab358a2f6c16030e2231bcb5805ab90c87481f415",
+      "assetPath": "supplied-materials/files/3940ae190418f9f05a2ee08ab358a2f6c16030e2231bcb5805ab90c87481f415.docx",
+      "textPath": "supplied-materials/text/3940ae190418f9f05a2ee08ab358a2f6c16030e2231bcb5805ab90c87481f415.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": true,
+      "excerpt": "Dr. M McLaren Neurologist Suite 3 67 The Crescent Newtown 09/08/2014 Dear Dr. McLaren, Re: Mr. Michael Weir , DOB: 20/09/1970 Thank you for seeing Mr.Weir , a 44-year-old real state agent, whose symptoms and signs are suggestive of multiple sclerosis . Your expert management including ordering an MRI would be appreciat",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-1d4466573cc40b7b",
+      "filename": "mr elvin.docx",
+      "relativePath": "mr elvin.docx",
+      "collection": "OET",
+      "format": "docx",
+      "bytes": 7142,
+      "sha256": "4f0538ba14bb3dc58551404820f74ffa16c4ae69898efd3024581b71fda1cedf",
+      "assetPath": "supplied-materials/files/4f0538ba14bb3dc58551404820f74ffa16c4ae69898efd3024581b71fda1cedf.docx",
+      "textPath": "supplied-materials/text/4f0538ba14bb3dc58551404820f74ffa16c4ae69898efd3024581b71fda1cedf.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": true,
+      "excerpt": "Dr.Jeremy Barnet Emergency Register Duty Maraubra Hospital Liked Rd Marouble 1/6/2011 Dear Dr Barent, Re:Mr John Elvin,aged 49 years Thank you for seeing Mr Elvin,who has been demonstrating symptoms and signs consistent with anterior acute myocardial infarction and exacerbating asthma. Your management would be valued. ",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-7c09170dea708e0c",
+      "filename": "ms bowen.docx",
+      "relativePath": "ms bowen.docx",
+      "collection": "OET",
+      "format": "docx",
+      "bytes": 690645,
+      "sha256": "543cdd7459048e999b919d9e2f7c58e2158102b05533cf19c3d457749db6bc3b",
+      "assetPath": "supplied-materials/files/543cdd7459048e999b919d9e2f7c58e2158102b05533cf19c3d457749db6bc3b.docx",
+      "textPath": "supplied-materials/text/543cdd7459048e999b919d9e2f7c58e2158102b05533cf19c3d457749db6bc3b.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": true,
+      "excerpt": "Dr . Asma 010064710119 Dr. Suasn Clayton Endocrinologist Women`s Health Centre 11-13 Bell Street Newtown 28/03/2014 Dear Dr. Clayton, Re: Ms. Tracy Bowen DOB : 22/07/1988 Thank you for seeing Ms. Bowen, a 26-year-old patient, whose symptoms and signs are suggestive of polycystic ovary syndrome. Your expert assessment a",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-44b003095ff2db40",
+      "filename": "New Document - 2019-12-26.pdf",
+      "relativePath": "New Document - 2019-12-26.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 1146391,
+      "sha256": "34bd13837d95e00e15735e505eeca93acc70f42730138ed4216f876ddde90f5c",
+      "assetPath": "supplied-materials/files/34bd13837d95e00e15735e505eeca93acc70f42730138ed4216f876ddde90f5c.pdf",
+      "textPath": "supplied-materials/text/34bd13837d95e00e15735e505eeca93acc70f42730138ed4216f876ddde90f5c.json",
+      "skills": [],
+      "hasText": false,
+      "excerpt": "",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-039959123fd87afe",
+      "filename": "Notes_251107_234323.pdf",
+      "relativePath": "Notes_251107_234323.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 11000219,
+      "sha256": "e0764bf7be164dae5309561767e65fed19148ffb89c7379fa08874cf19f5830e",
+      "assetPath": "supplied-materials/files/e0764bf7be164dae5309561767e65fed19148ffb89c7379fa08874cf19f5830e.pdf",
+      "textPath": "supplied-materials/text/e0764bf7be164dae5309561767e65fed19148ffb89c7379fa08874cf19f5830e.json",
+      "skills": [],
+      "hasText": false,
+      "excerpt": "",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-15281f9079f5441c",
+      "filename": "oet dates.PNG",
+      "relativePath": "oet dates.PNG",
+      "collection": "OET",
+      "format": "png",
+      "bytes": 464074,
+      "sha256": "c496af48cd5873dff92c8b7135aec50093c689f2a6f4c397650ca2d1e55356aa",
+      "assetPath": "supplied-materials/files/c496af48cd5873dff92c8b7135aec50093c689f2a6f4c397650ca2d1e55356aa.png",
+      "textPath": "supplied-materials/text/c496af48cd5873dff92c8b7135aec50093c689f2a6f4c397650ca2d1e55356aa.json",
+      "skills": [],
+      "hasText": false,
+      "excerpt": "",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-ebb90b2c64720e99",
+      "filename": "OET Future Land Full Book Final Edition December 2018-1-1-1-1 (1).pdf",
+      "relativePath": "OET Future Land Full Book Final Edition December 2018-1-1-1-1 (1).pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 32862420,
+      "sha256": "dd652d23e80b844f5369c794caa19440c0352dc68ce6a59c63489920cfad0e15",
+      "assetPath": "supplied-materials/files/dd652d23e80b844f5369c794caa19440c0352dc68ce6a59c63489920cfad0e15.pdf",
+      "textPath": "supplied-materials/text/dd652d23e80b844f5369c794caa19440c0352dc68ce6a59c63489920cfad0e15.json",
+      "skills": [
+        "listening",
+        "reading",
+        "writing",
+        "speaking"
+      ],
+      "hasText": true,
+      "excerpt": "OET FUTURE LAND NOTES The rapid way to pass OET exam 12/2018 1 :tada: To All New Future Land's Members :tada: :rotating_light: Please, Please, please read every word written here to understand how and from where to start. :vertical_traffic_light: If you do every thinks written here, you will save a lot of time :watch: ",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-55d8d97da607e02b",
+      "filename": "OET Reading Final Updated.pdf",
+      "relativePath": "OET Reading Final Updated.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 7755536,
+      "sha256": "a3da1a1b32ee095d60ddc89ee533c6e8f8561d320a87711ff62fc648e02a4423",
+      "assetPath": "supplied-materials/files/a3da1a1b32ee095d60ddc89ee533c6e8f8561d320a87711ff62fc648e02a4423.pdf",
+      "textPath": "supplied-materials/text/a3da1a1b32ee095d60ddc89ee533c6e8f8561d320a87711ff62fc648e02a4423.json",
+      "skills": [
+        "reading"
+      ],
+      "hasText": true,
+      "excerpt": "OET 2.0 READING MATERIALS (Including 3 official materials) Sample Test 1 READING SUB-TEST – TEXT BOOKLET: PART A CANDIDATE NUMBER: LAST NAME: FIRST NAME: Passport Photo OTHER NAMES: Your details and photo will be printed here. E PROFESSION: L VENUE: TEST DATE: P CANDIDATE SIGNATURE: A M S SAMPLE www.occupationalenglish",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-6da36c7aaf5fddee",
+      "filename": "OET_Future_Land_Full_Book_Final_Edition_December_2018_1_1_1_1 (1).pdf",
+      "relativePath": "OET_Future_Land_Full_Book_Final_Edition_December_2018_1_1_1_1 (1).pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 32862420,
+      "sha256": "dd652d23e80b844f5369c794caa19440c0352dc68ce6a59c63489920cfad0e15",
+      "assetPath": "supplied-materials/files/dd652d23e80b844f5369c794caa19440c0352dc68ce6a59c63489920cfad0e15.pdf",
+      "textPath": "supplied-materials/text/dd652d23e80b844f5369c794caa19440c0352dc68ce6a59c63489920cfad0e15.json",
+      "skills": [
+        "listening",
+        "reading",
+        "writing",
+        "speaking"
+      ],
+      "hasText": true,
+      "excerpt": "OET FUTURE LAND NOTES The rapid way to pass OET exam 12/2018 1 :tada: To All New Future Land's Members :tada: :rotating_light: Please, Please, please read every word written here to understand how and from where to start. :vertical_traffic_light: If you do every thinks written here, you will save a lot of time :watch: ",
+      "duplicateOf": "desktop-ebb90b2c64720e99"
+    },
+    {
+      "id": "desktop-d6754a61e3abc40e",
+      "filename": "OET_Future_Land_Full_Book_Final_Edition_December_2018_1_1_1_1.pdf",
+      "relativePath": "OET_Future_Land_Full_Book_Final_Edition_December_2018_1_1_1_1.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 32862420,
+      "sha256": "dd652d23e80b844f5369c794caa19440c0352dc68ce6a59c63489920cfad0e15",
+      "assetPath": "supplied-materials/files/dd652d23e80b844f5369c794caa19440c0352dc68ce6a59c63489920cfad0e15.pdf",
+      "textPath": "supplied-materials/text/dd652d23e80b844f5369c794caa19440c0352dc68ce6a59c63489920cfad0e15.json",
+      "skills": [
+        "listening",
+        "reading",
+        "writing",
+        "speaking"
+      ],
+      "hasText": true,
+      "excerpt": "OET FUTURE LAND NOTES The rapid way to pass OET exam 12/2018 1 :tada: To All New Future Land's Members :tada: :rotating_light: Please, Please, please read every word written here to understand how and from where to start. :vertical_traffic_light: If you do every thinks written here, you will save a lot of time :watch: ",
+      "duplicateOf": "desktop-ebb90b2c64720e99"
+    },
+    {
+      "id": "desktop-e0664c35477ed55f",
+      "filename": "OET_listening_words_with_Rayana_Alrashid_AutoRecovered_5_11.pdf",
+      "relativePath": "OET_listening_words_with_Rayana_Alrashid_AutoRecovered_5_11.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 4233292,
+      "sha256": "cc7850997f5930dce7a7d0a581011f37f96191fa18d8724e62a4df6f011a706f",
+      "assetPath": "supplied-materials/files/cc7850997f5930dce7a7d0a581011f37f96191fa18d8724e62a4df6f011a706f.pdf",
+      "textPath": "supplied-materials/text/cc7850997f5930dce7a7d0a581011f37f96191fa18d8724e62a4df6f011a706f.json",
+      "skills": [
+        "listening"
+      ],
+      "hasText": true,
+      "excerpt": "OET listening words with Rayana Alrashid *check Spelling Please *Last update :5/11/2024 *I Do not permit the sale or trade of these materials. 09/04/2021 Malerone tablets Administrator Coconut oil Headaches Breathless Muscular dystrophy Chubby (bit fat) Deodorant Headaches Chins Lifting things Bees wax Contiguous Twist",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-1714830560e44e32",
+      "filename": "OET_Occupational_English_Test.apkg",
+      "relativePath": "OET_Occupational_English_Test.apkg",
+      "collection": "OET",
+      "format": "apkg",
+      "bytes": 12477607,
+      "sha256": "6e6b254a22f9bb44194cb0cd2cabaa97f01b145b961de38d0432bb1c6dc378a1",
+      "assetPath": "supplied-materials/files/6e6b254a22f9bb44194cb0cd2cabaa97f01b145b961de38d0432bb1c6dc378a1.apkg",
+      "textPath": "supplied-materials/text/6e6b254a22f9bb44194cb0cd2cabaa97f01b145b961de38d0432bb1c6dc378a1.json",
+      "skills": [
+        "listening",
+        "reading",
+        "writing",
+        "speaking"
+      ],
+      "hasText": false,
+      "excerpt": "",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-e8f01362aa24c233",
+      "filename": "Phase ONE Letters Doctors_230723_211504.pdf",
+      "relativePath": "Phase ONE Letters Doctors_230723_211504.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 4086590,
+      "sha256": "3a0d89c89dd438e3b2cb04448fa608b74c8adf3a535cd23516dfba03d454b47b",
+      "assetPath": "supplied-materials/files/3a0d89c89dd438e3b2cb04448fa608b74c8adf3a535cd23516dfba03d454b47b.pdf",
+      "textPath": "supplied-materials/text/3a0d89c89dd438e3b2cb04448fa608b74c8adf3a535cd23516dfba03d454b47b.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": true,
+      "excerpt": "Order of writing letters for correction: 1-Darren Walker 2- Lucy Clarke 3-Mary Clarke n 4-James Warden ga 5-Maria Santini 6-Michael Weir sh 7-David Taylor 8-Alison Martin rA 9-Sally Fletcher 10-Amina Ahmad D ith w o ry ct Vi ET O 1 TIME ALLOWED: READING TIME: 5 MINUTES Task 11 WRITING TIME: 40 MINUTES Read the case not",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-ea6d8d69bbc9928f",
+      "filename": "preposition - Dr Ashgan.pdf",
+      "relativePath": "preposition - Dr Ashgan.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 3522344,
+      "sha256": "32b00f534d5e038a7c59dbabd5b98a55933ec0cd23777033402744dd64813cf7",
+      "assetPath": "supplied-materials/files/32b00f534d5e038a7c59dbabd5b98a55933ec0cd23777033402744dd64813cf7.pdf",
+      "textPath": "supplied-materials/text/32b00f534d5e038a7c59dbabd5b98a55933ec0cd23777033402744dd64813cf7.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": true,
+      "excerpt": "DR ASHGAN OET OET WITH DR ASHGAN DR ASHGAN’S NOTES PREPOSITIONS N A A need : for G arrange : for benefit : for SH necessary : for + noun to + verb rA pain : in A difficulty : in D inflammation : in ith counsel : on educate : on w update : on rash : on / over ET bruising : on / over sensation : on / over advise : on + n",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-241fd4fcf750bd37",
+      "filename": "Reading Test (1).pdf",
+      "relativePath": "Reading Test (1).pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 19896116,
+      "sha256": "79ecec4b4bb5aa569d32a6b3fa46defdd6ad88c95da52102858be9204a6e66c7",
+      "assetPath": "supplied-materials/files/79ecec4b4bb5aa569d32a6b3fa46defdd6ad88c95da52102858be9204a6e66c7.pdf",
+      "textPath": "supplied-materials/text/79ecec4b4bb5aa569d32a6b3fa46defdd6ad88c95da52102858be9204a6e66c7.json",
+      "skills": [
+        "reading"
+      ],
+      "hasText": true,
+      "excerpt": "OET 2.0 READING MATERIALS (Including 2 official samples) Sample Test 1 READING SUB-TEST – TEXT BOOKLET: PART A CANDIDATE NUMBER: LAST NAME: FIRST NAME: Passport Photo OTHER NAMES: Your details and photo will be printed here. E PROFESSION: L VENUE: TEST DATE: P CANDIDATE SIGNATURE: A M S SAMPLE www.occupationalenglishte",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-9be1928baefe066a",
+      "filename": "Reading Test copy.pdf",
+      "relativePath": "Reading Test copy.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 19896116,
+      "sha256": "79ecec4b4bb5aa569d32a6b3fa46defdd6ad88c95da52102858be9204a6e66c7",
+      "assetPath": "supplied-materials/files/79ecec4b4bb5aa569d32a6b3fa46defdd6ad88c95da52102858be9204a6e66c7.pdf",
+      "textPath": "supplied-materials/text/79ecec4b4bb5aa569d32a6b3fa46defdd6ad88c95da52102858be9204a6e66c7.json",
+      "skills": [
+        "reading"
+      ],
+      "hasText": true,
+      "excerpt": "OET 2.0 READING MATERIALS (Including 2 official samples) Sample Test 1 READING SUB-TEST – TEXT BOOKLET: PART A CANDIDATE NUMBER: LAST NAME: FIRST NAME: Passport Photo OTHER NAMES: Your details and photo will be printed here. E PROFESSION: L VENUE: TEST DATE: P CANDIDATE SIGNATURE: A M S SAMPLE www.occupationalenglishte",
+      "duplicateOf": "desktop-241fd4fcf750bd37"
+    },
+    {
+      "id": "desktop-b52c6063152a38cd",
+      "filename": "Reading Test.pdf",
+      "relativePath": "Reading Test.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 19896116,
+      "sha256": "1b4b34f36610992b93f1304ad79e06c9e418d9897cb7002edc70d19b3e3637cc",
+      "assetPath": "supplied-materials/files/1b4b34f36610992b93f1304ad79e06c9e418d9897cb7002edc70d19b3e3637cc.pdf",
+      "textPath": "supplied-materials/text/1b4b34f36610992b93f1304ad79e06c9e418d9897cb7002edc70d19b3e3637cc.json",
+      "skills": [
+        "reading"
+      ],
+      "hasText": true,
+      "excerpt": "OET 2.0 READING MATERIALS (Including 2 official samples) Sample Test 1 READING SUB-TEST – TEXT BOOKLET: PART A CANDIDATE NUMBER: LAST NAME: FIRST NAME: Passport Photo OTHER NAMES: Your details and photo will be printed here. E PROFESSION: L VENUE: TEST DATE: P CANDIDATE SIGNATURE: A M S SAMPLE www.occupationalenglishte",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-9a09528c90a79b15",
+      "filename": "Safari (1).pdf",
+      "relativePath": "Safari (1).pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 666331,
+      "sha256": "d23d0cbf06fbbea8a7449e847c25c6b07a70a452e9dd7488ffde6dd2e5ee5585",
+      "assetPath": "supplied-materials/files/d23d0cbf06fbbea8a7449e847c25c6b07a70a452e9dd7488ffde6dd2e5ee5585.pdf",
+      "textPath": "supplied-materials/text/d23d0cbf06fbbea8a7449e847c25c6b07a70a452e9dd7488ffde6dd2e5ee5585.json",
+      "skills": [
+        "reading"
+      ],
+      "hasText": true,
+      "excerpt": "OET UPDATED READING FOR ALL PROFESSIONS JAYDEN LACHLAN All rights reserved. No part of this book shall be reproduced, stored in a retrieval system, or transmitted by any means, electronic, mechanical, photocopying, recording, or otherwise, without written permission from the publisher, No patent liability is assumed wi",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-50dc1434a2db6d8c",
+      "filename": "Safari.pdf",
+      "relativePath": "Safari.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 666331,
+      "sha256": "d23d0cbf06fbbea8a7449e847c25c6b07a70a452e9dd7488ffde6dd2e5ee5585",
+      "assetPath": "supplied-materials/files/d23d0cbf06fbbea8a7449e847c25c6b07a70a452e9dd7488ffde6dd2e5ee5585.pdf",
+      "textPath": "supplied-materials/text/d23d0cbf06fbbea8a7449e847c25c6b07a70a452e9dd7488ffde6dd2e5ee5585.json",
+      "skills": [
+        "reading"
+      ],
+      "hasText": true,
+      "excerpt": "OET UPDATED READING FOR ALL PROFESSIONS JAYDEN LACHLAN All rights reserved. No part of this book shall be reproduced, stored in a retrieval system, or transmitted by any means, electronic, mechanical, photocopying, recording, or otherwise, without written permission from the publisher, No patent liability is assumed wi",
+      "duplicateOf": "desktop-9a09528c90a79b15"
+    },
+    {
+      "id": "desktop-ccd3b493c0b9802f",
+      "filename": "Sally Fletcher 3-2018.pdf",
+      "relativePath": "Sally Fletcher 3-2018.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 495245,
+      "sha256": "f663d70a14a91409b52aecd65dcfe203e8bba7e2f2fce01916a9508344729f9a",
+      "assetPath": "supplied-materials/files/f663d70a14a91409b52aecd65dcfe203e8bba7e2f2fce01916a9508344729f9a.pdf",
+      "textPath": "supplied-materials/text/f663d70a14a91409b52aecd65dcfe203e8bba7e2f2fce01916a9508344729f9a.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": true,
+      "excerpt": "TIME ALLOWED: READING TIME: 5 MINUTES Task 2 WRITING TIME: 40 MINUTES Read the case notes below and complete the writing task which follows. notes: Hospital: Fairbanks Hospital, 1001 Noble St, Fairbanks, AK 99701 Name: Mrs Sally Fletcher Date of Birth: 3/10/1993 Marital status: Married, 5 years Appointment date: 25/03/",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-4188df5b2f096d9a",
+      "filename": "Scan40.pdf",
+      "relativePath": "Scan40.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 1218701,
+      "sha256": "6b3e6c3a7ce8a441a5516f0e2e334b151cd0b16cd1cc9769696f64ee6f157d0c",
+      "assetPath": "supplied-materials/files/6b3e6c3a7ce8a441a5516f0e2e334b151cd0b16cd1cc9769696f64ee6f157d0c.pdf",
+      "textPath": "supplied-materials/text/6b3e6c3a7ce8a441a5516f0e2e334b151cd0b16cd1cc9769696f64ee6f157d0c.json",
+      "skills": [],
+      "hasText": false,
+      "excerpt": "",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-c5e88437e31e0c86",
+      "filename": "Susan-Forrest.pdf",
+      "relativePath": "Susan-Forrest.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 190732,
+      "sha256": "201f997ad48f55356537829225f1426d2f896c2293b0ed91e0ef4a5208c60ad7",
+      "assetPath": "supplied-materials/files/201f997ad48f55356537829225f1426d2f896c2293b0ed91e0ef4a5208c60ad7.pdf",
+      "textPath": "supplied-materials/text/201f997ad48f55356537829225f1426d2f896c2293b0ed91e0ef4a5208c60ad7.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": true,
+      "excerpt": "NOTES: Susan Forrest is a female patient in your general practice. Patient: Susan Forrest DOB: 19/05/97 (age 24) Address: 88 Ridge Road, Dandenong East Social History: Single, graphic designer Youngest in family Social drinker Smoker - 7 years, 10-15/day Family History: Father also has asthma Mother - hypertension Youn",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-18f5bec9f6c64663",
+      "filename": "tiem Gyn.pdf",
+      "relativePath": "tiem Gyn.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 6622933,
+      "sha256": "8688e02291a464b2d1a62224eb7762434c0cd599a1dd135f6d5b965f432483d4",
+      "assetPath": "supplied-materials/files/8688e02291a464b2d1a62224eb7762434c0cd599a1dd135f6d5b965f432483d4.pdf",
+      "textPath": "supplied-materials/text/8688e02291a464b2d1a62224eb7762434c0cd599a1dd135f6d5b965f432483d4.json",
+      "skills": [],
+      "hasText": false,
+      "excerpt": "",
+      "duplicateOf": null
+    },
+    {
+      "id": "desktop-936de916fe461831",
+      "filename": "ميساء حسين 06-20-2021 17.39.22.pdf",
+      "relativePath": "ميساء حسين 06-20-2021 17.39.22.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 2263306,
+      "sha256": "aa70a1aab985e27e3adfc78e0bcaa80e793a44bf9bdaa0d300308c02b996d9c3",
+      "assetPath": "supplied-materials/files/aa70a1aab985e27e3adfc78e0bcaa80e793a44bf9bdaa0d300308c02b996d9c3.pdf",
+      "textPath": "supplied-materials/text/aa70a1aab985e27e3adfc78e0bcaa80e793a44bf9bdaa0d300308c02b996d9c3.json",
+      "skills": [],
+      "hasText": false,
+      "excerpt": "",
+      "duplicateOf": null
+    }
+  ]
+}
