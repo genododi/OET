@@ -9,7 +9,7 @@ it('keeps each recording paired with its paper and restores separate answer draf
   const first = render(<AuthenticListeningPage />);
   fireEvent.change(screen.getByLabelText('My numbered answers and listening review'), { target: { value: '1. fatigue' } });
   fireEvent.click(screen.getByRole('button', { name: 'Load original audio player' }));
-  expect(screen.getByTitle('OET Listening Sample Test 1 original recording')).toHaveAttribute('src', expect.stringContaining('oet-sample-test-1-new'));
+  expect(screen.getByTitle('OET Listening Sample Test 1 original recording')).toHaveAttribute('src', expect.stringContaining('1917931694'));
   fireEvent.click(screen.getByRole('button', { name: 'Review with the official answer key' }));
   expect(screen.getByRole('link', { name: /Sample Test 1 answer key/ })).toHaveAttribute('href', expect.stringContaining('Test%201%20Answer'));
   fireEvent.click(screen.getByRole('button', { name: 'Sample 4' }));
