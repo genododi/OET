@@ -142,6 +142,8 @@ export interface ExperiencePdf {
 }
 
 export type NavSection =
+  | 'notebook'
+  | 'listening'
   | 'materials'
   | 'home'
   | 'mentor'

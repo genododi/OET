@@ -4,6 +4,8 @@ import type { NavSection } from './types';
 import { buildHash, isPracticeFilter, parseRoute } from './lib/routing';
 import { initPreferredProfession } from './lib/preferredProfession';
 
+const NotebookPage = lazy(() => import('./pages/NotebookPage').then(m => ({ default: m.NotebookPage })));
+const AuthenticListeningPage = lazy(() => import('./pages/AuthenticListeningPage').then(m => ({ default: m.AuthenticListeningPage })));
 const MaterialsPage = lazy(() => import('./pages/MaterialsPage').then((module) => ({ default: module.MaterialsPage })));
 const HomePage = lazy(() => import('./pages/HomePage').then((module) => ({ default: module.HomePage })));
 const MentorPage = lazy(() => import('./pages/MentorPage').then((module) => ({ default: module.MentorPage })));
@@ -19,6 +21,8 @@ const BooksPage = lazy(() => import('./pages/BooksPage').then((module) => ({ def
 const UsmlePage = lazy(() => import('./pages/UsmlePage').then((module) => ({ default: module.UsmlePage })));
 
 const pageMeta: Record<NavSection, { title: string; subtitle?: string }> = {
+  notebook: { title: 'NotebookLM Study Notes', subtitle: 'Apply your saved notes to daily practice' },
+  listening: { title: 'Real Listening', subtitle: 'Original OET recordings and matching papers' },
   materials: { title: 'My OET & AMR Files', subtitle: 'Your supplied materials, with saved practice for every skill' },
   mentor: { title: 'Your OET Mentor', subtitle: 'Interactive lessons, guided answers, and patient conversations' },
   mistakes: {
@@ -107,6 +111,8 @@ function App() {
 
   const renderPage = () => {
     switch (route.section) {
+      case 'notebook': return <NotebookPage />;
+      case 'listening': return <AuthenticListeningPage />;
       case 'materials':
         return <MaterialsPage key={route.itemId ?? 'library'} itemId={route.itemId} onNavigate={navigate} />;
       case 'mentor':

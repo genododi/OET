@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { notebookWritingChecklist } from '../data/notebookNotes';
 import catalog from '../data/desktopMaterials.generated.json';
 import type { NavSection, OetSubtest } from '../types';
 import './materials.css';
@@ -17,7 +18,7 @@ const guidance: Record<OetSubtest, string> = {
   speaking: 'Choose a role-play or teaching point in the source. Prepare, then record your response and listen back. You can also type a transcript. Recordings stay in this session until downloaded.',
 };
 const checklists: Record<OetSubtest, string[]> = {
-  writing: ['Purpose is clear at the start', 'Relevant case notes are accurate', 'Content is concise and appropriate to the reader', 'Paragraphs and letter format are clear', 'Grammar, vocabulary and spelling checked'],
+  writing: notebookWritingChecklist,
   reading: ['All selected questions attempted', 'Evidence located in the source', 'Answers compared with an available key', 'Errors and next steps recorded'],
   listening: ['Matched paper and recording, or labelled this as vocabulary study', 'Key words and spellings checked', 'Answers compared with an available key', 'Missed details recorded for review'],
   speaking: ['Established the patient’s concerns', 'Used clear, patient-friendly language', 'Acknowledged feelings and checked understanding', 'Explained the next steps', 'Listened back or reviewed my transcript'],
@@ -129,7 +130,8 @@ function PracticeWorkspace({ file, skill, onNavigate }: { file: Material; skill:
       <a className="btn btn-secondary" href={url(file.assetPath)} download={file.format === 'html' ? `${file.filename}.txt` : file.filename}>Download original · {size(file.bytes)}</a>
     </header>
     <p className="material-guidance">{guidance[skill]}</p>
-    {skill === 'listening' && <button className="btn btn-secondary" onClick={() => onNavigate('mock')}>Open existing audio tests</button>}
+    {skill === 'listening' && <button className="btn btn-secondary" onClick={() => onNavigate('listening')}>Open real listening recordings</button>}
+    {skill === 'writing' && <p className="meta">Applying your NotebookLM writing checklist. <a href="#notebook">Review the imported guide →</a></p>}
     <div className="material-workspace-grid">
       <section className="card material-source" aria-label="Source document">
         <div className="material-toolbar"><h3>Source document</h3><div className="material-tabs">

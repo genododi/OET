@@ -1,0 +1,51 @@
+{
+  "verifiedAt": "2026-09-30",
+  "sourceUrl": "https://oet.com/ready/sample-tests/oet-test-on-paper/medicine",
+  "tests": [
+    {
+      "id": "official-1",
+      "title": "OET Listening Sample Test 1",
+      "audioUrl": "https://soundcloud.com/oet-450564055/oet-sample-test-1-new",
+      "questionsUrl": "https://cdn-aus.aglty.io/oet/pdf-files/sample-tests/on-paper-sample-tests/Medicine%20Sample%20Test%201%20Questions.pdf",
+      "answersUrl": "https://cdn-aus.aglty.io/oet/pdf-files/sample-tests/on-paper-sample-tests/Medicine%20Sample%20Test%201%20Answer%20Key.pdf",
+      "publisherTitle": "OET Listening Sample Test 1 by OET",
+      "publisher": "OET"
+    },
+    {
+      "id": "official-2",
+      "title": "OET Listening Sample Test 2",
+      "audioUrl": "https://soundcloud.com/oet-450564055/oet-listening-sample-test-2",
+      "questionsUrl": "https://cdn-aus.aglty.io/oet/pdf-files/sample-tests/on-paper-sample-tests/Medicine%20Sample%20Test%202%20Questions.pdf",
+      "answersUrl": "https://cdn-aus.aglty.io/oet/pdf-files/sample-tests/on-paper-sample-tests/Medicine%20Sample%20Test%202%20Answer%20Key.pdf",
+      "publisherTitle": "OET Listening Sample Test 2 by OET",
+      "publisher": "OET"
+    },
+    {
+      "id": "official-3",
+      "title": "OET Listening Sample Test 3",
+      "audioUrl": "https://soundcloud.com/oet-450564055/84ff979e-f30c-49b9-a7b8-8fa7e0c6c9e6",
+      "questionsUrl": "https://cdn-aus.aglty.io/oet/pdf-files/sample-tests/on-paper-sample-tests/Medicine%20Sample%20Test%203%20Questions.pdf",
+      "answersUrl": "https://cdn-aus.aglty.io/oet/pdf-files/sample-tests/on-paper-sample-tests/Medicine%20Sample%20Test%203%20Answer%20Key.pdf",
+      "publisherTitle": "OET Listening Sample Test 3 by OET",
+      "publisher": "OET"
+    },
+    {
+      "id": "official-4",
+      "title": "OET Listening Sample Test 4",
+      "audioUrl": "https://soundcloud.com/oet-450564055/oet-sample-test-4-new",
+      "questionsUrl": "https://cdn-aus.aglty.io/oet/pdf-files/sample-tests/on-paper-sample-tests/Medicine%20Sample%20Test%204%20Questions.pdf",
+      "answersUrl": "https://cdn-aus.aglty.io/oet/pdf-files/sample-tests/on-paper-sample-tests/Medicine%20Sample%20Test%204%20Answer%20Key.pdf",
+      "publisherTitle": "OET Listening Sample Test 4 by OET",
+      "publisher": "OET"
+    },
+    {
+      "id": "official-5",
+      "title": "OET Listening Sample Test 5",
+      "audioUrl": "https://soundcloud.com/oet-450564055/c09bddc0-1ae0-4789-ad97-0fed9e5b4616",
+      "questionsUrl": "https://cdn-aus.aglty.io/oet/pdf-files/sample-tests/on-paper-sample-tests/Medicine%20Sample%20Test%205%20Questions.pdf",
+      "answersUrl": "https://cdn-aus.aglty.io/oet/pdf-files/sample-tests/on-paper-sample-tests/Medicine%20Sample%20Test%205%20Answer%20Key.pdf",
+      "publisherTitle": "OET Listening Sample Test 5 by OET",
+      "publisher": "OET"
+    }
+  ]
+}

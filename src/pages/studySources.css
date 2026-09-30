@@ -1,0 +1,21 @@
+.study-sources { display: grid; gap: 22px; }
+.study-sources .card { padding: 26px; min-width: 0; }
+.study-sources p, .study-sources li { line-height: 1.75; }
+.study-sources h2 { font-size: clamp(24px, 3vw, 36px); margin: 12px 0; }
+.study-sources h3 { margin: 10px 0; }
+.study-source-hero { background: linear-gradient(120deg, #edf8f6, #fff); border-top: 4px solid #147d83; }
+.study-source-hero .hero-eyebrow { color: #126e75; }
+.study-source-links { display: flex; flex-wrap: wrap; align-items: center; gap: 15px; margin: 18px 0; }
+.study-skill-tabs { display: flex; gap: 10px; flex-wrap: wrap; }
+.study-skill-tabs button { border: 1px solid #ccdedd; border-radius: 10px; background: white; padding: 12px 20px; font: inherit; text-transform: capitalize; cursor: pointer; color: #30474b; }
+.study-skill-tabs button[aria-pressed=true] { background: #126e75; color: #fff; }
+.study-lesson-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.study-step { color: #126e75; font-size: 28px; font-weight: 750; }
+.study-apply { padding: 12px 15px; background: #f1f7f7; border-left: 3px solid #5ca6a6; }
+.study-draft { display: grid; gap: 10px; margin: 22px 0; }
+.study-draft label { font-weight: 650; }
+.study-draft textarea { width: 100%; box-sizing: border-box; resize: vertical; border: 1px solid #cbd8dc; border-radius: 9px; padding: 16px; font: inherit; line-height: 1.8; color: #263943; background: #fff; }
+.study-draft .btn { justify-self: start; }
+.original-audio-frame { width: 100%; height: 170px; border: 0; margin: 20px 0 0; }
+.study-sources button:focus-visible, .study-sources a:focus-visible { outline: 3px solid #36aeb8; outline-offset: 3px; }
+@media(max-width: 720px) { .study-lesson-grid { grid-template-columns: 1fr; } .study-sources .card { padding: 20px; } }

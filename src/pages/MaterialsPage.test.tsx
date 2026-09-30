@@ -43,8 +43,8 @@ describe('supplied source practice', () => {
     render(<MaterialsPage itemId={task.id} onNavigate={navigate} />);
     fireEvent.click(screen.getByRole('button', { name: 'Listening' }));
     expect(screen.getByText(/no audio recordings/)).toBeInTheDocument();
-    fireEvent.click(screen.getByRole('button', { name: 'Open existing audio tests' }));
-    expect(navigate).toHaveBeenCalledWith('mock');
+    fireEvent.click(screen.getByRole('button', { name: 'Open real listening recordings' }));
+    expect(navigate).toHaveBeenCalledWith('listening');
     await screen.findByText('Darren Walker — supplied case notes');
   });
 });

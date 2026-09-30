@@ -99,6 +99,7 @@ export function MockExamsPage({ defaultProfession = 'Medicine' }: Props) {
 
   return (
     <div className="page-section">
+      <article className="card"><h3>Practise listening with real voices</h3><p>Five official recordings with publisher-matched question packs and answer keys. Older generated drills in this library may use synthetic speech.</p><a className="btn btn-primary" href="#listening">Open real listening →</a></article>
       <p className="page-intro">
         {profession === 'Medicine' ? (
           <>

@@ -179,3 +179,22 @@ npx playwright install --with-deps chromium
 ## Deployment
 
 GitHub Actions gates deployment on lint, unit/component tests, all OET content verifiers, source governance, the production build, and Playwright smoke tests. Only a successful `main` build is deployed to GitHub Pages.
+
+### NotebookLM notes and original listening (30 September 2026)
+
+`#notebook` contains an adapted snapshot of the saved OET NotebookLM writing report
+(48 underlying sources), plus selected reading, speaking and listening study themes.
+The adapted summary is downloadable at `public/notebook-notes/oet-writing-guide.md`.
+This is a manual import, not continuous Google account synchronization. Unsupported
+absolute rules in the generated report are explicitly qualified. The writing
+checklist is shared with the local OET/AMR practice workspace.
+
+`#listening` offers five original OET SoundCloud recordings with the matching
+Medicine question packs and answer keys published together on OET's official
+sample-test page. `src/data/authenticListening.json` records provenance and the
+verification date. SoundCloud and YouTube media remain publisher-hosted; no
+third-party audio has been re-generated or copied into the repository. Two existing
+bundled editions retain their separate, matched, scored runners. Drafts are stored
+locally per recording/skill and can be downloaded. NotebookLM Audio Overviews are
+not used as authentic listening audio. The older generated drill library is
+explicitly distinguished from this new collection.
