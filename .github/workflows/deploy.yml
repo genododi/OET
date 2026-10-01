@@ -42,7 +42,7 @@ jobs:
       - run: npm run test:source-manifest
       - run: npm run test:local-source-gateway
       - run: npm run build
-      - run: npx playwright install --with-deps chromium
+      - run: npx playwright install chromium
       - run: npm run test:e2e
       - if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
         uses: actions/upload-pages-artifact@v3
