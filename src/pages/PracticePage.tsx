@@ -28,6 +28,8 @@ import {
 import { useProgress } from '../hooks/useProgress';
 import { videoSamplesFor } from '../data/videoSamples';
 
+const availableModules = practiceModules.filter(module => module.subtest !== 'listening');
+
 const filters: Array<OetSubtest | 'all'> = ['all', 'listening', 'reading', 'writing', 'speaking'];
 const difficulties: Array<Difficulty | 'all'> = ['all', 'advanced'];
 
@@ -60,12 +62,12 @@ export function PracticePage({
 
   const difficultyCounts = useMemo(() => {
     const counts: Record<Difficulty | 'all', number> = {
-      all: practiceModules.length,
+      all: availableModules.length,
       beginner: 0,
       intermediate: 0,
       advanced: 0,
     };
-    practiceModules.forEach((m) => {
+    availableModules.forEach((m) => {
       counts[m.difficulty] += 1;
     });
     return counts;
@@ -73,8 +75,7 @@ export function PracticePage({
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
-    const items = practiceModules.filter((m) => {
-      if (m.subtest === 'listening') return false;
+    const items = availableModules.filter((m) => {
       if (filter !== 'all' && m.subtest !== filter) return false;
       if (difficulty !== 'all' && m.difficulty !== difficulty) return false;
       if (!matchesProfessionFilter(m.profession, profession)) return false;
@@ -99,7 +100,7 @@ export function PracticePage({
     usePagination(filtered);
 
   const medicineCatalogCount = useMemo(
-    () => countMedicineCatalog(practiceModules),
+    () => countMedicineCatalog(availableModules),
     [],
   );
 
@@ -107,7 +108,7 @@ export function PracticePage({
     profession === 'Medicine' && difficulty === 'advanced';
 
   const medicineAdvancedSubtestCounts = useMemo(
-    () => countMedicineAdvancedPracticeBySubtest(practiceModules),
+    () => countMedicineAdvancedPracticeBySubtest(availableModules),
     [],
   );
 
@@ -161,13 +162,13 @@ export function PracticePage({
             {total.toLocaleString()} of {medicineCatalogCount.toLocaleString()} medicine practice
             modules shown
             {medicineCatalogCount >= TARGET_MEDICINE_PRACTICE_COUNT
-              ? ` (${TARGET_ADVANCED_PRACTICE_COUNT.toLocaleString()}+ physician-focused across all four fields)`
+              ? ` (${TARGET_ADVANCED_PRACTICE_COUNT.toLocaleString()}+ physician-focused Reading, Writing and Speaking drills)`
               : ''}
             . Build referral writing and patient/colleague speaking before full mocks.
           </>
         ) : (
           <>
-            {practiceModules.length.toLocaleString()} practice modules —{' '}
+            {availableModules.length.toLocaleString()} practice modules —{' '}
             {medicineCatalogCount.toLocaleString()} for Medicine (shown first).{' '}
             {difficultyCounts.advanced.toLocaleString()} advanced
             {difficultyCounts.advanced >= TARGET_ADVANCED_PRACTICE_COUNT

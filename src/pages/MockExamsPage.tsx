@@ -1,11 +1,10 @@
 import { useEffect, useMemo, useState } from 'react';
-import { mockExams, TARGET_ADVANCED_MOCK_COUNT, TARGET_MEDICINE_MOCK_COUNT } from '../data/mockExams';
+import { mockExams } from '../data/mockExams';
 import { ListPagination } from '../components/ListPagination';
 import { buildMockSession } from '../lib/sessionBuilder';
 import { usePagination } from '../hooks/usePagination';
 import {
   countMedicineAdvancedMockBySubtest,
-  countMedicineCatalog,
   matchesProfessionFilter,
   sortByPreferredProfession,
   TARGET_MEDICINE_ADVANCED_PER_SUBTEST,
@@ -17,6 +16,8 @@ import { RealListeningTestRunner } from '../components/RealListeningTestRunner';
 import { useProgress } from '../hooks/useProgress';
 import { getRealListeningTestForMock, realListeningTests } from '../data/realListeningTests';
 import type { Difficulty, MockExam, OetSubtest } from '../types';
+
+const availableExams = mockExams.filter(exam => !exam.subtests.includes('listening') || getRealListeningTestForMock(exam.id));
 
 const difficulties: Array<Difficulty | 'all'> = ['all', 'advanced'];
 const subtestFilters: Array<OetSubtest | 'all'> = ['all', 'listening', 'reading', 'writing', 'speaking'];
@@ -41,7 +42,7 @@ export function MockExamsPage({ defaultProfession = 'Medicine' }: Props) {
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
-    const items = mockExams.filter((exam) => {
+    const items = availableExams.filter((exam) => {
       if (difficulty !== 'all' && exam.difficulty !== difficulty) return false;
       if (!matchesProfessionFilter(exam.profession, profession)) return false;
       if (subtest !== 'all' && !exam.subtests.includes(subtest)) return false;
@@ -64,24 +65,23 @@ export function MockExamsPage({ defaultProfession = 'Medicine' }: Props) {
   const { page, setPage, totalPages, pageItems, total, rangeStart, rangeEnd } =
     usePagination(filtered);
 
-  const medicineCatalogCount = useMemo(() => countMedicineCatalog(mockExams), []);
 
   const showMedicineAdvancedSubtestCounts =
     profession === 'Medicine' && difficulty === 'advanced';
 
   const medicineAdvancedSubtestCounts = useMemo(
-    () => countMedicineAdvancedMockBySubtest(mockExams),
+    () => countMedicineAdvancedMockBySubtest(availableExams),
     [],
   );
 
   const difficultyCounts = useMemo(() => {
     const counts: Record<Difficulty | 'all', number> = {
-      all: mockExams.length,
+      all: availableExams.length,
       beginner: 0,
       intermediate: 0,
       advanced: 0,
     };
-    mockExams.forEach((exam) => {
+    availableExams.forEach((exam) => {
       counts[exam.difficulty] += 1;
     });
     return counts;
@@ -99,33 +99,8 @@ export function MockExamsPage({ defaultProfession = 'Medicine' }: Props) {
 
   return (
     <div className="page-section">
-      <article className="card"><h3>Practise listening with real voices</h3><p>Five official recordings with publisher-matched question packs and answer keys. Older generated drills in this library may use synthetic speech.</p><a className="btn btn-primary" href="#listening">Open real listening →</a></article>
-      <p className="page-intro">
-        {profession === 'Medicine' ? (
-          <>
-            {total.toLocaleString()} of {medicineCatalogCount.toLocaleString()} medicine timed mocks
-            shown
-            {medicineCatalogCount >= TARGET_MEDICINE_MOCK_COUNT
-              ? ` (${TARGET_MEDICINE_MOCK_COUNT.toLocaleString()}+ physician-focused)`
-              : ''}
-            .{' '}
-          </>
-        ) : (
-          <>
-            {mockExams.length.toLocaleString()} timed mock exams —{' '}
-            {medicineCatalogCount.toLocaleString()} for Medicine (shown first).{' '}
-            {difficultyCounts.advanced.toLocaleString()} advanced
-            {difficultyCounts.advanced >= TARGET_ADVANCED_MOCK_COUNT
-              ? ` (${TARGET_ADVANCED_MOCK_COUNT.toLocaleString()}+ expert pool)`
-              : ''}
-            .{' '}
-          </>
-        )}
-        Every generated simulation now reproduces the authentic OET phase order, task counts,
-        response controls and section clocks derived from the source sample papers. Scenario content
-        remains original and unofficial; the featured real-audio tests use source-matched public sample
-        papers and recordings.
-      </p>
+      <article className="card"><span className="section-kicker">STEP 3</span><h2>Apply the method under time pressure</h2><p>Choose one skill. Use an original recording for Listening, or select a Reading, Writing or Speaking simulation below. Review your result before starting another test.</p><a className="btn btn-secondary" href="#walkthrough">Review the walkthroughs first →</a></article>
+      <p className="page-intro">Listening tests use original OET recordings with matching papers. Reading, Writing and Speaking simulations contain original, unofficial practice material.</p>
 
       <section className="oet-blueprint-strip" aria-label="Authentic OET exam blueprint">
         <article>
