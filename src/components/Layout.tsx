@@ -42,7 +42,7 @@ export function Layout({ active, onNavigate, title, subtitle, children }: Props)
               {subtitle && <p>{subtitle}</p>}
             </div>
             <div className="topbar-actions">
-              <button type="button" className="topbar-practice" onClick={() => onNavigate('walkthrough')}>
+              <button type="button" className="topbar-practice" aria-label="Continue learning" onClick={() => onNavigate('walkthrough')}>
                 <AppIcon name="sparkles" />
                 <span>Continue learning</span>
               </button>

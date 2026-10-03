@@ -5,6 +5,7 @@ import { baseUrl } from '../lib/baseUrl';
 import { SavedStudyNotes } from '../components/SavedStudyNotes';
 import type { NavSection } from '../types';
 import './walkthrough.css';
+import './studySources.css';
 
 type Props = { itemId?: string; onNavigate: (section: NavSection, itemId?: string) => void };
 export function WalkthroughPage({ itemId, onNavigate }: Props) {
