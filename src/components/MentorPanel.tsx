@@ -126,7 +126,7 @@ export function MentorPanel({ task, response, completed, topic, lessonKey, onInt
       {saveError && <p className="mentor-error" role="status">{saveError}</p>}
       {mode === 'coach' && <div className="mentor-prompts">{ACTIONS.map(({ action, label, query }) => <button type="button" key={action} disabled={loading || ((action === 'feedback' || action === 'explain') && !response.trim())} onClick={() => request(action, query)}>{label}</button>)}</div>}
       {mode === 'patient' && <p className="meta">Speak or type as the doctor. The patient replies one turn at a time. Switch to “Coach me” for feedback.</p>}
-      <MentorVoiceControls onDictation={setInput} reply={lastReply} disabled={loading} />
+      <MentorVoiceControls allowSpeech={task.subtest !== 'listening'} onDictation={setInput} reply={lastReply} disabled={loading} />
       <form className="mentor-composer" onSubmit={(event) => { event.preventDefault(); void request(mode === 'patient' ? 'patient' : 'ask', input); }}>
         <label className="sr-only" htmlFor={`mentor-message-${task.id}`}>{mode === 'patient' ? 'Your words to the patient' : 'Ask your mentor'}</label>
         <textarea id={`mentor-message-${task.id}`} value={input} maxLength={4000} rows={3} onChange={(event) => setInput(event.target.value)} placeholder={mode === 'patient' ? 'Hello, I’m your doctor today. How can I help?' : 'Ask about this question, your reasoning, a sentence, or the next step…'} disabled={loading} />

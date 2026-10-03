@@ -1,3 +1,4 @@
+import { AuthenticListeningPage } from './AuthenticListeningPage';
 import { useMemo, useState } from 'react';
 import {
   practiceModules,
@@ -73,6 +74,7 @@ export function PracticePage({
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
     const items = practiceModules.filter((m) => {
+      if (m.subtest === 'listening') return false;
       if (filter !== 'all' && m.subtest !== filter) return false;
       if (difficulty !== 'all' && m.difficulty !== difficulty) return false;
       if (!matchesProfessionFilter(m.profession, profession)) return false;
@@ -111,6 +113,8 @@ export function PracticePage({
 
   const videoSamples = useMemo(() => videoSamplesFor(filter), [filter]);
 
+  if (filter === 'listening') return <AuthenticListeningPage />;
+
   if (activeModule) {
     return (
       <SessionRunner
@@ -126,7 +130,7 @@ export function PracticePage({
 
   return (
     <div className="page-section">
-      <article className="card"><h3>Practise listening with real voices</h3><p>Five official recordings with publisher-matched question packs and answer keys. Older generated drills in this library may use synthetic speech.</p><a className="btn btn-primary" href="#listening">Open real listening →</a></article>
+      <article className="card"><h3>Practise listening with real voices</h3><p>Five official recordings with publisher-matched question packs and answer keys. Listening practice uses original human recordings. Generated listening drills are retired.</p><a className="btn btn-primary" href="#listening">Open real listening →</a></article>
       <article className="card smart-practice-card">
         <div>
           <h3>🎯 Smart Practice</h3>

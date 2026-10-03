@@ -1,0 +1,26 @@
+.learning-path { max-width: 1080px; margin: 0 auto; display: grid; gap: 24px; }
+.path-hero { padding: clamp(24px, 4vw, 48px); background: linear-gradient(120deg, #effaf7, #fff9ee); }
+.path-hero h2 { font-size: clamp(28px, 3vw, 42px); line-height: 1.15; max-width: 680px; margin: 16px 0; }
+.path-hero p { max-width: 660px; line-height: 1.7; }
+.path-progress { font-weight: 600; }
+.path-steps, .path-skill-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; padding: 0; margin: 0; list-style: none; }
+.path-steps .card, .path-skill-grid .card { margin: 0; padding: 26px; }
+.path-steps p, .path-skill-grid p { line-height: 1.7; }
+.lesson-heading { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.lesson-picker { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 8px; }
+.lesson-picker button { flex-shrink: 0; border: 1px solid #c9dcd6; background: white; border-radius: 24px; padding: 10px 15px; color: #26443c; cursor: pointer; }
+.lesson-picker .selected { background: #164f43; color: white; }
+.worked-lesson { padding: clamp(20px, 4vw, 44px); line-height: 1.75; }
+.worked-lesson h2 { line-height: 1.25; font-size: clamp(25px, 3vw, 34px); }
+.worked-lesson h3 { margin: 30px 0 16px; }
+.lesson-format { padding: 16px 20px; background: #eff7f4; border-radius: 12px; }
+.method-steps { padding-left: 25px; }
+.method-steps li { padding-left: 8px; margin-bottom: 15px; }
+.method-steps p { margin: 4px 0; }
+.lesson-material { white-space: pre-line; padding: 22px; border-left: 4px solid #287564; background: #f6f8f6; border-radius: 0 12px 12px 0; overflow-wrap: anywhere; }
+.lesson-audio { margin-top: 20px; padding: 20px; border: 1px solid #c9dcd6; border-radius: 14px; }
+.lesson-audio audio { display: block; width: 100%; margin: 18px 0; }
+.worked-answer li { margin-bottom: 12px; }
+.lesson-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+.sidebar-nav details > summary { cursor: pointer; padding: 16px; font-weight: 600; color: inherit; }
+@media (max-width: 680px) { .path-steps, .path-skill-grid { grid-template-columns: 1fr; } .lesson-actions > * { width: 100%; } }

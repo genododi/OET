@@ -4,6 +4,9 @@ import type { NavSection } from './types';
 import { buildHash, isPracticeFilter, parseRoute } from './lib/routing';
 import { initPreferredProfession } from './lib/preferredProfession';
 
+const StartPage = lazy(() => import('./pages/StartPage').then(m => ({ default: m.StartPage })));
+const PracticeChoicePage = lazy(() => import('./pages/StartPage').then(m => ({ default: m.PracticeChoicePage })));
+const WalkthroughPage = lazy(() => import('./pages/WalkthroughPage').then(m => ({ default: m.WalkthroughPage })));
 const NotebookPage = lazy(() => import('./pages/NotebookPage').then(m => ({ default: m.NotebookPage })));
 const AuthenticListeningPage = lazy(() => import('./pages/AuthenticListeningPage').then(m => ({ default: m.AuthenticListeningPage })));
 const MaterialsPage = lazy(() => import('./pages/MaterialsPage').then((module) => ({ default: module.MaterialsPage })));
@@ -21,6 +24,8 @@ const BooksPage = lazy(() => import('./pages/BooksPage').then((module) => ({ def
 const UsmlePage = lazy(() => import('./pages/UsmlePage').then((module) => ({ default: module.UsmlePage })));
 
 const pageMeta: Record<NavSection, { title: string; subtitle?: string }> = {
+  walkthrough: { title: '1 · Walkthroughs', subtitle: 'See the method, try an answer, understand the reasoning' },
+  dashboard: { title: 'Detailed dashboard', subtitle: 'Study history and advanced tools' },
   notebook: { title: 'NotebookLM Study Notes', subtitle: 'Apply your saved notes to daily practice' },
   listening: { title: 'Real Listening', subtitle: 'Original OET recordings and matching papers' },
   materials: { title: 'My OET & AMR Files', subtitle: 'Your supplied materials, with saved practice for every skill' },
@@ -30,8 +35,8 @@ const pageMeta: Record<NavSection, { title: string; subtitle?: string }> = {
     subtitle: 'Learn from feedback and make corrections stick',
   },
   home: {
-    title: 'Dashboard',
-    subtitle: 'Medicine-focused OET preparation for physicians',
+    title: 'Start here',
+    subtitle: 'Your next step in OET preparation',
   },
   planner: {
     title: 'Grade A Study Plan',
@@ -119,7 +124,9 @@ function App() {
         return <MentorPage onNavigate={navigate} />;
       case 'mistakes':
         return <MistakeNotebookPage onNavigate={navigate} />;
-      case 'home':
+      case 'home': return <StartPage onNavigate={navigate} />;
+      case 'walkthrough': return <WalkthroughPage itemId={route.itemId} onNavigate={navigate} />;
+      case 'dashboard':
         return <HomePage onNavigate={navigate} preferredProfession={preferredProfession} />;
       case 'planner':
         return <StudyPlannerPage onNavigate={navigate} />;
@@ -128,6 +135,7 @@ function App() {
       case 'mock':
         return <MockExamsPage defaultProfession={preferredProfession} />;
       case 'practice':
+        if (!route.itemId) return <PracticeChoicePage onNavigate={navigate} />;
         return (
           <PracticePage
             initialFilter={practiceFilter}

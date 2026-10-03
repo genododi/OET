@@ -14,7 +14,12 @@ interface Props {
   revision?: string;
 }
 
-export function AudioPlayer({
+export function AudioPlayer(props: Props) {
+  if (props.src?.includes('/audio/question-matched/')) return <p>Generated listening clips are retired. <a href="#listening">Choose an original OET recording →</a></p>;
+  return <VerifiedAudioPlayer {...props} />;
+}
+
+function VerifiedAudioPlayer({
   src,
   externalUrl,
   label,

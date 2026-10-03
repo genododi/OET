@@ -17,15 +17,15 @@ describe('single-use Listening playback', () => {
 
     const { unmount } = render(
       <AudioPlayer
-        src="/audio/question-matched/lis-121.mp3"
-        label="Question-matched listening clip"
+        src="/audio/real-listening/source-sample-test-1.mp3"
+        label="Original OET sample"
         examMode
         onExamPlay={onExamPlay}
       />,
     );
 
     const firstPlay = await screen.findByRole('button', {
-      name: 'Play Question-matched listening clip once',
+      name: 'Play Original OET sample once',
     });
     fireEvent.click(firstPlay);
 
@@ -37,8 +37,8 @@ describe('single-use Listening playback', () => {
     unmount();
     render(
       <AudioPlayer
-        src="/audio/question-matched/lis-121.mp3"
-        label="Question-matched listening clip"
+        src="/audio/real-listening/source-sample-test-1.mp3"
+        label="Original OET sample"
         examMode
         examPlayed
         onExamPlay={onExamPlay}
@@ -46,7 +46,7 @@ describe('single-use Listening playback', () => {
     );
 
     const consumedPlay = await screen.findByRole('button', {
-      name: 'Play Question-matched listening clip once',
+      name: 'Play Original OET sample once',
     });
     expect(consumedPlay).toBeDisabled();
     expect(consumedPlay).toHaveTextContent('Playback used');

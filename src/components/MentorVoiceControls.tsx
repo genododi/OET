@@ -7,7 +7,7 @@ interface Recognition {
   start: () => void; stop: () => void; abort: () => void;
 }
 
-export function MentorVoiceControls({ onDictation, reply, disabled }: { onDictation: (text: string) => void; reply: string; disabled: boolean }) {
+export function MentorVoiceControls({ onDictation, reply, disabled, allowSpeech = true }: { onDictation: (text: string) => void; reply: string; disabled: boolean; allowSpeech?: boolean }) {
   const [recording, setRecording] = useState(false);
   const [speaking, setSpeaking] = useState(false);
   const [notice, setNotice] = useState('');
@@ -15,7 +15,7 @@ export function MentorVoiceControls({ onDictation, reply, disabled }: { onDictat
   const speechRef = useRef<SpeechSynthesisUtterance | null>(null);
   const speechWindow = window as Window & { SpeechRecognition?: new () => Recognition; webkitSpeechRecognition?: new () => Recognition };
   const RecognitionCtor = speechWindow.SpeechRecognition ?? speechWindow.webkitSpeechRecognition;
-  const hasSpeech = typeof window.speechSynthesis !== 'undefined';
+  const hasSpeech = allowSpeech && typeof window.speechSynthesis !== 'undefined';
   useEffect(() => () => {
     const recognition = recognitionRef.current;
     if (recognition) { recognition.onresult = null; recognition.onerror = null; recognition.onend = null; recognition.abort(); }
@@ -54,7 +54,7 @@ export function MentorVoiceControls({ onDictation, reply, disabled }: { onDictat
   return <div className="mentor-voice">
     <div className="mentor-voice-actions">
       <button type="button" className="btn btn-ghost btn-sm" onClick={dictate} disabled={disabled || !RecognitionCtor}>{recording ? 'Stop voice input' : 'Use voice input'}</button>
-      <button type="button" className="btn btn-ghost btn-sm" onClick={read} disabled={!hasSpeech || !reply || disabled}>{speaking ? 'Stop reading aloud' : 'Read reply aloud'}</button>
+      {allowSpeech && <button type="button" className="btn btn-ghost btn-sm" onClick={read} disabled={!hasSpeech || !reply || disabled}>{speaking ? 'Stop reading aloud' : 'Read reply aloud'}</button>}
     </div>
     <small>{RecognitionCtor ? 'Voice input uses your browser’s speech service; review the transcript before sending.' : 'Voice input is not supported here. Type your message below.'}</small>
     {notice && <p className="meta" role="status">{notice}</p>}

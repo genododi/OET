@@ -8,41 +8,29 @@ test('first-run diagnostic creates a Grade A plan', async ({ page }) => {
   await expect.poll(() => page.evaluate(() => localStorage.getItem('oet-study-partner-study-plan'))).toContain('"targetScore":450');
 });
 
-test('command center launches a qualifying four-skill baseline', async ({ page }) => {
+test('guided start walks through a real Listening example and saves progress', async ({ page }) => {
   await page.goto('./');
-  await page.getByRole('button', { name: 'Start baseline session' }).click();
-  await expect(page.getByRole('heading', { name: 'Grade A Baseline' })).toBeVisible();
-  await expect(page.getByText('10 Listening + 10 Reading + one letter + two recorded role-plays')).toBeVisible();
-  await expect(page.getByRole('button', { name: 'Start 115-minute session' })).toBeVisible();
-  await expect(page.getByText('Listening audio is one-use in this session.')).toBeVisible();
-  await page.getByRole('button', { name: 'Start 115-minute session' }).click();
-  const playback = page.locator('.listening-player button');
-  await expect(playback).toHaveText('▶ Play all audio once');
-  await playback.click();
-  await expect(playback).toBeDisabled();
-  await expect(playback).toHaveText('Audio sequence playing…');
-  await page.getByRole('button', { name: 'Next task' }).click();
-  await expect(page.getByRole('heading', { name: 'Short break' })).toBeVisible();
-  await page.getByRole('button', { name: 'Previous' }).click();
-  await expect(page.locator('.listening-player button')).toBeDisabled();
-  await expect(page.locator('.listening-player button')).toHaveText('Playback used');
+  await page.getByRole('button', { name: 'Start my first walkthrough' }).click();
+  await expect(page).toHaveURL(/#walkthrough\/listening-a$/);
+  await expect(page.locator('audio')).toHaveAttribute('src', /audio\/real-listening\/source-sample-test-1.mp3$/);
+  await page.getByLabel('My attempt and evidence').fill('heavy suitcase');
+  await page.getByRole('button', { name: 'Show worked explanation' }).click();
+  await expect(page.getByRole('region', { name: 'Worked explanation' })).toContainText('heavy suitcase');
+  await page.getByRole('button', { name: /Mark complete & next lesson/ }).click();
+  await expect(page).toHaveURL(/#walkthrough\/listening-b$/);
+  await page.reload();
+  await expect(page.getByText('1/8 completed')).toBeVisible();
+  await page.goto('./#walkthrough/listening-a');
+  await expect(page.getByLabel('My attempt and evidence')).toHaveValue('heavy suitcase');
 });
 
-test('command center launches the latest balanced daily challenge', async ({ page }) => {
-  await page.goto('./');
-  await expect(page.getByText('New today · Stage 17')).toBeVisible();
-  await page.getByRole('button', { name: 'Start Stage 17 challenge' }).click();
-  await expect(page.getByRole('heading', { name: 'Daily Grade A Challenge · Stage 17' })).toBeVisible();
-  await expect(page.getByText('One new advanced Medicine task in every OET sub-test')).toBeVisible();
-  await expect(page.locator('.description').getByText(/Response-mode switching and proportionate boundaries/)).toBeVisible();
-  await expect(page.getByRole('button', { name: 'Start 60-minute session' })).toBeVisible();
-  await page.getByRole('button', { name: 'Start 60-minute session' }).click();
-  const playback = page.getByRole('button', {
-    name: 'Play Question-matched listening clip once',
-  });
-  await playback.click();
-  await expect(playback).toBeDisabled();
-  await expect(playback).toHaveText('Audio playing…');
+test('older mixed sessions cannot play generated listening clips', async ({ page }) => {
+  await page.goto('./#dashboard');
+  await page.getByRole('button', { name: 'Start baseline session' }).click();
+  await expect(page.getByRole('heading', { name: 'Continue with original listening audio' })).toBeVisible();
+  await expect(page.locator('audio')).toHaveCount(0);
+  await page.getByRole('button', { name: /Real Audio Listening Test 1/ }).click();
+  await expect(page.getByRole('button', { name: 'Start real listening test' })).toBeVisible();
 });
 
 test('resource search preserves link-only governance', async ({ page }) => {
@@ -71,12 +59,13 @@ test('source learning map accounts for the folder and routes into practice', asy
   await page.getByRole('button', { name: /Listening.*mapped source records/ }).click();
   await expect(page).toHaveURL(/#practice\/listening$/);
   await expect(page.getByRole('heading', { name: 'Practice Modules' })).toBeVisible();
-  await expect(page.locator('.source-map-trace').first()).toContainText('Source map');
+  await expect(page.getByRole('heading', { name: 'Listen to the original recordings' })).toBeVisible();
+  await expect(page.locator('audio[src*="question-matched"]')).toHaveCount(0);
 });
 
 test('real listening mock pairs the imported audio with its 42-question paper', async ({ page, request }) => {
   await page.goto('./');
-  await page.getByRole('button', { name: 'Mock Exams' }).click();
+  await page.getByRole('button', { name: '3 · Timed tests' }).click();
   await expect(page.getByRole('heading', { name: 'Real audio listening exams' })).toBeVisible();
   await page.getByRole('button', { name: 'Start real test' }).first().click();
   await expect(page.getByRole('heading', { name: 'Real Audio Listening Test 1' })).toBeVisible();
@@ -179,11 +168,11 @@ test('a recent mistake becomes the next best move and opens focused review', asy
     );
   });
 
-  await page.goto('./');
+  await page.goto('./#dashboard');
   await expect(page.getByText('Correct 1 due mistake')).toBeVisible();
   await page.getByRole('button', { name: 'Start mistake review (1)' }).click();
-  await expect(page.getByRole('heading', { name: 'Mistake Review' })).toBeVisible();
-  await expect(page.getByText('1 due mistake')).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Continue with original listening audio' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Choose another skill' })).toBeVisible();
 });
 
 test('dated Grade A plan adapts to a due mistake and launches it directly', async ({ page }) => {
@@ -254,7 +243,7 @@ test('dated Grade A plan adapts to a due mistake and launches it directly', asyn
   await expect(page.getByText(/Adapted from completed sessions · 1 correction due now/)).toBeVisible();
   await expect(page.getByText('Due mistake review')).toBeVisible();
   await page.getByRole('button', { name: 'Review now' }).click();
-  await expect(page.getByRole('heading', { name: 'Mistake Review' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Continue with original listening audio' })).toBeVisible();
 });
 
 test('readiness history targets the weakest Listening or Reading part', async ({ page }) => {
@@ -316,13 +305,12 @@ test('readiness history targets the weakest Listening or Reading part', async ({
     );
   });
 
-  await page.goto('./');
+  await page.goto('./#dashboard');
   await expect(page.getByTestId('part-focus-target')).toContainText('Listening Part C: 0%');
   await page.getByRole('button', { name: 'Drill listening Part C' }).click();
-  await expect(page.getByRole('heading', { name: 'Listening Part C Focus' })).toBeVisible();
-  await expect(
-    page.getByText('Track speaker attitude, inference and the evidence that qualifies a conclusion.'),
-  ).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Continue with original listening audio' })).toBeVisible();
+  await page.getByRole('link', { name: 'Part C · Follow the argument' }).click();
+  await expect(page.getByRole('heading', { name: 'Listening C · Follow the speaker’s reasoning' })).toBeVisible();
 });
 
 test('the next-best-move button launches the weakest writing criterion', async ({ page }) => {
@@ -401,7 +389,7 @@ test('the next-best-move button launches the weakest writing criterion', async (
     );
   });
 
-  await page.goto('./');
+  await page.goto('./#dashboard');
   await expect(page.getByTestId('productive-focus-target')).toContainText(
     'Writing · Content: 35%',
   );

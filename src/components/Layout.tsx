@@ -42,9 +42,9 @@ export function Layout({ active, onNavigate, title, subtitle, children }: Props)
               {subtitle && <p>{subtitle}</p>}
             </div>
             <div className="topbar-actions">
-              <button type="button" className="topbar-practice" onClick={() => onNavigate('practice')}>
+              <button type="button" className="topbar-practice" onClick={() => onNavigate('walkthrough')}>
                 <AppIcon name="sparkles" />
-                <span>Practice now</span>
+                <span>Continue learning</span>
               </button>
               <button
                 type="button"

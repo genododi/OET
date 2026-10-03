@@ -27,6 +27,7 @@ import { CalculatorPanel } from './CalculatorPanel';
 import { QuestionFlagButton } from './QuestionFlagButton';
 import { isTaskAnswerCorrect, oetResponseMode } from '../lib/oetResponseMode';
 import { GRADE_A_EVIDENCE_REQUIREMENTS } from '../lib/oetThresholds';
+import { AuthenticListeningPage } from '../pages/AuthenticListeningPage';
 import { SessionMentor } from './SessionMentor';
 
 interface Props {
@@ -72,7 +73,17 @@ const defaultSpeakingCriteria: SpeakingCriteria = {
   samplePhrases: [],
 };
 
+/** Legacy generated Listening questions must never be paired with human recordings.
+ * Route the whole legacy session to verified, matching tests before mounting its runner.
+ */
 export function SessionRunner({ config, onExit }: Props) {
+  if (config.tasks.some(task => task.subtest === 'listening')) {
+    return <div className="page-section"><section className="card"><button className="btn btn-secondary" onClick={onExit}>Back to study tools</button><h2>Continue with original listening audio</h2><p>This older session includes generated listening drills, which are retired. Choose a human-recorded test with its matching paper below. For another skill, return to the practice step.</p><a className="btn btn-secondary" href="#practice">Choose another skill</a></section><AuthenticListeningPage /></div>;
+  }
+  return <SessionRunnerContent config={config} onExit={onExit} />;
+}
+
+function SessionRunnerContent({ config, onExit }: Props) {
   const { markComplete, completed } = useProgress();
   const [coached, setCoached] = useState(false);
   const [phase, setPhase] = useState<'intro' | 'active' | 'done'>('intro');
