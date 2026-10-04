@@ -27,6 +27,7 @@ import { CalculatorPanel } from './CalculatorPanel';
 import { QuestionFlagButton } from './QuestionFlagButton';
 import { isTaskAnswerCorrect, oetResponseMode } from '../lib/oetResponseMode';
 import { GRADE_A_EVIDENCE_REQUIREMENTS } from '../lib/oetThresholds';
+import { OfficialExamPage } from '../pages/OfficialExamPage';
 import { AuthenticListeningPage } from '../pages/AuthenticListeningPage';
 import { SessionMentor } from './SessionMentor';
 
@@ -77,6 +78,7 @@ const defaultSpeakingCriteria: SpeakingCriteria = {
  * Route the whole legacy session to verified, matching tests before mounting its runner.
  */
 export function SessionRunner({ config, onExit }: Props) {
+  if (config.kind === 'mock') return <OfficialExamPage initialSkill={config.subtests.find(skill => ['listening', 'reading', 'writing', 'speaking'].includes(skill)) as 'listening' | 'reading' | 'writing' | 'speaking' | undefined} />;
   if (config.tasks.some(task => task.subtest === 'listening')) {
     return <div className="page-section"><section className="card"><button className="btn btn-secondary" onClick={onExit}>Back to study tools</button><h2>Continue with original listening audio</h2><p>This older session includes generated listening drills, which are retired. Choose a human-recorded test with its matching paper below. For another skill, return to the practice step.</p><a className="btn btn-secondary" href="#practice">Choose another skill</a></section><AuthenticListeningPage /></div>;
   }
@@ -323,6 +325,7 @@ function SessionRunnerContent({ config, onExit }: Props) {
   if (phase === 'intro') {
     return (
       <div className="session">
+      {config.kind === 'practice' && <p className="meta">Learning exercise · shorter than a full OET paper · coaching available. <a href="#mock">Use an official full test instead →</a></p>}
         <button type="button" className="btn btn-ghost back-btn" onClick={onExit}>
           ← Back
         </button>
@@ -372,6 +375,7 @@ function SessionRunnerContent({ config, onExit }: Props) {
   if (phase === 'done') {
     return (
       <div className="session">
+      {config.kind === 'practice' && <p className="meta">Learning exercise · shorter than a full OET paper · coaching available. <a href="#mock">Use an official full test instead →</a></p>}
         <article className="card session-done-card">
           <span className="session-done-icon" aria-hidden="true">
             ✓
@@ -450,6 +454,7 @@ function SessionRunnerContent({ config, onExit }: Props) {
 
   return (
     <div className="session">
+      {config.kind === 'practice' && <p className="meta">Learning exercise · shorter than a full OET paper · coaching available. <a href="#mock">Use an official full test instead →</a></p>}
       <div className="session-toolbar">
         <button type="button" className="btn btn-ghost btn-sm" onClick={onExit}>
           ← Exit

@@ -64,79 +64,12 @@ describe('timed session completion', () => {
     expect(storageWrite).toHaveBeenCalledTimes(1);
   });
 
-  it('locks Writing reading time and withholds review during an authentic mock', async () => {
-    vi.useFakeTimers();
-    const mockConfig: SessionConfig = {
-      id: 'mock-stage-regression',
-      kind: 'mock',
-      title: 'Authentic Writing Mock',
-      subtitle: 'Medicine',
-      durationMinutes: 2 / 60,
-      subtests: ['writing'],
-      tasks: [
-        {
-          id: 'mock-stage-intro',
-          subtest: 'intro',
-          title: 'Instructions',
-          instructions: 'Follow the authentic phases.',
-        },
-        {
-          id: 'mock-stage-writing',
-          subtest: 'writing',
-          title: 'Referral letter',
-          instructions: 'Read and write.',
-          prompt: 'Case notes',
-          rubricChecklist: [],
-        },
-      ],
-      stages: [
-        {
-          id: 'mock-read',
-          label: 'Writing · Reading time',
-          subtest: 'writing',
-          durationSeconds: 1,
-          taskIds: ['mock-stage-writing'],
-          mode: 'reading-only',
-          instructions: 'Read only.',
-        },
-        {
-          id: 'mock-write',
-          label: 'Writing · Writing time',
-          subtest: 'writing',
-          durationSeconds: 1,
-          taskIds: ['mock-stage-writing'],
-          mode: 'writing',
-          instructions: 'Write now.',
-        },
-      ],
-    };
-
+  it('replaces generated mocks with complete official papers', () => {
+    const mockConfig: SessionConfig = { ...timedConfig, kind: 'mock', subtests: ['writing'] };
     render(<SessionRunner config={mockConfig} onExit={vi.fn()} />);
-    fireEvent.click(screen.getByRole('button', { name: /start .*minute session/i }));
-
-    expect(screen.getByRole('heading', { name: 'Writing · Reading time' })).toBeInTheDocument();
-    expect(screen.getByLabelText('Your letter draft')).toBeDisabled();
+    expect(screen.getByRole('heading', { name: 'Writing · one complete Medicine task' })).toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: /start .*minute session/i })).not.toBeInTheDocument();
     expect(screen.queryByRole('button', { name: 'Open task mentor' })).not.toBeInTheDocument();
-    expect(screen.queryByRole('button', { name: 'Open review mentor' })).not.toBeInTheDocument();
-
-    await act(async () => {
-      await vi.advanceTimersByTimeAsync(1_000);
-    });
-
-    expect(screen.getByRole('heading', { name: 'Writing · Writing time' })).toBeInTheDocument();
-    expect(screen.getByLabelText('Your letter draft')).toBeEnabled();
-    expect(screen.queryByRole('button', { name: /submit draft/i })).not.toBeInTheDocument();
-    expect(screen.queryByRole('button', { name: 'Open task mentor' })).not.toBeInTheDocument();
-
-    await act(async () => {
-      await vi.advanceTimersByTimeAsync(1_000);
-    });
-    expect(screen.getByRole('heading', { name: 'Session complete' })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'Open review mentor' })).toBeInTheDocument();
-    fireEvent.click(screen.getByRole('button', { name: 'Open review mentor' }));
-    expect(screen.getByRole('region', { name: 'Interactive OET mentor' })).toBeInTheDocument();
-    const saved = JSON.parse(localStorage.getItem('oet-study-partner-progress') ?? '{}');
-    expect(saved.completed[0].coached).not.toBe(true);
   });
 
   it('keeps a practice attempt coached after closing its mentor', async () => {

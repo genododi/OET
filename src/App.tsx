@@ -15,7 +15,7 @@ const MentorPage = lazy(() => import('./pages/MentorPage').then((module) => ({ d
 const MistakeNotebookPage = lazy(() => import('./pages/MistakeNotebookPage').then((module) => ({ default: module.MistakeNotebookPage })));
 const StudyPlannerPage = lazy(() => import('./pages/StudyPlannerPage').then((module) => ({ default: module.StudyPlannerPage })));
 const ResourcesPage = lazy(() => import('./pages/ResourcesPage').then((module) => ({ default: module.ResourcesPage })));
-const MockExamsPage = lazy(() => import('./pages/MockExamsPage').then((module) => ({ default: module.MockExamsPage })));
+const OfficialExamPage = lazy(() => import('./pages/OfficialExamPage').then(m => ({ default: m.OfficialExamPage })));
 const PracticePage = lazy(() => import('./pages/PracticePage').then((module) => ({ default: module.PracticePage })));
 const GuidePage = lazy(() => import('./pages/GuidePage').then((module) => ({ default: module.GuidePage })));
 const TipsPage = lazy(() => import('./pages/TipsPage').then((module) => ({ default: module.TipsPage })));
@@ -26,6 +26,7 @@ const UsmlePage = lazy(() => import('./pages/UsmlePage').then((module) => ({ def
 const pageMeta: Record<NavSection, { title: string; subtitle?: string }> = {
   walkthrough: { title: '1 · Walkthroughs', subtitle: 'See the method, try an answer, understand the reasoning' },
   dashboard: { title: 'Detailed dashboard', subtitle: 'Study history and advanced tools' },
+  drills: { title: 'Supplementary learning exercises', subtitle: 'Short coached exercises; not full OET exam papers' },
   notebook: { title: 'NotebookLM Study Notes', subtitle: 'Apply your saved notes to daily practice' },
   listening: { title: 'Real Listening', subtitle: 'Original OET recordings and matching papers' },
   materials: { title: 'My OET & AMR Files', subtitle: 'Your supplied materials, with saved practice for every skill' },
@@ -48,11 +49,11 @@ const pageMeta: Record<NavSection, { title: string; subtitle?: string }> = {
   },
   mock: {
     title: 'Mock Exams',
-    subtitle: 'Full-length and mini mock tests under timed conditions',
+    subtitle: 'Official OET on Paper samples · full written sittings and individual sections',
   },
   practice: {
-    title: 'Practice Modules',
-    subtitle: 'Focused drills for each sub-test',
+    title: 'Official exam practice',
+    subtitle: 'Original OET papers · paper-test timing and instructions',
   },
   guide: {
     title: 'Study Guide',
@@ -133,16 +134,12 @@ function App() {
       case 'resources':
         return <ResourcesPage onNavigate={navigate} />;
       case 'mock':
-        return <MockExamsPage defaultProfession={preferredProfession} />;
+        return <OfficialExamPage key={route.itemId ?? 'mock'} initialSkill={isPracticeFilter(route.itemId) ? route.itemId : undefined} />;
       case 'practice':
         if (!route.itemId) return <PracticeChoicePage onNavigate={navigate} />;
-        return (
-          <PracticePage
-            initialFilter={practiceFilter}
-            defaultProfession={preferredProfession}
-            onFilterChange={(f) => navigate('practice', f === 'all' ? undefined : f)}
-          />
-        );
+        return <OfficialExamPage key={practiceFilter ?? 'all'} initialSkill={practiceFilter} />;
+      case 'drills':
+        return <PracticePage initialFilter={isPracticeFilter(route.itemId) ? route.itemId : undefined} defaultProfession={preferredProfession} onFilterChange={filter => navigate('drills', filter === 'all' ? undefined : filter)} />;
       case 'guide':
         return (
           <GuidePage

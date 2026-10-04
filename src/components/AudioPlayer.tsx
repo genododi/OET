@@ -10,6 +10,8 @@ interface Props {
   /** Controlled session-level guard so navigating away cannot reset a consumed play. */
   examPlayed?: boolean;
   onExamPlay?: () => void;
+  onPlaybackEnd?: () => void;
+  onPlaybackError?: () => void;
   scenarioId?: string;
   revision?: string;
 }
@@ -27,6 +29,8 @@ function VerifiedAudioPlayer({
   examMode = false,
   examPlayed = false,
   onExamPlay,
+  onPlaybackEnd,
+  onPlaybackError,
   scenarioId,
   revision,
 }: Props) {
@@ -101,7 +105,7 @@ function VerifiedAudioPlayer({
       setExamPlayback('playing');
       onExamPlay?.();
     } catch {
-      setErrorState({ src, message: 'Could not start this question-matched audio clip.' });
+      setErrorState({ src, message: 'Could not start the recording. Check your connection and try again.' });
       setExamPlayback('ready');
     }
   };
@@ -137,17 +141,7 @@ function VerifiedAudioPlayer({
     return (
       <div className="audio-player audio-player-missing">
         <strong>{label}</strong>
-        {scenarioId ? (
-          <p className="meta">
-            Question-matched audio not found. Run <code>npm run generate:question-audio</code> to
-            rebuild the generated listening clips.
-          </p>
-        ) : (
-          <p className="meta">
-            Audio not found. Run <code>npm run import-audio</code> to download official listening
-            files.
-          </p>
-        )}
+        <p className="meta">The original recording is unavailable. Check your connection and reload before starting the test.</p>
         {note && <p className="meta">{note}</p>}
       </div>
     );
@@ -181,11 +175,16 @@ function VerifiedAudioPlayer({
         preload="metadata"
         src={playSrc}
         className="audio-player-element"
-        onError={() =>
-          setErrorState({ src, message: 'Could not load this question-matched audio clip.' })
-        }
+        onError={() => {
+          setErrorState({ src, message: 'Could not load the recording. This attempt is interrupted.' });
+          onPlaybackError?.();
+        }}
+        onWaiting={() => {
+          if (examMode && examPlayback === 'playing') onPlaybackError?.();
+        }}
         onEnded={() => {
           if (examMode) setExamPlayback('finished');
+          onPlaybackEnd?.();
         }}
       >
         <track kind="captions" />

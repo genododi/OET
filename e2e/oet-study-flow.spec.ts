@@ -58,8 +58,8 @@ test('source learning map accounts for the folder and routes into practice', asy
   await expect(page.getByText('Files indexed + checksummed')).toBeVisible();
   await page.getByRole('button', { name: /Listening.*mapped source records/ }).click();
   await expect(page).toHaveURL(/#practice\/listening$/);
-  await expect(page.getByRole('heading', { name: 'Practice Modules' })).toBeVisible();
-  await expect(page.getByRole('heading', { name: 'Listen to the original recordings' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Official exam practice' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Real audio listening exams' })).toBeVisible();
   await expect(page.locator('audio[src*="question-matched"]')).toHaveCount(0);
 });
 
@@ -72,6 +72,8 @@ test('real listening mock pairs the imported audio with its 42-question paper', 
   await expect(page.getByText('Part A · 11 min')).toBeVisible();
   await page.getByRole('button', { name: 'Start real listening test' }).click();
   await expect(page.getByRole('button', { name: /Play Real Audio Listening Test 1.*once/ })).toBeVisible();
+  await expect(page.getByRole('region', { name: 'Listening answer sheet' })).toHaveCount(0);
+  await page.getByRole('button', { name: /Play Real Audio Listening Test 1.*once/ }).click();
   await expect(page.getByRole('region', { name: 'Listening answer sheet' })).toBeVisible();
   await expect(page.getByRole('tab', { name: 'Part A' })).toHaveAttribute('aria-selected', 'true');
   await expect(page.locator('iframe[title="Real Audio Listening Test 1 question paper"]')).toBeVisible();
@@ -84,7 +86,7 @@ test('real listening mock pairs the imported audio with its 42-question paper', 
 });
 
 test('timed writing session provides built-in feedback while offline', async ({ context, page }) => {
-  await page.goto('./#practice/writing');
+  await page.goto('./#drills/writing');
   await page.getByRole('button', { name: 'Practise' }).first().click();
   await expect(page.getByText('1 task(s)')).toBeVisible();
   await page.getByRole('button', { name: /Start \d+-minute session/ }).click();
@@ -98,7 +100,7 @@ test('timed writing session provides built-in feedback while offline', async ({ 
 });
 
 test('catalog Speaking workload matches the available session time', async ({ page }) => {
-  await page.goto('./#practice/speaking');
+  await page.goto('./#drills/speaking');
   await page.getByLabel('Search practice modules').fill('Anticoagulation Safety Role-Plays');
   await expect(page.getByText('2 tasks · 20 min')).toBeVisible();
   await page.getByRole('button', { name: 'Practise' }).click();
@@ -113,7 +115,7 @@ test('speaking text fallback produces a review without microphone access', async
       value: () => Promise.reject(new DOMException('denied', 'NotAllowedError')),
     });
   });
-  await page.goto('./#practice/speaking');
+  await page.goto('./#drills/speaking');
   await page.getByRole('button', { name: 'Practise' }).first().click();
   await page.getByRole('button', { name: /Start \d+-minute session/ }).click();
   await page.getByRole('button', { name: '● Record response' }).click();
@@ -399,4 +401,18 @@ test('the next-best-move button launches the weakest writing criterion', async (
   await expect(
     page.getByText('Select and synthesise only the facts the recipient needs for safe next care.'),
   ).toBeVisible();
+});
+
+
+test('official paper writing does not allow an early response or phase skip', async ({ page }) => {
+  await page.goto('./#practice/writing');
+  await page.getByRole('button', { name: 'Start writing sample 1' }).click();
+  await page.getByLabel('I will write my answers on paper').uncheck();
+  await page.getByRole('button', { name: 'Start timed writing' }).click();
+  await expect(page.getByLabel('Your letter')).toBeDisabled();
+  await expect(page.getByRole('button', { name: /Skip|Next phase/ })).toHaveCount(0);
+  await expect(page.locator('iframe')).toHaveAttribute('src', /sample-1-writing.pdf$/);
+  await page.reload();
+  await expect(page.getByLabel('Your letter')).toBeDisabled();
+  await expect(page.getByRole('button', { name: 'Start timed writing' })).toHaveCount(0);
 });

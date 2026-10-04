@@ -15,6 +15,7 @@ const materials: NavItem[] = [
   { id: 'notebook', label: 'NotebookLM Notes', icon: 'book' },
 ];
 const more: NavItem[] = [
+  { id: 'drills', label: 'Learning exercises', icon: 'pen' },
   { id: 'mentor', label: 'Your OET Mentor', icon: 'message' },
   { id: 'planner', label: 'Grade A Plan', icon: 'plan' },
   { id: 'dashboard', label: 'Detailed dashboard', icon: 'dashboard' },

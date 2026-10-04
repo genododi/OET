@@ -142,6 +142,7 @@ export interface ExperiencePdf {
 }
 
 export type NavSection =
+  | 'drills'
   | 'walkthrough'
   | 'dashboard'
   | 'notebook'

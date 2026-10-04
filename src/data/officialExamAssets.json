@@ -1,0 +1,133 @@
+{
+  "verifiedAt": "2026-10-04",
+  "assets": [
+    {
+      "path": "sample-1-reading-a.pdf",
+      "sourceUrl": "https://cdn-aus.aglty.io/oet/pdf-files/sample-tests/on-paper-sample-tests/Medicine%20Sample%20Test%201%20Questions.pdf",
+      "sourceSha256": "7379d04af0e28b8249689b18d053c0c7d6299590cf852fe427e2f7a6ea4f4230",
+      "sourcePages": [
+        14,
+        15,
+        18,
+        19
+      ],
+      "sha256": "542e891e8cef98e430c1464f03a483ede845b8240ab0b470f619e71b105353ff"
+    },
+    {
+      "path": "sample-1-reading-bc.pdf",
+      "sourceUrl": "https://cdn-aus.aglty.io/oet/pdf-files/sample-tests/on-paper-sample-tests/Medicine%20Sample%20Test%201%20Questions.pdf",
+      "sourceSha256": "7379d04af0e28b8249689b18d053c0c7d6299590cf852fe427e2f7a6ea4f4230",
+      "sourcePages": [
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35
+      ],
+      "sha256": "91a7b055b1e10b16dffacd9277c37d0722c42d0b2aef2246eb0800cfd4951e92"
+    },
+    {
+      "path": "sample-1-writing.pdf",
+      "sourceUrl": "https://cdn-aus.aglty.io/oet/pdf-files/sample-tests/on-paper-sample-tests/Medicine%20Sample%20Test%201%20Questions.pdf",
+      "sourceSha256": "7379d04af0e28b8249689b18d053c0c7d6299590cf852fe427e2f7a6ea4f4230",
+      "sourcePages": [
+        38,
+        39
+      ],
+      "sha256": "9af3c0953b67033805ab15cd0b1ac6eb0b7de9918f57769da9c8ad514fd0ba67"
+    },
+    {
+      "path": "sample-1-speaking-candidate.pdf",
+      "sourceUrl": "https://cdn-aus.aglty.io/oet/pdf-files/sample-tests/on-paper-sample-tests/Medicine%20Sample%20Test%201%20Questions.pdf",
+      "sourceSha256": "7379d04af0e28b8249689b18d053c0c7d6299590cf852fe427e2f7a6ea4f4230",
+      "sourcePages": [
+        46
+      ],
+      "crop": "speaking-candidate",
+      "sha256": "c3518c5e2b9aec88892b7b862bbab7f1787e7292a0755a516c4a862b905461ea"
+    },
+    {
+      "path": "sample-1-speaking-partner.pdf",
+      "sourceUrl": "https://cdn-aus.aglty.io/oet/pdf-files/sample-tests/on-paper-sample-tests/Medicine%20Sample%20Test%201%20Questions.pdf",
+      "sourceSha256": "7379d04af0e28b8249689b18d053c0c7d6299590cf852fe427e2f7a6ea4f4230",
+      "sourcePages": [
+        46
+      ],
+      "crop": "speaking-partner",
+      "sha256": "cb92604b7442357de98b8f0c4179b4ecb6c597e1c2c99d5cf55e7e78fd8b0ec2"
+    },
+    {
+      "path": "sample-2-reading-a.pdf",
+      "sourceUrl": "https://cdn-aus.aglty.io/oet/pdf-files/sample-tests/on-paper-sample-tests/Medicine%20Sample%20Test%202%20Questions.pdf",
+      "sourceSha256": "054ab01537450f81a9c4365c345c52c2ace7ad546012547b2c24323883a1c081",
+      "sourcePages": [
+        14,
+        15,
+        18,
+        19
+      ],
+      "sha256": "12a1c6912705b3bd612cba54371b4c7a8f5e06180198b75b86d42d9c78a817a8"
+    },
+    {
+      "path": "sample-2-reading-bc.pdf",
+      "sourceUrl": "https://cdn-aus.aglty.io/oet/pdf-files/sample-tests/on-paper-sample-tests/Medicine%20Sample%20Test%202%20Questions.pdf",
+      "sourceSha256": "054ab01537450f81a9c4365c345c52c2ace7ad546012547b2c24323883a1c081",
+      "sourcePages": [
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35
+      ],
+      "sha256": "17d3a1e6c143ac649ddf8f8a2dc2d4c9eda090eb7c649e76b2e22d5c9f55e3fd"
+    },
+    {
+      "path": "sample-2-writing.pdf",
+      "sourceUrl": "https://cdn-aus.aglty.io/oet/pdf-files/sample-tests/on-paper-sample-tests/Medicine%20Sample%20Test%202%20Questions.pdf",
+      "sourceSha256": "054ab01537450f81a9c4365c345c52c2ace7ad546012547b2c24323883a1c081",
+      "sourcePages": [
+        38,
+        39
+      ],
+      "sha256": "a0feef0051382c8d7c76e3c10948345443380235821f20c0be8b9a5c9ea53c18"
+    },
+    {
+      "path": "sample-2-speaking-candidate.pdf",
+      "sourceUrl": "https://cdn-aus.aglty.io/oet/pdf-files/sample-tests/on-paper-sample-tests/Medicine%20Sample%20Test%202%20Questions.pdf",
+      "sourceSha256": "054ab01537450f81a9c4365c345c52c2ace7ad546012547b2c24323883a1c081",
+      "sourcePages": [
+        46
+      ],
+      "crop": "speaking-candidate",
+      "sha256": "a436724fb7428e8783d88d0184bb113cd58528763384d7dfad8fd3f030634a65"
+    },
+    {
+      "path": "sample-2-speaking-partner.pdf",
+      "sourceUrl": "https://cdn-aus.aglty.io/oet/pdf-files/sample-tests/on-paper-sample-tests/Medicine%20Sample%20Test%202%20Questions.pdf",
+      "sourceSha256": "054ab01537450f81a9c4365c345c52c2ace7ad546012547b2c24323883a1c081",
+      "sourcePages": [
+        46
+      ],
+      "crop": "speaking-partner",
+      "sha256": "39ccc7a0d949a81168b7a37d73ff189a657e09cc97fed8886f1ee36209ccd18e"
+    }
+  ]
+}
