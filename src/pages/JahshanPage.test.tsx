@@ -1,8 +1,9 @@
 import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { afterEach, expect, it, vi } from 'vitest';
 import { JahshanPage } from './JahshanPage';
+import * as gateway from '../lib/localSourceGateway';
 import collection from '../data/jahshanCollection.json';
-afterEach(() => { cleanup(); localStorage.clear(); vi.unstubAllGlobals(); });
+afterEach(() => { cleanup(); localStorage.clear(); vi.unstubAllGlobals(); vi.restoreAllMocks(); });
 it('pairs the selected set with its indexed questions and never substitutes missing audio', () => {
   render(<JahshanPage />);
   expect(screen.getByText('Question page 39 · Answer page 49 in the Listening collection.')).toBeInTheDocument();
@@ -13,6 +14,7 @@ it('pairs the selected set with its indexed questions and never substitutes miss
 it('connects the actual local paper and plays only the selected original track', async () => {
   vi.stubGlobal('fetch', vi.fn().mockResolvedValue({ ok: true, json: async () => ({ available: true }) }));
   const view = render(<JahshanPage />);
+  fireEvent.click(screen.getByText('Connect through the local app'));
   fireEvent.click(screen.getByRole('button', { name: 'Connect GENODODI' }));
   await waitFor(() => expect(screen.getByRole('status')).toHaveTextContent('collection is connected'));
   expect(view.container.querySelector('audio')?.getAttribute('src')).toContain('3-Part%20A.mp3');
@@ -28,4 +30,21 @@ it('keeps notes separate between listening sets', () => {
   expect(screen.getByLabelText('My numbered answers, evidence and corrections')).toHaveValue('');
   fireEvent.change(screen.getByLabelText('Listening set'), { target: { value: collection.groups[2].id } });
   expect(screen.getByLabelText('My numbered answers, evidence and corrections')).toHaveValue('1. heavy suitcase');
+});
+
+it('uses selected files on the hosted page without contacting the HTTP gateway', () => {
+  vi.spyOn(gateway, 'canConnectLocalSource').mockReturnValue(false);
+  const fetchSpy = vi.fn();
+  vi.stubGlobal('fetch', fetchSpy);
+  const createUrl = vi.fn().mockReturnValue('blob:https://genododi.github.io/local-track');
+  vi.stubGlobal('URL', { createObjectURL: createUrl, revokeObjectURL: vi.fn() });
+  const view = render(<JahshanPage />);
+  expect(screen.queryByRole('button', { name: 'Connect GENODODI' })).not.toBeInTheDocument();
+  const track = collection.files.find(file => file.relativePath === 'Audio/3- Sample Test 1/3-Part A.mp3')!;
+  const file = new File(['test fixture'], track.name, { type: 'audio/mpeg' });
+  Object.defineProperties(file, { size: { value: track.bytes }, webkitRelativePath: { value: `Jahshan/OET Listening/${track.relativePath}` } });
+  fireEvent.change(screen.getByLabelText('Choose Jahshan folder'), { target: { files: [file] } });
+  expect(view.container.querySelector('audio')).toHaveAttribute('src', 'blob:https://genododi.github.io/local-track');
+  expect(screen.getByRole('status')).toHaveTextContent('1 matching files connected');
+  expect(fetchSpy).not.toHaveBeenCalled();
 });

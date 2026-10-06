@@ -22,11 +22,10 @@ source-guided study, not a new set of automatically marked official mocks.
 
 GitHub contains the catalog, source links, page mappings and player code.
 The large source files stay on the external drive; the Reading PDF exceeds
-GitHub's normal 100 MiB file limit. The page uses the existing read-only local
-file gateway or browser-selected files, so file contents are never uploaded by
-this page. Google Drive links work as a fallback on other devices. Browsers may
-require local-network permission or disallow localhost embeds; choosing local
-files is the alternative. File selections must be repeated after a reload.
+GitHub's normal 100 MiB file limit. The hosted page uses browser-selected files, so file contents are never uploaded
+by this page. The existing read-only gateway is available only when the app itself
+is opened from an HTTP loopback address (localhost / 127.0.0.1). Hosted HTTPS pages
+do not show the gateway button or issue any gateway request. Google Drive links work as a fallback on other devices. Select the Jahshan folder on GENODODI to use its local audio and PDFs. File selections must be repeated after a reload.
 
 Validation: `node scripts/verify-jahshan-collection.mjs` verifies the manifest.
 Add `--local` to verify all mounted files against their sizes and SHA-256 values.

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import collection from '../data/jahshanCollection.json';
-import { localSourceFileUrl, LOCAL_SOURCE_GATEWAY_ORIGIN } from '../lib/localSourceGateway';
+import { canConnectLocalSource, localSourceFileUrl, LOCAL_SOURCE_GATEWAY_ORIGIN } from '../lib/localSourceGateway';
 import './officialExam.css';
 import './studySources.css';
 
@@ -16,6 +16,7 @@ function PracticeNotes({ storageKey }: { storageKey: string }) {
 }
 
 export function JahshanPage() {
+  const gatewayAllowed = canConnectLocalSource();
   const [skill, setSkill] = useState<'listening' | 'reading'>('listening');
   const [groupId, setGroupId] = useState(collection.groups[2].id);
   const [trackId, setTrackId] = useState('');
@@ -28,12 +29,13 @@ export function JahshanPage() {
   const groupTracks = tracks.filter(file => file.relativePath.startsWith(`Audio/${group.title}/`)).sort(sortNames);
   const selectedTrack = groupTracks.find(file => file.id === trackId) ?? groupTracks[0];
   const book = books.find(file => file.name.startsWith(skill === 'listening' ? 'Listening' : 'Reading'))!;
-  const source = (file: Asset) => localUrls[file.id] ?? (gateway === 'ready' ? localSourceFileUrl(file.sourceRelativePath) : undefined);
+  const source = (file: Asset) => localUrls[file.id] ?? (gatewayAllowed && gateway === 'ready' ? localSourceFileUrl(file.sourceRelativePath) : undefined);
   const bookUrl = source(book);
   const audioUrl = selectedTrack ? source(selectedTrack) : undefined;
   const page = skill === 'listening' ? (showAnswers ? group.answerPage : group.questionPage) : 2;
   useEffect(() => () => { Object.values(urls.current).forEach(URL.revokeObjectURL); }, []);
   const connect = async () => {
+    if (!gatewayAllowed) return;
     setGateway('checking');
     try {
       const response = await fetch(`${LOCAL_SOURCE_GATEWAY_ORIGIN}/health`, { signal: AbortSignal.timeout(5000) });
@@ -58,7 +60,16 @@ export function JahshanPage() {
   };
   return <div className="page-section official-exams jahshan-page">
     <section className="card"><span className="section-kicker">YOUR JAHSHAN COLLECTION</span><h2>Books and original listening tracks, together</h2><p>90 audio tracks across 25 available sets, plus the complete Reading and Listening PDFs. Follow the numbered collection index to match the paper and recording. These mixed-publisher materials are for source-guided study; use <a href="#mock">official paper mocks</a> for the verified full-test workflow.</p><p className="meta">Archive checked on {collection.checkedAt}. Set 8, Practice Test 4, has no audio in the supplied Drive folder.</p></section>
-    <section className="card"><h3>1 · Connect your files</h3><p>On this Mac, keep GENODODI connected and open its collection below. Elsewhere, choose your downloaded Jahshan folder and the two PDFs.</p><button className="btn btn-primary" disabled={gateway === 'checking'} onClick={() => void connect()}>{gateway === 'checking' ? 'Connecting…' : 'Connect GENODODI'}</button><p role="status">{gateway === 'ready' ? 'GENODODI collection is connected.' : gateway === 'unavailable' ? 'The browser could not reach GENODODI. Use the file selectors below, or open the source links.' : 'Connect the drive or choose files to enable the player and books.'}</p><label>Choose Jahshan folder <input type="file" {...{ webkitdirectory: '' }} multiple onChange={event => selectFiles(event.target.files)} /></label><p><label>Choose Reading / Listening PDFs <input type="file" accept="application/pdf" multiple onChange={event => selectFiles(event.target.files)} /></label></p>{fileMessage && <p role="status">{fileMessage}</p>}<div className="study-source-links">{books.map(file => <a key={file.id} href={file.url} target="_blank" rel="noopener noreferrer">{file.name} ↗</a>)}<a href={collection.sourceUrl} target="_blank" rel="noopener noreferrer">Original audio folder ↗</a></div></section>
+    <section className="card">
+      <h3>1 · Choose your files from GENODODI</h3>
+      <p>Click “Choose Jahshan folder”, then select GENODODI → oet-study-sources → Google drive Folder → Jahshan. This opens your original recordings and books directly in your browser. Nothing is uploaded.</p>
+      <p className="meta">You can also select the two PDFs from Downloads. After reloading this page, choose your files again; your saved practice notes remain.</p>
+      <label>Choose Jahshan folder <input type="file" {...{ webkitdirectory: '' }} multiple onChange={event => selectFiles(event.target.files)} /></label>
+      <p><label>Choose Reading / Listening PDFs <input type="file" accept="application/pdf" multiple onChange={event => selectFiles(event.target.files)} /></label></p>
+      {fileMessage && <p role="status">{fileMessage}</p>}
+      {gatewayAllowed && <details><summary>Connect through the local app</summary><button className="btn btn-secondary" disabled={gateway === 'checking'} onClick={() => void connect()}>{gateway === 'checking' ? 'Connecting…' : 'Connect GENODODI'}</button><p role="status">{gateway === 'ready' ? 'GENODODI collection is connected.' : gateway === 'unavailable' ? 'The local connection is unavailable. Choose your files above.' : 'The local app can also use the read-only GENODODI connection.'}</p></details>}
+      <div className="study-source-links">{books.map(file => <a key={file.id} href={file.url} target="_blank" rel="noopener noreferrer">{file.name} ↗</a>)}<a href={collection.sourceUrl} target="_blank" rel="noopener noreferrer">Original audio folder ↗</a></div>
+    </section>
     <section className="card"><h3>2 · Choose your practice</h3><div className="study-skill-tabs"><button aria-pressed={skill === 'listening'} onClick={() => { setSkill('listening'); setShowAnswers(false); }}>Listening collection</button><button aria-pressed={skill === 'reading'} onClick={() => { setSkill('reading'); setShowAnswers(false); }}>Reading collection</button></div>{skill === 'listening' ? <><label htmlFor="jahshan-set">Listening set</label><select id="jahshan-set" value={groupId} onChange={event => { setGroupId(event.target.value); setTrackId(''); setShowAnswers(false); }}>{collection.groups.map(item => <option key={item.id} value={item.id}>{item.title}{item.audioMissing ? ' — audio missing' : ''}</option>)}</select><p>Question page {group.questionPage} · Answer page {group.answerPage} in the Listening collection.</p>{group.audioMissing ? <p role="alert">The source contains only a missing-audio notice for this set. Choose another set for listening practice.</p> : <><label htmlFor="jahshan-track">Recording</label><select id="jahshan-track" value={selectedTrack?.id ?? ''} onChange={event => setTrackId(event.target.value)}>{groupTracks.map(file => <option key={file.id} value={file.id}>{file.relativePath.split('/').slice(2).join(' / ')}</option>)}</select>{audioUrl ? <audio key={audioUrl} controls preload="metadata" src={audioUrl} aria-label={selectedTrack.name} style={{ width: '100%' }} /> : <p>Connect the collection above to play the original recording here.</p>}{selectedTrack && <a href={selectedTrack.url} target="_blank" rel="noopener noreferrer">Open selected original recording in Drive ↗</a>}</>}</> : <p>Use the Reading book’s index to choose a test. For paper practice, print the relevant pages and follow their instructions. Reading Part A uses 15 minutes; Parts B and C share 45 minutes.</p>}</section>
     <section className="card"><h3>3 · Work with the original paper</h3>{skill === 'listening' && <button className="btn btn-secondary" onClick={() => setShowAnswers(value => !value)}>{showAnswers ? 'Return to questions' : 'Review answer pages'}</button>}{bookUrl ? <><p><a href={`${bookUrl}#page=${page}`} target="_blank" rel="noopener noreferrer">Open {skill} PDF at page {page} ↗</a></p><iframe key={`${book.id}-${page}-${bookUrl}`} title={`Jahshan ${skill} collection`} src={`${bookUrl}#page=${page}`} style={{ width: '100%', height: '75vh', border: 0 }} /><p className="meta">If the preview is blank, open the PDF in a new tab or your PDF reader and go to page {page}.</p></> : <p>Connect the files in step 1 to open the book here. The Drive links remain available above.</p>}</section>
     <PracticeNotes key={`${skill}-${groupId}`} storageKey={`oet-jahshan-notes-${skill}-${skill === 'listening' ? groupId : 'book'}`} />
