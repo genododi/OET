@@ -12,3 +12,8 @@
 .official-answer fieldset label { display: inline-flex; gap: 6px; align-items: center; }
 .official-response-review { white-space: pre-wrap; overflow-wrap: anywhere; line-height: 1.6; }
 @media (max-width: 800px) { .official-paper-layout { grid-template-columns: 1fr; } .official-paper-layout .pdf-frame-wrap { height: 65vh; } .official-response-sheet { max-height: none; } .official-computer-frame { min-height: 620px; } }
+.jahshan-page { display: grid; gap: 22px; }
+.jahshan-page > .card { padding: 24px; }
+.jahshan-page h3 { margin: 0 0 12px; }
+.jahshan-page p { margin: 10px 0 16px; }
+.jahshan-page input[type=file] { display: block; margin: 8px 0 16px; max-width: 100%; }

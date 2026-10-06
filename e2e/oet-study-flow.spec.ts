@@ -416,3 +416,18 @@ test('official paper writing does not allow an early response or phase skip', as
   await expect(page.getByLabel('Your letter')).toBeDisabled();
   await expect(page.getByRole('button', { name: 'Start timed writing' })).toHaveCount(0);
 });
+
+test('Jahshan collection maps the original sets and preserves missing-audio status', async ({ page }) => {
+  await page.goto('./#jahshan');
+  await expect(page.getByRole('heading', { name: 'Jahshan Collection', exact: true })).toBeVisible();
+  await expect(page.getByText('Question page 39 · Answer page 49 in the Listening collection.')).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Reading Jahshan OET Collection.pdf ↗' })).toHaveAttribute('href', /1592KOopEqQrhlvulCarZzWDkwDhwqmRz/);
+  await page.getByLabel('Listening set').selectOption({ label: '8- Practice Test 4 — audio missing' });
+  await expect(page.getByRole('alert')).toContainText('missing-audio notice');
+  await expect(page.locator('audio')).toHaveCount(0);
+  await page.getByLabel('My numbered answers, evidence and corrections').fill('Review the missing set as paper-only study.');
+  await page.getByLabel('Listening set').selectOption({ label: '3- Sample Test 1' });
+  await expect(page.getByLabel('My numbered answers, evidence and corrections')).toHaveValue('');
+  await page.getByLabel('Listening set').selectOption({ label: '8- Practice Test 4 — audio missing' });
+  await expect(page.getByLabel('My numbered answers, evidence and corrections')).toHaveValue('Review the missing set as paper-only study.');
+});

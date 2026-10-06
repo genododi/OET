@@ -24,7 +24,7 @@
     "test:unit": "vitest run",
     "test:e2e": "playwright test",
     "test:governance": "npx tsx scripts/verify-source-governance.ts",
-    "test:source-manifest": "node scripts/verify-source-manifest.mjs && node scripts/verify-local-source-folder.mjs && node scripts/verify-real-listening-tests.mjs && node scripts/verify-official-exam-assets.mjs",
+    "test:source-manifest": "node scripts/verify-source-manifest.mjs && node scripts/verify-local-source-folder.mjs && node scripts/verify-real-listening-tests.mjs && node scripts/verify-official-exam-assets.mjs && node scripts/verify-jahshan-collection.mjs",
     "test:local-source-gateway": "node scripts/verify-local-source-gateway.mjs",
     "test:local-source-folder": "node scripts/verify-local-source-folder.mjs",
     "test:real-listening": "node scripts/verify-real-listening-tests.mjs",

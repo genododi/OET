@@ -10,6 +10,7 @@ const main: NavItem[] = [
   { id: 'mistakes', label: '4 · Review', icon: 'pen' },
 ];
 const materials: NavItem[] = [
+  { id: 'jahshan', label: 'Jahshan Collection', icon: 'book' },
   { id: 'listening', label: 'Real Listening', icon: 'activity' },
   { id: 'materials', label: 'My OET & AMR Files', icon: 'folder' },
   { id: 'notebook', label: 'NotebookLM Notes', icon: 'book' },
