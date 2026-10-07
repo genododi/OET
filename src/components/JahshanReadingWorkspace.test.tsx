@@ -14,19 +14,19 @@ it('uses the Reading index and separates the shorter paper from full papers', ()
 });
 it('saves each test and part independently and resumes the last selection after reload', () => {
   const view = render(<JahshanReadingWorkspace />);
-  fireEvent.change(screen.getByLabelText('Part A answers'), { target: { value: '1. D' } });
+  fireEvent.change(screen.getByLabelText('Part A answers', { exact: true }), { target: { value: '1. D' } });
   fireEvent.click(screen.getByRole('button', { name: 'Part B' }));
-  fireEvent.change(screen.getByLabelText('Part B answers'), { target: { value: '1. B' } });
+  fireEvent.change(screen.getByLabelText('Part B answers', { exact: true }), { target: { value: '1. B' } });
   fireEvent.change(screen.getByLabelText('Reading test'), { target: { value: '4' } });
-  expect(screen.getByLabelText('Part A answers')).toHaveValue('');
-  fireEvent.change(screen.getByLabelText('Part A answers'), { target: { value: '1. C' } });
+  expect(screen.getByLabelText('Part A answers', { exact: true })).toHaveValue('');
+  fireEvent.change(screen.getByLabelText('Part A answers', { exact: true }), { target: { value: '1. C' } });
   view.unmount(); render(<JahshanReadingWorkspace />);
   expect(screen.getByLabelText('Reading test')).toHaveValue('4');
-  expect(screen.getByLabelText('Part A answers')).toHaveValue('1. C');
+  expect(screen.getByLabelText('Part A answers', { exact: true })).toHaveValue('1. C');
   fireEvent.change(screen.getByLabelText('Reading test'), { target: { value: '3' } });
-  expect(screen.getByLabelText('Part A answers')).toHaveValue('1. D');
+  expect(screen.getByLabelText('Part A answers', { exact: true })).toHaveValue('1. D');
   fireEvent.click(screen.getByRole('button', { name: 'Part B' }));
-  expect(screen.getByLabelText('Part B answers')).toHaveValue('1. B');
+  expect(screen.getByLabelText('Part B answers', { exact: true })).toHaveValue('1. B');
 });
 it('filters entries, tracks review completion and preserves previous book notes', () => {
   localStorage.setItem('oet-jahshan-notes-reading-book', 'Earlier evidence notes');
