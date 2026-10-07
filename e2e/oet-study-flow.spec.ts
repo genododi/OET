@@ -431,3 +431,18 @@ test('Jahshan collection maps the original sets and preserves missing-audio stat
   await page.getByLabel('Listening set').selectOption({ label: '8- Practice Test 4 — audio missing' });
   await expect(page.getByLabel('My numbered answers, evidence and corrections')).toHaveValue('Review the missing set as paper-only study.');
 });
+
+test('Jahshan Reading resumes per-test answers and labels the shorter paper', async ({ page }) => {
+  await page.goto('./#jahshan/reading');
+  await expect(page.getByLabel('Reading test')).toHaveValue('3');
+  await page.getByLabel('Part A answers', { exact: true }).fill('1. D');
+  await page.getByLabel('Reading test').selectOption('8');
+  await expect(page.getByLabel('Part A answers', { exact: true })).toHaveValue('');
+  await expect(page.getByText(/shorter than a full 42-question/)).toBeVisible();
+  await page.getByLabel('Part A answers', { exact: true }).fill('1. A');
+  await page.reload();
+  await expect(page.getByLabel('Reading test')).toHaveValue('8');
+  await expect(page.getByLabel('Part A answers', { exact: true })).toHaveValue('1. A');
+  await page.getByLabel('Reading test').selectOption('3');
+  await expect(page.getByLabel('Part A answers', { exact: true })).toHaveValue('1. D');
+});

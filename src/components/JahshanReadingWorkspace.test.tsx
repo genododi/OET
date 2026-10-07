@@ -1,0 +1,42 @@
+import { cleanup, fireEvent, render, screen } from '@testing-library/react';
+import { afterEach, expect, it } from 'vitest';
+import { JahshanReadingWorkspace } from './JahshanReadingWorkspace';
+afterEach(() => { cleanup(); localStorage.clear(); });
+it('uses the Reading index and separates the shorter paper from full papers', () => {
+  render(<JahshanReadingWorkspace bookUrl="blob:reading-book" />);
+  expect(screen.getByTitle('Jahshan reading collection')).toHaveAttribute('src', 'blob:reading-book#page=83');
+  fireEvent.click(screen.getByRole('button', { name: 'Review answer key' }));
+  expect(screen.getByTitle('Jahshan reading collection')).toHaveAttribute('src', 'blob:reading-book#page=102');
+  fireEvent.change(screen.getByLabelText('Reading test'), { target: { value: '8' } });
+  expect(screen.getByText(/shorter than a full 42-question/)).toBeInTheDocument();
+  expect(screen.getByTitle('Jahshan reading collection')).toHaveAttribute('src', 'blob:reading-book#page=192');
+  expect(screen.getByLabelText('My self-marked result (out of 34)')).toHaveAttribute('max', '34');
+});
+it('saves each test and part independently and resumes the last selection after reload', () => {
+  const view = render(<JahshanReadingWorkspace />);
+  fireEvent.change(screen.getByLabelText('Part A answers'), { target: { value: '1. D' } });
+  fireEvent.click(screen.getByRole('button', { name: 'Part B' }));
+  fireEvent.change(screen.getByLabelText('Part B answers'), { target: { value: '1. B' } });
+  fireEvent.change(screen.getByLabelText('Reading test'), { target: { value: '4' } });
+  expect(screen.getByLabelText('Part A answers')).toHaveValue('');
+  fireEvent.change(screen.getByLabelText('Part A answers'), { target: { value: '1. C' } });
+  view.unmount(); render(<JahshanReadingWorkspace />);
+  expect(screen.getByLabelText('Reading test')).toHaveValue('4');
+  expect(screen.getByLabelText('Part A answers')).toHaveValue('1. C');
+  fireEvent.change(screen.getByLabelText('Reading test'), { target: { value: '3' } });
+  expect(screen.getByLabelText('Part A answers')).toHaveValue('1. D');
+  fireEvent.click(screen.getByRole('button', { name: 'Part B' }));
+  expect(screen.getByLabelText('Part B answers')).toHaveValue('1. B');
+});
+it('filters entries, tracks review completion and preserves previous book notes', () => {
+  localStorage.setItem('oet-jahshan-notes-reading-book', 'Earlier evidence notes');
+  render(<JahshanReadingWorkspace />);
+  fireEvent.change(screen.getByLabelText('Filter reading source'), { target: { value: 'IRS' } });
+  expect(screen.getByLabelText('Reading test')).toHaveValue('21');
+  expect(screen.getByRole('button', { name: 'Previous test' })).toBeDisabled();
+  fireEvent.click(screen.getByLabelText('I compared my answers with the key and reviewed my mistakes'));
+  expect(screen.getByText(/26 entries · 1 reviewed/)).toBeInTheDocument();
+  fireEvent.click(screen.getByText('My earlier general Reading notes'));
+  expect(screen.getByText('Earlier evidence notes')).toBeVisible();
+  expect(screen.getByRole('link', { name: 'Download this test’s answers' })).toHaveAttribute('download', 'jahshan-reading-21-answers.txt');
+});

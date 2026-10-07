@@ -30,3 +30,18 @@ do not show the gateway button or issue any gateway request. Google Drive links 
 Validation: `node scripts/verify-jahshan-collection.mjs` verifies the manifest.
 Add `--local` to verify all mounted files against their sizes and SHA-256 values.
 The regular source-manifest CI check includes the catalog validation.
+
+## Reading workspace
+
+Open `#jahshan/reading` to begin with Reading. All 26 entries use question and
+answer page ranges transcribed from the visually checked Reading index on page 2,
+with the original PDF checksum recorded in `readingIndex`. The book has 575 pages.
+Practice Test 4 (entry 8) is labelled 34 questions; entry 1 is strategies/exercises.
+Neither is presented as a standard full Reading mock.
+
+Filter by source, select a paper, switch between questions/key/index, adjust the
+PDF page, and expand the paper. Answers for A/B/C, corrections, an optional
+self-marked result and review completion save separately per entry. The last test
+resumes on reload. Earlier shared Reading notes remain visible without migration
+or deletion. Responses can be downloaded as text. This is guided source study;
+the link to official timed Reading remains the route for a fixed exam workflow.

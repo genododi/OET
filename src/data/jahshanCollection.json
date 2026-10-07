@@ -1168,5 +1168,273 @@
       "sourceRelativePath": "‪Jahshan‬‏/OET Reading/Reading Jahshan OET Collection.pdf",
       "sha256": "e41a1df70a74341806de8943a4a8c66be832f4513379e3f3ea92ae8ff633f6b4"
     }
-  ]
+  ],
+  "readingTests": [
+    {
+      "number": 1,
+      "title": "1- Kaplan Strategies and Practice Set",
+      "publisher": "Kaplan",
+      "questionPage": 3,
+      "answerPage": 53,
+      "lastPage": 56,
+      "questionCount": null,
+      "kind": "strategies"
+    },
+    {
+      "number": 2,
+      "title": "2- Kaplan Practice Test",
+      "publisher": "Kaplan",
+      "questionPage": 57,
+      "answerPage": 81,
+      "lastPage": 82,
+      "questionCount": 42,
+      "kind": "paper"
+    },
+    {
+      "number": 3,
+      "title": "3- Sample Test 1",
+      "publisher": "Official samples",
+      "questionPage": 83,
+      "answerPage": 102,
+      "lastPage": 103,
+      "questionCount": 42,
+      "kind": "paper"
+    },
+    {
+      "number": 4,
+      "title": "4- Sample Test 2",
+      "publisher": "Official samples",
+      "questionPage": 104,
+      "answerPage": 125,
+      "lastPage": 126,
+      "questionCount": 42,
+      "kind": "paper"
+    },
+    {
+      "number": 5,
+      "title": "5- Practice Test 1",
+      "publisher": "Practice papers",
+      "questionPage": 127,
+      "answerPage": 147,
+      "lastPage": 148,
+      "questionCount": 42,
+      "kind": "paper"
+    },
+    {
+      "number": 6,
+      "title": "6- Practice Test 2",
+      "publisher": "Practice papers",
+      "questionPage": 149,
+      "answerPage": 169,
+      "lastPage": 170,
+      "questionCount": 42,
+      "kind": "paper"
+    },
+    {
+      "number": 7,
+      "title": "7- Practice Test 3",
+      "publisher": "Practice papers",
+      "questionPage": 171,
+      "answerPage": 190,
+      "lastPage": 191,
+      "questionCount": 42,
+      "kind": "paper"
+    },
+    {
+      "number": 8,
+      "title": "8- Practice Test 4",
+      "publisher": "Practice papers",
+      "questionPage": 192,
+      "answerPage": 206,
+      "lastPage": 207,
+      "questionCount": 34,
+      "kind": "partial"
+    },
+    {
+      "number": 9,
+      "title": "9- Practice Test 5",
+      "publisher": "Practice papers",
+      "questionPage": 208,
+      "answerPage": 227,
+      "lastPage": 228,
+      "questionCount": 42,
+      "kind": "paper"
+    },
+    {
+      "number": 10,
+      "title": "10- E2Language Test I",
+      "publisher": "E2Language",
+      "questionPage": 229,
+      "answerPage": 249,
+      "lastPage": 250,
+      "questionCount": 42,
+      "kind": "paper"
+    },
+    {
+      "number": 11,
+      "title": "11- E2Language Test II",
+      "publisher": "E2Language",
+      "questionPage": 251,
+      "answerPage": 267,
+      "lastPage": 268,
+      "questionCount": 42,
+      "kind": "paper"
+    },
+    {
+      "number": 12,
+      "title": "12- E2Language Test III",
+      "publisher": "E2Language",
+      "questionPage": 269,
+      "answerPage": 284,
+      "lastPage": 285,
+      "questionCount": 42,
+      "kind": "paper"
+    },
+    {
+      "number": 13,
+      "title": "13- E2Language Test IV",
+      "publisher": "E2Language",
+      "questionPage": 286,
+      "answerPage": 307,
+      "lastPage": 308,
+      "questionCount": 42,
+      "kind": "paper"
+    },
+    {
+      "number": 14,
+      "title": "14- E2Language Test V",
+      "publisher": "E2Language",
+      "questionPage": 309,
+      "answerPage": 329,
+      "lastPage": 330,
+      "questionCount": 42,
+      "kind": "paper"
+    },
+    {
+      "number": 15,
+      "title": "15- OET Online Test 1",
+      "publisher": "OET Online",
+      "questionPage": 331,
+      "answerPage": 346,
+      "lastPage": 347,
+      "questionCount": 42,
+      "kind": "paper"
+    },
+    {
+      "number": 16,
+      "title": "16- OET Online Test 2",
+      "publisher": "OET Online",
+      "questionPage": 348,
+      "answerPage": 365,
+      "lastPage": 366,
+      "questionCount": 42,
+      "kind": "paper"
+    },
+    {
+      "number": 17,
+      "title": "17- OET Online Test 3",
+      "publisher": "OET Online",
+      "questionPage": 367,
+      "answerPage": 383,
+      "lastPage": 384,
+      "questionCount": 42,
+      "kind": "paper"
+    },
+    {
+      "number": 18,
+      "title": "18- OET Online Test 4",
+      "publisher": "OET Online",
+      "questionPage": 385,
+      "answerPage": 403,
+      "lastPage": 404,
+      "questionCount": 42,
+      "kind": "paper"
+    },
+    {
+      "number": 19,
+      "title": "19- OET Online Test 5",
+      "publisher": "OET Online",
+      "questionPage": 405,
+      "answerPage": 422,
+      "lastPage": 423,
+      "questionCount": 42,
+      "kind": "paper"
+    },
+    {
+      "number": 20,
+      "title": "20- OET Online Test 6",
+      "publisher": "OET Online",
+      "questionPage": 424,
+      "answerPage": 440,
+      "lastPage": 441,
+      "questionCount": 42,
+      "kind": "paper"
+    },
+    {
+      "number": 21,
+      "title": "21-IRS Test 1",
+      "publisher": "IRS",
+      "questionPage": 442,
+      "answerPage": 463,
+      "lastPage": 464,
+      "questionCount": 42,
+      "kind": "paper"
+    },
+    {
+      "number": 22,
+      "title": "22-IRS Test 2",
+      "publisher": "IRS",
+      "questionPage": 465,
+      "answerPage": 485,
+      "lastPage": 486,
+      "questionCount": 42,
+      "kind": "paper"
+    },
+    {
+      "number": 23,
+      "title": "23-IRS Test 3",
+      "publisher": "IRS",
+      "questionPage": 487,
+      "answerPage": 507,
+      "lastPage": 508,
+      "questionCount": 42,
+      "kind": "paper"
+    },
+    {
+      "number": 24,
+      "title": "24-IRS Test 4",
+      "publisher": "IRS",
+      "questionPage": 509,
+      "answerPage": 529,
+      "lastPage": 530,
+      "questionCount": 42,
+      "kind": "paper"
+    },
+    {
+      "number": 25,
+      "title": "25-IRS Test 5",
+      "publisher": "IRS",
+      "questionPage": 531,
+      "answerPage": 551,
+      "lastPage": 552,
+      "questionCount": 42,
+      "kind": "paper"
+    },
+    {
+      "number": 26,
+      "title": "26- Sample Test 3",
+      "publisher": "Official samples",
+      "questionPage": 553,
+      "answerPage": 572,
+      "lastPage": 575,
+      "questionCount": 42,
+      "kind": "paper"
+    }
+  ],
+  "readingIndex": {
+    "sourcePdfSha256": "e41a1df70a74341806de8943a4a8c66be832f4513379e3f3ea92ae8ff633f6b4",
+    "indexPage": 2,
+    "pageCount": 575,
+    "verifiedAt": "2026-10-07"
+  }
 }

@@ -29,3 +29,14 @@ for (const file of manifest.files) {
   }
 }
 console.log(`Verified Jahshan catalog: 90 tracks, 2 books, 1 missing-audio notice${checkLocal ? ' and all external-drive checksums' : ''}.`);
+assert.equal(manifest.readingTests.length, 26);
+assert.equal(new Set(manifest.readingTests.map(test => test.number)).size, 26);
+assert.equal(manifest.readingIndex.sourcePdfSha256, manifest.files.find(file => file.name.startsWith('Reading Jahshan')).sha256);
+const byPage = [...manifest.readingTests].sort((a, b) => a.questionPage - b.questionPage);
+for (let index = 0; index < byPage.length; index++) {
+  const test = byPage[index];
+  assert.ok(test.questionPage < test.answerPage && test.answerPage <= test.lastPage);
+  assert.equal(test.lastPage, (byPage[index + 1]?.questionPage ?? manifest.readingIndex.pageCount + 1) - 1);
+  assert.equal(test.questionCount, test.number === 1 ? null : test.number === 8 ? 34 : 42);
+}
+console.log('Verified 26 Reading entries, page boundaries, source PDF checksum and shorter-paper labeling.');

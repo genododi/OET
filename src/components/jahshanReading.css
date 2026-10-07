@@ -1,0 +1,14 @@
+.jahshan-reading { display: grid; gap: 22px; min-width: 0; }
+.jahshan-reading .card { padding: 24px; min-width: 0; }
+.reading-selectors { display: grid; grid-template-columns: 1fr 2fr; gap: 18px; }
+.reading-selectors select { width: 100%; }
+.reading-workbench { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(280px, 1fr); gap: 20px; align-items: start; }
+.reading-workbench-wide { grid-template-columns: 1fr; }
+.reading-paper iframe { width: 100%; height: 78vh; border: 1px solid #d4e0db; background: white; }
+.reading-paper-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.jahshan-reading textarea { display: block; width: 100%; box-sizing: border-box; font: inherit; padding: 12px; margin: 8px 0 16px; resize: vertical; }
+.jahshan-reading input[type=number] { display: block; width: 100px; padding: 8px; font: inherit; margin: 6px 0; }
+.reading-worksheet details { margin: 12px 0 20px; }
+.reading-notice { padding: 12px; border-left: 3px solid #a97a2e; background: #fff7e8; color: #4d3b20; }
+@media (max-width: 1000px) { .reading-workbench { grid-template-columns: 1fr; } }
+@media (max-width: 600px) { .reading-selectors { grid-template-columns: 1fr; gap: 0; } .jahshan-reading .card { padding: 16px; } }

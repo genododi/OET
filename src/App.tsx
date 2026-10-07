@@ -136,7 +136,7 @@ function App() {
       case 'resources':
         return <ResourcesPage onNavigate={navigate} />;
       case 'jahshan':
-        return <JahshanPage />;
+        return <JahshanPage key={route.itemId ?? 'listening'} initialSkill={route.itemId === 'reading' ? 'reading' : 'listening'} />;
       case 'mock':
         return <OfficialExamPage key={route.itemId ?? 'mock'} initialSkill={isPracticeFilter(route.itemId) ? route.itemId : undefined} />;
       case 'practice':
