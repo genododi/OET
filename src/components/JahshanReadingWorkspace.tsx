@@ -1,10 +1,12 @@
 import { useState } from 'react';
+import { JahshanReadingQuestions } from './JahshanReadingQuestions';
+import questionData from '../data/jahshanReadingQuestions.json';
 import collection from '../data/jahshanCollection.json';
 import './jahshanReading.css';
 
 type Part = 'A' | 'B' | 'C';
-type Draft = { A: string; B: string; C: string; corrections: string; score: string; reviewed: boolean };
-const emptyDraft = (): Draft => ({ A: '', B: '', C: '', corrections: '', score: '', reviewed: false });
+type Draft = { responses: Record<string, string>; A: string; B: string; C: string; corrections: string; score: string; reviewed: boolean };
+const emptyDraft = (): Draft => ({ responses: {}, A: '', B: '', C: '', corrections: '', score: '', reviewed: false });
 const key = 'oet-jahshan-reading-workspace-v1';
 const tests = collection.readingTests;
 const book = collection.files.find(file => file.name.startsWith('Reading Jahshan'))!;
@@ -17,6 +19,7 @@ function readSaved(): { selected: number; drafts: Record<number, Draft> } {
       if (!value) continue;
       const draft = emptyDraft();
       for (const field of ['A', 'B', 'C', 'corrections', 'score'] as const) if (typeof value[field] === 'string') draft[field] = value[field];
+      if (value.responses && typeof value.responses === 'object') draft.responses = Object.fromEntries(Object.entries(value.responses).filter((entry): entry is [string, string] => typeof entry[1] === 'string'));
       draft.reviewed = value.reviewed === true; drafts[test.number] = draft;
     }
     return { selected: tests.some(test => test.number === saved?.selected) ? saved.selected : 3, drafts };
@@ -47,7 +50,8 @@ export function JahshanReadingWorkspace({ bookUrl }: { bookUrl?: string }) {
   const selectTest = (number: number) => { persist({ ...saved, selected: number }); setView('questions'); setPageOverride(null); setPart('A'); };
   const update = (patch: Partial<Draft>) => persist({ ...saved, drafts: { ...saved.drafts, [test.number]: { ...draft, ...patch } } });
   const navigatePaper = (next: typeof view) => { setView(next); setPageOverride(null); };
-  const exportText = `${test.title}\nQuestions: page ${test.questionPage}; answers: page ${test.answerPage}\n\nPart A\n${draft.A}\n\nPart B\n${draft.B}\n\nPart C\n${draft.C}\n\nCorrections\n${draft.corrections}\n\nSelf-marked: ${draft.score || 'not entered'}${test.questionCount ? ` / ${test.questionCount}` : ''}\nReviewed: ${draft.reviewed ? 'yes' : 'no'}\n`;
+  const numberedAnswers = questionData.tests.find(item => item.number === test.number)!.sections.map(section => `Part ${section.part} · ${section.label}\n${section.questions.map(q => `${q.group ? `${q.group} · ` : ''}${q.number}. ${draft.responses[q.id] ?? ''}`).join('\n')}`).join('\n\n');
+  const exportText = `${test.title}\nQuestions: page ${test.questionPage}; answers: page ${test.answerPage}\n\n${numberedAnswers}\n\nEarlier free-form Part A notes\n${draft.A}\n\nPart B\n${draft.B}\n\nPart C\n${draft.C}\n\nCorrections\n${draft.corrections}\n\nSelf-marked: ${draft.score || 'not entered'}${test.questionCount ? ` / ${test.questionCount}` : ''}\nReviewed: ${draft.reviewed ? 'yes' : 'no'}\n`;
   return <section className="jahshan-reading" aria-label="Reading practice workspace">
     <section className="card">
       <h3>Choose a Reading test</h3>
@@ -67,10 +71,10 @@ export function JahshanReadingWorkspace({ bookUrl }: { bookUrl?: string }) {
         <label>PDF page<input type="number" min={1} max={collection.readingIndex.pageCount} value={page} onChange={event => { const value = Number(event.target.value); if (Number.isInteger(value) && value >= 1 && value <= collection.readingIndex.pageCount) setPageOverride(value); }} /></label>
         {bookUrl ? <><p><a href={`${bookUrl}#page=${page}`} target="_blank" rel="noopener noreferrer">Open Reading PDF at page {page} ↗</a></p><iframe key={`${bookUrl}-${page}`} src={`${bookUrl}#page=${page}`} title="Jahshan reading collection" /><p className="meta">If your PDF viewer does not jump to the page, enter page {page} in its toolbar or open the PDF separately.</p></> : <p>Select the Reading PDF in step 1 to see it beside your answers. You can prepare your notes now, or <a href={book.url} target="_blank" rel="noopener noreferrer">open the source in Drive ↗</a>.</p>}
       </section>
-      <section className="card reading-worksheet"><h3>4 · Answer and review</h3><div className="study-skill-tabs" role="group" aria-label="Reading answer part">{(['A', 'B', 'C'] as const).map(item => <button key={item} aria-pressed={part === item} onClick={() => setPart(item)}>Part {item}</button>)}</div>
+      <section className="card reading-worksheet"><h3>4 · Record your answers and review</h3><div className="study-skill-tabs" role="group" aria-label="Reading answer part">{(['A', 'B', 'C'] as const).map(item => <button key={item} aria-pressed={part === item} onClick={() => setPart(item)}>Part {item}</button>)}</div>
         <details><summary>{method[part].title}</summary><p>{method[part].text}</p><a href={`#walkthrough/reading-${part.toLowerCase()}`}>Open the worked Part {part} walkthrough →</a></details>
-        <label htmlFor="jahshan-reading-answers">Part {part} answers</label><textarea id="jahshan-reading-answers" rows={10} value={draft[part]} placeholder="Use the question numbers from the book, one answer per line." onChange={event => update({ [part]: event.target.value })} />
-        <p className="meta">Copy the numbering printed in this paper. Your other parts stay saved when you switch tabs.</p>
+        <JahshanReadingQuestions testNumber={test.number} part={part} responses={draft.responses} onAnswer={(id, answer) => update({ responses: { ...draft.responses, [id]: answer } })} onPage={(page, answerKey) => { setView(answerKey ? 'answers' : 'questions'); setPageOverride(page); }} />
+        <details><summary>Earlier free-form answers and extra Part {part} notes</summary><label htmlFor="jahshan-reading-answers">Part {part} answers</label><textarea id="jahshan-reading-answers" rows={5} value={draft[part]} onChange={event => update({ [part]: event.target.value })} /></details>
         <label htmlFor="jahshan-reading-corrections">Evidence, corrections and next steps</label><textarea id="jahshan-reading-corrections" rows={5} value={draft.corrections} onChange={event => update({ corrections: event.target.value })} />
         {test.questionCount && <label>My self-marked result (out of {test.questionCount})<input type="number" min={0} max={test.questionCount} value={draft.score} onChange={event => { const value = event.target.value; if (value === '' || (Number.isInteger(Number(value)) && Number(value) >= 0 && Number(value) <= test.questionCount!)) update({ score: value }); }} /></label>}
         <p><label><input type="checkbox" checked={draft.reviewed} onChange={event => update({ reviewed: event.target.checked })} /> I compared my answers with the key and reviewed my mistakes</label></p>

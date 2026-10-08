@@ -1,0 +1,21 @@
+.jahshan-listening-workbench { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(330px, 1fr); gap: 20px; align-items: start; }
+.jahshan-listening-workbench > .card { min-width: 0; }
+.jahshan-blank-list { max-height: 78vh; overflow-y: auto; padding-right: 8px; }
+.jahshan-blank { padding: 14px 0; border-bottom: 1px solid #d4e0db; }
+.jahshan-blank > label { display: block; font-weight: 600; margin-bottom: 8px; }
+.jahshan-blank-controls { display: flex; align-items: center; gap: 8px; }
+.jahshan-blank-controls input, .jahshan-blank-controls select { min-width: 0; width: 100%; flex: 1; padding: 10px; font: inherit; border: 1px solid #b2c5c0; border-radius: 8px; }
+.jahshan-blank-controls button { white-space: nowrap; }
+.jahshan-inline-key { margin-top: 10px; padding: 10px; background: #edf7f2; border-radius: 8px; overflow-wrap: anywhere; }
+.jahshan-inline-key p { margin: 4px 0 8px; }
+.jahshan-inline-key a { display: block; }
+@media (max-width: 1100px) { .jahshan-listening-workbench { grid-template-columns: 1fr; } }
+.jahshan-listening-player audio { width: 100%; margin: 14px 0; }
+.jahshan-transcript { padding: 20px; border: 1px solid #bfd1c6; border-radius: 12px; background: #f7faf7; margin: 16px 0; }
+.transcript-actions { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+.transcript-box { position: relative; max-height: 320px; overflow-y: auto; overscroll-behavior: contain; border: 1px solid #d1ddd5; border-radius: 8px; background: white; padding: 8px; }
+.transcript-line { display: flex; width: 100%; text-align: left; gap: 12px; padding: 10px; border: 0; border-radius: 4px; font: inherit; line-height: 1.6; background: transparent; color: #243b30; cursor: pointer; }
+.transcript-line:disabled { opacity: 1; cursor: default; color: #243b30; }
+.transcript-time { font-variant-numeric: tabular-nums; font-size: .85em; color: #536e5f; min-width: 42px; }
+.transcript-line:hover:not(:disabled), .transcript-current { background: #e3f1e6; }
+@media(max-width:600px) { .jahshan-transcript { padding: 12px; } }

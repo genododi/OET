@@ -12,3 +12,16 @@
 .reading-notice { padding: 12px; border-left: 3px solid #a97a2e; background: #fff7e8; color: #4d3b20; }
 @media (max-width: 1000px) { .reading-workbench { grid-template-columns: 1fr; } }
 @media (max-width: 600px) { .reading-selectors { grid-template-columns: 1fr; gap: 0; } .jahshan-reading .card { padding: 16px; } }
+.reading-text-filter { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 18px; }
+.reading-text-filter [aria-pressed=true] { background: #174b3a; color: white; }
+.reading-question-scroll { max-height: 78vh; overflow-y: auto; padding-right: 8px; overscroll-behavior: contain; }
+.reading-question { padding: 18px 0; border-bottom: 1px solid #d4e0db; }
+.reading-question label { display: block; }
+.reading-prompt { white-space: pre-line; line-height: 1.65; overflow-wrap: anywhere; }
+.reading-answer-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.reading-answer-row input, .reading-answer-row select { flex: 1 1 140px; min-width: 0; padding: 10px; font: inherit; border: 1px solid #9badA5; border-radius: 6px; }
+.reading-revealed { margin-top: 12px; padding: 12px; background: #eef6f0; border-left: 3px solid #36724d; overflow-wrap: anywhere; }
+.reading-source-page { font-size: .85rem; margin-top: 6px; }
+.reading-source-image { margin: 0 0 20px; }
+.reading-source-image img { width: 100%; height: auto; display: block; }
+.reading-source-image figcaption { font-size: .85rem; margin: 8px 0; }

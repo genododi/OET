@@ -1,0 +1,43 @@
+import { cleanup, fireEvent, render, screen } from '@testing-library/react';
+import { afterEach, expect, it, vi } from 'vitest';
+import { JahshanListeningWorksheet } from './JahshanListeningWorksheet';
+import keys from '../data/jahshanListeningAnswers.json';
+const track = (set: number, part = 'A') => keys.worksheets.find(sheet => sheet.setNumber === set && sheet.parts.some(item => item.part === part))!.trackId;
+afterEach(() => { cleanup(); localStorage.clear(); });
+it('reveals only the requested key and preserves the learner response', () => {
+  const openKey = vi.fn();
+  render(<JahshanListeningWorksheet trackId={track(3)} onOpenKey={openKey} />);
+  fireEvent.change(screen.getByLabelText('Extract 1 · Question 1', { exact: true }), { target: { value: 'my attempt' } });
+  fireEvent.click(screen.getByRole('button', { name: 'Show answer for Extract 1 · Question 1' }));
+  expect(screen.getByText('(a) (heavy) suitcase / case')).toBeVisible();
+  expect(screen.queryByText('(his/the) right leg')).not.toBeInTheDocument();
+  expect(screen.getByLabelText('Extract 1 · Question 1', { exact: true })).toHaveValue('my attempt');
+  fireEvent.click(screen.getByRole('button', { name: 'View printed key · page 49' }));
+  expect(openKey).toHaveBeenCalledWith(49);
+});
+it('isolates tracks and restores answers with keys hidden', () => {
+  const view = render(<JahshanListeningWorksheet trackId={track(3)} onOpenKey={() => {}} />);
+  fireEvent.change(screen.getByLabelText('Extract 1 · Question 1', { exact: true }), { target: { value: 'suitcase' } });
+  fireEvent.click(screen.getByRole('button', { name: 'Show answer for Extract 1 · Question 1' }));
+  view.rerender(<JahshanListeningWorksheet trackId={track(4)} onOpenKey={() => {}} />);
+  expect(screen.getByLabelText('Extract 1 · Question 1', { exact: true })).toHaveValue('');
+  expect(screen.queryByText('(a) (heavy) suitcase / case')).not.toBeInTheDocument();
+  fireEvent.click(screen.getByRole('button', { name: 'Show answer for Extract 1 · Question 1' }));
+  expect(screen.getByText('heartburn (after meals)')).toBeVisible();
+  view.rerender(<JahshanListeningWorksheet trackId={track(3)} onOpenKey={() => {}} />);
+  expect(screen.getByLabelText('Extract 1 · Question 1', { exact: true })).toHaveValue('suitcase');
+  expect(screen.queryByText('(a) (heavy) suitcase / case')).not.toBeInTheDocument();
+});
+it('handles a combined recording and repeated extract numbering', () => {
+  const view = render(<JahshanListeningWorksheet trackId={track(2)} onOpenKey={() => {}} />);
+  fireEvent.click(screen.getByRole('button', { name: 'Show answer for Extract 1 · Question 1' }));
+  fireEvent.click(screen.getByRole('button', { name: 'Part B' }));
+  expect(screen.queryByText('up the stairs')).not.toBeInTheDocument();
+  expect(screen.getByLabelText('Question 25', { exact: true })).toBeVisible();
+  view.rerender(<JahshanListeningWorksheet trackId={track(16)} onOpenKey={() => {}} />);
+  expect(screen.getByLabelText('Extract 2 · Question 1', { exact: true })).toBeVisible();
+  fireEvent.click(screen.getByRole('button', { name: 'Show answer for Extract 1 · Question 10' }));
+  expect(screen.getByText(/supplied key does not provide an answer/)).toBeVisible();
+  fireEvent.click(screen.getByRole('button', { name: 'Show answer for Extract 1 · Question 11' }));
+  expect(screen.getByText('Hockey tournament')).toBeVisible();
+});

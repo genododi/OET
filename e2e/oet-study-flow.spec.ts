@@ -435,14 +435,31 @@ test('Jahshan collection maps the original sets and preserves missing-audio stat
 test('Jahshan Reading resumes per-test answers and labels the shorter paper', async ({ page }) => {
   await page.goto('./#jahshan/reading');
   await expect(page.getByLabel('Reading test')).toHaveValue('3');
-  await page.getByLabel('Part A answers', { exact: true }).fill('1. D');
+  await page.getByLabel('Part A · Question 1', { exact: true }).selectOption('D');
   await page.getByLabel('Reading test').selectOption('8');
-  await expect(page.getByLabel('Part A answers', { exact: true })).toHaveValue('');
+  await expect(page.getByLabel('Part A · Question 1', { exact: true })).toHaveValue('');
   await expect(page.getByText(/shorter than a full 42-question/)).toBeVisible();
-  await page.getByLabel('Part A answers', { exact: true }).fill('1. A');
+  await page.getByLabel('Part A · Question 1', { exact: true }).fill('A');
   await page.reload();
   await expect(page.getByLabel('Reading test')).toHaveValue('8');
-  await expect(page.getByLabel('Part A answers', { exact: true })).toHaveValue('1. A');
+  await expect(page.getByLabel('Part A · Question 1', { exact: true })).toHaveValue('A');
   await page.getByLabel('Reading test').selectOption('3');
-  await expect(page.getByLabel('Part A answers', { exact: true })).toHaveValue('1. D');
+  await expect(page.getByLabel('Part A · Question 1', { exact: true })).toHaveValue('D');
+});
+
+test('Jahshan reveals the selected blank and preserves my response across recording changes', async ({ page }) => {
+  await page.goto('./#jahshan');
+  await page.getByLabel('Extract 1 · Question 1', { exact: true }).fill('my first attempt');
+  await page.getByRole('button', { name: 'Show answer for Extract 1 · Question 1', exact: true }).click();
+  await expect(page.getByText('(a) (heavy) suitcase / case', { exact: true })).toBeVisible();
+  await expect(page.getByText('(his/the) right leg', { exact: true })).toHaveCount(0);
+  await expect(page.getByLabel('Extract 1 · Question 1', { exact: true })).toHaveValue('my first attempt');
+  await page.getByLabel('Recording', { exact: true }).selectOption({ label: '3-Part B.mp3' });
+  await expect(page.getByText('(a) (heavy) suitcase / case', { exact: true })).toHaveCount(0);
+  await page.getByRole('button', { name: 'Show answer for Question 25', exact: true }).click();
+  await expect(page.getByRole('button', { name: 'View printed key · page 50' })).toBeVisible();
+  await page.getByLabel('Recording', { exact: true }).selectOption({ label: '3-Part A.mp3' });
+  await expect(page.getByLabel('Extract 1 · Question 1', { exact: true })).toHaveValue('my first attempt');
+  await page.reload();
+  await expect(page.getByLabel('Extract 1 · Question 1', { exact: true })).toHaveValue('my first attempt');
 });
