@@ -20,12 +20,25 @@ The complete verification report is saved to
 links taken from the Listening index, and separate saved notes per set. This is
 source-guided study, not a new set of automatically marked official mocks.
 
-GitHub contains the catalog, source links, page mappings and player code.
-The large source files stay on the external drive; the Reading PDF exceeds
-GitHub's normal 100 MiB file limit. The hosted page uses browser-selected files, so file contents are never uploaded
-by this page. The existing read-only gateway is available only when the app itself
-is opened from an HTTP loopback address (localhost / 127.0.0.1). Hosted HTTPS pages
-do not show the gateway button or issue any gateway request. Google Drive links work as a fallback on other devices. Select the Jahshan folder on GENODODI to use its local audio and PDFs. File selections must be repeated after a reload.
+GitHub Pages hosts all 90 available recordings as AAC streaming copies under
+`public/jahshan-audio/<exact Drive ID>.m4a`. The player appears immediately for
+any available set and recording, with no local connection required. The human
+speech, complete track and timing are preserved; no speech is generated.
+The original MP3 files remain unchanged on GENODODI and linked in Drive.
+
+Local files are optional overrides. The page can open a browser-selected PDF or
+original MP3, without uploading it. These selections must be repeated after a
+reload. The read-only gateway is available only from HTTP localhost; hosted
+HTTPS pages never request it. Playback errors show a retry control and the exact
+original recording link, rather than leaving a silent or missing player.
+
+Regenerate streaming assets with `python3 scripts/publish-jahshan-audio.py`.
+The script checks every original SHA-256 before encoding AAC at 48 kbps mono,
+32 kHz, with fast-start MP4 metadata. This keeps the complete site within the
+GitHub Pages size limit. It performs no trimming, speed changes or silence removal,
+and verifies duration differences under 0.2 seconds. The generated audio manifest
+records both original and published checksums. The collection verifier checks
+all 90 files and their mapping to the exact catalog track IDs.
 
 Validation: `node scripts/verify-jahshan-collection.mjs` verifies the manifest.
 Add `--local` to verify all mounted files against their sizes and SHA-256 values.

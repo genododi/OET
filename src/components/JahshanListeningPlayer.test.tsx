@@ -26,3 +26,22 @@ it('clears the old script immediately when the recording changes and rejects a m
   await waitFor(() => expect(screen.getByRole('status')).toHaveTextContent('unavailable'));
   expect(screen.queryByText('Wrong recording text.')).not.toBeInTheDocument();
 });
+it('plays the hosted recording without local files and gives a retry option on failure', async () => {
+  vi.stubGlobal('fetch', vi.fn().mockResolvedValue({ ok: true, json: async () => data(tracks[0], 'Hosted track sentence.') }));
+  const view = render(<JahshanListeningPlayer track={tracks[0]} />);
+  await screen.findByText('Hosted track sentence.');
+  const audio = view.container.querySelector('audio')!;
+  expect(audio.getAttribute('src')).toMatch(new RegExp(`jahshan-audio/${tracks[0].id}\\.m4a$`));
+  expect(screen.getByRole('button', { name: '0:05 Second sentence.' })).toBeEnabled();
+  fireEvent.click(screen.getByRole('button', { name: '0:05 Second sentence.' }));
+  expect(audio.currentTime).toBe(5);
+  fireEvent.error(audio);
+  expect(screen.getByRole('alert')).toHaveTextContent('could not load');
+  expect(screen.getByRole('link', { name: 'Open this original recording in Drive ↗' })).toHaveAttribute('href', tracks[0].url);
+  const retry = vi.spyOn(audio, 'load').mockImplementation(() => {});
+  fireEvent.click(screen.getByRole('button', { name: 'Retry audio' }));
+  expect(retry).toHaveBeenCalledOnce();
+  expect(screen.queryByRole('alert')).not.toBeInTheDocument();
+  view.rerender(<JahshanListeningPlayer track={tracks[1]} />);
+  expect(view.container.querySelector('audio')?.getAttribute('src')).toContain(`${tracks[1].id}.m4a`);
+});

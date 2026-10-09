@@ -19,3 +19,4 @@
 .transcript-time { font-variant-numeric: tabular-nums; font-size: .85em; color: #536e5f; min-width: 42px; }
 .transcript-line:hover:not(:disabled), .transcript-current { background: #e3f1e6; }
 @media(max-width:600px) { .jahshan-transcript { padding: 12px; } }
+.jahshan-audio-error { padding: 12px; border: 1px solid #b94b3b; border-radius: 8px; background: #fff5f1; }

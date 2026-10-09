@@ -137,3 +137,25 @@ for (const test of readingPages.tests) {
 }
 assert.ok((await stat(new URL('../public/jahshan-reading-pages/2.webp', import.meta.url))).size > 1000);
 console.log(`Verified ${completePageCount} complete Reading pages, including all passages and answer keys.`);
+
+const streamingAudio = JSON.parse(await readFile(new URL('../src/data/jahshanListeningAudio.json', import.meta.url), 'utf8'));
+assert.equal(streamingAudio.kind, 'compressed-original-recordings');
+const originalTracks = manifest.files.filter(file => file.mimeType.startsWith('audio/'));
+assert.deepEqual(streamingAudio.tracks.map(track => track.id).sort(), originalTracks.map(track => track.id).sort());
+let audioBytes = 0;
+for (const track of streamingAudio.tracks) {
+  const original = originalTracks.find(file => file.id === track.id);
+  assert.equal(track.sourceSha256, original.sha256);
+  assert.equal(track.path, `jahshan-audio/${track.id}.m4a`);
+  assert.equal(track.mimeType, 'audio/mp4');
+  assert.equal(track.codec, 'aac');
+  assert.ok(Number.isFinite(track.duration) && track.duration > 0);
+  assert.ok(Math.abs(track.duration - track.sourceDuration) < 0.2, 'The complete original recording must retain its timing');
+  const asset = await readFile(new URL(`../public/${track.path}`, import.meta.url));
+  assert.equal(asset.length, track.bytes);
+  assert.equal(createHash('sha256').update(asset).digest('hex'), track.sha256);
+  assert.equal(asset.toString('ascii', 4, 8), 'ftyp');
+  audioBytes += asset.length;
+}
+assert.ok(audioBytes < 380_000_000, 'Streaming copies must fit the GitHub Pages site budget');
+console.log(`Verified all 90 hosted original recordings (${audioBytes.toLocaleString()} bytes), source checksums and matching durations.`);
