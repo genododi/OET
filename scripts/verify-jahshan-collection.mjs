@@ -115,3 +115,25 @@ for (const track of manifest.files.filter(file => file.mimeType.startsWith('audi
   }
 }
 console.log(`Verified transcripts for all 90 original recordings (${transcriptSegments} timed segments).`);
+
+const readingPages = JSON.parse(await readFile(new URL('../src/data/jahshanReadingPages.json', import.meta.url), 'utf8'));
+assert.equal(readingPages.sourceSha256, manifest.readingIndex.sourcePdfSha256);
+assert.deepEqual(readingPages.tests.map(test => test.number).sort((a, b) => a - b), manifest.readingTests.map(test => test.number).sort((a, b) => a - b));
+let completePageCount = 1; // Index page 2.
+for (const test of readingPages.tests) {
+  const entry = manifest.readingTests.find(item => item.number === test.number);
+  const pages = ['A', 'B', 'C'].flatMap(part => test.parts[part]);
+  assert.deepEqual(pages, Array.from({ length: entry.answerPage - entry.questionPage }, (_, i) => entry.questionPage + i), 'Every source page must be included exactly once, in paper order');
+  for (const section of readingForms.tests.find(item => item.number === test.number).sections) {
+    for (const question of section.questions) {
+      assert.ok(test.parts[section.part].includes(question.sourcePage));
+      if (question.sourceTextPage) assert.ok(test.parts[section.part].includes(question.sourceTextPage));
+    }
+  }
+  for (let page = entry.questionPage; page <= entry.lastPage; page++) {
+    assert.ok((await stat(new URL(`../public/jahshan-reading-pages/${page}.webp`, import.meta.url))).size > 1000);
+    completePageCount++;
+  }
+}
+assert.ok((await stat(new URL('../public/jahshan-reading-pages/2.webp', import.meta.url))).size > 1000);
+console.log(`Verified ${completePageCount} complete Reading pages, including all passages and answer keys.`);

@@ -71,3 +71,29 @@ it('keeps repeated Part C numbering and missing printed answers distinct', () =>
   fireEvent.click(screen.getByRole('button', { name: 'Show answer for Part A · Question 1' }));
   expect(screen.getByText('No answer is printed for this question in the supplied key.')).toBeVisible();
 });
+it('shows complete passages without a local PDF and keeps passage and answer parts together', () => {
+  render(<JahshanReadingWorkspace />);
+  expect(screen.getByRole('heading', { name: 'Part A · Complete reading text' })).toBeVisible();
+  expect(screen.getByAltText('Complete original Reading page 84')).toBeVisible();
+  expect(screen.getByAltText('Complete original Reading page 85')).toBeVisible();
+  fireEvent.change(screen.getByLabelText('Reading passage part'), { target: { value: 'C' } });
+  expect(screen.getByLabelText('Part C · Text 1 · Question 7', { exact: true })).toBeInTheDocument();
+  for (const page of [94, 95, 98, 99]) expect(screen.getByAltText(`Complete original Reading page ${page}`)).toBeVisible();
+  expect(screen.queryByAltText('Complete original Reading page 84')).not.toBeInTheDocument();
+  fireEvent.click(screen.getByRole('button', { name: 'Review answer key' }));
+  expect(screen.getByAltText('Complete original Reading page 102')).toBeVisible();
+  fireEvent.click(screen.getByRole('button', { name: 'Part B' }));
+  expect(screen.getByRole('heading', { name: 'Part B · Complete reading text' })).toBeVisible();
+  expect(screen.getByAltText('Complete original Reading page 88')).toBeVisible();
+  expect(screen.queryByAltText('Complete original Reading page 102')).not.toBeInTheDocument();
+});
+it('retains all four source texts when questions are filtered and replaces pages on test changes', () => {
+  render(<JahshanReadingWorkspace />);
+  fireEvent.click(screen.getByRole('button', { name: 'Text A' }));
+  expect(screen.getByAltText('Complete original Reading page 84')).toBeVisible();
+  expect(screen.getByAltText('Complete original Reading page 85')).toBeVisible();
+  fireEvent.change(screen.getByLabelText('Reading test'), { target: { value: '26' } });
+  expect(screen.getByAltText('Complete original Reading page 554')).toBeVisible();
+  expect(screen.getByAltText('Complete original Reading page 555')).toBeVisible();
+  expect(screen.queryByAltText('Complete original Reading page 84')).not.toBeInTheDocument();
+});

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { JahshanReadingQuestions } from './JahshanReadingQuestions';
+import { JahshanReadingPaper } from './JahshanReadingPaper';
 import questionData from '../data/jahshanReadingQuestions.json';
 import collection from '../data/jahshanCollection.json';
 import './jahshanReading.css';
@@ -65,13 +66,17 @@ export function JahshanReadingWorkspace({ bookUrl }: { bookUrl?: string }) {
     </section>
     {saveError && <p role="alert">Your browser could not save these answers. Download them before leaving.</p>}
     <div className={`reading-workbench${wide ? ' reading-workbench-wide' : ''}`}>
-      <section className="card reading-paper"><h3>3 · Read the paper</h3>
-        <div className="reading-paper-actions"><button className="btn btn-secondary" aria-pressed={view === 'questions'} onClick={() => navigatePaper('questions')}>Question pages</button><button className="btn btn-secondary" aria-pressed={view === 'answers'} onClick={() => navigatePaper('answers')}>Review answer key</button><button className="btn btn-ghost" aria-pressed={view === 'index'} onClick={() => navigatePaper('index')}>Book index</button><button className="btn btn-ghost" onClick={() => setWide(value => !value)}>{wide ? 'Show paper beside answers' : 'Expand paper'}</button></div>
+      <section className="card reading-paper"><h3>3 · Read the complete text</h3>
+        <label>Reading passage part<select value={part} onChange={event => { setPart(event.target.value as Part); setView('questions'); setPageOverride(null); }}>{(['A', 'B', 'C'] as const).map(item => <option value={item} key={item}>Part {item}</option>)}</select></label>
+        <div className="reading-paper-actions"><button className="btn btn-secondary" aria-pressed={view === 'questions'} onClick={() => navigatePaper('questions')}>Full reading pages</button><button className="btn btn-secondary" aria-pressed={view === 'answers'} onClick={() => navigatePaper('answers')}>Review answer key</button><button className="btn btn-ghost" aria-pressed={view === 'index'} onClick={() => navigatePaper('index')}>Book index</button><button className="btn btn-ghost" onClick={() => setWide(value => !value)}>{wide ? 'Show paper beside answers' : 'Expand paper'}</button></div>
         <p className="meta">{view === 'answers' ? 'Review mode: compare your attempt with the printed key.' : 'Study mode: the original book remains available. This workspace is not a locked exam.'}</p>
+        <JahshanReadingPaper testNumber={test.number} part={part} view={view} selectedPage={pageOverride} />
+        <details className="reading-original-pdf"><summary>Open the original PDF or jump to a source page</summary>
         <label>PDF page<input type="number" min={1} max={collection.readingIndex.pageCount} value={page} onChange={event => { const value = Number(event.target.value); if (Number.isInteger(value) && value >= 1 && value <= collection.readingIndex.pageCount) setPageOverride(value); }} /></label>
-        {bookUrl ? <><p><a href={`${bookUrl}#page=${page}`} target="_blank" rel="noopener noreferrer">Open Reading PDF at page {page} ↗</a></p><iframe key={`${bookUrl}-${page}`} src={`${bookUrl}#page=${page}`} title="Jahshan reading collection" /><p className="meta">If your PDF viewer does not jump to the page, enter page {page} in its toolbar or open the PDF separately.</p></> : <p>Select the Reading PDF in step 1 to see it beside your answers. You can prepare your notes now, or <a href={book.url} target="_blank" rel="noopener noreferrer">open the source in Drive ↗</a>.</p>}
+        {bookUrl ? <><p><a href={`${bookUrl}#page=${page}`} target="_blank" rel="noopener noreferrer">Open Reading PDF at page {page} ↗</a></p><iframe key={`${bookUrl}-${page}`} src={`${bookUrl}#page=${page}`} title="Jahshan reading collection" /><p className="meta">If your PDF viewer does not jump to the page, enter page {page} in its toolbar or open the PDF separately.</p></> : <p>The complete pages are displayed above. To also use a PDF viewer, select the Reading PDF in step 1, or <a href={book.url} target="_blank" rel="noopener noreferrer">open the source in Drive ↗</a>.</p>}
+        </details>
       </section>
-      <section className="card reading-worksheet"><h3>4 · Record your answers and review</h3><div className="study-skill-tabs" role="group" aria-label="Reading answer part">{(['A', 'B', 'C'] as const).map(item => <button key={item} aria-pressed={part === item} onClick={() => setPart(item)}>Part {item}</button>)}</div>
+      <section className="card reading-worksheet"><h3>4 · Record your answers and review</h3><div className="study-skill-tabs" role="group" aria-label="Reading answer part">{(['A', 'B', 'C'] as const).map(item => <button key={item} aria-pressed={part === item} onClick={() => { setPart(item); setView('questions'); setPageOverride(null); }}>Part {item}</button>)}</div>
         <details><summary>{method[part].title}</summary><p>{method[part].text}</p><a href={`#walkthrough/reading-${part.toLowerCase()}`}>Open the worked Part {part} walkthrough →</a></details>
         <JahshanReadingQuestions testNumber={test.number} part={part} responses={draft.responses} onAnswer={(id, answer) => update({ responses: { ...draft.responses, [id]: answer } })} onPage={(page, answerKey) => { setView(answerKey ? 'answers' : 'questions'); setPageOverride(page); }} />
         <details><summary>Earlier free-form answers and extra Part {part} notes</summary><label htmlFor="jahshan-reading-answers">Part {part} answers</label><textarea id="jahshan-reading-answers" rows={5} value={draft[part]} onChange={event => update({ [part]: event.target.value })} /></details>

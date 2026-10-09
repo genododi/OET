@@ -89,3 +89,22 @@ python scripts/transcribe-jahshan-audio.py --publish
 ```
 
 Use a Python environment containing `mlx-whisper` and an installed `ffmpeg`. The first run downloads the model. The publish step requires all 90 original tracks to have matching nonempty transcripts. Source checks verify all track IDs/checksums and monotonic timestamps. A unit test rejects a transcript belonging to a different recording.
+
+### Complete Reading pages
+
+The Reading workspace displays complete original page images directly in step 3,
+without requiring the local PDF. Parts A, B and C include every page in their
+source ranges: passages, tables, diagrams, instructions and questions. Filtering
+answer fields by Text A–D never removes the other source passages. Passage and
+answer-part selectors stay synchronized. Answer-key pages and the index are also
+available in the page reader; the optional PDF viewer remains under its own disclosure.
+
+Regenerate from the checksum-verified source PDF with:
+
+```sh
+python3 scripts/import-jahshan-reading-pages.py --pdf '/path/to/Reading Jahshan OET Collection.pdf'
+```
+
+This requires Poppler and Pillow. Images retain the complete original layout at
+2200 pixels on the longest edge and load as the reader scrolls. The collection
+verifier checks that no question or passage page is omitted from any entry.

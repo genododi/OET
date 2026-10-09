@@ -65,7 +65,8 @@ export function JahshanPage({ initialSkill = 'listening' }: { initialSkill?: 'li
   return <div className="page-section official-exams jahshan-page">
     <section className="card"><span className="section-kicker">YOUR JAHSHAN COLLECTION</span><h2>Books and original listening tracks, together</h2><p>90 audio tracks across 25 available sets, plus the complete Reading and Listening PDFs. Follow the numbered collection index to match the paper and recording. These mixed-publisher materials are for source-guided study; use <a href="#mock">official paper mocks</a> for the verified full-test workflow.</p><p className="meta">Archive checked on {collection.checkedAt}. Set 8, Practice Test 4, has no audio in the supplied Drive folder.</p></section>
     <section className="card">
-      <h3>1 · Choose your files from GENODODI</h3>
+      <h3>{skill === 'reading' ? '1 · Reading pages are ready' : '1 · Choose your files from GENODODI'}</h3>
+      {skill === 'reading' && <p>The full Reading texts are available below. Choosing local files is optional for Reading; it adds the original PDF viewer.</p>}
       <p>Click “Choose Jahshan folder”, then select GENODODI → oet-study-sources → Google drive Folder → Jahshan. This opens your original recordings and books directly in your browser. Nothing is uploaded.</p>
       <p className="meta">You can also select the two PDFs from Downloads. After reloading this page, choose your files again; your saved practice notes remain.</p>
       <label>Choose Jahshan folder <input type="file" {...{ webkitdirectory: '' }} multiple onChange={event => selectFiles(event.target.files)} /></label>

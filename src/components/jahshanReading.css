@@ -25,3 +25,13 @@
 .reading-source-image { margin: 0 0 20px; }
 .reading-source-image img { width: 100%; height: auto; display: block; }
 .reading-source-image figcaption { font-size: .85rem; margin: 8px 0; }
+.reading-complete-paper h4 { margin: 20px 0 8px; }
+.reading-page-scroll { position: relative; max-height: 80vh; overflow: auto; overscroll-behavior: contain; margin-top: 12px; border: 1px solid #d4e0db; background: #edf1ef; }
+.reading-full-page { margin: 0 0 16px; background: white; }
+.reading-full-page:last-child { margin-bottom: 0; }
+.reading-full-page figcaption { padding: 10px; font-size: .85rem; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
+.reading-full-page img { display: block; width: 100%; height: auto; }
+.reading-page-zoom .reading-full-page { width: max(100%, 1000px); }
+.reading-original-pdf { margin-top: 20px; }
+.reading-paper > label select { margin-left: 12px; padding: 8px; font: inherit; }
+@media (max-width: 600px) { .reading-page-scroll { max-height: 70vh; } }
