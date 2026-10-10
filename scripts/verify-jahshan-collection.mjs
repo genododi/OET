@@ -56,7 +56,7 @@ for (const sheet of listeningKeys.worksheets) {
   for (const section of sheet.parts) {
     assert.ok(['A', 'B', 'C'].includes(section.part));
     if (sheet.setNumber !== 2) assert.ok(track.relativePath.includes(`Part ${section.part}`));
-    if (sheet.setNumber !== 1) assert.equal(section.questions.length, { A: 24, B: 6, C: 12 }[section.part]);
+    if (sheet.setNumber !== 1) assert.equal(section.questions.length, sheet.setNumber === 12 && section.part === 'C' ? 13 : { A: 24, B: 6, C: 12 }[section.part]);
     for (const question of section.questions) {
       blanks++;
       assert.ok(!ids.has(question.id)); ids.add(question.id);
@@ -68,8 +68,8 @@ for (const sheet of listeningKeys.worksheets) {
     }
   }
 }
-assert.equal(blanks, 1085);
-assert.equal(missing, 19);
+assert.equal(blanks, 1086);
+assert.equal(missing, 20);
 console.log(`Verified ${blanks} Listening answer slots across all 90 recordings; ${missing} source omissions explicitly labelled.`);
 const readingForms = JSON.parse(await readFile(new URL('../src/data/jahshanReadingQuestions.json', import.meta.url), 'utf8'));
 assert.equal(readingForms.sourceSha256, manifest.readingIndex.sourcePdfSha256);
@@ -159,3 +159,34 @@ for (const track of streamingAudio.tracks) {
 }
 assert.ok(audioBytes < 380_000_000, 'Streaming copies must fit the GitHub Pages site budget');
 console.log(`Verified all 90 hosted original recordings (${audioBytes.toLocaleString()} bytes), source checksums and matching durations.`);
+
+const listeningQuestions = JSON.parse(await readFile(new URL('../src/data/jahshanListeningQuestions.json', import.meta.url), 'utf8'));
+assert.equal(listeningQuestions.sourcePdfSha256, listeningKeys.sourcePdfSha256);
+assert.deepEqual(listeningQuestions.worksheets.map(sheet => sheet.trackId).sort(), listeningKeys.worksheets.map(sheet => sheet.trackId).sort());
+let printedFields = 0;
+for (const sheet of listeningQuestions.worksheets) {
+  const key = listeningKeys.worksheets.find(item => item.trackId === sheet.trackId);
+  const group = manifest.groups.find(item => item.number === sheet.setNumber);
+  assert.deepEqual(sheet.parts.map(part => part.part), key.parts.map(part => part.part));
+  for (const part of sheet.parts) {
+    const matched = key.parts.find(item => item.part === part.part);
+    const fields = part.content.filter(node => node.questionId);
+    assert.deepEqual(fields.map(node => node.questionId), matched.questions.map(question => question.id), 'Each printed blank must match its own answer, in source order');
+    printedFields += fields.length;
+    for (const node of part.content) {
+      assert.ok(node.text.trim());
+      assert.ok(node.sourcePage > group.questionPage && node.sourcePage < group.answerPage, 'Never expose key pages as questions');
+      assert.ok(!/Scanned by CamScanner|LISTENING QUESTION PAPER/.test(node.text));
+    }
+    assert.ok(part.content.filter(node => !node.questionId).map(node => node.text).join(' ').length > 50);
+  }
+}
+assert.equal(printedFields, 1086);
+const keyPages = [...new Set(listeningKeys.worksheets.flatMap(sheet => sheet.parts.flatMap(part => part.questions.map(question => question.keyPage))))].sort((a,b) => a-b);
+assert.deepEqual(listeningQuestions.keyPages.map(asset => asset.page), keyPages);
+for (const asset of listeningQuestions.keyPages) {
+  const data = await readFile(new URL(`../public/jahshan-listening-keys/${asset.page}.webp`, import.meta.url));
+  assert.equal(data.length, asset.bytes);
+  assert.equal(createHash('sha256').update(data).digest('hex'), asset.sha256);
+}
+console.log(`Verified ${printedFields} printed Listening questions and ${keyPages.length} original answer pages.`);

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import collection from '../data/jahshanCollection.json';
+import { StudyAudioPlayer } from './StudyAudioPlayer';
 import './jahshanListening.css';
 type Track = (typeof collection.files)[number];
 type Segment = { start: number; end: number; text: string };
@@ -11,7 +12,7 @@ export function JahshanListeningPlayer(props: { track: Track; audioUrl?: string 
 function Player({ track, audioUrl }: { track: Track; audioUrl?: string }) {
   const playbackUrl = audioUrl ?? `${import.meta.env.BASE_URL}jahshan-audio/${track.id}.m4a`;
   const player = useRef<HTMLAudioElement>(null);
-  const [audioFailed, setAudioFailed] = useState(false);
+  const [duration, setDuration] = useState(0);
   const activeLine = useRef<HTMLButtonElement>(null);
   const transcriptBox = useRef<HTMLDivElement>(null);
   const [time, setTime] = useState(0);
@@ -29,16 +30,20 @@ function Player({ track, audioUrl }: { track: Track; audioUrl?: string }) {
     }).catch(() => { if (!controller.signal.aborted) setState('unavailable'); });
     return () => controller.abort();
   }, [track.id, track.sha256]);
+  const seek = (next: number) => {
+    if (!player.current || duration <= 0) return;
+    const position = Math.max(0, Math.min(next, duration));
+    player.current.currentTime = position; setTime(position);
+  };
   const current = transcript?.segments.findIndex(segment => time >= segment.start && time < segment.end) ?? -1;
   useEffect(() => {
     const box = transcriptBox.current; const line = activeLine.current;
     if (follow && playing && box && line) box.scrollTo({ top: Math.max(0, line.offsetTop - box.clientHeight / 2 + line.offsetHeight / 2), behavior: 'smooth' });
   }, [current, follow, playing]);
   return <div className="jahshan-listening-player">
-    <h3>Play selected recording</h3>
+    <h3>2 · Listen to the recording</h3>
     <p className="meta">{track.relativePath.split('/').slice(1).join(' / ')} · Original human recording</p>
-    <audio ref={player} key={playbackUrl} controls preload="metadata" src={playbackUrl} aria-label={track.name} onLoadStart={() => { setAudioFailed(false); setTime(0); setPlaying(false); }} onLoadedMetadata={event => { setAudioFailed(false); setTime(event.currentTarget.currentTime); }} onTimeUpdate={event => setTime(event.currentTarget.currentTime)} onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)} onEnded={() => setPlaying(false)} onError={() => { setAudioFailed(true); setPlaying(false); }} />
-    {audioFailed && <div role="alert" className="jahshan-audio-error"><p>This recording could not load. Check your connection and try again.</p><button className="btn btn-secondary" onClick={() => { setAudioFailed(false); player.current?.load(); }}>Retry audio</button> <a href={track.url} target="_blank" rel="noopener noreferrer">Open this original recording in Drive ↗</a></div>}
+    <StudyAudioPlayer src={playbackUrl} label={track.name} sourceUrl={track.url} audioRef={player} onTimeChange={setTime} onPlayingChange={setPlaying} onReady={setDuration} />
     <p className="meta">Press Play above. {audioUrl ? 'Playing your connected original file.' : 'Audio streams directly from this site; no drive connection or file selection is needed.'}</p>
     <section className="jahshan-transcript" aria-label="Transcript of selected recording">
       <h3>Recording transcript</h3><p className="meta">{track.relativePath.split('/').slice(1).join(' / ')}</p>
@@ -47,7 +52,7 @@ function Player({ track, audioUrl }: { track: Track; audioUrl?: string }) {
       {state === 'unavailable' && <p role="status">The transcript for this recording is unavailable. Try reloading when your connection is available.</p>}
       {state === 'ready' && transcript && <>
         <div className="transcript-actions"><label><input type="checkbox" checked={follow} onChange={event => setFollow(event.target.checked)} /> Follow the audio</label><a href={`data:text/plain;charset=utf-8,${encodeURIComponent(transcript.segments.map(s => `[${timestamp(s.start)}] ${s.text}`).join('\n'))}`} download={`${track.name.replace(/\.mp3$/i, '')}-transcript.txt`}>Download transcript</a></div>
-        <div ref={transcriptBox} className="transcript-box" tabIndex={0} aria-label="Recording text">{transcript.segments.map((segment, index) => <button type="button" ref={index === current ? activeLine : undefined} key={index} aria-label={`${timestamp(segment.start)} ${segment.text}`} className={`transcript-line${index === current ? ' transcript-current' : ''}`} aria-current={index === current ? 'true' : undefined} disabled={audioFailed} onClick={() => { if (player.current) { player.current.currentTime = segment.start; setTime(segment.start); } }}><span className="transcript-time">{timestamp(segment.start)}</span><span>{segment.text}</span></button>)}</div>
+        <div ref={transcriptBox} className="transcript-box" tabIndex={0} aria-label="Recording text">{transcript.segments.map((segment, index) => <button type="button" ref={index === current ? activeLine : undefined} key={index} aria-label={`${timestamp(segment.start)} ${segment.text}`} className={`transcript-line${index === current ? ' transcript-current' : ''}`} aria-current={index === current ? 'true' : undefined} disabled={!duration} onClick={() => seek(segment.start)}><span className="transcript-time">{timestamp(segment.start)}</span><span>{segment.text}</span></button>)}</div>
         <p className="meta">Select a timestamp to move the recording to that sentence.</p>
       </>}
     </section>

@@ -3,7 +3,7 @@ import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import { JahshanPage } from './JahshanPage';
 import * as gateway from '../lib/localSourceGateway';
 import collection from '../data/jahshanCollection.json';
-beforeEach(() => { vi.stubGlobal('fetch', vi.fn().mockRejectedValue(new Error('No transcript fixture'))); });
+beforeEach(() => { Object.defineProperty(HTMLDialogElement.prototype, 'showModal', { configurable: true, value: function () { this.setAttribute('open', ''); } }); vi.stubGlobal('fetch', vi.fn().mockRejectedValue(new Error('No transcript fixture'))); });
 afterEach(() => { cleanup(); localStorage.clear(); vi.unstubAllGlobals(); vi.restoreAllMocks(); });
 it('pairs the selected set with its indexed questions and never substitutes missing audio', () => {
   render(<JahshanPage />);
@@ -15,11 +15,19 @@ it('pairs the selected set with its indexed questions and never substitutes miss
 it('connects the actual local paper and plays only the selected original track', async () => {
   vi.stubGlobal('fetch', vi.fn().mockResolvedValue({ ok: true, json: async () => ({ available: true }) }));
   const view = render(<JahshanPage />);
+  fireEvent.click(screen.getByText('Optional books, downloads and local files'));
   fireEvent.click(screen.getByText('Connect through the local app'));
   fireEvent.click(screen.getByRole('button', { name: 'Connect GENODODI' }));
   await waitFor(() => expect(screen.getByText('GENODODI collection is connected.')).toBeInTheDocument());
   expect(view.container.querySelector('audio')?.getAttribute('src')).toContain('3-Part%20A.mp3');
-  expect(screen.getByTitle('Jahshan listening collection')).toHaveAttribute('src', expect.stringContaining('#page=39'));
+  expect(screen.queryByTitle('Jahshan listening collection')).not.toBeInTheDocument();
+  expect(screen.queryByText('3 · Work with the original paper')).not.toBeInTheDocument();
+  fireEvent.click(screen.getByRole('button', { name: 'Show answer for Extract 1 · Question 1' }));
+  fireEvent.click(screen.getByRole('button', { name: 'View printed key · page 49' }));
+  expect(screen.getByRole('dialog')).toBeVisible();
+  expect(screen.getByAltText('Original Listening answer key, collection page 49')).toHaveAttribute('src', expect.stringContaining('jahshan-listening-keys/49.webp'));
+  fireEvent.click(screen.getByRole('button', { name: 'Close answer page' }));
+  expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
   fireEvent.click(screen.getByRole('button', { name: 'Reading collection' }));
   expect(view.container.querySelector('audio')).toBeNull();
   expect(screen.getByTitle('Jahshan reading collection')).toHaveAttribute('src', expect.stringContaining('Reading%20Jahshan'));

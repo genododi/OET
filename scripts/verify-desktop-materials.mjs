@@ -31,6 +31,17 @@ for (const file of catalog.files) {
   assert.equal(createHash('sha256').update(bytes).digest('hex'), file.sha256, file.filename);
   const text = JSON.parse(await readFile(path.join(root, 'public', file.textPath), 'utf8'));
   assert.equal(typeof text.text, 'string');
+  if (file.pageCount) {
+    assert.equal(text.sourceSha256, file.sha256);
+    assert.equal(text.pages.length, file.pageCount);
+    assert.equal(text.pages.filter(page => page.extraction === 'ocr').length, file.ocrPageCount);
+    for (const [index, page] of text.pages.entries()) {
+      assert.equal(page.number, index + 1);
+      assert.equal(typeof page.text, 'string');
+      assert.ok(['text', 'ocr', 'none'].includes(page.extraction));
+    }
+    assert.equal(text.text, text.pages.map(page => page.text).join('\n\f\n'));
+  } else assert.ok(!['pdf', 'jpg', 'jpeg', 'png'].includes(file.format), 'Every PDF and source image needs page-numbered text or an explicit empty page');
   verified.add(file.sha256);
 }
 assert.equal((await readdir(path.join(root, 'public/supplied-materials/files'))).length, catalog.uniqueFileCount, 'Uncatalogued original in public folder');

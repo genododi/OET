@@ -69,7 +69,7 @@ def main():
         raise SystemExit('No supplied materials found. Existing catalog was left unchanged.')
     (OUT / 'files').mkdir(parents=True, exist_ok=True)
     (OUT / 'text').mkdir(parents=True, exist_ok=True)
-    rows, blobs, texts = [], {}, {}
+    rows, blobs, texts, enriched = [], {}, {}, {}
     for path in sorted(candidates, key=lambda p: (p.parent.name != 'AMR oet', p.name.lower())):
         data = path.read_bytes()
         sha = hashlib.sha256(data).hexdigest()
@@ -82,8 +82,14 @@ def main():
         if not target.exists():
             target.write_bytes(data)
         if sha not in texts:
-            texts[sha] = extract(path)
-            (OUT / 'text' / f'{sha}.json').write_text(json.dumps({'text': texts[sha]}, ensure_ascii=False))
+            text_file = OUT / 'text' / f'{sha}.json'
+            prior = json.loads(text_file.read_text()) if text_file.exists() else {}
+            if prior.get('sourceSha256') == sha and prior.get('pages'):
+                enriched[sha] = prior['pages']
+                texts[sha] = prior['text']
+            else:
+                texts[sha] = extract(path)
+                text_file.write_text(json.dumps({'text': texts[sha]}, ensure_ascii=False))
         text = texts[sha]
         relative = path.relative_to(SOURCE).as_posix()
         rows.append({
@@ -95,6 +101,9 @@ def main():
             'excerpt': re.sub(r'\s+', ' ', text)[:320] if ext != '.html' else 'Supplied HTML file. Download or read as plain text.',
             'duplicateOf': blobs.get(sha),
         })
+        if sha in enriched:
+            rows[-1]['pageCount'] = len(enriched[sha])
+            rows[-1]['ocrPageCount'] = sum(page['extraction'] == 'ocr' for page in enriched[sha])
         blobs.setdefault(sha, rows[-1]['id'])
     catalog = {'version': 1, 'source': 'User-supplied Desktop/OET and AMR oet folders',
                'publicationBasis': 'Repository owner explicitly requested upload and deployment of all supplied files on 2026-09-29. This does not assert third-party ownership or an open license.',

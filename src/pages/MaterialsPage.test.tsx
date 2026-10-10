@@ -48,3 +48,43 @@ describe('supplied source practice', () => {
     await screen.findByText('Darren Walker — supplied case notes');
   });
 });
+
+it('opens PDF text first and remembers the original page without changing the draft', async () => {
+  const pdf = catalog.files.find(file => file.collection === 'AMR' && file.format === 'pdf')!;
+  vi.mocked(fetch).mockResolvedValue({ ok: true, json: async () => ({ text: 'Complete source', pages: [
+    { number: 1, text: 'First page case notes', extraction: 'text' },
+    { number: 2, text: 'Scanned second page instructions', extraction: 'ocr' },
+  ] }) } as Response);
+  const view = render(<MaterialsPage itemId={pdf.id} onNavigate={vi.fn()} />);
+  await screen.findByText('First page case notes');
+  expect(view.container.querySelector('iframe')).toBeNull();
+  fireEvent.change(screen.getByLabelText('Your letter'), { target: { value: 'Saved letter' } });
+  fireEvent.click(screen.getByRole('button', { name: 'Next page' }));
+  expect(screen.getByText('Scanned second page instructions')).toBeVisible();
+  expect(screen.getByRole('link', { name: 'Open original · page 2 ↗' })).toHaveAttribute('href', expect.stringContaining('#page=2'));
+  expect(screen.getByLabelText('Your letter')).toHaveValue('Saved letter');
+  view.unmount();
+  render(<MaterialsPage itemId={pdf.id} onNavigate={vi.fn()} />);
+  await screen.findByText('Scanned second page instructions');
+  expect(screen.getByLabelText('Source page')).toHaveValue('2');
+  fireEvent.click(screen.getByLabelText('Show all pages'));
+  expect(screen.getByText('First page case notes')).toBeVisible();
+  expect(screen.getByText('Scanned second page instructions')).toBeVisible();
+});
+
+it('plays only the matching audio selected by the learner and releases it on leaving', async () => {
+  const create = vi.fn().mockReturnValue('blob:local-matching-audio');
+  const revoke = vi.fn();
+  vi.stubGlobal('URL', { createObjectURL: create, revokeObjectURL: revoke });
+  const view = render(<MaterialsPage itemId={task.id} onNavigate={vi.fn()} />);
+  fireEvent.click(screen.getByRole('button', { name: 'Listening' }));
+  expect(view.container.querySelector('audio')).toBeNull();
+  fireEvent.change(screen.getByLabelText('Choose matching audio'), { target: { files: [new File(['original recording'], 'matching-test.mp3', { type: 'audio/mpeg' })] } });
+  expect(view.container.querySelector('audio')).toHaveAttribute('src', 'blob:local-matching-audio');
+  expect(view.container.querySelector('audio')).not.toHaveAttribute('controls');
+  expect(screen.getByRole('button', { name: 'Play recording' })).toBeVisible();
+  await screen.findByText('Darren Walker — supplied case notes');
+  fireEvent.click(screen.getByRole('button', { name: 'Writing' }));
+  expect(revoke).toHaveBeenCalledWith('blob:local-matching-audio');
+  expect(view.container.querySelector('audio')).toBeNull();
+});

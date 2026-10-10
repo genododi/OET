@@ -421,6 +421,7 @@ test('Jahshan collection maps the original sets and preserves missing-audio stat
   await page.goto('./#jahshan');
   await expect(page.getByRole('heading', { name: 'Jahshan Collection', exact: true })).toBeVisible();
   await expect(page.getByText('Question page 39 · Answer page 49 in the Listening collection.')).toBeVisible();
+  await page.getByText('Optional books, downloads and local files', { exact: true }).click();
   await expect(page.getByRole('link', { name: 'Reading Jahshan OET Collection.pdf ↗' })).toHaveAttribute('href', /1592KOopEqQrhlvulCarZzWDkwDhwqmRz/);
   await page.getByLabel('Listening set').selectOption({ label: '8- Practice Test 4 — audio missing' });
   await expect(page.getByRole('alert')).toContainText('missing-audio notice');
@@ -449,10 +450,17 @@ test('Jahshan Reading resumes per-test answers and labels the shorter paper', as
 
 test('Jahshan reveals the selected blank and preserves my response across recording changes', async ({ page }) => {
   await page.goto('./#jahshan');
+  await expect(page.getByText('3 · Work with the original paper')).toHaveCount(0);
+  await expect(page.getByRole('region', { name: 'Listening answer worksheet' })).toContainText('back injury sustained (lifting');
   await page.getByLabel('Extract 1 · Question 1', { exact: true }).fill('my first attempt');
   await page.getByRole('button', { name: 'Show answer for Extract 1 · Question 1', exact: true }).click();
   await expect(page.getByText('(a) (heavy) suitcase / case', { exact: true })).toBeVisible();
   await expect(page.getByText('(his/the) right leg', { exact: true })).toHaveCount(0);
+  await page.getByRole('button', { name: 'View printed key · page 49', exact: true }).click();
+  await expect(page.getByRole('dialog')).toBeVisible();
+  await expect.poll(() => page.getByAltText('Original Listening answer key, collection page 49').evaluate((image: HTMLImageElement) => image.naturalWidth)).toBeGreaterThan(0);
+  await page.keyboard.press('Escape');
+  await expect(page.getByRole('dialog')).toHaveCount(0);
   await expect(page.getByLabel('Extract 1 · Question 1', { exact: true })).toHaveValue('my first attempt');
   await page.getByLabel('Recording', { exact: true }).selectOption({ label: '3-Part B.mp3' });
   await expect(page.getByText('(a) (heavy) suitcase / case', { exact: true })).toHaveCount(0);
@@ -462,4 +470,23 @@ test('Jahshan reveals the selected blank and preserves my response across record
   await expect(page.getByLabel('Extract 1 · Question 1', { exact: true })).toHaveValue('my first attempt');
   await page.reload();
   await expect(page.getByLabel('Extract 1 · Question 1', { exact: true })).toHaveValue('my first attempt');
+});
+
+test('OET and AMR use text-first steps and retain drafts across practice modes', async ({ page }) => {
+  await page.goto('./#materials/desktop-a2a6c6e4ef5e7812');
+  await expect(page.getByRole('heading', { name: '2 · Read the source text' })).toBeVisible();
+  await expect(page.getByRole('region', { name: 'Source document' })).toContainText('Darren Walker');
+  await expect(page.locator('iframe')).toHaveCount(0);
+  await page.getByLabel('Your letter', { exact: true }).fill('Dear Dr Booker, I am referring Mr Walker.');
+  await page.getByRole('button', { name: 'Listening', exact: true }).click();
+  await expect(page.getByLabel('Choose matching audio')).toBeVisible();
+  await expect(page.locator('audio')).toHaveCount(0);
+  await page.getByRole('button', { name: 'Writing', exact: true }).click();
+  await expect(page.getByLabel('Your letter', { exact: true })).toHaveValue('Dear Dr Booker, I am referring Mr Walker.');
+  await page.goto('./#materials/desktop-d7f58401600ee3da');
+  await expect(page.getByLabel('Source page', { exact: true })).toHaveValue('1');
+  await page.getByRole('button', { name: 'Next page', exact: true }).click();
+  await expect(page.getByRole('link', { name: 'Open original · page 2 ↗' })).toHaveAttribute('href', /#page=2$/);
+  await page.reload();
+  await expect(page.getByLabel('Source page', { exact: true })).toHaveValue('2');
 });

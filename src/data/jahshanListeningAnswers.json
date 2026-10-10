@@ -3414,6 +3414,14 @@
               "answer": "A",
               "keyPage": 149,
               "note": ""
+            },
+            {
+              "id": "C-13",
+              "number": 7,
+              "extract": 2,
+              "answer": null,
+              "keyPage": 149,
+              "note": "The paper includes a seventh question in Extract 2 (page 147), but its printed key is blank."
             }
           ]
         }

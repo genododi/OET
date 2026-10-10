@@ -1,4 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
+import { MaterialSourceText } from '../components/MaterialSourceText';
+import { MaterialListeningAudio } from '../components/MaterialListeningAudio';
+import { StudyAudioPlayer } from '../components/StudyAudioPlayer';
 import { notebookWritingChecklist } from '../data/notebookNotes';
 import catalog from '../data/desktopMaterials.generated.json';
 import type { NavSection, OetSubtest } from '../types';
@@ -87,7 +90,7 @@ function VoiceRecorder() {
     <button className="btn btn-secondary" disabled={pending} onClick={() => recording ? recorder.current?.stop() : void start()}>{pending ? 'Waiting for microphone…' : recording ? 'Stop recording' : 'Record speaking response'}</button>
     {recording && <span role="status">Recording…</span>}
     {error && <p role="alert">{error}</p>}
-    {audio && <><audio controls src={audio} /><a href={audio} download={`oet-speaking.${audioExtension}`}>Download recording before leaving</a></>}
+    {audio && <><StudyAudioPlayer src={audio} label="My speaking recording" /><a href={audio} download={`oet-speaking.${audioExtension}`}>Download recording before leaving</a></>}
   </div>;
 }
 
@@ -95,20 +98,9 @@ function PracticeWorkspace({ file, skill, onNavigate }: { file: Material; skill:
   const storageKey = `oet-supplied-v1:${file.id}:${skill}`;
   const [saved, setSaved] = useState(() => readSaved(storageKey));
   const [saveError, setSaveError] = useState(false);
-  const [text, setText] = useState<string | null>(null);
-  const [textError, setTextError] = useState(false);
-  const [view, setView] = useState(['pdf', 'jpg', 'jpeg', 'png'].includes(file.format) ? 'original' : 'text');
   const [duration, setDuration] = useState(skill === 'writing' ? 40 : skill === 'speaking' ? 5 : 15);
   const [remaining, setRemaining] = useState(duration * 60);
   const [deadline, setDeadline] = useState<number | null>(null);
-  useEffect(() => {
-    const controller = new AbortController();
-    fetch(url(file.textPath), { signal: controller.signal }).then(response => {
-      if (!response.ok) throw new Error('Unable to load text');
-      return response.json();
-    }).then((data: { text: string }) => setText(data.text)).catch(err => { if (err.name !== 'AbortError') setTextError(true); });
-    return () => controller.abort();
-  }, [file.textPath]);
   useEffect(() => {
     if (!deadline) return;
     const timer = window.setInterval(() => {
@@ -126,22 +118,16 @@ function PracticeWorkspace({ file, skill, onNavigate }: { file: Material; skill:
   const exportDraft = () => download(new Blob([`${title(skill)} practice\nSource: ${file.relativePath}\n\n${saved.response}\n\nReview notes\n${saved.notes}\n\nSelf-review\n${saved.checks.join('\n')}`], { type: 'text/plain;charset=utf-8' }), `${file.filename.replace(/\.[^.]+$/, '')}-${skill}-practice.txt`);
   return <section className="material-workspace" aria-label="Source practice workspace">
     <header className="card material-workspace-header">
-      <div><span className="hero-eyebrow">{file.collection} collection · {title(skill)} practice</span><h2>{file.filename}</h2><p>{file.relativePath}</p></div>
+      <div><span className="hero-eyebrow">{file.collection} collection · {title(skill)} practice</span><h2>1 · {file.filename}</h2><p>{file.relativePath}</p></div>
       <a className="btn btn-secondary" href={url(file.assetPath)} download={file.format === 'html' ? `${file.filename}.txt` : file.filename}>Download original · {size(file.bytes)}</a>
     </header>
     <p className="material-guidance">{guidance[skill]}</p>
     {skill === 'listening' && <button className="btn btn-secondary" onClick={() => onNavigate('listening')}>Open real listening recordings</button>}
     {skill === 'writing' && <p className="meta">Applying your NotebookLM writing checklist. <a href="#notebook">Review the imported guide →</a></p>}
     <div className="material-workspace-grid">
-      <section className="card material-source" aria-label="Source document">
-        <div className="material-toolbar"><h3>Source document</h3><div className="material-tabs">
-          {(file.format === 'pdf' || ['jpg', 'jpeg', 'png'].includes(file.format)) && <button aria-pressed={view === 'original'} onClick={() => setView('original')}>Original</button>}
-          <button aria-pressed={view === 'text'} onClick={() => setView('text')}>Text</button>
-        </div></div>
-        {view === 'original' && file.format === 'pdf' ? <><iframe title={`${file.filename} document`} src={url(file.assetPath)} /><a target="_blank" rel="noopener noreferrer" href={url(file.assetPath)}>Open PDF in a new tab</a></> : view === 'original' && ['jpg', 'jpeg', 'png'].includes(file.format) ? <img src={url(file.assetPath)} alt={file.filename} /> : textError ? <p role="alert">Text could not be loaded. Download the original or reopen this task to retry.</p> : text === null ? <p role="status">Loading source text…</p> : file.hasText ? <pre>{text}</pre> : <p>This file has no extractable text. Use the original PDF or image, or download the file to open in its app. Anki decks open in Anki.</p>}
-        <small>Source text is reproduced as supplied and may contain older instructions or errors. Use it for language practice.</small>
-      </section>
+      <MaterialSourceText key={file.id} id={file.id} filename={file.filename} format={file.format} textPath={file.textPath} assetPath={file.assetPath}>{skill === 'listening' && <MaterialListeningAudio />}</MaterialSourceText>
       <section className="card material-answer" aria-label="Your practice response">
+        <h3>3 · {skill === 'writing' ? 'Write your letter and review' : skill === 'speaking' ? 'Practise speaking and review' : 'Record your answers and review'}</h3>
         <div className="material-timer">
           <label>Practice timer<select value={duration} disabled={deadline !== null} onChange={e => { const minutes = Number(e.target.value); setDuration(minutes); setRemaining(minutes * 60); }}>{[3, 5, 15, 40, 45, 60].map(minutes => <option key={minutes} value={minutes}>{minutes} minutes</option>)}</select></label>
           <strong aria-label="Time remaining">{String(Math.floor(remaining / 60)).padStart(2, '0')}:{String(remaining % 60).padStart(2, '0')}</strong>
@@ -178,7 +164,7 @@ export function MaterialsPage({ itemId, onNavigate }: { itemId?: string; onNavig
   const open = (file: Material) => { setSkill((file.skills[0] as OetSubtest) || 'writing'); onNavigate('materials', file.id); };
   return <div className="page-section materials-page">
     <section className="card materials-hero">
-      <div><span className="hero-eyebrow">Your files. Your daily practice.</span><h2>OET & AMR study collection</h2><p>Read the original materials and practise all four skills in one workspace. Your AMR writing collection comes first.</p><div className="material-stats"><span><strong>{catalog.fileCount}</strong> supplied files</span><span><strong>{catalog.amrCount}</strong> AMR files</span><span><strong>4</strong> practice modes</span></div></div>
+      <div><span className="hero-eyebrow">Your files. Your daily practice.</span><h2>OET & AMR study collection</h2><p>Choose a file, read its text or use a matching recording, then practise and review. Your AMR writing collection comes first.</p><div className="material-stats"><span><strong>{catalog.fileCount}</strong> supplied files</span><span><strong>{catalog.amrCount}</strong> AMR files</span><span><strong>4</strong> practice modes</span></div></div>
       <div className="materials-hero-mark" aria-hidden="true">OET<span>STUDY / PRACTISE / REVIEW</span></div>
     </section>
     {selected ? <>
@@ -187,6 +173,7 @@ export function MaterialsPage({ itemId, onNavigate }: { itemId?: string; onNavig
       <PracticeWorkspace key={`${selected.id}:${skill}`} file={selected} skill={skill} onNavigate={onNavigate} />
     </> : <>
       {itemId && <p role="alert">That source was not found. Choose a file below.</p>}
+      <h3>1 · Choose your practice</h3>
       <div className="material-skill-tabs" role="group" aria-label="Filter materials by skill"><button aria-pressed={skillFilter === 'all'} onClick={() => { setSkillFilter('all'); setLimit(18); }}>All materials</button>{skills.map(item => <button key={item} aria-pressed={skillFilter === item} onClick={() => { setSkillFilter(item); setLimit(18); }}>{title(item)} <span>{catalog.files.filter(file => file.skills.includes(item)).length}</span></button>)}</div>
       <div className="material-filters"><label>Search your files<input type="search" placeholder="Find a task, topic or filename…" value={query} onChange={e => { setQuery(e.target.value); setLimit(18); }} /></label><label>Collection<select value={collection} onChange={e => { setCollection(e.target.value); setLimit(18); }}><option value="all">OET + AMR</option><option value="AMR">AMR only · 35 files</option><option value="OET">OET folder</option></select></label><label>File type<select value={format} onChange={e => { setFormat(e.target.value); setLimit(18); }}><option value="all">All file types</option>{[...new Set(catalog.files.map(file => file.format))].sort().map(item => <option key={item} value={item}>{item.toUpperCase()}</option>)}</select></label></div>
       <p className="meta">{filtered.length} files · Originals available on any device · Duplicate filenames retained</p>

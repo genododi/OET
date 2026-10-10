@@ -49,6 +49,8 @@ for g in m['groups']:
  for part,entries in [('B',bc[:6]),('C',bc[6:])]:
   parts[part]=[question(i,r[0],r[1][0].upper() if r[1] else None,part,ap+1,'The supplied collection marks this answer key as missing.' if r[1] is None else '',None if part=='B' else 1 if i<6 else 2) for i,r in enumerate(entries)]
   assert all(q['answer'] in ('A','B','C',None) for q in parts[part]),(n,part)
+ if n==12:
+  parts['C'].append(question(12,7,None,'C',ap+1,'The paper includes a seventh question in Extract 2 (page 147), but its printed key is blank.',2))
  for track in tracks:
   partmatch=re.search(r'Part ([ABC])',track['name'])
   selected=list(parts) if n==2 else [partmatch[1]]

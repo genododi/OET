@@ -25,7 +25,7 @@
 .material-workspace-header { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 24px; }
 .material-workspace-header h2 { font-size: 22px; overflow-wrap: anywhere; }
 .material-workspace-header p { color: #687781; overflow-wrap: anywhere; }
-.material-workspace-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px; align-items: start; }
+.material-workspace-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; align-items: start; }
 .material-source, .material-answer { padding: 20px; min-width: 0; }
 .material-source iframe { width: 100%; height: 740px; border: 1px solid #dbe2e5; border-radius: 8px; background: #f2f5f5; }
 .material-source img { max-width: 100%; height: auto; }
@@ -52,3 +52,15 @@
 @media (max-width: 650px) { .material-grid, .material-filters { grid-template-columns: 1fr; } .materials-hero { padding: 22px; } .material-workspace-header { align-items: flex-start; flex-direction: column; } .material-stats { gap: 12px; } .material-skill-tabs button { padding: 9px 12px; font-size: 13px; } .material-source iframe { height: 420px; } }
 
 .materials-page .hero-eyebrow { color: #126e75; }
+
+.material-readable-text { white-space: pre-wrap; overflow-wrap: anywhere; font: inherit; font-size: 16px; line-height: 1.9; color: #334954; }
+.material-text-page { padding: 24px; background: #fff; border: 1px solid #d4e0db; border-radius: 12px; margin-top: 16px; }
+.material-text-page h4 { margin: 0 0 16px; color: #126e75; }
+.material-page-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.material-page-controls label { display: flex; align-items: center; gap: 8px; }
+.material-page-controls select { font: inherit; padding: 8px; border: 1px solid #cbd8dc; border-radius: 8px; }
+.material-local-audio > label { display: grid; gap: 10px; }
+.material-local-audio input[type=file] { max-width: 100%; }
+@media(max-width:650px) { .material-text-page { padding: 14px; } .material-readable-text { font-size: 15px; } }
+
+.material-page-select { display: flex; align-items: center; gap: 8px; }

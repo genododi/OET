@@ -41,3 +41,27 @@ it('handles a combined recording and repeated extract numbering', () => {
   fireEvent.click(screen.getByRole('button', { name: 'Show answer for Extract 1 · Question 11' }));
   expect(screen.getByText('Hockey tournament')).toBeVisible();
 });
+it('prints the selected recording’s notes and question choices beside its fields', () => {
+  const view = render(<JahshanListeningWorksheet trackId={track(3)} onOpenKey={() => {}} />);
+  const worksheet = screen.getByRole('region', { name: 'Listening answer worksheet' });
+  expect(worksheet).toHaveTextContent('Patient Ray Sands');
+  expect(worksheet).toHaveTextContent('back injury sustained (lifting');
+  expect(worksheet).toHaveTextContent('reports no history of pain in buttocks');
+  expect(screen.getAllByRole('textbox')).toHaveLength(24);
+  view.rerender(<JahshanListeningWorksheet trackId={track(3, 'B')} onOpenKey={() => {}} />);
+  expect(screen.getByRole('region', { name: 'Listening answer worksheet' })).not.toHaveTextContent('Patient Ray Sands');
+  expect(screen.getByLabelText('Question 25', { exact: true })).toHaveAccessibleDescription(/nurse briefing her colleague.*Care must to be taken to prevent the patient from falling/s);
+  expect(screen.getAllByRole('combobox')).toHaveLength(6);
+  view.rerender(<JahshanListeningWorksheet trackId={track(3, 'C')} onOpenKey={() => {}} />);
+  expect(screen.getByLabelText('Extract 1 · Question 31', { exact: true })).toHaveAccessibleDescription(/Chagas/);
+});
+it('includes scanned notes, table context and the source’s extra unkeyed question', () => {
+  const view = render(<JahshanListeningWorksheet trackId={track(6)} onOpenKey={() => {}} />);
+  expect(screen.getByRole('region')).toHaveTextContent('Reason for medication: High blood pressure');
+  expect(screen.getByRole('region')).toHaveTextContent('Comments: both taken this morning with');
+  expect(screen.getByLabelText('Extract 2 · Question 14', { exact: true })).toBeVisible();
+  view.rerender(<JahshanListeningWorksheet trackId={track(12, 'C')} onOpenKey={() => {}} />);
+  expect(screen.getByLabelText('Extract 2 · Question 7', { exact: true })).toHaveAccessibleDescription(/healthiest and longest living communities/);
+  fireEvent.click(screen.getByRole('button', { name: 'Show answer for Extract 2 · Question 7' }));
+  expect(screen.getByText(/its printed key is blank/)).toBeVisible();
+});
