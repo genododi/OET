@@ -57,8 +57,8 @@ it('prints the selected recording’s notes and question choices beside its fiel
 });
 it('includes scanned notes, table context and the source’s extra unkeyed question', () => {
   const view = render(<JahshanListeningWorksheet trackId={track(6)} onOpenKey={() => {}} />);
-  expect(screen.getByRole('region')).toHaveTextContent('Reason for medication: High blood pressure');
-  expect(screen.getByRole('region')).toHaveTextContent('Comments: both taken this morning with');
+  expect(screen.getByRole('region', { name: 'Listening answer worksheet' })).toHaveTextContent('Reason for medication: High blood pressure');
+  expect(screen.getByRole('region', { name: 'Listening answer worksheet' })).toHaveTextContent('Comments: both taken this morning with');
   expect(screen.getByLabelText('Extract 2 · Question 14', { exact: true })).toBeVisible();
   view.rerender(<JahshanListeningWorksheet trackId={track(12, 'C')} onOpenKey={() => {}} />);
   expect(screen.getByLabelText('Extract 2 · Question 7', { exact: true })).toHaveAccessibleDescription(/healthiest and longest living communities/);
