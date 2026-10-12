@@ -42,7 +42,7 @@ function download(blob: Blob, name: string) {
   setTimeout(() => URL.revokeObjectURL(href), 1000);
 }
 
-function VoiceRecorder() {
+export function VoiceRecorder() {
   const [recording, setRecording] = useState(false);
   const [audio, setAudio] = useState('');
   const [audioExtension, setAudioExtension] = useState('webm');

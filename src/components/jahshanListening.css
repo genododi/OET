@@ -83,3 +83,6 @@
   .jahshan-worksheet-footer { flex-direction: column; align-items: stretch; gap: 12px; }
   .jahshan-key-toolbar { align-items: start; }
 }
+
+/* Keep the media element attached to Safari’s rendering tree without native controls. */
+.jahshan-listening-player audio.study-audio-element, audio.study-audio-element { display: block; position: absolute; width: 1px; height: 1px; margin: 0; opacity: 0; pointer-events: none; }

@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useImperativeHandle, useRef, useState } from 'react';
 import type { RefObject } from 'react';
 import './jahshanListening.css';
 const timestamp = (time: number) => `${Math.floor(time / 60)}:${Math.floor(time % 60).toString().padStart(2, '0')}`;
@@ -6,6 +6,7 @@ interface Props {
   src: string;
   label: string;
   sourceUrl?: string;
+  mimeType?: string;
   audioRef?: RefObject<HTMLAudioElement | null>;
   onTimeChange?: (time: number) => void;
   onPlayingChange?: (playing: boolean) => void;
@@ -15,32 +16,49 @@ interface Props {
 export function StudyAudioPlayer(props: Props) {
   return <Playback key={props.src} {...props} />;
 }
-function Playback({ src, label, sourceUrl, audioRef, onTimeChange, onPlayingChange, onReady }: Props) {
-  const ownRef = useRef<HTMLAudioElement>(null);
-  const player = audioRef ?? ownRef;
+function Playback({ src, label, sourceUrl, mimeType, audioRef, onTimeChange, onPlayingChange, onReady }: Props) {
+  const resumeAt = useRef<number | null>(null);
+  const hasStarted = useRef(false);
+  const player = useRef<HTMLAudioElement>(null);
+  useImperativeHandle(audioRef, () => player.current!, []);
   const [failed, setFailed] = useState(false);
   const [duration, setDuration] = useState(0);
   const [time, setTime] = useState(0);
   const [volume, setVolume] = useState(1);
+  const [muted, setMuted] = useState(false);
   const [playing, setPlaying] = useState(false);
   const [message, setMessage] = useState('');
   const updateTime = (value: number) => { setTime(value); onTimeChange?.(value); };
   const updatePlaying = (value: boolean) => { setPlaying(value); onPlayingChange?.(value); };
   const updateDuration = (value: number) => { const next = Number.isFinite(value) ? value : 0; setDuration(next); onReady?.(next); };
+  const mediaFailed = () => { setFailed(true); updatePlaying(false); onReady?.(0); };
   const seek = (next: number) => {
     if (!player.current || duration <= 0 || failed) return;
     const position = Math.max(0, Math.min(next, duration));
     player.current.currentTime = position; updateTime(position);
   };
   const changeVolume = (value: number) => {
-    if (player.current) { player.current.volume = value; setVolume(value); }
+    if (player.current) { player.current.volume = value; player.current.muted = false; setMuted(false); setVolume(value); }
   };
-  const toggle = async () => {
+  // Reopen the decoder when resuming. Safari can advance the clock with a
+  // silent output path after pause; load() restores that path without losing place.
+  // play() stays in the click handler so Safari retains user activation.
+  const start = async (restoreSound = false) => {
     const audio = player.current;
     if (!audio) return;
     setMessage('');
-    if (!audio.paused) { audio.pause(); return; }
-    try { await audio.play(); }
+    if (!audio.paused && !restoreSound) { audio.pause(); return; }
+    if (hasStarted.current || restoreSound) {
+      resumeAt.current = audio.ended ? 0 : audio.currentTime;
+      audio.load();
+      // Metadata will restore the position before playback starts.
+    }
+    if (restoreSound) {
+      audio.muted = false;
+      if (audio.volume === 0) audio.volume = 1;
+      setMuted(false); setVolume(audio.volume);
+    }
+    try { await audio.play(); hasStarted.current = true; }
     catch (error) {
       if (player.current !== audio || (error instanceof DOMException && error.name === 'AbortError')) return;
       if (audio.error) { setFailed(true); onReady?.(0); }
@@ -48,21 +66,33 @@ function Playback({ src, label, sourceUrl, audioRef, onTimeChange, onPlayingChan
     }
   };
   return <>
-    <audio ref={player} hidden preload="metadata" src={src} aria-label={label}
-      onLoadStart={() => { setFailed(false); updateTime(0); updateDuration(0); updatePlaying(false); setMessage(''); }}
-      onLoadedMetadata={event => { setFailed(false); updateTime(event.currentTarget.currentTime); updateDuration(event.currentTarget.duration); }}
+    <audio ref={player} className="study-audio-element" preload="metadata" playsInline src={mimeType ? undefined : src} aria-label={label}
+      onLoadStart={() => { setFailed(false); setMessage(''); }}
+      onLoadedMetadata={event => {
+        const audio = event.currentTarget;
+        setFailed(false);
+        if (resumeAt.current !== null) {
+          audio.currentTime = Math.max(0, Math.min(resumeAt.current, Number.isFinite(audio.duration) ? audio.duration : resumeAt.current));
+          resumeAt.current = null;
+        }
+        updateTime(audio.currentTime); updateDuration(audio.duration);
+      }}
       onDurationChange={event => updateDuration(event.currentTarget.duration)}
-      onTimeUpdate={event => updateTime(event.currentTarget.currentTime)} onPlay={() => updatePlaying(true)} onPause={() => updatePlaying(false)} onEnded={() => updatePlaying(false)}
-      onVolumeChange={event => setVolume(event.currentTarget.volume)} onError={() => { setFailed(true); updatePlaying(false); onReady?.(0); }} />
+      onTimeUpdate={event => { if (resumeAt.current === null) updateTime(event.currentTarget.currentTime); }} onPlay={() => updatePlaying(true)} onPlaying={event => { updatePlaying(true); updateDuration(event.currentTarget.duration); }} onPause={() => updatePlaying(false)} onEnded={() => updatePlaying(false)}
+      onVolumeChange={event => { setVolume(event.currentTarget.volume); setMuted(event.currentTarget.muted); }} onError={mediaFailed}>
+      {/* Download hosts may send application/octet-stream. An explicit source
+          type lets Safari select the correct decoder for the original file. */}
+      {mimeType && <source src={src} type={mimeType} onError={mediaFailed} />}
+    </audio>
     <div className="jahshan-audio-controls" role="group" aria-label="Recording playback controls">
       <div className="jahshan-audio-buttons">
-        <button type="button" className="btn btn-primary" disabled={failed} onClick={() => void toggle()}>{playing ? 'Pause recording' : 'Play recording'}</button>
+        <button type="button" className="btn btn-primary" disabled={failed} onClick={() => void start()}>{playing ? 'Pause recording' : 'Play recording'}</button>
         <button type="button" className="btn btn-secondary" disabled={!duration || failed} onClick={() => seek(time - 15)}>Back 15 seconds</button>
         <button type="button" className="btn btn-secondary" disabled={!duration || failed} onClick={() => seek(time + 15)}>Forward 15 seconds</button>
         <span className="jahshan-audio-time">{timestamp(time)} / {duration ? timestamp(duration) : 'Loading…'}</span>
       </div>
       <label>Recording position<input type="range" min={0} max={duration || 1} step={0.1} value={Math.min(time, duration || 1)} disabled={!duration || failed} aria-valuetext={`${timestamp(time)} of ${timestamp(duration)}`} onChange={event => seek(Number(event.target.value))} /></label>
-      <div className="jahshan-audio-options"><label>Volume<input type="range" min={0} max={1} step={0.05} value={volume} aria-valuetext={`${Math.round(volume * 100)} percent`} onChange={event => changeVolume(Number(event.target.value))} /></label><a href={src} target="_blank" rel="noopener noreferrer">Open audio directly ↗</a></div>
+      <div className="jahshan-audio-options"><label>Volume<input type="range" min={0} max={1} step={0.05} value={volume} aria-valuetext={`${Math.round(volume * 100)} percent`} onChange={event => changeVolume(Number(event.target.value))} /></label><button type="button" className="btn btn-secondary" onClick={() => { if (player.current) { player.current.muted = !muted; setMuted(!muted); } }}>{muted ? 'Unmute' : 'Mute'}</button><button type="button" className="btn btn-secondary" onClick={() => void start(true)}>Restore sound</button><a href={src} target="_blank" rel="noopener noreferrer">Open audio directly ↗</a></div>
     </div>
     {message && <p role="status">{message}</p>}
     {failed && <div role="alert" className="jahshan-audio-error"><p>This recording could not load. Check your connection and try again.</p><button className="btn btn-secondary" onClick={() => { setFailed(false); player.current?.load(); }}>Retry audio</button>{sourceUrl && <> <a href={sourceUrl} target="_blank" rel="noopener noreferrer">Open original recording ↗</a></>}</div>}

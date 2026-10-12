@@ -15,6 +15,7 @@ const MentorPage = lazy(() => import('./pages/MentorPage').then((module) => ({ d
 const MistakeNotebookPage = lazy(() => import('./pages/MistakeNotebookPage').then((module) => ({ default: module.MistakeNotebookPage })));
 const StudyPlannerPage = lazy(() => import('./pages/StudyPlannerPage').then((module) => ({ default: module.StudyPlannerPage })));
 const ResourcesPage = lazy(() => import('./pages/ResourcesPage').then((module) => ({ default: module.ResourcesPage })));
+const BenchmarkPage = lazy(() => import('./pages/BenchmarkPage').then(m => ({ default: m.BenchmarkPage })));
 const JahshanPage = lazy(() => import('./pages/JahshanPage').then(m => ({ default: m.JahshanPage })));
 const OfficialExamPage = lazy(() => import('./pages/OfficialExamPage').then(m => ({ default: m.OfficialExamPage })));
 const PracticePage = lazy(() => import('./pages/PracticePage').then((module) => ({ default: module.PracticePage })));
@@ -27,6 +28,7 @@ const UsmlePage = lazy(() => import('./pages/UsmlePage').then((module) => ({ def
 const pageMeta: Record<NavSection, { title: string; subtitle?: string }> = {
   walkthrough: { title: '1 · Walkthroughs', subtitle: 'See the method, try an answer, understand the reasoning' },
   dashboard: { title: 'Detailed dashboard', subtitle: 'Study history and advanced tools' },
+  benchmark: { title: 'Benchmark tests', subtitle: 'Reading, Listening, Writing and Speaking practice' },
   jahshan: { title: 'Jahshan Collection', subtitle: 'Reading and Listening books · original audio · saved study notes' },
   drills: { title: 'Supplementary learning exercises', subtitle: 'Short coached exercises; not full OET exam papers' },
   notebook: { title: 'NotebookLM Study Notes', subtitle: 'Apply your saved notes to daily practice' },
@@ -135,6 +137,7 @@ function App() {
         return <StudyPlannerPage onNavigate={navigate} />;
       case 'resources':
         return <ResourcesPage onNavigate={navigate} />;
+      case 'benchmark': return <BenchmarkPage key={route.itemId ?? 'listening-1'} itemId={route.itemId} onNavigate={navigate} />;
       case 'jahshan':
         return <JahshanPage key={route.itemId ?? 'listening'} initialSkill={route.itemId === 'reading' ? 'reading' : 'listening'} />;
       case 'mock':

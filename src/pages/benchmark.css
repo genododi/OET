@@ -1,0 +1,25 @@
+.benchmark-page, .benchmark-workspace { display: grid; gap: 22px; min-width: 0; }
+.benchmark-test-select { display: grid; gap: 8px; max-width: 680px; margin: 20px 0; font-weight: 600; }
+.benchmark-test-select select { width: 100%; min-width: 0; padding: 12px; border: 1px solid #b9d0c4; border-radius: 8px; font: inherit; background: white; }
+.benchmark-answer-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin: 20px 0; }
+.benchmark-answer-item { padding: 14px; border: 1px solid #d4e0db; border-radius: 10px; background: #f7faf8; min-width: 0; }
+.benchmark-answer-item > label { display: block; font-weight: 600; margin-bottom: 8px; }
+.benchmark-answer-item input, .benchmark-answer-item select { min-height: 44px; }
+.benchmark-key-review { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; margin: 20px 0; }
+.benchmark-notice { padding: 16px; border: 1px solid #dbc996; border-radius: 8px; background: #fff9e9; }
+.benchmark-page .material-readable-text { white-space: pre-wrap; overflow-wrap: anywhere; }
+.benchmark-page details { margin: 16px 0; }
+.benchmark-page iframe { border: 0; margin: 14px 0; }
+@media(max-width:600px) { .benchmark-answer-grid { grid-template-columns: 1fr; } .benchmark-page .material-page-controls select { max-width: 100%; } }
+.benchmark-page > .card, .benchmark-workspace > .card { padding: 24px; }
+.benchmark-page .hero-eyebrow { color: #087d78; font-weight: 700; letter-spacing: .12em; }
+.benchmark-page .study-skill-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0; }
+.benchmark-page .study-skill-tabs button { padding: 10px 18px; min-height: 44px; border: 1px solid #b9d0c4; border-radius: 8px; font: inherit; font-weight: 600; color: #244e49; background: #f4f8f6; cursor: pointer; }
+.benchmark-page .study-skill-tabs button[aria-pressed="true"] { background: #087d78; color: white; border-color: #087d78; }
+.benchmark-page select { min-height: 44px; font: inherit; }
+.benchmark-page .material-toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 18px; }
+.benchmark-page textarea { width: 100%; min-height: 160px; padding: 14px; border: 1px solid #b9d0c4; border-radius: 8px; font: inherit; box-sizing: border-box; }
+.benchmark-page #benchmark-letter { min-height: 360px; }
+.benchmark-page .material-timer { flex-wrap: wrap; }
+.benchmark-page .benchmark-test-select select { padding: 10px 12px; }
+@media(max-width:600px) { .benchmark-page > .card, .benchmark-workspace > .card { padding: 18px; } }
