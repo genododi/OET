@@ -20,8 +20,17 @@ for(const entry of catalog.entries){
   assert.equal(Object.keys(entry.answers).length,42);
   for(let n=1;n<=42;n++){assert(entry.answers[n]?.trim());if(n>24)assert(/^[ABC]$/.test(entry.answers[n]));}
   assert.equal(hash(entry.keyPath),entry.keySha256);
-  if(entry.audio){assert(entry.audio.bytes>1000000);assert(entry.audio.duration>1200);assert(/^[a-f0-9]{64}$/.test(entry.audio.sha256));assert(entry.audio.url.endsWith(`test-${String(entry.number).padStart(2,'0')}.mp3`));}
+  if(entry.audio){
+   assert(entry.audio.bytes>1000000);assert(entry.audio.duration>1200);assert(/^[a-f0-9]{64}$/.test(entry.audio.sha256));assert(entry.audio.url.endsWith(`test-${String(entry.number).padStart(2,'0')}.mp3`));
+   const transcript=JSON.parse(fs.readFileSync(`public/benchmark/transcripts/${entry.id}.json`,'utf8'));
+   assert.equal(transcript.trackId,entry.id);assert.equal(transcript.sourceSha256,entry.audio.sha256);
+   assert.equal(transcript.kind,'automatic-transcription');assert.equal(transcript.complete,true);
+   assert(Math.abs(transcript.duration-entry.audio.duration)<1);assert(transcript.segments.length>100);
+   let start=-1;
+   for(const s of transcript.segments){assert(Number.isFinite(s.start)&&Number.isFinite(s.end));assert(s.start>=start&&s.start>=0&&s.end>=s.start&&s.end<=transcript.duration+.1);assert(s.text.trim());start=s.start;}
+   assert(transcript.segments[0].start<30);assert(transcript.segments.at(-1).end>transcript.duration*.9);
+  }
  }
 }
 assert.deepEqual(catalog.entries.filter(e=>e.skill==='listening'&&!e.audio).map(e=>e.number),[10,17]);
-console.log('Benchmark: 20 reading tests, 20 listening papers/keys, 18 original recordings, 10 Medicine writing tasks; source hashes and 840 keys verified.');
+console.log('Benchmark: 20 reading tests, 20 listening papers/keys, 18 original recordings and complete matching transcripts, 10 Medicine writing tasks; source hashes, timestamps and 840 keys verified.');

@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import catalog from '../data/benchmarkCollection.json';
-import { StudyAudioPlayer } from '../components/StudyAudioPlayer';
+import { RecordingTranscriptPlayer } from '../components/RecordingTranscriptPlayer';
 import { VoiceRecorder } from './MaterialsPage';
 import type { NavSection, OetSubtest } from '../types';
 import './materials.css';
 import './benchmark.css';
 
-type Entry = { id: string; skill: string; number: number; title: string; assetPath: string; startPage: number; endPage: number; textPath: string; keyPath?: string; keyPages?: number[]; answers?: Record<string, string>; audio?: { url: string; sourceUrl: string } | null };
+type Entry = { id: string; skill: string; number: number; title: string; assetPath: string; startPage: number; endPage: number; textPath: string; keyPath?: string; keyPages?: number[]; answers?: Record<string, string>; audio?: { url: string; sourceUrl: string; sha256: string } | null };
 type Page = { number: number; text: string; extraction?: string };
 const entries: Entry[] = catalog.entries;
 const skills: OetSubtest[] = ['listening', 'reading', 'writing', 'speaking'];
@@ -46,7 +46,7 @@ function BenchmarkPaper({ entry }: { entry: Entry }) {
   }, [entry.textPath]);
   const page = pages?.[index]?.number ?? entry.startPage;
   return <section className="card" aria-label="Benchmark source paper"><div className="material-toolbar"><h3>2 · {entry.skill === 'listening' ? 'Listen and read the questions' : 'Read the complete paper'}</h3><a href={`${asset(entry.assetPath)}#page=${page}`} target="_blank" rel="noopener noreferrer">Open original · page {page} ↗</a></div>
-    {entry.skill === 'listening' && (entry.audio ? <><StudyAudioPlayer mimeType="audio/mpeg" src={entry.audio.url} sourceUrl={entry.audio.sourceUrl} label={entry.title} /><p className="meta">Original human recording · full test, Parts A–C. Matched by test number and the opening patient scenario.</p></> : <p className="benchmark-notice">The supplied Drive folder has no recording for Test {entry.number}. You can review its paper and key here; audio practice is available in the other 18 tests.</p>)}
+    {entry.skill === 'listening' && (entry.audio ? <><RecordingTranscriptPlayer mimeType="audio/mpeg" audioUrl={entry.audio.url} track={{ id: entry.id, name: entry.title, sha256: entry.audio.sha256, url: entry.audio.sourceUrl }} transcriptPath={`benchmark/transcripts/${entry.id}.json`} /><p className="meta">Original human recording · full test, Parts A–C. Matched by test number and the opening patient scenario.</p></> : <p className="benchmark-notice">The supplied Drive folder has no recording for Test {entry.number}. You can review its paper and key here; audio practice is available in the other 18 tests.</p>)}
     {pages && <div className="material-page-controls"><button className="btn btn-secondary" disabled={all || index === 0} onClick={() => setIndex(index - 1)}>Previous page</button><label htmlFor="benchmark-page">Paper page</label><select id="benchmark-page" disabled={all} value={index} onChange={e => setIndex(Number(e.target.value))}>{pages.map((p, i) => <option key={p.number} value={i}>Book page {p.number} · {i + 1} of {pages.length}</option>)}</select><button className="btn btn-secondary" disabled={all || index === pages.length - 1} onClick={() => setIndex(index + 1)}>Next page</button><label><input type="checkbox" checked={all} onChange={e => setAll(e.target.checked)} /> Show all pages</label></div>}
     {failed ? <p role="alert">The paper text could not load. Open the original above, or reload to try again.</p> : !pages ? <p role="status">Loading this paper…</p> : (all ? pages : [pages[index]]).map(p => <article className="material-text-page" key={p.number}><h4>Book page {p.number}</h4>{p.extraction === 'ocr' && <p className="meta">Recognised from a scan. Check the original for diagrams or uncertain text.</p>}<div className="material-readable-text">{p.text}</div></article>)}
   </section>;

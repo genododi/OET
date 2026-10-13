@@ -1,0 +1,31 @@
+[
+  {
+    "trackId": "listening-20",
+    "sourceSha256": "4f20489b9f6bc7aa5b189f5d47abcd48342ee529f33a9a409d4becba75730e7f",
+    "start": 1714.72,
+    "end": 1797.68,
+    "method": "Re-transcribed original audio clip 1710–1810 seconds with whisper-base.en; replaced the repeated recognition loop and retained a seekable uncertainty marker for the preceding pause.",
+    "segments": [
+      {
+        "start": 1714.72,
+        "end": 1770.0,
+        "text": "[Unclear interval — replay the original audio.]"
+      },
+      {
+        "start": 1770.0,
+        "end": 1781.0,
+        "text": "So today we're going to turn our focus from experts working on the front lines to interesting clinical trials being done in the world of gastroenterology."
+      },
+      {
+        "start": 1781.0,
+        "end": 1793.0,
+        "text": "Today's guest, Dr. Julia Schneider, is heading up such a trial, the aim of which is the effectiveness of two different dietary interventions for patients with Crohn's disease."
+      },
+      {
+        "start": 1793.0,
+        "end": 1796.0,
+        "text": "Please welcome Dr. Schneider to the program."
+      }
+    ]
+  }
+]
