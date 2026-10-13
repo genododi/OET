@@ -1,7 +1,7 @@
-import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { act, cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { afterEach, expect, it, vi } from 'vitest';
 import { StudyAudioPlayer } from './StudyAudioPlayer';
-afterEach(() => { cleanup(); vi.restoreAllMocks(); });
+afterEach(() => { cleanup(); vi.restoreAllMocks(); vi.useRealTimers(); });
 function setup() {
   vi.spyOn(HTMLMediaElement.prototype, 'play').mockImplementation(function(this: HTMLMediaElement) { Object.defineProperty(this, 'paused', { configurable: true, value: false }); fireEvent.play(this); return Promise.resolve(); });
   vi.spyOn(HTMLMediaElement.prototype, 'pause').mockImplementation(function(this: HTMLMediaElement) { Object.defineProperty(this, 'paused', { configurable: true, value: true }); fireEvent.pause(this); });
@@ -45,4 +45,18 @@ it('honours an intentional mute on ordinary pause and resume', async () => {
   fireEvent.loadedMetadata(audio);
   expect(audio.muted).toBe(true);
   expect(screen.getByRole('button', { name: 'Unmute' })).toBeVisible();
+});
+
+it('recovers cached Safari metadata even when the initial metadata event was missed', async () => {
+  vi.useFakeTimers();
+  const ready = vi.fn();
+  const view = render(<StudyAudioPlayer src="/cached.mp3" label="Cached recording" onReady={ready} />);
+  const audio = view.container.querySelector('audio')!;
+  Object.defineProperty(audio, 'duration', { configurable: true, value: 600 });
+  Object.defineProperty(audio, 'readyState', { configurable: true, value: 1 });
+  audio.currentTime = 120;
+  await act(async () => { await vi.advanceTimersByTimeAsync(100); });
+  expect(screen.getByRole('slider', { name: 'Recording position' })).toBeEnabled();
+  expect(ready).toHaveBeenCalledWith(600);
+  expect(audio.currentTime).toBe(120);
 });

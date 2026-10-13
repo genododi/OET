@@ -1,4 +1,4 @@
-import { useImperativeHandle, useRef, useState } from 'react';
+import { useEffect, useImperativeHandle, useRef, useState } from 'react';
 import type { RefObject } from 'react';
 import './jahshanListening.css';
 const timestamp = (time: number) => `${Math.floor(time / 60)}:${Math.floor(time % 60).toString().padStart(2, '0')}`;
@@ -28,6 +28,18 @@ function Playback({ src, label, sourceUrl, mimeType, audioRef, onTimeChange, onP
   const [muted, setMuted] = useState(false);
   const [playing, setPlaying] = useState(false);
   const [message, setMessage] = useState('');
+  // Safari may finish cached metadata before React attaches its event handlers.
+  // Reconcile the initial duration once, without changing the playback position.
+  useEffect(() => {
+    let attempts = 0;
+    const interval = window.setInterval(() => {
+      const audio = player.current;
+      if (audio && audio.readyState >= 1 && Number.isFinite(audio.duration) && audio.duration > 0) {
+        setDuration(audio.duration); onReady?.(audio.duration); clearInterval(interval);
+      } else if (++attempts >= 300 || audio?.error) clearInterval(interval);
+    }, 100);
+    return () => clearInterval(interval);
+  }, [onReady]);
   const updateTime = (value: number) => { setTime(value); onTimeChange?.(value); };
   const updatePlaying = (value: boolean) => { setPlaying(value); onPlayingChange?.(value); };
   const updateDuration = (value: number) => { const next = Number.isFinite(value) ? value : 0; setDuration(next); onReady?.(next); };
@@ -78,6 +90,8 @@ function Playback({ src, label, sourceUrl, mimeType, audioRef, onTimeChange, onP
         updateTime(audio.currentTime); updateDuration(audio.duration);
       }}
       onDurationChange={event => updateDuration(event.currentTarget.duration)}
+      onSeeking={event => { if (resumeAt.current === null) updateTime(event.currentTarget.currentTime); }}
+      onSeeked={event => { if (resumeAt.current === null) updateTime(event.currentTarget.currentTime); }}
       onTimeUpdate={event => { if (resumeAt.current === null) updateTime(event.currentTarget.currentTime); }} onPlay={() => updatePlaying(true)} onPlaying={event => { updatePlaying(true); updateDuration(event.currentTarget.duration); }} onPause={() => updatePlaying(false)} onEnded={() => updatePlaying(false)}
       onVolumeChange={event => { setVolume(event.currentTarget.volume); setMuted(event.currentTarget.muted); }} onError={mediaFailed}>
       {/* Download hosts may send application/octet-stream. An explicit source

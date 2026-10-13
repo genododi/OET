@@ -2,14 +2,15 @@ import { useEffect, useRef, useState } from 'react';
 import { StudyAudioPlayer } from './StudyAudioPlayer';
 import './jahshanListening.css';
 type Track = { id: string; name: string; sha256: string; url: string };
-interface Props { track: Track; audioUrl: string; transcriptPath: string; mimeType?: string; heading?: string; description?: string; playbackNote?: string; }
+interface Props { track: Track; audioUrl: string; transcriptPath: string; inlineTranscript?: Transcript; mimeType?: string; heading?: string; description?: string; playbackNote?: string; }
 type Segment = { start: number; end: number; text: string };
-type Transcript = { trackId: string; sourceSha256: string; kind: string; segments: Segment[] };
+export type Transcript = { trackId: string; sourceSha256: string; kind: string; segments: Segment[] };
+const matches = (data: Transcript, id: string, sha256: string) => data.trackId === id && data.sourceSha256 === sha256 && data.kind === 'automatic-transcription' && Array.isArray(data.segments) && data.segments.length > 0 && data.segments.every(s => Number.isFinite(s.start) && Number.isFinite(s.end) && s.start >= 0 && s.end >= s.start && typeof s.text === 'string');
 const timestamp = (time: number) => `${Math.floor(time / 60)}:${Math.floor(time % 60).toString().padStart(2, '0')}`;
 export function RecordingTranscriptPlayer(props: Props) {
   return <Player key={`${props.track.id}:${props.track.sha256}:${props.transcriptPath}`} {...props} />;
 }
-function Player({ track, audioUrl, transcriptPath, mimeType, heading, description, playbackNote }: Props) {
+function Player({ track, audioUrl, transcriptPath, inlineTranscript, mimeType, heading, description, playbackNote }: Props) {
   const player = useRef<HTMLAudioElement>(null);
   const [duration, setDuration] = useState(0);
   const activeLine = useRef<HTMLButtonElement>(null);
@@ -17,18 +18,19 @@ function Player({ track, audioUrl, transcriptPath, mimeType, heading, descriptio
   const [time, setTime] = useState(0);
   const [playing, setPlaying] = useState(false);
   const [follow, setFollow] = useState(true);
-  const [transcript, setTranscript] = useState<Transcript | null>(null);
-  const [state, setState] = useState<'loading' | 'ready' | 'unavailable'>('loading');
+  const [transcript, setTranscript] = useState<Transcript | null>(() => inlineTranscript && matches(inlineTranscript, track.id, track.sha256) ? inlineTranscript : null);
+  const [state, setState] = useState<'loading' | 'ready' | 'unavailable'>(() => inlineTranscript ? matches(inlineTranscript, track.id, track.sha256) ? 'ready' : 'unavailable' : 'loading');
   useEffect(() => {
+    if (inlineTranscript) return;
     const controller = new AbortController();
     void fetch(`${import.meta.env.BASE_URL}${transcriptPath}`, { signal: controller.signal }).then(async response => {
       if (!response.ok) throw new Error('Unavailable');
       const data: Transcript = await response.json();
-      if (data.trackId !== track.id || data.sourceSha256 !== track.sha256 || data.kind !== 'automatic-transcription' || !Array.isArray(data.segments) || !data.segments.length || data.segments.some(s => !Number.isFinite(s.start) || !Number.isFinite(s.end) || s.start < 0 || s.end < s.start || typeof s.text !== 'string')) throw new Error('Wrong transcript');
+      if (!matches(data, track.id, track.sha256)) throw new Error('Wrong transcript');
       if (!controller.signal.aborted) { setTranscript(data); setState('ready'); }
     }).catch(() => { if (!controller.signal.aborted) setState('unavailable'); });
     return () => controller.abort();
-  }, [track.id, track.sha256, transcriptPath]);
+  }, [track.id, track.sha256, transcriptPath, inlineTranscript]);
   const seek = (next: number) => {
     if (!player.current || duration <= 0) return;
     const position = Math.max(0, Math.min(next, duration));
@@ -37,8 +39,12 @@ function Player({ track, audioUrl, transcriptPath, mimeType, heading, descriptio
   const current = transcript?.segments.findIndex(segment => time >= segment.start && time < segment.end) ?? -1;
   useEffect(() => {
     const box = transcriptBox.current; const line = activeLine.current;
-    if (follow && playing && box && line) box.scrollTo({ top: Math.max(0, line.offsetTop - box.clientHeight / 2 + line.offsetHeight / 2), behavior: 'smooth' });
-  }, [current, follow, playing]);
+    if (!follow || !box || !line) return;
+    const bounds = box.getBoundingClientRect(); const sentence = line.getBoundingClientRect();
+    if (sentence.top < bounds.top + 8 || sentence.bottom > bounds.bottom - 8) {
+      box.scrollTo?.({ top: Math.max(0, box.scrollTop + sentence.top - bounds.top - box.clientHeight / 2 + sentence.height / 2), behavior: playing ? 'smooth' : 'auto' });
+    }
+  }, [current, follow, playing, time]);
   return <div className="jahshan-listening-player">
     {heading && <h3>{heading}</h3>}
     {description && <p className="meta">{description} · Original human recording</p>}

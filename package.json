@@ -47,7 +47,8 @@
     "verify-no-duplicates": "npx tsx scripts/verify-no-duplicates.ts",
     "sources:import-desktop": "python3 scripts/import-desktop-materials.py",
     "test:desktop-materials": "node scripts/verify-desktop-materials.mjs",
-    "test:benchmark": "node scripts/verify-benchmark.mjs"
+    "test:benchmark": "node scripts/verify-benchmark.mjs",
+    "build:benchmark-offline": "node scripts/build-benchmark-offline.mjs"
   },
   "dependencies": {
     "react": "^19.2.6",
