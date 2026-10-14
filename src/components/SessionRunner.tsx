@@ -583,6 +583,7 @@ function SessionRunnerContent({ config, onExit }: Props) {
               externalUrl={task.audioExternalUrl}
               label={task.audioLabel ?? task.title}
               note={task.audioNote}
+              keywordSourceText={task.subtest === 'listening' ? task.audioTranscript : undefined}
               examMode={task.subtest === 'listening' && enforceSinglePlayListening}
               examPlayed={Boolean(consumedListeningPlayback[task.id])}
               onExamPlay={() =>

@@ -11,12 +11,13 @@ interface Props {
   onTimeChange?: (time: number) => void;
   onPlayingChange?: (playing: boolean) => void;
   onReady?: (duration: number) => void;
+  onEnded?: () => void;
 }
 // Shared HTML controls avoid depending on Safari's native media-control icons.
 export function StudyAudioPlayer(props: Props) {
   return <Playback key={props.src} {...props} />;
 }
-function Playback({ src, label, sourceUrl, mimeType, audioRef, onTimeChange, onPlayingChange, onReady }: Props) {
+function Playback({ src, label, sourceUrl, mimeType, audioRef, onTimeChange, onPlayingChange, onReady, onEnded }: Props) {
   const resumeAt = useRef<number | null>(null);
   const hasStarted = useRef(false);
   const player = useRef<HTMLAudioElement>(null);
@@ -92,7 +93,7 @@ function Playback({ src, label, sourceUrl, mimeType, audioRef, onTimeChange, onP
       onDurationChange={event => updateDuration(event.currentTarget.duration)}
       onSeeking={event => { if (resumeAt.current === null) updateTime(event.currentTarget.currentTime); }}
       onSeeked={event => { if (resumeAt.current === null) updateTime(event.currentTarget.currentTime); }}
-      onTimeUpdate={event => { if (resumeAt.current === null) updateTime(event.currentTarget.currentTime); }} onPlay={() => updatePlaying(true)} onPlaying={event => { updatePlaying(true); updateDuration(event.currentTarget.duration); }} onPause={() => updatePlaying(false)} onEnded={() => updatePlaying(false)}
+      onTimeUpdate={event => { if (resumeAt.current === null) updateTime(event.currentTarget.currentTime); }} onPlay={() => updatePlaying(true)} onPlaying={event => { updatePlaying(true); updateDuration(event.currentTarget.duration); }} onPause={() => updatePlaying(false)} onEnded={() => { updatePlaying(false); onEnded?.(); }}
       onVolumeChange={event => { setVolume(event.currentTarget.volume); setMuted(event.currentTarget.muted); }} onError={mediaFailed}>
       {/* Download hosts may send application/octet-stream. An explicit source
           type lets Safari select the correct decoder for the original file. */}

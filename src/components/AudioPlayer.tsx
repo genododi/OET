@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
+import { extractListeningKeywords } from '../lib/listeningKeywords';
 
 interface Props {
   src?: string;
   externalUrl?: string;
   label: string;
   note?: string;
+  keywordSourceText?: string;
   /** Exam-style: replace native controls with a one-use play action. */
   examMode?: boolean;
   /** Controlled session-level guard so navigating away cannot reset a consumed play. */
@@ -26,6 +28,7 @@ function VerifiedAudioPlayer({
   externalUrl,
   label,
   note,
+  keywordSourceText,
   examMode = false,
   examPlayed = false,
   onExamPlay,
@@ -44,6 +47,7 @@ function VerifiedAudioPlayer({
     message: string | null;
   }>({ src, message: null });
   const [examPlayback, setExamPlayback] = useState<'ready' | 'playing' | 'finished'>('ready');
+  const [audioEndedSource, setAudioEndedSource] = useState<string | null>(null);
   const available = availability.src === src ? availability.value : src ? null : false;
   const error = errorState.src === src ? errorState.message : null;
 
@@ -147,6 +151,7 @@ function VerifiedAudioPlayer({
     );
   }
 
+  const revisionKeywords = keywordSourceText ? extractListeningKeywords(keywordSourceText) : [];
   return (
     <div
       className="audio-player"
@@ -183,6 +188,7 @@ function VerifiedAudioPlayer({
           if (examMode && examPlayback === 'playing') onPlaybackError?.();
         }}
         onEnded={() => {
+          setAudioEndedSource(src ?? null);
           if (examMode) setExamPlayback('finished');
           onPlaybackEnd?.();
         }}
@@ -205,6 +211,7 @@ function VerifiedAudioPlayer({
         </button>
       )}
       {error && <p className="meta audio-player-error">{error}</p>}
+      {!examMode && audioEndedSource === src && revisionKeywords.length > 0 && <aside className="listening-keyword-review" aria-label="Listening keywords to revise"><h4>After listening · keywords to revise</h4><p className="meta">Key terms picked from this recording’s transcript.</p><ul>{revisionKeywords.map(keyword => <li key={keyword}>{keyword}</li>)}</ul></aside>}
       {externalUrl && (
         <a href={externalUrl} target="_blank" rel="noopener noreferrer" className="link-btn audio-fallback-link">
           Alternate source on oet.com →

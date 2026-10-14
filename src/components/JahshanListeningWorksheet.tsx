@@ -36,6 +36,8 @@ function TrackWorksheet({ trackId, bookUrl, onOpenKey }: Props) {
   };
   const exportText = sheet.parts.map(section => `Part ${section.part}\n${section.questions.map(question => `${question.extract ? `Extract ${question.extract}, ` : ''}${question.number}. ${responses[question.id] ?? ''}`).join('\n')}`).join('\n\n');
   const answered = section.questions.filter(question => responses[question.id]?.trim()).length;
+  const allRevealed = section.questions.every(question => revealed[question.id]);
+  const revealAll = () => setRevealed(Object.fromEntries(section.questions.map(question => [question.id, !allRevealed])));
   const focusNextUnanswered = () => {
     const next = section.questions.find(question => !responses[question.id]?.trim());
     if (!next) return;
@@ -93,13 +95,14 @@ function TrackWorksheet({ trackId, bookUrl, onOpenKey }: Props) {
   return <section ref={worksheetRef} className="card jahshan-listening-worksheet" aria-label="Listening answer worksheet">
     <header className="jahshan-worksheet-heading">
       <div><h3>3 · Fill the blanks and check answers</h3>
-        <p>Part {part} · {part === 'A' ? 'Complete the notes as you listen.' : 'Read each question and choose A, B or C.'} Use Show to reveal an individual printed answer.</p></div>
+        <p>Part {part} · {part === 'A' ? 'Complete the notes as you listen.' : 'Read each question and choose A, B or C.'} Reveal answers individually or together.</p></div>
       <span className="jahshan-part-badge">Part {part}</span>
     </header>
     {sheet.parts.length > 1 && <div className="study-skill-tabs" role="group" aria-label="Listening worksheet part">{sheet.parts.map(section => <button key={section.part} aria-pressed={section.part === part} onClick={() => { setPart(section.part); setRevealed({}); }}>Part {section.part}</button>)}</div>}
     <div className="jahshan-worksheet-toolbar">
       <div className="jahshan-answer-progress"><strong>{answered} of {section.questions.length} answered</strong><progress aria-label="Questions answered" value={answered} max={section.questions.length} /></div>
       <button className="btn btn-secondary" disabled={answered === section.questions.length} onClick={focusNextUnanswered}>Next unanswered ↓</button>
+      <button className="btn btn-secondary" aria-pressed={allRevealed} onClick={revealAll}>{allRevealed ? 'Hide all' : 'Reveal all'}</button>
     </div>
     {blocks.length > 1 && <nav className="jahshan-question-jumps" aria-label="Jump to listening questions">
       {blocks.map(block => <button key={block.page} onClick={() => {

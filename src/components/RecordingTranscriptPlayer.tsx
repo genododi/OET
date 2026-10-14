@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { StudyAudioPlayer } from './StudyAudioPlayer';
+import { extractListeningKeywords } from '../lib/listeningKeywords';
 import './jahshanListening.css';
 type Track = { id: string; name: string; sha256: string; url: string };
 interface Props { track: Track; audioUrl: string; transcriptPath: string; inlineTranscript?: Transcript; mimeType?: string; heading?: string; description?: string; playbackNote?: string; }
@@ -17,6 +18,7 @@ function Player({ track, audioUrl, transcriptPath, inlineTranscript, mimeType, h
   const transcriptBox = useRef<HTMLDivElement>(null);
   const [time, setTime] = useState(0);
   const [playing, setPlaying] = useState(false);
+  const [audioEnded, setAudioEnded] = useState(false);
   const [follow, setFollow] = useState(true);
   const [transcript, setTranscript] = useState<Transcript | null>(() => inlineTranscript && matches(inlineTranscript, track.id, track.sha256) ? inlineTranscript : null);
   const [state, setState] = useState<'loading' | 'ready' | 'unavailable'>(() => inlineTranscript ? matches(inlineTranscript, track.id, track.sha256) ? 'ready' : 'unavailable' : 'loading');
@@ -37,6 +39,7 @@ function Player({ track, audioUrl, transcriptPath, inlineTranscript, mimeType, h
     player.current.currentTime = position; setTime(position);
   };
   const current = transcript?.segments.findIndex(segment => time >= segment.start && time < segment.end) ?? -1;
+  const revisionKeywords = transcript ? extractListeningKeywords(transcript.segments.map(segment => segment.text).join(' ')) : [];
   useEffect(() => {
     const box = transcriptBox.current; const line = activeLine.current;
     if (!follow || !box || !line) return;
@@ -48,7 +51,7 @@ function Player({ track, audioUrl, transcriptPath, inlineTranscript, mimeType, h
   return <div className="jahshan-listening-player">
     {heading && <h3>{heading}</h3>}
     {description && <p className="meta">{description} · Original human recording</p>}
-    <StudyAudioPlayer src={audioUrl} mimeType={mimeType} label={track.name} sourceUrl={track.url} audioRef={player} onTimeChange={setTime} onPlayingChange={setPlaying} onReady={setDuration} />
+    <StudyAudioPlayer src={audioUrl} mimeType={mimeType} label={track.name} sourceUrl={track.url} audioRef={player} onTimeChange={setTime} onPlayingChange={setPlaying} onReady={setDuration} onEnded={() => setAudioEnded(true)} />
     {playbackNote && <p className="meta">{playbackNote}</p>}
     <section className="jahshan-transcript" aria-label="Transcript of selected recording">
       <h3>Recording transcript</h3><p className="meta">{description ?? track.name}</p>
@@ -59,6 +62,7 @@ function Player({ track, audioUrl, transcriptPath, inlineTranscript, mimeType, h
         <div className="transcript-actions"><label><input type="checkbox" checked={follow} onChange={event => setFollow(event.target.checked)} /> Follow the audio</label><a href={`data:text/plain;charset=utf-8,${encodeURIComponent(transcript.segments.map(s => `[${timestamp(s.start)}] ${s.text}`).join('\n'))}`} download={`${track.name.replace(/\.mp3$/i, '')}-transcript.txt`}>Download transcript</a></div>
         <div ref={transcriptBox} className="transcript-box" tabIndex={0} aria-label="Recording text">{transcript.segments.map((segment, index) => <button type="button" ref={index === current ? activeLine : undefined} key={index} aria-label={`${timestamp(segment.start)} ${segment.text}`} className={`transcript-line${index === current ? ' transcript-current' : ''}`} aria-current={index === current ? 'true' : undefined} disabled={!duration} onClick={() => seek(segment.start)}><span className="transcript-time">{timestamp(segment.start)}</span><span>{segment.text}</span></button>)}</div>
         <p className="meta">Select a timestamp to move the recording to that sentence.</p>
+        {audioEnded && revisionKeywords.length > 0 && <aside className="listening-keyword-review" aria-label="Listening keywords to revise"><h4>After listening · keywords to revise</h4><p className="meta">Key terms picked from this recording’s transcript.</p><ul>{revisionKeywords.map(keyword => <li key={keyword}>{keyword}</li>)}</ul></aside>}
       </>}
     </section>
   </div>;

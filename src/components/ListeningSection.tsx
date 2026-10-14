@@ -1,5 +1,6 @@
 import { Fragment, useCallback, useEffect, useRef, useState } from 'react';
 import type { SessionTask } from '../types/session';
+import { extractListeningKeywords } from '../lib/listeningKeywords';
 import {
   correctAnswerLabel,
   isTaskAnswerCorrect,
@@ -39,6 +40,9 @@ export default function ListeningSection({
   const [playbackFinished, setPlaybackFinished] = useState(false);
   const [currentIdx, setCurrentIdx] = useState<number | null>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const revisionKeywords = playbackFinished && !examMode && !hideFeedback
+    ? extractListeningKeywords(tasks.map(task => task.audioTranscript ?? '').join(' '))
+    : [];
 
   const stopPlayback = useCallback(() => {
     audioRef.current?.pause();
@@ -118,6 +122,9 @@ export default function ListeningSection({
         )}
         <span className="listening-voice-info">Question-matched audio</span>
       </div>
+      {playbackFinished && !examMode && !hideFeedback && <div className="listening-answer-reveal"><button className="btn btn-secondary" disabled={tasks.every(task => revealed[task.id])} onClick={() => tasks.forEach(task => { if (!revealed[task.id]) onReveal(task.id); })}>Reveal all answers</button></div>}
+
+      {revisionKeywords.length > 0 && <aside className="listening-keyword-review" aria-label="Listening keywords to revise"><h4>After listening · keywords to revise</h4><p className="meta">Key terms picked from the transcripts of these extracts.</p><ul>{revisionKeywords.map(keyword => <li key={keyword}>{keyword}</li>)}</ul></aside>}
 
       <ol className="listening-questions">
         {tasks.map((task, idx) => {

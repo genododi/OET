@@ -44,6 +44,7 @@ export function RealListeningTestRunner({ test, onExit, onComplete, onPlaybackSt
   });
   const savePlayback = (active: boolean) => { if (onComplete) return; try { if (active) sessionStorage.setItem(playbackKey, 'true'); else sessionStorage.removeItem(playbackKey); } catch { /* The recording remains guarded for this open page. */ } };
   const [playbackUsed, setPlaybackUsed] = useState(false);
+  const [revealAllAnswers, setRevealAllAnswers] = useState(false);
   const completed = useRef(false);
 
   const visibleQuestions = useMemo(
@@ -134,6 +135,7 @@ export function RealListeningTestRunner({ test, onExit, onComplete, onPlaybackSt
           {!handwritten && <p>{score >= 38 ? 'Excellent precision.' : score >= 30 ? 'Strong attempt—review the missed evidence.' : 'Review the paper with the recording transcript and retry.'}</p>}
           {handwritten && <p>No automatic mark is assigned to handwritten answers. Compare your paper with the <a href={paperSamples[test.id.endsWith('2') ? 1 : 0].answersUrl} target="_blank" rel="noopener noreferrer">official answer key</a>.</p>}
           {!handwritten && <div className="real-listening-review">
+            <button type="button" className="btn btn-secondary" aria-pressed={revealAllAnswers} onClick={() => setRevealAllAnswers(value => !value)}>{revealAllAnswers ? 'Hide all answers' : 'Reveal all answers'}</button>
             {test.answers.map((question) => {
               const value = answers[question.number] ?? '';
               const correct = isRealListeningAnswerCorrect(question, value);
@@ -141,7 +143,7 @@ export function RealListeningTestRunner({ test, onExit, onComplete, onPlaybackSt
                 <div key={question.number} className={correct ? 'correct' : 'incorrect'}>
                   <strong>{question.number}</strong>
                   <span>{value || 'No answer'}</span>
-                  {!correct && <span>Answer: {question.accepted[0]}</span>}
+                  {revealAllAnswers && <span>Answer: {question.accepted[0]}</span>}
                 </div>
               );
             })}

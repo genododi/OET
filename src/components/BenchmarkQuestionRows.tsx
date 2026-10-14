@@ -22,6 +22,9 @@ function QuestionList({ entry, part, sheet, failed, responses, onAnswer }: Props
   const listening = entry.skill === 'listening';
   const visible = sheet.questions.filter(question => question.part === part);
   const answered = visible.filter(q => responses[`${part}-${q.number}`]?.trim()).length;
+  const revealable = visible.filter(q => listening && entry.answers?.[String(q.number)]);
+  const allRevealed = revealable.length > 0 && revealable.every(q => revealed[`${part}-${q.number}`]);
+  const revealAll = () => setRevealed(current => ({ ...current, ...Object.fromEntries(revealable.map(q => [`${part}-${q.number}`, !allRevealed])) }));
   const groups = [...new Set(visible.map(q => q.group))];
   const focus = (element: HTMLElement | null | undefined) => { element?.focus({ preventScroll: true }); element?.scrollIntoView({ behavior: 'smooth', block: 'center' }); };
   const controls = (question: BenchmarkQuestion, inline = false) => {
@@ -37,7 +40,7 @@ function QuestionList({ entry, part, sheet, failed, responses, onAnswer }: Props
     </div>;
   };
   return <div ref={root} className="benchmark-question-list">
-    <div className="jahshan-worksheet-toolbar"><div className="jahshan-answer-progress"><strong>{answered} of {visible.length} answered</strong><progress aria-label="Questions answered" value={answered} max={visible.length} /></div><button className="btn btn-secondary" disabled={answered === visible.length} onClick={() => { const next = visible.find(q => !responses[`${part}-${q.number}`]?.trim()); if (next) focus(root.current?.querySelector(`#benchmark-${part}-${next.number}`)); }}>Next unanswered ↓</button></div>
+    <div className="jahshan-worksheet-toolbar"><div className="jahshan-answer-progress"><strong>{answered} of {visible.length} answered</strong><progress aria-label="Questions answered" value={answered} max={visible.length} /></div><button className="btn btn-secondary" disabled={answered === visible.length} onClick={() => { const next = visible.find(q => !responses[`${part}-${q.number}`]?.trim()); if (next) focus(root.current?.querySelector(`#benchmark-${part}-${next.number}`)); }}>Next unanswered ↓</button>{revealable.length > 0 && <button className="btn btn-secondary" aria-pressed={allRevealed} onClick={revealAll}>{allRevealed ? 'Hide all' : 'Reveal all'}</button>}</div>
     <nav className="jahshan-question-jumps" aria-label="Jump to question group">{groups.map((group, index) => <button key={group} onClick={() => focus(root.current?.querySelector(`#benchmark-group-${part}-${index}`))}>{group}</button>)}</nav>
     <div className={listening ? 'jahshan-worksheet-pages' : 'reading-question-scroll'}>
       {groups.map((group, index) => <section className="jahshan-question-paper" key={group}>
