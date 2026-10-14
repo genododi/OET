@@ -29,7 +29,7 @@ const pageMeta: Record<NavSection, { title: string; subtitle?: string }> = {
   walkthrough: { title: '1 · Walkthroughs', subtitle: 'See the method, try an answer, understand the reasoning' },
   dashboard: { title: 'Detailed dashboard', subtitle: 'Study history and advanced tools' },
   benchmark: { title: 'Benchmark tests', subtitle: 'Reading, Listening, Writing and Speaking practice' },
-  jahshan: { title: 'Jahshan Collection', subtitle: 'Reading and Listening books · original audio · saved study notes' },
+  jahshan: { title: 'Jahshan Collection', subtitle: 'Reading and Listening books · supplementary Writing and Speaking practice' },
   drills: { title: 'Supplementary learning exercises', subtitle: 'Short coached exercises; not full OET exam papers' },
   notebook: { title: 'NotebookLM Study Notes', subtitle: 'Apply your saved notes to daily practice' },
   listening: { title: 'Real Listening', subtitle: 'Original OET recordings and matching papers' },
@@ -139,7 +139,7 @@ function App() {
         return <ResourcesPage onNavigate={navigate} />;
       case 'benchmark': return <BenchmarkPage key={route.itemId ?? 'listening-1'} itemId={route.itemId} onNavigate={navigate} />;
       case 'jahshan':
-        return <JahshanPage key={route.itemId ?? 'listening'} initialSkill={route.itemId === 'reading' ? 'reading' : 'listening'} />;
+        return <JahshanPage key={route.itemId ?? 'listening'} initialSkill={route.itemId === 'reading' || route.itemId === 'writing' || route.itemId === 'speaking' ? route.itemId : 'listening'} />;
       case 'mock':
         return <OfficialExamPage key={route.itemId ?? 'mock'} initialSkill={isPracticeFilter(route.itemId) ? route.itemId : undefined} />;
       case 'practice':

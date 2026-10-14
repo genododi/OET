@@ -91,6 +91,14 @@ it('matches reading questions by part and explains the source’s repeated numbe
   expect(within(row).queryByRole('button', { name: /Show answer/ })).toBeNull();
 });
 
+it('guides Benchmark Writing through reading, drafting and a separate review step', async () => {
+  render(<BenchmarkPage itemId="writing-1" onNavigate={vi.fn()} />);
+  expect(await screen.findByRole('heading', { name: 'Step 1 · Read the case notes and task' })).toBeVisible();
+  expect(screen.getByRole('link', { name: /Open original · page/ })).toBeVisible();
+  expect(screen.queryByRole('textbox', { name: 'Your letter' })).not.toBeInTheDocument();
+  expect(screen.getByRole('button', { name: 'Start writing →' })).toBeDisabled();
+});
+
 it('rejects a question file belonging to another paper without overwriting saved work', async () => {
   localStorage.setItem('oet-benchmark-v1:listening-2', JSON.stringify({ 'A-1': 'saved' }));
   vi.stubGlobal('fetch', vi.fn(async (url: string) => ({ ok: true, json: async () => url.includes('/questions/') ? questions('listening-1.json') : { pages: [{ number: 1, text: 'Complete source paper' }] } })));

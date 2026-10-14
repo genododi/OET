@@ -17,3 +17,16 @@
 .jahshan-page h3 { margin: 0 0 12px; }
 .jahshan-page p { margin: 10px 0 16px; }
 .jahshan-page input[type=file] { display: block; margin: 8px 0 16px; max-width: 100%; }
+.jahshan-productive { display: grid; gap: 22px; }
+.jahshan-productive > .card { padding: 24px; }
+.jahshan-productive select { display: block; min-height: 44px; margin-top: 8px; padding: 8px 12px; font: inherit; }
+.jahshan-sample-preview { margin-top: 18px; border: 1px solid #bfd1c6; border-radius: 10px; overflow: hidden; background: #f5f8f6; }
+.jahshan-sample-preview iframe { display: block; width: 100%; height: min(72vh, 760px); border: 0; }
+.jahshan-phase-clock { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; padding: 14px; margin: 14px 0; border: 1px solid #bfd1c6; border-radius: 10px; background: #f7faf7; }
+.jahshan-phase-clock strong { font-variant-numeric: tabular-nums; }
+.jahshan-phase-clock > div { display: flex; flex-wrap: wrap; gap: 8px; }
+.jahshan-productive textarea { display: block; box-sizing: border-box; width: 100%; padding: 12px; font: inherit; border: 1px solid #b9d0c4; border-radius: 8px; }
+.jahshan-review-list { display: grid; gap: 10px; padding: 0; list-style: none; }
+.jahshan-review-list label { display: flex; align-items: flex-start; gap: 10px; }
+.jahshan-review-list input { margin-top: 5px; }
+@media(max-width:600px) { .jahshan-productive > .card { padding: 16px; } .jahshan-sample-preview iframe { height: 64vh; } }

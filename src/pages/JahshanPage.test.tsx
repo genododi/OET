@@ -41,6 +41,19 @@ it('keeps notes separate between listening sets', () => {
   expect(screen.getByLabelText('My numbered answers, evidence and corrections')).toHaveValue('1. heavy suitcase');
 });
 
+it('offers supplementary official Writing and Speaking samples with guided practice steps', () => {
+  const view = render(<JahshanPage />);
+  fireEvent.click(screen.getByRole('button', { name: 'Writing practice' }));
+  expect(screen.getByText(/supplied Jahshan archive contains Listening and Reading books only/)).toBeVisible();
+  expect(screen.getByRole('heading', { name: '1 · Open the case notes and task' })).toBeVisible();
+  expect(screen.getByTitle('Official OET writing sample 1')).toHaveAttribute('src', expect.stringContaining('sample-1-writing.pdf'));
+  expect(screen.getByRole('heading', { name: '3 · Review your work' })).toBeVisible();
+  fireEvent.click(screen.getByRole('button', { name: 'Speaking practice' }));
+  expect(screen.getByRole('heading', { name: '1 · Open the role-play cards' })).toBeVisible();
+  expect(screen.getByRole('link', { name: 'Open partner card 1 ↗' })).toHaveAttribute('href', expect.stringContaining('sample-1-speaking-partner.pdf'));
+  expect(view.container.querySelector('audio')).toBeNull();
+});
+
 it('uses selected files on the hosted page without contacting the HTTP gateway', () => {
   vi.spyOn(gateway, 'canConnectLocalSource').mockReturnValue(false);
   const fetchSpy = vi.fn().mockRejectedValue(new Error('No transcript fixture'));

@@ -18,6 +18,18 @@
 .benchmark-page #benchmark-letter { min-height: 360px; }
 .benchmark-page .material-timer { flex-wrap: wrap; }
 .benchmark-page .benchmark-test-select select { padding: 10px 12px; }
+.benchmark-writing-flow { display: grid; gap: 16px; }
+.benchmark-writing-steps, .benchmark-speaking-steps { display: flex; flex-wrap: wrap; gap: 8px; }
+.benchmark-writing-steps span, .benchmark-speaking-steps span { padding: 8px 12px; border: 1px solid #bfd1c6; border-radius: 999px; background: #f4f8f6; }
+.benchmark-writing-steps [aria-current="step"] { background: #087d78; color: white; border-color: #087d78; }
+.benchmark-phase-card { padding: 18px; border: 1px solid #bfd1c6; border-radius: 10px; background: #f7faf7; }
+.benchmark-phase-card h4 { margin: 0 0 8px; }
+.benchmark-phase-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 14px 0; }
+.benchmark-phase-actions strong { font-variant-numeric: tabular-nums; }
+.benchmark-review-checklist { display: grid; gap: 10px; padding-left: 0; list-style: none; }
+.benchmark-review-checklist label { display: flex; gap: 10px; align-items: flex-start; }
+.benchmark-review-checklist input { margin-top: 5px; }
+.benchmark-page .benchmark-speaking-steps { margin-top: 18px; }
 @media(max-width:600px) { .benchmark-page > .card, .benchmark-workspace > .card { padding: 18px; } }
 .benchmark-offline { border: 1px solid #bfd1c6; border-radius: 10px; padding: 18px; margin-top: 20px; background: #f4f8f6; }
 .benchmark-offline h3 { margin-top: 0; }
