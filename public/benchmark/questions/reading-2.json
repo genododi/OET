@@ -1,0 +1,426 @@
+{
+  "testId": "reading-2",
+  "sourceSha256": "95285b9293f59f01ca355eeb805ba4f009dab84c4cd53643ec85435c4db7f4a5",
+  "questions": [
+    {
+      "part": "A",
+      "number": 1,
+      "prompt": "The symptoms to check for during clinical assessment? ____________________",
+      "sourcePage": 25,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 2,
+      "prompt": "The timeline to full recovery? ____________________",
+      "sourcePage": 25,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 3,
+      "prompt": "Smaller operations as alternatives to knee replacement? ____________________",
+      "sourcePage": 26,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 4,
+      "prompt": "Post operative care following knee replacement? ____________________",
+      "sourcePage": 26,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 5,
+      "prompt": "Potential complications? ____________________",
+      "sourcePage": 26,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 6,
+      "prompt": "The reasons a patient needs to seek medical help after discharge?\n____________________",
+      "sourcePage": 26,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 7,
+      "prompt": "What a total knee replacement is? ____________________",
+      "sourcePage": 26,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 8,
+      "prompt": "What type of analgesia is administered using a patient controlled analgesia system\n(PCAS)? ____________________",
+      "sourcePage": 26,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 9,
+      "prompt": "What do the initials PKR stand for? ____________________",
+      "sourcePage": 26,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 10,
+      "prompt": "What are the most common complications following knee replacement surgery?\n____________________",
+      "sourcePage": 26,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 11,
+      "prompt": "During the clinical assessment, what does a Physiotherapist assess?\n____________________",
+      "sourcePage": 26,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 12,
+      "prompt": "What is the main reason a TKR is carried out for? ____________________",
+      "sourcePage": 26,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 13,
+      "prompt": "What is the minimum knee bend a patient should have on discharge from\nhospital? ____________________",
+      "sourcePage": 26,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 14,
+      "prompt": "During the clinical assessment, a patient’s medical history is checked to ensure\nthey are fit for what? ____________________",
+      "sourcePage": 26,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 15,
+      "prompt": "Deep veined thrombosis prevention options include use of\nan____________________pump.",
+      "sourcePage": 27,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 16,
+      "prompt": "A person may report knee____________________or clicking during the clinical\nassessment",
+      "sourcePage": 27,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 17,
+      "prompt": "The parts of an artificial knee joint may be held in place\nwith____________________or new bone growth",
+      "sourcePage": 27,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 18,
+      "prompt": "On discharge, most patients are able to walk____________________and go up\nand down stairs with a walking aid",
+      "sourcePage": 27,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 19,
+      "prompt": "____________________tissue forming and restricting movement of the knee is a\npotential complication following knee replacement surgery.",
+      "sourcePage": 27,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 20,
+      "prompt": "____________________and lifestyle changes are the first choices for managing\nthe knee symptoms",
+      "sourcePage": 27,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "B",
+      "number": 1,
+      "prompt": "If a baby is born with visual problems, what stage of pregnancy\n was it most likely to have been infected with rubella?\n a) As all babies infected with rubella in their first 11 weeks develop\n congenital rubella syndrome, the first trimester is when the infection\n most likely occurred.\n b) As over a third of all foetuses infected with rubella in weeks 13-16\n develop congenital rubella syndrome, the second trimester is when the\n infection most likely occurred.\n c) As all babies infected with rubella after their first 16 weeks do not\n develop congenital rubella syndrome, the third trimester is when the\n infection most likely occurred.",
+      "sourcePage": 29,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 2,
+      "prompt": "The statement below highlights that\n a) latex is being found in the Fluad vaccine itself\n b) the Fluad vaccine itself contains latex\n c) latex is not being found in the Fluad vaccine itself",
+      "sourcePage": 30,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 3,
+      "prompt": "The aim if this trial is to\n a) check if burns heal at the same rate as diabetic foot ulcers when the\n same dressing is used\n b) see if a spray-on skin dressing saves money and improves patient\n outcomes\n c) see if patients getting care in outpatient departments heal quicker than\n those having care provided in their own home",
+      "sourcePage": 31,
+      "group": "Text 3",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 4,
+      "prompt": "What does this information on injection technique tell us about\n the lifted skinfold technique\n a) the lifted skinfold technique allows for a suitable needle choice to be\n made\n b) the lifted skinfold technique ensures medication to be administered\n into the muscle layer\n c) the lifted skinfold technique involves releasing the skin quickly to\n reduce the risk of bruising",
+      "sourcePage": 32,
+      "group": "Text 4",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 5,
+      "prompt": "What does this article tell us about the discharge medication\n dispensing process?\n a) All prescriptions have to be at the Hospital pharmacy an hour before\n the patient is due to go home\n b) The prescription goes to the hospital pharmacy after being written up\n by the medical officer\n c) The Medical Officer must let the Hospital Pharmacy know if there are\n any amendments or corrections to be made",
+      "sourcePage": 33,
+      "group": "Text 5",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 6,
+      "prompt": "In this article what were staff on the ward directed to do?\n a) Clinical restraint is essential in acute mental health wards.\n\n\n\n\n\nb) When restraint occurs five people need to be present to assist, one of\n whom must be the shift coordinator.\n c) There must be a shift coordinator available and correct processes must\n be followed whenever clinical restraint is needed",
+      "sourcePage": 33,
+      "group": "Text 6",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 7,
+      "prompt": "According to the information in first Paragraph\n\n a) Mesothelioma patients have benefited from chemotherapy alone\n b) Mesothelioma patients have benefited from lung-sparing surgery alone\n c) Mesothelioma patients have benefited most from lung-sparing surgery\n and additional therapies\n d) Only a subset of mesothelioma patients can survive",
+      "sourcePage": 35,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 8,
+      "prompt": "Why is lung-sparing surgery better than removing the entire\n lung?\n\n\n\na) Because patients survive longer\nb) Because patients have a better life\nc) Because patients’ lives are compromised\nd) Because cancer cells are completely eradicated",
+      "sourcePage": 35,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 9,
+      "prompt": "What does “palliative” refer to in third Paragraph\n\na) Soothing\nb) Life-saving\nc) Routine\nd) Delicate",
+      "sourcePage": 36,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 10,
+      "prompt": "Which of the following are involve the use of asbestos?\n\na) Insulation\nb) Dust fibers\nc) Building shingles\nd) Flooring",
+      "sourcePage": 36,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 11,
+      "prompt": "The patients whose cancer had not spread to their lymph nodes\n\na) Were eligible for the lung-sparing surgery\nb) Lived 7.3 years longer than the other patients\nc) Lived more than double the average expectancy\nd) Were among the 15 to 20% of the patients treated with surgery",
+      "sourcePage": 36,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 12,
+      "prompt": "Lung-sparing surgery\n\na) Can be done on all mesothelioma patients.\nb) Can be done on less than a quarter of the patients.\nc) Can be done on less than half of mesothelioma patients.\nd) Can be done on 40 % of mesothelioma patients",
+      "sourcePage": 36,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 13,
+      "prompt": "In seventh paragraph, Friedberg draws the reader’s attention to\n\n a) All the positive effects of lung-sparing surgery.\n b) The fact that mesothelioma is a deadly cancer.\n c) The fact that there is a new and highly effective treatment.\n d) The necessity of implementing ground-breaking treatments",
+      "sourcePage": 37,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 14,
+      "prompt": "Dr. Daniel Petro believes that the study\n\n a) Is a step forward towards the discovery of a new treatment.\n b) Confirms his previous research.\n c) Produced results he would have expected\n d) Will contribute to eradicating mesothelioma.",
+      "sourcePage": 37,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 15,
+      "prompt": "The author describes dyslexic people’s brain differences as\n\n a) More varied than many people realize\n b) Easier to understand than people expect\n c) having wide-reaching effects\n d) Absolute",
+      "sourcePage": 39,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 16,
+      "prompt": "What new information did the study reveal?\n\n a) That their brains are more plastic.\n b) That their ability to recognize faces and objects is underdeveloped.\n c) It confirmed that they have problems recognizing written words.\n d) That their brains are less flexible in several ways not considered\n previously",
+      "sourcePage": 39,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 17,
+      "prompt": "What is implied by the chicken-and-egg question in Paragraph\n 2?\n\n a) The impossibility of discovering the true cause of dyslexia.\n b) The fact that many studies constantly reveal various findings about the\n differences in the brain structure\n c) The fact that it is impossible to identify whether alternations are the\n cause or consequence of dyslexia.\n d) The fact that the brain's structure and function are both the cause and\n consequence of dyslexia.",
+      "sourcePage": 39,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 18,
+      "prompt": "Why has the study been called “groundbreaking\"?\n\n\n\n\n\na) Because previously scientists hadn’t been able to understand the brain\n bases of dyslexia.\nb) Because so far scientists couldn’t understand as before why dyslexic\n brains are different.\nc) Because it reveals the brain basis of dyslexia.\nd) Because it makes progress in understanding the basis of dyslexia in the\n human brain",
+      "sourcePage": 39,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 19,
+      "prompt": "What is the main problem with people with dyslexia according\n to Perrachione?\n\na) There is no neural adaptation.\nb) Their brains take much longer to adapt.\nc) Adaptation occurs instantly.\nd) There is no sensory adaptation",
+      "sourcePage": 40,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 20,
+      "prompt": "What does the experiment in seventh paragraph reveal?\n\na) That people with dyslexia experience difficulties when listening to\n multiple speakers.\nb) That it was difficult for both people with and without dyslexia to adapt\n to multiple speakers.\nc) That people with dyslexia have difficulty processing listening as well as\n written words.\nd) That brains of people with dyslexia have difficulty adapting to listening\n as well as reading.",
+      "sourcePage": 40,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 21,
+      "prompt": "When is dyslexia most apparent?\n\na) During the process of reading.\nb) In face recognition.\nc) In face and object recognition.\nd) When reading is used as a tool or technology",
+      "sourcePage": 40,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 22,
+      "prompt": "Which of the following is not true about reading?\n\na. It is a very complex skill.\nb. It can be located in one centre of the brain\nc. It requires communication among different areas in the brain.\nd. It is an amazing achievement",
+      "sourcePage": 41,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    }
+  ]
+}

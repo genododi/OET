@@ -1,0 +1,390 @@
+{
+  "testId": "listening-18",
+  "sourceSha256": "8adfbf2ba6d50c8acb3e74398f98289363200d8864c467f1e795f6d28757b6ee",
+  "questions": [
+    {
+      "part": "A",
+      "number": 1,
+      "prompt": "Started to feel sick and ____",
+      "sourcePage": 133,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 2,
+      "prompt": "Volume: Approximately a ____",
+      "sourcePage": 133,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 3,
+      "prompt": "No changes in ____",
+      "sourcePage": 133,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 4,
+      "prompt": "Ongoing ____",
+      "sourcePage": 133,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 5,
+      "prompt": "Takes ____ daily",
+      "sourcePage": 133,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 6,
+      "prompt": "Not ____ stable",
+      "sourcePage": 133,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 7,
+      "prompt": "Blood test & ____",
+      "sourcePage": 133,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 8,
+      "prompt": "____ fluids via IV",
+      "sourcePage": 134,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 9,
+      "prompt": "____ & urea levels ECG",
+      "sourcePage": 134,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 10,
+      "prompt": "____ /high",
+      "sourcePage": 134,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 11,
+      "prompt": "Possible causes - ____ & oesophageal erosions",
+      "sourcePage": 134,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 12,
+      "prompt": "____ use /risk factor",
+      "sourcePage": 134,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 13,
+      "prompt": "Weakness on ____ side of face",
+      "sourcePage": 134,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 14,
+      "prompt": "____ normal, no numbness",
+      "sourcePage": 134,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 15,
+      "prompt": "Is able to see, and swallow both ____",
+      "sourcePage": 135,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 16,
+      "prompt": "Clear speech, no ____ or problems with words",
+      "sourcePage": 135,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 17,
+      "prompt": "No balance issues or ____",
+      "sourcePage": 135,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 18,
+      "prompt": "No recent ____",
+      "sourcePage": 135,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 19,
+      "prompt": "Medication for ____",
+      "sourcePage": 135,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 20,
+      "prompt": "Other symptoms & ____",
+      "sourcePage": 135,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 21,
+      "prompt": "indicate ____",
+      "sourcePage": 135,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 22,
+      "prompt": "A type of paralysis caused by ____",
+      "sourcePage": 135,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 23,
+      "prompt": "Most patients recover in less than ____",
+      "sourcePage": 135,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 24,
+      "prompt": "Important to keep eye lubricated as condition impacts ____",
+      "sourcePage": 135,
+      "group": "Extract 2"
+    },
+    {
+      "part": "B",
+      "number": 25,
+      "prompt": "You hear part of a conversation between a junior and senior doctor on how to\n interpret the results of an investigation.\n What does the senior doctor clarify about the results of the investigation?\nA. That the results clearly point to portal hypertension\nB. That the results are not sufficient to come to a definite diagnosis\n yet\nC. That the medical history allows them to rule out cirrhosis",
+      "sourcePage": 136,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 26,
+      "prompt": "You hear part of a training about smoking cessation counselling.\n The speaker points out that this approach is better than…\nA. One not focused specifically on this behavior\nB. One used by other types of specialties\nC. One focused on patient´s worries and desires",
+      "sourcePage": 136,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 27,
+      "prompt": "You hear a doctor going over an upcoming procedure with a patient.\n What does the doctor explain to the patient?\nA. When they can insert the implant\nB. How they will insert the implant\nC. Why they will insert the implant",
+      "sourcePage": 136,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 28,
+      "prompt": "You hear part of a conversation between a nurse and a doctor about a patient’s\n medication.\n What does the nurse point out about the patient’s medication?\nA. He took an analgesic before he was admitted to the hospital.\nB. He depends on his wife to get painkillers from the doctors in the\n hospital.\nC. He is mixing over-the-counter and prescribed medications.",
+      "sourcePage": 136,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 29,
+      "prompt": "You hear two doctors talking about a patient that one is referring to the other.\n The doctor referring the patient explains that…\nA. The previous diagnosis was made by a doctor at another practice.\nB. The previous diagnosis was made by a specialist in another field.\nC. The previous diagnosis was made by a doctor who is no longer\n working.",
+      "sourcePage": 137,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 30,
+      "prompt": "You hear a conversation between two ward leaders about administrative\n duties.\n The ward leaders agree that...\nA. Their job responsibilities have changed over time\nB. Their job has become much more difficult over time\nC. Their satisfaction with their job has changed over time",
+      "sourcePage": 137,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 31,
+      "prompt": "Why does Jessica Stokes say it is important to focus on coconut oil?\nA. Because of all of the benefits it is known to have\nB. Because of the recent interest in it\nC. Because of the findings of other research studies",
+      "sourcePage": 137,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 32,
+      "prompt": "Jessica Stokes points out that previous studies show...\nA. Consumption of coconut oil likely has no noticeable effect\nB. Consumption of coconut oil likely has a beneficial effect\nC. Consumption of coconut oil likely has a negative effect",
+      "sourcePage": 137,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 33,
+      "prompt": "What limitation did previous studies have?\nA. The duration of the study\nB. The methods of analysis\nC. The number of total studies",
+      "sourcePage": 138,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 34,
+      "prompt": "Who was not selected to be part of the study?\nA. People living outside of the country\nB. People with no known medical issues\nC. People living close to one town",
+      "sourcePage": 138,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 35,
+      "prompt": "Jessica Stokes says that before the study…\nA. Daily food consumption was evaluated\nB. The amount of exercise was evaluated\nC. The medication history was taken",
+      "sourcePage": 138,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 36,
+      "prompt": "Jessica Stokes concluded that future studies should…\nA. Include a larger number of total subjects\nB. Be conducted over a longer period of time\nC. Allow subjects to choose their own diet",
+      "sourcePage": 138,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 37,
+      "prompt": "Dr Coffey says that the procedure is indicated for patients…\nA. Who have any type of severe illness\nB. Who are having serious problems with sputum\nC. Who are having some respiratory distress",
+      "sourcePage": 138,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 38,
+      "prompt": "Dr Coffey says extra precautions should be taken with patients…\nA. Who have an infectious disease\nB. Who are constantly coughing\nC. Who have trouble coughing",
+      "sourcePage": 139,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 39,
+      "prompt": "Why does Dr Coffey give an example of an interaction with a patient?\nA. In order to demonstrate how to explain the procedure\nB. In order to demonstrate how to deal with difficult patients\nC. In order to demonstrate how the patient might feel",
+      "sourcePage": 139,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 40,
+      "prompt": "What is key to getting accurate results from this investigation?\nA. Getting a large specimen from the patient\nB. Getting a specimen from deep inside the chest\nC. Getting rid of any potential contaminants",
+      "sourcePage": 139,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 41,
+      "prompt": "Dr Coffey offers several tips in order to help patients…\nA. Recover quickly after the procedure is over\nB. Produce a quality sample of sputum\nC. Feel comfortable with the procedure",
+      "sourcePage": 139,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 42,
+      "prompt": "Dr Coffey suggests changing the procedure when…\nA. A patient is physically not able to cough\nB. A patient is taking certain medication\nC. A patient does not want to give consent",
+      "sourcePage": 139,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    }
+  ]
+}

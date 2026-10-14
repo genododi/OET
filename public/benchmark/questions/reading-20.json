@@ -1,0 +1,428 @@
+{
+  "testId": "reading-20",
+  "sourceSha256": "95285b9293f59f01ca355eeb805ba4f009dab84c4cd53643ec85435c4db7f4a5",
+  "questions": [
+    {
+      "part": "A",
+      "number": 1,
+      "prompt": "HRT? ____________________",
+      "sourcePage": 380,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 2,
+      "prompt": "Influences on the menstrual cycle? ____________________",
+      "sourcePage": 380,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 3,
+      "prompt": "The perimenopause? ____________________",
+      "sourcePage": 380,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 4,
+      "prompt": "The tests that may be carried out to confirm menopause? ____________________",
+      "sourcePage": 380,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 5,
+      "prompt": "Strategies to get a restful sleep? ____________________",
+      "sourcePage": 380,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 6,
+      "prompt": "The commonest age of women reaching menopause? ____________________",
+      "sourcePage": 380,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 7,
+      "prompt": "The hormones that the ovaries are less to responsive to? ____________________",
+      "sourcePage": 380,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 8,
+      "prompt": "What does staying away certain stimuli help reduce? ____________________",
+      "sourcePage": 380,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 9,
+      "prompt": "Neuropsychiatric changes cause sadness or apprehension. What else?\n____________________",
+      "sourcePage": 380,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 10,
+      "prompt": "Hormone Replacement therapy can reduce the incidence of disorders such as\nosteoporosis, colon cancer and what other condition? ____________________",
+      "sourcePage": 380,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 11,
+      "prompt": "What is the phase after the first year since the last period called?\n____________________",
+      "sourcePage": 380,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 12,
+      "prompt": "What does reduced functionality of the ovaries cause? ____________________",
+      "sourcePage": 380,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 13,
+      "prompt": "What can being a healthy weight help with? ____________________",
+      "sourcePage": 380,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 14,
+      "prompt": "What menopause treatment option can raise the chance of developing\nendometrial cancer? ____________________",
+      "sourcePage": 380,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 15,
+      "prompt": "Menstrual periods generally become____________________for a while before\nthey completely stop.",
+      "sourcePage": 381,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 16,
+      "prompt": "____________________cholesterol levels can increase and there is a greater risk\nof atherosclerosis developing.",
+      "sourcePage": 381,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 17,
+      "prompt": "____________________can happen if illnesses such as autoimmune diseases and\ngenetics conditions are present.",
+      "sourcePage": 381,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 18,
+      "prompt": "____________________or both.",
+      "sourcePage": 381,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 19,
+      "prompt": "Women often have an irregular menstrual cycle pattern, which may\nlast____________________years before finally ceasing.",
+      "sourcePage": 381,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 20,
+      "prompt": "____________________or____________________can help reduce stress.",
+      "sourcePage": 381,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "B",
+      "number": 1,
+      "prompt": "What may limit the use of telehealth?\n a) some people don’t know how to use it properly\n b) the remoteness of the patient\n c) poor communication links could cause data degradation",
+      "sourcePage": 383,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 2,
+      "prompt": "Which of the following problems associated with snoring are not\n mentioned in this article?\n a) it can impact daytime activities\n b) it can cause inflammation of the pharynx\n c) it can negatively affect both the snorer and others nearby",
+      "sourcePage": 384,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 3,
+      "prompt": "Which position does ASH advocate concerning athletes with sickle cell\n trait?\n a) athletes should continue to be screened for the trait and excluded from\n competitions if necessary\n\n\n\nb) affected athletes should be able to compete along with healthy competitors\n c) only athletes who have the exertion-related diagnosis should not compete",
+      "sourcePage": 384,
+      "group": "Text 3",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 4,
+      "prompt": "What were the findings of the 2011 study?\n a) there appears to be a link between blood draws and anaemia\n b) decreased haemoglobin and haematocrit levels could be predicted from the\n volume of blood drawn\n c) drawing blood can lead to iatrogenic complications",
+      "sourcePage": 385,
+      "group": "Text 4",
+      "numberingNote": "Paper label: 6. Saved as question 4 for Text 4.",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 5,
+      "prompt": "Why should healthcare workers know about MGUS, according to this\n article?\n a) they need to be ready to deal with relatively uncommon anomalies\n b) they need to understand it so that they can give adequate probabilistic\n assessments\n c) they may be asked about it as part of their training",
+      "sourcePage": 386,
+      "group": "Text 5",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 6,
+      "prompt": "Which of the following are not mentioned in the following article?\n a) complications can be caused by insufficient depression of the humeral head\n against the glenoid\n\nb) shoulder pain could be a symptom of something more serious\n c) a lot of patients seek treatment for shoulder pain",
+      "sourcePage": 386,
+      "group": "Text 6",
+      "numberingNote": "Paper label: 1. Saved as question 6 for Text 6.",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 7,
+      "prompt": "What developments of drug-responsive receptors are reported in the\n first paragraph?\n a) drug-responsive receptors have been tested on live animals for the first time\n b) some proteins have been found to be resistant to drug-responsive receptors\n c) the chemo-genetic resources have been extensively catalogued\n d) both the drugs and the receptors have been enhanced",
+      "sourcePage": 389,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 8,
+      "prompt": "What is Dr Christian Lüscher’s reaction to this new development?\n a) he says this development is unlikely to yield positive results\n b) he is concerned about possible side effects\n c) he thinks it could be used to benefit people\n d) he claims that, if the correct receptors are not identified, this development\n cannot be used",
+      "sourcePage": 389,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 9,
+      "prompt": "In the third paragraph, what is the aim of chemo-genetic techniques?\n a) to increase brain cell production\n b) to allow scientists to switch cells on or off by using specific drugs\n c) to make brain cells resistant to particular ligands\n d) to respond to the need for more brain molecules",
+      "sourcePage": 389,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 10,
+      "prompt": "What advantage does the new technique developed at the HHMI\n Research Campus offer?\n a) it is more versatile than the DREADD system\n b) it does not require the presence of clozapine\n c) it can eliminate ion channels\n d) it can replicate on G-protein coupled receptors (GPCRs) more readily",
+      "sourcePage": 389,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 11,
+      "prompt": "Why did Sternson’s team use an FDA-approved drug?\n a) the team were given samples of an FDA-approved drug to work with\n b) only FDA-approved rugs were available\n c) it is against the law to use a non-FDA approved drug\n\n\nd) an existing medication would increase their chances of a successful outcome",
+      "sourcePage": 389,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 12,
+      "prompt": "What was the team able to achieve with varenicline?\n a) they incorporated a new ion channel domain\n b) they made it possible to use it on animals\n c) they improved it\n d) they added a new crystalline structure",
+      "sourcePage": 390,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 13,
+      "prompt": "What additional result is described in the seventh paragraph?\n a) varenicline was produced which had fewer side effects\n b) stronger versions of varenicline were made\n c) a version of varenicline was made that is three times less expensive\n d) a version was created that could engineer new behaviour receptors",
+      "sourcePage": 390,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 14,
+      "prompt": "What is Gordon Fishell’s opinion of this research?\n a) it won’t be long until doctors can use this development to help their patients\n b) it is likely to remain as research for the foreseeable future\n c) it poses a danger as some may use this research to try to hack a brain\n d) chemo-genetics is the future of clinical contexts",
+      "sourcePage": 390,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 15,
+      "prompt": "Which of the following statements about general anaesthetic is not\n mentioned in the first paragraph?\n a) patients don’t have to suffer unbearable pain\n b) doctors and surgeons can manipulate a patient’s limbs more easily\n c) muscles can be paralysed\n d) patients can wake up with pleasant memories",
+      "sourcePage": 392,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 16,
+      "prompt": "According to the second paragraph, general anaesthetic can be\n administered\n\n\na) by inhalation only\n b) by breathing it in and/or by intravenous routes\n c) by oral medicines\n d) by intravenous route only",
+      "sourcePage": 392,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 17,
+      "prompt": "What can the pre-operative phase achieve?\n a) it can lead to reduced psychological stress\n b) it can produce adverse reactions\n c) it can result in higher than anticipated cancellation rates\n d) it can bring on cardiac and pulmonary complications",
+      "sourcePage": 393,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 18,
+      "prompt": "What has caused critical complications with general anaesthesia?\n a) unnecessarily long fasting times\n b) avoidable cases of dehydration\n c) operations that were delayed until correct fasting times were met\n d) drugs that the patient had taken that the medical team were unaware of",
+      "sourcePage": 393,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 19,
+      "prompt": "What is the main objective of premedication?\n a) to enable a patient to tolerate anaesthetics such as morphine or scopolamine\n b) use a short-acting benzodiazepine to cause drowsiness\n c) to prepare a patient for surgery\n d) to guarantee antegrade preparations",
+      "sourcePage": 393,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 20,
+      "prompt": "What normally follows the introduction of anaesthesia?\n a) prosthetic airway devices are used to manipulate the patient’s tongue\n b) priority should be given to the patient’s ability to breath\n c) laryngeal movements are monitored and adjusted\n d) sevoflurane vapor is usually used to maintain control of the unconscious\n patient",
+      "sourcePage": 393,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 21,
+      "prompt": "According to the seventh paragraph, what could complicate the amount\n of anaesthesia to be given?\n a) the presence of unwanted noxious stimulus\n b) experience and judgment of the anaesthetist\n c) a breakdown of communication between the surgeon and the anaesthetist\n d) the interval between initial induction and the commencement of surgery",
+      "sourcePage": 394,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 22,
+      "prompt": "In the last paragraph, what factor should be evaluated when inducing\n general anaesthesia?\n a) how much the patient weighs\n b) if the patient has an unprotected airway\n c) the appropriate level of oxygenation\n d) whether the patient has opted for mask ventilation",
+      "sourcePage": 394,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    }
+  ]
+}

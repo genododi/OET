@@ -1,0 +1,427 @@
+{
+  "testId": "reading-7",
+  "sourceSha256": "95285b9293f59f01ca355eeb805ba4f009dab84c4cd53643ec85435c4db7f4a5",
+  "questions": [
+    {
+      "part": "A",
+      "number": 1,
+      "prompt": "Self-help strategies?\n ___________________",
+      "sourcePage": 125,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 2,
+      "prompt": "How long pain from unstable angina might last? ___________________",
+      "sourcePage": 125,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 3,
+      "prompt": "What angina pectoris is? ___________________",
+      "sourcePage": 125,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 4,
+      "prompt": "The surgical options to treat angina? ___________________",
+      "sourcePage": 125,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 5,
+      "prompt": "The symptoms of angina that women might experience more than\n men? ___________________",
+      "sourcePage": 125,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 6,
+      "prompt": "The characteristics of chest pain that might be experienced in a person with\n angina? ___________________",
+      "sourcePage": 125,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 7,
+      "prompt": "Exercise options for a person with angina? ___________________",
+      "sourcePage": 125,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 8,
+      "prompt": "What type of angina is the most common? ___________________",
+      "sourcePage": 125,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 9,
+      "prompt": "What type of coronary angiography might be used to identify blocked blood\nvessels? ___________________",
+      "sourcePage": 126,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 10,
+      "prompt": "If the heart suffers prolonged oxygen deprivation, what other condition may\ndevelop? ___________________",
+      "sourcePage": 126,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 11,
+      "prompt": "Which arm might pain radiate to in a person experiencing an angina attack?\n___________________",
+      "sourcePage": 126,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 12,
+      "prompt": "What should a person with angina do as soon as symptoms start?\n___________________",
+      "sourcePage": 126,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 13,
+      "prompt": "Which medications are the first choice for variant angina sufferers?\n___________________",
+      "sourcePage": 126,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 14,
+      "prompt": "What can be established from taking a thorough family history?\n___________________",
+      "sourcePage": 126,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 15,
+      "prompt": "In Prinzmetal's angina, the___________________ spasm.",
+      "sourcePage": 126,
+      "group": "Complete the sentences",
+      "numberingNote": "Paper label: 16. Saved as question 15 in section order."
+    },
+    {
+      "part": "A",
+      "number": 16,
+      "prompt": "Avoiding___________________meals can ease symptoms of angina.",
+      "sourcePage": 126,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 17,
+      "prompt": "Taking___________________aspirin can reduce the risk of developing\ncomplications of having non-stable angina.",
+      "sourcePage": 126,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 18,
+      "prompt": "Ask patients about their lifestyle activities\nincluding___________________and___________________exercise and diet.",
+      "sourcePage": 126,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 19,
+      "prompt": "Learning___________________can ease symptoms and prevent complications of\nangina.",
+      "sourcePage": 126,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 20,
+      "prompt": "Unstable angina is serious and requires___________________",
+      "sourcePage": 126,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "B",
+      "number": 1,
+      "prompt": "In which group of the Australian population is acute gastroenteritis most\n prevalent?\n a) It affects all groups equally\n b) Adults aged 57 or over\n c) Children aged 5 years or less",
+      "sourcePage": 127,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 2,
+      "prompt": "According to this report were women with mental illness more prone to\n back pain or were men with back pain more prone to mental illness?\n a) It is more likely that a man with back pain will have a mental illness than it is\n for a woman with mental illness to develop back pain\n b) It was more likely that a woman with mental illness would develop back pain\n than it was for a man with back pain to have a mental illness.\n c) It is more likely that a woman with back pain will have a mental illness than it\n is for a man with mental illness to have back pain",
+      "sourcePage": 128,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 3,
+      "prompt": "What is a key problem facing staff trying to assess and manage\n incontinence?\n a) There are no effective equipment available to monitor levels of incontinence\n b) Radio links break so nurses do not know a patient has pressed their call bell\n c) Patients always have a urine infection",
+      "sourcePage": 129,
+      "group": "Text 3",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 4,
+      "prompt": "There are many factors that affect a person’s quality of life. Which\n particular features of a person’s life are most apparent to a physician?\n a) Friendship, spirituality and employment history\n b) Changing attitudes to quality of life, effect of a stroke and effects of surgery\n c) Limited life span ongoing pain and loneliness",
+      "sourcePage": 130,
+      "group": "Text 4",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 5,
+      "prompt": "The severity of kidney disease is diagnosed by checking what?\n a) The amount of blood that passes through the kidneys\n b) The amount of waste in the blood that is cleared by the kidneys\n c) The amount of urine that passes through the kidneys",
+      "sourcePage": 130,
+      "group": "Text 5",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 6,
+      "prompt": "What is the issue being raised in this memo?\n a) There are errors in one part of the patient information leaflet\n b) There are errors in two parts of the patient information leaflet\n c) There are errors in three parts of the patient information leaflet",
+      "sourcePage": 131,
+      "group": "Text 6",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 7,
+      "prompt": "What’s the author’s concern in the first paragraph?\n a) That Alzheimer’s disease is on the rise.\n b) That the costs for the treatment for Alzheimer’s disease are on the rise.\n c) That the unpaid care for Alzheimer’s disease is on the rise.\n d) That families are being destroyed by Alzheimer’s disease.",
+      "sourcePage": 133,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 8,
+      "prompt": "What brought about the financial difficulties of Eli Lilly?\n a) he high hopes that the company had for their drug for Alzheimer’s\n\n\n\nb) The inefficiency that the drug demonstrated in the final stage of the clinical\n trial\n c) The effort to introduce a cure for Alzheimer’s\n d) The fact that their stocks plummeted by 11.6%",
+      "sourcePage": 133,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 9,
+      "prompt": "Eli Lilly and Biogen have:\n a) based their efforts to develop a cure for Alzheimer’s on the same assumption\n b) spent 25 years carrying out research in order to find a cure for Alzheimer’s.\n c) not given up their hopes for discovering a cure for Alzheimer’s.\n d) failed in their attempt to produce a common cure for Alzheimer’s.",
+      "sourcePage": 134,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 10,
+      "prompt": "What is Tsai referring to in fourth Paragraph when she says “It’s a big if”?\n a) To the certainty of developing a new drug that would work on people.\n b) To the uncertainty of developing a new drug that would work on people.\n c) To the uncertainty of achieving the same results in humans as in mice\n d) To the certainty of applying a treatment on humans that has already worked\n on mice.",
+      "sourcePage": 134,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 11,
+      "prompt": "What is optogenetics?\n a) A dreamed technique.\n b) A technique that uses light to impact activity in cells.\n c) A technique that uses light to impact activity in certain cells.\n d) A technique that changes neuronal behavioral patterns.",
+      "sourcePage": 134,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 12,
+      "prompt": "Which of the following has not given any results in the treatment and\n prevention of Alzheimer’s?\n a) Gamma waves stimulation\n b) Meditation\n c) Listening to binaural beats\n d) Reducing protein growth",
+      "sourcePage": 134,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 13,
+      "prompt": "Instant access to technology\n a) increases human memory\n b) has damaging effects\n c) reduces the risk of Alzheimer’s\n d) increases the risk of Alzheimer’s",
+      "sourcePage": 135,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 14,
+      "prompt": "Which of the following hasn’t shown results in the prevention of\n Alzheimer’s?\n a) Social interaction\n b) Daydreaming\n c) Learning a new language\n d) Developing resistance.",
+      "sourcePage": 135,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 15,
+      "prompt": "A new study has recently\n a) explained an old saying\n b) sustained a belief considered to be a biological phenomenon\n c) sustained a belief considered to be a cultural concept\n\n\nd) provided biological grounds for something considered to be a cultural concept",
+      "sourcePage": 136,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 16,
+      "prompt": "Which of the following is not a characteristic of the insula?\n a) It integrates emotions\n b) It processes feelings of pain\n c) Empathy originates there\n d) It relates areas of the brain",
+      "sourcePage": 137,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 17,
+      "prompt": "Why is this study significant?\n a) Because it defines gender differences.\n b) Because it may lead to an explanation of gender differences\n c) Because it may lead to an explanation of traumatic experiences\n d) Because it may lead to an explanation of variations in trauma symptoms\n between boys and girls",
+      "sourcePage": 137,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 18,
+      "prompt": "What are girls more likely to develop than boys according to the\n information in paragraph 4?\n a) Serious traumas\n b) PTSD\n c) Treatment options\n d) Personalized treatment options",
+      "sourcePage": 137,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 19,
+      "prompt": "In the control group\n a) 16 boys had suffered trauma\n b) 14 boys had suffered trauma\n c) Neither the boys nor girls had suffered trauma\n d) Five participants experienced one episode of severe trauma",
+      "sourcePage": 137,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 20,
+      "prompt": "Which of these factors was not considered in the study?\n a) Gender\n b) Age\n\nc) IQ\n d) Background",
+      "sourcePage": 137,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 21,
+      "prompt": "The changes in the structure of the insula suggest\n a) That the traumas are very severe\n b) That traumatized boys develop PTSD.\n c) That girls are more prone to PTSD than boys.\n d) Why girls are more likely than boys to develop PTSD.",
+      "sourcePage": 138,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 22,
+      "prompt": "What could be the outcomes of the study as suggested in paragraph 6?\n a) Development of different methods of approach towards boys and girls.\n b) Development of different treatment methods for boys and girls.\n c) Development of new techniques to treat trauma symptoms.\n d) Development of new treatments to prevent trauma.",
+      "sourcePage": 138,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    }
+  ]
+}

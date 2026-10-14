@@ -1,0 +1,390 @@
+{
+  "testId": "listening-19",
+  "sourceSha256": "8adfbf2ba6d50c8acb3e74398f98289363200d8864c467f1e795f6d28757b6ee",
+  "questions": [
+    {
+      "part": "A",
+      "number": 1,
+      "prompt": "Now feeling more ____ than when first came in",
+      "sourcePage": 140,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 2,
+      "prompt": "Whole body started ____",
+      "sourcePage": 140,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 3,
+      "prompt": "Made ____ sounds and unable to open eyes",
+      "sourcePage": 140,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 4,
+      "prompt": "Bruising & ____ on face",
+      "sourcePage": 140,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 5,
+      "prompt": "Severe ____ just before",
+      "sourcePage": 140,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 6,
+      "prompt": "Episode of ____",
+      "sourcePage": 140,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 7,
+      "prompt": "No loss of consciousness recently or ____",
+      "sourcePage": 140,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 8,
+      "prompt": "Mild ____ headache & nausea",
+      "sourcePage": 141,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 9,
+      "prompt": "Administered ____ for nausea",
+      "sourcePage": 141,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 10,
+      "prompt": "No reported ____ disturbances",
+      "sourcePage": 141,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 11,
+      "prompt": "____ neck",
+      "sourcePage": 141,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 12,
+      "prompt": "Smokes ____ a day",
+      "sourcePage": 141,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 13,
+      "prompt": "Weight gain, particularly noticeable in the ____ & shoulders",
+      "sourcePage": 141,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 14,
+      "prompt": "____ have spread",
+      "sourcePage": 141,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 15,
+      "prompt": "Experiencing ____ & depression",
+      "sourcePage": 142,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 16,
+      "prompt": "Frequently feels ____ around other people",
+      "sourcePage": 142,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 17,
+      "prompt": "24-hour ____ cortisol investigation",
+      "sourcePage": 142,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 18,
+      "prompt": "Shows above 3x ____ of normal",
+      "sourcePage": 142,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 19,
+      "prompt": "____ cortisol confirmed Cushing’s syndrome",
+      "sourcePage": 142,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 20,
+      "prompt": "Patient not on ____",
+      "sourcePage": 142,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 21,
+      "prompt": "____ Cushing’s syndrome",
+      "sourcePage": 142,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 22,
+      "prompt": "Tumour of the ____",
+      "sourcePage": 142,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 23,
+      "prompt": "Test to detect ____",
+      "sourcePage": 142,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 24,
+      "prompt": "Medications to reduce levels temporarily until ____",
+      "sourcePage": 143,
+      "group": "Extract 2"
+    },
+    {
+      "part": "B",
+      "number": 25,
+      "prompt": "You hear part of a conversation between a doctor and a patient about the\n results of an investigation.\n The doctor explains that the results of the investigation show…\nA. The pathogen causing the disease\nB. A combination of coryzal symptoms\nC. The type of condition the patient has",
+      "sourcePage": 143,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 26,
+      "prompt": "You hear part of a conversation between two doctors about an MRI scan.\n The male doctor asks the female doctor to confirm…\nA. The severity of the condition\nB. The possible type of condition\nC. The direction of the malformation",
+      "sourcePage": 143,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 27,
+      "prompt": "You hear part of a training on suture materials.\n Which problem does the presenter identify?\nA. A lack of options available in relation to this topic\nB. A lack of knowledge about this topic\nC. A lack of confidence in this topic",
+      "sourcePage": 143,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 28,
+      "prompt": "You hear part of a conversation between a trainee nurse and a senior nurse.\n What does the senior nurse suggest?\nA. To explain the procedure to the patient\nB. To consult with the patient about the procedure\nC. To change the site of the procedure",
+      "sourcePage": 144,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 29,
+      "prompt": "You hear two doctors talking about breaking bad news to a patient.\n What do both doctors agree about?\nA. The lack of information makes the situation more difficult.\nB. The way patients react to news makes the situation more difficult.\nC. The type of diagnosis can make the news more difficult to give",
+      "sourcePage": 144,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 30,
+      "prompt": "You hear a ward safety briefing about preventing falls.\n The ward leader suggests that patients should…\nA. Be encouraged to perform exercises in bed first after an\n operation.\nB. Be accompanied when they need to get out of bed.\nC. Be given walkers or canes if they want to walk down the hallway.",
+      "sourcePage": 144,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 31,
+      "prompt": "What do Dr Salem and the interviewer agree about?\nA. How difficult it can be to get the right information\nB. How difficult it can be to find any information\nC. How difficult it can be to understand the information",
+      "sourcePage": 144,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 32,
+      "prompt": "Dr Salem points out that it is not known if…\nA. Diabetics have different outcomes from other patients\nB. Diabetics have an increased risk of becoming ill\nC. Diabetics will experience different symptoms",
+      "sourcePage": 145,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 33,
+      "prompt": "According to Dr Salem, what causes diabetics to be at a higher risk of\n complications?\nA. Poor management that increases the infection rate\nB. Poor management that affects blood sugar levels\nC. Poor management that weakens the immune system",
+      "sourcePage": 145,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 34,
+      "prompt": "Dr Salem clarifies that the level of risk for different types of diabetes…\nA. Depends more on other health problems than anything else\nB. Depends more on other factors, such as age, than anything else\nC. Depends more on good management than anything else",
+      "sourcePage": 145,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 35,
+      "prompt": "Dr Salem says that when contacting a doctor, a diabetic should…\nA. Know their most recent blood sugar levels\nB. Be able to say how long they have had symptoms\nC. Ask for assistance in getting more insulin",
+      "sourcePage": 145,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 36,
+      "prompt": "Dr Salem prioritises getting insulin to those…\nA. Whose supply is being cut off by large manufacturers\nB. Who cannot afford to pay due to financial problems\nC. Who cannot find it because of distribution networks",
+      "sourcePage": 145,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 37,
+      "prompt": "Why does Dr Adams say this training is necessary?\nA. Because many doctors avoid interacting with patients in this way\nB. Because of the impact the lack of training is having on patients\nC. Because of the increased number of patients seeking treatment",
+      "sourcePage": 146,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 38,
+      "prompt": "Dr Adams prioritises the human connection with patients because…\nA. It will lead to a more-informed evaluation of the patient.\nB. It will allow for a long-term relationship with the patient.\nC. It will give the doctor insight into the patient's thinking.",
+      "sourcePage": 146,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 39,
+      "prompt": "According to Dr Adams, which aspect is key to determining the level of\n impulsivity of the patient?\nA. Type of self-harm\nB. Existence of a trigger\nC. Evidence of forethought",
+      "sourcePage": 146,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 40,
+      "prompt": "Why might part of the interview be modified?\nA. In order to ask more about the method used\nB. In order to ask more about the current mood\nC. In order to ask more about theoretical next steps",
+      "sourcePage": 146,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 41,
+      "prompt": "Dr Adams explains that risks uncovered while taking the social history\n may…\nA. Result in further assessments being done\nB. Result in other professionals being brought in\nC. Result in patients reacting negatively",
+      "sourcePage": 146,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 42,
+      "prompt": "For the majority of patients, Dr Adams recommends…\nA. Referring the patient to specialist\nB. Putting together a list of actions points\nC. Contacting a local support network",
+      "sourcePage": 147,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    }
+  ]
+}

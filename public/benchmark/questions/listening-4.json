@@ -1,0 +1,390 @@
+{
+  "testId": "listening-4",
+  "sourceSha256": "8adfbf2ba6d50c8acb3e74398f98289363200d8864c467f1e795f6d28757b6ee",
+  "questions": [
+    {
+      "part": "A",
+      "number": 1,
+      "prompt": "Stage five ____ (diagnosed 2 years ago)",
+      "sourcePage": 24,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 2,
+      "prompt": "Began haemodialysis ____",
+      "sourcePage": 24,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 3,
+      "prompt": "Also suffers from ____",
+      "sourcePage": 24,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 4,
+      "prompt": "Feeling ____ and weary (impacting social life)",
+      "sourcePage": 24,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 5,
+      "prompt": "____ is not affected",
+      "sourcePage": 24,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 6,
+      "prompt": "Shuns ____ meals",
+      "sourcePage": 24,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 7,
+      "prompt": "In retrospect, negative feelings can be traced to the\n patient’s ____",
+      "sourcePage": 24,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 8,
+      "prompt": "Reports past episodes of emotional and ____ abuse",
+      "sourcePage": 24,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 9,
+      "prompt": "Likely suffering from ____",
+      "sourcePage": 25,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 10,
+      "prompt": "Requires a ____",
+      "sourcePage": 25,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 11,
+      "prompt": "____ therapy - to help with negative thoughts",
+      "sourcePage": 25,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 12,
+      "prompt": "Caution to be taken before prescribing an ____ , due potential\n side effects of mixing medications",
+      "sourcePage": 25,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 13,
+      "prompt": "Skin at back of neck has become ____ and heavily lined",
+      "sourcePage": 25,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 14,
+      "prompt": "____ changes recently to the main area affected",
+      "sourcePage": 25,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 15,
+      "prompt": "Cheeks and ears show ____ of excessive solar exposure",
+      "sourcePage": 25,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 16,
+      "prompt": "Rough and patchy skin on hands are areas of solar ____",
+      "sourcePage": 25,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 17,
+      "prompt": "Parts where the skin is unaffected by sun damage: ____ \n and [blank for Q18]",
+      "sourcePage": 26,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 18,
+      "prompt": "Parts where the skin is unaffected by sun damage: [blank for Q17]\n and ____",
+      "sourcePage": 26,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 19,
+      "prompt": "The ____ of the skin has thickened",
+      "sourcePage": 26,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 20,
+      "prompt": "____ has solar elastosis",
+      "sourcePage": 26,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 21,
+      "prompt": "Cutis rhomboidalis nuchae (also known as farmer’s or ____ \n skin)",
+      "sourcePage": 26,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 22,
+      "prompt": "Condition is unlikely to turn ____",
+      "sourcePage": 26,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 23,
+      "prompt": "Should be monitored ____ by a dermatologist",
+      "sourcePage": 26,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 24,
+      "prompt": "To ensure better ____ , early detection of skin cancer is crucial",
+      "sourcePage": 26,
+      "group": "Extract 2"
+    },
+    {
+      "part": "B",
+      "number": 25,
+      "prompt": "You hear an intern in radiology talking with a senior doctor.\n How does the intern decide on the diagnosis?\nA. By looking at the patient’s account of events\nB. By taking into account the physical exam in the A&E\nC. By examining the radiograph of the patient’s injury",
+      "sourcePage": 27,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 26,
+      "prompt": "You hear a GP ask a colleague for advice about a patient.\n What does the female doctor confirm?\nA. That the doctor should help the patient get screened for cancer\nB. That the doctor should give more information to the pati\nC. That the doctor should get more information about the guidelines",
+      "sourcePage": 27,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 27,
+      "prompt": "You hear an intern asking a senior doctor a question after a training\n session.\n What does the senior doctor clarify for the intern?\nA. The recommendations he made for the patient\nB. The reason for the recommendations he made\nC. Alternative recommendations for the patient",
+      "sourcePage": 27,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 28,
+      "prompt": "You hear a GP discuss a patient with a radiologist.\n How does the radiologist respond to the GP’s plan?\nA. By agreeing with the GP’s next steps for the patient\nB. By suggesting an alternative to the GP’s plan\nC. By asking the GP how he came up with his plan",
+      "sourcePage": 27,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 29,
+      "prompt": "You hear two nurses discussing a patient referred by his GP.\n What does the female nurse identify as a cause?\nA. The patient’s recent travels\nB. The patient’s medical history\nC. The patient’s oxygen levels",
+      "sourcePage": 27,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 30,
+      "prompt": "You hear a patient’s family member expressing concerns to a nurse\n What does the nurse say to prioritize in this case?\nA. Finding a nursing home close to the patient’s house\nB. Taking the patient home for treatment\nC. Respecting the patient’s desires",
+      "sourcePage": 28,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 31,
+      "prompt": "Why does the speaker mention the increase in the demand for GP\n appointments?\nA. She wanted to show that more and more people need to see their\n GP.\nB. She wanted to show the need for looking for a new type of\n appointment.\nC. She wanted to show that increasing need for more GPs to be\n trained.",
+      "sourcePage": 28,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 32,
+      "prompt": "Why is the traditional appointment less effective than it used to be?\nA. Because it isn’t enough time for the types of problems patients\n have.\nB. Because it isn’t enough time for the GP to get to know the patient.\nC. Because it isn’t enough time for the GP to see older patients.",
+      "sourcePage": 28,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 33,
+      "prompt": "Why does the facilitator make certain information visible for patients\n during the appointment?\nA. So that the patients can remember the main topic of the\n conversation.\nB. So that the doctor can use the information in the group\n discussion.\nC. So that the patients can use the information to ask the GP\n questions.",
+      "sourcePage": 28,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 34,
+      "prompt": "What is the main aim of the group appointment?\nA. To dedicate less time to each patient\nB. To give patients an opportunity to learn\nC. To have patients ask the GP questions",
+      "sourcePage": 29,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 35,
+      "prompt": "What was the patient’s perception of the group appointment?\nA. It took a long time for the group to get going.\nB. Not everyone shared a lot of information.\nC. The group felt connected during the session",
+      "sourcePage": 29,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 36,
+      "prompt": "It is still best to use a traditional appointment with a patient when..\nA. the patient has a diagnosed, long term illness.\nB. the patient wants the support of a peer network.\nC. the patient does not have any particular diagnosis.",
+      "sourcePage": 29,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 37,
+      "prompt": "Why is the researcher excited to share the news at this moment?\nA. Because they have just completed trials with the new drug.\nB. Because they have just gotten permission to use the drug.\nC. Because they have just started to review the results of studies.",
+      "sourcePage": 29,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 38,
+      "prompt": "How are the new drugs different from previous approaches to treatment?\nA. They target genetic abnormalities in the body.\nB. They target a particular area of the body to treat\nC. They target cancer in various parts of the body.",
+      "sourcePage": 29,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 39,
+      "prompt": "According to the speaker, what is needed to be able to offer the treatment\n to patients in the UK?\nA. The approval from European regulators\nB. A certain kind of genomic testing\nC. An agreement between NHS and European authorities",
+      "sourcePage": 30,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 40,
+      "prompt": "According to the speaker, what is the cause of Charlotte’s tumour?\nA. The tumour genes take over and replace the DNA present in the\n patient\nB. Patient DNA comes together with another and creates an\n alteration\nC. Patient DNA is altered for a reason that doctors do not\n understand",
+      "sourcePage": 30,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 41,
+      "prompt": "According to the speaker, researchers originally feared that Charlotte’s\n type of cancer...\nA. Couldn’t be treated because of the way the genes were linked to\n neurological cells\nB. Couldn’t be treated because of the possibility of causing other\n cancers\nC. Couldn’t be treated because of the importance of the genes in\n development",
+      "sourcePage": 30,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 42,
+      "prompt": "What is the difference in the way children and adults respond to the\n treatment?\nA. Children respond better to the treatment.\nB. There is no difference in the way children and adults respond to\n the treatment.\nC. Adults respond 94% better than children",
+      "sourcePage": 30,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    }
+  ]
+}

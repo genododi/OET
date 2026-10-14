@@ -1,0 +1,390 @@
+{
+  "testId": "listening-17",
+  "sourceSha256": "8adfbf2ba6d50c8acb3e74398f98289363200d8864c467f1e795f6d28757b6ee",
+  "questions": [
+    {
+      "part": "A",
+      "number": 1,
+      "prompt": "Jaundice lasting approximately ____",
+      "sourcePage": 125,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 2,
+      "prompt": "Stool: ____ in colour",
+      "sourcePage": 125,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 3,
+      "prompt": "____ Normal in amount",
+      "sourcePage": 125,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 4,
+      "prompt": "Right ____",
+      "sourcePage": 125,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 5,
+      "prompt": "Intermittent but has lasted ____",
+      "sourcePage": 125,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 6,
+      "prompt": "Sharp pain increasing in ____",
+      "sourcePage": 125,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 7,
+      "prompt": "____ large meals",
+      "sourcePage": 125,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 8,
+      "prompt": "Surgery on ____",
+      "sourcePage": 125,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 9,
+      "prompt": "No ____",
+      "sourcePage": 126,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 10,
+      "prompt": "Not a candidate for ____",
+      "sourcePage": 126,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 11,
+      "prompt": "Serum lipase & amylase (to eliminate ____",
+      "sourcePage": 126,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 12,
+      "prompt": "____ after results",
+      "sourcePage": 126,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 13,
+      "prompt": "____ haematuria",
+      "sourcePage": 126,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 14,
+      "prompt": "Turned from ____ to dark red in last 24 hours",
+      "sourcePage": 126,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 15,
+      "prompt": "Difficulty ____",
+      "sourcePage": 126,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 16,
+      "prompt": "____ in urine",
+      "sourcePage": 127,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 17,
+      "prompt": "No ____ or similar feeling",
+      "sourcePage": 127,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 18,
+      "prompt": "No ____ bladder or renal cancer",
+      "sourcePage": 127,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 19,
+      "prompt": "____ on medication",
+      "sourcePage": 127,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 20,
+      "prompt": "Heavy ____",
+      "sourcePage": 127,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 21,
+      "prompt": "At increased risk for ____",
+      "sourcePage": 127,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 22,
+      "prompt": "Bladder washout and ____",
+      "sourcePage": 127,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 23,
+      "prompt": "by way of a ____",
+      "sourcePage": 127,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 24,
+      "prompt": "Urine culture to be collected: To check for ____ cause",
+      "sourcePage": 127,
+      "group": "Extract 2"
+    },
+    {
+      "part": "B",
+      "number": 25,
+      "prompt": "You hear part of a conversation between a junior and senior doctor.\n What is the senior doctor’s stand on painkillers in this case?\nA. Triptans can sometimes be ineffective for severe headaches.\nB. They can sometimes be sufficient in the management of the\n condition.\nC. A variety of painkillers can be used to as prophylactic options.",
+      "sourcePage": 128,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 26,
+      "prompt": "You hear part of a training on the classifications of strokes.\n What does the presenter clarify about how diagnosis is determined?\nA. There is a reliance on the results from investigations.\nB. There is a reliance on the patient’s clinical history.\nC. There is a reliance on observation of the patient.",
+      "sourcePage": 128,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 27,
+      "prompt": "You hear part of a ward briefing about documentation of results.\n What does the ward leader warn the team not to forget?\nA. The duration of the last therapy.\nB. The absence of abnormalities.\nC. The details related to treatment.",
+      "sourcePage": 128,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 28,
+      "prompt": "You hear part of ward briefing on history taking and information giving.\n What does the speaker say to prioritize during this type of patient\n interaction?\nA. Giving the patient the opportunity to express themselves.\nB. Giving the patient the opportunity to discuss medical decisions.\nC. Giving the patient the opportunity to ask for medical advice.",
+      "sourcePage": 128,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 29,
+      "prompt": "You hear a dermatologist reporting results to a GP.\n What does the dermatologist explain to the GP?\nA. A possible diagnosis for the patient’s lesion.\nB. The risk factors presented by the patient.\nC. The aspects checked during the appointment.",
+      "sourcePage": 129,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 30,
+      "prompt": "You hear two nurses discussing handwashing.\n The nurses agree that...\nA. People have improved how they wash their hands.\nB. People are better at training others to wash their hands.\nC. People know what type of cleaning liquid to use.",
+      "sourcePage": 129,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 31,
+      "prompt": "Why does Dr Paduh refer to the previous training?\nA. So that the trainees know that he is not repeating similar content\n from a previous training.\nB. So that the trainees can use their previous knowledge to good\n use in the current training.\nC. So that the trainees can concentrate on the new information and\n worry less about what they already know.",
+      "sourcePage": 129,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 32,
+      "prompt": "Dr Paduh says that the vertical mattress stitch is often used when…\nA. A wound is located in a place where scarring is noticeable\nB. A wound is located where skin is particularly tense\nC. A wound is located where skin tends to turn outwards",
+      "sourcePage": 129,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 33,
+      "prompt": "What is a reason not to use the vertical mattress stitch?\nA. It is difficult for doctors to learn to do it well.\nB. Success depends on the ability of the doctor.\nC. It requires a lot of time to set up the procedure.",
+      "sourcePage": 129,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 34,
+      "prompt": "Dr Paduh warns that a wound cannot be closed until…\nA. A booster of necessary vaccines is administered\nB. An X ray is performed to check for fractures\nC. The limits of the wound are thoroughly cleaned",
+      "sourcePage": 130,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 35,
+      "prompt": "Dr Paduh says the symmetry of loops is key because...\nA. It will decrease the chances of excessive scarring\nB. It will result in alignment of the edges of the wound\nC. It will decrease the amount of swelling that occurs",
+      "sourcePage": 130,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 36,
+      "prompt": "Dr Paduh says pulling on the knot excessively will result in…\nA. A higher risk of scarring near the edges wound\nB. A turning out of the edges of the wound\nC. A lack of opposition of the edges of the wound",
+      "sourcePage": 130,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 37,
+      "prompt": "The interviewer mentions Tu’s background in order to…\nA. Emphasise the significance of Tu’s achievement.\nB. Ensure that the audience have clear expectations of the interview.\nC. Prepare the audience for Tu’s lack of official medical credentials.",
+      "sourcePage": 130,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 38,
+      "prompt": "Tu says that she was motivated to study medicine because…\nA. Tuberculosis took away two fruitful years of her life.\nB. Tuberculosis helped her empathise with others.\nC. Tuberculosis gave her time to think about her future.",
+      "sourcePage": 131,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 39,
+      "prompt": "What was the focus of Tu’s medical education?\nA. Finding a cure for bacterial infections such as tuberculosis.\nB. Understanding the use of naturally-found compounds.\nC. Classifying different types of traditional medicine.",
+      "sourcePage": 131,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 40,
+      "prompt": "What was a turning point in Tu’s professional career?\nA. When a war in a neighboring country started.\nB. When a new drug was developed for malaria.\nC. When her government started a new project.",
+      "sourcePage": 131,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 41,
+      "prompt": "Why did Tu’s team start doing research into old texts?\nA. Because the texts had been useful in the past.\nB. Because they had run out of other options.\nC. Because malaria had been previously cured in China.",
+      "sourcePage": 131,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 42,
+      "prompt": "Tu mentions language as an obstacle to…\nA. The identification of the active component.\nB. The development of an effective treatment.\nC. The spread of theTu’s team’s research findings.",
+      "sourcePage": 131,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,390 @@
+{
+  "testId": "listening-2",
+  "sourceSha256": "8adfbf2ba6d50c8acb3e74398f98289363200d8864c467f1e795f6d28757b6ee",
+  "questions": [
+    {
+      "part": "A",
+      "number": 1,
+      "prompt": "Initial diagnosis: Tennis elbow of the ____ arm",
+      "sourcePage": 8,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 2,
+      "prompt": "Initial pain was ____",
+      "sourcePage": 8,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 3,
+      "prompt": "Pain increased after ____",
+      "sourcePage": 8,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 4,
+      "prompt": "Patient refused the ____",
+      "sourcePage": 8,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 5,
+      "prompt": "Instead, patient opted for ____ (ineffective)",
+      "sourcePage": 8,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 6,
+      "prompt": "Pain Management Options\n Injection (not helpful as patient has had the pain for more\n than ____",
+      "sourcePage": 8,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 7,
+      "prompt": "Acupuncture (to be done ____ and in conjunction with\n physiotherapy)",
+      "sourcePage": 9,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 8,
+      "prompt": "Physiotherapy (needs time to take ____ )",
+      "sourcePage": 9,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 9,
+      "prompt": "Targets the ____ )",
+      "sourcePage": 9,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 10,
+      "prompt": "Start with low ____",
+      "sourcePage": 9,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 11,
+      "prompt": "Signs of overdoing it: More ____",
+      "sourcePage": 9,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 12,
+      "prompt": "Generally quite low (if physiotherapy is adhered to and\n correct ____ is used)",
+      "sourcePage": 9,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 13,
+      "prompt": "Symptoms have been ongoing for ____",
+      "sourcePage": 10,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 14,
+      "prompt": "Texture of faeces: ____ (without [blank for Q15] or mucus)",
+      "sourcePage": 10,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 15,
+      "prompt": "Texture of faeces: [blank for Q14] (without ____ or mucus)",
+      "sourcePage": 10,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 16,
+      "prompt": "On admission: Dehydrated and had ____ respiratory rate",
+      "sourcePage": 10,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 17,
+      "prompt": "First line of treatment - ____",
+      "sourcePage": 10,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 18,
+      "prompt": "Change of diet to cut out ____ and lactose",
+      "sourcePage": 10,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 19,
+      "prompt": "Negative result for ____",
+      "sourcePage": 10,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 20,
+      "prompt": "Need to rule out ____ (related to [blank for Q21] in the small\n intestine)",
+      "sourcePage": 11,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 21,
+      "prompt": "Need to rule out [blank for Q20] (related to ____ in the small\n intestine)",
+      "sourcePage": 11,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 22,
+      "prompt": "To ____ with usual eating habits (to prevent a [blank for Q23] in\n the test results",
+      "sourcePage": 11,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 23,
+      "prompt": "To [blank for Q22] with usual eating habits (to prevent a ____ in\n the test results",
+      "sourcePage": 11,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 24,
+      "prompt": "A ____ is also advised",
+      "sourcePage": 11,
+      "group": "Extract 2"
+    },
+    {
+      "part": "B",
+      "number": 25,
+      "prompt": "You hear a doctor briefing a colleague about a patient.\n How does the doctor correct his initial diagnosis?\nA. By looking at the patient’s appearance\nB. By getting images of the problem area\nC. By consulting with another doctor",
+      "sourcePage": 11,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 26,
+      "prompt": "You hear a nurse asking a doctor for help with a patient.\n What does the doctor suggest be done with the patient?\nA. To let him rest and see if the pain continues\nB. To perform an ultrasound to rule out a fracture\nC. To quickly eliminate a more serious possibility",
+      "sourcePage": 12,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 27,
+      "prompt": "You hear part of a morning briefing in a hospital ward. Now read the question.\n What is the plan for the patient today?\nA. She will be given medication to treat her condition\nB. She will be given medication to help deal with a symptom\nC. She will be given a diagnosis based on lab results",
+      "sourcePage": 12,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 28,
+      "prompt": "You hear a nurse asking a colleague for advice.\n What does the colleague recommend?\nA. To refer the patient and his family to a specialist for support\nB. To get the patient long-term follow-up and support immediately\nC. To get the family of the patient involved in his care",
+      "sourcePage": 12,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 29,
+      "prompt": "You hear a podiatrist presenting a course of treatment.\n What type of intervention was chosen?\nA. Removing the problem by cutting back the nail under local anesthetic\nB. Using a chemical to prevent a recurrence ofin-grown toenail\nC. Opting for a combination of surgery and topical medication",
+      "sourcePage": 12,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 30,
+      "prompt": "You hear a patient asking a physiotherapist about his current treatment.\n What does the physiotherapist clarify for the patient?\nA. That the injury is more severe than originally thought\nB. That the therapy needs to be continued for now\nC. That a new injury might have recently occurred",
+      "sourcePage": 12,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 31,
+      "prompt": "Why did Dr Terry leave her career in public health?\nA. She was interested to earn a master’s degree in the US\nB. She was not fulfilled by her work in public health\nC. She was influenced by the diagnosis of her child",
+      "sourcePage": 13,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 32,
+      "prompt": "How did Dr Terry react to her son’s condition?\nA. She looked for information about the disease\nB. She decided to become more educated about it\nC. She became involved in patient advocacy groups",
+      "sourcePage": 13,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 33,
+      "prompt": "Why does Dr Terry mention Huntington’s?\nA. Because it is a disorder related to Angelman\nB. Because it is a more familiar disorder\nC. Because she is also interested in researching it",
+      "sourcePage": 13,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 34,
+      "prompt": "What assumptions about Angelman syndrome have recently changed?\nA. Whether doctors know how to properly diagnose the syndrome\nB. Whether the disease occurs only in certain places or populations\nC. Whether children with the syndrome can attend school",
+      "sourcePage": 13,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 35,
+      "prompt": "What caused Dr Terry to seek out a diagnosis for her child?\nA. Her child was too cheerful and enthusiastic\nB. Her child couldn’t communicate or do other common tasks\nC. Her child was given a referral to a geneticist",
+      "sourcePage": 13,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 36,
+      "prompt": "What happened as a result of the conference Dr Terry attended?\nA. She met the person who found a cure for Angelman\nB. She learned about the gene that is responsible for Angelman\nC. She developed an idea for treatment of Angelman",
+      "sourcePage": 14,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 37,
+      "prompt": "Kevin says that this training will be particularly valuable for\nA. Those interested in becoming a speech pathologist\nB. Those interested in a medical career treating children\nC. Those interested in a medical career as a general practitioner",
+      "sourcePage": 14,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 38,
+      "prompt": "Kevin says that children with expressive language delays\nA. Have difficulty understanding language directed at them\nB. Have difficulty producing oral language\nC. Have difficulty constructing sentences",
+      "sourcePage": 14,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 39,
+      "prompt": "Kevin says that most children with LLE will eventually\nA. Never develop language skills similar to other children their age\nB. Go on to develop normal language skills by the age of about 5\nC. Demonstrate language delays until they reach the age of 7",
+      "sourcePage": 14,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 40,
+      "prompt": "According to Kevin, which is an example of a child-related risk factor?\nA. The development of motor skills\nB. The number of siblings\nC. The access to learning opportunities",
+      "sourcePage": 14,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 41,
+      "prompt": "According to Kevin, initial treatment for LLE involves\nA. Direct intervention alongside other specialists\nB. Giving access to learning opportunities\nC. Monitoring development and indirect intervention",
+      "sourcePage": 15,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 42,
+      "prompt": "What is key for a successful intervention plan?\nA. Involving other specialists\nB. Working closely with the family\nC. Taking into consideration culture",
+      "sourcePage": 15,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    }
+  ]
+}

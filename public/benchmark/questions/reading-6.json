@@ -1,0 +1,439 @@
+{
+  "testId": "reading-6",
+  "sourceSha256": "95285b9293f59f01ca355eeb805ba4f009dab84c4cd53643ec85435c4db7f4a5",
+  "questions": [
+    {
+      "part": "A",
+      "number": 1,
+      "prompt": "The signs that someone might have glandular fever?\n_______________",
+      "sourcePage": 105,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 2,
+      "prompt": "Unexpected difficulties that might arise from having glandular\nfever? ________________",
+      "sourcePage": 105,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 3,
+      "prompt": "The time it takes for glandular fever to fully develop? _______________",
+      "sourcePage": 106,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 4,
+      "prompt": "Ways to avoid getting glandular fever? _______________",
+      "sourcePage": 106,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 5,
+      "prompt": "The ways glandular fever can be confirmed? ________________",
+      "sourcePage": 106,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 6,
+      "prompt": "The EBV virus ___________________",
+      "sourcePage": 106,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 7,
+      "prompt": "The prevalence of glandular fever _______________",
+      "sourcePage": 106,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 8,
+      "prompt": "What does EBV stand for? ________________",
+      "sourcePage": 106,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 9,
+      "prompt": "Which lymph gland are most likely to be swollen if a person has glandular fever?\n________________",
+      "sourcePage": 106,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 10,
+      "prompt": "What is the most effective way to stop the spread of glandular fever?\n__________________",
+      "sourcePage": 106,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 11,
+      "prompt": "What type of sport should not be played for 4 weeks after having glandular\nfever? _________________",
+      "sourcePage": 106,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 12,
+      "prompt": "How many days will person with glandular fever be poorly for?\n___________________",
+      "sourcePage": 106,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 13,
+      "prompt": "Which bacteria can sometimes cause a sore throat requiring the glandular fever\nsufferer to need antibiotic therapy? ___________________",
+      "sourcePage": 106,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 14,
+      "prompt": "What sort of environment does the EBV need to survive outside a human body?",
+      "sourcePage": 106,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 15,
+      "prompt": "A person with glandular fever experiences debilitating___________________",
+      "sourcePage": 107,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 16,
+      "prompt": "Glandular fever is sometimes called the___________________\nbecause it is most prevalent among young people.",
+      "sourcePage": 107,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 17,
+      "prompt": "The EB Virus will have infected___________________\nof people by the time they reach adulthood.",
+      "sourcePage": 107,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 18,
+      "prompt": "Staying away from work or school is___________________\nto stop spreading glandular fever.",
+      "sourcePage": 107,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 19,
+      "prompt": "There is___________________ to stop people getting glandular fever.",
+      "sourcePage": 107,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 20,
+      "prompt": "Getting plenty of___________________and___________________are the best\nways to manage glandular fever.",
+      "sourcePage": 107,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "B",
+      "number": 1,
+      "prompt": "Abuse in nursing homes has several causes but what issue does this\n article concentrate on?\n a) Too many people are living in nursing homes rather than staying in their own\n homes.\n b) Insufficient experienced and considerate staff and no compulsory staffing level\n requirements.\n c) Too many hazards that allow the residents to be injured, such as water\n features and heaters.",
+      "sourcePage": 109,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 2,
+      "prompt": "What two ideas are there about education that could increase the\n number of nurses from the Aboriginal and Torres Strait Islander\n populations?\n a) There need to be apprenticeships for indigenous people to work in different\n healthcare settings and nursing needs to give extra educational support to\n Aborigine and Torres Strait islander nursing students.\n b) There need to be special pathways into nursing education for indigenous\n people and more Aborigine and Torres Strait Islanders working in early\n education\n c) Nurse education around the health of Aborigines and Torres Strait Islanders\n needs to be culturally appropriate and early education is needed to increase\n the educational achievement of indigenous people.",
+      "sourcePage": 110,
+      "group": "Text 2",
+      "numberingNote": "Paper label: 1. Saved as question 2 for Text 2.",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 3,
+      "prompt": "This memo outlines the advice for people travelling to PNG about polio\n boosters and vaccines. What is the risk of a polio outbreak unfurling in\n Australia?\n a) The risk is low because Australia has good border control measures in place\n b) The risk is high because the population is widespread\n c) The risk is low because Australia has the means to manage cases of polio",
+      "sourcePage": 111,
+      "group": "Text 3",
+      "numberingNote": "Paper label: 1. Saved as question 3 for Text 3.",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 4,
+      "prompt": "What approach will the research team take to try and reduce the\n frequency and effects of stroke on a person?\n a) They will provide personalised and specific assistance to people at risk of\n stroke\n b) They will give seven simple medications to people at risk of stroke and\n monitor the effects\n c) They will have people at risk trying our different treatments to see which is\n the most cost effective in the long run",
+      "sourcePage": 112,
+      "group": "Text 4",
+      "numberingNote": "Paper label: 1. Saved as question 4 for Text 4.",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 5,
+      "prompt": "According to this article how often are antimicrobial drugs\n inappropriately prescribed in Australian nursing homes?\n a) 10% of the time\n b) 25% of the time\n c) 50% of the time",
+      "sourcePage": 113,
+      "group": "Text 5",
+      "numberingNote": "Paper label: 1. Saved as question 5 for Text 5.",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 6,
+      "prompt": "The HPV Vaccination programme reduces the incidence of what?\n a) Sexually transmitted diseases\n\nb) Genital warts\n c) Herpes",
+      "sourcePage": 113,
+      "group": "Text 6",
+      "numberingNote": "Paper label: 1. Saved as question 6 for Text 6.",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 7,
+      "prompt": "Which of the following is not attributed to the lack of socialization ?\n a) Evolved bodies\n b) Premature death\n c) Risk of heart disease\n d) Risk of neurodegenerative diseases",
+      "sourcePage": 115,
+      "group": "Text 1",
+      "numberingNote": "Paper label: 1. Saved as question 7 in section order.",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 8,
+      "prompt": "What aspect does Professor Steve Cole consider when he investigates the\n consequences of loneliness?\n a) Psychological\n b) Biobehavioural\n c) Molecular\n d) Medical",
+      "sourcePage": 115,
+      "group": "Text 1",
+      "numberingNote": "Paper label: 2. Saved as question 8 in section order.",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 9,
+      "prompt": "What did John Caccioppo and Steve Cole work together on?\n a) Research on the effects of loneliness on a physical and molecular level.\n b) Research on social disconnection.\n c) Research on the variation of gene expression in both lonely and non-lonely\n people.\n d) Research on the suppression of certain genes in lonely people.",
+      "sourcePage": 116,
+      "group": "Text 1",
+      "numberingNote": "Paper label: 3. Saved as question 9 in section order.",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 10,
+      "prompt": "What was found to be much lower in lonely people?\n a) The risk of developing Alzheimer’s\n b) Incidences of inflammation\n c) Their antiviral response\n d) Gene expression",
+      "sourcePage": 116,
+      "group": "Text 1",
+      "numberingNote": "Paper label: 4. Saved as question 10 in section order.",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 11,
+      "prompt": "What does Cole imply when he says that socially isolated people are\n being “undermined by their own biology” in paragraph 4?\n a) That they are biologically prone to be undermined.\n b) That at a biological level they are prone to disease.\n c) That they are prone to wounds.\n d) That they are biologically prone to seek out omit this help.",
+      "sourcePage": 116,
+      "group": "Text 1",
+      "numberingNote": "Paper label: 5. Saved as question 11 in section order.",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 12,
+      "prompt": "What does Cole refer to as an epidemic?\n a) To the socially isolated people.\n b) To the quick growth of socially isolated people.\n c) To the growing number of people who see themselves as lonely.\n d) To the loneliness that prevails around us.",
+      "sourcePage": 116,
+      "group": "Text 1",
+      "numberingNote": "Paper label: 6. Saved as question 12 in section order.",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 13,
+      "prompt": "What is the author addressing in sixth Paragraph?\n a) The reasons for the rapid growth of lonely people.\n b) The factors that influence feelings of loneliness.\n c) The factors for the pain that lonely people feel.\n\nd) The reasons that influence feelings of loneliness.",
+      "sourcePage": 116,
+      "group": "Text 1",
+      "numberingNote": "Paper label: 7. Saved as question 13 in section order.",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 14,
+      "prompt": "What does the author say about relationships in sixth paragraph?\n a) That they used to be more powerful.\n b) That they have transformed into online relationships.\n c) That there is no personal contact anymore.\n d) That there is an absence of human contact in online relationships.",
+      "sourcePage": 117,
+      "group": "Text 1",
+      "numberingNote": "Paper label: 8. Saved as question 14 in section order.",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 15,
+      "prompt": "What would be one of the potential benefits of a computer working\n together with our brain as an extended mind?\n a) Storage of our memories\n b) Solving problems\n c) Recreating images\n d) Annexing information",
+      "sourcePage": 119,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 16,
+      "prompt": "Berger’s prosthetic\n a) Has shown unfavourable results\n b) Helps people convert short-term into long-term memory\n c) Has the potential to store memory\n d) Has shown promising results",
+      "sourcePage": 119,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 17,
+      "prompt": "Which of the following is not associated with Berger’s experiment?\n a) Electrodes were attached to the rabbit\n b) Activity of the rabbit’s hippocampus could be observed\n c) The rabbit learned to associate an audio tone with a puff of air\n d) In the end, the rabbit produced the desired reaction based on the puff of air",
+      "sourcePage": 119,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 18,
+      "prompt": "What was the outcome of Berger’s experiment?\n a) He managed to transfer other rats’ information from the prosthesis to the\n rat’s brain and they interpreted it as their own memory\n b) He managed to transfer information from the artificial rat prosthesis to the\n rat’s brain and they interpreted it as their own memory\n c) He managed to transfer human information from the prosthesis to the rat’s\n brain and they interpreted it as their own memory\n d) He managed to transfer other rats’ information from the prosthesis to the\n rat’s brain and they acquired it as their own memory.",
+      "sourcePage": 119,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 19,
+      "prompt": "How does Dustin Tyler feel about the whole project?\n a) Enthusiastic\n\n\nb) Skeptical\n c) Optimistic\n d) Pessimistic",
+      "sourcePage": 119,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 20,
+      "prompt": "What could pose a problem when the prosthetics interface with the\n brain?\n a) The complexity of the neural connections in the brain.\n b) The existence of numerous masses of neurons\n c) Working out the way the neurons work together\n d) Lack of technology that would function on the neural level",
+      "sourcePage": 120,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 21,
+      "prompt": "Who does Bergen envisage would benefit most from this prosthetic?\n a) Alzheimer’s patients\n b) People with memory problems\n c) People with dementia\n d) People who have had strokes",
+      "sourcePage": 120,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 22,
+      "prompt": "How are human's brains different from those of rats and monkeys?\n a) They are not yet adapted to accept the prosthetic.\n b) They are far more comprehensive.\n c) They contain a greater number of neurons.\n d) They are able to process different amounts of data.",
+      "sourcePage": 120,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    }
+  ]
+}

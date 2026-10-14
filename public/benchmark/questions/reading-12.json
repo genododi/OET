@@ -1,0 +1,426 @@
+{
+  "testId": "reading-12",
+  "sourceSha256": "95285b9293f59f01ca355eeb805ba4f009dab84c4cd53643ec85435c4db7f4a5",
+  "questions": [
+    {
+      "part": "A",
+      "number": 1,
+      "prompt": "What conditions can develop in a person with blood\npoisoning? _________________",
+      "sourcePage": 229,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 2,
+      "prompt": "Ways to stop develop necrotising fasciitis? _________________",
+      "sourcePage": 229,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 3,
+      "prompt": "The prognosis for people with necrotising fasciitis? _________________",
+      "sourcePage": 229,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 4,
+      "prompt": "The preponderance of necrotising fasciitis diagnosed in Australian\nhospitals? _________________",
+      "sourcePage": 229,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 5,
+      "prompt": "Underlying issues that can make person more susceptible to developing\nNF? _________________",
+      "sourcePage": 229,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 6,
+      "prompt": "Operations that can be done to treat necrotising fasciitis? _________________",
+      "sourcePage": 229,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 7,
+      "prompt": "The timeframe for symptoms of NF to be full blown? _________________",
+      "sourcePage": 229,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 8,
+      "prompt": "What types of lesions may let bacteria invade the body? _________________",
+      "sourcePage": 230,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 9,
+      "prompt": "What type of pain in the infected area do patients experience?\n_________________",
+      "sourcePage": 230,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 10,
+      "prompt": "What type of infection is necrotising fasciitis? _________________",
+      "sourcePage": 230,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 11,
+      "prompt": "Which bacteria is most likely to lead to NF? _________________",
+      "sourcePage": 230,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 12,
+      "prompt": "Which part of a hospital are people with necrotising fasciitis usually treated?\n_________________",
+      "sourcePage": 230,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 13,
+      "prompt": "What might a person cut themselves on in an ocean that could lead to them\ngetting necrotising fasciitis? _________________",
+      "sourcePage": 230,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 14,
+      "prompt": "For every 5 people with necrotising fasciitis, how many are likely to die, even with\ntreatment_________________",
+      "sourcePage": 230,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 15,
+      "prompt": "People with necrotising fasciitis say their pain is_________________ to what can\nbe seen in the area.",
+      "sourcePage": 230,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 16,
+      "prompt": "Symptoms of NF might be vague at first and more like common conditions such\nas_________________or cellulitis.",
+      "sourcePage": 230,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 17,
+      "prompt": "People who have conditions such as: _________________obesity and acne or\nasthma have a greater chance of developing NF if they are exposed to Group A\nstreptococci bacteria.",
+      "sourcePage": 230,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 18,
+      "prompt": "Often multiple antibiotics are_________________to treat NF.",
+      "sourcePage": 230,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 19,
+      "prompt": "NF is more likely to be a problem for_________________and those in poor\ngeneral health.",
+      "sourcePage": 231,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 20,
+      "prompt": "NF is commonly known as the_________________.",
+      "sourcePage": 231,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "B",
+      "number": 1,
+      "prompt": "What should you do if you think an IV is infiltrated?\n a) You should terminate the procedure before trying again\n b) You should change the catheter\n c) You should irrigate the surrounding intravenous site",
+      "sourcePage": 233,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 2,
+      "prompt": "Why is the radial artery usually chosen for cannulation?\n a) its low profile anatomy is ideal for primary cannulation\n b) the site can be maintained during other non-invasive manipulations\n c) it has a shallow position",
+      "sourcePage": 234,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 3,
+      "prompt": "According to this article, people with PTSD\n a) have a high score on a validated scale, which includes complex PTSD factors\n b) have experienced prolonged or repetitive symptoms\n c) have not been examined by qualified clinicians",
+      "sourcePage": 234,
+      "group": "Text 3",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 4,
+      "prompt": "According to this article, patients experiencing pain at the cannula site\n should\n a) tell someone\n b) ask for medication to stop leaking and/or swelling\n c) remove the cannula in order to avoid phlebitis (inflammation of the vein)",
+      "sourcePage": 235,
+      "group": "Text 4",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 5,
+      "prompt": "How many people will be involved in the trial?\n a) around two million\n b) as many patients as possible\n c) less than ten",
+      "sourcePage": 236,
+      "group": "Text 5",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 6,
+      "prompt": "How long can a nasal spray be used?\n a) While symptoms such as itching or sneezing occur and after\n b) Before and during the time symptoms occur\n c) Before, during the time symptoms occur and after",
+      "sourcePage": 236,
+      "group": "Text 6",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 7,
+      "prompt": "What have studies shown about heat and ice treatments?\n a) Results show heat and ice really make a difference\n b) Results are uncertain\n c) Results have not been investigated\n d) Results show they can cause harm",
+      "sourcePage": 238,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 8,
+      "prompt": "What do we learn about heat in the second paragraph?\n\n\na) it increases muscle tissue\n b) it provokes tissue stiffness\n c) it changes the behaviour of the blood flow\n d) it can cause muscle spasm",
+      "sourcePage": 238,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 9,
+      "prompt": "What did the study mentioned in the third paragraph find?\n a) heat made a problem worse\n b) heat triggered muscle spasms\n c) heat increased new-onset low back pain\n d) heat changed the duration of back pain",
+      "sourcePage": 239,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 10,
+      "prompt": "In the fourth paragraph, what have results shown concerning the use of\n ice?\n a) Ice could lengthen the time it takes to improve\n b) Ice stimulates the body’s immune response\n c) Using ice therapies reduces the need for painkillers\n d) Ice causes swelling in soft tissue injuries",
+      "sourcePage": 239,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 11,
+      "prompt": "In the fifth paragraph, the review found that\n a) heat packs had some small side-effects\n b) ice massage had a positive effect on some muscles\n c) heat therapy worked best on cases of osteoarthritis of the knee\n d) heat treatment was more effective than ice treatment",
+      "sourcePage": 239,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 12,
+      "prompt": "In the sixth paragraph, what positive effect of using ice packs is\n described?\n a) they eliminate the need for other treatments\n b) they make some areas less sensitive to pain\n c) they move the pain to a different area\n d) they restore normal functions to injured muscles",
+      "sourcePage": 239,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 13,
+      "prompt": "In the seventh paragraph, what does the word ‘these’ refer to?\n\n\na) frozen peas\n b) ice cubes\n c) wet tea towels\n d) ice packs",
+      "sourcePage": 239,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 14,
+      "prompt": "How long can ice be applied to an injury?\n a) for five to ten minutes\n b) no more than half an hour\n c) for two to three hours\n d) for 24 to 48 hours",
+      "sourcePage": 240,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 15,
+      "prompt": "The first paragraph informs us that\n a) even babies can have aspirin\n b) the viewpoint of experts has changed regarding aspirin\n c) aspirin can cause strokes\n d) aspirin dosage depends on doctors’ recommendations",
+      "sourcePage": 242,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 16,
+      "prompt": "According to the second paragraph, the European guidelines\n a) continue to recommend the use of aspirin\n b) harmonize with the American guidelines\n c) recommend aspirin for people in their 50’s\n d) say that aspirin should not be prescribed to babies",
+      "sourcePage": 242,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 17,
+      "prompt": "The third paragraph informs us that aspirin\n a) inhibits blood clotting\n b) helps to heal small wounds\n c) decreases the production of platelets\n d) slows bleeding by stimulating clotting",
+      "sourcePage": 242,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 18,
+      "prompt": "What does the last word of the fourth paragraph refer to?\n a) primary treatment\n b) secondary treatment\n c) aspirin\n d) the new guidelines",
+      "sourcePage": 242,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 19,
+      "prompt": "The 2009 study published in ‘The Lancet’ found\n a) that aspirin could be a factor in intestinal bleeding\n b) risks that were different to the study in ‘The New England Journal of Medicine’\n c) daily doses of aspirin were less effective\n\n\nd) that the risk of major bleeds was relevant",
+      "sourcePage": 242,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 20,
+      "prompt": "The revised recommendations in the fifth paragraph are that\n a) people younger than 40 should take aspirin\n b) people older than 70 can take aspirin to elevate risks\n c) it’s a good idea for middle aged people to take aspirin if they have a higher\n risk of heart attack\n d) anyone with a high risk of heart attack should take aspirin",
+      "sourcePage": 243,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 21,
+      "prompt": "What do we learn in the sixth paragraph about modern studies?\n a) they are superior to older studies\n b) they confirm earlier studies about the use of aspirin\n c) they quickly become out of date\n d) they reveal data that doctors don’t accept",
+      "sourcePage": 243,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 22,
+      "prompt": "In the last paragraph, what does the writer infer about expert opinion?\n a) experts shouldn’t keep changing their opinions\n b) changes in opinion are unavoidable\n c) opinions need to be corrected\n d) some opinions are unscientific",
+      "sourcePage": 243,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    }
+  ]
+}

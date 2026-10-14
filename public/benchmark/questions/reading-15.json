@@ -1,0 +1,426 @@
+{
+  "testId": "reading-15",
+  "sourceSha256": "95285b9293f59f01ca355eeb805ba4f009dab84c4cd53643ec85435c4db7f4a5",
+  "questions": [
+    {
+      "part": "A",
+      "number": 1,
+      "prompt": "The ratio of ganglion cysts between sexes? ___________________",
+      "sourcePage": 285,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 2,
+      "prompt": "The primary dynamic way of removing ganglion cysts? ___________________",
+      "sourcePage": 285,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 3,
+      "prompt": "The investigations that may be done to confirm someone has a ganglion\ncyst? ___________________",
+      "sourcePage": 285,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 4,
+      "prompt": "How keeping the affected area immobile for a time can reduce the effect of a\nganglion cyst? ___________________",
+      "sourcePage": 285,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 5,
+      "prompt": "Another type of ganglion cyst that can develop at the\nwrist? ___________________",
+      "sourcePage": 285,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 6,
+      "prompt": "The role the bible used to play in managing ganglion cysts? ___________________",
+      "sourcePage": 285,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 7,
+      "prompt": "The contents of a ganglion cyst? ___________________",
+      "sourcePage": 285,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 8,
+      "prompt": "Where ganglion cysts are usually seen? ___________________",
+      "sourcePage": 285,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 9,
+      "prompt": "What percentage of ganglion cysts come back after a surgical excision?\n___________________",
+      "sourcePage": 285,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 10,
+      "prompt": "Are ganglion cysts more common in men or women? ___________________",
+      "sourcePage": 285,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 11,
+      "prompt": "What can changing shoes achieve for people with ganglion cysts in lower limbs?\n___________________",
+      "sourcePage": 285,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 12,
+      "prompt": "What are the two main complaints people with a ganglion cyst have?\n___________________",
+      "sourcePage": 285,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 13,
+      "prompt": "What type of cysts develop from the fingers? ___________________",
+      "sourcePage": 285,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 14,
+      "prompt": "What is often the first invasive treatment option offered for ganglion cysts?\n___________________",
+      "sourcePage": 286,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 15,
+      "prompt": "An___________________shows if the ganglion is solid or not.",
+      "sourcePage": 286,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 16,
+      "prompt": "___________________ganglia and mucous cysts in the DIP joints account for a\nsmall number of all ganglion cysts.",
+      "sourcePage": 286,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 17,
+      "prompt": "No one really knows why ganglion cysts develop but there is\na___________________ in the membrane around a structure",
+      "sourcePage": 286,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 18,
+      "prompt": "A surgeon can look into a ganglion cyst around a joint with an arthroscope and\nthen___________________through an additional small cut in the skin to get rid of\nthe cyst.",
+      "sourcePage": 286,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 19,
+      "prompt": "A ganglion cyst on a tendon on can lead to a cause a feeling\nof___________________weakness.",
+      "sourcePage": 286,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 20,
+      "prompt": "Needle aspiration involves pulling the___________________ of the cysts out of\nthe sac with a needle and syringe.",
+      "sourcePage": 286,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "B",
+      "number": 1,
+      "prompt": "What does the article say about the causes of celiac disease?\n a) It can provoke damage to the small intestine\n b) It could be linked to children’s diets\n c) Normally, children don’t suffer from celiac disease",
+      "sourcePage": 288,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 2,
+      "prompt": "What do these guidelines say about when to take aspirin?\n a) Aspirin taken close to meal times can irritate the stomach lining\n b) Some types of aspirin have special indications\n c) It can be taken in combination with indigestion remedies",
+      "sourcePage": 289,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 3,
+      "prompt": "What does this article say about the use of cannulas?\n a) Cannula usage should be reviewed regularly\n b) In most cases, concurrent cannula use is justified\n c) Cannulas can be left in place so long as they are flushed with a 0.9% saline\n solution",
+      "sourcePage": 289,
+      "group": "Text 3",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 4,
+      "prompt": "How should the ‘SecurAcath’ device be used?\n a) The feet can be repositioned in order to clip them to the base\n b) It should be correctly assembled before attaching the cover\n c) The flexible tube should be inserted into a vein first",
+      "sourcePage": 290,
+      "group": "Text 4",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 5,
+      "prompt": "What does the article tell us about colonoscopies?\n a) Colonoscopy and polypectomy procedures are thought to be risk-free\n b) Virtual chromoendoscopy technology could speed up the process\n c) Most hyperplastic polyps become cancerous if left untreated",
+      "sourcePage": 290,
+      "group": "Text 5",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 6,
+      "prompt": "What went wrong in the treatment of the 56-year-old woman?\n a) The woman was infected by vestibulopathy while in hospital\n b) The correct dosage was not balanced\n c) Staff members failed to take note of the woman’s symptoms",
+      "sourcePage": 291,
+      "group": "Text 6",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 7,
+      "prompt": "What does the first paragraph tell us about intravenous (IV) fluid\n therapy?\n a) Most patients receive a standard composition of fluids\n b) Electrolyte status should be kept at the optimal level\n c) It is not easy to decide on the correct volume and speed of delivery of fluids\n d) It is difficult to correct problems",
+      "sourcePage": 294,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 8,
+      "prompt": "What have surveys shown about intravenous (IV) fluid therapy?\n a) There is often a lack of information about correct dosage\n b) Sometimes, staff mixed up electrolyte fluids with standard IV fluids\n c) Intravenous (IV) fluid therapy should be delegated to junior medical staff\n d) Mistakes made in operating theatres were often fatal",
+      "sourcePage": 294,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 9,
+      "prompt": "What did the 1999 report highlight?\n a) A small number of patients died because they were prescribed the wrong\n medication\n b) Around 20% of patients experience problems due to incorrect IV fluid therapy\n c) Some hospitals fail to report deaths due to mismanaged procedures\n d) Not all Perioperative deaths could be linked to IV fluid therapy",
+      "sourcePage": 294,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 10,
+      "prompt": "What does the fourth paragraph tell us about IV fluid therapy?\n a) Seriously ill patients generally need more fluids that injured patients\n b) There are historical reasons to prolong the use of IV fluid therapy\n c) The best IV fluids are more expensive\n d) Not everyone agrees on the most suitable fluids to use",
+      "sourcePage": 294,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 11,
+      "prompt": "Why is it difficult to perform meta-analyses of trials?\n a) There are not enough qualified analysts\n b) Trials usually don’t take place in different healthcare settings\n c) The volume of data is too great to analyse\n\nd) More hospital staff need training before the trials take place",
+      "sourcePage": 294,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 12,
+      "prompt": "What do we learn about the scope of the guidelines in the fifth\n paragraph?\n a) The guidelines are not appropriate for all types of patients\n b) Patients needing inotropes and those on intensive monitoring were included\n for historical reasons\n c) Pathophysiological patients were excluded because they cannot be given IV\n fluid therapy\n d) The guidelines only apply to men (that is to say, adult male patients)",
+      "sourcePage": 295,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 13,
+      "prompt": "According the sixth paragraph, how often should clinical fluid status be\n reassessed?\n a) Twice a day or more frequently\n b) Once every 24 hours\n c) Twice a week\n d) Never – routine reassessment can be monitored by machine",
+      "sourcePage": 295,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 14,
+      "prompt": "What should be done in the case of fluid mismanagement?\n a) Additional monitoring should be carried out\n b) Rehydration should be prolonged\n c) Information about occurrences should be conveyed to the appropriate\n authorities\n d) The person or persons involved should be criticised",
+      "sourcePage": 295,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 15,
+      "prompt": "What advantage does a CT scan give over a standard X-ray?\n a) It emits less radiation\n b) It can take pictures of bones and soft tissues\n c) It is quieter and uses less electricity\n d) The patient can lie down during the scan",
+      "sourcePage": 297,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 16,
+      "prompt": "What can be seen on a CT scan result?\n a) Tissue thicknesses and densities can be shown using different colours\n b) The computer displays the date, time and patient’s name on the result\n c) When this article was written, CT scans could only show shades of grey on the\n results\n d) Cross-dimensional attributes are shown on the results in colour or shades of\n grey",
+      "sourcePage": 297,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 17,
+      "prompt": "What does the third paragraph tell us about the CT scans?\n a) Usually, more than one picture is obtained\n b) 3-dimensional pictures provide more information that standard cross-\n sectional pictures\n c) The CT ring can be programmed to move the coach slowly\n d) Images and scans can be stored on computers for up to a year",
+      "sourcePage": 298,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 18,
+      "prompt": "What type of scan is carried out most frequently?\n a) Scans of the head and neck\n b) Scans of the chest and upper body\n c) Whole body scans\n d) Scans of the head only",
+      "sourcePage": 298,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 19,
+      "prompt": "What should you wear for your CT scan?\n a) Clothing that is free of any metal\n b) A standard hospital gown\n c) There are usually no restrictions on clothing\n d) Some scans require an absence of clothing",
+      "sourcePage": 298,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 20,
+      "prompt": "What can influence the clarity of CT images?\n a) Temperature\n b) Movement\n c) Radiation levels\n d) Levels of pain or discomfort",
+      "sourcePage": 298,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 21,
+      "prompt": "What does the article say about the number of people in the CT room?\n a) A Only the operator will be with you in the CT room\n b) You can ask for one or two people to stay with you during the scan\n c) You can only be accompanied if you feel anxious or claustrophobic\n d) You will be alone in the CT room",
+      "sourcePage": 298,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 22,
+      "prompt": "What does the last paragraph say about the levels of risk?\n a) Generally, the risks are not as significant as the potential advantages\n b) Some people have developed cancer or leukaemia after a CT scan\n c) CT scanners pose a lower risk than standard X-ray machines\n d) There is a high risk of cancer if you have a large body",
+      "sourcePage": 299,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    }
+  ]
+}

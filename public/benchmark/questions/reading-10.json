@@ -1,0 +1,426 @@
+{
+  "testId": "reading-10",
+  "sourceSha256": "95285b9293f59f01ca355eeb805ba4f009dab84c4cd53643ec85435c4db7f4a5",
+  "questions": [
+    {
+      "part": "A",
+      "number": 1,
+      "prompt": "How to prevent COPD?__________________",
+      "sourcePage": 182,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 2,
+      "prompt": "The tests that may be carried out to diagnose COPD? __________________",
+      "sourcePage": 182,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 3,
+      "prompt": "The different inhalers that might be prescribed to manage COPD?\n______________________",
+      "sourcePage": 182,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 4,
+      "prompt": "How emphysema affects a person? ______________________",
+      "sourcePage": 182,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 5,
+      "prompt": "The link between asthma and allergies? ______________________",
+      "sourcePage": 182,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 6,
+      "prompt": "The oral medication options for COPD patients? ______________________",
+      "sourcePage": 183,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 7,
+      "prompt": "The possible complications of COPD? ______________________",
+      "sourcePage": 183,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 8,
+      "prompt": "What age are most people who are diagnosed with COPD? ______________________",
+      "sourcePage": 183,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 9,
+      "prompt": "What part of the body is most affected by COPD? ______________________",
+      "sourcePage": 183,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 10,
+      "prompt": "What is the specialised programme of exercise and education that COPD sufferers\nmight benefit from? ______________________",
+      "sourcePage": 183,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 11,
+      "prompt": "What should people working in high risk environments wear, to reduce the risk of\ndeveloping COPD? ______________________",
+      "sourcePage": 183,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 12,
+      "prompt": "What is the key diagnostic test for asthma? __________________",
+      "sourcePage": 183,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 13,
+      "prompt": "Which condition causes airways to become narrower and produce more mucous?\n______________________",
+      "sourcePage": 183,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 14,
+      "prompt": "What is the most important way to reduce the symptoms of COPD?\n______________________",
+      "sourcePage": 183,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 15,
+      "prompt": "Pulmonary______________________is a potential complication of COPD.",
+      "sourcePage": 183,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 16,
+      "prompt": "Patients with COPD are often______________________to respond to medication, if\nat all.",
+      "sourcePage": 183,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 17,
+      "prompt": "Emphysema is when the______________________in the lung are damaged.",
+      "sourcePage": 184,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 18,
+      "prompt": "Having an annual influenza vaccination and a possible one-\noff______________________can help with COPD management.",
+      "sourcePage": 184,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 19,
+      "prompt": "COPD is______________________and disabling damage to the lungs.",
+      "sourcePage": 184,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 20,
+      "prompt": "Production of a lot of______________________which is swallowed or coughed up is\na symptom of COPD.",
+      "sourcePage": 184,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "B",
+      "number": 1,
+      "prompt": "What is a key benefit of BLIS?\n a) SA health gets an overview so they can see which hospitals have capacity to\n perform dental extractions.\n b) Patients can see which hospitals are able to provide surgical services to them.\n c) SA health gets an overview so they can see which hospitals have capacity to\n admit patients for particular operations.",
+      "sourcePage": 186,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 2,
+      "prompt": "What discovery consistently astounds Professor Semsarian?\n a) Athletes still want to exceed at their game even if it has a negative effect on\n their health\n b) Athletes have access to incredibly sophisticated diagnostic assessment tools,\n as professional sportsmen\n c) Athletes are increasingly at risk of developing serious illnesses despite being\n super fit.",
+      "sourcePage": 187,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 3,
+      "prompt": "Which of these initiatives is mostly involves in depth study of one or\n more musculoskeletal disorder\n a) Osteoporosis Australia\n b) Medicare benefits schedule\n c) NHMRC",
+      "sourcePage": 188,
+      "group": "Text 3",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 4,
+      "prompt": "Which of the following serum digoxin levels can be beneficial in elderly\n patients?\n a) 0.8 - 2.0ng/mL\n b) 0.5 - 0.9ng/mL\n c) 0.5 - 0.9mg/mL",
+      "sourcePage": 189,
+      "group": "Text 4",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 5,
+      "prompt": "What key directives are included in this memo?\n a) The need to: know the Protocol for the Control of TB; notify the Department\n of Health of all cases of TB; administer the BCG to anyone suspected of having\n TB\n b) The need to: implement the statewide immunisation programme; admit all\n cases of TB to a specialist TB unit; meet the Public Health Act (2005)\n requirements\n c) The need to: follow consistent practises relating to identifying, treating and\n preventing TB; adhere to immunisation programme; follow reporting\n protocols.",
+      "sourcePage": 189,
+      "group": "Text 5",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 6,
+      "prompt": "What advice should a healthcare professional give adolescents about\n writing an AHD?\n a) An AHD has to be approved by both parents if the person is under 18.\n b) An AHD cannot be accepted unless a person is aged 18 or over.\n\n\nc) An AHD can only be put in place by people aged under 18.",
+      "sourcePage": 190,
+      "group": "Text 6",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 7,
+      "prompt": "In what way is the concept of Tooth Fairy related to the research mentioned in\n first paragraph?\n a) Because teeth for the research were collected from under the children’s\n pillows.\n b) Because the Tooth Fairy gave new insight into what may make humans social.\n c) Because baby teeth were donated for the research.\n d) Because a tiny brain was created from baby teeth.",
+      "sourcePage": 193,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 8,
+      "prompt": "The research being performed on the tiny brains may provide us with various\n pieces of information. Which of the following aspects are not mentioned in\n second paragraph?\n a) It may provide deeper insight into the human ability to socialize.\n b) It can contribute to our understanding of autism.\n c) They can contribute to our understanding of why those affected with autism\n have a lower ability to socialize.\n d) They can help us to understand why human beings have developed into social\n beings.",
+      "sourcePage": 194,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 9,
+      "prompt": "In what way is Williams syndrome different from autism?\n a) Autism is not a genetic disorder.\n b) Autism affects people with fewer neural connections.\n c) Williams syndrome is a genetic disorder.\n d) Patients with Williams syndrome display a very high level of sociability.",
+      "sourcePage": 194,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 10,
+      "prompt": "Williams organoids:\n a) Are produced from those affected by Williams syndrome.\n b) Produce fewer neural connections.\n c) Contain an unusually high quantity of neural connections.\n d) Reach an unusually high level of neural connections.",
+      "sourcePage": 194,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 11,
+      "prompt": "What do we find out about people who don’t suffer from either autism or\n Williams syndrome in eighth paragraph?\n a) That they have a large number of synapses\n b) That they have fewer synapses.\n c) Their neural connections remain unaffected.\n d) They have a moderate number of synapses.",
+      "sourcePage": 194,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 12,
+      "prompt": "What does the information in ninth paragraph suggest?\n\n\n\n\na) There has been a lot of research that supports the correlation between neural\n connection and sociability.\n b) There is other research that supports the correlation between neural\n connection and sociability, as well.\n c) That the correlation between neural connection and sociability was first\n discovered many years ago\n d) The correlation between neural connection and sociability was not discovered\n in brain organoids.",
+      "sourcePage": 194,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 13,
+      "prompt": "What is the advantage of brain organoids?\n a) They are a perfect match to the human brain.\n b) They can be used to model human development.\n c) They are an excellent representation of early human brain development.\n d) They are an excellent guide to the early human brain development.",
+      "sourcePage": 195,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 14,
+      "prompt": "What kind of future is predicted for brain organoids in tenth paragraph?\n a) Bright\n b) Bleak\n c) Foreseeable\n d) Uncertain",
+      "sourcePage": 195,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 15,
+      "prompt": "What does the author imply about the concept of Blue Monday?\n a) It is a non-existent phenomenon.\n b) It was conceived by a PR agency.\n c) It was promoted by a university lecturer.\n d) It is considered to be a result of bad research.",
+      "sourcePage": 197,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 16,
+      "prompt": "What is the underlying purpose of Blue Monday?\n a) To make people sell holidays to feel better.\n b) To make people feel better\n c) To make people buy things under the pretense of feeling happier.\n d) To make people sell things under the pretense of feeling happier.",
+      "sourcePage": 197,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 17,
+      "prompt": "On Blue Monday, advertisers\n a) Take advantage of people’s unhappiness\n b) Convince people that their supposed unhappiness will disappear with\n shopping.\n c) Try to sell as much as possible.\n d) Convince people that as many receipts as possible will make them happy.",
+      "sourcePage": 197,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 18,
+      "prompt": "What are the consequences of Blue Monday for people who suffer from\n anxiety?\n a) They are unimportant.\n\n\nb) They feel like failures\n c) They feel desperate.\n d) They spend more money.",
+      "sourcePage": 197,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 19,
+      "prompt": "What has the writer heard that stopped him / her in his / her tracks?\n a) Large numbers of upsetting stories that left him feeling shocked.\n b) Large numbers of upsetting stories that make him want to stop working for\n the charity.\n c) Advertisements which encourage people to buy things they don’t need.\n d) Occasional stories which have had happy endings.",
+      "sourcePage": 198,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 20,
+      "prompt": "Which of the cases below have not been recorded by the author in his/her work\n at the research charity?\n a) A depressed mother who bought 100 prams.\n b) A husband who wanted to buy numerous presents for his wife.\n c) A husband who believed he could alleviate his stress by buying unaffordable\n things for his wife.\n d) A woman whose panic attacks were stopped only by buying things online.",
+      "sourcePage": 198,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 21,
+      "prompt": "Apart from the financial damage compulsive shopping can cause, the author\n mentions another far more devastating issue:\n a) Low income\n b) Guilt\n c) Mistakes they have made\n d) Not returning unwanted goods.",
+      "sourcePage": 198,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 22,
+      "prompt": "What is the purpose of Shopper Stopper?\n a) To control people’s night-time shopping.\n b) To stop their night-time shopping.\n c) To allow them to set limits on shopping to create good habits.\n d) To get rid of the habit of shopping.",
+      "sourcePage": 198,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    }
+  ]
+}

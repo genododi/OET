@@ -1,0 +1,390 @@
+{
+  "testId": "listening-7",
+  "sourceSha256": "8adfbf2ba6d50c8acb3e74398f98289363200d8864c467f1e795f6d28757b6ee",
+  "questions": [
+    {
+      "part": "A",
+      "number": 1,
+      "prompt": "Hand: ____",
+      "sourcePage": 47,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 2,
+      "prompt": "Current outbreak began ____ ago",
+      "sourcePage": 47,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 3,
+      "prompt": "Current outbreak possibly related to ____ ingested less than 24\n hours prior",
+      "sourcePage": 47,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 4,
+      "prompt": "First outbreak left residual ____ after healing",
+      "sourcePage": 47,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 5,
+      "prompt": "Patient describes pain as a slight ____",
+      "sourcePage": 47,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 6,
+      "prompt": "Fixed drug ____ (immune-mediated\n mucocutaneous [blank for Q7] to medication)",
+      "sourcePage": 47,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 7,
+      "prompt": "Fixed drug [blank for Q6] (immune-mediated\n mucocutaneous ____ to medication)",
+      "sourcePage": 47,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 8,
+      "prompt": "Possible to confirm diagnosis with a ____ (invasive)",
+      "sourcePage": 48,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 9,
+      "prompt": "Another option to confirm diagnosis is a ____ (less invasive)",
+      "sourcePage": 48,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 10,
+      "prompt": "____ therapy can be used on non-mucosal areas",
+      "sourcePage": 48,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 11,
+      "prompt": "____ to reduce pain",
+      "sourcePage": 48,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 12,
+      "prompt": "____ the condition to any other medical professional\n prescribing medication",
+      "sourcePage": 48,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 13,
+      "prompt": "Abdominal pain lasting for ____",
+      "sourcePage": 48,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 14,
+      "prompt": "Also reports feeling ____",
+      "sourcePage": 48,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 15,
+      "prompt": "Underlying condition: ____ (on medication: glyburide)",
+      "sourcePage": 49,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 16,
+      "prompt": "Past GP observation: mild ____ in the mid epigastrium and\n right upper/lower [blank for Q17]",
+      "sourcePage": 49,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 17,
+      "prompt": "Past GP observation: mild [blank for Q16] in the mid epigastrium and\n right upper/lower ____",
+      "sourcePage": 49,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 18,
+      "prompt": "Radiography: ____ ileus (type of mechanical [blank for Q19]\n obstruction)",
+      "sourcePage": 49,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 19,
+      "prompt": "Radiography: [blank for Q18] ileus (type of mechanical ____ \n obstruction)",
+      "sourcePage": 49,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 20,
+      "prompt": "Chronic cholecystitis could have caused an ____ fistula",
+      "sourcePage": 49,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 21,
+      "prompt": "Gallstone could have been ____ in a narrow area of the\n intestine (size of patient’s gallstone - about 3 milimetres in diameter)",
+      "sourcePage": 49,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 22,
+      "prompt": "Quite a rare condition, likely related to patient’s ____",
+      "sourcePage": 49,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 23,
+      "prompt": "Control fluid and ____ imbalances prior to surgery",
+      "sourcePage": 49,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 24,
+      "prompt": "Removal of gallbladder to prevent organ ____",
+      "sourcePage": 49,
+      "group": "Extract 2"
+    },
+    {
+      "part": "B",
+      "number": 25,
+      "prompt": "You hear a conversation between a physician and patient about pain\n management.\n What does the physician want to confirm with the patient?\nA. The management of the underlying condition\nB. The continued management of the patient’s pain\nC. The communication with the patient’s family",
+      "sourcePage": 49,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 26,
+      "prompt": "You hear a trainee doctor asking a senior doctor about a radiography.\n The senior doctor explains to the trainee that\nA. There are a wide variety of systems to classify ankle fractures\nB. There is a classification system related to how the fracture occurs\nC. There is a classification system related to how to treat the fracture",
+      "sourcePage": 50,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 27,
+      "prompt": "You hear a nurse talking to another nurse about a patient’s treatment.\n What does the female nurse want the male nurse to correct?\nA. How accurate he is in updating the patient’s file\nB. How often he checks on the patient’s condition\nC. How compliant he is in following instructions",
+      "sourcePage": 50,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 28,
+      "prompt": "You hear part of a training on infection prevention and control.\n Why is the training being given at this time?\nA. Because of the volume of patients presenting with symptoms\nB. Because most of the staff have not gone through the training\nC. Because there are new guidelines that everyone needs to know",
+      "sourcePage": 50,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 29,
+      "prompt": "You hear a trainee nursing asking a senior nurse for advice.\n What does the senior nurse say should be prioritized?\nA. The staffing needs of the ward and hospital\nB. The needs of the patients you are caring for\nC. The needs and safety of each individual nurse",
+      "sourcePage": 50,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 30,
+      "prompt": "You hear a conversation between a patient and a dietitian.\n The patient made the appointment with the dietitian because\nA. Of the recommendation of her GP\nB. Of her lack of success in losing weight\nC. Of her lack of success in eating better",
+      "sourcePage": 51,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 31,
+      "prompt": "Who is the target audience of this training session?\nA. Trainees hoping to specialise in diagnostic radiology\nB. Trainees currently training in emergency medicine\nC. A&E physicians looking to specialise in radiology",
+      "sourcePage": 51,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 32,
+      "prompt": "According to the speaker, the first step that should be taken is…\nA. To compare the different sides of the brain for a shift\nB. To determine if emergency surgery needs to take place\nC. To decide on the course of treatment for the patient",
+      "sourcePage": 51,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 33,
+      "prompt": "Which of the following is a symptom of the type of stroke mentioned?\nA. A bleeding into the space around the brain\nB. A sudden onset of a severe headach\nC. A ruptured aneurysm",
+      "sourcePage": 51,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 34,
+      "prompt": "According to the speaker, how might a patient with ventricular\n enlargement feel?\nA. The patient may have a headache and see double.\nB. The patient may have a blockage of fluid in the brain\nC. The patient may have a condition like meningitis.",
+      "sourcePage": 51,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 35,
+      "prompt": "According to the speaker, why is it generally not necessary to order a CT?\nA. Because most headaches cannot be diagnosed with imaging.\nB. Because most headaches are not severe enough to require a CT.\nC. Because most headaches can be diagnosed without a CT.",
+      "sourcePage": 52,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 36,
+      "prompt": "According to the speaker, it is necessary to order a CT when…\nA. It is requested by a patient.\nB. A GP is not able to make a diagnosis.\nC. A patient reports a change in symptoms.",
+      "sourcePage": 52,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 37,
+      "prompt": "According to the interviewee, what is the approach taken by the project?\nA. To involve the family members of the patient\nB. To involve other healthcare professionals in care\nC. To involve the general physician of the patient",
+      "sourcePage": 52,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 38,
+      "prompt": "How did the project come to know about the case that the interviewee\n mentions?\nA. Through the social worker assigned to the patient\nB. Through the care agency of the patient\nC. Through the speech language therapist of the patient",
+      "sourcePage": 52,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 39,
+      "prompt": "What social barrier prevented the patient from getting enough nutrition?\nA. She eats very slowly.\nB. She doesn’t like to eat alone.\nC. She doesn’t like to prepare food.",
+      "sourcePage": 53,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 40,
+      "prompt": "What changes were made to the patient’s diet?\nA. To add full fat milk to food and drink\nB. To replace meals with milky puddings\nC. To add butter to the soft texture meals",
+      "sourcePage": 53,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 41,
+      "prompt": "Which new service did the plan get started for the patient?\nA. Speech therapy\nB. Social service\nC. Befriending",
+      "sourcePage": 53,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 42,
+      "prompt": "Which part of the plan has been the most successful?\nA. Having the patient eat with someone else\nB. Changing the texture of the meals\nC. Making the food cheaper for the patient",
+      "sourcePage": 53,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    }
+  ]
+}

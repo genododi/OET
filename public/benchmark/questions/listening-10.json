@@ -1,0 +1,390 @@
+{
+  "testId": "listening-10",
+  "sourceSha256": "8adfbf2ba6d50c8acb3e74398f98289363200d8864c467f1e795f6d28757b6ee",
+  "questions": [
+    {
+      "part": "A",
+      "number": 1,
+      "prompt": "Total weight reduction ____ kg in four months",
+      "sourcePage": 70,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 2,
+      "prompt": "Associated problem: ____ (interval after food consumption)",
+      "sourcePage": 70,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 3,
+      "prompt": "Also reports that ____ going up stairs or hill",
+      "sourcePage": 70,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 4,
+      "prompt": "Diagnosed with ____ two years ago",
+      "sourcePage": 70,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 5,
+      "prompt": "4 months ago: Stopped taking prescribed ____",
+      "sourcePage": 70,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 6,
+      "prompt": "High level of urea indicates ____",
+      "sourcePage": 70,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 7,
+      "prompt": "Low potassium levels (likely causing the reported ____ )",
+      "sourcePage": 70,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 8,
+      "prompt": "Suspected: Presence of ____ preventing food leaving the\n stomach",
+      "sourcePage": 71,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 9,
+      "prompt": "Stomach has retained ____",
+      "sourcePage": 71,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 10,
+      "prompt": "Further tests: ____ and biopsy",
+      "sourcePage": 71,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 11,
+      "prompt": "Possible causes: ____ or cancer in [blank for Q12]",
+      "sourcePage": 71,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 12,
+      "prompt": "Possible causes: [blank for Q11] or cancer in ____",
+      "sourcePage": 71,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 13,
+      "prompt": "Swollen ____",
+      "sourcePage": 71,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 14,
+      "prompt": "On-going for past ____ months",
+      "sourcePage": 71,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 15,
+      "prompt": "Description of pain: ____",
+      "sourcePage": 71,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 16,
+      "prompt": "Two months ago: GP diagnosed ____",
+      "sourcePage": 71,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 17,
+      "prompt": "____ : At crisis level",
+      "sourcePage": 72,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 18,
+      "prompt": "Also has ____",
+      "sourcePage": 72,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 19,
+      "prompt": "Probable diagnosis: ____",
+      "sourcePage": 72,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 20,
+      "prompt": "Reduce blood pressure over next 24 hours (Note: ____ : reduction\n to prevent arterial thrombosis)",
+      "sourcePage": 72,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 21,
+      "prompt": "Control fluid intake\nObserve for ____",
+      "sourcePage": 72,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 22,
+      "prompt": "Diuretics may not work, possibly start ____",
+      "sourcePage": 72,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 23,
+      "prompt": "Measure kidneys through ____",
+      "sourcePage": 72,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 24,
+      "prompt": "Vision expected to ____",
+      "sourcePage": 72,
+      "group": "Extract 2"
+    },
+    {
+      "part": "B",
+      "number": 25,
+      "prompt": "You hear part of a training about patients in ICU wards.\n What is the effect of the problem that the doctor describes?\nA. An increase in the number of patients in the ICU.\nB. Patients are not admitted at all to the ICU.\nC. Patients spending more time in the ICU.",
+      "sourcePage": 73,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 26,
+      "prompt": "You hear a trainee doctor asking a senior doctor about next diagnostic steps.\n Why does the trainee doctor refer to the chest X-ray?\nA. In order to explain a probable cause of the patient’s condition.\nB. In order to explain an unlikely cause of the patient’s condition.\nC. In order to explain what has already been done with this case.",
+      "sourcePage": 73,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 27,
+      "prompt": "You hear part of a training about eating disorders.\n Why does the speaker say the training is necessary?\nA. Because there are very few professionals to give this type of\n training.\nB. Because very few medical programs incorporate this type of\n training.\nC. Because this type of training has been completely overlooked for\n many medical professionals.",
+      "sourcePage": 73,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 28,
+      "prompt": "You hear part of a training on safety briefings.\n What does the speaker say the medical community has learned from\n outsiders?\nA. The importance of conducting regular safety briefings\nB. The importance of responding to staff feedback\nC. The importance of changing how often briefings are held",
+      "sourcePage": 73,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 29,
+      "prompt": "You hear part of a handover between two nurses.\n The male nurses asks to go to a different place because…\nA. He doesn’t want to be interrupted during the handover.\nB. He doesn’t want to have problems hearing the other nurse.\nC. He doesn’t want to discuss the case in front of the patient.",
+      "sourcePage": 73,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 30,
+      "prompt": "You hear a conversation between a GP and a psychiatrist.\n How does the psychiatrist feel about the GPs’ call?\nA. He is relieved because the patient’s file does not talk about the\n next steps.\nB. He appreciates the call because it will help him to understand the\n patient better.\nC. He was expecting the call because context has not been included\n in the file.\n\n\n\n\n00:00\n 1.0X",
+      "sourcePage": 74,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 31,
+      "prompt": "What does the presenter say is his primary motivation?\nA. He wants to inspire dentists to be mentors.\nB. He wants to inspire dentists to do research.\nC. He wants to inspire future practitioners in the field.",
+      "sourcePage": 74,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 32,
+      "prompt": "According to the presenter, his approach to dentistry is different\n because…\nA. It is more focused on the materials than the structure of the tooth.\nB. It is more focused on maintaining the structure of the tooth.\nC. It is more focused on maintaining a strong bond with the tooth.",
+      "sourcePage": 74,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 33,
+      "prompt": "According to the presenter, what is a benefit of his approach?\nA. Fewer severe complications for patients\nB. More advanced training for dentists\nC. Fewer dental procedures for patients",
+      "sourcePage": 75,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 34,
+      "prompt": "The restorative materials used in the approach try to…\nA. Decrease the amount of tooth that remains\nB. Replicate the bond that natural materials have\nC. Mimic the natural structures and look of a real tooth",
+      "sourcePage": 75,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 35,
+      "prompt": "What is the objective of the second course that the presenter described?\nA. To go over the basic concepts related to the approach described\nB. To review scientific literature related to advanced techniques\nC. To apply basic concepts and techniques previously learned",
+      "sourcePage": 75,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 36,
+      "prompt": "How are the two types of dentistry described related to one another?\nA. They both require years of advanced training.\nB. They both focus on preserving the natural tooth.\nC. They both focus on applying traditional methods.",
+      "sourcePage": 75,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 37,
+      "prompt": "According to the interviewee, what is the role of physiotherapy in health\n and wellbeing?\nA. It is primarily a way to help three out of five people in the UK with\n their overall health.\nB. It is primarily a way to address the whole person to manage\n health long-term.\nC. It is the primary treatment for certain long-term conditions like\n Parkinson’s, asthma, cystic fibrosis, and chronic obstructive\n pulmonary disease.",
+      "sourcePage": 75,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 38,
+      "prompt": "Why does the interviewer ask about the use of therapy for a particular\n disease?\nA. Because he was not aware of the use of therapy for this disease.\nB. Because he wants to hear more about an unusual use of therapy.\nC. Because he wants the audience to learn more about the topic.",
+      "sourcePage": 76,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 39,
+      "prompt": "What does the interviewee say physiotherapy can build in all patients?\nA. It helps to aid the clearance of airways and improve lung function.\nB. It helps to increase patients’ abilities to bounce back from a\n disease.\nC. It helps to avoid the need to use health care resources in the\n long-term.",
+      "sourcePage": 76,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 40,
+      "prompt": "What is mentioned as a change in the role that some physiotherapists\n play?\nA. They are working more independently to deliver care to patients.\nB. They are working as part of a team to deliver integrated care.\nC. They are working to eliminate the need for other types of care.",
+      "sourcePage": 76,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 41,
+      "prompt": "The interviewee says that robot-assisted therapy is used...\nA. Mostly independently of therapists.\nB. In conjunction with a trained therapist.\nC. Mostly outside of healthcare settings.",
+      "sourcePage": 76,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 42,
+      "prompt": "What is the main purpose of the second type of robot-assisted therapy\ndiscussed?\nA. To help patients regain the movement of their upper limbs.\nB. To help patients regain the ability to move their fingers.\nC. To help patients regain the use of their lower limbs.",
+      "sourcePage": 76,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    }
+  ]
+}

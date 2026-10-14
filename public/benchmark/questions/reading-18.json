@@ -1,0 +1,426 @@
+{
+  "testId": "reading-18",
+  "sourceSha256": "95285b9293f59f01ca355eeb805ba4f009dab84c4cd53643ec85435c4db7f4a5",
+  "questions": [
+    {
+      "part": "A",
+      "number": 1,
+      "prompt": "Where the appendix is usually found? ____________________",
+      "sourcePage": 342,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 2,
+      "prompt": "The adverse situations a person may experience if they have\nappendicitis? ____________________",
+      "sourcePage": 342,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 3,
+      "prompt": "Appendicitis can be avoided? ____________________",
+      "sourcePage": 342,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 4,
+      "prompt": "An unnecessary appendicectomy? ____________________",
+      "sourcePage": 342,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 5,
+      "prompt": "The surgical approach the keeps infection risk low? ____________________",
+      "sourcePage": 342,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 6,
+      "prompt": "The way a persons body can try and manage appendicitis\nitself? ____________________",
+      "sourcePage": 342,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 7,
+      "prompt": "The prevalence of appendix removals in Australia? ____________________",
+      "sourcePage": 342,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 8,
+      "prompt": "The number of people who would die from appendicitis without modern\ntreatments? ____________________",
+      "sourcePage": 342,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 9,
+      "prompt": "How big is a healthy appendix in most people? ____________________",
+      "sourcePage": 342,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 10,
+      "prompt": "Where does pain usually start if a person has appendicitis?\n____________________",
+      "sourcePage": 343,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 11,
+      "prompt": "If an appendix ruptures, what condition could develop in the membrane lining of\nthe tummy? ____________________",
+      "sourcePage": 343,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 12,
+      "prompt": "What drugs can be used instead of surgery if a person has appendicitis?\n____________________",
+      "sourcePage": 343,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 13,
+      "prompt": "If an inflamed appendix is left alone it might burst and what other conditions\nmight develop? ____________________",
+      "sourcePage": 343,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 14,
+      "prompt": "What is the appendix usually attached to? ____________________",
+      "sourcePage": 343,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 15,
+      "prompt": "After a few hours of appendicitis developing, the____________________ to the\nlower right-hand side of the abdomen.",
+      "sourcePage": 343,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 16,
+      "prompt": "An____________________ can envelop a burst appendix",
+      "sourcePage": 343,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 17,
+      "prompt": "Some believe an appendix____________________ in an episode of appendicitis.",
+      "sourcePage": 343,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 18,
+      "prompt": "A doctor examines a patient’s tummy to find out if\nthe____________________when they press around the appendix",
+      "sourcePage": 343,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 19,
+      "prompt": "An accumulation of____________________ can develop as the body tries to get\nrid of any infection.",
+      "sourcePage": 343,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 20,
+      "prompt": "It is not always easy to confirm a person has appendicitis because\nthe____________________only show up about 50% of the time.",
+      "sourcePage": 343,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "B",
+      "number": 1,
+      "prompt": "What does the reader learn about loneliness in the following article?\n a) a person’s sentiments may be more important than objective factors\n b) feelings of solitude are increasing in modern society\n c) the government should provide more services in order to reduce social\n isolation",
+      "sourcePage": 345,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 2,
+      "prompt": "The writer uses the words ‘red flags’ to indicate\n a) an example of colour codes used in pathology diagnosis\n b) a patient has a mental illness (an informal term used by healthcare workers)\n c) symptoms which may point to a more serious medical condition",
+      "sourcePage": 346,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 3,
+      "prompt": "Which of the following statements is not true?\n a) there is a link between emotional intelligence and lower rates of recruitment\n b) although beneficial for nursing staff, emotional intelligence has little effect on\n patients\n c) emotional intelligence is a relatively new idea",
+      "sourcePage": 346,
+      "group": "Text 3",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 4,
+      "prompt": "What is inconclusive about the use of arsenic trioxide?\n a) if it represents good value for money\n b) if it can be used effectively with intermediate-risk leukaemia patients\n c) if arsenic trioxide can be used with treatments other than ATRA therapy",
+      "sourcePage": 347,
+      "group": "Text 4",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 5,
+      "prompt": "Which of the following statements is not mentioned?\n a) some vaccine components can cause an allergic reaction\n b) expectant mothers may need to postpone a vaccination\n c) some vaccines are developed from the yellow part of eggs",
+      "sourcePage": 348,
+      "group": "Text 5",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 6,
+      "prompt": "What do we learn about pruritus from the following article?\n a) pruritus is experienced by 0.9% of adults in the United States\n b) pruritus has been superseded by the new treatment, Eucrisa\n c) pruritus is the defining characteristic of atopic dermatitis",
+      "sourcePage": 348,
+      "group": "Text 6",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 7,
+      "prompt": "In the introduction, what does the writer infer about summer skincare?\n a) Only 10% of people need to use more skincare\n b) Some people need clues to know how much protection to use\n c) People in general don’t know enough about it\n d) 9 out of 10 people should use more sun cream",
+      "sourcePage": 350,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 8,
+      "prompt": "What advice does Emma Shields offer?\n a) effective protection involves using the right products and adopting the right\n behaviour\n b) it is important to choose the right kind of sunglasses\n c) sunscreen is more effective in hot rather than cold weather\n d) you shouldn’t forget about protecting the soles of your feet",
+      "sourcePage": 351,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 9,
+      "prompt": "What do we learn in the third paragraph about sun tans?\n a) some kinds of sun tan are perfectly safe\n b) in 75% of cases, sun tans are safe\n c) sun tanning is a safe activity except for a small risk of skin cancer later in life\n d) acquiring a sun tan is a risky activity",
+      "sourcePage": 351,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 10,
+      "prompt": "What does Emma Shields claim regarding after-sun lotion?\n a) it cannot provide any remedial remedies\n b) the body doesn’t tolerate after-sun lotion as well as it does sun cream\n c) after-sun lotion can help the body’s own mechanisms to heal faster\n d) it can fix some minor damage to the skin",
+      "sourcePage": 351,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 11,
+      "prompt": "What do we learn about sun block in the fifth paragraph?\n a) oxides of titanium or zinc can reflect the sun’s rays\n b) it blocks a higher percentage of UV light on young skin\n c) sun block that contains chalky substances can be used on children\n d) it isn’t as effective as most people assume",
+      "sourcePage": 351,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 12,
+      "prompt": "What advice does Dr Munn give in the sixth paragraph?\n a) low factor sunscreen can be stored for longer periods than high factor\n sunscreen\n b) each summer, it is worth buying new sunscreen\n c) sunscreen should be stored in a refrigerator or similar low-temperature\n environment\n\n\nd) restocking sunscreen should take into account expiration dates",
+      "sourcePage": 351,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 13,
+      "prompt": "What danger does the last paragraph highlight?\n a) although they feel nice, the sun’s rays always present a risk to health\n b) people with pale skin often do not produce enough vitamin D\n c) exposure to the sun in winter is just as dangerous as during the summer\n d) sunscreen can interfere with normal vitamin D production",
+      "sourcePage": 352,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 14,
+      "prompt": "What would be a suitable title for this article?\n a) The New Dermatological Crisis\n b) Sunscreen, Sun Cream and Sun Block – A User’s Guide\n c) How to Use Sun Cream and Sunbathe Safely\n d) Sun Tanning – Changes in Recent Medical Opinion",
+      "sourcePage": 352,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 15,
+      "prompt": "In the first paragraph, the example of Ebola is given to show\n a) an example of a disease that falls under the category of wilderness medicine\n b) not all diseases have a vaccine\n c) an example of a disease that may occur in an area where a travel medicine\n beneficiary could be present\n d) travel medicine can prepare you for any and all eventualities",
+      "sourcePage": 354,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 16,
+      "prompt": "What is one effect of the globalization of travel?\n\na) it has increased the possibilities for health problems\n b) the field of epidemiology has had to develop quickly\n c) it has resulted in better healthcare facilities\n d) it has exposed existing diseases to new environments",
+      "sourcePage": 354,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 17,
+      "prompt": "Increased disease monitoring has led to\n a) specific surveillance of certain disease groups\n b) advantages to both travellers and individual countries\n c) better quality analytical tools for healthcare workers\n d) a vast increase in exploitable medical knowledge",
+      "sourcePage": 355,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 18,
+      "prompt": "When do doctors need to find information on exotic diseases?\n a) when preventative measures are unsuccessful\n b) when travellers remain uneducated\n c) when they have limited access to the CDC Yellow Book\n d) when they are vacation in exotic destinations",
+      "sourcePage": 355,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 19,
+      "prompt": "What does the fifth paragraph inform the reader concerning\n responsibility?\n a) the medical profession have the responsibility to give specific advice\n b) the onus is on the traveller to investigate possible dangers\n c) excursion organisers are normally responsible for medical hazard analysis\n d) individual countries are responsible to publicize specific health-related hazards",
+      "sourcePage": 355,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 20,
+      "prompt": "Which of the following statements is not mentioned in the sixth\n paragraph?\n a) it is important to prepare well in advance\n b) before starting their journey, travellers should see a medical professional\n c) travellers should obtain items to ensure safe sexual contact (such as condoms)\n d) travellers should be well-informed about conditions in their destination\n countries or regions",
+      "sourcePage": 355,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 21,
+      "prompt": "What advice is given about medical kits?\n a) it may be necessary to carry unusual supplies\n b) ciprofloxacin is preferable to diphenhydramine despite resistancy issues\n c) it is a good idea to pack injectable local anaesthetic\n d) preference should be given to versatile medicines",
+      "sourcePage": 356,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 22,
+      "prompt": "What does the eighth paragraph inform the reader about preparations?\n a) trips longer than 4-6 weeks need vaccination boosters\n b) preventative actions need to be taken one to two months before travel\n c) effective vaccines should be used rather than those that require boosters",
+      "sourcePage": 356,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ],
+      "sourceNote": "Only three options are present in the supplied text. Use the original-question link to check the paper."
+    }
+  ]
+}

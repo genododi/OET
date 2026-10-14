@@ -1,0 +1,390 @@
+{
+  "testId": "listening-20",
+  "sourceSha256": "8adfbf2ba6d50c8acb3e74398f98289363200d8864c467f1e795f6d28757b6ee",
+  "questions": [
+    {
+      "part": "A",
+      "number": 1,
+      "prompt": "Started to feel tired ____ prior",
+      "sourcePage": 148,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 2,
+      "prompt": "Fell asleep during ____ at work",
+      "sourcePage": 148,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 3,
+      "prompt": "____ increased number of hours (from 7 to 14 hours)",
+      "sourcePage": 148,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 4,
+      "prompt": "____ of sleep is reported as good",
+      "sourcePage": 148,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 5,
+      "prompt": "No nausea or ____",
+      "sourcePage": 148,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 6,
+      "prompt": "____ faster than before",
+      "sourcePage": 148,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 7,
+      "prompt": "No change in ____",
+      "sourcePage": 148,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 8,
+      "prompt": "Occasional ____",
+      "sourcePage": 148,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 9,
+      "prompt": "____ but not taking medication for it",
+      "sourcePage": 149,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 10,
+      "prompt": "Areas of ____ on limbs/torso",
+      "sourcePage": 149,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 11,
+      "prompt": "Symptoms indicate problems with gastrointestinal, ____ &\n cardiovascular systems",
+      "sourcePage": 149,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 12,
+      "prompt": "Full blood count & ____",
+      "sourcePage": 149,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 13,
+      "prompt": "Chest pain & ____",
+      "sourcePage": 149,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 14,
+      "prompt": "Took ____ for symptoms",
+      "sourcePage": 149,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 15,
+      "prompt": "Sharp, constant pain on ____ of chest",
+      "sourcePage": 149,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 16,
+      "prompt": "Pain becomes worse after a ____",
+      "sourcePage": 149,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 17,
+      "prompt": "No coughing, fever or ____",
+      "sourcePage": 150,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 18,
+      "prompt": "A ____",
+      "sourcePage": 150,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 19,
+      "prompt": "3 weeks prior with ____",
+      "sourcePage": 150,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 20,
+      "prompt": "At risk for ____",
+      "sourcePage": 150,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 21,
+      "prompt": "ECG & CT ____ to confirm",
+      "sourcePage": 150,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 22,
+      "prompt": "____ treatment (common)",
+      "sourcePage": 150,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 23,
+      "prompt": "Until confirmation, ____ heparin will be administered",
+      "sourcePage": 150,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 24,
+      "prompt": "Goal is to achieve ____",
+      "sourcePage": 150,
+      "group": "Extract 2"
+    },
+    {
+      "part": "B",
+      "number": 25,
+      "prompt": "You hear part of a conversation between two nurses about a blood transfusion.\n\n What does the female nurse tell the male nurse to prioritise?\nA. Building rapport with the patient\nB. Following protocols closely\nC. Reviewing procedures regularly",
+      "sourcePage": 150,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 26,
+      "prompt": "You hear part of a conversation between a junior doctor and a senior doctor\n about how to interpret a cardiotocograph.\n The senior doctor confirms the….\nA. Classification of the pregnancy\nB. Abnormality in the heart rate\nC. Presence of contractions",
+      "sourcePage": 151,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 27,
+      "prompt": "You hear part of a conversation between a nurse and a doctor about an angry\n patient.\n The nurse explains that the patient likely suspects…\nA. That the staff is avoiding treating him\nB. That his spouse doesn't want to see him\nC. That he is going to wait a long time",
+      "sourcePage": 151,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 28,
+      "prompt": "You hear part of a training on arterial blood gas interpretation. .\n What is the main aim of the training?\nA. A review of the basic aspects of a difficult topic\nB. An introduction of a difficult-to-understand topic\nC. A way to think about a difficult-to-understand topic",
+      "sourcePage": 151,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 29,
+      "prompt": "You hear a doctor taking a medication history of a patient.\n What is the doctor explaining to the patient?\nA. The action plan developed during the consultation\nB. Concerns about the patient's medication regimen\nC. The best way to contact him after the appointment",
+      "sourcePage": 151,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 30,
+      "prompt": "You hear part of a conversation between a junior doctor asking for assistance\n with a recently admitted patient.\n The junior doctor is suggesting the other doctor…\nA. Tell him how to take over the patient's treatment\nB. Tell him what to do until another doctor arrives\nC. Tell him if current treatment is appropriate",
+      "sourcePage": 152,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 31,
+      "prompt": "Dr Gore points out that noticing patterns of who is affected is limited\n by…\nA. The small number of patients that doctors see\nB. The difficulty in diagnosing patients with the condition\nC. The lack of knowledge of the cause of the condition",
+      "sourcePage": 152,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 32,
+      "prompt": "Dr Gore recommends first collecting information related to…\nA. Recent medical history\nB. Relevant symptoms\nC. Relevant family history",
+      "sourcePage": 152,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 33,
+      "prompt": "Dr Gore points out that all known causes of the condition are related to…\nA. Damage to a part of the anatomy\nB. Previous medical interventions\nC. Damage caused by infection",
+      "sourcePage": 152,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 34,
+      "prompt": "According to Dr Gore, clinical examination should be done for patients…\nA. Presenting with certain known symptoms of the condition\nB. In certain groups considered at high risk for the condition\nC. Presenting with symptoms or a history related to the condition",
+      "sourcePage": 153,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 35,
+      "prompt": "The clinical examination is primarily focused on……\nA. Determining characteristics related to the pain\nB. Determining level of feeling and muscle response\nC. Determining the risk of experiencing incontinence",
+      "sourcePage": 153,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 36,
+      "prompt": "The type of CES a patient is diagnosed with has...\nA. No bearing on the urgency of the situation\nB. Some influence on the next steps to take\nC. A lot of influence on how urgent the situation is",
+      "sourcePage": 153,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 37,
+      "prompt": "What is the nature of Dr Schneider´s work with Crohn's?\nA. Leading a new research study\nB. Working with patients as a physician\nC. Consulting on cases as a dietitian",
+      "sourcePage": 153,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 38,
+      "prompt": "What does Dr Schneider clarify about treatment options?\nA. They only serve to manage the disease.\nB. They are focused on the digestive tract.\nC. They are not often very effective.",
+      "sourcePage": 153,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 39,
+      "prompt": "Dr Schneider explains that genetics plays a role…\nA. But other factors are more influential in the development\nB. But this does not eliminate risk of developing the disease\nC. But not much research has been done on this topic",
+      "sourcePage": 154,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 40,
+      "prompt": "Dr Schneider explains the potential role of the immune system because…\nA. A specific virus has recently been identified\nB. Not much is known about how this process works\nC. Of the primary system affected by this disease.",
+      "sourcePage": 154,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 41,
+      "prompt": "Why does the interviewer ask Dr Schneider to talk about one of the\n diets?\nA. Because it is relatively new compared to the other\nB. Because it is less well-known than the other\nC. Because it has been researched less than the other",
+      "sourcePage": 154,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 42,
+      "prompt": "Dr Schneider explains that the diet has been used to treat…\nA. Diseases with similar symptoms to Crohn's\nB. Diseases that affect children and adolescent\nC. Sensitivities to certain types of ingredients",
+      "sourcePage": 154,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    }
+  ]
+}

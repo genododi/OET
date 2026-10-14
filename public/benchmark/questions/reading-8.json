@@ -1,0 +1,427 @@
+{
+  "testId": "reading-8",
+  "sourceSha256": "95285b9293f59f01ca355eeb805ba4f009dab84c4cd53643ec85435c4db7f4a5",
+  "questions": [
+    {
+      "part": "A",
+      "number": 1,
+      "prompt": "How gallstones are confirmed?___________________",
+      "sourcePage": 143,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 2,
+      "prompt": "The signs a person has jaundice?___________________",
+      "sourcePage": 143,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 3,
+      "prompt": "What type of food to avoid to prevent gallstones? ___________________",
+      "sourcePage": 143,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 4,
+      "prompt": "The surgical options available for ladies with gallstones in their third\n trimester?___________________",
+      "sourcePage": 143,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 5,
+      "prompt": "Biliary colic? ____________________",
+      "sourcePage": 143,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 6,
+      "prompt": "Pharmaceutical options for managing gallstones? ___________________",
+      "sourcePage": 143,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 7,
+      "prompt": "Key evidence that suggests gallstones that can be captured when taking the\n patients history? ___________________",
+      "sourcePage": 143,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 8,
+      "prompt": "What type of cheese should be avoided to reduce the risk of developing\n gallstones? ____________________",
+      "sourcePage": 143,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 9,
+      "prompt": "What test is usually carried out to check for gall stones? ____________________",
+      "sourcePage": 143,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 10,
+      "prompt": "If a person has cholecystitis, what past of their body is affected?\n____________________",
+      "sourcePage": 144,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 11,
+      "prompt": "The gallbladder and what else might be removed during a laparoscopic\ncholecystectomy? ____________________",
+      "sourcePage": 144,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 12,
+      "prompt": "Diets that are low calorie, leading to what, should be avoided?\n____________________",
+      "sourcePage": 144,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 13,
+      "prompt": "A blood test may be taken from a person suspected of having gallstones to check\nthe functioning of which organ? ____________________",
+      "sourcePage": 144,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 14,
+      "prompt": "Which non-surgical treatment is now mostly used to treat kidney stones?\n____________________",
+      "sourcePage": 144,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 15,
+      "prompt": "In approximately____________________of cases, people with gallstones are\nasymptomatic",
+      "sourcePage": 144,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 16,
+      "prompt": "Low intake of____________________can keep the risk of developing gallstones\nlow.",
+      "sourcePage": 144,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 17,
+      "prompt": "During surgery, if gallstones are found, the bile duct is expanded with a minor cut\nor an____________________",
+      "sourcePage": 144,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 18,
+      "prompt": "A person may appear yellow if a gallstone occludes\na____________________connecting to the bowel.",
+      "sourcePage": 144,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 19,
+      "prompt": "During the clinical assessment of a patient presenting with possible gallstones, an\nabdominal examination is carried out including____________________",
+      "sourcePage": 144,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 20,
+      "prompt": "Cholelithiasis are solid lumps of____________________that can grow in the\ngallbladder.",
+      "sourcePage": 144,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "B",
+      "number": 1,
+      "prompt": "In this article what might eventually be made on a 3D printer?\n a) Skin with its various layers, components and blood supply\n b) Skin including nerve cells, stem cells and sweat follicles\n c) Skin, with muscles, tendon and blood vessels",
+      "sourcePage": 146,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 2,
+      "prompt": "What three options are generally available for discussion when a person\n is faced with making a decision about what treatment pathway to take\n for their illness?\n a) Modifying their lifestyle to deal with the illness, accepting that they cannot be\n cured, taking all treatment options available.\n b) Managing the side effects of treatment, consider declining treatment, revising\n their expectations of whether they will be cured\n c) Extending life-expectancy, treating the symptoms to lessen their effect,\n remedying the condition",
+      "sourcePage": 147,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 3,
+      "prompt": "Why does a urine test to check for Chronic Kidney Disease have to be\n followed up on?\n a) The urine test has to be compared with the blood test results so a formula can\n be applied to confirm CKD\n b) The urine is tested for a protein that has to be present for 90 days to confirm\n CKD.\n c) The urine test has to be repeated to ensure the results are accurate before\n CKD can be confirmed.",
+      "sourcePage": 148,
+      "group": "Text 3",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 4,
+      "prompt": "What is the NSW Nurses and Midwives Association stance regarding\n carers found in possession of cannabis?\n a) Carers should be protected from legal action against them\n b) Carers should be arrested and prosecuted\n c) Carers should be referred to health professionals",
+      "sourcePage": 148,
+      "group": "Text 4",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 5,
+      "prompt": "How much cardiotocograph training is must be completed to complete\n the FONT programme?\n a) Two face to face training sessions and fifteen case studies every three years\n b) Sixteen hours online training every three years and two and half hours\n annually\n c) Two case studies and fifteen simulator cases every three years",
+      "sourcePage": 150,
+      "group": "Text 5",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 6,
+      "prompt": "Where is the best place to take blood from to monitor blood glucose\n levels?\n a) Near the nail bed\n b) The side of the finger\n c) The forearm",
+      "sourcePage": 151,
+      "group": "Text 6",
+      "numberingNote": "Paper label: 1. Saved as question 6 for Text 6.",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 7,
+      "prompt": "What point does the writer make about the term the Ancient Greeks\n used for cancer?\n a) That it is a suitable translation that reflects the way in which cancer behaves\n b) That it is an appropriate description of the outcomes of cancer.\n c) That it describes precisely the root of the disease.\n d) That the word cannot describe the disease properly.",
+      "sourcePage": 153,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 8,
+      "prompt": "How does the author describe cancer in terms of its Indo-European\n implication?\n a) As a carrier\n b) As a load\n c) As a journey\n d) As a discovery",
+      "sourcePage": 153,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 9,
+      "prompt": "Which of the following can be a cause of cancer?\n a) Environment\n b) Breeding\n c) Childhood conditions\n d) Streptococcal bacteria",
+      "sourcePage": 153,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 10,
+      "prompt": "What does “the former” refer to in third Paragraph?\n a) Genetics\n b) Environment\n c) A Breeding ground\n d) A Defense system",
+      "sourcePage": 153,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 11,
+      "prompt": "Why do cigarettes cause cancer?\n a) They can cause mutations in DNA cells.\n\n\nb) They cause mutations in the organs of the body.\n c) They turn cells into cancerous tissues.\n d) They increase the risk for lung, larynx, mouth, bladder, and liver cancer.",
+      "sourcePage": 153,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 12,
+      "prompt": "When considering cancer, scientists\n a) Are not sure that it is caused by smoking because cancers are complex\n b) Are sure that smoking causes cancer\n c) Believe that smoking is the most likely cause for cancer in smokers as opposed\n to nonsmokers\n d) Believe that smoking is the most likely cause for differences that are visible in\n the cancers that occur in smokers compared to nonsmokers",
+      "sourcePage": 154,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 13,
+      "prompt": "What happened in the seventies?\n a) New ways of advertising\n b) A different attitude towards smokers\n c) A Decrease in sales of cigarettes\n d) People began to view cigarettes as a health hazard",
+      "sourcePage": 154,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 14,
+      "prompt": "What does Mukherjee say about smokers who got cancer?\n a) He is worried about them.\n b) He is disgusted by them.\n c) He was disgusted by the smell of tobacco on their clothes.\n d) He knows that many of them haven’t quit smoking.",
+      "sourcePage": 154,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 15,
+      "prompt": "In first paragraph, the author\n a) Introduces the phases of sleep\n b) Introduces general facts about sleep\n c) Discusses the amount of time people sleep.\n d) Discusses the period of time when people sleep.",
+      "sourcePage": 156,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 16,
+      "prompt": "The author uses the word “contingent” in the first Paragraph to refer to\n the women as:\n a) An exception\n b) A group\n c) Resilient.\n d) Brave.",
+      "sourcePage": 156,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 17,
+      "prompt": "What does the author imply when he/she says that our professional\n lives and natural cycles are at odds?\n a) That they are in congruence.\n b) That they are in conflict.\n c) That they correspond to one another.\n d) That they cannot be compared.",
+      "sourcePage": 156,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 18,
+      "prompt": "What does the author suggest about our ancestors?\n a) That they had monophasic sleep.\n b) That they didn’t sleep for 7 hours.\n c) That they didn’t have monophasic sleep.\n d) That they had biphasic sleep.",
+      "sourcePage": 156,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 19,
+      "prompt": "What is a siesta?\n a) A long afternoon sleep.\n b) A 60-90 minute afternoon sleep.\n c) A 60-90 minute sleep which follows a regular 5-6 hour sleep.\n d) Part of the biphasic sleeping schedule in Latin America.",
+      "sourcePage": 157,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 20,
+      "prompt": "What do scientists suggest about sleep in fourth paragraph?\n a) That in order to be successful you need to have polyphasic sleep.\n b) They can’t explain why many animals have polyphasic sleep.\n c) They have no answers about what proper sleep is as no studies have been\n carried out\n d) They have no specific answers about the amount of sleep we require?",
+      "sourcePage": 157,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 21,
+      "prompt": "What does the author say about the way we sleep in fifth paragraph?\n a) That we all experience polyphasic sleep.\n b) That we all sleep in cycles.\n c) We cycle when we go to sleep\n d) That polyphasic sleep makes us feel rested.",
+      "sourcePage": 157,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 22,
+      "prompt": "Why are some scientists skeptical about the success of polyphasic\n sleep?\n a) Because they believe that it does not allow for enough REM sleep.\n b) Because they believe that it allows people to enter the REM phase more\n quickly\n c) They suspect that it may not allow for enough REM sleep.\n d) They don’t believe that the repartitioning phase can be achieved.",
+      "sourcePage": 157,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    }
+  ]
+}

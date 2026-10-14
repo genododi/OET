@@ -16,6 +16,17 @@ for(const entry of catalog.entries){
  assert(pages.length>0);
  let previous=entry.startPage-1;
  for(const p of pages){assert(p.number>previous&&p.number<=entry.endPage);assert.equal(typeof p.text,'string');previous=p.number;}
+ if(['listening','reading'].includes(entry.skill)){
+  const sheet=JSON.parse(fs.readFileSync(`public/benchmark/questions/${entry.id}.json`,'utf8'));
+  assert.equal(sheet.testId,entry.id);assert.equal(sheet.sourceSha256,entry.sourceSha256);
+  assert.equal(sheet.questions.length,42);
+  for(const part of ['A','B','C']){
+   const expected=entry.skill==='listening' ? (part==='A'?[1,24]:part==='B'?[25,30]:[31,42]) : (part==='A'?[1,20]:part==='B'?[1,6]:[7,22]);
+   const rows=sheet.questions.filter(q=>q.part===part);
+   assert.deepEqual(rows.map(q=>q.number),Array.from({length:expected[1]-expected[0]+1},(_,i)=>i+expected[0]));
+   for(const q of rows){assert(q.prompt.trim().length>5);assert(q.group);assert(pages.some(p=>p.number===q.sourcePage));if(entry.skill==='listening'&&part==='A')assert(q.prompt.includes('____'));}
+  }
+ }
  if(entry.skill==='listening'){
   assert.equal(Object.keys(entry.answers).length,42);
   for(let n=1;n<=42;n++){assert(entry.answers[n]?.trim());if(n>24)assert(/^[ABC]$/.test(entry.answers[n]));}
@@ -33,4 +44,4 @@ for(const entry of catalog.entries){
  }
 }
 assert.deepEqual(catalog.entries.filter(e=>e.skill==='listening'&&!e.audio).map(e=>e.number),[10,17]);
-console.log('Benchmark: 20 reading tests, 20 listening papers/keys, 18 original recordings and complete matching transcripts, 10 Medicine writing tasks; source hashes, timestamps and 840 keys verified.');
+console.log('Benchmark: 20 reading tests, 20 listening papers/keys, 18 original recordings and complete matching transcripts, 10 Medicine writing tasks; source hashes, timestamps, 840 keys and 1,680 question rows verified.');

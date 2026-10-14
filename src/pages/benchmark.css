@@ -1,16 +1,12 @@
 .benchmark-page, .benchmark-workspace { display: grid; gap: 22px; min-width: 0; }
 .benchmark-test-select { display: grid; gap: 8px; max-width: 680px; margin: 20px 0; font-weight: 600; }
 .benchmark-test-select select { width: 100%; min-width: 0; padding: 12px; border: 1px solid #b9d0c4; border-radius: 8px; font: inherit; background: white; }
-.benchmark-answer-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin: 20px 0; }
-.benchmark-answer-item { padding: 14px; border: 1px solid #d4e0db; border-radius: 10px; background: #f7faf8; min-width: 0; }
-.benchmark-answer-item > label { display: block; font-weight: 600; margin-bottom: 8px; }
-.benchmark-answer-item input, .benchmark-answer-item select { min-height: 44px; }
 .benchmark-key-review { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; margin: 20px 0; }
 .benchmark-notice { padding: 16px; border: 1px solid #dbc996; border-radius: 8px; background: #fff9e9; }
 .benchmark-page .material-readable-text { white-space: pre-wrap; overflow-wrap: anywhere; }
 .benchmark-page details { margin: 16px 0; }
 .benchmark-page iframe { border: 0; margin: 14px 0; }
-@media(max-width:600px) { .benchmark-answer-grid { grid-template-columns: 1fr; } .benchmark-page .material-page-controls select { max-width: 100%; } }
+@media(max-width:600px) { .benchmark-page .material-page-controls select { max-width: 100%; } }
 .benchmark-page > .card, .benchmark-workspace > .card { padding: 24px; }
 .benchmark-page .hero-eyebrow { color: #087d78; font-weight: 700; letter-spacing: .12em; }
 .benchmark-page .study-skill-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0; }
@@ -26,3 +22,15 @@
 .benchmark-offline { border: 1px solid #bfd1c6; border-radius: 10px; padding: 18px; margin-top: 20px; background: #f4f8f6; }
 .benchmark-offline h3 { margin-top: 0; }
 .benchmark-offline .btn { display: inline-flex; white-space: normal; }
+
+.benchmark-question-list { margin: 22px 0; }
+.benchmark-question-group { margin: 26px 0 12px; color: #24584e; }
+.benchmark-question-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(230px, 310px); gap: 24px; padding: 20px; margin-bottom: 12px; border: 1px solid #d4e0db; border-radius: 10px; background: #f7faf8; }
+.benchmark-question-copy, .benchmark-question-answer { min-width: 0; }
+.benchmark-question-copy > label { display: block; font-weight: 700; margin-bottom: 10px; }
+.benchmark-question-prompt { white-space: pre-line; overflow-wrap: anywhere; line-height: 1.65; }
+.benchmark-question-source { display: inline-block; font-size: .85rem; margin-top: 12px; }
+.benchmark-question-answer { align-self: start; padding: 14px; background: white; border: 1px solid #d4e0db; border-radius: 8px; }
+.benchmark-question-answer .jahshan-blank-controls { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
+.benchmark-question-answer input, .benchmark-question-answer select { width: 100%; min-width: 0; min-height: 44px; box-sizing: border-box; padding: 10px; font: inherit; border: 1px solid #b9d0c4; border-radius: 6px; }
+@media(max-width: 760px) { .benchmark-question-row { grid-template-columns: 1fr; gap: 14px; padding: 16px; } }

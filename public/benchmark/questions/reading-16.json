@@ -1,0 +1,428 @@
+{
+  "testId": "reading-16",
+  "sourceSha256": "95285b9293f59f01ca355eeb805ba4f009dab84c4cd53643ec85435c4db7f4a5",
+  "questions": [
+    {
+      "part": "A",
+      "number": 1,
+      "prompt": "What can happen if the spots are scratched? ___________________",
+      "sourcePage": 304,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 2,
+      "prompt": "The indications that a person might have chickenpox? ___________________",
+      "sourcePage": 304,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 3,
+      "prompt": "The human herpes virus’ ability to be infectious outside the\nbody? ___________________",
+      "sourcePage": 304,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 4,
+      "prompt": "The infectiousness of shingles? ___________________",
+      "sourcePage": 304,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 5,
+      "prompt": "The prevalence of people who will develop shingles? ___________________",
+      "sourcePage": 304,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 6,
+      "prompt": "The most common conditions caused by the human herpes\nvirus? ___________________",
+      "sourcePage": 304,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 7,
+      "prompt": "The signs that someone has shingles before a rash\nappears? ___________________",
+      "sourcePage": 304,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 8,
+      "prompt": "How soon should a person who knows they have shingles start taking drugs to ease\ntheir symptoms? ___________________",
+      "sourcePage": 304,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 9,
+      "prompt": "Is the loss of feeling where the rash is a symptom of chickenpox or shingles?\n___________________",
+      "sourcePage": 304,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 10,
+      "prompt": "What part of the spots in a person with chickenpox or shingles transmits the\nvirus? ___________________",
+      "sourcePage": 304,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 11,
+      "prompt": "What vaccines are available to manage chickenpox and shingles in Australia?\n___________________",
+      "sourcePage": 305,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 12,
+      "prompt": "The virus that causes glandular fever is commonly called what?\n___________________",
+      "sourcePage": 305,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 13,
+      "prompt": "After about how many days of symptoms, do the fluid filled spots appear for a\nperson with shingles? ___________________",
+      "sourcePage": 305,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 14,
+      "prompt": "Apart from pregnant women and unborn babies, infection with chickenpox can be\nsignificant for which other two groups of people? ___________________",
+      "sourcePage": 305,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 15,
+      "prompt": "After the first episode of infection, all___________________, stay dormant in\ncertain cells.",
+      "sourcePage": 305,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 16,
+      "prompt": "Shingles is___________________problem for foetuses.",
+      "sourcePage": 305,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 17,
+      "prompt": "Chickenpox is so obvious, a___________________is not needed",
+      "sourcePage": 305,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 18,
+      "prompt": "The best guidance for someone with chickenpox is to___________________by\nkeeping it clean and dry.",
+      "sourcePage": 305,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 19,
+      "prompt": "In shingles, the rash starts out sore, with bumpy and red areas but soon develops\ninto___________________, which will eventually have a dry top.",
+      "sourcePage": 305,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 20,
+      "prompt": "People with Chickenpox or shingles have to need to stay away from public places\nuntil all the spots have dried up, ___________________after they started.",
+      "sourcePage": 305,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "B",
+      "number": 1,
+      "prompt": "What do we learn from this article about blood clotting?\n a) Artificial chemicals exist that can be introduced to ‘dissolve’ clots\n b) Most of the time, clots don’t form in blood vessels\n c) It takes time for a damaged or cut blood vessel to form a clot",
+      "sourcePage": 307,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 2,
+      "prompt": "What would be a suitable title for this article?\n a) Snoring: Causes and proposed remedy\n b) Soft palate intervention protocol\n c) Oropharynx soft tissue syndrome and treatment options",
+      "sourcePage": 308,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 3,
+      "prompt": "What do we learn in the following article?\n a) Atrial fibrillation was found to be uncommon among Apple Watch users\n b) In the future, everyone will use wearable consumer technology\n c) Serious heart rhythm problems can be diagnosed by Apple watches",
+      "sourcePage": 308,
+      "group": "Text 3",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 4,
+      "prompt": "What does the writer imply about CDSS in this article?\n a) CDSS has an important role to play in improving patient outcomes\n b) Previous studies concerning CDSS recommended changes\n c) More research is needed to demonstrate its effectiveness",
+      "sourcePage": 309,
+      "group": "Text 4",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 5,
+      "prompt": "Which of the following statements is not true?\n\na) In the US, less than 20% of the overall labour force works healthcare\n b) Historically, violence is more often directed at nurses rather than doctors\n c) The hazard of violence at work has been found to be more serious for\n healthcare workers compared to workers in other industries",
+      "sourcePage": 309,
+      "group": "Text 5",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 6,
+      "prompt": "What do we learn about bronchiolitis in this article?\nA. Not everyone agrees about the exact description of this infection\nB. Bronchiolitis affects a disproportionally high number of children over\n the age of two\nC. Discrepancies in diagnosis are frequent",
+      "sourcePage": 310,
+      "group": "Text 6",
+      "numberingNote": "Paper label: unnumbered. Saved as question 6 for Text 6.",
+      "sourceNote": "The paper uses unlabelled options; shown here as A–C in their printed order.",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 7,
+      "prompt": "What do we learn about dementia in the first paragraph?\n a) Dementia is a disorder characterized solely by memory loss\n b) Apathetic people are more susceptible to dementia\n c) Dementia can affect how a person feels\n\n\nd) A symptom of dementia is increased sensitivity to light",
+      "sourcePage": 312,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 8,
+      "prompt": "The word ‘struggle’ in the second paragraph suggests\n a) A person with dementia may have physical as well as emotional symptoms\n b) Some mental activities become very difficult for people with dementia\n c) Learning a new language may well be impossible for a person with dementia\n d) People with dementia are unable to repeat questions satisfactorily",
+      "sourcePage": 313,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 9,
+      "prompt": "The example of Salaam Kaffash in the third paragraph is given to show\n a) that dementia affects all ethnic groups\n b) that forgetfulness is often accompanied by other symptoms of intellectual\n decline\n c) that physical slowness can be overlooked as an early sign of dementia\n d) that usually the person with dementia is unaware of any symptoms\n themselves",
+      "sourcePage": 313,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 10,
+      "prompt": "What advice is given in the fourth paragraph?\n a) you should gauge your relationship with the person first\n b) speaking slowly will enable the other person to understand more readily\n c) only speak to a person with dementia when they are in a good mood\n d) it is important to show compassion when discussing dementia",
+      "sourcePage": 313,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 11,
+      "prompt": "In the fifth paragraph, what may cause a person with dementia to\n become defensive?\n a) If the person sees a look of pity on your face\n b) The person needs more time before they can accept the new situation\n c) The person doesn’t feel as relieved as he should\n d) It’s possible that the person is unable to understand because of the effects of\n dementia",
+      "sourcePage": 313,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 12,
+      "prompt": "What does the sixth paragraph tell us about the medical assessment of\n dementia?\n\n\na) It may involve more than one assessment\n b) Dementia assessments frequently include blood tests\n c) Vitamin B12 deficiency can be ruled out very quickly\n d) Assessments include an evaluation of body temperature",
+      "sourcePage": 313,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 13,
+      "prompt": "What was one result of Salaam’s diagnosis?\n a) Gill could do yoga and aqua fitness\n b) Salaam and his wife Gill were able to obtain assistance\n c) Gill could get medicine for her husband\n d) After many years, Salaam was able to see his family",
+      "sourcePage": 314,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 14,
+      "prompt": "The word ‘respite’ in the eighth paragraph suggests that\n a) from time to time, people who care for dementia patients need a break\n b) it may be necessary to motivate dementia patients to do more exercise\n c) it is important not to rely solely on medication\n d) there may be specialist facilities available in the community for people who\n have dementia",
+      "sourcePage": 314,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 15,
+      "prompt": "According to the first paragraph, when does frostbite occur?\n a) after skin has had protracted exposure to sub-zero temperatures\n b) only when very low temperatures are combined with high winds\n c) when fluid crystallization precedes vasoconstriction\n d) after an increase in blood flow",
+      "sourcePage": 316,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 16,
+      "prompt": "What do we learn about frostbite in the second paragraph?\n a) contact between alcohol and unprotected skin can cause frostbite\n b) mountaineers have the worst prognosis\n c) patients with frostbite sometimes have other winter-related conditions\n d) some frostbite variants present before hypoxia occurs",
+      "sourcePage": 316,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 17,
+      "prompt": "Before the 1950s\n a) frostbite was unknown outside of Scandinavian countries\n\n\nb) expertise in dealing with frostbite was present in the world’s armed forces\n c) urban and rural civilian populations became cognizant of the dangers of\n frostbite\n d) only the Scandinavian army knew how to treat frostbite",
+      "sourcePage": 316,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 18,
+      "prompt": "According to the fourth paragraph, which of the following statements is\n not true?\n a) it is harder for skin to increase in temperature than it is to decrease\n b) some parts of the human body have a higher risk of frostbite than other parts\n c) up to a certain point, skin is protected by warmth from other parts of the body\n d) ice cascade injuries can prolong loss of cutaneous sensation",
+      "sourcePage": 317,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 19,
+      "prompt": "What do we learn about frostbite in the fifth paragraph?\n a) the rapidity of freezing is thought to be a factor in frostbite recovery\n b) the seriousness of cellular injury depends on the presence of water in the\n intracellular and extracellular spaces\n c) it is not possible to rewarm damaged tissue\n d) microcirculation can be interrupted by bleb formation",
+      "sourcePage": 317,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 20,
+      "prompt": "What advice is given in the sixth paragraph about treatment?\n a) accelerated oxygen demand should be avoided\n b) duration of exposure to cold is not a relevant factor is subsequent outcomes\n c) warming affected areas quickly is better than doing it slowly\n d) tissue that had short-term exposures should be rewarmed more slowly",
+      "sourcePage": 317,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 21,
+      "prompt": "The figure of 41 is given to demonstrate\n a) the maximum age at which full frostbite recovery has been recorded\n b) the average age of men who had frostbite, according to a series of studies\n c) the world record for the number of individual frostbite injuries that one\n person has received\n\n\n\n\nd) the length of time (in years) that the US military has calculated statistics for\n frostbite related injuries",
+      "sourcePage": 317,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 22,
+      "prompt": "What do we learn about frostbite in the last paragraph?\n a) people who have had frostbite may get more colds in the future\n b) frostbite can recur between 2 and 4 times\n c) there could be some unpleasant after-effects of frostbite\n d) patients should be given advice about moving to a warmer climate",
+      "sourcePage": 318,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    }
+  ]
+}

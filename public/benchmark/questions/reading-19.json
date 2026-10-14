@@ -1,0 +1,426 @@
+{
+  "testId": "reading-19",
+  "sourceSha256": "95285b9293f59f01ca355eeb805ba4f009dab84c4cd53643ec85435c4db7f4a5",
+  "questions": [
+    {
+      "part": "A",
+      "number": 1,
+      "prompt": "Reasons why of back pain with no obvious cause develops? ______________",
+      "sourcePage": 361,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 2,
+      "prompt": "Issues that may need the person to see a doctor urgently? __________________",
+      "sourcePage": 361,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 3,
+      "prompt": "Self help strategies for people with back pain? __________________",
+      "sourcePage": 361,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 4,
+      "prompt": "The tests people may have to find the cause of their back\npain? __________________",
+      "sourcePage": 361,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 5,
+      "prompt": "What back pain feels like? __________________",
+      "sourcePage": 361,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 6,
+      "prompt": "Why pregnancy increases the chances of a woman suffering from back\npain? __________________",
+      "sourcePage": 361,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 7,
+      "prompt": "The link between spinal stenosis and back pain? __________________",
+      "sourcePage": 361,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 8,
+      "prompt": "What type of back pain can be eased with gentle exercise? __________________",
+      "sourcePage": 361,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 9,
+      "prompt": "How long has a person been experiencing back pain if it is considered to be\npersistent? __________________",
+      "sourcePage": 361,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 10,
+      "prompt": "What sort of pain might a person be suffering from if they are referred to a pain\nmanagement team? __________________",
+      "sourcePage": 361,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 11,
+      "prompt": "People over what age are at higher risk of back pain? __________________",
+      "sourcePage": 361,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 12,
+      "prompt": "What condition might a person have if they are experiencing pins and needles\naround their bottom? __________________",
+      "sourcePage": 361,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 13,
+      "prompt": "Which nerve carries information from the pelvic area to the toes?\n__________________",
+      "sourcePage": 362,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 14,
+      "prompt": "Being overweight can cause back pain and place stress on what parts of the body?\n__________________",
+      "sourcePage": 362,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 15,
+      "prompt": "Over time__________________posture will raise the risk of a person developing\nback pain.",
+      "sourcePage": 362,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 16,
+      "prompt": "Massage and__________________packs can ease acute back pain.",
+      "sourcePage": 362,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 17,
+      "prompt": "If a person has back pain for no detectable reason it is\ncalled__________________back pain.",
+      "sourcePage": 362,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 18,
+      "prompt": "A person with acute back pain should keep moving and include light exercise such\nas__________________",
+      "sourcePage": 362,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 19,
+      "prompt": "Surgery or__________________is often needed if someone has a slipped disc.",
+      "sourcePage": 362,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 20,
+      "prompt": "An x-ray, __________________ or a computed tomography (CT or CAT) scan are\nsome of the options available to diagnose a back problem.",
+      "sourcePage": 362,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "B",
+      "number": 1,
+      "prompt": "What does the following article say about the application of eye-drops?\n a) there is more than one way to apply eyedrops\n b) the dropper tip should be wiped clean after each use\n c) your eye should be closed for 2-3 minutes before applying eye drops",
+      "sourcePage": 364,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 2,
+      "prompt": "Which of the following statements is not mentioned?\n a) value for money is an important factor in cochlear implantation acquisition\n b) both adults and children could be possible candidates for cochlear\n implantation\n c) simultaneous bilateral cochlear implantation necessitates the use of identical\n devices",
+      "sourcePage": 365,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 3,
+      "prompt": "What can you infer about Dr. Bhatt’s opinion?\n a) he is doubtful that a proper diagnosis can be made\n b) he thinks this type of technology is likely to become widespread\n c) he is a proponent of the medical uses of wearable technology",
+      "sourcePage": 365,
+      "group": "Text 3",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 4,
+      "prompt": "In this article, what does the word ‘advocates’ indicate?\n a) sometimes, workplace violence results in legal procedures\n b) healthcare workers may need to support themselves as well as their patients\n c) violent patients should be admonished",
+      "sourcePage": 366,
+      "group": "Text 4",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 5,
+      "prompt": "What does this article tell the reader about drawing blood?\n a) the procedure of pulling blood back gives rise to more than one sensation\n b) the catheter should be removed before taking blood samples\n c) aspiration should be avoided in CVAD procedures",
+      "sourcePage": 366,
+      "group": "Text 5",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 6,
+      "prompt": "What advice is given in this article about participating in a clinical trial?\n a) you should inform a family member of your intentions\n b) you should give consent to possible side-effects\n c) you should know about the reason for the trial",
+      "sourcePage": 367,
+      "group": "Text 6",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 7,
+      "prompt": "In the first paragraph, what does the writer infer about freedom?\n a) freedom has its limits\n b) moral and legal freedom is undesirable\n\nc) an individual’s freedom is more important than other’s rights and liberties\n d) you cannot ‘opt out’ of the question of freedom in modern society",
+      "sourcePage": 369,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 8,
+      "prompt": "In paragraph two, which of the following are not true?\n a) the people who live near you have a right to a certain degree of calm\n b) the First Amendment limits your activity in some ways\n c) the Second Amendment does not permit unlimited use of guns\n d) moral and legal obligations extend to other amendments",
+      "sourcePage": 370,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 9,
+      "prompt": "The example of a drunk driver is given to\n a) show that there can be terrible consequences of selfish behaviour\n b) demonstrate that acting freely can lead to accidents\n c) emphasise the link between decisions and risk\n d) some people are innocent of wilful misdemeanours",
+      "sourcePage": 370,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 10,
+      "prompt": "In paragraph four, which of the following would not be exceptions to the\n idea that everyone should be vaccinated?\n a) people with pre-existing conditions which mean that vaccines would be\n ineffective\n b) people for whom the effects of vaccines do not wear off over time\n c) very young children\n d) anyone who has a severe problem with their immune system",
+      "sourcePage": 370,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 11,
+      "prompt": "In paragraph five, what does the writer infer about vaccinations?\n a) the need for vaccinations is growing as some animals can spread disease\n b) the society that administers vaccines should be more powerful\n c) there should be a law (or laws) to enforce vaccination for vaccinatable people\n d) fleas can carry diseases that can harm humans",
+      "sourcePage": 370,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 12,
+      "prompt": "What alternative does the writer propose in the sixth paragraph?\n a) more education should be given to encourage vaccination\n\nb) people who refuse to be vaccinated should live in secluded locations\n c) some institutions could be established for unvaccinated people\n d) harsh laws should be passed to enforce vaccination",
+      "sourcePage": 370,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 13,
+      "prompt": "In the seventh paragraph, the writer’s opinion could be summarized as\n a) the sciences of microbiology and immunology are extremely important\n b) collective vaccination is a sign of a well-adjusted society\n c) the present situation cannot be justified\n d) thanks to vaccinations, there are more successes than victims",
+      "sourcePage": 371,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 14,
+      "prompt": "What can the reader infer about the writer’s opinion in the last\n paragraph?\n a) there are advantages and disadvantages in using the internet\n b) internet usage can masquerade as propaganda\n c) counterfactual mindsets ought to be inoculated against\n d) quarantine is the only remedy for certain types of diseases",
+      "sourcePage": 371,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 15,
+      "prompt": "What do we learn about sports injuries in the first paragraph?\n a) some sports injuries have severe consequences for subsequent sporting\n careers\n b) improper injury management has been well-documented\n c) low frequency pelvis, hip, and thigh injuries are more difficult to treat\n d) there is more information available for some types of injuries than for others",
+      "sourcePage": 373,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 16,
+      "prompt": "When do stress fractures happen?\n a) they happen in specific situations\n b) they often occur when athletes leave military service\n c) they often happen following abnormal osteoclastic activity\n d) when bones cannot remodel to deal with contact sports injuries",
+      "sourcePage": 373,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 17,
+      "prompt": "According to the third paragraph, which of the following statements is\n not true?\n\n\n\na) the exact position of the fracture is relevant for subsequent treatment\n b) a patient’s state of health can play a role in the severity and complexity of\n fractures\n c) high-energy athletic accidents can exacerbate hip fractures\n d) the angle of any distortion is an important factor",
+      "sourcePage": 373,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 18,
+      "prompt": "Why is AVN more common in younger patients?\n a) because treatment initiation usually takes longer in young patients\n b) because blood supply does not become stable until later in life\n c) because skeletal maturity can hinder blood flow\n d) because collateral flow is infrequent during adolescance",
+      "sourcePage": 374,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 19,
+      "prompt": "In the fifth paragraph, which of the following statements about blood\n supply to the femoral head is not mentioned?\n a) there have been a large number of studies into this topic\n b) a significant development in this area occurs during adolescence\n c) there is a significant change in infants aged four years old\n d) metaphyseal vessels are significant only for infants aged less than four",
+      "sourcePage": 374,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 20,
+      "prompt": "What do the statistics in the sixth paragraph reveal?\n a) a disproportionally high number of elderly women are affected by hip\n fractures\n b) the number of hip fractures rises by over 340,000 each year\n c) the rise in hip fractures affects all ethnic groups equally\n d) hip fractures can be set more quickly in metropolitan hospitals",
+      "sourcePage": 374,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 21,
+      "prompt": "What do we learn about hip fractures in the seventh paragraph?\n a) stress fractures are more difficult to detect than ordinary fractures\n b) 30-year-old patients have a better likelihood of recovery than patients over 80\n c) primary care doctors may suggest painkillers rather than treatment for a\n fracture\n\n\nd) in some patients, contorted leg muscles may make stress fracture diagnosis\n more difficult",
+      "sourcePage": 374,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 22,
+      "prompt": "Which of the following is not mentioned in the last paragraph?\n a) the location of a pain is an important factor in correct diagnosis\n b) nocturnal pain can be symptomatic of a stress fracture\n c) pain duration should be taken into account\n d) antidepressant medication can relieve some symptoms of stress fractures",
+      "sourcePage": 375,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,390 @@
+{
+  "testId": "listening-11",
+  "sourceSha256": "8adfbf2ba6d50c8acb3e74398f98289363200d8864c467f1e795f6d28757b6ee",
+  "questions": [
+    {
+      "part": "A",
+      "number": 1,
+      "prompt": "Chief complaint: Battling ____",
+      "sourcePage": 78,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 2,
+      "prompt": "Smoking: ____",
+      "sourcePage": 78,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 3,
+      "prompt": "Diet: ____ , but eats dairy and fish",
+      "sourcePage": 78,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 4,
+      "prompt": "Reports no change in ____ as well",
+      "sourcePage": 78,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 5,
+      "prompt": "____ is frequent and large",
+      "sourcePage": 78,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 6,
+      "prompt": "Possible condition: ____",
+      "sourcePage": 78,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 7,
+      "prompt": "Deceased grandmother: died ____",
+      "sourcePage": 78,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 8,
+      "prompt": "To check ____ level",
+      "sourcePage": 79,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 9,
+      "prompt": "(as low levels may cause) ____",
+      "sourcePage": 79,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 10,
+      "prompt": "Possible disease: ____",
+      "sourcePage": 79,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 11,
+      "prompt": "Ireland has ____ more cases than the rest of UK",
+      "sourcePage": 79,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 12,
+      "prompt": "Extended investigation via ____ required",
+      "sourcePage": 79,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 13,
+      "prompt": "Symptoms in A&E: Episodes of persistent ____ (past 6 months)",
+      "sourcePage": 80,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 14,
+      "prompt": "Also had episodes of stabbing pain on the right side of\n the ____",
+      "sourcePage": 80,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 15,
+      "prompt": "Pain is exacerbated by coughing, sneezing or taking a ____",
+      "sourcePage": 80,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 16,
+      "prompt": "Has additional issue with ____ (ongoing for 5 years)",
+      "sourcePage": 80,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 17,
+      "prompt": "Food sometimes gets lodged in ____",
+      "sourcePage": 80,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 18,
+      "prompt": "Has had ____ done (results unremarkable but symptoms\n worsened)",
+      "sourcePage": 80,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 19,
+      "prompt": "Recently, ____ and vomiting have started after eating",
+      "sourcePage": 80,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 20,
+      "prompt": "No relevant ____",
+      "sourcePage": 80,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 21,
+      "prompt": "Oesophagus is dilated and ____",
+      "sourcePage": 80,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 22,
+      "prompt": "Problem is ____ in nature",
+      "sourcePage": 81,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 23,
+      "prompt": "Affects the ____ at bottom of oesophagus",
+      "sourcePage": 81,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 24,
+      "prompt": "Other possible causes: acid reflux, malignant structures or an\n oesophageal ____",
+      "sourcePage": 81,
+      "group": "Extract 2"
+    },
+    {
+      "part": "B",
+      "number": 25,
+      "prompt": "You hear part of an announcement in a ward.\n Why is the announcement being given at this time?\nA. It is a routine announcement given before every briefing.\nB. It is being given because of an accident in the hospital.\nC. It is being because of the rise of a certain infectious disease.",
+      "sourcePage": 81,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 26,
+      "prompt": "You hear part of a training for nurses on medication errors.\n What is the overall topic of the training?\nA. Being able to explain the causes of most medication errors\nB. Being able to acquire knowledge and skill in managing errors\nC. Being able to demonstrate how to investigate medication errors",
+      "sourcePage": 81,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 27,
+      "prompt": "You hear two nurses discussing a training they took on vaccinations.\n What do the two nurses agree on about the training?\nA. The usefulness of a review on certain issues\nB. That it was not necessary to include some topics\nC. That not everyone needed to take the training",
+      "sourcePage": 81,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 28,
+      "prompt": "You hear part of a conversation between a trainee doctor and a senior doctor.\n How does the senior doctor help the trainee doctor to interpret the ECG?\nA. By showing her the different parts of the ECG recording\nB. By asking her to explain the different parts of the ECG recording\nC. By asking her to show him the different parts of the ECG recording",
+      "sourcePage": 82,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 29,
+      "prompt": "You hear part of a conversation between two dentists.\n What do the dentists disagree about in terms of the training?\nA. The need for more medical training for dentists\nB. The need for more safety training for dentists\nC. The need for more legal training for dentists",
+      "sourcePage": 82,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 30,
+      "prompt": "You hear a handover between doctors in the A&E.\n Who is most affected by the problems with handovers?\nA. The ambulance drivers who are working overtime\nB. The patients in the community and in the ambulances\nC. The doctors who are treating the patients coming in",
+      "sourcePage": 82,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 31,
+      "prompt": "What is the main topic of the training?\nA. The role of probiotics in the gutmicrobiome\nB. The role of probiotics pre- and post-partum\nC. The role of probiotics in functional medicine nutrition",
+      "sourcePage": 82,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 32,
+      "prompt": "Why does the speaker say professional development is important?\nA. Because there are so many things to learn about the topic.\nB. Because it is necessary to review topics from initial training.\nC. Because new areas of study are constantly emerging.",
+      "sourcePage": 83,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 33,
+      "prompt": "What is the focus of the first topic?\nA. The makeup of the microbiome of human breast milk\nB. Harmful species of bacteria found in human breast milk\nC. The supply of beneficial bacteria to the infant gut",
+      "sourcePage": 83,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 34,
+      "prompt": "The species of microorganisms mentioned have been shown to…\nA. Have positive effects on both mother and infant health\nB. Have potentially negative effects on infant health\nC. Have overwhelmingly positive effects on infant health",
+      "sourcePage": 83,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 35,
+      "prompt": "During the next phase of the training, participants will…\nA. Discuss their thoughts on the training topics\nB. Review articles on topics related to the training\nC. Review what they already know about the topics",
+      "sourcePage": 83,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 36,
+      "prompt": "According to the speaker, what is the role of antibiotics in dysbiosis?\nA. The use of antibiotics can be a cure for dysbiosis.\nB. Antibiotics are not generally used for this condition.\nC. The use of antibiotics can be a cause of dysbiosis.",
+      "sourcePage": 83,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 37,
+      "prompt": "Why does the interviewer give statistics about the topic?\nA. Because she wants to show under-diagnosed the topic is.\nB. Because she wants to show how it relates to suicide in young\n people.\nC. Because she wants the audience to the gravity of the topic.",
+      "sourcePage": 84,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 38,
+      "prompt": "According to the interviewee, teenagers are vulnerable to mental disease\n because…\nA. They are not equipped to handle the unique challenges they are\n facing\nB. They are facing an onslaught of changes in their lives\nC. They are facing peer pressure for greater autonomy",
+      "sourcePage": 84,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 39,
+      "prompt": "According to the interviewee, how does technology affect teenagers’\n mental health?\nA. They are confused between real life and virtual life.\nB. They compare their lives to how they think others are living.\nC. They have more opportunities to bully and be bullied online.",
+      "sourcePage": 84,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 40,
+      "prompt": "The interviewee says that teenagers with diagnosed mental health\n conditions are often…\nA. Treated early for their mental health conditions.\nB. Treating others poorly because of their condition.\nC. Treated poorly by peers because of their condition.",
+      "sourcePage": 84,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 41,
+      "prompt": "According to the interviewee, what can be done to prevent mental health\n conditions in adolescents?\nA. Build healthy habits and supportive communities to support teens\nB. Let teens work individually to build resilience\nC. Involve teens in activities in the community and school",
+      "sourcePage": 84,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 42,
+      "prompt": "What is important in treating teens with mental health conditions?\nA. It is important to look for approaches that do not involve\n medication.\nB. It is important to involve mental health institutions in the\n treatment.\nC. It is important to define the mental health condition correctly.",
+      "sourcePage": 85,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    }
+  ]
+}

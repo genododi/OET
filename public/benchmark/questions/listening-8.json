@@ -1,0 +1,390 @@
+{
+  "testId": "listening-8",
+  "sourceSha256": "8adfbf2ba6d50c8acb3e74398f98289363200d8864c467f1e795f6d28757b6ee",
+  "questions": [
+    {
+      "part": "A",
+      "number": 1,
+      "prompt": "Occupation: ____ (retired)",
+      "sourcePage": 54,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 2,
+      "prompt": "Described as ____ by the patient",
+      "sourcePage": 54,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 3,
+      "prompt": "Recounted an incident: Could not immediately recognize ____ \n from previous workplace",
+      "sourcePage": 54,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 4,
+      "prompt": "Cannot cope with ____ resulting in irritation and frustration)",
+      "sourcePage": 54,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 5,
+      "prompt": "____ of physical activity (due to self-isolation)",
+      "sourcePage": 54,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 6,
+      "prompt": "Potential due to presence of ____",
+      "sourcePage": 54,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 7,
+      "prompt": "Not the same as general forgetfulness but is a ____ brain\n disorder",
+      "sourcePage": 54,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 8,
+      "prompt": "Affects thinking, behavior, and daily ____",
+      "sourcePage": 55,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 9,
+      "prompt": "More work needed to identify ____ type of dementia",
+      "sourcePage": 55,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 10,
+      "prompt": "Increase ____ of physical activity",
+      "sourcePage": 55,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 11,
+      "prompt": "Improve quality of sleep (to eliminate ____ from the brain)",
+      "sourcePage": 55,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 12,
+      "prompt": "Intervene to prevent breathing problems while sleeping, because lack\n of ____",
+      "sourcePage": 55,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 13,
+      "prompt": "Onset of ____ pain due to physical work in a warehouse",
+      "sourcePage": 55,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 14,
+      "prompt": "Had ____ - disrupted daily activities",
+      "sourcePage": 56,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 15,
+      "prompt": "Resorted to microdistecomysurgery after ____ did not help",
+      "sourcePage": 56,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 16,
+      "prompt": "Only prescribed opioids post-surgery, including ____ and\n opiate mix",
+      "sourcePage": 56,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 17,
+      "prompt": "Led to overdosing on painkillers up to ____ the recommended\n dosage",
+      "sourcePage": 56,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 18,
+      "prompt": "Also started taking up to three ____ a day",
+      "sourcePage": 56,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 19,
+      "prompt": "____ swingsto the point of being suicidal",
+      "sourcePage": 56,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 20,
+      "prompt": "Memory loss (as a result of ____ years of taking painkillers)",
+      "sourcePage": 56,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 21,
+      "prompt": "First phase: Learn ____ ways to manage pain",
+      "sourcePage": 56,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 22,
+      "prompt": "Second phase: Progress to ____ therapy to learn how to\n handle stress",
+      "sourcePage": 57,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 23,
+      "prompt": "Third phase: Learn to slowly reduce painkillers through private session\n with a ____",
+      "sourcePage": 57,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 24,
+      "prompt": "Ultimate goal: to no longer see opioids as a ____ (instead, to\n use other pain management techniques)",
+      "sourcePage": 57,
+      "group": "Extract 2"
+    },
+    {
+      "part": "B",
+      "number": 25,
+      "prompt": "You hear a dermatologist talking to a patient about their skin health.\n What is the cause of the patient’s problem?\nA. her recent change in diet\nB. a change in medication\nC. a new treatment plan",
+      "sourcePage": 57,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 26,
+      "prompt": "You hear a nurse talking about a new program to be introduced on her ward.\n What will be the programme’s main objective?\nA. The programme will provide support for nurses dealing with\n addiction.\nB. The programme will provide support for patients dealing with\n addiction\nC. The programme will provide support for community outreach.",
+      "sourcePage": 57,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 27,
+      "prompt": "You hear an intern asking a senior colleague about a patient’s treatment plan.\n What recommendation has the senior colleague made?\nA. To treat Mr Harris’ balance issues\nB. To have Mr Harris do light physical activity\nC. To get Mr Harris out of bed as soon as possible",
+      "sourcePage": 57,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 28,
+      "prompt": "You hear a surgeon and an internist discuss the treatment plan for a patient.\n The female doctor suggests that the patient could\nA. have internal injuries not detected by the tests done\nB. have further damage as a result of the fracture\nC. wait for further tests and scans to be run",
+      "sourcePage": 58,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 29,
+      "prompt": "You hear members of a hospital discussing a problem in the A&E department.\n .\n What problem is the department experiencing?\nA. There are more patients with mental health disorders.\nB. There is no mechanism to get patients into treatment.\nC. There are no staff in the hospital who can help the patients.",
+      "sourcePage": 58,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 30,
+      "prompt": "You hear a GP talking about opening and managing her own practice.\n What does she consider to be the biggest challenge?\nA. Creating close relationships with patients\nB. Balancing time with patients with other responsibilities\nC. Maintaining healthy finances",
+      "sourcePage": 58,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 31,
+      "prompt": "Why does Allen Jackson give information about how the current system\n works?\nA. To emphasize how the research can improve upon the current\n system\nB. To give information that few people are likely aware of\nC. To explain why he decided to take part in this research project",
+      "sourcePage": 58,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 32,
+      "prompt": "How does artificial intelligence compare to the current system?\nA. AI is slightly less accurate than the current system.\nB. AI compares favorably to the current system.\nC. AI results in more women being diagnosed with cancer.",
+      "sourcePage": 59,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 33,
+      "prompt": "How did patients feel about the study?\nA. They were not informed about their participation.\nB. They were not concerned about any aspect of the study.\nC. They were worried about the security of their records.",
+      "sourcePage": 59,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 34,
+      "prompt": "Allen Jackson believes that the results of the research study mean that\nA. doctors can specialize in other areas of medicine\nB. doctors can spend less time specializing in radiology\nC. doctors can devote less of their time to diagnosis",
+      "sourcePage": 59,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 35,
+      "prompt": "How might future patients be affected by the research?\nA. They will not notice any difference as a result of the research.\nB. Their stress levels may decrease because of speedier results.\nC. Fewer patients will likely be diagnosed with breast cancer.",
+      "sourcePage": 59,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 36,
+      "prompt": "Allen Jackson believes that international collaboration is important\n because\nA. it will help improve the accuracy of diagnosis for women in the UK\nB. it will help to eradicate the disease around the world\nC. it will help to increase positive outcomes for patients",
+      "sourcePage": 59,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 37,
+      "prompt": "How did Sally come to take John on as a patient?\nA. He was referred by his regular GP.\nB. He was not helped by a series of GPs.\nC. His GP told him to seek a specialist.",
+      "sourcePage": 60,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 38,
+      "prompt": "How does John’s condition affect his everyday life?\nA. He experiences pain in all areas of his body.\nB. He cannot do common exercises.\nC. He is not able to stand on his own.",
+      "sourcePage": 60,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 39,
+      "prompt": "Why was John frustrated by his diagnosis?\nA. Because he felt it was not accurate\nB. Because his symptoms did not match the diagnosis.\nC. Because he was not able to receive medical care.",
+      "sourcePage": 60,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 40,
+      "prompt": "What was John’s reaction to the response of the GPs he saw?\nA. His outlook on life was negatively affected.\nB. He immediately sought out a specialist for help.\nC. He started to self-medicate for his condition.",
+      "sourcePage": 60,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 41,
+      "prompt": "How did Sally react to John’s condition?\nA. She believed his symptoms were caused by something else.\nB. She felt that surgical intervention was necessary.\nC. She thought that more research was necessary.",
+      "sourcePage": 60,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 42,
+      "prompt": "What does Sally suggest about the success of the surgery?\nA. The earlier it is done the more likely it will result in a positive\n outcome.\nB. It is very difficult to reduce the amount of pain it will cause\n patients.\nC. The severity of the problem will determine the outcome.",
+      "sourcePage": 61,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    }
+  ]
+}

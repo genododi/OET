@@ -1,0 +1,426 @@
+{
+  "testId": "reading-3",
+  "sourceSha256": "95285b9293f59f01ca355eeb805ba4f009dab84c4cd53643ec85435c4db7f4a5",
+  "questions": [
+    {
+      "part": "A",
+      "number": 1,
+      "prompt": "mindfulness? ___________________",
+      "sourcePage": 45,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 2,
+      "prompt": "physical indications of depression? ___________________",
+      "sourcePage": 45,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 3,
+      "prompt": "therapy looking at interactions with others? ___________________",
+      "sourcePage": 45,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 4,
+      "prompt": "pharmacological support? ___________________",
+      "sourcePage": 45,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 5,
+      "prompt": "the most effective therapies? ___________________",
+      "sourcePage": 45,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 6,
+      "prompt": "blood tests that might be done? ___________________",
+      "sourcePage": 46,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 7,
+      "prompt": "the effect of stopping medication abruptly? ___________________",
+      "sourcePage": 46,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 8,
+      "prompt": "What does ECT stand for? ___________________",
+      "sourcePage": 46,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 9,
+      "prompt": "What might cause vivid dreams at night? ___________________",
+      "sourcePage": 46,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 10,
+      "prompt": "What type of gathering that might help someone with depression?\n___________________",
+      "sourcePage": 46,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 11,
+      "prompt": "What two conditions that need a blood test to confirm if they are present?\n___________________",
+      "sourcePage": 46,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 12,
+      "prompt": "What type of ideas might a person with clinical depression have?\n___________________",
+      "sourcePage": 46,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 13,
+      "prompt": "What type of non-medicine treatment teaches people how to consider the here\nand now? ___________________",
+      "sourcePage": 46,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 14,
+      "prompt": "What group of symptoms of depression include the person feeling worthless or\nguilty? _______________",
+      "sourcePage": 46,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 15,
+      "prompt": "Difficulty___________________and increased___________________intake are\npossible physical signs that someone is suffering from depression.",
+      "sourcePage": 47,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 16,
+      "prompt": "A person with extreme signs of depression may need\nadmitting___________________for treatment.",
+      "sourcePage": 47,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 17,
+      "prompt": "A person may be clinically depressed if they are feeling sad all the time\nfor___________________weeks or longer.",
+      "sourcePage": 47,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 18,
+      "prompt": "Psychodynamic psychotherapy helps a person be more sensitive to\nhidden___________________and how they make them ill.",
+      "sourcePage": 47,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 19,
+      "prompt": "Tricyclic antidepressants (TCAs)\nincrease___________________and___________________to help the person’s frame\nof mind improve.",
+      "sourcePage": 47,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 20,
+      "prompt": "During a clinical assessment the doctor conducts a thorough review of the\npersons___________________",
+      "sourcePage": 47,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "B",
+      "number": 1,
+      "prompt": "What course of action must a healthcare professional take after\n reading this device recall notice?\n\n\n\n\na) The health professional should contact their patient so they can discuss\n issues raised in the recall notice\n b) The health professional should discuss the pros and cons resulting from\n the firmware update at their next routine appointment\n c) The health professional should discuss the possible effects of the\n firmware update and schedule replacing the device as soon as is\n convenient.",
+      "sourcePage": 49,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 2,
+      "prompt": "According to this research report which group of the Australian\n population are most likely to be treated in hospital for\n deliberate self-harm?\n a) Women aged 15-19 from the Aboriginal and Torres Strait Island\n population\n\n\nb) Women aged 15-24 from the Aboriginal and Torres Strait Island\n population\n c) Women aged 25-49 from the Aboriginal and Torres Strait Island\n population.",
+      "sourcePage": 50,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 3,
+      "prompt": "What reasons does the article give for patients preferring\n lifestyle changes if their blood sugars are raised?\n a) Ongoing suffering with existing illnesses, opposition to injectables and\n increased expense.\n b) Lack of engagement with injectables and lack of understanding of the\n rationale for using them\n c) Pain from using injectables and a reluctance by the physician to start\n new treatment.",
+      "sourcePage": 51,
+      "group": "Text 3",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 4,
+      "prompt": "What are the main topics women should be given information\n on during their ante natal period?\n a) Managing her expectations, knowing which babies are at risk of SUDI,\n and how to be confident in her ability as a new Mum\n b) Managing her health during and after pregnancy, life changes,\n partnership relationships and baby’s needs.\n c) Managing psychosocial and mental health issues, understanding labour\n and giving birth.",
+      "sourcePage": 52,
+      "group": "Text 4",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 5,
+      "prompt": "Mt Carburys chest movements were\n\n a) Equal and in sync with his stomach\n b) Unequal and out of sync with his belly\n c) Uneven and out of timing with his tummy",
+      "sourcePage": 53,
+      "group": "Text 5",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 6,
+      "prompt": "Which of the following lists correctly includes the various people\n or places that always receive a Discharge Summary?\n a) Patient/carer, Outpatient clinic, patients nominated GP\n b) Patient/carer, patient’s My Health Record.\n c) Patient/carer, patient’s nominated GP",
+      "sourcePage": 53,
+      "group": "Text 6",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 7,
+      "prompt": "In first paragraph, what does the word “quest” imply mean?\n\n a) Search\n b) Mission\n c) Act\n d) Think",
+      "sourcePage": 55,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 8,
+      "prompt": "Why do social workers use animals nowadays?\n\n a) To relieve tension between people, or start a conversation\n b) To help people clean the ice and snow\n c) To protect people\n\n\nd) To help people to learn how to calm down",
+      "sourcePage": 55,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 9,
+      "prompt": "A review published in the Journal of Clinical Psychology claims\n that\n\na) Animals help people feel better\nb) Animals don’t have any impact on the positive feelings of people\nc) The decision to incorporate animal therapy in various facilities may\n have been made hastily.\nd) Incorporating animal therapy in various facilities was a good decision.",
+      "sourcePage": 56,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 10,
+      "prompt": "What does the psychologist Molly Crossman mean when she\n says that the evidence is a wash?\n\na) That the evidence is of no benefit to anyone\nb) That the evidence is weak\nc) That the evidence is bad\nd) That the evidence is convincing",
+      "sourcePage": 56,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 11,
+      "prompt": "Which of these things are not mentioned in the review?\n\na) The quality of the studies that have been conducted\nb) The Lack of control groups\nc) The long-term significance of human-animal interaction\nd) The fact that only the short-term impact was considered",
+      "sourcePage": 56,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 12,
+      "prompt": "What does the writer claim about the physical and psychological\n benefits of owning a dog?\n\n\na) There is evidence that people owning a pet since early childhood are\n less likely to develop allergies.\n b) There is evidence that there are many mental health benefits\n c) The evidence is conclusive.\n d) The evidence is dubious.",
+      "sourcePage": 56,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 13,
+      "prompt": "How can the terminally ill benefit from animal-assisted therapy?\n\n a) They can play or cuddle with an animal\n b) They may start feeling better\n c) Their pain can be heightened\n d) Their illness can be treated",
+      "sourcePage": 57,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 14,
+      "prompt": "Why is the author feeling skeptical in sixth Paragraph regarding\n the benefits from animal-assisted therapy?\n\n a) Because there is a lack of solid evidence.\n b) Because sometimes the belief of the patient in the positive outcome is\n beneficial\n c) Because there are high chances that the mood can be hypothetically\n improved\n d) Because there are only theoretical grounds for the claim.",
+      "sourcePage": 57,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 15,
+      "prompt": "Which of the following conditions can’t be treated with Advil\n or Tylenol?\n\n a) Body aches\n b) Headaches\n c) Joint inflammation\n d) Stress",
+      "sourcePage": 59,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 16,
+      "prompt": "According to second paragraph, which of the following has\n been found to be a trigger for headaches?\n\n a) perfume\n b) changes in the weather\n c) stress\n d) none of the above",
+      "sourcePage": 59,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 17,
+      "prompt": "Why does Gottschalk suggest treating every headache as a\n migraine?\n\n a) In order to eradicate the headache.\n b) To avoid buying potentially harmful medicine.\n c) To achieve a durable effect.\n d) To achieve a better effect.",
+      "sourcePage": 59,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 18,
+      "prompt": "What makes it so easy for people to pop pills?\n\na) Their availability at the chemist’s.\nb) The fact that they are very cheap.\nc) The fact that they offer fast relief.\nd) The fact that they are benign.",
+      "sourcePage": 60,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 19,
+      "prompt": "What is the author’s opinion on NSAIDs?\n\na) They are deadly\nb) They are not completely safe\nc) They cause major injuries\nd) They cause complications.",
+      "sourcePage": 60,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 20,
+      "prompt": "What does the author imply when he says “nothing to gloss\n over either” in fourth Paragraph?\n\na) That’s nothing to show off about\nb) That’s something that shouldn’t be ignored or avoided\nc) That’s nothing to be happy about.\nd) That’s something that shouldn’t be discussed",
+      "sourcePage": 60,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 21,
+      "prompt": "Which of these medications is considered to be safe for the\n stomach according to Gottschalk?\n\na) beta blockers\nb) anti-seizure medications\nc) injections\n\n\n\nd) tricyclic antidepressants",
+      "sourcePage": 60,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 22,
+      "prompt": "What kind of therapy is Gottschalk hoping will help prevent\n migraines in the future?\n\na) Immunotherapy\nb) Protein therapy\nc) Neurological therapy\nd) Meditation",
+      "sourcePage": 61,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    }
+  ]
+}

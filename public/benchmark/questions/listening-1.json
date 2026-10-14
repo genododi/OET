@@ -1,0 +1,390 @@
+{
+  "testId": "listening-1",
+  "sourceSha256": "8adfbf2ba6d50c8acb3e74398f98289363200d8864c467f1e795f6d28757b6ee",
+  "questions": [
+    {
+      "part": "A",
+      "number": 1,
+      "prompt": "Onset of symptoms: ____",
+      "sourcePage": 1,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 2,
+      "prompt": "Some episodes caused loss of ____",
+      "sourcePage": 1,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 3,
+      "prompt": "Early episodes triggered by physical exertion ____",
+      "sourcePage": 1,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 4,
+      "prompt": "Change in episodic trigger pattern: Patient started to have symptoms\n while ____",
+      "sourcePage": 1,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 5,
+      "prompt": "Severity: Enough to warrant intervention by way of calling an ____",
+      "sourcePage": 1,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 6,
+      "prompt": "Third person account: Jack appeared ____ during an episode",
+      "sourcePage": 1,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 7,
+      "prompt": "A& E check for ____ came back negative",
+      "sourcePage": 1,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 8,
+      "prompt": "Suspected condition: ____",
+      "sourcePage": 1,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 9,
+      "prompt": "____ detected from most recent ECG",
+      "sourcePage": 1,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 10,
+      "prompt": "Stokes-Adams attacks due to ____ heartbeat – cause of blackouts",
+      "sourcePage": 1,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 11,
+      "prompt": "____ needed (to monitor and control heartbeat)",
+      "sourcePage": 2,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 12,
+      "prompt": "Surgery required – although it’s not ____",
+      "sourcePage": 2,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 13,
+      "prompt": "Occupation: Solicitor\n Growing fatigue over the ____",
+      "sourcePage": 2,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 14,
+      "prompt": "Affecting professional life: fell ____ at work a few times",
+      "sourcePage": 2,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 15,
+      "prompt": "Suffered depression ____ years ago (marriage breakdown)",
+      "sourcePage": 2,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 16,
+      "prompt": "Physical symptoms: constipation and ____ gain",
+      "sourcePage": 2,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 17,
+      "prompt": "Family history of ____",
+      "sourcePage": 2,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 18,
+      "prompt": "Normal ____ levels (diabetes ruled out)",
+      "sourcePage": 3,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 19,
+      "prompt": "Skin: dry and ____ \n Anaemic",
+      "sourcePage": 3,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 20,
+      "prompt": "Lipid level: ____ (indicating hypercholesterolaemia)",
+      "sourcePage": 3,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 21,
+      "prompt": "Early diagnosis: ____",
+      "sourcePage": 3,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 22,
+      "prompt": "____ interfering with sleep",
+      "sourcePage": 3,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 23,
+      "prompt": "Condition ismore prevalent in ____ \n Patient’s age is an added risk factor",
+      "sourcePage": 3,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 24,
+      "prompt": "Requires ____ tests to be sure of diagnosis",
+      "sourcePage": 3,
+      "group": "Extract 2"
+    },
+    {
+      "part": "B",
+      "number": 25,
+      "prompt": "You hear a conversation between a GP and a patient about recurring\n diarrhoea.\n What does the GP ask the patient to confirm?\nA. Whether she caught the disease in St Petersburgh, Russia.\nB. Whether she was in the vicinity of a place with the disease\n recently.\nC. Whether she had been to the tropics recently as the disease is\n common there.",
+      "sourcePage": 3,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 26,
+      "prompt": "You hear a physician in the A&E department talking with a patient\n presenting with abdominal pain.\n The physician wants to deal with the patient’s dehydration by...\nA. Ordering an x-ray of the patient’s abdomen.\nB. Having blood drawn in order to run tests.\nC. Having an IV put in while other tests are run.",
+      "sourcePage": 4,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 27,
+      "prompt": "You hear a ward briefing about a newly admitted patient.\n What does the doctor conducting the briefing want to confirm?\nA. The reason the patient is in pain.\nB. The reason the condition was triggered.\nC. The reason the patient’s eyes are sore.",
+      "sourcePage": 4,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 28,
+      "prompt": "You hear part of a training on communication between providers.\n What will be the priority of the new role discussed?\nA. To improve communication between doctors and patients\nB. To improve communication between patients and nurses\nC. To improve communication between doctors and nurses.",
+      "sourcePage": 4,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 29,
+      "prompt": "You hear a trainee doctor discussing stress with a senior GP.\n What does the senior doctor identify as the cause of the problem in\n general practice?\nA. The unwillingness of younger GPs to work locally or full time.\nB. The number of doctors opting to go into general practice.\nC. The difficulty with balancing the long days with family life.",
+      "sourcePage": 4,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 30,
+      "prompt": "You hear a conversation between a nurse and a doctor about\n scheduling appointments.\n\n Why did the nurse mention that she had already spent an hour on the\n task?\nA. To show that she had already put in reasonable effort before\n asking for help.\nB. To show that she does not have enough information to complete\n the task quickly.\nC. To show that she is also feeling the effect of the hospital being\n short-handed at the moment.",
+      "sourcePage": 4,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 31,
+      "prompt": "The speaker points out that many of the foot conditions people suffer\n from…\nA. Are more common among the elderly.\nB. Do not necessitate medical intervention.\nC. Can be dangerous if handled by someone without skill or knowledge.",
+      "sourcePage": 5,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 32,
+      "prompt": "What is the main purpose of the project?\nA. To save money by empowering patients with minor conditions\nB. To discharge as many patients as possible for the podiatry service\nC. To focus all of the podiatry service’s efforts on high risk conditions",
+      "sourcePage": 5,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 33,
+      "prompt": "What types of patients were deemed suitable for self-care?\nA. Those with high risk medical or podiatric needs\nB. Those able to take care of low risk conditions\nC. Those with a medically-trained family member",
+      "sourcePage": 5,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 34,
+      "prompt": "What was offered to patients considered to be low risk?\nA. Small group educational sessions\nB. One-to-one assessment appointments\nC. Small group assessment sessions",
+      "sourcePage": 5,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 35,
+      "prompt": "How did the project result in cost savings?\nA. By reducing the total number of patients seen by podiatrists\nB. By reducing the number of podiatrists seeing patients\nC. By reducing the number of appointments involving low risk patients",
+      "sourcePage": 6,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 36,
+      "prompt": "According to the speaker, the primary benefit to patients was…\nA. The quality of care that podiatry patients received\nB. The amount of time patients had to wait to be seen\nC. The level of satisfaction of all podiatry patients",
+      "sourcePage": 6,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 37,
+      "prompt": "What is the current role of the interviewee?\nA. A leader of an organization that works to promote nursing\nB. A nurse with experience working with elderly patients\nC. A health practitioner with a background in emergency medicine",
+      "sourcePage": 6,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 38,
+      "prompt": "According to the interviewee, what is causing the lack of physician\n integration?\nA. The poor communications systems in place\nB. The lack of permanent physicians at hospitals\nC. The integrated care model recently adopted",
+      "sourcePage": 6,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 39,
+      "prompt": "Why was the interviewer surprised by the interviewee’s initial response\n about challenges?\nA. Because he does not agree with what she has said.\nB. Because he has information that contradicts what she said.\nC. Because he has heard information about another problem.",
+      "sourcePage": 6,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 40,
+      "prompt": "According to the interviewee, what is the most serious result of short-\n staffing?\nA. Job satisfaction and burnout of nurses\nB. Significant turnover in health systems\nC. Increased risks to patient safety",
+      "sourcePage": 7,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 41,
+      "prompt": "The interviewee notes that long hours can negatively affect…\nA. The mental abilities of nurses\nB. The physical abilities of nurses\nC. The family and social life of nurses",
+      "sourcePage": 7,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 42,
+      "prompt": "What challenge does the interviewee say might be surprising to many?\nA. Domestic violence\nB. Bullying by physicians\nC. Bullying by patients",
+      "sourcePage": 7,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    }
+  ]
+}

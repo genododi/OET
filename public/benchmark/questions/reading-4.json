@@ -1,0 +1,426 @@
+{
+  "testId": "reading-4",
+  "sourceSha256": "95285b9293f59f01ca355eeb805ba4f009dab84c4cd53643ec85435c4db7f4a5",
+  "questions": [
+    {
+      "part": "A",
+      "number": 1,
+      "prompt": "signs of dehydration in babies? ___________________",
+      "sourcePage": 66,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 2,
+      "prompt": "how norovirus is transmitted between people? ___________________",
+      "sourcePage": 66,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 3,
+      "prompt": "what to use in the hand hygiene procedure? ___________________",
+      "sourcePage": 67,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 4,
+      "prompt": "what people can eat if they have norovirus? _______________",
+      "sourcePage": 67,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 5,
+      "prompt": "cleaning surfaces? _______________",
+      "sourcePage": 67,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 6,
+      "prompt": "the tests that might be done to see if a person is dehydrated? _______________",
+      "sourcePage": 67,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 7,
+      "prompt": "how long a person with norovirus must stay at home for? _______________",
+      "sourcePage": 67,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 8,
+      "prompt": "What is most vital activity for people to do if they do have norovirus?\n___________________",
+      "sourcePage": 67,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 9,
+      "prompt": "The majority of people have norovirus for how long? ___________________",
+      "sourcePage": 67,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 10,
+      "prompt": "A heart rate would usually be considered high, if it was at least how many beats\nper minute in an adult? ___________________",
+      "sourcePage": 67,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 11,
+      "prompt": "What is the medical term for feeling sick? ___________________",
+      "sourcePage": 67,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 12,
+      "prompt": "What is the best indicator that a person has norovirus? ___________________",
+      "sourcePage": 67,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 13,
+      "prompt": "What hospital treatment is likely to be started if a person is admitted with\nnorovirus? _______________",
+      "sourcePage": 67,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 14,
+      "prompt": "What should hands be washed with if norovirus is about? _______________",
+      "sourcePage": 67,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 15,
+      "prompt": "A person may need a___________________to see if they have an electrolyte\nimbalance due to dehydration",
+      "sourcePage": 67,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 16,
+      "prompt": "A person with norovirus might have aching___________________",
+      "sourcePage": 68,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 17,
+      "prompt": "A doctor should be seen if a child has___________________watery bowel\nmotions a day.",
+      "sourcePage": 68,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 18,
+      "prompt": "People with norovirus can eat___________________",
+      "sourcePage": 68,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 19,
+      "prompt": "Norovirus can lead to more serious conditions in children,\n___________________or___________________people.",
+      "sourcePage": 68,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 20,
+      "prompt": "An adult is probably dehydrated if they have a___________________blood\npressure.",
+      "sourcePage": 68,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "B",
+      "number": 1,
+      "prompt": "What discovery have scientists made about possible causes of\n schizophrenia?\n a) Certain cells cannot move across the blood-brain barrier affecting how\n the brain functions in relation to hallucinations and delusions.\n b) Certain cells cause inflammation in the blood affecting how the brain\n functions in relation to hallucinations and cognition.\n c) Certain cells move from the blood into the brain to alter how it\n functions in relation to cognition and delusions.",
+      "sourcePage": 70,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 2,
+      "prompt": "According to this article what makes it especially hard to stop\n drinking even if their alcohol level is high?\n a) A person’s reason for starting drinking and dopamine levels.\n b) A person’s characteristics and hereditary traits.\n c) A person’s inhibitions and GABA levels.",
+      "sourcePage": 71,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 3,
+      "prompt": "In the memo below, what must the ED shift coordinator do?\n a) Consider the decision to admit a patient to the hospital and agree it is\n appropriate\n b) Look at the diagnosis made about all the patients and decide the\n planned care is what is needed.\n c) Make sure all patients arriving in ED are admitted to an inpatient facility\n within 4 hours.",
+      "sourcePage": 72,
+      "group": "Text 3",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 4,
+      "prompt": "What was a key finding of the New Horizons review\n a) States and territories worked in collaboration to decide their\n responsibilities\n b) There is no clear understanding among states and territories about\n their roles.\n c) States and territories were clear about their roles.",
+      "sourcePage": 73,
+      "group": "Text 4",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 5,
+      "prompt": "Whose definition of reduced baby movements is endorsed by\n this review?\n a) Cochrane’s\n\n\nb) Mangesi et al’s\n c) he mother",
+      "sourcePage": 73,
+      "group": "Text 5",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 6,
+      "prompt": "In Australia\n a) Less than 10% of hernia-mesh surgery operations cause unexpected\n problems.\n b) More than a dozen people have had complications following surgery\n c) There are 54,000 lawsuits underway as a result of hernia-mesh surgery.",
+      "sourcePage": 74,
+      "group": "Text 6",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 7,
+      "prompt": "How does the author feel about the results of the study in first\n Paragraph?\n\n a) Optimistic\n b) Pessimistic\n c) Neutral\n d) Unbiased",
+      "sourcePage": 76,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 8,
+      "prompt": "Which of the following causes is considered to be a reason for\n aging?\n\n a) Degradation of telomeres\n\n\nb) Genetic changes\nc) Depression\nd) Vulnerability to diseases",
+      "sourcePage": 76,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 9,
+      "prompt": "Izpisua Belmonte’s ideas, as expressed in fourth Paragraph, are:\n\na) Scientifically oriented\nb) Selfish\nc) Virtuous\nd) Success oriented",
+      "sourcePage": 77,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 10,
+      "prompt": "Which of the following is not true about Yamanaka factors?\n\na) They are genes\nb) They can turn into any type of cell in the post-natal period\nc) They can reset genes\nd) They can be used to reverse the aging process.",
+      "sourcePage": 77,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 11,
+      "prompt": "What does “leg” mean in sixth and eighth paragraphs?\n\na) Stage\nb) Concept\nc) Limb\nd) Period",
+      "sourcePage": 77,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 12,
+      "prompt": "In eighth paragraph, the experiment that involved mice with\n progeria that underwent the treatment showed that:\n\na) Progeria can be treated\nb) Progeria inevitably leads to early death\nc) The lifespan of mice could be extended\nd) The quality of life of mice could be at stake",
+      "sourcePage": 77,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 13,
+      "prompt": "In the ninth paragraph, the writer claims that the best way to\n activate Yamanaka factors is:\n\n a) Directly\n b) Occasionally\n c) Appropriately\n d) Reversibly",
+      "sourcePage": 78,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 14,
+      "prompt": "What will the positive outcomes of this method be as delineated\n in last paragraph?\n\n a) It will be of great benefit to cancer patients.\n b) It will be of great benefit to progeria patients.\n c) It will be of great benefit to terminally ill patients.\n d) It will lead to the development of a new drug.",
+      "sourcePage": 78,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 15,
+      "prompt": "Researchers in first Paragraph suggest that cognitive tests at the age of\n three\n\n a) Can show the development of language skills\n b) Can influence children’s future life prospects.\n c) Can give us an idea of how children will fare in the future\n d) Can predict chronic illness.",
+      "sourcePage": 80,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 16,
+      "prompt": "Researchers in second Paragraph think that the results of the\n study\n\n a. Can help problematic children\n b. Point to the importance of early-life development\n c. Highlight the vulnerability of some children\n d. Point to the necessity of conducting studies in other countries",
+      "sourcePage": 80,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 17,
+      "prompt": "Another study in third Paragraph showed that\n\n a) Disadvantaged children take advantage of social welfare services\n b) Children from disadvantaged families had less developed brains\n c) Scoring low in cognitive tests is not linked solely to poverty\n d) Many of the children from disadvantaged families had less developed\n brains",
+      "sourcePage": 80,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 18,
+      "prompt": "Which of the following according to fourth Paragraph is not\n mentioned by Prof Moffitt\n\n a) underdeveloped children at the age of three are not ready for school\n b) giving support to children increases the possibility of a better adult life\n c) the consequences of a lack of early support can be long-term.\n\n\nd) living support to children early in life prepares them better for\n adulthood",
+      "sourcePage": 80,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 19,
+      "prompt": "The snowball effect\n\na) Indicates that underdeveloped children are unprepared for adult life\nb) Means that children who do badly at school do badly later in life\nc) Means that problems which are relatively small in early life gradually\n worsen as the child grows up\nd) Means that success in adult life is gradually built upon success in earlier\n stages of life",
+      "sourcePage": 81,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 20,
+      "prompt": "Prof. Caspi\n\na) Hopes that the study will eliminate prejudice\nb) Hopes that the research will help build a better life for children who\n need support most\nc) Is Prof. Moffitt’s wife\nd) Believes that the study will stir up public compassion",
+      "sourcePage": 81,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 21,
+      "prompt": "Nursery education\n\na) Has expanded in the UK over the course of over the last decade\nb) Has been recently recognized as an invaluable factor for early years’\n development\nc) Should offer higher standards\nd) Has been a constantly underestimated factor in early years’ education",
+      "sourcePage": 81,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 22,
+      "prompt": "Longitudinal means:\n\na) The study was conducted between 1972 and 1973\nb) The study investigated health and behavior\nc) The study was conducted over the course of 40 years.\n\n\n\nd) he study showed a great disproportion between the people who use\n public services and the overall population",
+      "sourcePage": 81,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    }
+  ]
+}

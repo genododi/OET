@@ -1,0 +1,426 @@
+{
+  "testId": "reading-13",
+  "sourceSha256": "95285b9293f59f01ca355eeb805ba4f009dab84c4cd53643ec85435c4db7f4a5",
+  "questions": [
+    {
+      "part": "A",
+      "number": 1,
+      "prompt": "E-cigarettes and their role in stopping smoking? __________________",
+      "sourcePage": 248,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 2,
+      "prompt": "Statistics about smoking in Australia? __________________",
+      "sourcePage": 248,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 3,
+      "prompt": "The benefits of quitting smoking? __________________",
+      "sourcePage": 248,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 4,
+      "prompt": "The different support to stop smoking in Australia? _____________",
+      "sourcePage": 248,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 5,
+      "prompt": "The addictive features of nicotine? __________________",
+      "sourcePage": 248,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 6,
+      "prompt": "The 3 main diseases linked to tobacco smoking? __________________",
+      "sourcePage": 248,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 7,
+      "prompt": "The common symptoms people have when they stop\nsmoking? __________________",
+      "sourcePage": 248,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 8,
+      "prompt": "What bad feelings might a person have when they are ready for another boost of\nnicotine? __________________",
+      "sourcePage": 248,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 9,
+      "prompt": "What therapy includes patches, gum and lozenges? __________________",
+      "sourcePage": 248,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 10,
+      "prompt": "How old is a person if their risk of lung cancer reduces by 90 per cent if they stop\nsmoking? __________________",
+      "sourcePage": 249,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 11,
+      "prompt": "What percentage of adults smoked in a home where there were dependent\nchildren in 2016? __________________",
+      "sourcePage": 249,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 12,
+      "prompt": "Who does not allow cigarette advertising? __________________",
+      "sourcePage": 249,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 13,
+      "prompt": "Who should act to minimise harm until evidence of safety, quality and efficacy of\ne-cigarettes can be produced__________________",
+      "sourcePage": 249,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 14,
+      "prompt": "Young people are more likely to start smoking if they see what repeatedly?\n__________________",
+      "sourcePage": 249,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 15,
+      "prompt": "12% of people aged 14 and older smoked daily in 2016, which is\na_________________reduction since 1991",
+      "sourcePage": 249,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 16,
+      "prompt": "Common symptoms of nicotine withdrawal include_________________and\ndepression",
+      "sourcePage": 249,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 17,
+      "prompt": "Cigarettes contain nicotine which does not cause the_________________linked\nto cigarette smoking but is highly addictive.",
+      "sourcePage": 249,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 18,
+      "prompt": "Smoking kills more_________________",
+      "sourcePage": 249,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 19,
+      "prompt": "The prescription medications, bupropion (Zyban) and varenicline (Champix) which\nreduce_________________from nicotine.",
+      "sourcePage": 249,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 20,
+      "prompt": "The Government in Australia has_________________the amount of tax added to\na packet of cigarettes.",
+      "sourcePage": 249,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "B",
+      "number": 1,
+      "prompt": "Why should further research be carried out on the MIST Therapy system?\n a) To investigate the range of wounds that this system can help to treat\n b) To make sure that it offers improvements over the usual treatment option\n c) To discover if this system can avoid deleterious outcomes for chronic wounds",
+      "sourcePage": 251,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 2,
+      "prompt": "What does the article tell us about the risk of falling?\n a) People over 65 need extra facilities to help them avoid falls\n b) More people over 65 fall in hospital environments compared with other places\n c) Only a minority of people over 65 fall at least once a year",
+      "sourcePage": 252,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 3,
+      "prompt": "According to this article, what is HAZMAT?\n a) Liquid, gaseous or solid materials that are bad for the environment\n b) Events where harmful substances are released and the groups that deal with\n the aftermath\n c) Toxic chemicals that are transported by water, land or air.",
+      "sourcePage": 252,
+      "group": "Text 3",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 4,
+      "prompt": "According to this article, what is a cascade?\n a) A series of events\n b) The process that occurs when platelets become sticky\n c) The reaction that precedes the formation of fibrin",
+      "sourcePage": 253,
+      "group": "Text 4",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 5,
+      "prompt": "What do we learn about migraine treatment from this article?\n a) Paracetamol doses should not exceed 1000mg\n b) Aspirin can cause nausea and/or vomiting\n c) Codeine can provoke conditions other than migraine",
+      "sourcePage": 254,
+      "group": "Text 5",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 6,
+      "prompt": "What information does the article give us about positioning patients?\n a) Healthcare givers should position immobile patients in accordance with the\n doctor’s instructions\n b) Positioning patients is a fundamental part of a nurse’s job\n\n\nc) Improper musculoskeletal manipulation can lead to immobility",
+      "sourcePage": 254,
+      "group": "Text 6",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 7,
+      "prompt": "The first paragraph implies that\n a) Becoming a vegan is an ethical choice\n\n\nb) Hippies and activists have always been vegan\n c) Food-shopping for animal-free products is essential for vegans\n d) Being a vegan has potential drawbacks",
+      "sourcePage": 256,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 8,
+      "prompt": "Paul McCartney’s 2009 campaign\n a) Helped the number of people who understand that meat-free cooking is\n possible to increase\n b) Was designed to help the environment for animals\n c) Showed that vegetarian meals can be more attractive than meals prepared\n with meat\n d) Was aimed at reducing saturated fats in processed food",
+      "sourcePage": 257,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 9,
+      "prompt": "What do we learn about protein in the third paragraph?\n a) The human body only has a small reserve of protein\n b) Without protein, bones and muscle tissues may build more slowly\n c) Levels of protein in your body need to be replenished regularly\n d) It is not possible to find protein in meat-free diets",
+      "sourcePage": 257,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 10,
+      "prompt": "According to the fourth paragraph, how can vegans and vegetarians\n consume the right kinds of protein?\n a) They should stick to basic food groups, such as grains or pulses\n b) They should have a mixture of food types\n c) They should eat vegetables that contain the same macronutrients as dairy\n products\n d) They can enhance their diet by taking food supplements",
+      "sourcePage": 257,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 11,
+      "prompt": "What does the fifth paragraph tell us about vitamin deficiency?\n a) Vegans can get enough vitamin D from sunlight on their skin\n\n\nb) Coloured fruits and vegetables are good sources of vitamin D\n c) Incidence of heart disease, dementia and multiple sclerosis among vegetarians\n is the same as among vegans\n d) Vegans have a higher than normal risk of vitamin D deficiency",
+      "sourcePage": 257,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 12,
+      "prompt": "What is the National Osteoporosis Society (NOS) concerned about?\n a) Young people can cut themselves\n b) More vegetarians and vegans will develop Osteoporosis\n c) There may be a rise in a specific type of injury\n d) Some people are not eating enough clean food",
+      "sourcePage": 258,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 13,
+      "prompt": "What does ‘it’ (the last word of the seventh paragraph) refer to?\n a) Calcium\n b) Vitamin D\n c) Vitamin A\n d) Protein",
+      "sourcePage": 258,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 14,
+      "prompt": "What does the last paragraph say about iron?\n a) Vitamin C and iron consumed together is good for iron absorption\n b) Vegans should consider eating red meat\n c) You can become anaemic if you don’t eat enough vegetables\n d) For oxygen-carrying blood cells, vitamin C is more important than iron",
+      "sourcePage": 258,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 15,
+      "prompt": "What is the most important thing for Jennifer Miller?\n a) Avoiding diseases\n\n\nb) Sanitizing her immediate environment\n c) Finding a permanent home\n d) Stopping rats and other rodents",
+      "sourcePage": 260,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 16,
+      "prompt": "What does the second paragraph tell us about Hepatitis A?\n a) The recent outbreak was not confined to California\n b) Hepatitis A is transmitted by fleas on rats and other animals\n c) More than 1000 contracted the disease through sharing dirty needles\n d) Some people in the City Hall now have Hepatitis A.",
+      "sourcePage": 261,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 17,
+      "prompt": "What problem did California Governor Gavin Newsom highlight?\n a) Hepatitis A, syphilis and typhus have jumped into the homeless population\n b) Politicians are not doing enough to stop the outbreak\n c) The health situation in his state (California) is now a ‘disaster’\n d) There is a link between public health and homelessness",
+      "sourcePage": 261,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 18,
+      "prompt": "What statistic is given in the fourth paragraph?\n a) Four percent of restaurants were at risk of hepatitis A\n b) Two thirds of typhus cases in Los Angeles city centre concerned people living\n on the streets\n c) Nine out of ten people are concerned about the crisis\n d) Ninety percent of people believe they are protected from these infections",
+      "sourcePage": 261,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 19,
+      "prompt": "What does Dr. Jeffrey Duchin think?\n a) The infections are surprising\n b) There are insufficient washing facilities\n\n\nc) Shigellosis and trench fever have disastrous consequences\n d) More houses should be built for the homeless",
+      "sourcePage": 261,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 20,
+      "prompt": "What does the sixth paragraph help us to understand?\n a) The conditions in New York shelters are worse than those in Los Angeles\n b) Tuberculosis infections could be due to poor sewage treatment\n c) Homeless people are more susceptible to these diseases for a number of\n reasons\n d) The pathology of these diseases has not changed since medieval times",
+      "sourcePage": 262,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 21,
+      "prompt": "What problem does Karen Mitchell have?\n a) She has a chronic cough\n b) She lost her job in pharmaceutical sales\n c) She has to go to a new shelter\n d) She has tuberculosis",
+      "sourcePage": 262,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 22,
+      "prompt": "In the final paragraph, what else needs to be done?\n a) A Install more portable toilets and hand-washing stations\n b) B Prevent more diseases\n c) C Give free health care to homeless people\n d) D Give assistance to people who want medical help or an inexpensive place to\n live",
+      "sourcePage": 262,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    }
+  ]
+}

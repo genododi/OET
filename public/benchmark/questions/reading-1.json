@@ -1,0 +1,426 @@
+{
+  "testId": "reading-1",
+  "sourceSha256": "95285b9293f59f01ca355eeb805ba4f009dab84c4cd53643ec85435c4db7f4a5",
+  "questions": [
+    {
+      "part": "A",
+      "number": 1,
+      "prompt": "The ABCDE guide to identifying mole changes of concern ___________________",
+      "sourcePage": 4,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 2,
+      "prompt": "The rise in the number of cases of skin cancer in Australia between 1982 and\n2016? ___________________",
+      "sourcePage": 4,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 3,
+      "prompt": "What makes a person susceptible to skin cancer ___________________",
+      "sourcePage": 4,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 4,
+      "prompt": "Trends in sunscreen use among adolescents? ___________________",
+      "sourcePage": 4,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 5,
+      "prompt": "The age of most people who are diagnosed with skin cancer?\n___________________",
+      "sourcePage": 4,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 6,
+      "prompt": "The most commonly diagnosed cancers among men and women in\nAustralia? ___________________",
+      "sourcePage": 4,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 7,
+      "prompt": "The skin protection is needed to prevent skin cancer? ___________________",
+      "sourcePage": 4,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 8,
+      "prompt": "What are increasingly available to carry out thorough checks for early changes?\n___________________",
+      "sourcePage": 4,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 9,
+      "prompt": "The use of solariums has resulted in the increased exposure to what type of\nradiation? ___________________",
+      "sourcePage": 4,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 10,
+      "prompt": "Surveys were carried during summers between 2003-04 and 2010-11 to check\nwhat sort of compliance over weekends___________________",
+      "sourcePage": 4,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 11,
+      "prompt": "What other areas of the body apart from skin and eye can develop melanoma?\n___________________",
+      "sourcePage": 4,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 12,
+      "prompt": "During surveys carried out of adolescent behaviours, what use was constant at\n37%___________________",
+      "sourcePage": 5,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 13,
+      "prompt": "What hours should a person seek shade in peak summer hours?\n___________________",
+      "sourcePage": 5,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 14,
+      "prompt": "Working where will increase the risk of developing skin cancer?\n___________________",
+      "sourcePage": 5,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 15,
+      "prompt": "How much the increase in numbers of people with skin cancer is due\nto___________________methods, is unknown.",
+      "sourcePage": 5,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 16,
+      "prompt": "Over exposure to ultra violet (UV) light cause ___________________.",
+      "sourcePage": 5,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 17,
+      "prompt": "Having ___________________skin or___________________hair may also make a\nperson more susceptible to developing skin cancer.",
+      "sourcePage": 5,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 18,
+      "prompt": "The incidence of melanoma of the skin rose at around ___________________ per\nyear during the 1980s.",
+      "sourcePage": 5,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 19,
+      "prompt": "Diameter of the mole is ___________________ (about the size of a pencil eraser)\nor is growing larger.",
+      "sourcePage": 5,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 20,
+      "prompt": "Sun protection compliance while outdoors on the weekend during peak UV\nradiation hours was ___________________.",
+      "sourcePage": 5,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "B",
+      "number": 1,
+      "prompt": "The clinical trial is\n a) open to people with severe respiratory symptoms\n b) exploring new ways to confirm a person has a respiratory disorder\n c) aimed at checking that expert clinical assessments are accurate",
+      "sourcePage": 7,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 2,
+      "prompt": "The guideline highlights\n\n a) the need for accredited interpreters at all appointments if there is a\n language barrier\n b) that an accredited interpreter is recommended for all antenatal visits\n c) that health professionals are responsible for translating discussions",
+      "sourcePage": 8,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 3,
+      "prompt": "The patient safety leaflet encourages patients to\n a) check the nurse understands the medicine guidelines\n b) ask staff to clarify the directions to follow about taking their\n medications\n c) be sure the doctors asks questions about your medicines",
+      "sourcePage": 9,
+      "group": "Text 3",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 4,
+      "prompt": "If the inpatient team cannot agree on accepting a patient who\n has to attend a case conference?\n a) The senior MO from the alternative specialty, the ED consultant and the\n original inpatient team representative\n b) The patient, the senior patient medical officer and the Executive\n director of Medical services\n c) The patient’s first consultant, a consultant from the ED and a consultant\n from the alternative speciality that the inpatient team suggests",
+      "sourcePage": 10,
+      "group": "Text 4",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 5,
+      "prompt": "How is a preliminary palpatory systolic blood pressure check\n performed?\n a) Feeling for a pulse in the crook of the elbow, inflating the\n sphygmomanometer cuff until the pulse stops and noting the reading\n after a minute or two\n b) Feeling for a pulse in the crook of the elbow, inflating the\n sphygmomanometer cuff until the pulse stops in the non-dominant\n hand\n c) Feeling for a pulse in the crook of the elbow, inflating the\n sphygmomanometer cuff until the pulse stops and noting the reading",
+      "sourcePage": 11,
+      "group": "Text 5",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 6,
+      "prompt": "When a GPs patients are entered into the GP Notify system, the\n GP\n a) Needs to complete and return a confirmation form by fax to confirm\n they have received the information\n\n\n\nb) Gets notification via email or fax, unless it is the first time on of their\n patients has been entered into the GP notify system\nc) Faxes or emails the GP Notify Coordinator to confirm they have\n received the message",
+      "sourcePage": 11,
+      "group": "Text 6",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 7,
+      "prompt": "According to the first paragraph, cimaglermin\n\n a) is safe when used in high doses\n b) improves heart function indefinitely\n c) is undergoing trials\n d) is used in high doses",
+      "sourcePage": 14,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 8,
+      "prompt": "Which of the following statements does Dr. Lenihan make?\n\n a) atients who received cimaglermin were on many other therapies\n b) Patients who received cimaglermin suffered from heart failure\n c) Patients received cimaglermin at the Vanderbilt University\n d) Patients who received cimaglermin were not on any other therapies",
+      "sourcePage": 14,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 9,
+      "prompt": "Which of the following therapies are not mentioned by Dr.\n Lenihan?\n\na) Therapy to decrease high blood pressure\nb) Diuretics to get rid of excess fluid\nc) Defibrillators and pacemakers\nd) Therapy to increase low blood pressure",
+      "sourcePage": 14,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 10,
+      "prompt": "What is heart failure?\n\na) A condition in which the lower heart chamber is weak\nb) A condition in which the left lower chamber pumps blood into the\n arteries\nc) A condition in which the blood pumped by the heart can’t satisfy the\n body’s requirements\nd) A condition for which there is no treatment",
+      "sourcePage": 15,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 11,
+      "prompt": "According to Dr Lenihan, cimaglermin\n\na) replaces receptors on the heart’s surface.\nb) helps to enhance the size of the heart.\nc) aids the heart’s recovery process.\nd) has not been as effective as stem cells.",
+      "sourcePage": 15,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 12,
+      "prompt": "Which of the following considerations is not part of the approval\n for a new drug?\n\na) Safety\nb) Effectiveness\nc) Challenging trials\nd) Planned trials",
+      "sourcePage": 15,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 13,
+      "prompt": "Which of the following results were achieved with cimaglermin?\n\na) Cimaglermin didn’t produce any results\n\n\nb) The effects of cimaglermin were adverse\nc) Cimaglermin improved the heart's ability to pump blood\nd) Cimaglermin produced several side-effects",
+      "sourcePage": 15,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 14,
+      "prompt": "Which of the following is the most suitable title for the article?\n\na. A promising new drug treats heart failure\nb. A new heart failure drug shows promise in first human trial\nc. A new heart failure drug shows promise when tested on animals\nd. A promising new drug that treats heart failure has a bright future ahead",
+      "sourcePage": 16,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 15,
+      "prompt": "What did past studies suggest about coffee and tea?\n\n a) They produced clear evidence that they were harmful.\n b) They produced clear evidence that they were beneficial\n c) They produced evidence that they could be either harmful or useful.\n d) They didn’t produce clear evidence on whether they are harmful or\n useful.",
+      "sourcePage": 19,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 16,
+      "prompt": "According to some research\n\n a) Coffee can be used as an effective treatment for Alzheimer’s and\n Parkinson’s diseases.\n b) Alzheimer’s and Parkinson’s diseases can be caused by coffee.\n c) Alzheimer’s and Parkinson’s diseases can effectively be prevented by\n coffee.\n d) Drinking coffee may help with the prevention of Alzheimer’s and\n Parkinson’s diseases.",
+      "sourcePage": 19,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 17,
+      "prompt": "Which of these effects is not attributed to drinking tea?\n\na) Decreasing the risk of breast cancer.\nb) Increasing blood pressure.\nc) Strengthening the immune system.\nd) Decreasing the risk of developing Alzheimer's disease",
+      "sourcePage": 19,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 18,
+      "prompt": "What does fourth paragraph suggest?\n\na) That it’s easy to determine the positive effects of coffee and tea\nb) That it’s not easy to determine the positive effects of coffee and tea.\nc) That it’s not easy to determine which one is healthier: coffee or tea.\nd) That the positive effects of coffee and tea are determined by their role\n in our diet",
+      "sourcePage": 20,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 19,
+      "prompt": "What is Dr. Miller’s opinion on the findings?\n\na) Coffee increases the risk of heart disease in 75% of the people who took\n part in the research.\nb) Coffee has no effect on heart disease.\nc) The fact that coffee has no effect on heart disease is noteworthy.\nd) From now on, patients will stop asking doctors if coffee is safe to drink.",
+      "sourcePage": 20,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 20,
+      "prompt": "What makes coffee and tea beneficial, according to\n Cimperman?\n\na) A secret ingredient found in coffee and tea.\nb) The relations among the complex ingredients coffee and tea contain\nc) One single compound isolated by some scientists\nd) The fact that they help to fight many different diseases",
+      "sourcePage": 20,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 21,
+      "prompt": "What does “linear” suggest in seventh paragraph?\n\na) That the more coffee people drank the lower the risk of colon cancer\n was\nb) That coffee intake had no significant impact on colon cancer\nc) That drinking coffee is proportional to the reoccurrence of colon cancer\nd) That drinking coffee is proportional to the prevention of the\n reoccurrence of colon cancer",
+      "sourcePage": 21,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 22,
+      "prompt": "Which of the following points is not made in eighth paragraph?\n\na) Coffee can affect people differently.\nb) People’s lifestyles may play a part in whether they drink tea or coffee.\nc) There is no connection between genetics and whether people drink tea\n or coffee.\nd) Research has shown that there is a direct connection between drinking\n coffee and smoking",
+      "sourcePage": 21,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    }
+  ]
+}

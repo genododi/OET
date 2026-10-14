@@ -1,0 +1,390 @@
+{
+  "testId": "listening-9",
+  "sourceSha256": "8adfbf2ba6d50c8acb3e74398f98289363200d8864c467f1e795f6d28757b6ee",
+  "questions": [
+    {
+      "part": "A",
+      "number": 1,
+      "prompt": "Impact on ____ of patient’s head (by another player’s knee)",
+      "sourcePage": 62,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 2,
+      "prompt": "Loss of consciousness for ____ after impact",
+      "sourcePage": 62,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 3,
+      "prompt": "Prescribed ____ due to generalized motor seizure",
+      "sourcePage": 62,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 4,
+      "prompt": "Imaging test done: CT scan (with ____ results)",
+      "sourcePage": 62,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 5,
+      "prompt": "Currently has nausea and a ____",
+      "sourcePage": 62,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 6,
+      "prompt": "Another CT scan, in particular of the ____",
+      "sourcePage": 62,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 7,
+      "prompt": "Initial diagnosis: ____ (indicated by lucent period prior to\n seizure)",
+      "sourcePage": 63,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 8,
+      "prompt": "Essentially an ____ of blood between the skull and outer dural\n membrane",
+      "sourcePage": 63,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 9,
+      "prompt": "Cause by head trauma with a ____ object",
+      "sourcePage": 63,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 10,
+      "prompt": "Common result: skull ____",
+      "sourcePage": 63,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 11,
+      "prompt": "Differential diagnoses: subarachnoid ____ and subdural\n hematoma",
+      "sourcePage": 63,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 12,
+      "prompt": "Damage is not ____ due to minimal injury to the brain)",
+      "sourcePage": 63,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 13,
+      "prompt": "Patient reports recurring ____ chest pain over the last 2 years",
+      "sourcePage": 64,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 14,
+      "prompt": "Previous position of chest pain: Usually on the left but\n sometimes ____",
+      "sourcePage": 64,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 15,
+      "prompt": "Pain has lasted for ____ hours",
+      "sourcePage": 64,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 16,
+      "prompt": "Position of pain: ____ of chest",
+      "sourcePage": 64,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 17,
+      "prompt": "Medication taken: two ____ (ineffective)",
+      "sourcePage": 64,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 18,
+      "prompt": "Father had ____ in early 50s",
+      "sourcePage": 64,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 19,
+      "prompt": "Patient’s recent illness: ____ infection",
+      "sourcePage": 64,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 20,
+      "prompt": "Symptoms: sore throat, blocked nose, sneezing and a\n severe ____",
+      "sourcePage": 64,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 21,
+      "prompt": "Likely that the pain is originating in the ____",
+      "sourcePage": 65,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 22,
+      "prompt": "Swelling and inflammation of the ____ surrounding the heart",
+      "sourcePage": 65,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 23,
+      "prompt": "Possible causes: Cold or ____",
+      "sourcePage": 65,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 24,
+      "prompt": "Treatment: Rest and ____",
+      "sourcePage": 65,
+      "group": "Extract 2"
+    },
+    {
+      "part": "B",
+      "number": 25,
+      "prompt": "You hear a conversation between a GP and an office manager about staff\n burnout.\n What does the GP identify as a negative effect on the practice’s patients?\nA. The quality of care they are receiving.\nB. The amount of time they have to wait.\nC. The level of stress they are feeling.",
+      "sourcePage": 65,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 26,
+      "prompt": "You hear a trainee doctor asking a senior doctor about a patient’s chest X-ray.\n\n The senior doctor points out the importance of…\nA. The markings and tubular shadows in the upper lobes on the\n chest X-ray.\nB. The prominence of the pulmonary arteries on the chest X-ray.\nC. The repeated chest infections that the patient has had.",
+      "sourcePage": 65,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 27,
+      "prompt": "You hear part of a training about sports nutrition.\n Who is the audience for the training?\nA. The training is for professional athletes training for competitive\n sports.\nB. The training is for general practitioners involved in helping\n athletes recover from sports injuries.\nC. The training is for dietitians who may be referred by a general\n practitioner.",
+      "sourcePage": 66,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 28,
+      "prompt": "You hear a morning briefing on a ward.\n The doctor explains that a head CT will help…\nA. To eliminate another possible diagnosis.\nB. To assess the neurological deficiencies.\nC. To determine the next diagnostic step.",
+      "sourcePage": 66,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 29,
+      "prompt": "You hear part of a training on handovers between nurses.\n What does the doctor demonstrate with the example?\nA. How to link two parts of the patient handover.\nB. How to give all necessary information.\nC. How to decide which type of information to include.",
+      "sourcePage": 66,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 30,
+      "prompt": "You hear a conversation between a GP and a neurologist.\n The GP has contacted the neurologist primarily because…\nA. There was some information left out of the patient’s file.\nB. She is very worried about the prognosis of the patient.\nC. She was concerned that the notes contradict the patient’s\n symptoms.",
+      "sourcePage": 66,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 31,
+      "prompt": "The interviewee says it is important to talk about her profession in order\n to...\nA. Make people aware of what the profession includes because it is\n a small profession.\nB. Encourage future professionals in this small field of medicine.\nC. Establish a clear career path in the profession for the next\n generation of dietitians.",
+      "sourcePage": 67,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 32,
+      "prompt": "According to the interviewee, what types of roles do dietitians now have?\nA. They have maintained the same roles in healthcare that they have\n always had.\nB. They have fluid and indeterminate roles in modern healthcare\n now.\nC. They have added roles traditionally held by other healthcare\n professionals.",
+      "sourcePage": 67,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 33,
+      "prompt": "According to the interviewee, what big changes in health care have\n affected dietitians?\nA. Efforts to reduce the cost of healthcare\nB. Efforts to make healthcare more modern\nC. Efforts to increase job satisfaction",
+      "sourcePage": 67,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 34,
+      "prompt": "Why does the interviewee discuss the case of a patient?\nA. To demonstrate the increased complexity of dietitian’s cases\nB. To demonstrate the potential of the profession of dietetics\nC. To demonstrate the need for additional training for dietitians",
+      "sourcePage": 67,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 35,
+      "prompt": "What is the purpose of four pillars of practice?\nA. To guide the career development of advanced practitioners\nB. To help new dietitians in the field to start their career\nC. To guide the profession of dietetics as practice changes",
+      "sourcePage": 67,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 36,
+      "prompt": "According to the interviewee, what is holding back the profession?\nA. The lack of new professionals in the field\nB. The lack of funding for the extended roles\nC. The lack of funding for basic dietitian services",
+      "sourcePage": 68,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 37,
+      "prompt": "What is the main topic of the research described by the presenter?\nA. The variety of challenges facing general practitioners\nB. A particular challenge facing general practitioners\nC. A challenge facing the future of general practitioners",
+      "sourcePage": 68,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 38,
+      "prompt": "According to the presenter, why is it a challenge for GPs to diagnose older\n adults with infection?\nA. Because they often don’t go to their GP for diagnosis\nB. Because they often don’t have this condition\nC. Because they often display unusual symptoms",
+      "sourcePage": 68,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 39,
+      "prompt": "How did the research project gather data?\nA. It invited GPs to a group session to talk about their work.\nB. It invited GPs to individual sessions to talk about their work\nC. It analysed previous comments by GPs about their work",
+      "sourcePage": 68,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 40,
+      "prompt": "According to the presenter, what is the role of medications in challenges\n leading to diagnostic uncertainty?\nA. It can make it easier to diagnose infections in older patients.\nB. It can make it more complicated to diagnose infections in older\n patients.\nC. It has no measurable effect in diagnosing infections in older\n patients.",
+      "sourcePage": 69,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 41,
+      "prompt": "Why have GPs lost their ability to follow up with patients?\nA. Because most GPs change practices frequently.\nB. Because most GPs work less hours than before.\nC. Because of the increased workload of GPs.",
+      "sourcePage": 69,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 42,
+      "prompt": "What limits the use of investigations to diagnose infection in older\n patients?\nA. The amount of time that GPs have to wait for results.\nB. The lack of available tests for this population of patients.\nC. The pre-existing conditions of the older patients.",
+      "sourcePage": 69,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    }
+  ]
+}

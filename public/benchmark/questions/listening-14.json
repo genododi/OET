@@ -1,0 +1,390 @@
+{
+  "testId": "listening-14",
+  "sourceSha256": "8adfbf2ba6d50c8acb3e74398f98289363200d8864c467f1e795f6d28757b6ee",
+  "questions": [
+    {
+      "part": "A",
+      "number": 1,
+      "prompt": "Condition detected ____ months ago",
+      "sourcePage": 102,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 2,
+      "prompt": "Patient describes general health as ____",
+      "sourcePage": 102,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 3,
+      "prompt": "No family history of ____",
+      "sourcePage": 102,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 4,
+      "prompt": "____ test was ordered by GP",
+      "sourcePage": 102,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 5,
+      "prompt": "Haemoglobin, platelets, and ____ :Normal",
+      "sourcePage": 102,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 6,
+      "prompt": "Blood pressure reading: High at ____",
+      "sourcePage": 102,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 7,
+      "prompt": "Gamma-glutamyltranspeptidase: Very high (linked to patient’s alcohol\n consumption of more than ____ units per week",
+      "sourcePage": 102,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 8,
+      "prompt": "Immediate action: Patient to ____ from alcohol",
+      "sourcePage": 103,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 9,
+      "prompt": "High blood pressure and ____ indicate chronic glomerulonephritis",
+      "sourcePage": 103,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 10,
+      "prompt": "____ of the kidney are likely inflamed",
+      "sourcePage": 103,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 11,
+      "prompt": "If unchecked, like to progress to ____ renal failure",
+      "sourcePage": 103,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 12,
+      "prompt": "Also requires ultrasound to assess the ____ (biopsy may be\n needed as well)",
+      "sourcePage": 103,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 13,
+      "prompt": "Chief complaint: ____",
+      "sourcePage": 103,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 14,
+      "prompt": "Patient reports having a ____ illness before symptoms started",
+      "sourcePage": 103,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 15,
+      "prompt": "Reported illness had accompanying symptoms: ____ \n (recovered in 1-2 days)",
+      "sourcePage": 103,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 16,
+      "prompt": "Other symptoms: tiredness, ____ and chest pain",
+      "sourcePage": 103,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 17,
+      "prompt": "Denies any ____",
+      "sourcePage": 104,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 18,
+      "prompt": "Normal ____",
+      "sourcePage": 104,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 19,
+      "prompt": "and ECG with ____",
+      "sourcePage": 104,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 20,
+      "prompt": "Tentative diagnosis: ____",
+      "sourcePage": 104,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 21,
+      "prompt": "____ to confirm and investigations",
+      "sourcePage": 104,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 22,
+      "prompt": "Predicted severity of suspected condition: ____",
+      "sourcePage": 104,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 23,
+      "prompt": "Immediate management ____",
+      "sourcePage": 104,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 24,
+      "prompt": "Prognosis: ____ expected to return to normal",
+      "sourcePage": 104,
+      "group": "Extract 2"
+    },
+    {
+      "part": "B",
+      "number": 25,
+      "prompt": "You hear part of a conversation about a patient’s upcoming discharge.\n What is the patient’s concern?\nA. He is concerned about whether he has enough medication at\n home\nB. He is concerned that his daughter only has one day off to help\n him\nC. He is concerned about travel arrangements to see his doctor",
+      "sourcePage": 105,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 26,
+      "prompt": "You hear a nurse doing a pre-admission assessment.\n What has the nurse covered prior to this conversation?\nA. The patient’s concerns about the surgery\nB. The patient’s previous and current condition\nC. The patient’s medication and changes to it",
+      "sourcePage": 105,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 27,
+      "prompt": "You hear part of an information session for the public about when to go to the\n A&E.\n Why is the A&E not a replacement for a person’s GP?\nA. Because the GP has more resources and time for the patient.\nB. Because the GP is aware of a patient's prior conditions.\nC. Because the GP can make referrals for specialised care.",
+      "sourcePage": 105,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 28,
+      "prompt": "You hear part of a training for dentists about easing dental fear.\n According to the speaker, what should be the priority of the dentist?\nA. To make a patient feel comfortable and in control\nB. To help a patient get access to treatment quickly\nC. To work with patients with a variety of needs",
+      "sourcePage": 105,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 29,
+      "prompt": "You hear part of a training for junior doctors.\n The series of training sessions will develop...\nA. Skills that are important for successful meeting management.\nB. Skills that are not typically included in their previous training.\nC. Skills that are typically developed later in a doctor’s career.",
+      "sourcePage": 105,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 30,
+      "prompt": "You hear part of a ward briefing on a mental health unit.\n What is the reason for the changes on the ward?\nA. The mismatch between the number of mental health patients and\n the current capacity\nB. The increasing number of mental health patients visiting the A&E\nC. The shortage of nurses available who are able to work in other\n ward areas",
+      "sourcePage": 106,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 31,
+      "prompt": "According to the interviewee, what is one of the symptoms of the problem\n being discussed?\nA. The number of people who chose not to become a doctor\nB. The number of doctors choosing not to practice medicine\nC. The number ofdoctors who do not progress in their career",
+      "sourcePage": 106,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 32,
+      "prompt": "According to the interviewee, what is a solution to the high rate of\n suicide?\nA. Recognize that junior doctors are at an increased risk of low\n morale, stress and suicide\nB. Reduce the work-related pressure on junior doctors so that they\n have room to learn and reflect\nC. Educate junior doctors so that they know they should not be\n ashamed if they are stressed",
+      "sourcePage": 106,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 33,
+      "prompt": "What is the reason mentioned for junior doctor resignations?\nA. Lack of engagement between junior doctors and the rest of\n people in the system\nB. Lack of experience by junior doctors on how to work within the\n system\nC. Lack of acknowledgement for the passion and contribution of\n junior doctors",
+      "sourcePage": 106,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 34,
+      "prompt": "Why are junior doctors not becoming involved in research and\n leadership?\nA. Because junior doctorsdo not have enough experience to lead\n research.\nB. Because other more senior doctors are reluctant to release\n leadership roles.\nC. Because the skills of junior doctors are diverted to meeting the\n need of providing care.",
+      "sourcePage": 107,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 35,
+      "prompt": "What is an example of a positive change being made?\nA. Junior doctors becoming more involved in problem solving.\nB. Junior doctors becoming more involved in focus groups.\nC. Junior doctors becoming more involved in trainings.",
+      "sourcePage": 107,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 36,
+      "prompt": "How could current educational requirements be improved?\nA. They could be made more easily available online.\nB. They could be standardized for all junior doctors.\nC. They could be made less rigid and more practical.",
+      "sourcePage": 107,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 37,
+      "prompt": "According to the presenter, what is the original transmission pattern for\n this type of virus?\nA. It is transmitted from humans to animals.\nB. It is transmitted from animals to humans.\nC. It is transmitted from human to human.",
+      "sourcePage": 107,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 38,
+      "prompt": "What was a common initial symptom of the first disease discussed?\nA. A dry cough\nB. Pneumonia\nC. High fever",
+      "sourcePage": 108,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 39,
+      "prompt": "What was the origin of the second disease discussed?\nA. The origin is unknown at this time.\nB. The origin is a large mammal.\nC. The origin is a small mammal.",
+      "sourcePage": 108,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 40,
+      "prompt": "How has the spread of the disease changed?\nA. It is currently being spread between humans who had contact with\n animals.\nB. It is currently being spread between humans who have traveled to\n the affected region\nC. It is currently being spread between people who are not sure how\n they were infected.",
+      "sourcePage": 108,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 41,
+      "prompt": "How is the new disease different from the other disease discussed?\nA. Its mortality rate is much lower than those diseases.\nB. Most people do not need special treatment to recover.\nC. Its infectiousness is much lower than those diseases.",
+      "sourcePage": 108,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 42,
+      "prompt": "How is the new disease similar to one of the other diseases mentioned?\nA. There is no vaccine available.\nB. There is no treatment available.\nC. There are few new cases.",
+      "sourcePage": 109,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    }
+  ]
+}

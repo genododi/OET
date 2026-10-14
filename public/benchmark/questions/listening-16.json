@@ -1,0 +1,390 @@
+{
+  "testId": "listening-16",
+  "sourceSha256": "8adfbf2ba6d50c8acb3e74398f98289363200d8864c467f1e795f6d28757b6ee",
+  "questions": [
+    {
+      "part": "A",
+      "number": 1,
+      "prompt": "Did not display ____",
+      "sourcePage": 118,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 2,
+      "prompt": "____ for about half a minute",
+      "sourcePage": 118,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 3,
+      "prompt": "Possible trigger: Ran up ____ before collapsing",
+      "sourcePage": 118,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 4,
+      "prompt": "Injuries sustained: ____ on right shoulder from hitting rock but\n no",
+      "sourcePage": 118,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 5,
+      "prompt": "injury to the ____",
+      "sourcePage": 118,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 6,
+      "prompt": "Reduced: ____ of exercise due to lack of [blank for Q7]",
+      "sourcePage": 118,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 7,
+      "prompt": "Reduced: [blank for Q6] of exercise due to lack of ____",
+      "sourcePage": 118,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 8,
+      "prompt": "Previous similar episode: Happened after a ____",
+      "sourcePage": 118,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 9,
+      "prompt": "Resting heart rate: ____ bpm",
+      "sourcePage": 118,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 10,
+      "prompt": "Blood pressure elevated despite being on ____",
+      "sourcePage": 118,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 11,
+      "prompt": "Denies being on ____",
+      "sourcePage": 119,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 12,
+      "prompt": "ECG and ____",
+      "sourcePage": 119,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 13,
+      "prompt": "Incident causing sudden back pain: ____",
+      "sourcePage": 119,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 14,
+      "prompt": "Now pain is described as a ____",
+      "sourcePage": 119,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 15,
+      "prompt": "Pain will become sharp when patient attempts to ____",
+      "sourcePage": 119,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 16,
+      "prompt": "Self-medicated for pain and also applied ____ but little relief\n so far",
+      "sourcePage": 119,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 17,
+      "prompt": "Takes ____ for high blood pressure",
+      "sourcePage": 119,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 18,
+      "prompt": "No ____ for last several years",
+      "sourcePage": 119,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 19,
+      "prompt": "Observation: Gait is a bit ____",
+      "sourcePage": 120,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 20,
+      "prompt": "Tenderness in ____",
+      "sourcePage": 120,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 21,
+      "prompt": "No ____",
+      "sourcePage": 120,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 22,
+      "prompt": "Patient to totally refrain from ____",
+      "sourcePage": 120,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 23,
+      "prompt": "Requires ____ assessment",
+      "sourcePage": 120,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 24,
+      "prompt": "Appointment in two weeks if condition ____",
+      "sourcePage": 120,
+      "group": "Extract 2"
+    },
+    {
+      "part": "B",
+      "number": 25,
+      "prompt": "You hear part of a training about prescribing for junior doctors\n What does the presenter clarify about certain types of medication?\nA. That the same system is used for medical and legal guidance.\nB. That a different system is used for medical and legal guidance.\nC. That a similar system is used for medical and legal guidance.",
+      "sourcePage": 120,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 26,
+      "prompt": "You hear a junior doctor asking about how to write a discharge summary\n The senior doctor advises the junior doctor to prioritise\nA. Being very thorough and technical in the summary\nB. Using patient friendly language in the summary\nC. Focusing on next steps and consequences in the summary",
+      "sourcePage": 121,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 27,
+      "prompt": "You hear part of a conversation between nurses about a patient with dementia\n The male nurse suggests that the female nurse...\nA. Learn about communicating with all types of patients.\nB. Acknowledge how the patient is feeling and why\nC. Help the patient to understand the facts of the situation",
+      "sourcePage": 121,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 28,
+      "prompt": "You hear part of a ward briefing on patient interactions\n It is important to try to identify how a patient is feeling because...\nA. Patients may not be able to identify emotions for themselves.\nB. It gives the patient a way to get the negative energy out.\nC. It gives more information about how to direct the conversation.",
+      "sourcePage": 121,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 29,
+      "prompt": "You hear a senior doctor discussing with a junior doctor how to interpret a test\n\n What aspects of the test does the junior doctor describe\nA. The purpose of the test and its primary elements\nB. The reason for doing the test and potential problems\nC. The types of pathologies that can be identified",
+      "sourcePage": 121,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 30,
+      "prompt": "You hear a doctor in the A&E talking to a medic about a patient with opioid\n overdose.\n\n What does the medic explain to the doctor?\nA. Relevant aspects of the patient’s medical history\nB. Patient’s current condition and treatment administered\nC. Patient’s unexpected reaction to treatment administered",
+      "sourcePage": 121,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 31,
+      "prompt": "The presenter warns the audience about…\nA. Feeling overwhelmed by the number of topics covered.\nB. Feeling uninformed about the topic being covered.\nC. Feeling unprepared because of high expectations.",
+      "sourcePage": 122,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 32,
+      "prompt": "Why is it important to be open to parent’s concerns during the\n consultation?\nA. To make sure parents understand the importance of the topic.\nB. To make sure parents do not feel irritated and disengaged.\nC. To make sure parents will keep an open mind and be\n cooperative.",
+      "sourcePage": 122,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 33,
+      "prompt": "What kind of information should be provided about individual vaccines?\nA. The number of patients who have received it so far.\nB. The low incidence of side effects of the vaccines.\nC. The main disease that it prevents.",
+      "sourcePage": 122,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 34,
+      "prompt": "It is important to explain to parents about what happens before the\n vaccination because…\nA. It will allow them to have more confidence in their health\n practitioner.\nB. It will allow them to feel more at ease during the appointment.\nC. It will allow them to feel more at ease with possible side effects.",
+      "sourcePage": 122,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 35,
+      "prompt": "When giving information about side effects, the doctor should also…\nA. Tell parents how to contact their health care professional.\nB. Tell parents what to do to make the child feel better\nC. Tell parents about research related to different side effects",
+      "sourcePage": 123,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 36,
+      "prompt": "How should doctors deal with incorrect information related to\n vaccinations?\nA. They should assure parents that the vaccination programme is\n very safe.\nB. They should thoroughly explain the source of the misinformation.\nC. They should give basic information about the source of the\n misinformation.",
+      "sourcePage": 123,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 37,
+      "prompt": "Dr. Sanders says that the research into the drug had been stopped\n because…\nA. Of poor results in the early stages of trials.\nB. Of problems with data analysis during the trials.\nC. Of problems with how the trials were conducted.",
+      "sourcePage": 123,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 38,
+      "prompt": "Dr. Sanders points out that research for the drug was…\nA. At a very early stage in development.\nB. At an advanced stage in development.\nC. Near the end of development.",
+      "sourcePage": 123,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 39,
+      "prompt": "Newly examined results showed that…\nA. Patients on all doses experienced a decrease in decline.\nB. Patients on elevated doses experienced a decrease in decline.\nC. Patients on elevated doses experienced an increase in decline.",
+      "sourcePage": 124,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 40,
+      "prompt": "Dr. Sanders states that this research supports the theory that…\nA. The presence in certain proteins is indicative of Alzheimer’s.\nB. The decrease in certain proteins is indicative of Alzheimer’s.\nC. The removal of certain proteins can reverse Alzheimer’s.",
+      "sourcePage": 124,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 41,
+      "prompt": "Analysis of the data from the trials has been complicated by…\nA. New data from other studies into Alzheimer’s\nB. The attitudes of researchers toward the trial\nC. Adjustments made during the clinical trials",
+      "sourcePage": 124,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 42,
+      "prompt": "How does the scientific community feel about the research?\nA. There is overwhelming enthusiasm about the results.\nB. There is a general lack of interest in the results.\nC. There is some concern about the latest round of results.",
+      "sourcePage": 124,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    }
+  ]
+}

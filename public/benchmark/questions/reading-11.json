@@ -1,0 +1,426 @@
+{
+  "testId": "reading-11",
+  "sourceSha256": "95285b9293f59f01ca355eeb805ba4f009dab84c4cd53643ec85435c4db7f4a5",
+  "questions": [
+    {
+      "part": "A",
+      "number": 1,
+      "prompt": "The number of cases of mumps in Australia?__________________",
+      "sourcePage": 204,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 2,
+      "prompt": "The number of cases of mumps among adults in Australia in the past 5\nyears? _________________",
+      "sourcePage": 204,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 3,
+      "prompt": "What causes the hamster face linked to mumps? _________________",
+      "sourcePage": 204,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 4,
+      "prompt": "The way the mumps virus is spread? _________________",
+      "sourcePage": 204,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 5,
+      "prompt": "The condition that was linked to the MMR vaccine in\n1998? ____________________",
+      "sourcePage": 204,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 6,
+      "prompt": "The incubation period for mumps symptoms to appear? ______________________",
+      "sourcePage": 204,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 7,
+      "prompt": "What people with mumps should do? ____________________",
+      "sourcePage": 204,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 8,
+      "prompt": "What is the name of the family of viruses that the mumps virus belongs to?\n____________________",
+      "sourcePage": 204,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 9,
+      "prompt": "What is the most common age range when someone gets mumps?\n_____________________",
+      "sourcePage": 205,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 10,
+      "prompt": "What does MMR stand for? _____________________",
+      "sourcePage": 205,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 11,
+      "prompt": "Which glands swell up around the face if a person has mumps?\n_____________________",
+      "sourcePage": 205,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 12,
+      "prompt": "Mumps spreads in the same way as what two other conditions?\n_____________________",
+      "sourcePage": 205,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 13,
+      "prompt": "How many cases of mumps were reported in Australia in 2017?\n_____________________",
+      "sourcePage": 205,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 14,
+      "prompt": "At what stage of their pregnancy, might a woman with mumps miscarry her child?\n_____________________",
+      "sourcePage": 205,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 15,
+      "prompt": "Mumps spreads rapidly because a person is_____________________a few days\nbefore the symptoms appear.",
+      "sourcePage": 205,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 16,
+      "prompt": "MMR vaccine is the most effective way to stop a person_____________________",
+      "sourcePage": 205,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 17,
+      "prompt": "The most common complication of mumps is_____________________",
+      "sourcePage": 205,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 18,
+      "prompt": "The Measles, Mumps and Rubella (MMR) vaccine is part of the\nroutine_____________________schedule in Australia.",
+      "sourcePage": 205,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 19,
+      "prompt": "Directors of childcare centres must_____________________all cases of mumps to\ntheir local public health unit.",
+      "sourcePage": 205,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 20,
+      "prompt": "Only_____________________of people aged 25 -59 had additional complications\nfrom mumps.",
+      "sourcePage": 205,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "B",
+      "number": 1,
+      "prompt": "What do we learn about ‘StoneChecker’ in the first paragraph?\n a) Kidney stones can be located using this device.\n b) Such optical equipment measures microscopic surface features of kidney\n stones\n c) It is a computer program that helps clinicians visualize kidney stones.",
+      "sourcePage": 207,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 2,
+      "prompt": "In the example described in the paragraph, what went wrong?\n a) The pharmacist ignored critical information.\n b) The prescription was incorrectly managed by the orthopaedic surgeon.\n c) The prescribing physician fail to initiate the ‘alert’ process.\nmation",
+      "sourcePage": 208,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 3,
+      "prompt": "What does the writer imply about gluten?\n a) Eliminating gluten from your food intake is risky.\n b) More people should take time to be educated about gluten.\n c) Reducing the amount of gluten you consume is beneficial for your probiotics.",
+      "sourcePage": 208,
+      "group": "Text 3",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 4,
+      "prompt": "What does this article tell us about blood cultures?\n a) Blood culture should always precede antibiotic therapy.\n b) The amount of blood to be taken can vary.\n c) The use of iodine does not interfere with correct blood culture procedures.",
+      "sourcePage": 209,
+      "group": "Text 4",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 5,
+      "prompt": "What do we learn from this article about helmet removal?\n a) Intubation to stabilize the airway is not possible while a helmet is in place.\n b) Healthcare workers should focus on the integrity of the sagittal, frontal and\n transverse planes.\n c) It is not always necessary to remove a helmet.",
+      "sourcePage": 209,
+      "group": "Text 5",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 6,
+      "prompt": "What does this article tell us about the TYM Otoscope?\n a) Healthcare professionals can transfer data from the device to their own\n smartphones.\n b) Without a smartphone, the TYM Otoscope cannot function.\n c) Data can only be shared on iOS platforms.",
+      "sourcePage": 210,
+      "group": "Text 6",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 7,
+      "prompt": "What did the study published in Science Translational Medicine find?\n a) Th2 cells can cause allergies and autoimmune diseases\n b) Some people with atopic dermatitis were allergic to salt\n c) Salt may play an important role in allergies and autoimmune diseases\n d) Sodium Chloride causes atopic allergies in skinny people",
+      "sourcePage": 219,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 8,
+      "prompt": "When diagnosing allergies or atopic dermatitis, Charles Mackay usually\n considers\n a) The patient’s hereditary conditions\n b) The patient’s surroundings\n\n\n\nc) The patient’s diet\n d) The patient’s susceptibility to skin conditions",
+      "sourcePage": 219,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 9,
+      "prompt": "According to the third paragraph, cases of hay fever and atopic dermatitis\n have\n a) increased slightly\n b) increased significantly\n c) stayed the same\n d) fluctuated two times",
+      "sourcePage": 220,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 10,
+      "prompt": "What was the result of the experiments described in paragraph four?\n a) High salt intake causes allergies\n b) Sodium Chloride helps CD4-positive memory T cells to grow\n c) Naïve T cells react more quickly to salt than CD4-positive memory T cells\n d) Elevated salt levels changed Th2 cell behaviour",
+      "sourcePage": 220,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 11,
+      "prompt": "According to the fifth paragraph, psoriasis is a condition that\n a) lasts for a long time\n b) is triggered by T helper cells\n c) is identical to atopic dermatitis\n d) causes immunity",
+      "sourcePage": 220,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 12,
+      "prompt": "According to Zielinski in paragraph five, what is the situation regarding\n atopic dermatitis?\n a) there is a clear link with sodium\n b) more studies are needed to understand the condition\n c) the condition has been examined in depth\n d) the condition is surprising",
+      "sourcePage": 220,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 13,
+      "prompt": "Chuan Wu thinks that\n a) The skin microbiome is not part of the epidermal system\n\nb) Epiderma and dermal cells are examples of skin bacteria\n c) the Th2 response produces salt-loving microbes\n d) the link between skin bacteria and Th2 response is worth further investigation",
+      "sourcePage": 220,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 14,
+      "prompt": "According to the information in paragraph seven, the presence of sodium\n in the skin\n a) may be unrelated to food consumption\n b) could be explained by intestinal microbes\n c) might be due to autonomous skin regeneration\n d) can be seen by checking accumulation patterns",
+      "sourcePage": 221,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 15,
+      "prompt": "The purpose of this article is to inform readers about\n a) A obtainable vaccines and how long you need to be vaccinated\n b) B common tropical diseases and their cures\n c) C vaccines and how many times you have to have them\n d) D vaccines needed in exotic locations and their risks",
+      "sourcePage": 223,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 16,
+      "prompt": "In the second paragraph, the word ‘which’ refers to\n a) natural immunities\n b) diseases that you could contract in exotic places i\n c) people who don’t get vaccinated\n d) insect-borne diseases",
+      "sourcePage": 223,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 17,
+      "prompt": "Paragraph four infers that\n a) all vaccinations can be given in a single visit to the doctor’s surgery\n b) most people visit the doctor’s surgery six times for their vaccinations\n c) vaccination certificates cannot be issued at the same time as the vaccination\n d) more than one visit to the doctor’s surgery is usually necessary",
+      "sourcePage": 223,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 18,
+      "prompt": "If you have been vaccinated against a disease in the past\n a) it is not necessary to be vaccinated again\n\n\nb) only the malaria vaccine provides lifelong protection\n c) you need to have a new vaccination against malaria each time you travel\n d) you should check if you need to have another immunisation",
+      "sourcePage": 223,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 19,
+      "prompt": "Any immunity that a person has against malaria\n a) is never lost\n b) is effective if they can avoid insect bites\n c) doesn’t last a long time if they change locations\n d) is better than immunity offered by tablets",
+      "sourcePage": 224,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 20,
+      "prompt": "If people are visiting their home countries\n a) they have natural immunities to local diseases\n b) vaccinations may depend on the distance they travel\n c) it is necessary to take precautions\n d) all family members should be immunised",
+      "sourcePage": 224,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 21,
+      "prompt": "In paragraph eight, what does the expression ‘to do so’ refer to?\n a) having treatment against malaria\n b) being amused\n c) living in the country\n d) going back home",
+      "sourcePage": 224,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 22,
+      "prompt": "What does the last paragraph tell us about the cost of vaccinations?\n a) Amost vaccinations are free in the UK\n b) most people have to pay for their vaccinations\n c) travel vaccinations are covered by travel insurance\n d) everyone has to pay for vaccinations",
+      "sourcePage": 224,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    }
+  ]
+}

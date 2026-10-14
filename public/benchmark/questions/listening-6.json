@@ -1,0 +1,390 @@
+{
+  "testId": "listening-6",
+  "sourceSha256": "8adfbf2ba6d50c8acb3e74398f98289363200d8864c467f1e795f6d28757b6ee",
+  "questions": [
+    {
+      "part": "A",
+      "number": 1,
+      "prompt": "Reason for Appointment:\n\n ____",
+      "sourcePage": 39,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 2,
+      "prompt": "Menstrual cycles were ____",
+      "sourcePage": 39,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 3,
+      "prompt": "Minor complications: some tiredness and ____",
+      "sourcePage": 39,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 4,
+      "prompt": "Patient reports absence of ____",
+      "sourcePage": 39,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 5,
+      "prompt": "Examination shows ____ are unremarkable",
+      "sourcePage": 39,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 6,
+      "prompt": "Patients reports baby’s gestational age as ____",
+      "sourcePage": 39,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 7,
+      "prompt": "Unusual observation: fundal height does not correspond to baby’s\n gestational age – should not be the case after ____ of\n pregnancy",
+      "sourcePage": 39,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 8,
+      "prompt": "Conception date was not ____",
+      "sourcePage": 39,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 9,
+      "prompt": "Patient’s uterus size warrants a ____",
+      "sourcePage": 39,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 10,
+      "prompt": "Amniotic fluid is more than usual - possibility baby may be\n born ____",
+      "sourcePage": 40,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 11,
+      "prompt": "Baby’s size could be ____ than expected",
+      "sourcePage": 40,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 12,
+      "prompt": "Accuracy of ____ could be affected by position of baby",
+      "sourcePage": 40,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 13,
+      "prompt": "Ongoing complex ____ in right foot",
+      "sourcePage": 40,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 14,
+      "prompt": "Plantar fasciitis: ____ case",
+      "sourcePage": 40,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 15,
+      "prompt": "Pain under the ____ of his heel, in centre",
+      "sourcePage": 40,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 16,
+      "prompt": "Heel pain usually dissipates within ____ after touching the\n ground",
+      "sourcePage": 40,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 17,
+      "prompt": "Recently had three ____ in a short time period",
+      "sourcePage": 40,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 18,
+      "prompt": "Application of ____ was advised",
+      "sourcePage": 41,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 19,
+      "prompt": "Prescribed ____",
+      "sourcePage": 41,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 20,
+      "prompt": "Further investigation - ____ was also unremarkable",
+      "sourcePage": 41,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 21,
+      "prompt": "Possible pathology causing pain around ____ of heel",
+      "sourcePage": 41,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 22,
+      "prompt": "Affecting the ____ of abductor digiti minimus or the sural nerve",
+      "sourcePage": 41,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 23,
+      "prompt": "____ to be used to allow heel to rest and recover",
+      "sourcePage": 41,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 24,
+      "prompt": "To block sural nerve, can opt to inject ____ of xylocaine",
+      "sourcePage": 41,
+      "group": "Extract 2"
+    },
+    {
+      "part": "B",
+      "number": 25,
+      "prompt": "You hear a training for optometrists.\n What does the instructor clarify about the training ?\nA. That it is for optometrists seeking a specialty in the field\nB. That it is for optometrists wanting a review of primary eye care\nC. That it is for optometrists currently still completing their training",
+      "sourcePage": 42,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 26,
+      "prompt": "You hear a nurse explaining a new protocol for patient handover. .\n The new protocol for patient handover prioritises\nA. communication between the nurses on the case\nB. communication between nurses and patients\nC. communication between the nurses and the doctors",
+      "sourcePage": 42,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 27,
+      "prompt": "You hear a nurse talking to a patient about his upcoming hospital stay. .\n What does she describe to the patient?\nA. A written document about eight main areas of care after surgery\nB. A written document about how families can help the patient during\n recovery\nC. A written document about what patients can do to be safe",
+      "sourcePage": 42,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 28,
+      "prompt": "You hear a surgeon talking about an optional training. .\n What does the surgeon explain about the medical problem?\nA. Its prognosis is more complicated than that of similar cancers\nB. Its prognosis is comparable to that of similar cancers\nC. Its prognosis is not as promising as that of similar cancers",
+      "sourcePage": 42,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 29,
+      "prompt": "You hear a doctor explaining the side effects of a treatment to a patient. .\n\n What does the doctor suggest the patient do?\nA. Purchase a thermometer to keep track of his temperature\nB. Take the prescribed treatment every four weeks\nC. Avoid any infections as much as possible during treatment",
+      "sourcePage": 42,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 30,
+      "prompt": "You hear an intern ask a senior doctor about a patient’s treatment. .\n The senior doctor explains to the intern\nA. A series of reasons why this particular treatment is being used\nB. A series of ways in which the patient is not responding well\nC. A series of ways that a patient could respond to the treatment",
+      "sourcePage": 43,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 31,
+      "prompt": "What does the speaker say has changed in terms of allergies and\n children?\nA. More children are presenting with food allergies.\nB. More children are presenting with allergies in general.\nC. More children are presenting with an allergy to peanuts.",
+      "sourcePage": 43,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 32,
+      "prompt": "According to the speaker, children with this allergy initially\nA. Present with a less severe reaction\nB. Present with a more severe reaction\nC. Present with other allergies or conditions",
+      "sourcePage": 43,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 33,
+      "prompt": "What is the objective of the first treatment approach being researched?\nA. To have children build up tolerance by starting to eat a wider\n variety of foods\nB. To have children build up tolerance by starting to eat small\n amounts of the allergen\nC. To have children build up tolerance by starting to eat large\n amounts of the allergen",
+      "sourcePage": 43,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 34,
+      "prompt": "How will researchers know how children have reacted to the treatment?\nA. Through observing them for a few hours at the hospital\nB. Through recording them for a few hours at a time\nC. Through phone calls and having them visit the clinic",
+      "sourcePage": 44,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 35,
+      "prompt": "According to the speaker, why is the current treatment for this condition\n difficult for patients?\nA. Because it requires persistent watchfulness\nB. Because many people like to eat foods with the allergen\nC. Because many people are unaware of the condition",
+      "sourcePage": 44,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 36,
+      "prompt": "What is one reason for the treatment method used in the second study?\nA. Because many patients do not have the time to add the allergen\n to their diet\nB. Because many patients have a strong reaction to the taste or\n smell of the allergen\nC. Because many patients prefer not to make any changes to their\n current diets",
+      "sourcePage": 44,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 37,
+      "prompt": "According to the interviewee, what problem was the research trying to\n address?\nA. The damage done to the transplanted organ during surgery\nB. The amount of time required to complete the transplant\nC. The loss of blood supply to the transplanted organ during surgery",
+      "sourcePage": 44,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 38,
+      "prompt": "What factor did the researcher take into account when choosing which\n tool to use?\nA. The cost of overall procedure\nB. The cost of the tool itself\nC. The ease of access to the tool",
+      "sourcePage": 45,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 39,
+      "prompt": "How did the placebo procedure differ from the experimental one?\nA. The blood pressure cuff was tightened more\nB. The blood pressure cuff was not tightened\nC. The blood pressure cuff was not used",
+      "sourcePage": 45,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 40,
+      "prompt": "According to the researcher, why was the research done over a number of\n years?\nA. Because the effectiveness of the kidney declines gradually\nB. Because there were many patients involved in the study\nC. Because it took a long time to analyze all of the information",
+      "sourcePage": 45,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 41,
+      "prompt": "The interviewer says that the procedure has the potential to…\nA. Extend the lifespan of all patients by years\nB. Increase the cost to the NHS by quite a lot\nC. Make the lives of transplant patients better",
+      "sourcePage": 45,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 42,
+      "prompt": "The research would like to figure out why the procedure...\nA. Has not always received positive results\nB. Has not been thoroughly researched\nC. Has not received a lot of attention by doctors",
+      "sourcePage": 45,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import catalog from '../data/benchmarkCollection.json';
+import { BenchmarkQuestionRows } from '../components/BenchmarkQuestionRows';
 import offline from '../data/benchmarkOffline.json';
 import { RecordingTranscriptPlayer } from '../components/RecordingTranscriptPlayer';
 import { VoiceRecorder } from './MaterialsPage';
@@ -7,7 +8,7 @@ import type { NavSection, OetSubtest } from '../types';
 import './materials.css';
 import './benchmark.css';
 
-type Entry = { id: string; skill: string; number: number; title: string; assetPath: string; startPage: number; endPage: number; textPath: string; keyPath?: string; keyPages?: number[]; answers?: Record<string, string>; audio?: { url: string; sourceUrl: string; sha256: string } | null };
+type Entry = { sourceSha256: string; id: string; skill: string; number: number; title: string; assetPath: string; startPage: number; endPage: number; textPath: string; keyPath?: string; keyPages?: number[]; answers?: Record<string, string>; audio?: { url: string; sourceUrl: string; sha256: string } | null };
 type Page = { number: number; text: string; extraction?: string };
 const entries: Entry[] = catalog.entries;
 const skills: OetSubtest[] = ['listening', 'reading', 'writing', 'speaking'];
@@ -55,17 +56,15 @@ function BenchmarkPaper({ entry }: { entry: Entry }) {
 function BenchmarkAnswers({ entry }: { entry: Entry }) {
   const { responses, update, error } = useResponses(entry.id);
   const [part, setPart] = useState('A');
-  const [revealed, setRevealed] = useState<Record<string, boolean>>({});
   const [review, setReview] = useState(false);
   const writing = entry.skill === 'writing';
   const listening = entry.skill === 'listening';
-  const numbers = writing ? [] : listening ? part === 'A' ? Array.from({ length: 24 }, (_, i) => i + 1) : part === 'B' ? [25, 26, 27, 28, 29, 30] : Array.from({ length: 12 }, (_, i) => i + 31) : part === 'A' ? Array.from({ length: 20 }, (_, i) => i + 1) : part === 'B' ? [1, 2, 3, 4, 5, 6] : Array.from({ length: 16 }, (_, i) => i + 7);
   const exportText = `${entry.title}\n\n${Object.entries(responses).map(([key, value]) => `${key}: ${value}`).join('\n')}`;
   return <section className="card material-answer" aria-label="Benchmark answers"><h3>3 · {writing ? 'Write your letter and review' : 'Record your answers and review'}</h3><PracticeTimer minutes={writing ? [5, 40] : listening ? [40] : [15, 45]} />
     {writing ? <><p>Use 5 minutes to read, then 40 minutes to write. Follow the task and recipient in the source.</p><label htmlFor="benchmark-letter">Your letter</label><textarea id="benchmark-letter" value={responses.letter ?? ''} onChange={e => update('letter', e.target.value)} /><p className="meta">{(responses.letter ?? '').trim().split(/\s+/).filter(Boolean).length} words · self-review, no automatic grade</p></> : <>
       <div className="study-skill-tabs" role="group" aria-label="Answer sheet part">{['A', 'B', 'C'].map(p => <button key={p} aria-pressed={part === p} onClick={() => setPart(p)}>Part {p}</button>)}</div>
-      <p className="meta">Use the question numbers printed in Part {part}. {listening ? 'Show answer reveals the supplied printed key.' : 'Part B starts at 1; Part C continues at 7, as printed in this collection.'}</p>
-      <div className="benchmark-answer-grid">{numbers.map(n => { const id = `${part}-${n}`; const key = entry.answers?.[String(n)]; return <div className="benchmark-answer-item" key={id}><label htmlFor={`benchmark-${id}`}>Question {n}</label><div className="jahshan-blank-controls">{part === 'A' ? <input id={`benchmark-${id}`} value={responses[id] ?? ''} onChange={e => update(id, e.target.value)} placeholder="Your answer" autoComplete="off" /> : <select id={`benchmark-${id}`} value={responses[id] ?? ''} onChange={e => update(id, e.target.value)}><option value="">Choose…</option>{(listening || part === 'B' ? ['A', 'B', 'C'] : ['A', 'B', 'C', 'D']).map(c => <option key={c}>{c}</option>)}</select>}{key && <button className="btn btn-secondary" aria-label={`${revealed[id] ? 'Hide' : 'Show'} answer for Question ${n}`} aria-expanded={!!revealed[id]} onClick={() => setRevealed({ ...revealed, [id]: !revealed[id] })}>{revealed[id] ? 'Hide' : 'Show'}</button>}</div>{revealed[id] && key && <p className="jahshan-inline-key"><strong>Printed answer:</strong> {key}</p>}</div>; })}</div>
+      <p className="meta">Answer each question below. Your response stays beside its question. {listening ? 'Show answer reveals the supplied printed key.' : 'Part B uses 1–6 and Part C uses 7–22. Any numbering errors in the paper are noted beside the question.'}</p>
+      <BenchmarkQuestionRows key={entry.id} entry={entry} part={part} responses={responses} onAnswer={update} />
       {(entry.keyPath || !!entry.keyPages?.length) && <div className="benchmark-key-review"><button className="btn btn-secondary" aria-expanded={review} onClick={() => setReview(!review)}>{review ? 'Hide printed key links' : 'Review printed answer key'}</button>{review && (entry.keyPath ? <a href={asset(entry.keyPath)} target="_blank" rel="noopener noreferrer">Open Test {entry.number} printed key ↗</a> : entry.keyPages?.map(p => <a key={p} href={`${asset(entry.assetPath)}#page=${p}`} target="_blank" rel="noopener noreferrer">Printed key · book page {p} ↗</a>))}</div>}
       {!listening && !entry.keyPages?.length && <p className="meta">No printed key page was identified for this reading test. Answers are saved for your own review.</p>}
     </>}

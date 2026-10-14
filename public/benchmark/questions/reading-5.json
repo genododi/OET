@@ -1,0 +1,428 @@
+{
+  "testId": "reading-5",
+  "sourceSha256": "95285b9293f59f01ca355eeb805ba4f009dab84c4cd53643ec85435c4db7f4a5",
+  "questions": [
+    {
+      "part": "A",
+      "number": 1,
+      "prompt": "Annual eye screening? ____________________",
+      "sourcePage": 87,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 2,
+      "prompt": "The condition that precedes diabetes? ____________________",
+      "sourcePage": 87,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 3,
+      "prompt": "The acceptable readings for a person’s HB1Ac? ____________________",
+      "sourcePage": 87,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 4,
+      "prompt": "How insulin replacement is administered? ____________________",
+      "sourcePage": 87,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 5,
+      "prompt": "The habits needed for good diabetes management? ____________________",
+      "sourcePage": 87,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 6,
+      "prompt": "The most common side effect of gestational diabetes? _______________",
+      "sourcePage": 87,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 7,
+      "prompt": "The indicators that a person might be diabetic? ____________________",
+      "sourcePage": 87,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 8,
+      "prompt": "What is the prevalence of diabetics who have Type 1? ____________________",
+      "sourcePage": 87,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 9,
+      "prompt": "Which organ is not working correctly leading to diabetes? ____________________",
+      "sourcePage": 87,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 10,
+      "prompt": "What is the most usual treatment approach for people with Type 2 diabetes?\n____________________",
+      "sourcePage": 87,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 11,
+      "prompt": "How often is it appropriate for a woman with gestational diabetes to test her\ncBGT if she is taking oral medication? ____________________",
+      "sourcePage": 87,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 12,
+      "prompt": "How are the most common effects of having diabetes monitored?\n____________________",
+      "sourcePage": 87,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 13,
+      "prompt": "If a person cannot keep their blood glucose levels stable, what device might they\nuse to administer their insulin? ____________________",
+      "sourcePage": 87,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 14,
+      "prompt": "Which type of diabetes can be prevented by making changes to diet and taking up\nan exercise regime? ____________________",
+      "sourcePage": 87,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 15,
+      "prompt": "An oral glucose tolerance test with a result of_______________or higher confirms\na diagnosis of diabetes.",
+      "sourcePage": 88,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 16,
+      "prompt": "A person with diabetes ought to see a doctor if they have a cut to\na_______________.",
+      "sourcePage": 88,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 17,
+      "prompt": "A diabetic eye screening is a half hour long eye_______________that can pick up\nany early signs of damage to_______________in the eye.",
+      "sourcePage": 88,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 18,
+      "prompt": "A routine diabetes check involves pulse and blood pressure checks, urine analysis\nand a_______________test.",
+      "sourcePage": 88,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 19,
+      "prompt": "Type 1 diabetes is most predominant in children and adults\naged_______________",
+      "sourcePage": 88,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 20,
+      "prompt": "Type 1 diabetic patients check their cBGT before_______________and administer\nan amount of _______________based on the cBGT_______________.",
+      "sourcePage": 88,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "B",
+      "number": 1,
+      "prompt": "What tests are identified in this article that determine if a\n person has nystagmus in one or both eyes?\n a) Computerised electronystagmography\n b) Checking the effect on the person when they are on a special platform\n c) Putting water of variable temperature into the auditory canals",
+      "sourcePage": 90,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 2,
+      "prompt": "What daily activities of the child subjects in this clinical trial will\n be observed?\n a) If they had pre-eclampsia.\n b) Their eating and exercise habits.\n c) If they have siblings.",
+      "sourcePage": 91,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 3,
+      "prompt": "What reason is given in this articles that explains why\n hospitalisation of children with asthma is worse in South\n Australia?\n a) Lack of time to upskill asthma sufferers\n b) Lack of time to upskill GP practice staff about asthma\n c) Lack of time to upskill hospital staff about asthma",
+      "sourcePage": 92,
+      "group": "Text 3",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 4,
+      "prompt": "Most children born will develop hepatitis B if their mother\n a) Has hepatitis B envelop antigen\n b) Is a chronic carrier of Hepatitis surface antigen\n c) Has hepatitis B envelop and surface antigen",
+      "sourcePage": 93,
+      "group": "Text 4",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 5,
+      "prompt": "Which health care professionals is this guideline NOT targeted at?\n a) Medical officers, acute care nurses and gynaecologists\n b) Emergency department nurses, theatre staff and surgical ward staff\n c) Aged care sector nurses, , midwives and paediatricians",
+      "sourcePage": 93,
+      "group": "Text 5",
+      "numberingNote": "Paper label: 1. Saved as question 5 for Text 5.",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 6,
+      "prompt": "Why is it important to diagnose what type of hearing loss they have?\n a) Sensory hearing loss may improve.\n b) Neural hearing loss does not improve.\n c) Sensory hearing loss is caused by brain tumor.",
+      "sourcePage": 94,
+      "group": "Text 6",
+      "numberingNote": "Paper label: 2. Saved as question 6 for Text 6.",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 7,
+      "prompt": "Through a brain scan, neuroscientists today can determine an individual’s\n a) abstract reasoning\n b) abilities\n c) weaknesses\n d) academic performance",
+      "sourcePage": 96,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 8,
+      "prompt": "Which of the following does the Human Connectome Project involve?\n a) Mapping networks inside the brain\n b) Understanding how connections in the brain function\n c) Understanding intellect and emotions\n\n\n\nd) Assessing researchers",
+      "sourcePage": 96,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 9,
+      "prompt": "In what way is a connectome similar to a fingerprint?\n a) In its strength\n b) In its activity\n c) In its individuality\n d) In its accuracy",
+      "sourcePage": 97,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 10,
+      "prompt": "What does intelligence depend on, according to the study?\n a) On the quality of connections between different regions in the brain\n b) On the processing of information in different regions in the brain\n c) On the way higher levels function in the brain\n d) On the talk between certain regions in the brain",
+      "sourcePage": 97,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 11,
+      "prompt": "Why can the human connectome help patients with schizophrenia?\n a) Because disorders like schizophrenia require unique treatment\n b) Because the disorder is distinctive for every patient, as is the connectome\n c) Because by understanding the connectome doctors can understand\n schizophrenia\n d) Because individual courses of treatments can be designed for every patient",
+      "sourcePage": 97,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 12,
+      "prompt": "Which of the following won’t be achieved by mapping the human\n connectome?\n a) Tracking children’s success at school\n b) Defining someone’s career\n c) Determining the right candidate for a job\n d) Identifying drug addicts",
+      "sourcePage": 97,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 13,
+      "prompt": "What does the author imply by saying “the dreaded SAT might even be\n shelved too”?\n a) That the SAT might be successfully passed.\n\n\n\nb) That the SAT might be suspended.\n c) That the SAT might be carefully organized.\n d) That the SAT might be failed.",
+      "sourcePage": 97,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 14,
+      "prompt": "Studies such as this\n a) Are not ethical\n b) Reveal much about criminal minds\n c) Are only at the early stage of development\n d) Are at the peak of their success",
+      "sourcePage": 98,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 15,
+      "prompt": "How many patients took part in the experimental studies?\n a) Twenty-nine\n b) Fifty-one\n c) Eighty\n d) Eighteen",
+      "sourcePage": 99,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 16,
+      "prompt": "What were the outcomes of psilocybin?\n a) It helped all the patients alleviate the pain.\n b) It helped cancer patients deal with depression.\n c) It had continuous and long-lasting positive effects.\n d) Although it relieved pain, it had some side-effects.",
+      "sourcePage": 99,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 17,
+      "prompt": "What do several renowned psychiatrists think of the studies?\n a) That they offer a helpful but addictive way of addressing illnesses.\n b) That such studies lead to criminalization of illegal compounds.\n c) That such studies lead to decriminalization of illegal compounds.\n d) That such studies pave the way for safe use of illegal compounds.",
+      "sourcePage": 100,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 18,
+      "prompt": "Psychiatrist Dr. Roland Griffiths\n a) Compared the treatment to a revolutionary surgery.\n b) Compared the treatment to a painstaking surgery.\n c) Couldn’t compare the treatment to anything else done before.\n d) Was convinced of the treatment’s effects due to the plausibility of the results.",
+      "sourcePage": 100,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 19,
+      "prompt": "Which of the following is true about Sherry Marcy’s experience with the\n treatment?\n a) She felt like being on a cloud.\n b) She stopped being depressed.\n c) She managed to battle cancer.\n d) She felt relieved.",
+      "sourcePage": 100,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 20,
+      "prompt": "How were the patients chosen to receive either psilocybin or a placebo?\n a) First, 83% of the patients received psilocybin, then a placebo.\n b) First, 83% of the patients received a placebo, then psilocybin.\n c) The patients weren’t selected according to a plan, but by chance.\n d) All the patients were first given psilocybin, and then a placebo.",
+      "sourcePage": 100,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 21,
+      "prompt": "Which of the following is not true about psilocybin?\n a) It is not allowed to be used in the USA.\n b) It is not suitable for those suffering from schizophrenia.\n c) It must be used with caution by the patients.\n d) The dose and provision must be provided by a specialist in the area.",
+      "sourcePage": 100,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 22,
+      "prompt": "What does the author imply with the phrase ”a need to loosen research\n restrictions”?\n a) That it is necessary to make the rules surrounding research less strict.\n b) That it is necessary to create a better atmosphere for further research.\n c) That it is necessary to invite more doctors to take part in the research.\n d) That it is necessary to spread the results of the research across several\n centres.",
+      "sourcePage": 101,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    }
+  ]
+}

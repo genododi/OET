@@ -1,0 +1,390 @@
+{
+  "testId": "listening-5",
+  "sourceSha256": "8adfbf2ba6d50c8acb3e74398f98289363200d8864c467f1e795f6d28757b6ee",
+  "questions": [
+    {
+      "part": "A",
+      "number": 1,
+      "prompt": "Mother’s pregnancy: without ____",
+      "sourcePage": 32,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 2,
+      "prompt": "Weight at birth: Below ____ kilos",
+      "sourcePage": 32,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 3,
+      "prompt": "Family history: ____ and diabetes",
+      "sourcePage": 32,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 4,
+      "prompt": "Condition is getting ____",
+      "sourcePage": 32,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 5,
+      "prompt": "Need to be checked for ____",
+      "sourcePage": 32,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 6,
+      "prompt": "Suspected that ____ remains in the liver",
+      "sourcePage": 32,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 7,
+      "prompt": "Possibly idiopathic neonatal ____ or biliary atresia",
+      "sourcePage": 32,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 8,
+      "prompt": "____ was broken - not due to a [blank for Q9] but mother’s action\n in diaper change",
+      "sourcePage": 32,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 9,
+      "prompt": "[blank for Q8] was broken - not due to a ____ but mother’s action\n in diaper change",
+      "sourcePage": 32,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 10,
+      "prompt": "Has ____ spleen and liver",
+      "sourcePage": 33,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 11,
+      "prompt": "____ of the liver",
+      "sourcePage": 33,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 12,
+      "prompt": "Specialist required: ____",
+      "sourcePage": 33,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 13,
+      "prompt": "OT assessment of home ____",
+      "sourcePage": 33,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 14,
+      "prompt": "Injuries caused by ____",
+      "sourcePage": 33,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 15,
+      "prompt": "____ ankle significantly injured",
+      "sourcePage": 33,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 16,
+      "prompt": "On-going treatment: ____",
+      "sourcePage": 33,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 17,
+      "prompt": "Affected leg remains ____",
+      "sourcePage": 34,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 18,
+      "prompt": "____ visible on affected ankle",
+      "sourcePage": 34,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 19,
+      "prompt": "Necessity of keeping the leg ____",
+      "sourcePage": 34,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 20,
+      "prompt": "Pain reported in other parts: spine and ____",
+      "sourcePage": 34,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 21,
+      "prompt": "____ in new equipment is necessary",
+      "sourcePage": 34,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 22,
+      "prompt": "____ can help with alignment",
+      "sourcePage": 34,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 23,
+      "prompt": "For social health, place new equipment in ____",
+      "sourcePage": 34,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 24,
+      "prompt": "Equipment must also meet ____ requirements",
+      "sourcePage": 34,
+      "group": "Extract 2"
+    },
+    {
+      "part": "B",
+      "number": 25,
+      "prompt": "You hear a morning briefing on a ward\n How does the doctor decide on the next steps?\nA. By looking at the patient’s medical history\nB. By looking at patient’s symptoms and exam\nC. By looking at a scan of patient’s abdomen",
+      "sourcePage": 35,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 26,
+      "prompt": "You hear a trainee nurse asking a mentor for advice.\n Why does the trainee ask his mentor for advice?\nA. To confirm and support possible diagnoses\nB. To help him consider other possibilities like HIV\nC. To explain to him what he should do next",
+      "sourcePage": 35,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 27,
+      "prompt": "You hear a nurse talking to another nurse about the discharge of a\n patient.\n What does the female nurse tell the male nurse to prioritize?\nA. The right of the patient to receive non-hostile service\nB. The right of the patient to not be judged\nC. The right of the patient to receive care",
+      "sourcePage": 35,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 28,
+      "prompt": "You hear a nurse talking about a new education program for parents.\n Why is the nurse giving information about the new program?\nA. To get ideas on how to improve the areas of focus\nB. To explain why they are developing this program\nC. To invite members of the staff to join in its development",
+      "sourcePage": 35,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 29,
+      "prompt": "You hear a doctor in the A&E discussing a case with a nurse.\n\n What does the nurse confirm to the doctor?\nA. The patient’s lack of knowledge about his condition\nB. The patient’s response to the current treatment plan\nC. The patient’s continued refusal to contact a family member",
+      "sourcePage": 35,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 30,
+      "prompt": "You hear a hospice nurse explaining intake protocol for new patients.\n The protocol is designed to\nA. Help the patient make decisions about his/her own health care\nB. Support the family of a patient to make decisions about care\nC. Give information about the purpose of hospice and palliative care",
+      "sourcePage": 36,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 31,
+      "prompt": "What does the speaker say has changed in career development in\n occupational therapy?\nA. The number of opportunities available to therapists\nB. The quality of the opportunities available to therapists\nC. The number of new therapists entering the field",
+      "sourcePage": 36,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 32,
+      "prompt": "According to the speaker, therapists have used their strengths to...\nA. Improve the opportunities available in traditional sectors\nB. Create new businesses related to occupational therapy\nC. Take the profession into areas outside of traditional sectors",
+      "sourcePage": 36,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 33,
+      "prompt": "Why is the change in the curriculum particularly important at this time?\nA. Because the field is currently experiencing significant changes\nB. Because there is less stability in employment and careers\nC. Because more and more people are entering the field.",
+      "sourcePage": 36,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 34,
+      "prompt": "What advice does the speaker give to new practitioners?\nA. To wait for the perfect post to come along\nB. To take posts to gain experience in the field\nC. To first pursue further education in the field",
+      "sourcePage": 37,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 35,
+      "prompt": "According to the speaker, what career path do the majority of therapists\n decide to take?\nA. A career that is focused on the clinical\nB. A career that combines areas of the field\nC. A career that combines different sectors",
+      "sourcePage": 37,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 36,
+      "prompt": "According to the speaker, continuing professional development can...\nA. Help a therapist to learn about new research developments\nB. Help a therapist to actively contribute to the future of the field\nC. Help a therapist to get from a current post to their ideal post",
+      "sourcePage": 37,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 37,
+      "prompt": "According to the speaker, the main reason for the increased influence of\n technology is...\nA. Related to bigger trends that are currently happening.\nB. Related to the pace at which progress is taking place.\nC. Related to the demand for new solutions to problems.",
+      "sourcePage": 37,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 38,
+      "prompt": "What example does the speaker give of the current impact of Artificial\n Intelligence?\nA. The improvement of various types of imaging\nB. The ability to detect changes in images over time\nC. The detection of biomarkers in stroke patients",
+      "sourcePage": 37,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 39,
+      "prompt": "According to the speaker, how can Big Data contribute to the field of\n radiology?\nA. Faster analysis of information, leading to better treatments.\nB. More collection of information, leading to better databases.\nC. Better organization of information, leading to better research.",
+      "sourcePage": 38,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 40,
+      "prompt": "According to the speaker, how does technology change the role that\n radiologists can play?\nA. It reduces the amount of time that radiologists can spend with\n patients.\nB. It increases the importance of the radiologist in the care of\n patients.\nC. It makes it more difficult to devote enough time to the care of\n patients",
+      "sourcePage": 38,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 41,
+      "prompt": "Interventional radiology is growing due to...\nA. The spread of its techniques to other areas of medicine.\nB. The reduction in the number of diagnostic radiology residents.\nC. The change in the way that radiology residents are trained.",
+      "sourcePage": 38,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 42,
+      "prompt": "Radiologists face challenges because…\nA. Other providers don’t trust radiologists with imaging.\nB. Other providers prefer to hand over all communication.\nC. Other providers are reluctant to hand over control.",
+      "sourcePage": 38,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    }
+  ]
+}

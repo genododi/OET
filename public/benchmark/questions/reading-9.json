@@ -1,0 +1,426 @@
+{
+  "testId": "reading-9",
+  "sourceSha256": "95285b9293f59f01ca355eeb805ba4f009dab84c4cd53643ec85435c4db7f4a5",
+  "questions": [
+    {
+      "part": "A",
+      "number": 1,
+      "prompt": "Surgical options to manage obesity? __________________",
+      "sourcePage": 162,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 2,
+      "prompt": "The political impact on obesity? __________________",
+      "sourcePage": 162,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 3,
+      "prompt": "The lifestyle changes that obesity management focusses on? __________________",
+      "sourcePage": 162,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 4,
+      "prompt": "Why the aily activity needed to burn calories is reducing __________________",
+      "sourcePage": 162,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 5,
+      "prompt": "Waist circumference measurement? __________________",
+      "sourcePage": 162,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 6,
+      "prompt": "The medications that might contribute to the risk of\nobesity? __________________",
+      "sourcePage": 163,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 7,
+      "prompt": "What eating too much and moving too little does? __________________",
+      "sourcePage": 163,
+      "group": "Match the text"
+    },
+    {
+      "part": "A",
+      "number": 8,
+      "prompt": "What factors help to create and maintain an overweight and obese\npopulation__________________",
+      "sourcePage": 163,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 9,
+      "prompt": "What type of prescriptions can increase opportunities to exercise?\n__________________",
+      "sourcePage": 163,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 10,
+      "prompt": "In 2016, how many children and adolescents aged 5-19 were overweight or\nobese__________________",
+      "sourcePage": 163,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 11,
+      "prompt": "What is found in high levels, in food that is of high calorie but low nutritional\nvalue__________________",
+      "sourcePage": 163,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 12,
+      "prompt": "What change has happened to many forms of work that makes it difficult for\npeople to burn calories? __________________",
+      "sourcePage": 163,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 13,
+      "prompt": "Stopping what activity can lead to a person becoming overweight or obese?\n__________________",
+      "sourcePage": 163,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 14,
+      "prompt": "An adult with a BMI greater than or equal to 25, is considered to be\nwhat__________________",
+      "sourcePage": 163,
+      "group": "Short answers"
+    },
+    {
+      "part": "A",
+      "number": 15,
+      "prompt": "A__________________involves a small stomach pouch being created by stapling\nand then directly joining it to the small intestine after some of the intestine has been\nremoved.",
+      "sourcePage": 164,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 16,
+      "prompt": "Overweight and obesity are defined as abnormal or __________________that\nmay impair health.",
+      "sourcePage": 164,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 17,
+      "prompt": "Food producers argue for__________________and resist political change.",
+      "sourcePage": 164,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 18,
+      "prompt": "Being overweight or obese increases the risk of suffering from a range of health\nconditions, including coronary heart disease__________________and some cancers",
+      "sourcePage": 164,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 19,
+      "prompt": "A(n) __________________gland can lead to being overweight or obese.",
+      "sourcePage": 164,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "A",
+      "number": 20,
+      "prompt": "Orlistat is the only__________________available to help manage obesity.",
+      "sourcePage": 164,
+      "group": "Complete the sentences"
+    },
+    {
+      "part": "B",
+      "number": 1,
+      "prompt": "What guidance do staff need give to their patients to limit the chance of\n condoms failing?\n a) Open the packaging to see if the condom has burst\n b) Check the condom expiry date and put one on correctly\n c) Discard the condom if it is a Durex Real Feel",
+      "sourcePage": 166,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 2,
+      "prompt": "What is the purpose of the SA Health Elective Surgery Policy Framework\n and Associated Procedural Guidelines?\n a) To ensure all patients have an operation within 24 hours of being referred for\n publicly funded surgery\n b) To make sure GPs know the process for referring patients for publicly funded\n surgery\n c) To ensure all patients in SA get equal access to the publicly funded operation\n they need",
+      "sourcePage": 167,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 3,
+      "prompt": "What was the selection criteria for women to be included in this research\n project?\n a) 42 weeks pregnant and baby has stopped growing\n b) No problems and a first time mum\n c) A first time mum whose waters had broken",
+      "sourcePage": 168,
+      "group": "Text 3",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 4,
+      "prompt": "From this article, what is the most important role of health professionals\n when they are caring for an elderly person taking anti-coagulants?\n a) Ongoing and regular reviews\n b) Frequently checking for bleeding\n c) Prescribing anticoagulants other than warfarin",
+      "sourcePage": 168,
+      "group": "Text 4",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 5,
+      "prompt": "Which of these conditions is most associated with wear and tear?\n a) The practically avoidably condition\n b) An auto immune condition\n c) The deteriorating joint condition",
+      "sourcePage": 169,
+      "group": "Text 5",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 6,
+      "prompt": "What do the researchers identify as the lowest safe ratio of staff in an\n aged care setting?\n a) Just under a third RNs, half personal care workers and the rest ENs\n b) Mostly personal care workers and an equal split of ENs and RNs\n c) Fifty percent are personal care workers with thirty percent ENs and 20% RNs.",
+      "sourcePage": 170,
+      "group": "Text 6",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 7,
+      "prompt": "What does the first paragraph infer about déjà vu?\n a) Only young people get déjà vu\n b) As the people get older, their déjà vu episodes will stop\n c) Some people may never get déjà vu\n d) None of the above",
+      "sourcePage": 172,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 8,
+      "prompt": "In the second paragraph, which of the following is new information\n about déjà vu?\n a) It is a demonstration of a parallel existence of some experience from the past\n in the present\n b) It demonstrates the existence of a being in another parallel world\n c) Neuroscientists may be able to offer an explanation\n d) It has given rise to some extreme interpretations",
+      "sourcePage": 172,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 9,
+      "prompt": "In the third paragraph, the feeling of déjà vu is described as:\n a) Fleeting\n b) Quick\n c) Difficult\n d) Unreal",
+      "sourcePage": 172,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 10,
+      "prompt": "What is the author talking about in the fourth paragraph?\n a) Parapsychological explanations for déjà vu.\n b) Scientific theories about déjà vu.\n c) Sensory theories about déjà vu.\n d) Brain theories about déjà vu.",
+      "sourcePage": 172,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 11,
+      "prompt": "Which example of recognition memory does the Psychologist Anne M.\n Cleary not mention?\n\n\na) Recognizing a landmark.\n b) Recognizing a friend from across the room.\n c) Recognizing a song.\n d) Recognizing patterns that we associate with memory.",
+      "sourcePage": 172,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 12,
+      "prompt": "How does déjà vu come into existence according to Prof. Cleary in the\n sixth paragraph?\n a) When we experience recognition memory.\n b) When we experience familiarity-based recognition.\n c) When there is overlap between old and new experiences.\n d) When we connect old and new experiences.",
+      "sourcePage": 173,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 13,
+      "prompt": "In the seventh paragraph, scientists have discovered that:\n a) Transmitting current into the rhinal cortex of epileptic patients may produce\n déjà vu.\n b) Transmitting current into the rhinal cortex of epileptic patients produces déjà\n vu\n c) Current that is transmitted into the brain of epileptic patients produces déjà\n vu.\n d) Epileptic patients experience déjà vu when they are subjected to electrode\n treatment.",
+      "sourcePage": 173,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 14,
+      "prompt": "In paragraph 9, chronic déjà vu\n a) turns people into fortune tellers\n b) cannot be cured by doctors\n c) only affects the elderly\n d) affects its sufferers' decisions",
+      "sourcePage": 173,
+      "group": "Text 1",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 15,
+      "prompt": "Which of these can be attributed to gene therapy in the process of\n healing?\n a) Using drugs\n b) Performing surgery\n c) Taking medication continually\n d) Using the body’s building blocks",
+      "sourcePage": 175,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 16,
+      "prompt": "How are genes delivered to a patient’s DNA?\n a) Through viruses that manage to escape the body’s immune system.\n\n\n\n\nb) By creating a custom virus that carries the necessary genetic material and\n leaves it in the target cell.\n c) By using a virus that carries the necessary genetic material and leaves it in the\n target cell in the body.\n d) Through cells that reproduce, carry the gene, and spread it throughout the\n body.",
+      "sourcePage": 175,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 17,
+      "prompt": "Which of these diseases is eligible for gene treatment?\n a) A disease in which the patient cannot break down fat.\n b) The “bubble boy” disease.\n c) Muscular dystrophy.\n d) Blindness-causing conditions.",
+      "sourcePage": 176,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 18,
+      "prompt": "Which of the following poses a danger to the gene treatment therapy?\n a) Proper dosage of therapy\n b) Its effectiveness.\n c) Controlling and predicting virus’ efficiency.\n d) Cell damage.",
+      "sourcePage": 176,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 19,
+      "prompt": "What is the author referring to when he says that “there have been\n stumbling blocks along the way”?\n a) The obstacles the researchers faced during clinical trials\n b) The obstacles created by the FDA and the National Institutes of Health (NIH).\n c) The fact that some patients died during the clinical trial.\n d) The fact that some patients developed leukemia during the clinical trial.",
+      "sourcePage": 176,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 20,
+      "prompt": "What did these incidents contribute to?\n a) Discovering how to use viruses to deliver genes.\n b) Finding safer methods and following protocols for monitoring patients\n c) Finding a way to improve sight in blind people.\n d) Finding a way to treat “bubble boy” disease.",
+      "sourcePage": 176,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 21,
+      "prompt": "What does the author imply about gene therapy in tenth paragraph?\n a) That all diseases can be treated with equal success.\n b) That not all diseases can be treated with equal success.\n c) That the leukemia treatment is more successful than the treatment for\n hemophilia.\n d) Some diseases can be completely cured.",
+      "sourcePage": 177,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 22,
+      "prompt": "What is the author describing in the final paragraph?\n a) Failures of gene therapy.\n b) Disappointing results that gene therapy produced for Parkinson’s disease.\n c) The mixed results that gene therapy has produced.\n d) The gene therapy trials that have not produced promising results.",
+      "sourcePage": 177,
+      "group": "Text 2",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    }
+  ]
+}

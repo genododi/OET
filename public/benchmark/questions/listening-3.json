@@ -1,0 +1,390 @@
+{
+  "testId": "listening-3",
+  "sourceSha256": "8adfbf2ba6d50c8acb3e74398f98289363200d8864c467f1e795f6d28757b6ee",
+  "questions": [
+    {
+      "part": "A",
+      "number": 1,
+      "prompt": "Condition started with the ____ eye.",
+      "sourcePage": 16,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 2,
+      "prompt": "Presence of yellow discharge in ____ eye.",
+      "sourcePage": 16,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 3,
+      "prompt": "Absence of ____ in the eyes",
+      "sourcePage": 16,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 4,
+      "prompt": "____ is normal",
+      "sourcePage": 16,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 5,
+      "prompt": "Can rule out ____ (no relatives with this condition)",
+      "sourcePage": 16,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 6,
+      "prompt": "Patient takes reasonable ____ of eyes",
+      "sourcePage": 16,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 7,
+      "prompt": "A type of ____",
+      "sourcePage": 16,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 8,
+      "prompt": "Various types but most likely type in this case is ____",
+      "sourcePage": 17,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 9,
+      "prompt": "Most likely contracted from: ____",
+      "sourcePage": 17,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 10,
+      "prompt": "____ will not be prescribed",
+      "sourcePage": 17,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 11,
+      "prompt": "Can apply ____",
+      "sourcePage": 17,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 12,
+      "prompt": "Avoid ____ to others",
+      "sourcePage": 17,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 13,
+      "prompt": "Accompanied by vomiting ____ times)",
+      "sourcePage": 18,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 14,
+      "prompt": "Pain started just below the ____",
+      "sourcePage": 18,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 15,
+      "prompt": "Shift in pain level with different body positions (pain ____ \n when sitting forward)",
+      "sourcePage": 18,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 16,
+      "prompt": "Patient is a ____",
+      "sourcePage": 18,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 17,
+      "prompt": "Had a problem with ____ in the past",
+      "sourcePage": 18,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 18,
+      "prompt": "Not likely caused by previous night’s ____",
+      "sourcePage": 18,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 19,
+      "prompt": "Initial tests: Abdominal ____ and [blank for Q20]",
+      "sourcePage": 18,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 20,
+      "prompt": "Initial tests: Abdominal [blank for Q19] and ____",
+      "sourcePage": 18,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 21,
+      "prompt": "Possibly gallstones causing inflammation (condition is\n called ____ ) inflammation often because of gallstones",
+      "sourcePage": 18,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 22,
+      "prompt": "Symptoms only partly consistent with tentative diagnosis (risk factors\n include being a ____ , which is not the case",
+      "sourcePage": 18,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 23,
+      "prompt": "Requires a further test to determine level of patient’s ____",
+      "sourcePage": 19,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 24,
+      "prompt": "Accuracy is increased the ____ the test is done to the start of\n the pain",
+      "sourcePage": 19,
+      "group": "Extract 2"
+    },
+    {
+      "part": "B",
+      "number": 25,
+      "prompt": "You hear an A&E doctor briefing a colleague about a patient.\n The A&E doctor\nA. thinks that the cough medication is causing the patient’s rash\nB. thinks that the absence of other symptoms is unusual\nC. thinks that further investigation is necessary",
+      "sourcePage": 19,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 26,
+      "prompt": "You hear a dermatologist in a training session with an intern.\n Why does the dermatologist ask about the next step?\nA. Because the patient is in pain due to his condition\nB. Because he wants to hear the intern’s recommendation\nC. Because he wants to hear the intern’s diagnosis",
+      "sourcePage": 19,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 27,
+      "prompt": "You hear an intern asking a senior doctor about the diagnosis of a patient.\n How does the senior doctor deal with the intern’s concern?\nA. By telling her that she is looking at the wrong symptoms\nB. By helping her to reexamine the patient’s symptoms\nC. By telling her to be sure of what the symptoms of Parkinson’s are",
+      "sourcePage": 20,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 28,
+      "prompt": "You hear a morning briefing in a ward.\n What does the doctor prioritise for the patient’s care?\nA. Helping the patient with his balance problems\nB. Getting a neurologist to confirm a diagnosis\nC. Learning more about the patient’s background",
+      "sourcePage": 20,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 29,
+      "prompt": "You hear two radiologists discussing the possible diagnosis of a patient.\n What does the female doctor describe?\nA. A plain radiograph showing the patient’s skull\nB. A CT scan showing an abnormality\nC. A patient with a rare disease",
+      "sourcePage": 20,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 30,
+      "prompt": "You hear a patient expressing a concern to an occupational therapist.\n What does the patient wish to be able to do?\nA. Walk up the stairs without using a hand rail\nB. Support herself using her right arm\nC. Be able to take a shower by herself",
+      "sourcePage": 20,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 31,
+      "prompt": "Why does the speaker mention the rate of incidence of IBS?\nA. She wants to show the audience that it is an important condition.\nB. She wants to show that Australians are more likely to have the\n condition.\nC. She wants to show that women are more likely to develop the\n condition.",
+      "sourcePage": 21,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 32,
+      "prompt": "Why are potential IBS sufferers tested for other diseases?\nA. Because there are other diseases more common than IBS.\nB. Because there is no direct way to test for IBS.\nC. Because there are diseases that generally co-present with IBS.",
+      "sourcePage": 21,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 33,
+      "prompt": "Why does the speaker say IBS is a difficult disease to manage?\nA. It is not possible to know which symptoms will occur or when.\nB. It is not possible to diagnose patients with the condition.\nC. It is not possible to lessen the negative impact it has on patients.",
+      "sourcePage": 21,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 34,
+      "prompt": "What warning does the speaker give about a low-FODMAP diet?\nA. It can be dangerous for some patients with gastrointestinal\n problems.\nB. It includes foods that most people do not enjoy eating.\nC. It may not be effective for all patients suffering from IBS.",
+      "sourcePage": 21,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 35,
+      "prompt": "Why is it difficult to stick to a low-FODMAP diet?\nA. There are many popular foods which are high-FODMAPs.\nB. There are no low-FODMAP products available.\nC. There are few places to buy low-FODMAP foods.",
+      "sourcePage": 21,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 36,
+      "prompt": "According to the speaker, what effect can high-FODMAP foods have on\n the digestive system?\nA. They cause the gut to attract water, release gas and stretch the\n intestines.\nB. They cause the gut to process the food slower than usual and\n breed bacteria.\nC. They cause the gut to expand due to high levels of water and gas.",
+      "sourcePage": 22,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 37,
+      "prompt": "According to the speaker, the most important challenge facing\n dermatology is…\nA. The financial aspect of seeking treatment\nB. The low priority placed on the specialty\nC. The lack of contributions made by the specialty",
+      "sourcePage": 22,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 38,
+      "prompt": "Why does the speaker mention skin cancer and women’s health?\nA. To give examples of priorities in dermatology\nB. To give examples of failures in dermatology\nC. To give examples of the importance of dermatology",
+      "sourcePage": 22,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 39,
+      "prompt": "According to the speaker, what is needed to increase the number of\n dermatology residents?\nA. A way to increase the number of residency positions available\nB. A way to fund more residency positions in the specialty\nC. A way to train new dermatologists more efficiently than currently",
+      "sourcePage": 22,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 40,
+      "prompt": "According to the speaker, how is dermatology perceived by\n policymakers?\nA. There is a perception that the specialty is only for the rich and\n famous.\nB. There is an old-fashioned perception of the specialty.\nC. There is a perception that the specialty lacks diversity.",
+      "sourcePage": 23,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 41,
+      "prompt": "Other physicians have responded to the shortage of dermatologists...\nA. By treating dermatological disorders themselves\nB. By not referring their patients to dermatologists\nC. By recognizing the need for more dermatologists",
+      "sourcePage": 23,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 42,
+      "prompt": "According to the speaker, who or what is overly involved in\n dermatological research?\nA. Pharmaceutical industry\nB. Research funders\nC. Doctors of other specialities",
+      "sourcePage": 23,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,390 @@
+{
+  "testId": "listening-13",
+  "sourceSha256": "8adfbf2ba6d50c8acb3e74398f98289363200d8864c467f1e795f6d28757b6ee",
+  "questions": [
+    {
+      "part": "A",
+      "number": 1,
+      "prompt": "Bruising that started ____ prior",
+      "sourcePage": 94,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 2,
+      "prompt": "Patient initially thought bruises were sustained as she ____",
+      "sourcePage": 94,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 3,
+      "prompt": "Bruises sustained did not ____",
+      "sourcePage": 94,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 4,
+      "prompt": "Started getting ____ bruises",
+      "sourcePage": 94,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 5,
+      "prompt": "Previous two periods were ____",
+      "sourcePage": 94,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 6,
+      "prompt": "Unexpected ____ while at work",
+      "sourcePage": 94,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 7,
+      "prompt": "No family history of ____",
+      "sourcePage": 94,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 8,
+      "prompt": "Affected areas: mainly legs and fewer on ____",
+      "sourcePage": 95,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 9,
+      "prompt": "Patient confirms occasional gum bleeding when brushing teeth\n Gum bleeding does not ____ as expected",
+      "sourcePage": 95,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 10,
+      "prompt": "____ level: lower than normal",
+      "sourcePage": 95,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 11,
+      "prompt": "Urgent for ____ required",
+      "sourcePage": 95,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 12,
+      "prompt": "Need to reduce possibility of ____",
+      "sourcePage": 95,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 13,
+      "prompt": "Age: ____",
+      "sourcePage": 95,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 14,
+      "prompt": "Tiredness for the past ____",
+      "sourcePage": 95,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 15,
+      "prompt": "Also reports loss of ____",
+      "sourcePage": 96,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 16,
+      "prompt": "Some ____ of muscles as well",
+      "sourcePage": 96,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 17,
+      "prompt": "On ____ for high blood pressure (20 years)",
+      "sourcePage": 96,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 18,
+      "prompt": "Eyes: ____ on occasion",
+      "sourcePage": 96,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 19,
+      "prompt": "Sometimes feels ____",
+      "sourcePage": 96,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 20,
+      "prompt": "Further ____ are needed (to check urea and creatinine levels)",
+      "sourcePage": 96,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 21,
+      "prompt": "Symptoms indicate ____",
+      "sourcePage": 96,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 22,
+      "prompt": "____ also needed to check for causes",
+      "sourcePage": 96,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 23,
+      "prompt": "May need to commence ____ if kidneys are damaged",
+      "sourcePage": 96,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 24,
+      "prompt": "Treatment for damaged kidneys can be in the hospital or\n at ____",
+      "sourcePage": 96,
+      "group": "Extract 2"
+    },
+    {
+      "part": "B",
+      "number": 25,
+      "prompt": "You hear part of a ward briefing.\n What does the person giving the brief explain is governed by a specific\n law?\nA. Who you can share confidential information with and how\nB. When and how it is necessary to ask for patient consent\nC. When it is more important to give data than protect it",
+      "sourcePage": 97,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 26,
+      "prompt": "You hear two nurses having a conversation.\n What do the nurses agree about?\nA. The value of making patients feel at ease with treatment\nB. That nurses spend a lot of their time talking to patients\nC. That failures in communication are easily overcome",
+      "sourcePage": 97,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 27,
+      "prompt": "You hear part of a conversation between a GP and a nurse.\n What issue does the nurse want to address?\nA. How patients can confirm their appointments through email\nB. How patients can get more out of their consultation time\nC. How patients can use videos to know more about their condition\n before their appointment",
+      "sourcePage": 97,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 28,
+      "prompt": "You hear part of a training on an addiction treatment program.\n Why does the speaker talk about the program?\nA. To show the main objective of the initiative\nB. To show the type of research being done\nC. To show the advances that have been made",
+      "sourcePage": 97,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 29,
+      "prompt": "You hear part of a conversation between a junior and senior doctor.\n What is the senior doctor explaining to the junior doctor?\nA. How the night and day teams share their work load\nB. How information about patients is shared within the unit\nC. How to the nurse and consultant divide handover duties",
+      "sourcePage": 98,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 30,
+      "prompt": "You hear part of a conversation between a junior and senior doctor.\n What does the senior doctor point out?\nA. Another possible diagnosis for the patient\nB. Another area of concern on the X-ray\nC. Another possible explanation for the X-ray",
+      "sourcePage": 98,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 31,
+      "prompt": "According to the interviewee, why is this research needed?\nA. To better inform how to treat and diagnose patients\nB. To use new methods to do research in medicine\nC. To help broaden the number of treatments available",
+      "sourcePage": 98,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 32,
+      "prompt": "What is the main focus of the interviewee’s research?\nA. Using diagnostic systems to predict patient response to\n medication\nB. Using new ways of analyzing data to predict patient response to\n medication\nC. Using a combination of methods to predict patient response to\n medication",
+      "sourcePage": 98,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 33,
+      "prompt": "How did previous investigation inform the current research?\nA. It brought in learning from fields outside of medicine.\nB. It linked brain activity to a person’s reaction to medication.\nC. It helped to measure brain activity using resting state\n electroencephalography",
+      "sourcePage": 99,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 34,
+      "prompt": "In what context was the research conducted?\nA. In a small trial with a variety of medications\nB. In a large trial with a variety of medications\nC. In a large trial with one type of medication",
+      "sourcePage": 99,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 35,
+      "prompt": "How did the method of analysis compare to other methods?\nA. It performed as well as other methods.\nB. It performed better than other methods.\nC. It performed worse than other methods.",
+      "sourcePage": 99,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 36,
+      "prompt": "According to the interviewer, what are future implications for this\n method of analysis?\nA. It is can be used to predict advanced depression in patients.\nB. It can make treatment for depression more personal.\nC. It can be used to make treatment better for all patients.",
+      "sourcePage": 99,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 37,
+      "prompt": "Why does the presenter give statistics about tooth decay?\nA. To help the audience understand the scope of the problem\nB. To help the audience understand the cost of the problem\nC. To help the audience understand possible short-term solutions",
+      "sourcePage": 99,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 38,
+      "prompt": "Why does the presenter introduce the topic of tooth extractions?\nA. Because many people are not aware they take place in a hospital\nB. Because it sets the stage for the presenter’s research project\nC. Because it helps to explain why the research was undertaken",
+      "sourcePage": 100,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 39,
+      "prompt": "What kind of intervention was developed for the research project?\nA. A planned conversation with parents on prevention strategies\nB. A planned program to change bad habits in children’s dental\n health\nC. A planned training for dental nurses involved in baby teeth\n extraction",
+      "sourcePage": 100,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 40,
+      "prompt": "How was the intervention different from the conventional approach?\nA. It focused on parental responsibility over their children’s dental\n health.\nB. It focused on helping parents set reasonable targets for their\n children’s dental health.\nC. It focused on informing parents on how to measure the success of\n their goals related to their children’s dental health.",
+      "sourcePage": 100,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 41,
+      "prompt": "Did the intervention improve health outcomes?\nA. It did not improve health outcomes because children in both\n groups went back to the dentist.\nB. It improved health outcomes because children needed less dental\n treatment for cavities.\nC. It improved health outcomes because children did not need\n fillings as they had less tooth decay.",
+      "sourcePage": 100,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 42,
+      "prompt": "According to the speaker, the most important aspect of the intervention\n was…\nA. The way it empowered parents to be in charge of their children’s\n dental health.\nB. The way it involved trained dental nurses in educating parents\n about their children’s dental health.\nC. The way it made dental health care more pleasant for nurses,\n parents and children.",
+      "sourcePage": 101,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    }
+  ]
+}

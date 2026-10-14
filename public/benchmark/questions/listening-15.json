@@ -1,0 +1,390 @@
+{
+  "testId": "listening-15",
+  "sourceSha256": "8adfbf2ba6d50c8acb3e74398f98289363200d8864c467f1e795f6d28757b6ee",
+  "questions": [
+    {
+      "part": "A",
+      "number": 1,
+      "prompt": "Routine pregnancy check at ____",
+      "sourcePage": 110,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 2,
+      "prompt": "Previously ____ male child (8 years ago)",
+      "sourcePage": 110,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 3,
+      "prompt": "No history of ____",
+      "sourcePage": 110,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 4,
+      "prompt": "First degree relative with condition: ____",
+      "sourcePage": 110,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 5,
+      "prompt": "Detected: ____ (high sugar level)",
+      "sourcePage": 110,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 6,
+      "prompt": "No evidence of ____",
+      "sourcePage": 110,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 7,
+      "prompt": "At risk for ____",
+      "sourcePage": 110,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 8,
+      "prompt": "Requires ____",
+      "sourcePage": 111,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 9,
+      "prompt": "Self-monitoring of ____",
+      "sourcePage": 111,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 10,
+      "prompt": "Possibly ____ than normal",
+      "sourcePage": 111,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 11,
+      "prompt": "Increased chance of ____",
+      "sourcePage": 111,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 12,
+      "prompt": "May get ____",
+      "sourcePage": 111,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 13,
+      "prompt": "Worried about absence from ____",
+      "sourcePage": 111,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 14,
+      "prompt": "Menstruation began at ____ (regular cycles)",
+      "sourcePage": 111,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 15,
+      "prompt": "____ started 7 days prior",
+      "sourcePage": 111,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 16,
+      "prompt": "No issues with ____",
+      "sourcePage": 112,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 17,
+      "prompt": "Married over last 3 years ____ with one partner since)",
+      "sourcePage": 112,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 18,
+      "prompt": "Stopped ____ (the pill) 6 months ago",
+      "sourcePage": 112,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 19,
+      "prompt": "Normal result for last ____ (2.5 years ago)",
+      "sourcePage": 112,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 20,
+      "prompt": "Not on any ____",
+      "sourcePage": 112,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 21,
+      "prompt": "Likely condition: ____",
+      "sourcePage": 112,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 22,
+      "prompt": "Possible cause: ____ (although unlikely due to patient’s age)",
+      "sourcePage": 112,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 23,
+      "prompt": "____ to eliminate common causes",
+      "sourcePage": 112,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 24,
+      "prompt": "Treatment option: Tranexamic acid (because it is a treatment) ____",
+      "sourcePage": 112,
+      "group": "Extract 2"
+    },
+    {
+      "part": "B",
+      "number": 25,
+      "prompt": "You hear a nurse briefing her colleague about a patient.\n What does she warn her colleague about?\nA. The patient may later need additional assistance in breathing.\nB. The patient may have something more than community-acquired\n pneumonia.\nC. The patient may have been put on the wrong medication since\n test results are not out.",
+      "sourcePage": 113,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 26,
+      "prompt": "You hear a ward leader talking to the nursing staff\n He says that not reporting errors make?\nA. Efforts to study errors more difficult\nB. Efforts to identify errors less voluntary\nC. Efforts to reduce errors less effective",
+      "sourcePage": 113,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 27,
+      "prompt": "You hear part of a morning briefing on a hospital ward.\n What is the plan for the patient today?\nA. Her diagnosis is still waiting to be confirmed.\nB. She will be transferred to a less specialised unit.\nC. A social worker will come to talk with her family.",
+      "sourcePage": 113,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 28,
+      "prompt": "You hear part of a post-surgery follow-up at a GP practice.\n What does the patient want to know about?\nA. The cause of the pain in his belly.\nB. The time period before resuming activity.\nC. The reason he still needs to be taking it slow.",
+      "sourcePage": 113,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 29,
+      "prompt": "You hear a trainee doctor telling his supervisor about a problem he had with a\n patient.\n The trainee feels that the cause of the problem was…\nA. The patient’s negative reaction to the procedure.\nB. A lack of familiarity with the procedure being done.\nC. The amount of treatment the patient has received.",
+      "sourcePage": 114,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 30,
+      "prompt": "You hear a doctor talking to an athlete with a painful arm.\n What is the patient concerned about?\nA. The pain getting worse if he doesn’t warm up.\nB. The pain not caused by a triggering event.\nC. The pain interfering with his bowling.",
+      "sourcePage": 114,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 31,
+      "prompt": "Why does Dr Samuels say the rate of Lyme disease has increased?\nA. Because more patients and doctors are reporting infections\nB. Because of changes in human behavior and the environment\nC. Because of more ticks in different regions of the country",
+      "sourcePage": 114,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 32,
+      "prompt": "Dr Samuels says that transmission of the disease to humans requires...\nA. Any type of body fluids from human beings\nB. A tick infected with the bacterial pathogen\nC. An animal host to infect other animal hosts",
+      "sourcePage": 114,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 33,
+      "prompt": "Dr Samuels says that Lyme disease is a challenge to detect because…\nA. There are no tests to detect the bacteria responsible for the\n disease\nB. The bacteria responsible for the disease only attacks lymph\n nodes\nC. Evidence of the disease disappears from the bloodstream quickly",
+      "sourcePage": 115,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 34,
+      "prompt": "What does Dr Samuels say a person should do if they find a tick?\nA. The person will need antibiotics to prevent the disease if the tick\n is attached.\nB. They may need antibiotics, depending on the amount of time that\n has passed.\nC. They will need to get a diagnosis before seeking treatment for the\n disease.",
+      "sourcePage": 115,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 35,
+      "prompt": "What problem does Dr Samuels identify with current diagnostic tests?\nA. They are not accurate for Lyme disease that is detected early\nB. They are not accurate for all types of antibody responses\nC. They are not accurate for certain types of individuals",
+      "sourcePage": 115,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 36,
+      "prompt": "What is Dr Samuel’s place of work doing about the problem?\nA. They are working to improve existing diagnostic tests to detect\n Lyme disease.\nB. They are working to understand how a person’s DNA responds to\n the disease.\nC. They are working to improve the effectiveness of current\n treatment of the disease.",
+      "sourcePage": 115,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 37,
+      "prompt": "Matthew Andrews says that GPs are not providing mental health services\n because\nA. Adolescents do not visit GPs on a regular basis\nB. Adolescents with mental illnesses visit specialists\nC. GPs do not have the required training in the area",
+      "sourcePage": 116,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 38,
+      "prompt": "What does Matthew Andrews say is the most effective way to train GPs?\nA. Programmes focused on educational theories\nB. Programmes involving GPs working with specialists\nC. Programmes set in psychiatry or paediatric settings",
+      "sourcePage": 116,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 39,
+      "prompt": "How were the joint appointments set up?\nA. Per the request of the patient and family\nB. Per the request of the attending GP\nC. Per the request of the consultant",
+      "sourcePage": 116,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 40,
+      "prompt": "What was the objective of the joint appointments?\nA. To come to a diagnosis for the patient\nB. To initiate contact with the parents of the patient\nC. To decide on next steps for the patient",
+      "sourcePage": 116,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 41,
+      "prompt": "Matthew Andrews says that GPs now report feeling…\nA. More comfortable dealing with certain mental issues\nB. More comfortable working with outside consultants\nC. More comfortable talking to parents about these issues",
+      "sourcePage": 116,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 42,
+      "prompt": "Matthew Andrews says that child psychiatry specialists describe…\nA. Learning more about another area of medicine outside their\n specialty\nB. Learning more about children and adolescents with psychological\n problems\nC. Learning more about how to handle consultations in a clinical\n setting",
+      "sourcePage": 117,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    }
+  ]
+}

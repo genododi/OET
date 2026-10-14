@@ -1,0 +1,390 @@
+{
+  "testId": "listening-12",
+  "sourceSha256": "8adfbf2ba6d50c8acb3e74398f98289363200d8864c467f1e795f6d28757b6ee",
+  "questions": [
+    {
+      "part": "A",
+      "number": 1,
+      "prompt": "Overall feelings of ____",
+      "sourcePage": 86,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 2,
+      "prompt": "Reduced appetite but has ____ once",
+      "sourcePage": 86,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 3,
+      "prompt": "Reports ____ in joints",
+      "sourcePage": 86,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 4,
+      "prompt": "____ volume is normal",
+      "sourcePage": 86,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 5,
+      "prompt": "Diagnosed with ____ (5 years ago)",
+      "sourcePage": 86,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 6,
+      "prompt": "Is a ____ smoker",
+      "sourcePage": 86,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 7,
+      "prompt": "Is a recreational drug user - marijuana and ____",
+      "sourcePage": 86,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 8,
+      "prompt": "Source of drugs recreational drugs: ____",
+      "sourcePage": 86,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 9,
+      "prompt": "Elevated ____",
+      "sourcePage": 87,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 10,
+      "prompt": "Pallor is a bit ____",
+      "sourcePage": 87,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 11,
+      "prompt": "Preliminary diagnosis: ____",
+      "sourcePage": 87,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 12,
+      "prompt": "Referral to a ____",
+      "sourcePage": 87,
+      "group": "Extract 1"
+    },
+    {
+      "part": "A",
+      "number": 13,
+      "prompt": "First symptoms: ____ and backache",
+      "sourcePage": 88,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 14,
+      "prompt": "Frequency of vomiting: ____ in past six hours",
+      "sourcePage": 88,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 15,
+      "prompt": "Abdomen tender, particularly in ____",
+      "sourcePage": 88,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 16,
+      "prompt": "Symptoms indicate presence of ____",
+      "sourcePage": 88,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 17,
+      "prompt": "Caused by ascent of bacteria into the ____",
+      "sourcePage": 88,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 18,
+      "prompt": "Organ affected: ____",
+      "sourcePage": 88,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 19,
+      "prompt": "Likely related to the ____ patient was diagnosed with 2 months\n ago",
+      "sourcePage": 88,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 20,
+      "prompt": "Blood and urine ____ will be taken",
+      "sourcePage": 88,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 21,
+      "prompt": "Will start patient on ____ and medication",
+      "sourcePage": 88,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 22,
+      "prompt": "Medication to be monitored depending on the ____ causing the\n infection",
+      "sourcePage": 88,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 23,
+      "prompt": "____ ultrasound required",
+      "sourcePage": 88,
+      "group": "Extract 2"
+    },
+    {
+      "part": "A",
+      "number": 24,
+      "prompt": "____ of the urinary tract could be present",
+      "sourcePage": 89,
+      "group": "Extract 2"
+    },
+    {
+      "part": "B",
+      "number": 25,
+      "prompt": "You hear part of a conversation between two doctors.\n Why is the male doctor asking the female doctor for her opinion?\nA. Because he wants to tell her about a diagnosis he has made\nB. Because he wants to know what she thinks the problem is\nC. Because he wants to ask her what his next steps should be",
+      "sourcePage": 89,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 26,
+      "prompt": "You hear part of a training for ward leaders.\n Why are the people attending this training?\nA. Because they are interested in taking a course on becoming a\n ward leader.\nB. Because they are experienced ward leaders looking to train other\n leaders.\nC. Because they are in a training course to become a ward leader.",
+      "sourcePage": 89,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 27,
+      "prompt": "You hear a ward briefing on safety.\n What does the person say is the purpose of the reporting system?\nA. To know who is making the most mistakes\nB. To know where the team needs improvement\nC. To know who on the team needs improvement",
+      "sourcePage": 89,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 28,
+      "prompt": "You hear part of a conversation between two doctors in the A&E.\n What do the two doctors agree about?\nA. How busy the A&E has been recently\nB. The number of patients waiting for treatment\nC. How the system is handling mental health",
+      "sourcePage": 89,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 29,
+      "prompt": "You hear part of a conversation between a GP and a physiotherapist.\n What does the physiotherapist ask the doctor to do?\nA. Show the patient how to do the exercises\nB. Tell the patient how important the exercises are\nC. Tell the patient how important exercising is",
+      "sourcePage": 90,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "B",
+      "number": 30,
+      "prompt": "You hear part of a training for GPs.\n What kind of course is being described?\nA. A blended course for GPs interested in dermatology\nB. A traditional face-to-face general education course for GPs\nC. A blended, general education course for GPs",
+      "sourcePage": 90,
+      "group": "Short workplace conversations",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 31,
+      "prompt": "What is the main topic of the lecture?\nA. An overview of a disease commonly affecting menopausal women\n in the UK.\nB. An overview of a rather uncommon disease in the UK.\nC. An overview of a rare disease affecting geriatric women in the\n UK.",
+      "sourcePage": 90,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 32,
+      "prompt": "How is this lecture related to the lectures that came before?\nA. Previous lectures talked about the anatomy of the head.\nB. Previous lectures talked about different parts of the ear.\nC. Previous lectures talked about disorders of the outer and middle\n ear.",
+      "sourcePage": 90,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 33,
+      "prompt": "Which is a common symptom of the disease?\nA. A feeling that the world is rotating quickly around you.\nB. A feeling that you are going to fall to the ground.\nC. A feeling that something is blocking you from hearing.",
+      "sourcePage": 91,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 34,
+      "prompt": "What type of hearing loss is not associated with the disease?\nA. Nerve damage related to abnormalities\nB. A blockage of the transfer of sound waves\nC. Nerve damage related to an injury",
+      "sourcePage": 91,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 35,
+      "prompt": "What is the most common cause of the disease?\nA. Less than adequate of taking in of endolymph\nB. Overactivity of the sympathetic nervous system\nC. A hypersensitivity to something in the environment",
+      "sourcePage": 91,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 36,
+      "prompt": "What is often seen with hearing loss associated with this disease?\nA. It is sudden in nature and happens in both ears.\nB. It is gradual and it happens in one ear, not both.\nC. It is gradual in nature and happens in both ears.",
+      "sourcePage": 91,
+      "group": "Extract 1",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 37,
+      "prompt": "How does the interviewer feel about the topic of the interview?\nA. He is very enthusiastic about the topic because of its widespread\n impact.\nB. He is very enthusiastic about the topic because the breakthrough\n amazes him.\nC. He is very enthusiastic about the topic because the researcher is\n going to be famous soon.",
+      "sourcePage": 91,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 38,
+      "prompt": "According to the interviewer, the topic of the research…\nA. Has not been made public\nB. Is well known to the public\nC. Is unbelievable to the public",
+      "sourcePage": 92,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 39,
+      "prompt": "According to the interviewee, how was the blood test developed?\nA. By developing sets of antigens associated with breast cancer\nB. By developing sets of antigens found in healthy people’s blood\nC. By developing sets of antigens associated with all cancers",
+      "sourcePage": 92,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 40,
+      "prompt": "What did the researchers notice about the accuracy of their results?\nA. They were unreliable due to differing results with different panels\n of antigens used.\nB. They increased in accuracy when the number of antigens\n increased.\nC. They increased in accuracy when the number of antigens\n decreased.",
+      "sourcePage": 92,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 41,
+      "prompt": "What is being done to further develop the blood test the interviewer is\n working on?\nA. A new study with a larger sample size is being done\nB. A new study with other types of antigens is being done\nC. A new study with other types of cancers is being done.",
+      "sourcePage": 92,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "part": "C",
+      "number": 42,
+      "prompt": "What concern does the interviewer raise about the use of these tests?\nA. How quickly they can become available to the public\nB. How much the tests will cost patients around the world\nC. How patients will deal with the results of the tests",
+      "sourcePage": 93,
+      "group": "Extract 2",
+      "choices": [
+        "A",
+        "B",
+        "C"
+      ]
+    }
+  ]
+}
