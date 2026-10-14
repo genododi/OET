@@ -386,5 +386,168 @@
         "C"
       ]
     }
-  ]
+  ],
+  "notes": [
+    {
+      "group": "Extract 1",
+      "content": [
+        {
+          "text": "\nYou hear a general practitioner talking to a new patient called Doug Jones.\nFor questions 1-12, complete the notes with a word or short phrase.\n\n • Patient Doug Jones\n\n Occupation: "
+        },
+        {
+          "number": 1
+        },
+        {
+          "text": " (retired)\n\n Having trouble sleeping\n\n • Information Given\n\n Ignored the sleep problem initially – now experiences it 2-3 times a\n week\n\n Described as "
+        },
+        {
+          "number": 2
+        },
+        {
+          "text": " by the patient\n\n • Coupled with concentration problem\n\n Recounted an incident: Could not immediately recognize "
+        },
+        {
+          "number": 3
+        },
+        {
+          "text": "\n from previous workplace\n\n • Cannot cope with "
+        },
+        {
+          "number": 4
+        },
+        {
+          "text": " resulting in irritation and frustration)\n\n Has memory problems as well - forgetting simple words and phrases\n\n • "
+        },
+        {
+          "number": 5
+        },
+        {
+          "text": " of physical activity (due to self-isolation)\n\n Hypertension – on medication s\n\n • Initial Diagnosis: Dementia\n\n Potential due to presence of "
+        },
+        {
+          "number": 6
+        },
+        {
+          "text": "\n\n • Not the same as general forgetfulness but is a "
+        },
+        {
+          "number": 7
+        },
+        {
+          "text": " brain\n disorder\n\n Long-term result: death\n\n • Affects thinking, behavior, and daily "
+        },
+        {
+          "number": 8
+        },
+        {
+          "text": "\n\n • More work needed to identify "
+        },
+        {
+          "number": 9
+        },
+        {
+          "text": " type of dementia\n\n • Initial Recommendations\n\n Improve general health\n\n Increase "
+        },
+        {
+          "number": 10
+        },
+        {
+          "text": " of physical activity\n\n • Improve quality of sleep (to eliminate "
+        },
+        {
+          "number": 11
+        },
+        {
+          "text": " from the brain)\n\n Refrain from using sleeping pills\n\n • Intervene to prevent breathing problems while sleeping, because lack\n of "
+        },
+        {
+          "number": 12
+        },
+        {
+          "text": "\n\n will have a negative impact on memory\n\n Referral\n\n to a sleep specialists\n\n"
+        }
+      ]
+    },
+    {
+      "group": "Extract 2",
+      "content": [
+        {
+          "text": "\nYou hear an addiction specialist talking to a new patient called Cheryl Tyson.\nFor questions 13-24, complete the notes with a word or short phrase.\n\n • Patient: Cheryl Tyson\n\n Reason for Referral:\n\n Addiction to painkillers\n\n Chronology of events\n\n Onset of "
+        },
+        {
+          "number": 13
+        },
+        {
+          "text": " pain due to physical work in a warehouse\n\n • Had "
+        },
+        {
+          "number": 14
+        },
+        {
+          "text": " - disrupted daily activities\n\n Initially relied on OTC pain relievers\n\n • Resorted to microdistecomysurgery after "
+        },
+        {
+          "number": 15
+        },
+        {
+          "text": " did not help\n\n • Only prescribed opioids post-surgery, including "
+        },
+        {
+          "number": 16
+        },
+        {
+          "text": " and\n opiate mix\n\n Developed reliance on the painkillerss\n\n • Led to overdosing on painkillers up to "
+        },
+        {
+          "number": 17
+        },
+        {
+          "text": " the recommended\n dosage\n\n Developed breakthrough pain\n\n • Also started taking up to three "
+        },
+        {
+          "number": 18
+        },
+        {
+          "text": " a day\n\n • Complications of Medication\n\n Severe constipation\n\n Nausea\n\n "
+        },
+        {
+          "number": 19
+        },
+        {
+          "text": " swingsto the point of being suicidal\n\n Fuzziness\n\n • Memory loss (as a result of "
+        },
+        {
+          "number": 20
+        },
+        {
+          "text": " years of taking painkillers)\n\n • Treatment Plan\n\nFirst phase: Learn "
+        },
+        {
+          "number": 21
+        },
+        {
+          "text": " ways to manage pain\n\n •\n\n Second phase: Progress to "
+        },
+        {
+          "number": 22
+        },
+        {
+          "text": " therapy to learn how to\n handle stress\n\n • Third phase: Learn to slowly reduce painkillers through private session\n with a "
+        },
+        {
+          "number": 23
+        },
+        {
+          "text": "\n\n • Ultimate goal: to no longer see opioids as a "
+        },
+        {
+          "number": 24
+        },
+        {
+          "text": " (instead, to\n use other pain management techniques)\n\n"
+        }
+      ]
+    }
+  ],
+  "readingParts": {}
 }

@@ -386,5 +386,168 @@
         "C"
       ]
     }
-  ]
+  ],
+  "notes": [
+    {
+      "group": "Extract 1",
+      "content": [
+        {
+          "text": "\nYou hear a GP talking to a patient about her pregnancy. For questions 1-12,\ncomplete the notes with a word or short phrase.\n\n • Patient:Maria\n\n Reason for Appointment:\n\n Routine pregnancy check at "
+        },
+        {
+          "number": 1
+        },
+        {
+          "text": "\n\n • Medical History\n\n Previously "
+        },
+        {
+          "number": 2
+        },
+        {
+          "text": " male child (8 years ago)\n\n No other pregnancies\n\n • No history of "
+        },
+        {
+          "number": 3
+        },
+        {
+          "text": "\n\n • Family History\n\n Type 2 diabetes\n\n First degree relative with condition: "
+        },
+        {
+          "number": 4
+        },
+        {
+          "text": "\n\n • Examination\n\n Pregnancy weight gain\n\n Urine dipstick test\n\n Detected: "
+        },
+        {
+          "number": 5
+        },
+        {
+          "text": " (high sugar level)\n\n • No evidence of "
+        },
+        {
+          "number": 6
+        },
+        {
+          "text": "\n\n • At risk for "
+        },
+        {
+          "number": 7
+        },
+        {
+          "text": "\n\n • Next Steps and possible treatment\n\n Requires "
+        },
+        {
+          "number": 8
+        },
+        {
+          "text": "\n\n • Self-monitoring of "
+        },
+        {
+          "number": 9
+        },
+        {
+          "text": "\n\n Dietary & insulin therapy\n\n • Potential effects on Baby & Mother Baby\n\n Possibly "
+        },
+        {
+          "number": 10
+        },
+        {
+          "text": " than normal\n\n • Increased chance of "
+        },
+        {
+          "number": 11
+        },
+        {
+          "text": "\n\n Future development of types 2 diabetes mother\n\n • May get "
+        },
+        {
+          "number": 12
+        },
+        {
+          "text": "\n\n Diabetes may not go away after delivery\n\n"
+        }
+      ]
+    },
+    {
+      "group": "Extract 2",
+      "content": [
+        {
+          "text": "\nYou hear a GP talking to a woman about heavy menstrual bleeding.\n\n • Patient:Mrs Peters\n\n Reason for Appointment\n\n Menorrhagia, heavy periods\n\n Interrupting her daily life\n\n Worried about absence from "
+        },
+        {
+          "number": 13
+        },
+        {
+          "text": "\n\n • Medical History\n\nMenstruation began at "
+        },
+        {
+          "number": 14
+        },
+        {
+          "text": " (regular cycles)\n\n • "
+        },
+        {
+          "number": 15
+        },
+        {
+          "text": " started 7 days prior\n\n • No issues with "
+        },
+        {
+          "number": 16
+        },
+        {
+          "text": "\n\n No spotting\n\n • Married over last 3 years "
+        },
+        {
+          "number": 17
+        },
+        {
+          "text": " with one partner since)\n\n No history of STI\n\n • Stopped "
+        },
+        {
+          "number": 18
+        },
+        {
+          "text": " (the pill) 6 months ago\n\n • Normal result for last "
+        },
+        {
+          "number": 19
+        },
+        {
+          "text": " (2.5 years ago)\n\n No recent changes in health\n\n • Not on any "
+        },
+        {
+          "number": 20
+        },
+        {
+          "text": "\n\n • Diagnosis\n\n Likely condition: "
+        },
+        {
+          "number": 21
+        },
+        {
+          "text": "\n\n • Possible cause: "
+        },
+        {
+          "number": 22
+        },
+        {
+          "text": " (although unlikely due to patient’s age)\n\n • Investigations\n\n Pregnancy test\n\n Blood tests\n\n "
+        },
+        {
+          "number": 23
+        },
+        {
+          "text": " to eliminate common causes\n\n • Suggested Treatment\n\n Reason for suggestion: Patient is trying to conceive\n\nTreatment option: Tranexamic acid (because it is a treatment) "
+        },
+        {
+          "number": 24
+        },
+        {
+          "text": "\n\n"
+        }
+      ]
+    }
+  ],
+  "readingParts": {}
 }

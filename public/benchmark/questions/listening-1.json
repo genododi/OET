@@ -386,5 +386,168 @@
         "C"
       ]
     }
-  ]
+  ],
+  "notes": [
+    {
+      "group": "Extract 1",
+      "content": [
+        {
+          "text": "\nYou hear a cardiologist talking to a patient referred for dizziness. For questions 1-12,\ncomplete the notes with a word or short phrase.\n\n • Patient Jack Thatch\n\n Reason for Referral Dizzy spells\n\n History of Condition\n\n Onset of symptoms: "
+        },
+        {
+          "number": 1
+        },
+        {
+          "text": "\n\n Effect on daily life: Prone to falls\n\n • Some episodes caused loss of "
+        },
+        {
+          "number": 2
+        },
+        {
+          "text": "\n\n • Early episodes triggered by physical exertion "
+        },
+        {
+          "number": 3
+        },
+        {
+          "text": "\n\n • Change in episodic trigger pattern: Patient started to have symptoms\n while "
+        },
+        {
+          "number": 4
+        },
+        {
+          "text": "\n\n Takes about 10 – 15 minutes to recover\n\n • Severity: Enough to warrant intervention by way of calling an "
+        },
+        {
+          "number": 5
+        },
+        {
+          "text": "\n\n • Third person account: Jack appeared "
+        },
+        {
+          "number": 6
+        },
+        {
+          "text": " during an episode\n\n • A& E check for "
+        },
+        {
+          "number": 7
+        },
+        {
+          "text": " came back negative\n\n • Diagnosis and Treatment\n\n Suspected condition: "
+        },
+        {
+          "number": 8
+        },
+        {
+          "text": "\n\n • "
+        },
+        {
+          "number": 9
+        },
+        {
+          "text": " detected from most recent ECG\n\n • Stokes-Adams attacks due to "
+        },
+        {
+          "number": 10
+        },
+        {
+          "text": " heartbeat – cause of blackouts\n\n Electrical impulses telling the heart when to beat are delayed or blocked\n\n • "
+        },
+        {
+          "number": 11
+        },
+        {
+          "text": " needed (to monitor and control heartbeat)\n\n • Surgery required – although it’s not "
+        },
+        {
+          "number": 12
+        },
+        {
+          "text": "\n\n Discharge: Usually within 24 hours of the procedure\n\n"
+        }
+      ]
+    },
+    {
+      "group": "Extract 2",
+      "content": [
+        {
+          "text": "\nYou hear a GP talking with a patient complaining of lack of energy.\n\n • Patient Mrs Halloway\n\n Reason for Appointment: Lack of energy\n\n History\n\n Occupation: Solicitor\n Growing fatigue over the "
+        },
+        {
+          "number": 13
+        },
+        {
+          "text": "\n\n Affecting professional life: fell "
+        },
+        {
+          "number": 14
+        },
+        {
+          "text": " at work a few times\n\n Affecting social life: gave up weekly tennis game\n Affecting personal life: sleep patterns disrupted\n\n • Suffered depression "
+        },
+        {
+          "number": 15
+        },
+        {
+          "text": " years ago (marriage breakdown)\n\n • Physical symptoms: constipation and "
+        },
+        {
+          "number": 16
+        },
+        {
+          "text": " gain\n\n • Family history of "
+        },
+        {
+          "number": 17
+        },
+        {
+          "text": "\n\n • Possible Diagnosis\n\n Normal "
+        },
+        {
+          "number": 18
+        },
+        {
+          "text": " levels (diabetes ruled out)\n\n • Skin: dry and "
+        },
+        {
+          "number": 19
+        },
+        {
+          "text": "\n Anaemic\n\n • Lipid level: "
+        },
+        {
+          "number": 20
+        },
+        {
+          "text": " (indicating hypercholesterolaemia)\n\n • Early diagnosis: "
+        },
+        {
+          "number": 21
+        },
+        {
+          "text": "\n\n • "
+        },
+        {
+          "number": 22
+        },
+        {
+          "text": " interfering with sleep\n\n • Condition ismore prevalent in "
+        },
+        {
+          "number": 23
+        },
+        {
+          "text": "\n Patient’s age is an added risk factor\n\n • Next Steps\n\n Requires "
+        },
+        {
+          "number": 24
+        },
+        {
+          "text": " tests to be sure of diagnosis\n\n"
+        }
+      ]
+    }
+  ],
+  "readingParts": {}
 }

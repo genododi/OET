@@ -386,5 +386,168 @@
         "C"
       ]
     }
-  ]
+  ],
+  "notes": [
+    {
+      "group": "Extract 1",
+      "content": [
+        {
+          "text": "\nYou hear a doctor in the A&E talking to a patient named Mandy Johnson. For\nquestions 1-12, complete the notes with a word or short phrase. You now\nhave thirty seconds to look at the notes.\n\n • Patient:Mandy Johnson\n\n Now feeling more "
+        },
+        {
+          "number": 1
+        },
+        {
+          "text": " than when first came in\n\n • Description of Episode\n\n During\n\nHolding head & losing consciousness\n\nWhole body started "
+        },
+        {
+          "number": 2
+        },
+        {
+          "text": "\n\n • Made "
+        },
+        {
+          "number": 3
+        },
+        {
+          "text": " sounds and unable to open eyes\n\n • Bruising & "
+        },
+        {
+          "number": 4
+        },
+        {
+          "text": " on face\n\n • Before\n\n Severe "
+        },
+        {
+          "number": 5
+        },
+        {
+          "text": " just before\n\nNo weakness or numbness\n\n • Episode of "
+        },
+        {
+          "number": 6
+        },
+        {
+          "text": "\n\n • No loss of consciousness recently or "
+        },
+        {
+          "number": 7
+        },
+        {
+          "text": "\n\n No head trauma\n\n • Current Condition\n\n Daily activities resumed as usual\n\n Mild "
+        },
+        {
+          "number": 8
+        },
+        {
+          "text": " headache & nausea\n\n • Administered "
+        },
+        {
+          "number": 9
+        },
+        {
+          "text": " for nausea\n\n • No reported "
+        },
+        {
+          "number": 10
+        },
+        {
+          "text": " disturbances\n\n • "
+        },
+        {
+          "number": 11
+        },
+        {
+          "text": " neck\n\n • Medical History\n\n No problems or medication\n\n Smokes "
+        },
+        {
+          "number": 12
+        },
+        {
+          "text": " a day\n\n Does not drink\n\n Next Steps\n\n Head CT\n\n"
+        }
+      ]
+    },
+    {
+      "group": "Extract 2",
+      "content": [
+        {
+          "text": "\nYou hear a GP talking to a patient about a diagnosis of Cushing's\nsyndrome. For questions 13-24, complete the notes with a word or short\nphrase. You now have thirty seconds to look at the notes.\n\n • Patient:Mr Thomas\n\n Symptoms\n\nWeight gain, particularly noticeable in the "
+        },
+        {
+          "number": 13
+        },
+        {
+          "text": " & shoulders\n\n • "
+        },
+        {
+          "number": 14
+        },
+        {
+          "text": " have spread\n\n Wound healing is slow\n\n • Experiencing "
+        },
+        {
+          "number": 15
+        },
+        {
+          "text": " & depression\n\n • Frequently feels "
+        },
+        {
+          "number": 16
+        },
+        {
+          "text": " around other people\n\n • Investigations Results\n\n Urine and blood tests done\n\n24-hour "
+        },
+        {
+          "number": 17
+        },
+        {
+          "text": " cortisol investigation\n\n • Shows above 3x "
+        },
+        {
+          "number": 18
+        },
+        {
+          "text": " of normal\n\n • "
+        },
+        {
+          "number": 19
+        },
+        {
+          "text": " cortisol confirmed Cushing’s syndrome\n\n • Exploration of Causes\n\n Patient not on "
+        },
+        {
+          "number": 20
+        },
+        {
+          "text": "\n\n • "
+        },
+        {
+          "number": 21
+        },
+        {
+          "text": " Cushing’s syndrome\n\n • Tumour of the "
+        },
+        {
+          "number": 22
+        },
+        {
+          "text": "\n\n Problem with adrenal gland\n\n • Investigations to find cause\n\n Test to detect"
+        },
+        {
+          "number": 23
+        },
+        {
+          "text": "\n\n MRICT\n\n scan\n\n • Treatment Options\n\n Medications to reduce levels temporarily until "
+        },
+        {
+          "number": 24
+        },
+        {
+          "text": "\n\n Surgery - if tumour found to be present\n\n"
+        }
+      ]
+    }
+  ],
+  "readingParts": {}
 }

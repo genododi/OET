@@ -386,5 +386,168 @@
         "C"
       ]
     }
-  ]
+  ],
+  "notes": [
+    {
+      "group": "Extract 1",
+      "content": [
+        {
+          "text": "\nYou hear a nephrologist talking to a patient. For questions 1-12, complete the\nnotes with a word or short phrase. You now have thirty seconds to look at the\nnotes.\n\n • Patient Mr. Jakey\n\n Background\n\n Microscopic haematuria\n\nCondition detected "
+        },
+        {
+          "number": 1
+        },
+        {
+          "text": " months ago\n\nCondition detected through urine sample\n\nCondition assessed by a GP\n\n • No previous symptoms/medical issues\n\n Patient describes general health as "
+        },
+        {
+          "number": 2
+        },
+        {
+          "text": "\n\n • No family history of "
+        },
+        {
+          "number": 3
+        },
+        {
+          "text": "\n\n • Results of Investigations\n\n "
+        },
+        {
+          "number": 4
+        },
+        {
+          "text": " test was ordered by GP\n\n • Haemoglobin, platelets, and "
+        },
+        {
+          "number": 5
+        },
+        {
+          "text": " :Normal\n\n • Blood pressure reading: High at "
+        },
+        {
+          "number": 6
+        },
+        {
+          "text": "\n\n Urea: High\n\n • Creatinine: High\n\n Gamma-glutamyltranspeptidase: Very high (linked to patient’s alcohol\n consumption of more than "
+        },
+        {
+          "number": 7
+        },
+        {
+          "text": " units per week\n\n •\n\n Immediate action: Patient to "
+        },
+        {
+          "number": 8
+        },
+        {
+          "text": " from alcohol\n\n • Possible Diagnosis\n\n High blood pressure and "
+        },
+        {
+          "number": 9
+        },
+        {
+          "text": " indicate chronic glomerulonephritis\n\n • "
+        },
+        {
+          "number": 10
+        },
+        {
+          "text": " of the kidney are likely inflamed\n\n • If unchecked, like to progress to "
+        },
+        {
+          "number": 11
+        },
+        {
+          "text": " renal failure\n\n • Also requires ultrasound to assess the "
+        },
+        {
+          "number": 12
+        },
+        {
+          "text": " (biopsy may be\n needed as well)\n\n"
+        }
+      ]
+    },
+    {
+      "group": "Extract 2",
+      "content": [
+        {
+          "text": "\nYou hear a specialist talking to a patient referred by her GP. For questions 13-\n24, complete the notes with a word or short phrase.\n\n • Patient Sheila, final year university student\n\n Background\n\n Chief complaint: "
+        },
+        {
+          "number": 13
+        },
+        {
+          "text": "\n\n Symptoms started 10 days prior\n\n Triggered by climbing stairs\n\n • Symptoms got progressively worse\n\n Patient reports having a "
+        },
+        {
+          "number": 14
+        },
+        {
+          "text": " illness before symptoms started\n\n • Reported illness had accompanying symptoms: "
+        },
+        {
+          "number": 15
+        },
+        {
+          "text": "\n (recovered in 1-2 days)\n\n • Other symptoms: tiredness, "
+        },
+        {
+          "number": 16
+        },
+        {
+          "text": " and chest pain\n\n • Lifestyle\n\n Reduced exercise due to university demands\n\n Runs 2-3 times a week\n\n Denies any "
+        },
+        {
+          "number": 17
+        },
+        {
+          "text": "\n\n • Possible Diagnosis\n\n Normal "
+        },
+        {
+          "number": 18
+        },
+        {
+          "text": "\n\n • and ECG with "
+        },
+        {
+          "number": 19
+        },
+        {
+          "text": "\n\n • Tentative diagnosis: "
+        },
+        {
+          "number": 20
+        },
+        {
+          "text": "\n\n Diagnosis fits symptoms and test results\n\n • Viral causes: Coxsackie A and B, echovirus and chicken pox.\n\n "
+        },
+        {
+          "number": 21
+        },
+        {
+          "text": " to confirm and investigations\n\n • Predicted severity of suspected condition: "
+        },
+        {
+          "number": 22
+        },
+        {
+          "text": "\n\n • Immediate management "
+        },
+        {
+          "number": 23
+        },
+        {
+          "text": "\n\n • Prognosis: "
+        },
+        {
+          "number": 24
+        },
+        {
+          "text": " expected to return to normal\n\n"
+        }
+      ]
+    }
+  ],
+  "readingParts": {}
 }

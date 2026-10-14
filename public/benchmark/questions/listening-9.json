@@ -386,5 +386,168 @@
         "C"
       ]
     }
-  ]
+  ],
+  "notes": [
+    {
+      "group": "Extract 1",
+      "content": [
+        {
+          "text": "\nYou hear a neurologist talking to a patient who has had a traumatic incident.\nFor questions 1-12, complete the notes with a word or short phrase. You now\nhave thirty seconds to look at the notes.\n\n • Patient :Jack\n\n Reason for Assessment\n\n Was hit in the head while playing football\n\n Injury\n\nSustained 6 hours ago\n\nImpact on "
+        },
+        {
+          "number": 1
+        },
+        {
+          "text": " of patient’s head (by another player’s knee)\n\n • Patient cannot recall incident\n\n Loss of consciousness for "
+        },
+        {
+          "number": 2
+        },
+        {
+          "text": " after impact\n\n Patient reports feeling fine after regaining consciousness\n\n • First-line Treatment and Effect\n\n Brought to medical facility\n\n Prescribed "
+        },
+        {
+          "number": 3
+        },
+        {
+          "text": " due to generalized motor seizure\n\n • Imaging test done: CT scan (with "
+        },
+        {
+          "number": 4
+        },
+        {
+          "text": " results)\n\n • Currently has nausea and a "
+        },
+        {
+          "number": 5
+        },
+        {
+          "text": "\n\n • Next steps and probable diagnosis\n\n Another CT scan, in particular of the "
+        },
+        {
+          "number": 6
+        },
+        {
+          "text": "\n\n Close observation to prevent rapid deterioration\n\n • Initial diagnosis: "
+        },
+        {
+          "number": 7
+        },
+        {
+          "text": " (indicated by lucent period prior to\n seizure)\n\n • Essentially an "
+        },
+        {
+          "number": 8
+        },
+        {
+          "text": " of blood between the skull and outer dural\n membrane\n\n • Cause by head trauma with a "
+        },
+        {
+          "number": 9
+        },
+        {
+          "text": " object\n\n • Common result: skull "
+        },
+        {
+          "number": 10
+        },
+        {
+          "text": "\n\n • Differential diagnoses: subarachnoid "
+        },
+        {
+          "number": 11
+        },
+        {
+          "text": " and subdural\n hematoma\n\n • Prognosis\n\n Damage is not "
+        },
+        {
+          "number": 12
+        },
+        {
+          "text": " due to minimal injury to the brain)\n\n Needs aggressive treatment\n\n Better prognosis if treatment commenced early\n\n"
+        }
+      ]
+    },
+    {
+      "group": "Extract 2",
+      "content": [
+        {
+          "text": "\nYou hear a doctor in the A&E talking to a patient with chest pain. For\nquestions 13-24, complete the notes with a word or short phrase.\n\n • Patient: Mrs Frank\n\n Reason for Coming to A&E:\n\n Acute chest pain\n\n History\n\n Patient reports recurring "
+        },
+        {
+          "number": 13
+        },
+        {
+          "text": " chest pain over the last 2 years\n\n Previous episodes usually lasted 1-2 seconds\n\n• Previous position of chest pain: Usually on the left but\n sometimes "
+        },
+        {
+          "number": 14
+        },
+        {
+          "text": "\n\n• Current episode\n\nPain has lasted for "
+        },
+        {
+          "number": 15
+        },
+        {
+          "text": " hours\n\n• Position of pain: "
+        },
+        {
+          "number": 16
+        },
+        {
+          "text": " of chest\n\n No shortness of breath\n\n No heart palpitations\n\n• Pain lessens when patient sits up or leans forward\n\n Medication taken: two "
+        },
+        {
+          "number": 17
+        },
+        {
+          "text": " (ineffective)\n\n• Family History and Recent Illness\n\nFather had "
+        },
+        {
+          "number": 18
+        },
+        {
+          "text": " in early 50s\n\n Father has high cholesterol level\n\n• Patient’s recent illness: "
+        },
+        {
+          "number": 19
+        },
+        {
+          "text": " infection\n\n Started 2 weeks ago\n\n Lasted 4 -5 days\n\n• Symptoms: sore throat, blocked nose, sneezing and a\n severe "
+        },
+        {
+          "number": 20
+        },
+        {
+          "text": "\n\n• Diagnosis & Treatment\n\nLikely that the pain is originating in the "
+        },
+        {
+          "number": 21
+        },
+        {
+          "text": "\n\nTentative diagnosis: pericarditis with a viral aetiology\n\n • Swelling and inflammation of the "
+        },
+        {
+          "number": 22
+        },
+        {
+          "text": " surrounding the heart\n\n Commonly viral\n\n • Possible causes: Cold or "
+        },
+        {
+          "number": 23
+        },
+        {
+          "text": "\n\n Hospital admission not required\n\n • Treatment: Rest and "
+        },
+        {
+          "number": 24
+        },
+        {
+          "text": "\n\n Run additional electrocardiogram in 4 days\n\n"
+        }
+      ]
+    }
+  ],
+  "readingParts": {}
 }

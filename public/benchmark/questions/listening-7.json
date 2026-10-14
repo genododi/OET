@@ -386,5 +386,168 @@
         "C"
       ]
     }
-  ]
+  ],
+  "notes": [
+    {
+      "group": "Extract 1",
+      "content": [
+        {
+          "text": "\nYou hear a GP talking to a patient named Alex Summers about a skin\nproblem. For questions 1-12, complete the notes with a word or short phrase.\n\n • Patient:Alex Summers\n\n Reason for Appointment:\n\n Hand:"
+        },
+        {
+          "number": 1
+        },
+        {
+          "text": "\n\n History of Condition\n\n Recurring condition\n\n • Current outbreak began "
+        },
+        {
+          "number": 2
+        },
+        {
+          "text": " ago\n\n • Current outbreak possibly related to "
+        },
+        {
+          "number": 3
+        },
+        {
+          "text": " ingested less than 24\n hours prior\n\n First outbreak was also related to the same medication (taken three\n days before)\n\n • First outbreak left residual "
+        },
+        {
+          "number": 4
+        },
+        {
+          "text": " after healing\n\n • Patient describes pain as a slight "
+        },
+        {
+          "number": 5
+        },
+        {
+          "text": "\n\n • Possible Diagnosis\n\n Fixed drug "
+        },
+        {
+          "number": 6
+        },
+        {
+          "text": " (immune-mediated\n mucocutaneous "
+        },
+        {
+          "number": 7
+        },
+        {
+          "text": " to medication)\n\n • Complicates diagnosis when patients do not report taking OTC drugs\n\n Essential to keep record of all drugs taken\n\n • Possible to confirm diagnosis with a "
+        },
+        {
+          "number": 8
+        },
+        {
+          "text": " (invasive)\n\n • Another option to confirm diagnosis is a "
+        },
+        {
+          "number": 9
+        },
+        {
+          "text": " (less invasive)\n\n • Recommendations\n\n "
+        },
+        {
+          "number": 10
+        },
+        {
+          "text": " therapy can be used on non-mucosal areas\n\n • "
+        },
+        {
+          "number": 11
+        },
+        {
+          "text": " to reduce pain\n\n Change fever medication\n\n Monitor reaction to any new medications\n\n • "
+        },
+        {
+          "number": 12
+        },
+        {
+          "text": " the condition to any other medical professional\n prescribing medication\n"
+        }
+      ]
+    },
+    {
+      "group": "Extract 2",
+      "content": [
+        {
+          "text": "\nYou hear a physician in the A&E talking to a patient experiencing abdominal\npain. For questions 13-24, complete the notes with a word or short phrase.\n\n • Patient:Mrs Haverson\n\n Medical History\n\n Abdominal pain lasting for "
+        },
+        {
+          "number": 13
+        },
+        {
+          "text": "\n\n • Prescribed ranitidine - not effective\n\n Pain has been constant\n\n Accompanied by nausea and has started vomiting\n\n Also reports feeling "
+        },
+        {
+          "number": 14
+        },
+        {
+          "text": "\n\n Pain not associated with food\n\n • Underlying condition: "
+        },
+        {
+          "number": 15
+        },
+        {
+          "text": " (on medication: glyburide)\n\n • Current Condition\n\n Past GP observation: mild "
+        },
+        {
+          "number": 16
+        },
+        {
+          "text": " in the mid epigastrium and\n right upper/lower "
+        },
+        {
+          "number": 17
+        },
+        {
+          "text": "\n\n • Blood test: Glucose level the only remarkable result of test\n\n • Radiography: "
+        },
+        {
+          "number": 18
+        },
+        {
+          "text": " ileus (type of mechanical "
+        },
+        {
+          "number": 19
+        },
+        {
+          "text": "\n obstruction)\n\n • Chronic cholecystitis could have caused an "
+        },
+        {
+          "number": 20
+        },
+        {
+          "text": " fistula\n\n • Gallstone could have been "
+        },
+        {
+          "number": 21
+        },
+        {
+          "text": " in a narrow area of the\n intestine (size of patient’s gallstone - about 3 milimetres in diameter)\n\n • Quite a rare condition, likely related to patient’s "
+        },
+        {
+          "number": 22
+        },
+        {
+          "text": "\n\n • Treatment\n\n Recommendation: Surgery\n\n Control fluid and "
+        },
+        {
+          "number": 23
+        },
+        {
+          "text": " imbalances prior to surgery\n\n • Removal of gallbladder to prevent organ "
+        },
+        {
+          "number": 24
+        },
+        {
+          "text": "\n •\n\n"
+        }
+      ]
+    }
+  ],
+  "readingParts": {}
 }

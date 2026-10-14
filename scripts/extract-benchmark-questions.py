@@ -31,6 +31,8 @@ def document(entry):
 def extract(entry):
     text, locations = document(entry)
     questions = []
+    notes = []
+    reading_parts = {}
 
     def add(part, number, prompt, offset, group):
         prompt = clean(prompt)
@@ -48,6 +50,15 @@ def extract(entry):
             group = re.search(r'Extract [12]', heading[0])
             group = group[0] if group else 'Short workplace conversations'
             if part == 'A':
+                content, cursor = [], 0
+                for gap in re.finditer(r'(?<![\d\-])\(?(\d{1,2})\)', body):
+                    if not 1 <= int(gap[1]) <= 24:
+                        continue
+                    content.append({'text': re.sub(r'\n{3,}', '\n\n', re.sub(r'[ \t]+', ' ', body[cursor:gap.start()].replace('', '•')))})
+                    content.append({'number': int(gap[1])})
+                    cursor = gap.end()
+                content.append({'text': re.sub(r'\n{3,}', '\n\n', re.sub(r'[ \t]+', ' ', body[cursor:].replace('', '•')))})
+                notes.append({'group': group, 'content': content})
                 for marker in re.finditer(r'(?<![\d\-])\(?(\d{1,2})\)', body):
                     number = int(marker[1])
                     if not 1 <= number <= 24:
@@ -82,6 +93,13 @@ def extract(entry):
             part = 'ABC'[i]
             stop = headings[i + 1].start() if i < 2 else len(text)
             body = text[heading.end():stop]
+            section_start = 0 if part == 'A' else heading.start()
+            reading_parts[part] = []
+            for page_index, (page_start, page_number) in enumerate(locations):
+                page_end = locations[page_index + 1][0] if page_index + 1 < len(locations) else len(text)
+                excerpt = text[max(section_start, page_start):min(stop, page_end)].strip() if page_end > section_start and page_start < stop else ''
+                if excerpt:
+                    reading_parts[part].append({'number': page_number, 'text': excerpt})
             if part == 'A':
                 first = re.search(r'Questions\s+1\s*[-–]\s*7', body)
                 assert first, entry['id']
@@ -116,6 +134,11 @@ def extract(entry):
                 add(part, number, prompt, heading.end() + start + marker.start() + len(marker[0]) - len(marker[0].lstrip()), group)
                 if number != int(marker[1]):
                     questions[-1]['numberingNote'] = f'Paper label: {marker[1]}. Saved as question {number} in section order.'
+    if entry['skill'] == 'reading':
+        complete = ''.join(page['text'] for part in 'ABC' for page in reading_parts[part])
+        assert re.sub(r'\s+', '', complete) == re.sub(r'\s+', '', text), entry['id']
+    else:
+        assert [node['number'] for block in notes for node in block['content'] if 'number' in node] == list(range(1, 25)), entry['id']
     for question in questions:
         if question['part'] == 'A':
             continue
@@ -134,7 +157,7 @@ def extract(entry):
     for part, expected in [('A', range(1, 25 if entry['skill'] == 'listening' else 21)), ('B', range(25, 31) if entry['skill'] == 'listening' else range(1, 7)), ('C', range(31, 43) if entry['skill'] == 'listening' else range(7, 23))]:
         found = [q['number'] for q in questions if q['part'] == part]
         assert found == list(expected), (entry['id'], part, found)
-    return dict(testId=entry['id'], sourceSha256=entry['sourceSha256'], questions=questions)
+    return dict(testId=entry['id'], sourceSha256=entry['sourceSha256'], questions=questions, notes=notes, readingParts=reading_parts)
 
 
 if __name__ == '__main__':

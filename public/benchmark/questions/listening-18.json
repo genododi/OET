@@ -386,5 +386,168 @@
         "C"
       ]
     }
-  ]
+  ],
+  "notes": [
+    {
+      "group": "Extract 1",
+      "content": [
+        {
+          "text": "\nYou hear a doctor in the A&E talking to a patient named Alice Knowles who\nhas come in because of haematemesis. For questions 1-12, complete the\nnotes with a word or short phrase. You now have thirty seconds to look at the\nnotes.\n\n • Patient:Alice Knowles\n\n Started to feel sick and "
+        },
+        {
+          "number": 1
+        },
+        {
+          "text": "\n\n Vomited blood\n\n Colour of blood: Described as fresh and red\n\n • Volume: Approximately a "
+        },
+        {
+          "number": 2
+        },
+        {
+          "text": "\n\n Passed out\n\n First known episode\n\n • Other Symptoms\n\n No changes in "
+        },
+        {
+          "number": 3
+        },
+        {
+          "text": "\n\n • Medical History\n\n Ongoing "
+        },
+        {
+          "number": 4
+        },
+        {
+          "text": "\n\n • Takes "
+        },
+        {
+          "number": 5
+        },
+        {
+          "text": " daily\n\n • Treatment & Investigations\n\n Not "
+        },
+        {
+          "number": 6
+        },
+        {
+          "text": " stable\n\n • Blood test & "
+        },
+        {
+          "number": 7
+        },
+        {
+          "text": "\n\n • "
+        },
+        {
+          "number": 8
+        },
+        {
+          "text": " fluids via IV\n\n • Purpose of blood test: To check\n\n "
+        },
+        {
+          "number": 9
+        },
+        {
+          "text": " & urea levels ECG\n\n • Clinical Assessment\n\n Blood pressure/low\n\n "
+        },
+        {
+          "number": 10
+        },
+        {
+          "text": " /high\n\n • Possible Diagnosis & Recommendations\n\n Gastrointestinal bleeding\n\n Possible causes - "
+        },
+        {
+          "number": 11
+        },
+        {
+          "text": " & oesophageal erosions\n\n • "
+        },
+        {
+          "number": 12
+        },
+        {
+          "text": " use /risk factor\n\n"
+        }
+      ]
+    },
+    {
+      "group": "Extract 2",
+      "content": [
+        {
+          "text": "\nYou hear a physician in the A&E talking to a patient who woke up with\none side of her face drooping. For questions 13-24, complete the notes\nwith a word or short phrase. You now have thirty seconds to look at the notes.\n\n • Patient:Mrs Shepherds\n\n Current Symptoms\n\nWeakness on "
+        },
+        {
+          "number": 13
+        },
+        {
+          "text": " side of face\n\n • "
+        },
+        {
+          "number": 14
+        },
+        {
+          "text": " normal, no numbness\n\n • Is able to see, and swallow both "
+        },
+        {
+          "number": 15
+        },
+        {
+          "text": "\n\n • Clear speech, no "
+        },
+        {
+          "number": 16
+        },
+        {
+          "text": " or problems with words\n\n • No balance issues or "
+        },
+        {
+          "number": 17
+        },
+        {
+          "text": "\n\n • Recent History\n\n No recent "
+        },
+        {
+          "number": 18
+        },
+        {
+          "text": "\n\n • Medication for "
+        },
+        {
+          "number": 19
+        },
+        {
+          "text": "\n\n • Likely Diagnosis\n\n Other symptoms & "
+        },
+        {
+          "number": 20
+        },
+        {
+          "text": "\n\n • indicate "
+        },
+        {
+          "number": 21
+        },
+        {
+          "text": "\n\n • A type of paralysis caused by "
+        },
+        {
+          "number": 22
+        },
+        {
+          "text": "\n\n • Prognosis & Management\n\n Most patients recover in less than "
+        },
+        {
+          "number": 23
+        },
+        {
+          "text": "\n\n • Important to keep eye lubricated as condition impacts "
+        },
+        {
+          "number": 24
+        },
+        {
+          "text": "\n\n"
+        }
+      ]
+    }
+  ],
+  "readingParts": {}
 }

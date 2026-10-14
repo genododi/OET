@@ -386,5 +386,168 @@
         "C"
       ]
     }
-  ]
+  ],
+  "notes": [
+    {
+      "group": "Extract 1",
+      "content": [
+        {
+          "text": "\nYou hear a physiotherapist talking to a new patient called Alice Jackson. For\nquestions 1-12, complete the notes with a word or short phrase.\n\n • Patient Alice Jackson\n\n Referral from GP\n\n Initial diagnosis: Tennis elbow of the "
+        },
+        {
+          "number": 1
+        },
+        {
+          "text": " arm\n\n Patient Description of Condition\n\n No specific injury\n\n Onset: 5 months ago\n\n • Initial pain was "
+        },
+        {
+          "number": 2
+        },
+        {
+          "text": "\n\n Patient thought she had bumped into something\n\n • Pain increased after "
+        },
+        {
+          "number": 3
+        },
+        {
+          "text": "\n\n Daily activities disrupted\n\n Turning point was decreasing inability to hold a saucepan of boiling\n water\n\n • Recommendations of GP\n\n Patient refused the "
+        },
+        {
+          "number": 4
+        },
+        {
+          "text": "\n\n • Instead, patient opted for "
+        },
+        {
+          "number": 5
+        },
+        {
+          "text": " (ineffective)\n\n Referral to a physiotherapist\n\n • Pain Management Options\n • Injection (not helpful as patient has had the pain for more\n than "
+        },
+        {
+          "number": 6
+        },
+        {
+          "text": "\n\n • Acupuncture (to be done "
+        },
+        {
+          "number": 7
+        },
+        {
+          "text": " and in conjunction with\n physiotherapy)\n\n • Physiotherapy (needs time to take "
+        },
+        {
+          "number": 8
+        },
+        {
+          "text": " )\n\n Pain Management Options\n\n Exercises done at home\n\n • Pain Management Options\n\n Targets the "
+        },
+        {
+          "number": 9
+        },
+        {
+          "text": " )\n\n Increases strength\n\n • Start with low "
+        },
+        {
+          "number": 10
+        },
+        {
+          "text": "\n\n • Signs of overdoing it: More "
+        },
+        {
+          "number": 11
+        },
+        {
+          "text": "\n\n 6 weeks before noticeable improvement\n\n 12 weeks for full resolution\n\n Recurrence Rate of Condition\n\n Can include short-term flare-ups or long-term recurrence\n\n Varies between patients\n\n • Generally quite low (if physiotherapy is adhered to and\n correct "
+        },
+        {
+          "number": 12
+        },
+        {
+          "text": " is used)\n\n"
+        }
+      ]
+    },
+    {
+      "group": "Extract 2",
+      "content": [
+        {
+          "text": "\nYou hear a gastroenterologist talking to a new patient called Luke\nThomlinson. For questions 13-24, complete the notes with a word or short\nphrase.\n\n• Patient Luke Thomlinson\n\n Reason for Appointment\n\n Extended bout of diarrhea\n\n Background\n\n Severe diarrhea: visited the Emergency Department\n\n Symptoms have been ongoing for "
+        },
+        {
+          "number": 13
+        },
+        {
+          "text": "\n\n Drastic weight loss (14kg) in 16 days\n\n BMI below healthy range\n\n• Texture of faeces: "
+        },
+        {
+          "number": 14
+        },
+        {
+          "text": " (without "
+        },
+        {
+          "number": 15
+        },
+        {
+          "text": " or mucus)\n\n• Patient initially dismissed the symptoms as unimportant\n\n Symptoms intensified (diarrhea up to 10 times per day)\n\n• Notes from the Emergency Department\n\n On admission: Dehydrated and had "
+        },
+        {
+          "number": 16
+        },
+        {
+          "text": " respiratory rate\n\n• First line of treatment - "
+        },
+        {
+          "number": 17
+        },
+        {
+          "text": "\n\n• Change of diet to cut out "
+        },
+        {
+          "number": 18
+        },
+        {
+          "text": " and lactose\n\n Reinforced with thiamine and added B complex\n\n Ruled out overseas infection (no recent travels abroad)\n\n• Negative result for "
+        },
+        {
+          "number": 19
+        },
+        {
+          "text": "\n\n• Next Steps\n\n Need to rule out "
+        },
+        {
+          "number": 20
+        },
+        {
+          "text": " (related to "
+        },
+        {
+          "number": 21
+        },
+        {
+          "text": " in the small\n intestine)\n\n • Initial testing will be painless\n\n To start with a blood test\n\n • To "
+        },
+        {
+          "number": 22
+        },
+        {
+          "text": " with usual eating habits (to prevent a "
+        },
+        {
+          "number": 23
+        },
+        {
+          "text": " in\n the test results\n\n • A "
+        },
+        {
+          "number": 24
+        },
+        {
+          "text": " is also advised\n\n • May require endoscopy to get biopsy samples of lining of the small\n intestine\n\n Patient informed that all results may return as negatives due to rarity\n of suspected condition\n\n"
+        }
+      ]
+    }
+  ],
+  "readingParts": {}
 }

@@ -386,5 +386,168 @@
         "C"
       ]
     }
-  ]
+  ],
+  "notes": [
+    {
+      "group": "Extract 1",
+      "content": [
+        {
+          "text": "\nYou hear a doctor in the A&E talking to a man who collapsed on the beach.\nFor questions 1-12, complete the notes with a word or short phrase. You now\nhave thirty seconds to look at the notes.\n\n • Patient:Mr Phelps\n\n Taken to the hospital by ambulance\n\n Fell on the beach, while walking dog\n\n Did not display "
+        },
+        {
+          "number": 1
+        },
+        {
+          "text": "\n\n • "
+        },
+        {
+          "number": 2
+        },
+        {
+          "text": " for about half a minute\n\n • Witness account: Patient was not confused once recovered\n\n Possible trigger: Ran up "
+        },
+        {
+          "number": 3
+        },
+        {
+          "text": " before collapsing\n\n • Injuries sustained: "
+        },
+        {
+          "number": 4
+        },
+        {
+          "text": " on right shoulder from hitting rock but\n no\n\n injury to the "
+        },
+        {
+          "number": 5
+        },
+        {
+          "text": "\n\n • Overall Health\n\n Reduced: "
+        },
+        {
+          "number": 6
+        },
+        {
+          "text": " of exercise due to lack of "
+        },
+        {
+          "number": 7
+        },
+        {
+          "text": "\n\n • Previous similar episode: Happened after a "
+        },
+        {
+          "number": 8
+        },
+        {
+          "text": "\n\n • Resting heart rate: "
+        },
+        {
+          "number": 9
+        },
+        {
+          "text": " bpm\n\n • Blood pressure elevated despite being on "
+        },
+        {
+          "number": 10
+        },
+        {
+          "text": "\n\n Does not drink or smoke\n\n Denies being on "
+        },
+        {
+          "number": 11
+        },
+        {
+          "text": "\n\n • Further tests\n\n ECG and "
+        },
+        {
+          "number": 12
+        },
+        {
+          "text": "\n\n"
+        }
+      ]
+    },
+    {
+      "group": "Extract 2",
+      "content": [
+        {
+          "text": "\nYou hear a GP talking to a man about back pain. For questions 13-24,\ncomplete the notes with a word or short phrase. You now have thirty seconds\nto look at the notes.\n\n • Patient:Thomas\n\n Reason for Appointment\n\nIncident causing sudden back pain: "
+        },
+        {
+          "number": 13
+        },
+        {
+          "text": "\n\nPatient heard a click before the pain started\n\nInitial pain was sharp\n\n • Now pain is described as a "
+        },
+        {
+          "number": 14
+        },
+        {
+          "text": "\n\n • Pain will become sharp when patient attempts to "
+        },
+        {
+          "number": 15
+        },
+        {
+          "text": "\n\n • Self-medicated for pain and also applied "
+        },
+        {
+          "number": 16
+        },
+        {
+          "text": " but little relief\n so far\n\n No other symptoms reported\n\n • Medical History\n\n Takes "
+        },
+        {
+          "number": 17
+        },
+        {
+          "text": " for high blood pressure\n\n • No "
+        },
+        {
+          "number": 18
+        },
+        {
+          "text": " for last several years\n\n • Clinical Examination\n\n Observation: Gait is a bit "
+        },
+        {
+          "number": 19
+        },
+        {
+          "text": "\n\n • Tenderness in "
+        },
+        {
+          "number": 20
+        },
+        {
+          "text": "\n\n Limited range of movement\n\n • No"
+        },
+        {
+          "number": 21
+        },
+        {
+          "text": "\n\n • Recommendations/Next Steps\n\n Observe condition for a spell\n\n Medical leave for one week to rest\n\n Patient to totally refrain from"
+        },
+        {
+          "number": 22
+        },
+        {
+          "text": "\n\n • Requires "
+        },
+        {
+          "number": 23
+        },
+        {
+          "text": " assessment\n\n Pain medication: Codeine\n\n • Appointment in two weeks if condition "
+        },
+        {
+          "number": 24
+        },
+        {
+          "text": "\n\n"
+        }
+      ]
+    }
+  ],
+  "readingParts": {}
 }

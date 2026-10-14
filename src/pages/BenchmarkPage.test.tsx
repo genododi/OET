@@ -1,7 +1,7 @@
 import listening1 from '../../public/benchmark/questions/listening-1.json';
 import listening2 from '../../public/benchmark/questions/listening-2.json';
 import reading6 from '../../public/benchmark/questions/reading-6.json';
-import { cleanup, within, fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { cleanup, within, fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import { BenchmarkPage } from './BenchmarkPage';
 import catalog from '../data/benchmarkCollection.json';
@@ -15,7 +15,7 @@ afterEach(() => { cleanup(); localStorage.clear(); vi.unstubAllGlobals(); });
 
 it('preserves a learner response when revealing the correct printed key and keeps tests separate', async () => {
   const view = render(<BenchmarkPage itemId="listening-1" onNavigate={vi.fn()} />);
-  await screen.findByText('Complete source paper');
+  await screen.findByRole('textbox', { name: 'Question 1' });
   fireEvent.change(await screen.findByRole('textbox', { name: 'Question 1' }), { target: { value: 'my attempt' } });
   fireEvent.click(screen.getByRole('button', { name: 'Show answer for Question 1' }));
   expect(screen.getByText('Printed answer:').parentElement).toHaveTextContent(catalog.entries[0].answers!['1']);
@@ -24,18 +24,18 @@ it('preserves a learner response when revealing the correct printed key and keep
   expect(await screen.findByRole('textbox', { name: 'Question 1' })).toHaveValue('');
   view.rerender(<BenchmarkPage itemId="listening-1" onNavigate={vi.fn()} />);
   expect(await screen.findByRole('textbox', { name: 'Question 1' })).toHaveValue('my attempt');
-  await waitFor(() => expect(screen.getByText('Complete source paper')).toBeVisible());
+  expect(screen.getByText('1 of 24 answered')).toBeVisible();
 });
 
 it('uses the original MP3 source with a Safari format hint and never substitutes missing recordings', async () => {
   const view = render(<BenchmarkPage itemId="listening-1" onNavigate={vi.fn()} />);
-  await screen.findByText('Complete source paper');
+  await screen.findByRole('textbox', { name: 'Question 1' });
   expect(view.container.querySelector('audio source')).toHaveAttribute('type', 'audio/mpeg');
   expect(view.container.querySelector('audio source')).toHaveAttribute('src', expect.stringContaining('/test-01.mp3'));
   view.rerender(<BenchmarkPage itemId="listening-10" onNavigate={vi.fn()} />);
   expect(view.container.querySelector('audio')).toBeNull();
   expect(screen.getByText(/no recording for Test 10/)).toBeVisible();
-  await screen.findByText('Complete source paper');
+  await screen.findByText(/The questions could not load/);
 });
 
 it('shows the selected recording transcript, seeks by timestamp and rejects a different test script', async () => {
@@ -62,8 +62,9 @@ it('shows the selected recording transcript, seeks by timestamp and rejects a di
 
 it('keeps the actual question, answer control and key in one row across all parts', async () => {
   render(<BenchmarkPage itemId="listening-1" onNavigate={vi.fn()} />);
-  const first = await screen.findByRole('article', { name: 'Part A · Question 1' });
-  expect(within(first).getByText(/Onset of symptoms/)).toBeVisible();
+  const first = await screen.findByRole('group', { name: 'Part A · Question 1' });
+  expect(within(first).getByRole('textbox')).toHaveAccessibleDescription('Onset of symptoms: ____');
+  expect(screen.getByText(/Patient Jack Thatch/)).toBeVisible();
   fireEvent.change(within(first).getByRole('textbox'), { target: { value: 'my answer' } });
   fireEvent.click(within(first).getByRole('button', { name: 'Show answer for Question 1' }));
   expect(within(first).getByText('Printed answer:').parentElement).toHaveTextContent(catalog.entries[0].answers!['1']);
@@ -97,4 +98,40 @@ it('rejects a question file belonging to another paper without overwriting saved
   await screen.findByText(/The questions could not load/);
   expect(screen.queryByRole('textbox', { name: 'Question 1' })).toBeNull();
   expect(localStorage.getItem('oet-benchmark-v1:listening-2')).toContain('saved');
+});
+
+it('synchronises reading passages and questions and expands the paper without clearing answers', async () => {
+  render(<BenchmarkPage itemId="reading-6" onNavigate={vi.fn()} />);
+  await screen.findByRole('article', { name: 'Part A · Question 1' });
+  fireEvent.change(screen.getByRole('textbox', { name: 'Question 1' }), { target: { value: 'D' } });
+  fireEvent.change(screen.getByRole('combobox', { name: 'Reading passage part' }), { target: { value: 'B' } });
+  expect(screen.getByRole('button', { name: 'Part B' })).toHaveAttribute('aria-pressed', 'true');
+  expect(screen.getByLabelText('Complete reading text · Part B')).toHaveTextContent('The shocking abuse in our nursing homes');
+  expect(screen.getByRole('article', { name: 'Part B · Question 1' })).toBeVisible();
+  fireEvent.click(screen.getByRole('button', { name: 'Expand paper' }));
+  expect(screen.getByRole('button', { name: 'Show paper beside answers' })).toBeVisible();
+  fireEvent.click(screen.getByRole('button', { name: 'Part A' }));
+  expect(screen.getByRole('combobox', { name: 'Reading passage part' })).toHaveValue('A');
+  expect(screen.getByRole('textbox', { name: 'Question 1' })).toHaveValue('D');
+});
+
+it('moves to the next empty blank and keeps audio attached when changing worksheet parts', async () => {
+  const scroll = vi.fn();
+  const original = HTMLElement.prototype.scrollIntoView;
+  HTMLElement.prototype.scrollIntoView = scroll;
+  try {
+    const view = render(<BenchmarkPage itemId="listening-1" onNavigate={vi.fn()} />);
+    const first = await screen.findByRole('textbox', { name: 'Question 1' });
+    const audio = view.container.querySelector('audio');
+    fireEvent.change(first, { target: { value: 'test answer' } });
+    fireEvent.click(screen.getByRole('button', { name: 'Next unanswered ↓' }));
+    expect(screen.getByRole('textbox', { name: 'Question 2' })).toHaveFocus();
+    expect(scroll).toHaveBeenCalled();
+    fireEvent.click(screen.getByRole('button', { name: 'Show answer for Question 1' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Part B' }));
+    expect(view.container.querySelector('audio')).toBe(audio);
+    fireEvent.click(screen.getByRole('button', { name: 'Part A' }));
+    expect(screen.queryByText('Printed answer:')).toBeNull();
+    expect(screen.getByRole('textbox', { name: 'Question 1' })).toHaveValue('test answer');
+  } finally { HTMLElement.prototype.scrollIntoView = original; }
 });

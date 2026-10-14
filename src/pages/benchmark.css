@@ -23,14 +23,22 @@
 .benchmark-offline h3 { margin-top: 0; }
 .benchmark-offline .btn { display: inline-flex; white-space: normal; }
 
-.benchmark-question-list { margin: 22px 0; }
-.benchmark-question-group { margin: 26px 0 12px; color: #24584e; }
-.benchmark-question-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(230px, 310px); gap: 24px; padding: 20px; margin-bottom: 12px; border: 1px solid #d4e0db; border-radius: 10px; background: #f7faf8; }
-.benchmark-question-copy, .benchmark-question-answer { min-width: 0; }
-.benchmark-question-copy > label { display: block; font-weight: 700; margin-bottom: 10px; }
-.benchmark-question-prompt { white-space: pre-line; overflow-wrap: anywhere; line-height: 1.65; }
+
+.benchmark-question-list { margin: 0 0 22px; }
 .benchmark-question-source { display: inline-block; font-size: .85rem; margin-top: 12px; }
-.benchmark-question-answer { align-self: start; padding: 14px; background: white; border: 1px solid #d4e0db; border-radius: 8px; }
-.benchmark-question-answer .jahshan-blank-controls { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
-.benchmark-question-answer input, .benchmark-question-answer select { width: 100%; min-width: 0; min-height: 44px; box-sizing: border-box; padding: 10px; font: inherit; border: 1px solid #b9d0c4; border-radius: 6px; }
-@media(max-width: 760px) { .benchmark-question-row { grid-template-columns: 1fr; gap: 14px; padding: 16px; } }
+.benchmark-question-answer { min-width: 0; }
+.benchmark-inline-question { display: inline; }
+.benchmark-page .reading-workbench > .card { padding: 24px; min-width: 0; }
+.benchmark-reading-page { background: white; padding: 20px; margin-bottom: 16px; }
+.benchmark-reading-page h4 { margin: 0 0 16px; }
+.benchmark-reading-page .material-readable-text { font: inherit; line-height: 1.8; }
+.benchmark-page .reading-paper-actions { margin: 16px 0; }
+.benchmark-page .reading-question-scroll .jahshan-question-paper { margin-bottom: 18px; }
+.benchmark-page .reading-question-scroll .jahshan-choice-flow { padding: 12px; }
+.benchmark-page .reading-question-scroll .jahshan-blank { padding: 14px; }
+.benchmark-page .benchmark-timer { margin: 16px 0 8px; }
+.benchmark-page .reading-worksheet .jahshan-worksheet-heading { flex-wrap: wrap; gap: 12px; }
+.benchmark-test-navigation { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.benchmark-downloads > summary { cursor: pointer; font-weight: 600; }
+.benchmark-page .reading-worksheet .jahshan-blank-controls { flex-wrap: wrap; }
+@media(max-width: 600px) { .benchmark-page .reading-workbench > .card { padding: 16px; } }

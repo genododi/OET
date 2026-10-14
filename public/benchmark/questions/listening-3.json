@@ -386,5 +386,168 @@
         "C"
       ]
     }
-  ]
+  ],
+  "notes": [
+    {
+      "group": "Extract 1",
+      "content": [
+        {
+          "text": "\nYou hear an optometrist talking to a patient called Austin Jacobs. For\nquestions 1-12, complete the notes with a word or short phrase.\n\n • Patient: Austin Jacobs\n\n Reason for visit:Eye problem\n\n Background\n\nOnset: 4 days ago\n\nCondition started with the "
+        },
+        {
+          "number": 1
+        },
+        {
+          "text": " eye.\n\nDescribed as itchy and irritated\n\nCondition affected both eyes a day later\n\nPresence of yellow discharge in "
+        },
+        {
+          "number": 2
+        },
+        {
+          "text": " eye.\n\nDifficulty in opening eyes\n\n • Absence of "
+        },
+        {
+          "number": 3
+        },
+        {
+          "text": " in the eyes\n\n • "
+        },
+        {
+          "number": 4
+        },
+        {
+          "text": " is normal\n\n • Can rule out "
+        },
+        {
+          "number": 5
+        },
+        {
+          "text": " (no relatives with this condition)\n\n Not using eye drops\n\n Does not wear contact lenses\n\n • Patient takes reasonable "
+        },
+        {
+          "number": 6
+        },
+        {
+          "text": " of eyes\n\n • Diagnosis\n\n A type of "
+        },
+        {
+          "number": 7
+        },
+        {
+          "text": "\n\n • Various types but most likely type in this case is "
+        },
+        {
+          "number": 8
+        },
+        {
+          "text": "\n\n Inflammatory response to infection of the eyes\n\n May also involve upper respiratory infection\n\n • Most likely contracted from: "
+        },
+        {
+          "number": 9
+        },
+        {
+          "text": "\n\n • Recommendations\n\n "
+        },
+        {
+          "number": 10
+        },
+        {
+          "text": " will not be prescribed\n\n Disease expected to clear up on its own in a couple of weeks\n\n • Can apply "
+        },
+        {
+          "number": 11
+        },
+        {
+          "text": "\n\n Cool compresses recommended (but cautioned not to rub eyes with\n them)\n\n Extra precautions need to be taken with hygiene\n\n Disinfectant techniques advised\n\n • Avoid "
+        },
+        {
+          "number": 12
+        },
+        {
+          "text": " to others\n\n"
+        }
+      ]
+    },
+    {
+      "group": "Extract 2",
+      "content": [
+        {
+          "text": "\nYou hear a GP talking to a patient called George Babsy.\n\n • Patient George Babsy\n\n Reason for Appointment\n\n Sudden onset of severe pain\n\n Symptoms\n\n Sudden sharp pain (while putting away tools)\n\n Waited to see if pain would go away\n\n Accompanied by vomiting "
+        },
+        {
+          "number": 13
+        },
+        {
+          "text": " times)\n\n• Pain started just below the "
+        },
+        {
+          "number": 14
+        },
+        {
+          "text": "\n\n Pain then radiates towards the back\n\n• Shift in pain level with different body positions (pain "
+        },
+        {
+          "number": 15
+        },
+        {
+          "text": "\n when sitting forward)\n\n• Medical History\n\n Does not drink alcohol\n\n Patient is a "
+        },
+        {
+          "number": 16
+        },
+        {
+          "text": "\n\n• Had a problem with "
+        },
+        {
+          "number": 17
+        },
+        {
+          "text": " in the past\n\n Not on any medication at the moment\n\n BMI within normal range\n\n• Initial Diagnosis and Recommendation\n\n Not likely caused by previous night’s "
+        },
+        {
+          "number": 18
+        },
+        {
+          "text": "\n\n Pulse elevated and epigastrium tender, so hospital admission required\n\n• Initial tests: Abdominal "
+        },
+        {
+          "number": 19
+        },
+        {
+          "text": " and "
+        },
+        {
+          "number": 20
+        },
+        {
+          "text": "\n\n• Possibly gallstones causing inflammation (condition is\n called "
+        },
+        {
+          "number": 21
+        },
+        {
+          "text": " ) inflammation often because of gallstones\n\n• Symptoms only partly consistent with tentative diagnosis (risk factors\n include being a "
+        },
+        {
+          "number": 22
+        },
+        {
+          "text": " , which is not the case\n\n • Requires a further test to determine level of patient’s "
+        },
+        {
+          "number": 23
+        },
+        {
+          "text": "\n\n • Accuracy is increased the "
+        },
+        {
+          "number": 24
+        },
+        {
+          "text": " the test is done to the start of\n the pain\n\n"
+        }
+      ]
+    }
+  ],
+  "readingParts": {}
 }

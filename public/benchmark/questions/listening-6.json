@@ -386,5 +386,168 @@
         "C"
       ]
     }
-  ]
+  ],
+  "notes": [
+    {
+      "group": "Extract 1",
+      "content": [
+        {
+          "text": "\nYou hear an obstetrician talking to a woman about her pregnancy. For\nquestions 1-12, complete the notes with a word or short phrase\n\n • Patient:Alison Jackson\n\n Reason for Appointment:\n\n "
+        },
+        {
+          "number": 1
+        },
+        {
+          "text": "\n\n • Prior to Pregnancy\n\n Menstrual cycles were "
+        },
+        {
+          "number": 2
+        },
+        {
+          "text": "\n\n • Pregnancy\n\n Uneventful so far\n\n Minor complications: some tiredness and "
+        },
+        {
+          "number": 3
+        },
+        {
+          "text": "\n\n • Patient reports absence of "
+        },
+        {
+          "number": 4
+        },
+        {
+          "text": "\n\n • Examination shows "
+        },
+        {
+          "number": 5
+        },
+        {
+          "text": " are unremarkable\n\n • Patients reports baby’s gestational age as "
+        },
+        {
+          "number": 6
+        },
+        {
+          "text": "\n\n • Unusual observation: fundal height does not correspond to baby’s\n gestational age – should not be the case after "
+        },
+        {
+          "number": 7
+        },
+        {
+          "text": " of\n pregnancy\n\n • Conception date was not "
+        },
+        {
+          "number": 8
+        },
+        {
+          "text": "\n\n • Patient’s uterus size warrants a "
+        },
+        {
+          "number": 9
+        },
+        {
+          "text": "\n\n • Possible Explanations\n\n Amniotic fluid is more than usual - possibility baby may be\n born "
+        },
+        {
+          "number": 10
+        },
+        {
+          "text": "\n\n • Baby’s size could be "
+        },
+        {
+          "number": 11
+        },
+        {
+          "text": " than expected\n\n • Accuracy of "
+        },
+        {
+          "number": 12
+        },
+        {
+          "text": " could be affected by position of baby\n\n Hereditary reasons\n\n Other possibilities, which are more serious\n\n"
+        }
+      ]
+    },
+    {
+      "group": "Extract 2",
+      "content": [
+        {
+          "text": "\nYou hear a sports podiatrist meeting with a patient referred by his GP.\n\n • Patient:Vance Godfrey\n\n Reason for Appointment:\n\nOngoing complex "
+        },
+        {
+          "number": 13
+        },
+        {
+          "text": " in right foot\n\n • Medical History\n\n Plantar fasciitis: "
+        },
+        {
+          "number": 14
+        },
+        {
+          "text": " case\n\n Diagnosed 2 years prior\n\n • Current Condition\n\n Pain under the "
+        },
+        {
+          "number": 15
+        },
+        {
+          "text": " of his heel, in centre\n\n • Heel pain usually dissipates within "
+        },
+        {
+          "number": 16
+        },
+        {
+          "text": " after touching the\n ground\n\n Added pain on the side that continues throughout the day\n\n • Recently had three "
+        },
+        {
+          "number": 17
+        },
+        {
+          "text": " in a short time period\n\n • Previous Treatment Plan\n\n Consulted another podiatrist before this\n\n Application of "
+        },
+        {
+          "number": 18
+        },
+        {
+          "text": " was advised\n\n Roll the heel on a hard object\n\n • Prescribed "
+        },
+        {
+          "number": 19
+        },
+        {
+          "text": "\n\n Treatment was unsuccessful\n\n • Further investigation - "
+        },
+        {
+          "number": 20
+        },
+        {
+          "text": " was also unremarkable\n\n • Assessment & Treatment Plan\n\n Possibly two separate conditions present\n\n Heel pain is consistent with diagnosis\n\n Possible pathology causing pain around "
+        },
+        {
+          "number": 21
+        },
+        {
+          "text": " of heel\n\n • Affecting the "
+        },
+        {
+          "number": 22
+        },
+        {
+          "text": " of abductor digiti minimus or the sural nerve\n\n Another ultrasound required for further investigation\n\n Start treatment of existing condition\n\n • "
+        },
+        {
+          "number": 23
+        },
+        {
+          "text": " to be used to allow heel to rest and recover\n\n • To block sural nerve, can opt to inject "
+        },
+        {
+          "number": 24
+        },
+        {
+          "text": " of xylocaine\n\n Pain monitoring for 24 hours after injection\n\n"
+        }
+      ]
+    }
+  ],
+  "readingParts": {}
 }

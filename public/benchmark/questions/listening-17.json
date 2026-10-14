@@ -386,5 +386,168 @@
         "C"
       ]
     }
-  ]
+  ],
+  "notes": [
+    {
+      "group": "Extract 1",
+      "content": [
+        {
+          "text": "\nYou hear a doctor in a hospital talking to a patient presenting with jaundice.\nFor questions 1-12, complete the notes with a word or short phrase. You now\nhave thirty seconds to look at the notes.\n\n • Patient:Marie Stevens\n\n Reason for Referral:\n\nJaundice lasting approximately "
+        },
+        {
+          "number": 1
+        },
+        {
+          "text": "\n\nOther Symptoms\n\nStool: "
+        },
+        {
+          "number": 2
+        },
+        {
+          "text": " in colour\n\n • "
+        },
+        {
+          "number": 3
+        },
+        {
+          "text": " Normal in amount\n\n Darker in colour\n\n • Stomach pain\n\n Right "
+        },
+        {
+          "number": 4
+        },
+        {
+          "text": "\n\n • Intermittent but has lasted"
+        },
+        {
+          "number": 5
+        },
+        {
+          "text": "\n\n • Sharp pain increasing in"
+        },
+        {
+          "number": 6
+        },
+        {
+          "text": "\n\n • "
+        },
+        {
+          "number": 7
+        },
+        {
+          "text": " large meals\n\n • Medical History\n\n Two pregnancies\n\n Surgery on "
+        },
+        {
+          "number": 8
+        },
+        {
+          "text": "\n\n • No"
+        },
+        {
+          "number": 9
+        },
+        {
+          "text": "\n\n Medication for blood pressure\n\n • Not a candidate for "
+        },
+        {
+          "number": 10
+        },
+        {
+          "text": "\n\n • Investigations\n\n Full blood count\n\n Liver Function\n\n Serum lipase & amylase (to eliminate "
+        },
+        {
+          "number": 11
+        },
+        {
+          "text": "\n\n • Coagulation Screen\n\n "
+        },
+        {
+          "number": 12
+        },
+        {
+          "text": " after results\n\n"
+        }
+      ]
+    },
+    {
+      "group": "Extract 2",
+      "content": [
+        {
+          "text": "\nYou hear a doctor in the A&E talking to a man with blood in his urine. For\nquestions 13-24, complete the notes with a word or short phrase. You now\nhave thirty seconds to look at the notes.\n\n • Patient:Mr Andrew Yates, 55\n\n Blood in urine\n\n Symptoms\n\n "
+        },
+        {
+          "number": 13
+        },
+        {
+          "text": " haematuria\n\n • Turned from "
+        },
+        {
+          "number": 14
+        },
+        {
+          "text": " to dark red in last 24 hours\n\n • Difficulty "
+        },
+        {
+          "number": 15
+        },
+        {
+          "text": "\n\n • "
+        },
+        {
+          "number": 16
+        },
+        {
+          "text": " in urine\n\n • No "
+        },
+        {
+          "number": 17
+        },
+        {
+          "text": " or similar feeling\n\n No back pain\n\n • Family History\n\n No "
+        },
+        {
+          "number": 18
+        },
+        {
+          "text": " bladder or renal cancer\n\n • Medical & Social History\n\n "
+        },
+        {
+          "number": 19
+        },
+        {
+          "text": " on medication\n\n • Heavy "
+        },
+        {
+          "number": 20
+        },
+        {
+          "text": "\n\n • Possible Diagnosis\n\n At increased risk for "
+        },
+        {
+          "number": 21
+        },
+        {
+          "text": "\n\n • Next Steps\n\n Bladder washout and "
+        },
+        {
+          "number": 22
+        },
+        {
+          "text": "\n\n • by way of a "
+        },
+        {
+          "number": 23
+        },
+        {
+          "text": "\n\n • Urine culture to be collected: To check for "
+        },
+        {
+          "number": 24
+        },
+        {
+          "text": " cause\n\n Blood test: To check haemoglobin levels (may require transfusion\n\n Bladder scan: To check for clot retention\n\n"
+        }
+      ]
+    }
+  ],
+  "readingParts": {}
 }

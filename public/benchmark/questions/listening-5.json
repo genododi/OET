@@ -386,5 +386,168 @@
         "C"
       ]
     }
-  ]
+  ],
+  "notes": [
+    {
+      "group": "Extract 1",
+      "content": [
+        {
+          "text": "\nYou hear a pediatrician talking to a mother about her baby. For questions 1-\n12, complete the notes with a word or short phrase.\n\n • Patient:Alex Johnson\n\n Patient’s age:1 month old\n\n Background\n\n Second child\n\n Full term baby\n\n Mother’s pregnancy: without "
+        },
+        {
+          "number": 1
+        },
+        {
+          "text": "\n\n • Weight at birth: Below "
+        },
+        {
+          "number": 2
+        },
+        {
+          "text": " kilos\n\n • Family history: "
+        },
+        {
+          "number": 3
+        },
+        {
+          "text": " and diabetes\n\n • Current Condition of of Patient\n\n Irregular sleep pattern\n\n Yellow eyes: prolonged jaundice\n\n Condition is getting "
+        },
+        {
+          "number": 4
+        },
+        {
+          "text": "\n\n • Need to be checked for "
+        },
+        {
+          "number": 5
+        },
+        {
+          "text": "\n\n • Suspected that "
+        },
+        {
+          "number": 6
+        },
+        {
+          "text": " remains in the liver\n\n • Needs to check for direct bilirubin concentration\n\n Possibly idiopathic neonatal "
+        },
+        {
+          "number": 7
+        },
+        {
+          "text": " or biliary atresia\n\n • "
+        },
+        {
+          "number": 8
+        },
+        {
+          "text": " was broken - not due to a "
+        },
+        {
+          "number": 9
+        },
+        {
+          "text": " but mother’s action\n in diaper change\n\n • Patient is irritable\n\n Normal for temperature, respirations and heart rate\n\n Has "
+        },
+        {
+          "number": 10
+        },
+        {
+          "text": " spleen and liver\n\n • Next Steps\n\n Liver biopsy\n\n "
+        },
+        {
+          "number": 11
+        },
+        {
+          "text": " of the liver\n\n • Specialist required: "
+        },
+        {
+          "number": 12
+        },
+        {
+          "text": "\n\n Check Vitamin D concentration\n\n"
+        }
+      ]
+    },
+    {
+      "group": "Extract 2",
+      "content": [
+        {
+          "text": "\nYou hear an occupational therapist conducting an assessment of a patient\nnamed Josh Edwards.\n\n • Patient:Josh Edwards\n\n Reason for Asessment:\n\n OT assessment of home "
+        },
+        {
+          "number": 13
+        },
+        {
+          "text": "\n\n • Background\n\n Injuries caused by "
+        },
+        {
+          "number": 14
+        },
+        {
+          "text": "\n\n • "
+        },
+        {
+          "number": 15
+        },
+        {
+          "text": " ankle significantly injured\n\n • On-going treatment: "
+        },
+        {
+          "number": 16
+        },
+        {
+          "text": "\n\n • Current Condition\n\n Reduced mobility\n\n Reliant on crutches\n\n Affected leg remains "
+        },
+        {
+          "number": 17
+        },
+        {
+          "text": "\n\n • "
+        },
+        {
+          "number": 18
+        },
+        {
+          "text": " visible on affected ankle\n\n • Necessity of keeping the leg"
+        },
+        {
+          "number": 19
+        },
+        {
+          "text": "\n\n • Existing home furniture not supportive of transfers\n\n Dependent on others for physical help\n\n Pain reported in other parts: spine and "
+        },
+        {
+          "number": 20
+        },
+        {
+          "text": "\n\n • Equipment Recommendations\n\n Requires special chair\n\n Sit-to-stand transfer essential\n\n "
+        },
+        {
+          "number": 21
+        },
+        {
+          "text": " in new equipment is necessary\n\n • "
+        },
+        {
+          "number": 22
+        },
+        {
+          "text": " can help with alignment\n\n • For social health, place new equipment in "
+        },
+        {
+          "number": 23
+        },
+        {
+          "text": "\n\n • Consider personal tastes when choosing equipment\n\n • Equipment must also meet "
+        },
+        {
+          "number": 24
+        },
+        {
+          "text": " requirements\n\n"
+        }
+      ]
+    }
+  ],
+  "readingParts": {}
 }

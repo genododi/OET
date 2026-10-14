@@ -386,5 +386,168 @@
         "C"
       ]
     }
-  ]
+  ],
+  "notes": [
+    {
+      "group": "Extract 1",
+      "content": [
+        {
+          "text": "\nYou hear a GP talking to a patient about recent weight loss. For questions 1-\n12, complete the notes with a word or short phrase.\n\n • Patient:Mrs Jacobs\n\n Reason for Appointment:\n\n Recent weight loss\n\nCurrent Condition\n\nPrimary cause: Loss of appetite\n\nNo intentional effort to lose weight\n\nTotal weight reduction "
+        },
+        {
+          "number": 1
+        },
+        {
+          "text": " kg in four months\n\n • Associated problem: "
+        },
+        {
+          "number": 2
+        },
+        {
+          "text": " (interval after food consumption)\n\n No reports of stomach pain\n\n • Also reports that "
+        },
+        {
+          "number": 3
+        },
+        {
+          "text": " going up stairs or hill\n\n • History\n\n Diagnosed with "
+        },
+        {
+          "number": 4
+        },
+        {
+          "text": " two years ago\n\n • 4 months ago: Stopped taking prescribed "
+        },
+        {
+          "number": 5
+        },
+        {
+          "text": "\n\n • High level of urea indicates "
+        },
+        {
+          "number": 6
+        },
+        {
+          "text": "\n\n Low sodium levels\n\n • Low potassium levels (likely causing the reported "
+        },
+        {
+          "number": 7
+        },
+        {
+          "text": " )\n\n • Examination, Diagnosis and Next Steps\n\n Suspected: Presence of "
+        },
+        {
+          "number": 8
+        },
+        {
+          "text": " preventing food leaving the\n stomach\n\n • Stomach has retained "
+        },
+        {
+          "number": 9
+        },
+        {
+          "text": "\n\n • Further tests: "
+        },
+        {
+          "number": 10
+        },
+        {
+          "text": " and biopsy\n\n • Possible causes: "
+        },
+        {
+          "number": 11
+        },
+        {
+          "text": " or cancer in "
+        },
+        {
+          "number": 12
+        },
+        {
+          "text": "\n\n • Need to wash out the stomach for clarity\n\n"
+        }
+      ]
+    },
+    {
+      "group": "Extract 2",
+      "content": [
+        {
+          "text": "\nYou hear a doctor in the A&E talking with a patient with persistent headaches.\nFor questions 13-24, complete the notes with a word or short phrase.\n\n • Patient:Nathan Saunders\n\n Current Symptoms\n\n Failing vision (described as blurry)\n\n Reduced urinary output\n\n Swollen "
+        },
+        {
+          "number": 13
+        },
+        {
+          "text": "\n\n • Headaches\n\n Never used to have them\n\nOn-going for past "
+        },
+        {
+          "number": 14
+        },
+        {
+          "text": " months\n\nDescription of pain: "
+        },
+        {
+          "number": 15
+        },
+        {
+          "text": "\n\nSimple analgesics not working\n\nPrevious Treatment\n\nTwo months ago: GP diagnosed "
+        },
+        {
+          "number": 16
+        },
+        {
+          "text": "\n\nPrescribed codeine (not effective)\n\nPrescription changed three weeks ago - patient unsure of medication name\n(not effective either)\n\n • Current Condition\n\n "
+        },
+        {
+          "number": 17
+        },
+        {
+          "text": " : At crisis level\n\n • Also has "
+        },
+        {
+          "number": 18
+        },
+        {
+          "text": "\n\n Also has papilloedema\n\n Possible renal failure\n\n • Probable diagnosis: "
+        },
+        {
+          "number": 19
+        },
+        {
+          "text": "\n\n • Next steps\n\n Reduce blood pressure over next 24 hours (Note: "
+        },
+        {
+          "number": 20
+        },
+        {
+          "text": " : reduction\n to prevent arterial thrombosis)\n\nControl fluid intake\nObserve for "
+        },
+        {
+          "number": 21
+        },
+        {
+          "text": "\n\n • Diuretics may not work, possibly start "
+        },
+        {
+          "number": 22
+        },
+        {
+          "text": "\n\n • Measure kidneys through "
+        },
+        {
+          "number": 23
+        },
+        {
+          "text": "\n\n • Vision expected to "
+        },
+        {
+          "number": 24
+        },
+        {
+          "text": "\n\n"
+        }
+      ]
+    }
+  ],
+  "readingParts": {}
 }

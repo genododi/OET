@@ -386,5 +386,168 @@
         "C"
       ]
     }
-  ]
+  ],
+  "notes": [
+    {
+      "group": "Extract 1",
+      "content": [
+        {
+          "text": "\nYou hear a GP talking to a patient called Seth Kelly. For questions 1-12,\ncomplete the notes with a word or short phrase.\n\n • Patient: Seth Kelly\n\n Reason for visit: Routine check up\n\nMedical History\n\nStage five "
+        },
+        {
+          "number": 1
+        },
+        {
+          "text": " (diagnosed 2 years ago)\n\nBeing treated at specialized clinic for renal problems\n\n • Began haemodialysis "
+        },
+        {
+          "number": 2
+        },
+        {
+          "text": "\n\n • Also suffers from "
+        },
+        {
+          "number": 3
+        },
+        {
+          "text": "\n\nNo reports of breathing problems\n\n • Current Condition\n\n Feeling "
+        },
+        {
+          "number": 4
+        },
+        {
+          "text": " and weary (impacting social life)\n\n • "
+        },
+        {
+          "number": 5
+        },
+        {
+          "text": " is not affected\n\n • Shuns "
+        },
+        {
+          "number": 6
+        },
+        {
+          "text": " meals\n\n • In retrospect, negative feelings can be traced to the\n patient’s "
+        },
+        {
+          "number": 7
+        },
+        {
+          "text": "\n\n • Reports past episodes of emotional and "
+        },
+        {
+          "number": 8
+        },
+        {
+          "text": " abuse\n\n Had trouble fitting in at school\n\n • Potential Diagnosis and Treatment Plan\n\n Likely suffering from "
+        },
+        {
+          "number": 9
+        },
+        {
+          "text": "\n\n • Requires a "
+        },
+        {
+          "number": 10
+        },
+        {
+          "text": "\n\n Referral to the clinic where he is currently being treated\n\n • "
+        },
+        {
+          "number": 11
+        },
+        {
+          "text": " therapy - to help with negative thoughts\n\n • Caution to be taken before prescribing an "
+        },
+        {
+          "number": 12
+        },
+        {
+          "text": " , due potential\n side effects of mixing medications\n\n GP to remain in contact with kidney clinic\n\n"
+        }
+      ]
+    },
+    {
+      "group": "Extract 2",
+      "content": [
+        {
+          "text": "\nYou hear a dermatologist talking to a patient called Karen Patch. For\nquestions 13-24, complete the notes with a word or short phrase.\n\n • Patient Karen Patch\n\n Reason for Appointment\n\n Referral for skin problem\n\n Symptoms\n\n Skin at back of neck has become "
+        },
+        {
+          "number": 13
+        },
+        {
+          "text": " and heavily lined\n\n Unsure when it started\n\n • "
+        },
+        {
+          "number": 14
+        },
+        {
+          "text": " changes recently to the main area affected\n\n • Cheeks and ears show "
+        },
+        {
+          "number": 15
+        },
+        {
+          "text": " of excessive solar exposure\n\n • Rough and patchy skin on hands are areas of solar "
+        },
+        {
+          "number": 16
+        },
+        {
+          "text": "\n\n • Parts where the skin is unaffected by sun damage: "
+        },
+        {
+          "number": 17
+        },
+        {
+          "text": "\n and "
+        },
+        {
+          "number": 18
+        },
+        {
+          "text": "\n\n • Diagnosis\n\n The "
+        },
+        {
+          "number": 19
+        },
+        {
+          "text": " of the skin has thickened\n\n • "
+        },
+        {
+          "number": 20
+        },
+        {
+          "text": " has solar elastosis\n\n • Cutis rhomboidalis nuchae (also known as farmer’s or "
+        },
+        {
+          "number": 21
+        },
+        {
+          "text": "\n skin)\n\n Damage to collagen and elasticity\n\n • Condition is unlikely to turn "
+        },
+        {
+          "number": 22
+        },
+        {
+          "text": "\n\n Patient at higher risk of skin cancers\n\n • Recommendation\n\n Not to leave it alone\n\n Should be monitored "
+        },
+        {
+          "number": 23
+        },
+        {
+          "text": " by a dermatologist\n\n • Wear protective clothing when outdoors\n • Use sunscreen, particularly on damaged areas\n\n To ensure better "
+        },
+        {
+          "number": 24
+        },
+        {
+          "text": " , early detection of skin cancer is crucial\n\n"
+        }
+      ]
+    }
+  ],
+  "readingParts": {}
 }

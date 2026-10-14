@@ -386,5 +386,168 @@
         "C"
       ]
     }
-  ]
+  ],
+  "notes": [
+    {
+      "group": "Extract 1",
+      "content": [
+        {
+          "text": "\nYou hear a GP talking to a patient about an ongoing problem. For questions\n1-12, complete the notes with a word or short phrase.\n\n • Patient :Stephanie\n\n Background\n\nChief complaint: Battling "
+        },
+        {
+          "number": 1
+        },
+        {
+          "text": "\n\nDuration of symptoms: Last few months\n\nEffect: Stopped going to the gym\n\n • Diet/Exercise\n\n Exercise: Regular\n\nSmoking: "
+        },
+        {
+          "number": 2
+        },
+        {
+          "text": "\n\nDrinking: Occasional\n\n • Diet: "
+        },
+        {
+          "number": 3
+        },
+        {
+          "text": " , but eats dairy and fish\n\n • Recent Symptoms\n\n Reports no pain in the abdomen\n\nReports no change in "
+        },
+        {
+          "number": 4
+        },
+        {
+          "text": " as well\n\n • "
+        },
+        {
+          "number": 5
+        },
+        {
+          "text": " is frequent and large\n\n • Possible condition: "
+        },
+        {
+          "number": 6
+        },
+        {
+          "text": "\n\n • Family History\n\n Deceased grandmother: died "
+        },
+        {
+          "number": 7
+        },
+        {
+          "text": "\n\n From Ireland\n\n Reported abdominal issues (but no specifics available)\n\n • Next Steps\n\n To check white blood cell count\n\nTo check "
+        },
+        {
+          "number": 8
+        },
+        {
+          "text": " level\n\n • (as low levels may cause) "
+        },
+        {
+          "number": 9
+        },
+        {
+          "text": "\n\n To check platelet level\n\n • Possible Diagnosis\n\n Diagnosis: based on family history and symptoms\n\nPossible disease: "
+        },
+        {
+          "number": 10
+        },
+        {
+          "text": "\n\n • Ireland has "
+        },
+        {
+          "number": 11
+        },
+        {
+          "text": " more cases than the rest of UK\n\n Genetic link\n\n Routine blood test is not sufficient to confirm diagnosis\n\n • Extended investigation via "
+        },
+        {
+          "number": 12
+        },
+        {
+          "text": " required\n\n Biopsy needs to be carried out\n\n"
+        }
+      ]
+    },
+    {
+      "group": "Extract 2",
+      "content": [
+        {
+          "text": "\nYou hear a doctor in the A&E talking to a patient presenting with pneumonia.\nFor questions 13-24, complete the notes with a word or short phrase.\n\n • Patient :Mr. Jacobs\n\n Reason for Admission\n\nAdmitted with pneumonia\n\nPresence of other health problems\n\nMedical History\n\nSymptoms in A&E: Episodes of persistent "
+        },
+        {
+          "number": 13
+        },
+        {
+          "text": " (past 6 months)\n\n • Also had episodes of stabbing pain on the right side of\n the "
+        },
+        {
+          "number": 14
+        },
+        {
+          "text": "\n\n • Pain is exacerbated by coughing, sneezing or taking a "
+        },
+        {
+          "number": 15
+        },
+        {
+          "text": "\n\n • Has additional issue with "
+        },
+        {
+          "number": 16
+        },
+        {
+          "text": " (ongoing for 5 years)\n\n • Food sometimes gets lodged in "
+        },
+        {
+          "number": 17
+        },
+        {
+          "text": "\n\n • Has had "
+        },
+        {
+          "number": 18
+        },
+        {
+          "text": " done (results unremarkable but symptoms\n worsened)\n\n • Recently, "
+        },
+        {
+          "number": 19
+        },
+        {
+          "text": " and vomiting have started after eating\n\n • No relevant "
+        },
+        {
+          "number": 20
+        },
+        {
+          "text": "\n\n None smoker, and light drinker\n\n • Observations from Chest X-Ray\n\n Taken upon admission\n\n No gastric air bubble\n\nOesophagus is dilated and "
+        },
+        {
+          "number": 21
+        },
+        {
+          "text": "\n\nSign of food spilling into the lung\n\nPossibly located source of respiratory infection\n\nNext Steps\n\nPossible diagnosis: Achalasia of the cardia\n\nProblem is "
+        },
+        {
+          "number": 22
+        },
+        {
+          "text": " in nature\n\n • Affects the "
+        },
+        {
+          "number": 23
+        },
+        {
+          "text": " at bottom of oesophagus\n\n • Other possible causes: acid reflux, malignant structures or an\n oesophageal "
+        },
+        {
+          "number": 24
+        },
+        {
+          "text": "\n\n"
+        }
+      ]
+    }
+  ],
+  "readingParts": {}
 }

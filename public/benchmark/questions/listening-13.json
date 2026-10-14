@@ -386,5 +386,168 @@
         "C"
       ]
     }
-  ]
+  ],
+  "notes": [
+    {
+      "group": "Extract 1",
+      "content": [
+        {
+          "text": "\nYou hear a GP talking to a patient about bruising. For questions 1-12,\ncomplete the notes with a word or short phrase. You now have thirty seconds\nto look at the notes.\n\n • Patient:Mrs. Spivey\n\n Background\n\n Bruising that started "
+        },
+        {
+          "number": 1
+        },
+        {
+          "text": " prior\n\n • Patient initially thought bruises were sustained as she "
+        },
+        {
+          "number": 2
+        },
+        {
+          "text": "\n\n • Bruises sustained did not"
+        },
+        {
+          "number": 3
+        },
+        {
+          "text": "\n\n • Started getting "
+        },
+        {
+          "number": 4
+        },
+        {
+          "text": " bruises\n\n • Recent Symptoms\n\n Patient described bad menstrual cycle\n\n Previous two periods were "
+        },
+        {
+          "number": 5
+        },
+        {
+          "text": "\n\n • Unexpected "
+        },
+        {
+          "number": 6
+        },
+        {
+          "text": " while at work\n\n • Family History/Lifestyle\n\n No recent lifestyle changes\n\n No family history of "
+        },
+        {
+          "number": 7
+        },
+        {
+          "text": "\n\n Non-smoker\n\n Consumes alcohol occasionally (social drinker)\n\n • Physical Examination\n\n Multiple areas of purpura\n\n Affected areas: mainly legs and fewer on"
+        },
+        {
+          "number": 8
+        },
+        {
+          "text": "\n\n Varying in color from black-purple to yellow\n\n Two mouth bullae detected\n\n • Patient confirms occasional gum bleeding when brushing teeth\n • Gum bleeding does not "
+        },
+        {
+          "number": 9
+        },
+        {
+          "text": " as expected\n\n • Results of Investigations\n\n Blood test results received\n\n "
+        },
+        {
+          "number": 10
+        },
+        {
+          "text": " level: lower than normal\n\n Platelets are far below normal\n\n Suspected: spontaneous purpura\n\n • Next Steps\n\n Immediate referral to haemotology unit\n\nUrgent for "
+        },
+        {
+          "number": 11
+        },
+        {
+          "text": " required\n\n • Need to reduce possibility of "
+        },
+        {
+          "number": 12
+        },
+        {
+          "text": "\n\n"
+        }
+      ]
+    },
+    {
+      "group": "Extract 2",
+      "content": [
+        {
+          "text": "\nYou hear a GP talking to a patient complaining of increasing tiredness. For\nquestions 13-24, complete the notes with a word or short phrase.\n\n • Patient :Sally Helm\n\n Age: "
+        },
+        {
+          "number": 13
+        },
+        {
+          "text": "\n\n • Symptoms\n\n Tiredness for the past "
+        },
+        {
+          "number": 14
+        },
+        {
+          "text": "\n\nAlso reports loss of "
+        },
+        {
+          "number": 15
+        },
+        {
+          "text": "\n\nWeight loss: 7 kilos since last check up\n\nSome nausea at times\n\n • Cramping in muscles: on and off since 3 weeks ago\n\n Some "
+        },
+        {
+          "number": 16
+        },
+        {
+          "text": " of muscles as well\n\n • Medical History\n\n On "
+        },
+        {
+          "number": 17
+        },
+        {
+          "text": " for high blood pressure (20 years)\n\n Hypertensive controls proving ineffective (BP: 190/110)\n\n Patient compliant with medication.\n\n • Eyes: "
+        },
+        {
+          "number": 18
+        },
+        {
+          "text": " on occasion\n\n • Sometimes feels "
+        },
+        {
+          "number": 19
+        },
+        {
+          "text": "\n\n • Next Steps\n\n Further "
+        },
+        {
+          "number": 20
+        },
+        {
+          "text": " are needed (to check urea and creatinine levels)\n\n • Symptoms indicate "
+        },
+        {
+          "number": 21
+        },
+        {
+          "text": "\n\n • "
+        },
+        {
+          "number": 22
+        },
+        {
+          "text": " also needed to check for causes\n\n • May need to commence "
+        },
+        {
+          "number": 23
+        },
+        {
+          "text": " if kidneys are damaged\n\n • Treatment for damaged kidneys can be in the hospital or\n at "
+        },
+        {
+          "number": 24
+        },
+        {
+          "text": "\n\n"
+        }
+      ]
+    }
+  ],
+  "readingParts": {}
 }

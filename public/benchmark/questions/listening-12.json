@@ -386,5 +386,168 @@
         "C"
       ]
     }
-  ]
+  ],
+  "notes": [
+    {
+      "group": "Extract 1",
+      "content": [
+        {
+          "text": "\nYou hear a GP talking to a patient about an ongoing problem. For questions\n1-12, complete the notes with a word or short phrase. You now have thirty\nseconds to look at the notes.\n\n • Patient:Jake Edwards\n\n Recent Symptoms\n\n Ongoing symptoms for a week\n\n Overall feelings of "
+        },
+        {
+          "number": 1
+        },
+        {
+          "text": "\n\n • Reduced appetite but has "
+        },
+        {
+          "number": 2
+        },
+        {
+          "text": " once\n\n • Reports slight fever during this time\n\n Reports "
+        },
+        {
+          "number": 3
+        },
+        {
+          "text": " in joints\n\n • Joints not visibly swollen\n\n "
+        },
+        {
+          "number": 4
+        },
+        {
+          "text": " volume is normal\n\n Bowel movements are unremarkable\n\n • Medical History\n\n Diagnosed with "
+        },
+        {
+          "number": 5
+        },
+        {
+          "text": " (5 years ago)\n\n • Is a "
+        },
+        {
+          "number": 6
+        },
+        {
+          "text": " smoker\n\n • Is a heavy drinker\n\n Is a recreational drug user - marijuana and "
+        },
+        {
+          "number": 7
+        },
+        {
+          "text": "\n\n • Source of drugs recreational drugs: "
+        },
+        {
+          "number": 8
+        },
+        {
+          "text": "\n\n Not using IV drugs\n\n • Current Condition\n\n Signs of liver problem\n\n Tenderness in right upper quadrant of abdomen\n\n Elevated "
+        },
+        {
+          "number": 9
+        },
+        {
+          "text": "\n\n • Pallor is a bit "
+        },
+        {
+          "number": 10
+        },
+        {
+          "text": "\n\n • Possible Diagnosis & Treatment\n\n Preliminary diagnosis: "
+        },
+        {
+          "number": 11
+        },
+        {
+          "text": "\n\n • Blood tests required\n\n Treatment depends on levels indicated in investigations\n\n Recommended to not consume alcohol or drugs\n\n Referral to a "
+        },
+        {
+          "number": 12
+        },
+        {
+          "text": "\n\n"
+        }
+      ]
+    },
+    {
+      "group": "Extract 2",
+      "content": [
+        {
+          "text": "\nYou hear a doctor in the A&E talking to a patient presenting with back pain.\nFor questions 13-24, complete the notes with a word or short phrase.\n\n • Patient:Chelsea\n\n Reason for Admission\n\n Pain across the back\n\n Symptoms\n\n Feeling unwell for past two days\n\n First symptoms: "
+        },
+        {
+          "number": 13
+        },
+        {
+          "text": " and backache\n\n• Pain has gotten more severe\n\n Frequency of vomiting: "
+        },
+        {
+          "number": 14
+        },
+        {
+          "text": " in past six hours\n\n• Abdomen tender, particularly in "
+        },
+        {
+          "number": 15
+        },
+        {
+          "text": "\n\n• Possible Diagnosis\n\n Symptoms indicate presence of "
+        },
+        {
+          "number": 16
+        },
+        {
+          "text": "\n\n• Likely condition: acute pyelonephritis\n\n Caused by ascent of bacteria into the "
+        },
+        {
+          "number": 17
+        },
+        {
+          "text": "\n\n• Organ affected: "
+        },
+        {
+          "number": 18
+        },
+        {
+          "text": "\n\n• Likely related to the "
+        },
+        {
+          "number": 19
+        },
+        {
+          "text": " patient was diagnosed with 2 months\n ago\n\n• Next Steps\n\n Hospital admission required\n\n Blood and urine "
+        },
+        {
+          "number": 20
+        },
+        {
+          "text": " will be taken\n\n• Will start patient on "
+        },
+        {
+          "number": 21
+        },
+        {
+          "text": " and medication\n\n• Medication to be monitored depending on the "
+        },
+        {
+          "number": 22
+        },
+        {
+          "text": " causing the\n infection\n\n• "
+        },
+        {
+          "number": 23
+        },
+        {
+          "text": " ultrasound required\n\n • "
+        },
+        {
+          "number": 24
+        },
+        {
+          "text": " of the urinary tract could be present\n\n"
+        }
+      ]
+    }
+  ],
+  "readingParts": {}
 }

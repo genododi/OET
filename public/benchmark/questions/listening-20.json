@@ -386,5 +386,168 @@
         "C"
       ]
     }
-  ]
+  ],
+  "notes": [
+    {
+      "group": "Extract 1",
+      "content": [
+        {
+          "text": "\nYou hear a GP talking with a woman, Teresa Young, complaining of\nworsening tiredness. For questions 1-12, complete the notes with a word or\nshort phrase. You now have thirty seconds to look at the notes.\n\n • Patient:Teresa Young\n\n Started to feel tired "
+        },
+        {
+          "number": 1
+        },
+        {
+          "text": " prior\n\n • Fell asleep during "
+        },
+        {
+          "number": 2
+        },
+        {
+          "text": " at work\n\n • Symptoms\n\n Sleep\n\n "
+        },
+        {
+          "number": 3
+        },
+        {
+          "text": " increased number of hours (from 7 to 14 hours)\n\n • "
+        },
+        {
+          "number": 4
+        },
+        {
+          "text": " of sleep is reported as good\n\n • Appetite\n\n Decreased\n\n No nausea or "
+        },
+        {
+          "number": 5
+        },
+        {
+          "text": "\n\n • "
+        },
+        {
+          "number": 6
+        },
+        {
+          "text": " faster than before\n\n • No change in "
+        },
+        {
+          "number": 7
+        },
+        {
+          "text": "\n\n • Other\n\n No recent colds\n\n Occasional "
+        },
+        {
+          "number": 8
+        },
+        {
+          "text": "\n\n • Stressed about work\n\n "
+        },
+        {
+          "number": 9
+        },
+        {
+          "text": " but not taking medication for it\n\n • Areas of "
+        },
+        {
+          "number": 10
+        },
+        {
+          "text": " on limbs/torso\n\n • Investigations\n\n Symptoms indicate problems with gastrointestinal, "
+        },
+        {
+          "number": 11
+        },
+        {
+          "text": " &\n cardiovascular systems\n\n • Full blood count & "
+        },
+        {
+          "number": 12
+        },
+        {
+          "text": "\n\n Coagulation studies\n"
+        }
+      ]
+    },
+    {
+      "group": "Extract 2",
+      "content": [
+        {
+          "text": "\nYou hear a doctor in the A&E talking with a woman, Emily Campbell,\npresenting with chest pain. For questions 13-24, complete the notes with a\nword or short phrase. You now have thirty seconds to look at the notes.\n\n • Patient:Emily Campbell\n\n Current Symptoms\n\n Chest pain & "
+        },
+        {
+          "number": 13
+        },
+        {
+          "text": "\n\n • Took "
+        },
+        {
+          "number": 14
+        },
+        {
+          "text": " for symptoms\n\n • Recent Symptoms\n\n Sharp, constant pain on "
+        },
+        {
+          "number": 15
+        },
+        {
+          "text": " of chest\n\n • Pain becomes worse after a "
+        },
+        {
+          "number": 16
+        },
+        {
+          "text": "\n\n Not able to do physical activity\n\n • No coughing, fever or "
+        },
+        {
+          "number": 17
+        },
+        {
+          "text": "\n\n • Recent Medical History\n\n A "
+        },
+        {
+          "number": 18
+        },
+        {
+          "text": "\n\n • 3 weeks prior with "
+        },
+        {
+          "number": 19
+        },
+        {
+          "text": "\n\n • Possible Diagnosis\n\n At risk for "
+        },
+        {
+          "number": 20
+        },
+        {
+          "text": "\n\n • ECG & CT "
+        },
+        {
+          "number": 21
+        },
+        {
+          "text": " to confirm\n\n • Treatment Options\n\n Open pulmonary embolectomy (rare)\n\n "
+        },
+        {
+          "number": 22
+        },
+        {
+          "text": " treatment (common)\n\n • Until confirmation, "
+        },
+        {
+          "number": 23
+        },
+        {
+          "text": " heparin will be administered\n\n • Goal is to achieve "
+        },
+        {
+          "number": 24
+        },
+        {
+          "text": "\n\n"
+        }
+      ]
+    }
+  ],
+  "readingParts": {}
 }
