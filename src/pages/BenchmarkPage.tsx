@@ -17,7 +17,18 @@ const skills: OetSubtest[] = ['listening', 'reading', 'writing', 'speaking'];
 const title = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 const asset = (s: string) => `${import.meta.env.BASE_URL}${s}`;
 function readingParagraphs(text: string) {
-  return text.trim().split(/\n\s*\n/).map(block => /^\s*(?:TEXT\b|PART\b|TEST\b|Questions?\b|[a-d][).]\s|\d+[.)]?\s|[•–-])/m.test(block) ? block : block.replace(/\s*\n\s*/g, ' '));
+  const paragraphs: string[] = [];
+  let current: string[] = [];
+  const flush = () => { if (current.length) paragraphs.push(current.join(' ')); current = []; };
+  for (const sourceLine of text.split('\n')) {
+    const line = sourceLine.trim();
+    if (!line) { flush(); continue; }
+    if (/^(?:TEST[- ]?\d|PART [ABC]\b|TEXT [A-D1-6]\b|Questions?\b)/i.test(line)) { flush(); paragraphs.push(line); continue; }
+    if (/^(?:[a-d][).]\s|(?:[1-9]|1\d|2[0-2])[.)]?\s|[•–-])/i.test(line)) flush();
+    current.push(line);
+  }
+  flush();
+  return paragraphs;
 }
 const speakingSource = 'https://edubenchmark.com/blog/oet-speaking-role-play-cards/';
 function readSaved(key: string): Record<string, string> {
