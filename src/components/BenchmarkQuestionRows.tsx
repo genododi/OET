@@ -3,7 +3,7 @@ import { useRef, useState } from 'react';
 export type BenchmarkQuestion = { part: string; number: number; prompt: string; group: string; sourcePage: number; numberingNote?: string; sourceNote?: string; choices?: string[] };
 export type BenchmarkSheet = { testId: string; sourceSha256: string; questions: BenchmarkQuestion[]; notes: { group: string; content: { text?: string; number?: number }[] }[]; readingParts: Record<string, { number: number; text: string }[]> };
 type Props = {
-  entry: { id: string; skill: string; assetPath: string; answers?: Record<string, string> };
+  entry: { id: string; skill: string; assetPath: string; answers?: Record<string, string>; keyParts?: Record<string, number | undefined> };
   part: string;
   sheet: BenchmarkSheet | null;
   failed: boolean;
@@ -22,6 +22,7 @@ function QuestionList({ entry, part, sheet, failed, responses, onAnswer }: Props
   const listening = entry.skill === 'listening';
   const visible = sheet.questions.filter(question => question.part === part);
   const answered = visible.filter(q => responses[`${part}-${q.number}`]?.trim()).length;
+  const reading = entry.skill === 'reading';
   const revealable = visible.filter(q => listening && entry.answers?.[String(q.number)]);
   const allRevealed = revealable.length > 0 && revealable.every(q => revealed[`${part}-${q.number}`]);
   const revealAll = () => setRevealed(current => ({ ...current, ...Object.fromEntries(revealable.map(q => [`${part}-${q.number}`, !allRevealed])) }));
@@ -30,13 +31,15 @@ function QuestionList({ entry, part, sheet, failed, responses, onAnswer }: Props
   const controls = (question: BenchmarkQuestion, inline = false) => {
     const n = question.number, id = `${part}-${n}`, inputId = `benchmark-${id}`;
     const answer = listening ? entry.answers?.[String(n)] : undefined;
+    const answerPage = reading ? entry.keyParts?.[part] : undefined;
     return <div className={inline ? 'jahshan-blank jahshan-inline-blank' : 'benchmark-question-answer'}>
       {inline && <><label className="jahshan-visually-hidden" htmlFor={inputId}>Question {n}</label><span className="jahshan-blank-number" aria-hidden="true">{n}</span></>}
       <div className="jahshan-blank-controls">
         {part === 'A' ? <input id={inputId} aria-describedby={`${inputId}-prompt`} value={responses[id] ?? ''} onChange={e => onAnswer(id, e.target.value)} placeholder="Your answer" autoComplete="off" /> : <select id={inputId} aria-describedby={`${inputId}-prompt`} value={responses[id] ?? ''} onChange={e => onAnswer(id, e.target.value)}><option value="">Choose…</option>{question.choices?.map(choice => <option key={choice}>{choice}</option>)}{responses[id] && !question.choices?.includes(responses[id]) && <option value={responses[id]}>Saved answer: {responses[id]}</option>}</select>}
-        {answer && <button className="btn btn-secondary" aria-label={`${revealed[id] ? 'Hide' : 'Show'} answer for Question ${n}`} aria-expanded={!!revealed[id]} aria-controls={`${inputId}-key`} onClick={() => setRevealed(current => ({ ...current, [id]: !current[id] }))}>{inline ? revealed[id] ? 'Hide' : 'Show' : revealed[id] ? 'Hide answer' : 'Show answer'}</button>}
+        {(answer || answerPage) && <button className="btn btn-secondary" aria-label={`${revealed[id] ? 'Hide' : 'Show'} answer for Question ${n}`} aria-expanded={!!revealed[id]} aria-controls={`${inputId}-key`} onClick={() => setRevealed(current => ({ ...current, [id]: !current[id] }))}>{inline ? revealed[id] ? 'Hide' : 'Show' : revealed[id] ? 'Hide answer' : 'Show answer'}</button>}
       </div>
       {revealed[id] && answer && <div id={`${inputId}-key`} className="jahshan-inline-key"><strong>Printed answer:</strong> {answer}</div>}
+      {revealed[id] && answerPage && <div id={`${inputId}-key`} className="benchmark-reading-answer-key"><strong>Printed answer key · Part {part} · Question {n}</strong><p>The original answer is marked on this page. Find question {n} in the key below.</p><iframe title={`Printed answer key for Part ${part}, Question ${n}`} loading="lazy" src={`${import.meta.env.BASE_URL}${entry.assetPath}#page=${answerPage}`} /><a href={`${import.meta.env.BASE_URL}${entry.assetPath}#page=${answerPage}`} target="_blank" rel="noopener noreferrer">Open answer key · book page {answerPage} ↗</a></div>}
     </div>;
   };
   return <div ref={root} className="benchmark-question-list">

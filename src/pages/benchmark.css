@@ -71,6 +71,10 @@
 .benchmark-question-list { margin: 0 0 22px; }
 .benchmark-question-source { display: inline-block; font-size: .85rem; margin-top: 12px; }
 .benchmark-question-answer { min-width: 0; }
+.benchmark-reading-answer-key { margin-top: 12px; padding: 14px; border: 1px solid #bfd1c6; border-radius: 8px; background: #f6faf8; }
+.benchmark-reading-answer-key p { margin: 6px 0 10px; }
+.benchmark-reading-answer-key iframe { display: block; width: 100%; height: 460px; margin: 10px 0; border: 1px solid #d4e0db; background: #fff; }
+.benchmark-reading-answer-key > a { display: inline-block; margin-top: 6px; }
 .benchmark-inline-question { display: inline; }
 .benchmark-page .reading-workbench > .card { padding: 24px; min-width: 0; }
 .benchmark-reading-page { background: white; padding: 20px; margin-bottom: 16px; }

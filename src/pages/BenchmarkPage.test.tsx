@@ -82,13 +82,21 @@ it('keeps the actual question, answer control and key in one row across all part
 it('matches reading questions by part and explains the source’s repeated numbering', async () => {
   render(<BenchmarkPage itemId="reading-6" onNavigate={vi.fn()} />);
   await screen.findByRole('article', { name: 'Part A · Question 1' });
+  const a = screen.getByRole('article', { name: 'Part A · Question 1' });
+  fireEvent.click(within(a).getByRole('button', { name: 'Show answer for Question 1' }));
+  expect(within(a).getByTitle('Printed answer key for Part A, Question 1')).toHaveAttribute('src', expect.stringContaining('#page=108'));
+  fireEvent.click(within(a).getByRole('button', { name: 'Hide answer for Question 1' }));
   fireEvent.click(screen.getByRole('button', { name: 'Part B' }));
   const row = screen.getByRole('article', { name: 'Part B · Question 2' });
   expect(row).toHaveTextContent('What two ideas are there about education');
   expect(row).toHaveTextContent('Paper label: 1. Saved as question 2 for Text 2.');
   expect(within(row).getByRole('combobox', { name: 'Question 2' })).toBeVisible();
   expect(within(row).getByRole('link')).toHaveAttribute('href', expect.stringContaining('#page=110'));
-  expect(within(row).queryByRole('button', { name: /Show answer/ })).toBeNull();
+  fireEvent.click(within(row).getByRole('button', { name: 'Show answer for Question 2' }));
+  expect(within(row).getByText('Printed answer key · Part B · Question 2')).toBeVisible();
+  expect(within(row).getByTitle('Printed answer key for Part B, Question 2')).toHaveAttribute('src', expect.stringContaining('#page=121'));
+  fireEvent.click(within(row).getByRole('button', { name: 'Hide answer for Question 2' }));
+  expect(within(row).queryByText('Printed answer key · Part B · Question 2')).toBeNull();
 });
 
 it('guides Benchmark Writing through reading, drafting and a separate review step', async () => {

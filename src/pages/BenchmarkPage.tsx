@@ -10,7 +10,7 @@ import '../components/jahshanListening.css';
 import '../components/jahshanReading.css';
 import './benchmark.css';
 
-type Entry = { sourceSha256: string; id: string; skill: string; number: number; title: string; assetPath: string; startPage: number; endPage: number; textPath: string; keyPath?: string; keyPages?: number[]; answers?: Record<string, string>; audio?: { url: string; sourceUrl: string; sha256: string } | null };
+type Entry = { sourceSha256: string; id: string; skill: string; number: number; title: string; assetPath: string; startPage: number; endPage: number; textPath: string; keyPath?: string; keyPages?: number[]; keyParts?: Record<string, number | undefined>; answers?: Record<string, string>; audio?: { url: string; sourceUrl: string; sha256: string } | null };
 type Page = { number: number; text: string; extraction?: string };
 const entries: Entry[] = catalog.entries;
 const skills: OetSubtest[] = ['listening', 'reading', 'writing', 'speaking'];

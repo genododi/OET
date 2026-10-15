@@ -22,6 +22,7 @@ for(const entry of catalog.entries){
   assert.equal(sheet.questions.length,42);
   if(entry.skill==='listening') assert.deepEqual(sheet.notes.flatMap(block=>block.content.filter(node=>node.number).map(node=>node.number)),Array.from({length:24},(_,i)=>i+1));
   else for(const part of ['A','B','C']) { assert(sheet.readingParts[part].length>0);for(const page of sheet.readingParts[part]){assert(page.text.trim());assert(pages.some(p=>p.number===page.number));} }
+  if(entry.skill==='reading') for(const [part,page] of Object.entries(entry.keyParts??{})){assert(['A','B','C'].includes(part));assert(entry.keyPages.includes(page));}
   for(const part of ['A','B','C']){
    const expected=entry.skill==='listening' ? (part==='A'?[1,24]:part==='B'?[25,30]:[31,42]) : (part==='A'?[1,20]:part==='B'?[1,6]:[7,22]);
    const rows=sheet.questions.filter(q=>q.part===part);
