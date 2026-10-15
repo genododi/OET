@@ -95,6 +95,8 @@ it('guides Benchmark Writing through reading, drafting and a separate review ste
   render(<BenchmarkPage itemId="writing-1" onNavigate={vi.fn()} />);
   expect(await screen.findByRole('heading', { name: 'Step 1 · Read the case notes and task' })).toBeVisible();
   expect(screen.getByRole('link', { name: /Open original · page/ })).toBeVisible();
+  expect(screen.getByText(/Complete source paper/)).toBeVisible();
+  expect(screen.queryByText('edubenchmark.com/oet-writing-correction')).not.toBeInTheDocument();
   expect(screen.queryByRole('textbox', { name: 'Your letter' })).not.toBeInTheDocument();
   expect(screen.getByRole('button', { name: 'Start writing →' })).toBeDisabled();
 });

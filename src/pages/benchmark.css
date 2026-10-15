@@ -30,6 +30,38 @@
 .benchmark-review-checklist label { display: flex; gap: 10px; align-items: flex-start; }
 .benchmark-review-checklist input { margin-top: 5px; }
 .benchmark-page .benchmark-speaking-steps { margin-top: 18px; }
+.benchmark-writing-layout { display: grid; grid-template-columns: minmax(0, .95fr) minmax(360px, 1.05fr); gap: 22px; align-items: start; }
+.benchmark-writing-layout > * { min-width: 0; }
+.benchmark-writing-practice { min-width: 0; }
+.benchmark-paper { padding: 24px !important; background: #f5f7f6; }
+.benchmark-paper .material-toolbar { align-items: end; }
+.benchmark-paper .material-toolbar h3 { margin: 5px 0 0; }
+.benchmark-paper-kicker { display: block; color: #087d78; font-size: .72rem; font-weight: 800; letter-spacing: .12em; }
+.benchmark-paper-stack { display: grid; justify-items: center; gap: 20px; }
+.benchmark-paper-sheet { width: min(100%, 760px); min-height: 640px; box-sizing: border-box; padding: clamp(24px, 4vw, 48px); margin: 0; border: 1px solid #e2e6e3; border-radius: 2px; box-shadow: 0 8px 24px rgb(31 55 48 / 10%); }
+.benchmark-paper-sheet > header { display: flex; justify-content: space-between; gap: 12px; margin: 0 0 28px; padding-bottom: 10px; border-bottom: 2px solid #e9eeee; color: #45615c; font-size: .75rem; font-weight: 700; }
+.benchmark-paper-sheet h4 { font-size: .9rem; }
+.benchmark-paper-sheet .material-readable-text { font-family: Arial, Helvetica, sans-serif; color: #172421; font-size: 15px; line-height: 1.55; }
+.benchmark-speaking-layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: 22px; }
+.benchmark-speaking-intro { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px 24px; align-items: center; }
+.benchmark-speaking-intro h2 { margin: 6px 0; }
+.benchmark-speaking-intro p { margin: 0; }
+.benchmark-speaking-intro .benchmark-speaking-steps { grid-column: 1 / -1; margin-top: 10px; }
+.benchmark-speaking-cards { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(340px, .95fr); gap: 22px; align-items: start; }
+.benchmark-role-paper { overflow: hidden; background: #fff; border: 1px solid #d8e1dd; border-radius: 8px; box-shadow: 0 8px 24px rgb(31 55 48 / 9%); }
+.benchmark-role-paper > header { display: flex; justify-content: space-between; gap: 12px; padding: 14px 20px; color: #fff; background: #0b6257; font-size: .78rem; font-weight: 800; letter-spacing: .08em; }
+.benchmark-role-paper-body { padding: clamp(20px, 3vw, 34px); }
+.benchmark-role-paper-body h3 { margin: 8px 0 12px; color: #135e54; }
+.benchmark-role-paper-body > ul { padding-left: 22px; line-height: 1.65; }
+.benchmark-role-scenario { margin: 20px 0; padding: 16px 18px; border-left: 4px solid #269b8a; background: #eaf5f3; }
+.benchmark-role-scenario p { margin: 6px 0 0; }
+.benchmark-partner-card { margin-top: 22px !important; padding: 14px 16px; border: 1px solid #d6e0dc; border-radius: 8px; background: #f7faf9; }
+.benchmark-partner-card summary { cursor: pointer; color: #145f56; font-weight: 700; }
+.benchmark-speaking-tools { display: grid; gap: 18px; }
+.benchmark-speaking-tools > .card { min-width: 0; }
+.benchmark-speaking-tools h3 { margin-top: 6px; }
+.benchmark-speaking-tools iframe { border: 0; margin: 14px 0; }
+@media(max-width:950px) { .benchmark-writing-layout, .benchmark-speaking-cards { grid-template-columns: minmax(0, 1fr); } .benchmark-paper-sheet { min-height: 0; } }
 @media(max-width:600px) { .benchmark-page > .card, .benchmark-workspace > .card { padding: 18px; } }
 .benchmark-offline { border: 1px solid #bfd1c6; border-radius: 10px; padding: 18px; margin-top: 20px; background: #f4f8f6; }
 .benchmark-offline h3 { margin-top: 0; }
@@ -54,3 +86,4 @@
 .benchmark-downloads > summary { cursor: pointer; font-weight: 600; }
 .benchmark-page .reading-worksheet .jahshan-blank-controls { flex-wrap: wrap; }
 @media(max-width: 600px) { .benchmark-page .reading-workbench > .card { padding: 16px; } }
+@media(max-width:600px) { .benchmark-paper { padding: 16px !important; } .benchmark-paper-sheet { padding: 22px 18px; } .benchmark-paper-sheet > header { flex-direction: column; margin-bottom: 18px; } .benchmark-speaking-intro { grid-template-columns: 1fr; } .benchmark-speaking-intro > a { justify-self: start; } .benchmark-role-paper > header { flex-direction: column; } }
