@@ -30,3 +30,23 @@ it('refuses an offline transcript belonging to another recording',()=>{
  expect(screen.getByRole('status')).toHaveTextContent('unavailable');
  expect(fetcher).not.toHaveBeenCalled();
 });
+it('jumps to the selected part and its matching transcript lines', () => {
+ const fetcher=vi.fn();vi.stubGlobal('fetch',fetcher);
+ const sectional={...transcript,segments:[
+  {start:0,end:8,text:'Opening instructions.'},
+  {start:12,end:16,text:'Part A.'},
+  {start:17,end:22,text:'In this part of the test, you hear a consultation.'},
+  {start:48,end:52,text:'Now, look at Part B.'},
+  {start:53,end:58,text:'Part B. In this part of the test, you hear six extracts.'},
+  {start:90,end:95,text:'Now look at Part C.'},
+  {start:96,end:101,text:'Part C. In this part of the test, you hear two interviews.'},
+ ]};
+ const view=render(<RecordingTranscriptPlayer track={track} audioUrl="audio/test.mp3" transcriptPath="" inlineTranscript={sectional} selectedPart="A" partSelection={0} />);
+ const audio=view.container.querySelector('audio')!;Object.defineProperty(audio,'duration',{value:120,configurable:true});fireEvent.loadedMetadata(audio);
+ view.rerender(<RecordingTranscriptPlayer track={track} audioUrl="audio/test.mp3" transcriptPath="" inlineTranscript={sectional} selectedPart="B" partSelection={1} />);
+ expect(audio.currentTime).toBe(48);
+ expect(screen.getByRole('button',{name:'0:48 Now, look at Part B.'})).toHaveAttribute('aria-current','true');
+ view.rerender(<RecordingTranscriptPlayer track={track} audioUrl="audio/test.mp3" transcriptPath="" inlineTranscript={sectional} selectedPart="C" partSelection={2} />);
+ expect(audio.currentTime).toBe(90);
+ expect(fetcher).not.toHaveBeenCalled();
+});

@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "source": "User-supplied Desktop/OET and AMR oet folders",
+  "source": "User-supplied Desktop/OET, AMR oet and GENODODI OET test resources",
   "publicationBasis": "Repository owner explicitly requested upload and deployment of all supplied files on 2026-09-29. This does not assert third-party ownership or an open license.",
-  "fileCount": 99,
-  "uniqueFileCount": 85,
+  "fileCount": 173,
+  "uniqueFileCount": 158,
   "amrCount": 35,
-  "totalBytes": 430947292,
+  "totalBytes": 875166206,
   "files": [
     {
       "id": "desktop-c4a271d0a477ac1d",
@@ -1835,6 +1835,1382 @@
       "duplicateOf": null,
       "pageCount": 8,
       "ocrPageCount": 8
+    },
+    {
+      "id": "genododi-test-f4d54b7d50d91443",
+      "filename": "image1.png",
+      "relativePath": "GENODODI OET/‪OET Collection‬‏/Listening/Mock-Tests/images/image1.png",
+      "collection": "OET",
+      "format": "png",
+      "bytes": 3829,
+      "sha256": "ce205a1dd50959c393679b869664ca0a74c0797ec8beda4dc56422fbbab0bc17",
+      "assetPath": "supplied-materials/files/ce205a1dd50959c393679b869664ca0a74c0797ec8beda4dc56422fbbab0bc17.png",
+      "textPath": "supplied-materials/text/ce205a1dd50959c393679b869664ca0a74c0797ec8beda4dc56422fbbab0bc17.json",
+      "skills": [
+        "listening"
+      ],
+      "hasText": false,
+      "excerpt": "",
+      "duplicateOf": null,
+      "pageCount": 1,
+      "ocrPageCount": 0
+    },
+    {
+      "id": "genododi-test-33513444791b6c88",
+      "filename": "IMG_20200215_030800.jpg",
+      "relativePath": "GENODODI OET/‪OET Collection‬‏/Listening/Mock-Tests/Mock-1-Roy miller/IMG_20200215_030800.jpg",
+      "collection": "OET",
+      "format": "jpg",
+      "bytes": 58307,
+      "sha256": "9ad357c7f4131f2e174ef8176ab7c3845ac0a45c2fe63a01655fad3b065fe08a",
+      "assetPath": "supplied-materials/files/9ad357c7f4131f2e174ef8176ab7c3845ac0a45c2fe63a01655fad3b065fe08a.jpg",
+      "textPath": "supplied-materials/text/9ad357c7f4131f2e174ef8176ab7c3845ac0a45c2fe63a01655fad3b065fe08a.json",
+      "skills": [
+        "listening"
+      ],
+      "hasText": true,
+      "excerpt": "Kaplan Listening Answers Practice Test ..Track 21 PART A.I 1. up the stairs 2. barking 3. Iying down 4. (dirty) green 5. feverish 6. COPD 7. smoker 8. allopurinol 9. knees 10. (blue) inhaler 11. cholesterol 12. penicillin PART A.2 13. stuck (in it) 14. watering 15. swollen 16. concentrate 17. fluorescein eye stain 18. ",
+      "duplicateOf": null,
+      "pageCount": 1,
+      "ocrPageCount": 1
+    },
+    {
+      "id": "genododi-test-1dbfc86d48e32ae8",
+      "filename": "IMG_20200215_030816.jpg",
+      "relativePath": "GENODODI OET/‪OET Collection‬‏/Listening/Mock-Tests/Mock-1-Roy miller/IMG_20200215_030816.jpg",
+      "collection": "OET",
+      "format": "jpg",
+      "bytes": 82204,
+      "sha256": "7c29f91b82abfe2f61a7c59c4c61883cb4004c51103710e68c419527476e2140",
+      "assetPath": "supplied-materials/files/7c29f91b82abfe2f61a7c59c4c61883cb4004c51103710e68c419527476e2140.jpg",
+      "textPath": "supplied-materials/text/7c29f91b82abfe2f61a7c59c4c61883cb4004c51103710e68c419527476e2140.json",
+      "skills": [
+        "listening"
+      ],
+      "hasText": true,
+      "excerpt": "PART B 25- A be transferred from the Emergency Department 26. B whether his communication issues will improve 27. A explaining how to use them correctly 28. C the availability of a medicine. 29. C the importance of providing adequate emotional support to patients 30. A identifying the patients at greatest risk PART C.I",
+      "duplicateOf": null,
+      "pageCount": 1,
+      "ocrPageCount": 1
+    },
+    {
+      "id": "genododi-test-87bdc7852b2dde69",
+      "filename": "Miss wells.mp3",
+      "relativePath": "GENODODI OET/‪OET Collection‬‏/Listening/Mock-Tests/Mock-10 Miss Wells/Miss wells.mp3",
+      "collection": "OET",
+      "format": "mp3",
+      "bytes": 29115294,
+      "sha256": "6efd5b0261089d6295800ae2a3f8d8adaf0711b9e368aa782ef13c39a0097420",
+      "assetPath": "supplied-materials/files/6efd5b0261089d6295800ae2a3f8d8adaf0711b9e368aa782ef13c39a0097420.mp3",
+      "textPath": "supplied-materials/text/6efd5b0261089d6295800ae2a3f8d8adaf0711b9e368aa782ef13c39a0097420.json",
+      "skills": [
+        "listening"
+      ],
+      "hasText": false,
+      "excerpt": "",
+      "duplicateOf": null
+    },
+    {
+      "id": "genododi-test-f74a1737b8e168e9",
+      "filename": "Screenshot (111).png",
+      "relativePath": "GENODODI OET/‪OET Collection‬‏/Listening/Mock-Tests/Mock-10 Miss Wells/Screenshot (111).png",
+      "collection": "OET",
+      "format": "png",
+      "bytes": 237516,
+      "sha256": "7085f92f954f31aabed7bf6dca0893e98fb98c22db23d81fe7be943a2593d126",
+      "assetPath": "supplied-materials/files/7085f92f954f31aabed7bf6dca0893e98fb98c22db23d81fe7be943a2593d126.png",
+      "textPath": "supplied-materials/text/7085f92f954f31aabed7bf6dca0893e98fb98c22db23d81fe7be943a2593d126.json",
+      "skills": [
+        "listening"
+      ],
+      "hasText": true,
+      "excerpt": "2 5_6075684286227284158.pdf - Adobe Acrobat Reader DC File Edit View Window Help Home Tools 5_6075684286227... x Sign In 71 / 263 114% • o Share ANSWERS Search 'Merge PDF' 1. Cervical smear 2. Left side Export PDF 3. Admitted to Hospital Create PDF v 4. Laparoscopy 5. Behind womb Edit PDF 6. Acne 7. Diathermy Comment 8",
+      "duplicateOf": null,
+      "pageCount": 1,
+      "ocrPageCount": 1
+    },
+    {
+      "id": "genododi-test-bfe5447f2e369219",
+      "filename": "Screenshot (112).png",
+      "relativePath": "GENODODI OET/‪OET Collection‬‏/Listening/Mock-Tests/Mock-10 Miss Wells/Screenshot (112).png",
+      "collection": "OET",
+      "format": "png",
+      "bytes": 188821,
+      "sha256": "f07ad4d3582b4aff6e5084c074703f1218ec631b3a27f8157db0abd836f10521",
+      "assetPath": "supplied-materials/files/f07ad4d3582b4aff6e5084c074703f1218ec631b3a27f8157db0abd836f10521.png",
+      "textPath": "supplied-materials/text/f07ad4d3582b4aff6e5084c074703f1218ec631b3a27f8157db0abd836f10521.json",
+      "skills": [
+        "listening"
+      ],
+      "hasText": true,
+      "excerpt": "2 5_6075684286227284158.pdf - Adobe Acrobat Reader DC File Edit View Window Help Home Tools 5_6075684286227... x Sign In 71 / 263 o Share z0. Dressing 21. Shave Search 'Merge PDF' 22. Wander off 23. Day and night Export PDF 24. Oven controls Create PDF 25. А 26. C Connect Edit PDF 27. A 28. B Comment 29. C 30. В Combin",
+      "duplicateOf": null,
+      "pageCount": 1,
+      "ocrPageCount": 1
+    },
+    {
+      "id": "genododi-test-3f03626abe7393f5",
+      "filename": "listening answers.pdf",
+      "relativePath": "GENODODI OET/‪OET Collection‬‏/Listening/Mock-Tests/Mock-16 Mellisa Gordon/listening answers.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 979419,
+      "sha256": "ae403091a8d5517d25fd8110f7161b251885a86464055bfc73460b55aff65237",
+      "assetPath": "supplied-materials/files/ae403091a8d5517d25fd8110f7161b251885a86464055bfc73460b55aff65237.pdf",
+      "textPath": "supplied-materials/text/ae403091a8d5517d25fd8110f7161b251885a86464055bfc73460b55aff65237.json",
+      "skills": [
+        "listening"
+      ],
+      "hasText": true,
+      "excerpt": "LISTENING SUB-TEST - ANSWER KEY PART A: QUESTIONS 1-12 1. (computer) programmer 2. asthma (attacks) 3. penicillin 4. vegetarian 5. fertility 6. breech 7. forceps / forcipes 8. breastfeeding 9. epilepsy 10. Down syndrome / DS / DNS / Down's (syndrome) 11. CVS / chronic vill(o)us sampling 12. sibling(s) / brothers and/or",
+      "duplicateOf": null,
+      "pageCount": 2,
+      "ocrPageCount": 2
+    },
+    {
+      "id": "genododi-test-a7513ccd7869605c",
+      "filename": "listening Sumamry.pdf",
+      "relativePath": "GENODODI OET/‪OET Collection‬‏/Listening/Mock-Tests/Mock-17 Sarah Croft/listening Sumamry.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 900864,
+      "sha256": "014c3fb7cfe5a8ae2038d225fb4a59572ff0f64cbfc6f61f925e3a0799ec8a46",
+      "assetPath": "supplied-materials/files/014c3fb7cfe5a8ae2038d225fb4a59572ff0f64cbfc6f61f925e3a0799ec8a46.pdf",
+      "textPath": "supplied-materials/text/014c3fb7cfe5a8ae2038d225fb4a59572ff0f64cbfc6f61f925e3a0799ec8a46.json",
+      "skills": [
+        "listening"
+      ],
+      "hasText": true,
+      "excerpt": "LISTENING SUB-TEST - ANSWER KEY PART A: QUESTIONS 1-12 1 asthma 2 hair (growth) 3 hump 4 sweating / perspiration / diaphoresis 5 (so) infrequent (now) 6 (easily) bruise 7 stretch marks / striae 8 dark / darkened 9 acne (vulgaris) 10 mood swings 11 irritable 12 saliva PART A: QUESTIONS 13-24 13 lisinopril 14 (some) wate",
+      "duplicateOf": null,
+      "pageCount": 2,
+      "ocrPageCount": 2
+    },
+    {
+      "id": "genododi-test-90d91995d4017683",
+      "filename": "Answers key.pdf",
+      "relativePath": "GENODODI OET/‪OET Collection‬‏/Listening/Mock-Tests/Mock-18 Robetr Miller/Answers key.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 650866,
+      "sha256": "88bd13c0975466163862529da81f504b787e97fedbe721f688423abdacd69372",
+      "assetPath": "supplied-materials/files/88bd13c0975466163862529da81f504b787e97fedbe721f688423abdacd69372.pdf",
+      "textPath": "supplied-materials/text/88bd13c0975466163862529da81f504b787e97fedbe721f688423abdacd69372.json",
+      "skills": [
+        "listening"
+      ],
+      "hasText": true,
+      "excerpt": "LISTENING SUB-TEST - ANSWER KEY PART A: QUESTIONS 1-12 dry (very) gradual swollen / bulging (out) 4 soft farm labourer 6 (night) security guard 7 beta blockers crackling (accept: cracking)/ crep / crepitation 9 (bad) eczema 10 echocardiogram / cardiac echo / echo 11 arterial blood gas / ABG 12 corticosteroids PART A: Q",
+      "duplicateOf": null,
+      "pageCount": 2,
+      "ocrPageCount": 2
+    },
+    {
+      "id": "genododi-test-069a55bb9e6e1e65",
+      "filename": "Listening-Sample-Test-2-Answer-Key.pdf",
+      "relativePath": "GENODODI OET/‪OET Collection‬‏/Listening/Mock-Tests/Mock-3 Andrew Taylor/Listening-Sample-Test-2-Answer-Key.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 140334,
+      "sha256": "237978caf8f93b8cc6901fb62941571b656bf20fe50d663b1e34ef86706cac7e",
+      "assetPath": "supplied-materials/files/237978caf8f93b8cc6901fb62941571b656bf20fe50d663b1e34ef86706cac7e.pdf",
+      "textPath": "supplied-materials/text/237978caf8f93b8cc6901fb62941571b656bf20fe50d663b1e34ef86706cac7e.json",
+      "skills": [
+        "listening"
+      ],
+      "hasText": true,
+      "excerpt": "Sample Test 2 LISTENING SUB-TEST – ANSWER KEY PARTS A, B & C L E P A M S www.occupationalenglishtest.org © Cambridge Boxhill Language Assessment – ABN 51 988 559 414 LISTENING SUB-TEST – ANSWER KEY PART A: QUESTIONS 1-12 1 heartburn (after meals) 2 bloating 3 constipation 4 (so) unpredictable 5 migraines 6 accountant 7",
+      "duplicateOf": null,
+      "pageCount": 3,
+      "ocrPageCount": 0
+    },
+    {
+      "id": "genododi-test-0b70fb35721822e9",
+      "filename": "WhatsApp Image 2018-11-17 at 15.11.04(1).jpeg",
+      "relativePath": "GENODODI OET/‪OET Collection‬‏/Listening/Mock-Tests/Mock-4 Suzan hinds/Answers/ans/WhatsApp Image 2018-11-17 at 15.11.04(1).jpeg",
+      "collection": "OET",
+      "format": "jpeg",
+      "bytes": 80717,
+      "sha256": "9fe806a7323bc086e2e9e47e016b16a31e77b368c7456861fe0dd2873a21a1da",
+      "assetPath": "supplied-materials/files/9fe806a7323bc086e2e9e47e016b16a31e77b368c7456861fe0dd2873a21a1da.jpeg",
+      "textPath": "supplied-materials/text/9fe806a7323bc086e2e9e47e016b16a31e77b368c7456861fe0dd2873a21a1da.json",
+      "skills": [
+        "listening"
+      ],
+      "hasText": true,
+      "excerpt": "e Chrome https://onlinecourse.occupationalenglishtest.org/Student/Answer/View?activityld= 134 10. rheumatoid arthritis / RA 11. lower lip 12. thyroid function test / thyroid function Extract 2: 13. vomiting 14. incredibly sleepy / sleepy / sleepiness 15. thirsty / dehydrated 16. stomach cancer 17 gastric dumping syndro",
+      "duplicateOf": null,
+      "pageCount": 1,
+      "ocrPageCount": 1
+    },
+    {
+      "id": "genododi-test-3c4ed2a496f74653",
+      "filename": "WhatsApp Image 2018-11-17 at 15.11.04.jpeg",
+      "relativePath": "GENODODI OET/‪OET Collection‬‏/Listening/Mock-Tests/Mock-4 Suzan hinds/Answers/ans/WhatsApp Image 2018-11-17 at 15.11.04.jpeg",
+      "collection": "OET",
+      "format": "jpeg",
+      "bytes": 102100,
+      "sha256": "f1e6a0172ed62fb37023fd1caae2a1d0c2f21a11a570d10bb336bf9d4e55c12b",
+      "assetPath": "supplied-materials/files/f1e6a0172ed62fb37023fd1caae2a1d0c2f21a11a570d10bb336bf9d4e55c12b.jpeg",
+      "textPath": "supplied-materials/text/f1e6a0172ed62fb37023fd1caae2a1d0c2f21a11a570d10bb336bf9d4e55c12b.json",
+      "skills": [
+        "listening"
+      ],
+      "hasText": true,
+      "excerpt": "OET Listening: Answer Key ANSWER KEY - PART A Extract 1: 1. mouth ulcers / ulcers 2. dental cavities/ cavities/ caries/ fillings 3. cracked 4. sticky 5. air conditioning / air-con / AC 6. eye drops / drops 7. conjunctivitis / pinkeye / pink eye 8. rough 9. swallowing / swallowing food / getting stuff down 10. rheumatoi",
+      "duplicateOf": null,
+      "pageCount": 1,
+      "ocrPageCount": 1
+    },
+    {
+      "id": "genododi-test-768b6406550f1a58",
+      "filename": "WhatsApp Image 2018-11-17 at 15.11.05(1).jpeg",
+      "relativePath": "GENODODI OET/‪OET Collection‬‏/Listening/Mock-Tests/Mock-4 Suzan hinds/Answers/ans/WhatsApp Image 2018-11-17 at 15.11.05(1).jpeg",
+      "collection": "OET",
+      "format": "jpeg",
+      "bytes": 118936,
+      "sha256": "2d913bacf3cf6c8c8a74a570356be5ea99c8980c2cc0d38b0de6b65b537ee63b",
+      "assetPath": "supplied-materials/files/2d913bacf3cf6c8c8a74a570356be5ea99c8980c2cc0d38b0de6b65b537ee63b.jpeg",
+      "textPath": "supplied-materials/text/2d913bacf3cf6c8c8a74a570356be5ea99c8980c2cc0d38b0de6b65b537ee63b.json",
+      "skills": [
+        "listening"
+      ],
+      "hasText": true,
+      "excerpt": "OET Ready - Google Chrome • https://onlinecourse.occupationalenglishtest.org/Student/Answer/View?activityld=134 ANSWER KEY - Part C Extract 1: 31. A may be unaware that they have the condition at first. 32. A the treatment given was tailored to the needs of each patient. 33. C It kept all patients physically active des",
+      "duplicateOf": null,
+      "pageCount": 1,
+      "ocrPageCount": 1
+    },
+    {
+      "id": "genododi-test-2f49796a53b31152",
+      "filename": "WhatsApp Image 2018-11-17 at 15.11.05(2).jpeg",
+      "relativePath": "GENODODI OET/‪OET Collection‬‏/Listening/Mock-Tests/Mock-4 Suzan hinds/Answers/ans/WhatsApp Image 2018-11-17 at 15.11.05(2).jpeg",
+      "collection": "OET",
+      "format": "jpeg",
+      "bytes": 115574,
+      "sha256": "d3e0d6aedc26b9a83e262968c00e7a71b827dda811a2daa7d7ad070eaec5e857",
+      "assetPath": "supplied-materials/files/d3e0d6aedc26b9a83e262968c00e7a71b827dda811a2daa7d7ad070eaec5e857.jpeg",
+      "textPath": "supplied-materials/text/d3e0d6aedc26b9a83e262968c00e7a71b827dda811a2daa7d7ad070eaec5e857.json",
+      "skills": [
+        "listening"
+      ],
+      "hasText": true,
+      "excerpt": "OET Ready - Google Chrome https://onlinecourse.occupationalenglishtest.org/Student/Answer/View?activityld=134 31. A may be unaware that they have the condition at first. 32. A the treatment given was tailored to the needs of each patient 33. C It kept all patients physically active despite the condition. 34. C They con",
+      "duplicateOf": null,
+      "pageCount": 1,
+      "ocrPageCount": 1
+    },
+    {
+      "id": "genododi-test-130d3a1921651223",
+      "filename": "WhatsApp Image 2018-11-17 at 15.11.05.jpeg",
+      "relativePath": "GENODODI OET/‪OET Collection‬‏/Listening/Mock-Tests/Mock-4 Suzan hinds/Answers/ans/WhatsApp Image 2018-11-17 at 15.11.05.jpeg",
+      "collection": "OET",
+      "format": "jpeg",
+      "bytes": 111439,
+      "sha256": "776f89b604d651974b428856ce6f8e333ac21f8ed8584ee508dd62a4e4d70415",
+      "assetPath": "supplied-materials/files/776f89b604d651974b428856ce6f8e333ac21f8ed8584ee508dd62a4e4d70415.jpeg",
+      "textPath": "supplied-materials/text/776f89b604d651974b428856ce6f8e333ac21f8ed8584ee508dd62a4e4d70415.json",
+      "skills": [
+        "listening"
+      ],
+      "hasText": true,
+      "excerpt": "https://onlinecourse.occupationalenglishtest.org/Student/Answer/View?activityld=134 Ty. mue and onen 20. blood and urine/ blood urine / blood and urine tests / blood urine tests / urine 21. endoscopy 22. helicobacter pylori / H. pylori / H pylori 23. urea breath test / breath test 24. teacher ANSWER KEY - PART B 25. B ",
+      "duplicateOf": null,
+      "pageCount": 1,
+      "ocrPageCount": 1
+    },
+    {
+      "id": "genododi-test-cd1f6cccebd429c2",
+      "filename": "ANSWERS1.pdf",
+      "relativePath": "GENODODI OET/‪OET Collection‬‏/Listening/Mock-Tests/Mock-5 Mrs wayne/ANSWERS1.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 191398,
+      "sha256": "5c61ad422141da9e12f21d4e254c50db308a373d970b80f3262e46c5fad78dcf",
+      "assetPath": "supplied-materials/files/5c61ad422141da9e12f21d4e254c50db308a373d970b80f3262e46c5fad78dcf.pdf",
+      "textPath": "supplied-materials/text/5c61ad422141da9e12f21d4e254c50db308a373d970b80f3262e46c5fad78dcf.json",
+      "skills": [
+        "listening"
+      ],
+      "hasText": true,
+      "excerpt": "So Ms Wayne, as this is your first appointment with me I’d like to ask you a few questions and get to know a little bit about your medical history. It’s also a chance for you to ask me any questions you might have. F Sure. M I understand from your GP that you have arthritis. That’s right, yes. It’s in my hands and wris",
+      "duplicateOf": null,
+      "pageCount": 19,
+      "ocrPageCount": 0
+    },
+    {
+      "id": "genododi-test-a9d4ba64ecfc1004",
+      "filename": "a1.m4a",
+      "relativePath": "GENODODI OET/‪OET Collection‬‏/Listening/Mock-Tests/Mock-6 David Johnston/a1.m4a",
+      "collection": "OET",
+      "format": "m4a",
+      "bytes": 7215155,
+      "sha256": "754e8122e6835facd781bdbbe892cfe49a78c26e73980c4f3df30a89c002c647",
+      "assetPath": "supplied-materials/files/754e8122e6835facd781bdbbe892cfe49a78c26e73980c4f3df30a89c002c647.m4a",
+      "textPath": "supplied-materials/text/754e8122e6835facd781bdbbe892cfe49a78c26e73980c4f3df30a89c002c647.json",
+      "skills": [
+        "listening"
+      ],
+      "hasText": false,
+      "excerpt": "",
+      "duplicateOf": null
+    },
+    {
+      "id": "genododi-test-4bde641a24b34606",
+      "filename": "a2.m4a",
+      "relativePath": "GENODODI OET/‪OET Collection‬‏/Listening/Mock-Tests/Mock-6 David Johnston/a2.m4a",
+      "collection": "OET",
+      "format": "m4a",
+      "bytes": 6533452,
+      "sha256": "f378348abc644726ab9e2927ce673e55102fe7432a46fa8b7a3564ebdbb29093",
+      "assetPath": "supplied-materials/files/f378348abc644726ab9e2927ce673e55102fe7432a46fa8b7a3564ebdbb29093.m4a",
+      "textPath": "supplied-materials/text/f378348abc644726ab9e2927ce673e55102fe7432a46fa8b7a3564ebdbb29093.json",
+      "skills": [
+        "listening"
+      ],
+      "hasText": false,
+      "excerpt": "",
+      "duplicateOf": null
+    },
+    {
+      "id": "genododi-test-e644abd7a7b367c1",
+      "filename": "ANSWERS1.pdf",
+      "relativePath": "GENODODI OET/‪OET Collection‬‏/Listening/Mock-Tests/Mock-6 David Johnston/ANSWERS1.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 186523,
+      "sha256": "4d41fa1747e3e47fc5f563dc0bcb7c9672d3f111907f72b53004cc027a91eb4f",
+      "assetPath": "supplied-materials/files/4d41fa1747e3e47fc5f563dc0bcb7c9672d3f111907f72b53004cc027a91eb4f.pdf",
+      "textPath": "supplied-materials/text/4d41fa1747e3e47fc5f563dc0bcb7c9672d3f111907f72b53004cc027a91eb4f.json",
+      "skills": [
+        "listening"
+      ],
+      "hasText": true,
+      "excerpt": "It's nice to meet you Mr Johnston. You've been referred to me by Dr Bruce. Why don't you tell me why you're here. M Uh… Well… Yeah… So, about a week ago, I was in a (1) car accident. Nothing really happened at the time… Um… I spoke to a doctor that day, uh… but he was still a bit concerned. So, uh… a couple of days lat",
+      "duplicateOf": null,
+      "pageCount": 18,
+      "ocrPageCount": 0
+    },
+    {
+      "id": "genododi-test-4e3ec47a9b7b199b",
+      "filename": "BELLY FAT 2.m4a",
+      "relativePath": "GENODODI OET/‪OET Collection‬‏/Listening/Mock-Tests/Mock-6 David Johnston/BELLY FAT 2.m4a",
+      "collection": "OET",
+      "format": "m4a",
+      "bytes": 5367116,
+      "sha256": "52d188d69e1f023e932d2808adac05f3c032764d3becc91f42ff6c6f37606a83",
+      "assetPath": "supplied-materials/files/52d188d69e1f023e932d2808adac05f3c032764d3becc91f42ff6c6f37606a83.m4a",
+      "textPath": "supplied-materials/text/52d188d69e1f023e932d2808adac05f3c032764d3becc91f42ff6c6f37606a83.json",
+      "skills": [
+        "listening"
+      ],
+      "hasText": false,
+      "excerpt": "",
+      "duplicateOf": null
+    },
+    {
+      "id": "genododi-test-2fe5cc3f537f5d17",
+      "filename": "c1 belly fat.m4a",
+      "relativePath": "GENODODI OET/‪OET Collection‬‏/Listening/Mock-Tests/Mock-6 David Johnston/c1 belly fat.m4a",
+      "collection": "OET",
+      "format": "m4a",
+      "bytes": 11300603,
+      "sha256": "cadc3b431545f283c561d1e91f1b76d3c19216c73bf2e34c588d6dd9f7638b1b",
+      "assetPath": "supplied-materials/files/cadc3b431545f283c561d1e91f1b76d3c19216c73bf2e34c588d6dd9f7638b1b.m4a",
+      "textPath": "supplied-materials/text/cadc3b431545f283c561d1e91f1b76d3c19216c73bf2e34c588d6dd9f7638b1b.json",
+      "skills": [
+        "listening"
+      ],
+      "hasText": false,
+      "excerpt": "",
+      "duplicateOf": null
+    },
+    {
+      "id": "genododi-test-e189d7e0c4a4a50f",
+      "filename": "PART B.m4a",
+      "relativePath": "GENODODI OET/‪OET Collection‬‏/Listening/Mock-Tests/Mock-6 David Johnston/PART B.m4a",
+      "collection": "OET",
+      "format": "m4a",
+      "bytes": 13634048,
+      "sha256": "7a3b5ab229461a9c91c48525ed3d8a2b4b88c85a7e965a686752fd8f126de6b9",
+      "assetPath": "supplied-materials/files/7a3b5ab229461a9c91c48525ed3d8a2b4b88c85a7e965a686752fd8f126de6b9.m4a",
+      "textPath": "supplied-materials/text/7a3b5ab229461a9c91c48525ed3d8a2b4b88c85a7e965a686752fd8f126de6b9.json",
+      "skills": [
+        "listening"
+      ],
+      "hasText": false,
+      "excerpt": "",
+      "duplicateOf": null
+    },
+    {
+      "id": "genododi-test-c9c3477318fe5004",
+      "filename": "suicide.m4a",
+      "relativePath": "GENODODI OET/‪OET Collection‬‏/Listening/Mock-Tests/Mock-6 David Johnston/suicide.m4a",
+      "collection": "OET",
+      "format": "m4a",
+      "bytes": 11795588,
+      "sha256": "ee527aaf0a4442957d042c9d710f96dbf200083cca9549daec8763f2429a6069",
+      "assetPath": "supplied-materials/files/ee527aaf0a4442957d042c9d710f96dbf200083cca9549daec8763f2429a6069.m4a",
+      "textPath": "supplied-materials/text/ee527aaf0a4442957d042c9d710f96dbf200083cca9549daec8763f2429a6069.json",
+      "skills": [
+        "listening"
+      ],
+      "hasText": false,
+      "excerpt": "",
+      "duplicateOf": null
+    },
+    {
+      "id": "genododi-test-5780622cfb56486d",
+      "filename": "ANSWERS1.pdf",
+      "relativePath": "GENODODI OET/‪OET Collection‬‏/Listening/Mock-Tests/Mock-7 Jospeph ALverez/ANSWERS1.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 188185,
+      "sha256": "fcad0009794ba6c8df54bdd2db64c1ee49f9d65a8949d90b6898d4c4b67f0724",
+      "assetPath": "supplied-materials/files/fcad0009794ba6c8df54bdd2db64c1ee49f9d65a8949d90b6898d4c4b67f0724.pdf",
+      "textPath": "supplied-materials/text/fcad0009794ba6c8df54bdd2db64c1ee49f9d65a8949d90b6898d4c4b67f0724.json",
+      "skills": [
+        "listening"
+      ],
+      "hasText": true,
+      "excerpt": "Hello, Mr Alvarez. Your GP has sent us the letter about your problems, but why don't you tell me in your own words what's been happening. Ah, yes, well, I’ve had blood in my urine and like this sharp kind of (1) chest pain. I had an ECG for that but it didn’t show anything serious, but the pain was still there. So, my ",
+      "duplicateOf": null,
+      "pageCount": 20,
+      "ocrPageCount": 0
+    },
+    {
+      "id": "genododi-test-834de132839f00d1",
+      "filename": "JOSEPH ALVAREZ.m4a",
+      "relativePath": "GENODODI OET/‪OET Collection‬‏/Listening/Mock-Tests/Mock-7 Jospeph ALverez/JOSEPH ALVAREZ.m4a",
+      "collection": "OET",
+      "format": "m4a",
+      "bytes": 5697424,
+      "sha256": "89f9dcd2247037ae0bde13a63687110e391028c9b6a73de59f4b3e73ef7250f8",
+      "assetPath": "supplied-materials/files/89f9dcd2247037ae0bde13a63687110e391028c9b6a73de59f4b3e73ef7250f8.m4a",
+      "textPath": "supplied-materials/text/89f9dcd2247037ae0bde13a63687110e391028c9b6a73de59f4b3e73ef7250f8.json",
+      "skills": [
+        "listening"
+      ],
+      "hasText": false,
+      "excerpt": "",
+      "duplicateOf": null
+    },
+    {
+      "id": "genododi-test-6fe93ffbd33db78e",
+      "filename": "JULIE DOOLEY.m4a",
+      "relativePath": "GENODODI OET/‪OET Collection‬‏/Listening/Mock-Tests/Mock-7 Jospeph ALverez/JULIE DOOLEY.m4a",
+      "collection": "OET",
+      "format": "m4a",
+      "bytes": 6051495,
+      "sha256": "3eed706032b0d5f5ad2f9934676dae47eacfe347565c8d32ee203a47514a5909",
+      "assetPath": "supplied-materials/files/3eed706032b0d5f5ad2f9934676dae47eacfe347565c8d32ee203a47514a5909.m4a",
+      "textPath": "supplied-materials/text/3eed706032b0d5f5ad2f9934676dae47eacfe347565c8d32ee203a47514a5909.json",
+      "skills": [
+        "listening"
+      ],
+      "hasText": false,
+      "excerpt": "",
+      "duplicateOf": null
+    },
+    {
+      "id": "genododi-test-dfce35bdbfe2254a",
+      "filename": "PART B.m4a",
+      "relativePath": "GENODODI OET/‪OET Collection‬‏/Listening/Mock-Tests/Mock-7 Jospeph ALverez/PART B.m4a",
+      "collection": "OET",
+      "format": "m4a",
+      "bytes": 12780408,
+      "sha256": "fc1c1372caee53acf5271b79d92936d4b768b02606ed8e0c8771b8c80c390d5a",
+      "assetPath": "supplied-materials/files/fc1c1372caee53acf5271b79d92936d4b768b02606ed8e0c8771b8c80c390d5a.m4a",
+      "textPath": "supplied-materials/text/fc1c1372caee53acf5271b79d92936d4b768b02606ed8e0c8771b8c80c390d5a.json",
+      "skills": [
+        "listening"
+      ],
+      "hasText": false,
+      "excerpt": "",
+      "duplicateOf": null
+    },
+    {
+      "id": "genododi-test-4b0cfad7f886a0f0",
+      "filename": "RADIATION THERAPY.m4a",
+      "relativePath": "GENODODI OET/‪OET Collection‬‏/Listening/Mock-Tests/Mock-7 Jospeph ALverez/RADIATION THERAPY.m4a",
+      "collection": "OET",
+      "format": "m4a",
+      "bytes": 10703224,
+      "sha256": "c5a67e244a393f81a58b6c347dcce2e0b9195227786674677e5f24fd9edfb23e",
+      "assetPath": "supplied-materials/files/c5a67e244a393f81a58b6c347dcce2e0b9195227786674677e5f24fd9edfb23e.m4a",
+      "textPath": "supplied-materials/text/c5a67e244a393f81a58b6c347dcce2e0b9195227786674677e5f24fd9edfb23e.json",
+      "skills": [
+        "listening"
+      ],
+      "hasText": false,
+      "excerpt": "",
+      "duplicateOf": null
+    },
+    {
+      "id": "genododi-test-044be5ee0c702c4f",
+      "filename": "VITAMIN D.m4a",
+      "relativePath": "GENODODI OET/‪OET Collection‬‏/Listening/Mock-Tests/Mock-7 Jospeph ALverez/VITAMIN D.m4a",
+      "collection": "OET",
+      "format": "m4a",
+      "bytes": 11036733,
+      "sha256": "45cf5f22300ba1b6e5ca957b0dce710826bf0322364569560603fa9a1b21c36e",
+      "assetPath": "supplied-materials/files/45cf5f22300ba1b6e5ca957b0dce710826bf0322364569560603fa9a1b21c36e.m4a",
+      "textPath": "supplied-materials/text/45cf5f22300ba1b6e5ca957b0dce710826bf0322364569560603fa9a1b21c36e.json",
+      "skills": [
+        "listening"
+      ],
+      "hasText": false,
+      "excerpt": "",
+      "duplicateOf": null
+    },
+    {
+      "id": "genododi-test-137472dfba1149bd",
+      "filename": "MRS BLACK.mp3",
+      "relativePath": "GENODODI OET/‪OET Collection‬‏/Listening/Mock-Tests/Mock-8 Mrs Black/MRS BLACK.mp3",
+      "collection": "OET",
+      "format": "mp3",
+      "bytes": 31821037,
+      "sha256": "a9864cc9c98604eba2065b0f600bdea2933092f7b3bedbd4f9138de5e757fd79",
+      "assetPath": "supplied-materials/files/a9864cc9c98604eba2065b0f600bdea2933092f7b3bedbd4f9138de5e757fd79.mp3",
+      "textPath": "supplied-materials/text/a9864cc9c98604eba2065b0f600bdea2933092f7b3bedbd4f9138de5e757fd79.json",
+      "skills": [
+        "listening"
+      ],
+      "hasText": false,
+      "excerpt": "",
+      "duplicateOf": null
+    },
+    {
+      "id": "genododi-test-a4b326b36ccf6a44",
+      "filename": "Screenshot (113).png",
+      "relativePath": "GENODODI OET/‪OET Collection‬‏/Listening/Mock-Tests/Mock-8 Mrs Black/Screenshot (113).png",
+      "collection": "OET",
+      "format": "png",
+      "bytes": 134063,
+      "sha256": "6b197dd9117e47b93fc4340bf5cd7d87adde7b3f367f807b2939ac4daf1a7c91",
+      "assetPath": "supplied-materials/files/6b197dd9117e47b93fc4340bf5cd7d87adde7b3f367f807b2939ac4daf1a7c91.png",
+      "textPath": "supplied-materials/text/6b197dd9117e47b93fc4340bf5cd7d87adde7b3f367f807b2939ac4daf1a7c91.json",
+      "skills": [
+        "listening"
+      ],
+      "hasText": true,
+      "excerpt": "2 5_6075684286227284158.pdf - Adobe Acrobat Reader DC File Edit View Window Help Home Tools 5_6075684286227... x Sign In 79 / 263 114% • o Share ANSWERS Search 'Merge PDF' 1. Has anorexia 2. 15 years old Export PDF 3. With the family Create PDF v 4. Her room 5. Breakfast Edit PDF 6. Quiet Comment 7. Concentrating 8. He",
+      "duplicateOf": null,
+      "pageCount": 1,
+      "ocrPageCount": 1
+    },
+    {
+      "id": "genododi-test-e7c8321a7de7685f",
+      "filename": "Screenshot (114).png",
+      "relativePath": "GENODODI OET/‪OET Collection‬‏/Listening/Mock-Tests/Mock-8 Mrs Black/Screenshot (114).png",
+      "collection": "OET",
+      "format": "png",
+      "bytes": 163353,
+      "sha256": "933118d52286260fed15c7fb1008663e92b33605bf5d56c828d79557ef84d9ac",
+      "assetPath": "supplied-materials/files/933118d52286260fed15c7fb1008663e92b33605bf5d56c828d79557ef84d9ac.png",
+      "textPath": "supplied-materials/text/933118d52286260fed15c7fb1008663e92b33605bf5d56c828d79557ef84d9ac.json",
+      "skills": [
+        "listening"
+      ],
+      "hasText": true,
+      "excerpt": "2 5_6075684286227284158.pdf - Adobe Acrobat Reader DC File Edit View Window Help Home Tools 5_6075684286227... x Sign In 80 / 263 114% • o Share Search 'Merge PDF' 13. Below the kneecap Export PDF 14. Niggling Create PDF v 15. Bent 16. Later Edit PDF 17. Cut Comment 18. Right ankle 19. Left hip Combine Files 20. Psyiot",
+      "duplicateOf": null,
+      "pageCount": 1,
+      "ocrPageCount": 1
+    },
+    {
+      "id": "genododi-test-f52d1315e0fb249d",
+      "filename": "Screenshot (115).png",
+      "relativePath": "GENODODI OET/‪OET Collection‬‏/Listening/Mock-Tests/Mock-8 Mrs Black/Screenshot (115).png",
+      "collection": "OET",
+      "format": "png",
+      "bytes": 217300,
+      "sha256": "19fd2e84faa2e3ce519c680d7eb52cba0649127f4346f1c2f654a72ffd35427c",
+      "assetPath": "supplied-materials/files/19fd2e84faa2e3ce519c680d7eb52cba0649127f4346f1c2f654a72ffd35427c.png",
+      "textPath": "supplied-materials/text/19fd2e84faa2e3ce519c680d7eb52cba0649127f4346f1c2f654a72ffd35427c.json",
+      "skills": [
+        "listening"
+      ],
+      "hasText": true,
+      "excerpt": "2 5_6075684286227284158.pdf - Adobe Acrobat Reader DC File Edit View Window Help Home Tools 5_6075684286227... x Sign In 80 / 263 114% • o Share • * 25. A 26. C Search 'Merge PDF' 27. C Export PDF 28. B 29. A Create PDF 30. С 31. C Edit PDF 32. B Comment 33. B 34. C ANJOORAN Combine Files 35. A 36. C Organize Pages v 3",
+      "duplicateOf": null,
+      "pageCount": 1,
+      "ocrPageCount": 1
+    },
+    {
+      "id": "genododi-test-79ebc1ed667dc4a5",
+      "filename": "Questions Paper.pdf",
+      "relativePath": "GENODODI OET/‪OET Collection‬‏/Listening/Mock-Tests/Questions Paper.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 7445635,
+      "sha256": "014d081cb54036faa45416812101414010f18589aabb14ecc081d9b114c7ebe5",
+      "assetPath": "supplied-materials/files/014d081cb54036faa45416812101414010f18589aabb14ecc081d9b114c7ebe5.pdf",
+      "textPath": "supplied-materials/text/014d081cb54036faa45416812101414010f18589aabb14ecc081d9b114c7ebe5.json",
+      "skills": [
+        "listening"
+      ],
+      "hasText": true,
+      "excerpt": "\u0013\u0004\u0015\u0017\u0003\u0004ѹ\u0003\u0014\u0018\b\u0016\u0017 \u0012\u0011\u0016\u0003т\u0003\u0017\u0012\u0003ту +\u00031%&0\u0003- /1\u0003,#\u00031%\"\u00031\"01Ѹ\u00036,2҃))\u0003%\" /\u000314,\u0003!&##\"/\"+1\u0003\"51/ 10ѷ\u0003 +\u0003\" % \"51/ 1Ѹ\u0003 \u0003%\" )1%\u0003-/,#\"00&,+ )\u0003&0\u00031 )(&+$\u00031,\u0003 \u0003- 1&\"+1ѷ ,/\u0003.2\"01&,+0\u0003т\u00031,\u0003ухѸ\u0003 ,*-)\"1\"\u00031%\"\u0003+,1\"0\u00034&1%\u0003&+#,/* 1&,+\u00036,2\u0003%\" / &+\u00031%\"\u0003/\" ,/!&+$ѷ \b51/ 1\u0003тѹ\u0003\u00142\"01&,+0\u0003т\u00031,\u0003ту ,2\u0003%\" /\u0003 \u0003#,2+! 1&,+\u0003!, 1,/\u00031 )(&+$\u00031,\u0003 \u0003/\" \"+1)6\u0003 !*&11\"!\u0003",
+      "duplicateOf": null,
+      "pageCount": 175,
+      "ocrPageCount": 33
+    },
+    {
+      "id": "genododi-test-581eed3fc808ab85",
+      "filename": "A.png",
+      "relativePath": "GENODODI OET/‪OET Collection‬‏/Reading/Reading Mock Test/A.png",
+      "collection": "OET",
+      "format": "png",
+      "bytes": 33747,
+      "sha256": "606807955175e162a409b9328728edd2b38c1ddb8fa6654139f6fb1f5b54087b",
+      "assetPath": "supplied-materials/files/606807955175e162a409b9328728edd2b38c1ddb8fa6654139f6fb1f5b54087b.png",
+      "textPath": "supplied-materials/text/606807955175e162a409b9328728edd2b38c1ddb8fa6654139f6fb1f5b54087b.json",
+      "skills": [
+        "reading"
+      ],
+      "hasText": true,
+      "excerpt": "Answer Key: 1. D 2. A 3. D 4. B 5. C 6. 5 minutes/mins 7. 3 metres 8. (high) speed 9. drowsiness 10. headache 11. CT scan 12. open 13. intubation 14. consciousness 15. opioids 16. neck(s) 17. 6/six hours 18. (head injury) advice sheet 19. (simple) painkillers 20. (a) towel",
+      "duplicateOf": null,
+      "pageCount": 1,
+      "ocrPageCount": 1
+    },
+    {
+      "id": "genododi-test-4c96a5b0bf0f9a07",
+      "filename": "B.png",
+      "relativePath": "GENODODI OET/‪OET Collection‬‏/Reading/Reading Mock Test/B.png",
+      "collection": "OET",
+      "format": "png",
+      "bytes": 7083,
+      "sha256": "80e0a2a2d76e028851a665070b82ad4e4d49bebef28d68795a595853eb3ffa73",
+      "assetPath": "supplied-materials/files/80e0a2a2d76e028851a665070b82ad4e4d49bebef28d68795a595853eb3ffa73.png",
+      "textPath": "supplied-materials/text/80e0a2a2d76e028851a665070b82ad4e4d49bebef28d68795a595853eb3ffa73.json",
+      "skills": [
+        "reading"
+      ],
+      "hasText": true,
+      "excerpt": "Answer Key: 1. C 2. B 3. В 4. C 5. B 6. A",
+      "duplicateOf": null,
+      "pageCount": 1,
+      "ocrPageCount": 1
+    },
+    {
+      "id": "genododi-test-f4d91323f48c63b2",
+      "filename": "C.png",
+      "relativePath": "GENODODI OET/‪OET Collection‬‏/Reading/Reading Mock Test/C.png",
+      "collection": "OET",
+      "format": "png",
+      "bytes": 8109,
+      "sha256": "66a23f25cdcedc335b997a61942795d1e07f3c4c92d1df602bceed66e60d5a8b",
+      "assetPath": "supplied-materials/files/66a23f25cdcedc335b997a61942795d1e07f3c4c92d1df602bceed66e60d5a8b.png",
+      "textPath": "supplied-materials/text/66a23f25cdcedc335b997a61942795d1e07f3c4c92d1df602bceed66e60d5a8b.json",
+      "skills": [
+        "reading"
+      ],
+      "hasText": true,
+      "excerpt": "Answer Key: 1. B 2. D 3. С 4.А 5. C 6. B 7.A 8. D",
+      "duplicateOf": null,
+      "pageCount": 1,
+      "ocrPageCount": 1
+    },
+    {
+      "id": "genododi-test-019854158acab594",
+      "filename": "Part A.pdf",
+      "relativePath": "GENODODI OET/‪OET Collection‬‏/Reading/Reading Mock Test/Part A.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 286524,
+      "sha256": "04b6d9059f9cedf323855818d9839597dd12e67964eee69095e31d7e9cd53626",
+      "assetPath": "supplied-materials/files/04b6d9059f9cedf323855818d9839597dd12e67964eee69095e31d7e9cd53626.pdf",
+      "textPath": "supplied-materials/text/04b6d9059f9cedf323855818d9839597dd12e67964eee69095e31d7e9cd53626.json",
+      "skills": [
+        "reading"
+      ],
+      "hasText": true,
+      "excerpt": "Part A: Texts A - D Text A Primary Clinical Care Guidelines: Management of Head Injuries ▪ Monitor observations including BP (blood pressure) and GCS (level of consciousness according to the Glasgow Coma Scale 1 – 15 ) . ▪ Notify MO (Medical Officer) immediately if level of consciousness alters. ▪ Prepare for intubatio",
+      "duplicateOf": null,
+      "pageCount": 7,
+      "ocrPageCount": 1
+    },
+    {
+      "id": "genododi-test-bc101a0a7b20b8c0",
+      "filename": "Part B.pdf",
+      "relativePath": "GENODODI OET/‪OET Collection‬‏/Reading/Reading Mock Test/Part B.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 106396,
+      "sha256": "8416d8feda5c853970760714b005cde48eeb9666f1d2f07179bd515808fc8664",
+      "assetPath": "supplied-materials/files/8416d8feda5c853970760714b005cde48eeb9666f1d2f07179bd515808fc8664.pdf",
+      "textPath": "supplied-materials/text/8416d8feda5c853970760714b005cde48eeb9666f1d2f07179bd515808fc8664.json",
+      "skills": [
+        "reading"
+      ],
+      "hasText": true,
+      "excerpt": "Part B In this part of the test, there are six short extracts relating to the work of health professionals. For ​questions 1 to 6​, choose the answer (​A​, ​B​ or ​C​) which you think fits best according to the text. Write your answers on the separate ​Answer Sheet​. 1. The purpose of the memo about IV solution bags is",
+      "duplicateOf": null,
+      "pageCount": 4,
+      "ocrPageCount": 0
+    },
+    {
+      "id": "genododi-test-b747cec22ccd3a49",
+      "filename": "Part C.pdf",
+      "relativePath": "GENODODI OET/‪OET Collection‬‏/Reading/Reading Mock Test/Part C.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 82834,
+      "sha256": "75c9866418e600e6fb56ac0f789515dfc750b0671dbb3eb136050b3d151d90db",
+      "assetPath": "supplied-materials/files/75c9866418e600e6fb56ac0f789515dfc750b0671dbb3eb136050b3d151d90db.pdf",
+      "textPath": "supplied-materials/text/75c9866418e600e6fb56ac0f789515dfc750b0671dbb3eb136050b3d151d90db.json",
+      "skills": [
+        "reading"
+      ],
+      "hasText": true,
+      "excerpt": "Part C In this part of the test, there are two texts about different aspects of health care. For questions 1 to 8​, choose the answer (​A​, ​B​, ​C​ or ​D​) which you think fits best according to the text. Write your answers on the separate ​Answer Sheet​. Detecting Carbon Monoxide Poisoning Carbon Monoxide (CO) poison",
+      "duplicateOf": null,
+      "pageCount": 5,
+      "ocrPageCount": 0
+    },
+    {
+      "id": "genododi-test-8499023624a95d13",
+      "filename": "cards.pdf",
+      "relativePath": "GENODODI OET/‪OET Collection‬‏/Speaking/cards.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 11665826,
+      "sha256": "5fa0b7e68dcc955d4a6bd28a040185abf306b39ce37b4f63cfcba94125232097",
+      "assetPath": "supplied-materials/files/5fa0b7e68dcc955d4a6bd28a040185abf306b39ce37b4f63cfcba94125232097.pdf",
+      "textPath": "supplied-materials/text/5fa0b7e68dcc955d4a6bd28a040185abf306b39ce37b4f63cfcba94125232097.json",
+      "skills": [
+        "speaking"
+      ],
+      "hasText": true,
+      "excerpt": "OET FEBRUARY 2015 ROLEPLAYER CARD NO. 1 MEDICINE SETTING Community Health Centre PATIENT You are 63 years old and in good health. You enjoy fresh air and sunshine. You rarely need a doctor. Six days ago when you were digging in the garden, a rusty nail went through your rubber sandal and slightly penetrated the sole of",
+      "duplicateOf": null,
+      "pageCount": 47,
+      "ocrPageCount": 47
+    },
+    {
+      "id": "genododi-test-49245af3f1f720d8",
+      "filename": "Writing-Booklet-Sample.pdf",
+      "relativePath": "GENODODI OET/‪OET Collection‬‏/Writing/Writing-Booklet-Sample.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 181860,
+      "sha256": "6aa32bc0c680a2184620de24836d4038f1214a233b582e2446a39581a41e75f1",
+      "assetPath": "supplied-materials/files/6aa32bc0c680a2184620de24836d4038f1214a233b582e2446a39581a41e75f1.pdf",
+      "textPath": "supplied-materials/text/6aa32bc0c680a2184620de24836d4038f1214a233b582e2446a39581a41e75f1.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": true,
+      "excerpt": "WRITING SUBTEST – ANSWER BOOKLET CANDIDATE NUMBER: LAST NAME: FIRST NAME: Passport Photo OTHER NAMES: Your details and photo will be printed here. PROFESSION: E VENUE: L TEST DATE: P CANDIDATE SIGNATURE: M TIME ALLOWED READING TIME: 5 MINUTES WRITING TIME: 40 MINUTES A INSTRUCTIONS TO CANDIDATES S 1. Reading time: 5 mi",
+      "duplicateOf": "desktop-3bd1b3b64ed10057",
+      "pageCount": 4,
+      "ocrPageCount": 0
+    },
+    {
+      "id": "genododi-test-07d9fc35b0a2c652",
+      "filename": "Listening-Sample-Test-2-Question-Paper (2).pdf",
+      "relativePath": "GENODODI OET/‪2.0 review materials‬‏/Listening/Free sample (2)/Listening-Sample-Test-2-Question-Paper (2).pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 308757,
+      "sha256": "a88b97af02608becb140c2d0cc0c0e4386e319ff7f1d099c4e4c0ac2a190e946",
+      "assetPath": "supplied-materials/files/a88b97af02608becb140c2d0cc0c0e4386e319ff7f1d099c4e4c0ac2a190e946.pdf",
+      "textPath": "supplied-materials/text/a88b97af02608becb140c2d0cc0c0e4386e319ff7f1d099c4e4c0ac2a190e946.json",
+      "skills": [
+        "listening"
+      ],
+      "hasText": true,
+      "excerpt": "Sample Test 2 LISTENING SUB-TEST – QUESTION PAPER CANDIDATE NUMBER: LAST NAME: FIRST NAME: Passport Photo OTHER NAMES: Your details and photo will be printed here. PROFESSION: VENUE: TEST DATE: CANDIDATE SIGNATURE: TIME: APPROXIMATELY 40 MINUTES INSTRUCTIONS TO CANDIDATES: DO NOT open this question paper until you are ",
+      "duplicateOf": null,
+      "pageCount": 12,
+      "ocrPageCount": 0
+    },
+    {
+      "id": "genododi-test-aaf531844224da9c",
+      "filename": "LISTENING TEST 1.mp3",
+      "relativePath": "GENODODI OET/‪2.0 review materials‬‏/other practice tests/ADEL's OET Practice Book/LISTENING TEST 1.mp3",
+      "collection": "OET",
+      "format": "mp3",
+      "bytes": 95119929,
+      "sha256": "a1185f3c75d1b0ad8b100a8d281564b6c1250c989244785a9c803d5d599bf039",
+      "assetPath": "supplied-materials/files/a1185f3c75d1b0ad8b100a8d281564b6c1250c989244785a9c803d5d599bf039.mp3",
+      "textPath": "supplied-materials/text/a1185f3c75d1b0ad8b100a8d281564b6c1250c989244785a9c803d5d599bf039.json",
+      "skills": [
+        "listening"
+      ],
+      "hasText": false,
+      "excerpt": "",
+      "duplicateOf": null
+    },
+    {
+      "id": "genododi-test-ebf9519a52688760",
+      "filename": "LISTENING TEST 2.mp3",
+      "relativePath": "GENODODI OET/‪2.0 review materials‬‏/other practice tests/ADEL's OET Practice Book/LISTENING TEST 2.mp3",
+      "collection": "OET",
+      "format": "mp3",
+      "bytes": 99967221,
+      "sha256": "19602fabc78b12730174dbfd7bf3f04182f72174279ad7340b2cfbea249b161b",
+      "assetPath": "supplied-materials/files/19602fabc78b12730174dbfd7bf3f04182f72174279ad7340b2cfbea249b161b.mp3",
+      "textPath": "supplied-materials/text/19602fabc78b12730174dbfd7bf3f04182f72174279ad7340b2cfbea249b161b.json",
+      "skills": [
+        "listening"
+      ],
+      "hasText": false,
+      "excerpt": "",
+      "duplicateOf": null
+    },
+    {
+      "id": "genododi-test-645af531c331e346",
+      "filename": "Reading-Sample-Test-2-Answer-Key-Part-BC.pdf",
+      "relativePath": "GENODODI OET/‪2.0 review materials‬‏/Reading/Free sample (2)/Reading-Sample-Test-2-Answer-Key-Part-BC.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 166654,
+      "sha256": "8832ac06eea30d87763e3cd8fbd6e4ef7e57d7189b89d00bc1a92cace50f00f7",
+      "assetPath": "supplied-materials/files/8832ac06eea30d87763e3cd8fbd6e4ef7e57d7189b89d00bc1a92cace50f00f7.pdf",
+      "textPath": "supplied-materials/text/8832ac06eea30d87763e3cd8fbd6e4ef7e57d7189b89d00bc1a92cace50f00f7.json",
+      "skills": [
+        "reading"
+      ],
+      "hasText": true,
+      "excerpt": "Sample Test 2 READING SUB-TEST – ANSWER KEY PARTS B & C www.occupationalenglishtest.org © Cambridge Boxhill Language Assessment – ABN 51 988 559 414 READING SUB-TEST – ANSWER KEY PART B: QUESTIONS 1-6 1 C can delegate responsibility for the cupboard keys to another ward. 2 A give a valid reason for conducting it. 3 A h",
+      "duplicateOf": null,
+      "pageCount": 2,
+      "ocrPageCount": 0
+    },
+    {
+      "id": "genododi-test-e854f846cbc04372",
+      "filename": "Reading-Sample-Test-2-Answer-KeyPart-A.pdf",
+      "relativePath": "GENODODI OET/‪2.0 review materials‬‏/Reading/Free sample (2)/Reading-Sample-Test-2-Answer-KeyPart-A.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 172295,
+      "sha256": "9da8100a384e406590cfacc498fde8d86bf618348f4f93242badcf3bb437a766",
+      "assetPath": "supplied-materials/files/9da8100a384e406590cfacc498fde8d86bf618348f4f93242badcf3bb437a766.pdf",
+      "textPath": "supplied-materials/text/9da8100a384e406590cfacc498fde8d86bf618348f4f93242badcf3bb437a766.json",
+      "skills": [
+        "reading"
+      ],
+      "hasText": true,
+      "excerpt": "Sample Test 2 READING SUB-TEST – ANSWER KEY PART A SAMPLE www.occupationalenglishtest.org © Cambridge Boxhill Language Assessment – ABN 51 988 559 414 READING SUB-TEST – ANSWER KEY PART A: QUESTIONS: 1 – 20 1 D 2 C 3 B 4 D 5 A 6 B 7 C 8 headache(s) 9 hepatitis C / hep C 10 ALF / acute liver failure 11 renal failure (NO",
+      "duplicateOf": null,
+      "pageCount": 2,
+      "ocrPageCount": 0
+    },
+    {
+      "id": "genododi-test-e1c29cd1ce0d8368",
+      "filename": "Reading-Sample-Test-2-Question-Paper-Part-A.pdf",
+      "relativePath": "GENODODI OET/‪2.0 review materials‬‏/Reading/Free sample (2)/Reading-Sample-Test-2-Question-Paper-Part-A.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 239267,
+      "sha256": "1bed193ce0f24c4313777e59f079f7b7e8b5b900ba89058151f79b2879f5c08a",
+      "assetPath": "supplied-materials/files/1bed193ce0f24c4313777e59f079f7b7e8b5b900ba89058151f79b2879f5c08a.pdf",
+      "textPath": "supplied-materials/text/1bed193ce0f24c4313777e59f079f7b7e8b5b900ba89058151f79b2879f5c08a.json",
+      "skills": [
+        "reading"
+      ],
+      "hasText": true,
+      "excerpt": "Sample Test 2 READING SUB-TEST – QUESTION PAPER: PART A CANDIDATE NUMBER: LAST NAME: FIRST NAME: E Passport Photo OTHER NAMES: Your details and photo will be printed here. L PROFESSION: VENUE: P TEST DATE: CANDIDATE SIGNATURE: TIME: 15 MINUTES A M S INSTRUCTIONS TO CANDIDATES: DO NOT open this Question Paper or the Tex",
+      "duplicateOf": null,
+      "pageCount": 4,
+      "ocrPageCount": 0
+    },
+    {
+      "id": "genododi-test-1b0cf71c968c9804",
+      "filename": "Reading-Sample-Test-2-Question-Paper-Part-BC.pdf",
+      "relativePath": "GENODODI OET/‪2.0 review materials‬‏/Reading/Free sample (2)/Reading-Sample-Test-2-Question-Paper-Part-BC.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 423365,
+      "sha256": "3d9a33ceb50282784e19ad3ca5fe9b22a94f103758e389820a53e91c90c7faeb",
+      "assetPath": "supplied-materials/files/3d9a33ceb50282784e19ad3ca5fe9b22a94f103758e389820a53e91c90c7faeb.pdf",
+      "textPath": "supplied-materials/text/3d9a33ceb50282784e19ad3ca5fe9b22a94f103758e389820a53e91c90c7faeb.json",
+      "skills": [
+        "reading"
+      ],
+      "hasText": true,
+      "excerpt": "Sample Test 2 READING SUB-TEST – QUESTION PAPER: PARTS B & C CANDIDATE NUMBER: LAST NAME: FIRST NAME: E Passport Photo OTHER NAMES: Your details and photo will be printed here. L PROFESSION: VENUE: P TEST DATE: CANDIDATE SIGNATURE: TIME: 45 MINUTES INSTRUCTIONS TO CANDIDATES: A M S Do not open this Question Paper until",
+      "duplicateOf": null,
+      "pageCount": 16,
+      "ocrPageCount": 0
+    },
+    {
+      "id": "genododi-test-141384d94e2c2bd6",
+      "filename": "Reading-Sample-Test-2-Text-Booklet-Part-A.pdf",
+      "relativePath": "GENODODI OET/‪2.0 review materials‬‏/Reading/Free sample (2)/Reading-Sample-Test-2-Text-Booklet-Part-A.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 349671,
+      "sha256": "0612d93b90bf9eb7ac2ab4603bb45bf1967bf4cf5328decced8beb6342ec7f34",
+      "assetPath": "supplied-materials/files/0612d93b90bf9eb7ac2ab4603bb45bf1967bf4cf5328decced8beb6342ec7f34.pdf",
+      "textPath": "supplied-materials/text/0612d93b90bf9eb7ac2ab4603bb45bf1967bf4cf5328decced8beb6342ec7f34.json",
+      "skills": [
+        "reading"
+      ],
+      "hasText": true,
+      "excerpt": "Sample Test 2 READING SUB-TEST – TEXT BOOKLET: PART A CANDIDATE NUMBER: LAST NAME: FIRST NAME: Passport Photo OTHER NAMES: Your details and photo will be printed here. E PROFESSION: L VENUE: TEST DATE: P CANDIDATE SIGNATURE: A M S SAMPLE www.occupationalenglishtest.org © Cambridge Boxhill Language Assessment – ABN 51 9",
+      "duplicateOf": null,
+      "pageCount": 4,
+      "ocrPageCount": 0
+    },
+    {
+      "id": "genododi-test-2afb4b7d92228ae5",
+      "filename": "Screenshot_2019-04-09-09-46-10-47.png",
+      "relativePath": "GENODODI OET/‪2.0 review materials‬‏/Reading/Free sample(3)/Answers/Screenshot_2019-04-09-09-46-10-47.png",
+      "collection": "OET",
+      "format": "png",
+      "bytes": 266440,
+      "sha256": "dc5afc5296a729c70e6b31e01c25867eefe33baf20880ca21aa368f02e8c3452",
+      "assetPath": "supplied-materials/files/dc5afc5296a729c70e6b31e01c25867eefe33baf20880ca21aa368f02e8c3452.png",
+      "textPath": "supplied-materials/text/dc5afc5296a729c70e6b31e01c25867eefe33baf20880ca21aa368f02e8c3452.json",
+      "skills": [
+        "reading"
+      ],
+      "hasText": true,
+      "excerpt": "On Call 06:57 Return Practice Test 1: Answer Key Reading Part A: Answer Key 1 b 2 C 3 a 4 b 5 d 6 a 7 d 8 <30 mcg/L / less than 30 mcg/L / < 30 mcg / L/ <30mcg/L 9 excess cow's milk / excess cow milk / excess cows' milk / excessive cow's milk / excessive cow milk / excessive cows' milk / excess cow's milk intake / exce",
+      "duplicateOf": null,
+      "pageCount": 1,
+      "ocrPageCount": 1
+    },
+    {
+      "id": "genododi-test-dd9a601c1edd7611",
+      "filename": "Screenshot_2019-04-09-09-48-48-29.png",
+      "relativePath": "GENODODI OET/‪2.0 review materials‬‏/Reading/Free sample(3)/Answers/Screenshot_2019-04-09-09-48-48-29.png",
+      "collection": "OET",
+      "format": "png",
+      "bytes": 80009,
+      "sha256": "e6cdb968631df033e99eb89e56983aaece8529afd30f505aa391854a6a97e8fd",
+      "assetPath": "supplied-materials/files/e6cdb968631df033e99eb89e56983aaece8529afd30f505aa391854a6a97e8fd.png",
+      "textPath": "supplied-materials/text/e6cdb968631df033e99eb89e56983aaece8529afd30f505aa391854a6a97e8fd.json",
+      "skills": [
+        "reading"
+      ],
+      "hasText": true,
+      "excerpt": "9:48 .01 .| 7 28 •4 • app.e2language.com/Student/Answ C (2) LANGUAGE Practice Test 1: Answer Key 1 C 2. C З.В 4. C 5. А 6_ А Close → 5",
+      "duplicateOf": null,
+      "pageCount": 1,
+      "ocrPageCount": 1
+    },
+    {
+      "id": "genododi-test-a432789d3267a155",
+      "filename": "Screenshot_2019-04-09-09-50-03-71.png",
+      "relativePath": "GENODODI OET/‪2.0 review materials‬‏/Reading/Free sample(3)/Answers/Screenshot_2019-04-09-09-50-03-71.png",
+      "collection": "OET",
+      "format": "png",
+      "bytes": 96434,
+      "sha256": "253bfdbdc0b751ed7df36518a6ada9de58eecc22cf6229c7e79f350f8fd7ddc9",
+      "assetPath": "supplied-materials/files/253bfdbdc0b751ed7df36518a6ada9de58eecc22cf6229c7e79f350f8fd7ddc9.png",
+      "textPath": "supplied-materials/text/253bfdbdc0b751ed7df36518a6ada9de58eecc22cf6229c7e79f350f8fd7ddc9.json",
+      "skills": [
+        "reading"
+      ],
+      "hasText": true,
+      "excerpt": "• app.e2language.com/Student/Answ 2) LANGUAGE Practice Test 1: Answer Key Reading Part C: Answer Key 7 d 8 C 9 c 10 b 11 b 12 a 13 b 14 a 15 C 16 a 17 c 18 b 19 a 20 d 21 c 22 a Close < →",
+      "duplicateOf": null,
+      "pageCount": 1,
+      "ocrPageCount": 1
+    },
+    {
+      "id": "genododi-test-e7b58a2c30e87725",
+      "filename": "reading sample B.pdf",
+      "relativePath": "GENODODI OET/‪2.0 review materials‬‏/Reading/Free sample(3)/reading sample B.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 118044,
+      "sha256": "55971e2be7f2a1abf2e8a345c4800504e6828b63a0300fac374615a54a0b5f1a",
+      "assetPath": "supplied-materials/files/55971e2be7f2a1abf2e8a345c4800504e6828b63a0300fac374615a54a0b5f1a.pdf",
+      "textPath": "supplied-materials/text/55971e2be7f2a1abf2e8a345c4800504e6828b63a0300fac374615a54a0b5f1a.json",
+      "skills": [
+        "reading"
+      ],
+      "hasText": true,
+      "excerpt": "READING SUB-TEST – QUESTION PAPER: PART B CANDIDATE NUMBER: LAST NAME: FIRST NAME: OTHER NAMES: Passport Photo PROFESSION: VENUE: TEST DATE: CANDIDATE SIGNATURE INSTRUCTIONS TO CANDIDATES: DO NOT open this Question Paper until you are told to do so. One mark will be granted for each correct answer. Answer ALL questions",
+      "duplicateOf": null,
+      "pageCount": 7,
+      "ocrPageCount": 0
+    },
+    {
+      "id": "genododi-test-bf1fc82bc65ee1a5",
+      "filename": "reading sample-A.pdf",
+      "relativePath": "GENODODI OET/‪2.0 review materials‬‏/Reading/Free sample(3)/reading sample-A.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 787262,
+      "sha256": "43c3ead6d482c44d747817a40cf005afd477297288fc148e9f262413981d7614",
+      "assetPath": "supplied-materials/files/43c3ead6d482c44d747817a40cf005afd477297288fc148e9f262413981d7614.pdf",
+      "textPath": "supplied-materials/text/43c3ead6d482c44d747817a40cf005afd477297288fc148e9f262413981d7614.json",
+      "skills": [
+        "reading"
+      ],
+      "hasText": true,
+      "excerpt": "Practice test READING SUB-TEST – TEXT BOOKLET: PART A CANDIDATE NUMBER: LAST NAME: FIRST NAME: OTHER NAMES: Passport Photo PROFESSION: VENUE: TEST DATE: CANDIDATE SIGNATURE www.e2language.com Sedation: Iron deficiencies Text A Iron deficiency and iron deficiency anaemia are common. The serum ferritin level is the most ",
+      "duplicateOf": null,
+      "pageCount": 5,
+      "ocrPageCount": 1
+    },
+    {
+      "id": "genododi-test-f132ce277d13f5f5",
+      "filename": "Practice-Book_Speaking_NUR_set-1.pdf",
+      "relativePath": "GENODODI OET/‪2.0 review materials‬‏/Speaking/Practice-Book_Speaking_NUR_set-1.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 2818995,
+      "sha256": "63c085be2409f48f3acb2ce236f5a51b32c9dcd380657286ba0fb92dad12a025",
+      "assetPath": "supplied-materials/files/63c085be2409f48f3acb2ce236f5a51b32c9dcd380657286ba0fb92dad12a025.pdf",
+      "textPath": "supplied-materials/text/63c085be2409f48f3acb2ce236f5a51b32c9dcd380657286ba0fb92dad12a025.json",
+      "skills": [
+        "speaking"
+      ],
+      "hasText": true,
+      "excerpt": "OFFICIAL OET PREPARATION MATERIALS Practice Book Set 1 Nursing SPEAKING ISBN: 978-0-9807653-8-0 © Copyright Cambridge Boxhill Language Assessment. This work is copyright. Apart from any use permitted under the Copyright Act 1968, no part may be reproduced by any process without prior written permission from Cambridge B",
+      "duplicateOf": null,
+      "pageCount": 37,
+      "ocrPageCount": 0
+    },
+    {
+      "id": "genododi-test-d45f3d5e676d4039",
+      "filename": "Spaking 35 samples.pdf",
+      "relativePath": "GENODODI OET/‪2.0 review materials‬‏/Speaking/Spaking 35 samples.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 228367,
+      "sha256": "f53e293dd57d6ba1b29964f46ed02c5da11d93205b7553ce69b901342d247a48",
+      "assetPath": "supplied-materials/files/f53e293dd57d6ba1b29964f46ed02c5da11d93205b7553ce69b901342d247a48.pdf",
+      "textPath": "supplied-materials/text/f53e293dd57d6ba1b29964f46ed02c5da11d93205b7553ce69b901342d247a48.json",
+      "skills": [
+        "speaking"
+      ],
+      "hasText": true,
+      "excerpt": "1. Caesarean section and rheumatoid arthritis Setting: maternity ward Patient: you are in hospital for delivery for your third child by caesarean section, when you are also diagnosed with rheumatoid arthritis. You have severe pain in your wrists and shoulders and you are feeling very fatigued, as the pain is disturbing",
+      "duplicateOf": null,
+      "pageCount": 35,
+      "ocrPageCount": 0
+    },
+    {
+      "id": "genododi-test-31d1b40db6b361d7",
+      "filename": "speaking book.pdf",
+      "relativePath": "GENODODI OET/‪2.0 review materials‬‏/Speaking/speaking book.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 123363,
+      "sha256": "4686932be904379daf0a5220844ccb60ab7103ed91bfe068dfd364df643c7958",
+      "assetPath": "supplied-materials/files/4686932be904379daf0a5220844ccb60ab7103ed91bfe068dfd364df643c7958.pdf",
+      "textPath": "supplied-materials/text/4686932be904379daf0a5220844ccb60ab7103ed91bfe068dfd364df643c7958.json",
+      "skills": [
+        "speaking"
+      ],
+      "hasText": true,
+      "excerpt": "Role Player Card No. 25 NURSING SETTING Emergency department PATIENT You are an 18 year old female with undiagnosed anorexia nervosa who has self pre- sented to an emergency department due to severe heart palpitations which you’ve never had before. Initially the doctors give you some heart drugs to slow your heart back",
+      "duplicateOf": null,
+      "pageCount": 21,
+      "ocrPageCount": 0
+    },
+    {
+      "id": "genododi-test-88d8acbc30b240a4",
+      "filename": "Speaking-Nursing-Sample-Test-1.pdf",
+      "relativePath": "GENODODI OET/‪2.0 review materials‬‏/Speaking/Speaking-Nursing-Sample-Test-1.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 83480,
+      "sha256": "5e51897a0d91254f64b84df1472da84dd09bd48490de6c6166b412bd76fe985c",
+      "assetPath": "supplied-materials/files/5e51897a0d91254f64b84df1472da84dd09bd48490de6c6166b412bd76fe985c.pdf",
+      "textPath": "supplied-materials/text/5e51897a0d91254f64b84df1472da84dd09bd48490de6c6166b412bd76fe985c.json",
+      "skills": [
+        "speaking"
+      ],
+      "hasText": true,
+      "excerpt": "2(7 :(473,\u0003;,:; ROLEPLAYER\u0003&$5' NO. 1 NURSING /VTL\u0003=PZP[ PATIENT @V\\\u0003OH]L\u0003ILLU\u0003H\u0003KPHIL[PJ\u0003MVY\u0003H\u0003U\\TILY\u0003VM\u0003`LHYZ\u0003HUK\u0003OH]L\u0003THUHNLK\u0003`V\\Y\u0003KPHIL[LZ\u0003 ^P[O\u0003KPL[\u0003HUK\u0003[HISL[Z\u0015\u0003/V^L]LY\u0013\u0003`V\\Y\u0003KVJ[VY\u0003^HU[Z\u0003`V\\\u0003[V\u0003Z[HY[\u0003OH]PUN\u0003PUZ\\SPU\u0003 PUQLJ[PVUZ\u0003HUK\u0003OHZ\u0003HZRLK\u0003[OL\u0003KPZ[YPJ[\u0003U\\YZL\u0003[V\u0003]PZP[\u0003`V\\\u0003H[\u0003OVTL\u0003[V\u0003[LHJO\u0003`V\\\u0003OV^\u0003[V\u0003 NP]L\u0003`V\\YZL",
+      "duplicateOf": null,
+      "pageCount": 1,
+      "ocrPageCount": 0
+    },
+    {
+      "id": "genododi-test-261d2482414fc492",
+      "filename": "Speaking-Nursing-Sample-Test-2.pdf",
+      "relativePath": "GENODODI OET/‪2.0 review materials‬‏/Speaking/Speaking-Nursing-Sample-Test-2.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 74262,
+      "sha256": "940ab97b6f55dd83cd0bf9345986cc640515c9ed1550ec1272f0a7e14a4881ae",
+      "assetPath": "supplied-materials/files/940ab97b6f55dd83cd0bf9345986cc640515c9ed1550ec1272f0a7e14a4881ae.pdf",
+      "textPath": "supplied-materials/text/940ab97b6f55dd83cd0bf9345986cc640515c9ed1550ec1272f0a7e14a4881ae.json",
+      "skills": [
+        "speaking"
+      ],
+      "hasText": true,
+      "excerpt": "2(7 :(473,\u0003;,:; ROLEPLAYER\u0003&$5' NO. 1 NURSING *OPSKYLU\u000eZ\u0003/VZWP[HS CARER @V\\Y\u0003[OYLL\u0014`LHY\u0014VSK\u0003JOPSK\u0003OHZ\u0003ILLU\u0003IYV\\NO[\u0003[V\u0003OVZWP[HS\u0003Z\\MMLYPUN\u0003MYVT\u0003JOLZ[\u0003 [PNO[ULZZ\u0013\u0003^OLLaPUN\u0003HUK\u0003KPMMPJ\\S[`\u0003IYLH[OPUN\u0015\u0003@V\\\u0003HYL\u0003L_[YLTLS`\u0003HU_PV\\Z\u0003HZ\u0003`V\\\u0003MLHY\u0003 `V\\Y\u0003JOPSK\u0003OHZ\u0003HZ[OTH\u0015\u0003@V\\\u0003OH]L\u0003ILLU\u0003^HP[PUN\u0003[V\u0003ZLL\u0003H\u0003KVJ[VY\u0015\u0003(\u0003U\\YZL\u0003PZ\u0003HZRPUN\u0003 `V\\\u0003X",
+      "duplicateOf": null,
+      "pageCount": 1,
+      "ocrPageCount": 0
+    },
+    {
+      "id": "genododi-test-a29f8f164013632d",
+      "filename": "50 Writing task + sample letters.pdf",
+      "relativePath": "GENODODI OET/‪2.0 review materials‬‏/writing/50 Writing task + sample letters.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 1286856,
+      "sha256": "68de649b75dad8b78b1f589797d53094dde3912fb7903f8061edd8fe103ec634",
+      "assetPath": "supplied-materials/files/68de649b75dad8b78b1f589797d53094dde3912fb7903f8061edd8fe103ec634.pdf",
+      "textPath": "supplied-materials/text/68de649b75dad8b78b1f589797d53094dde3912fb7903f8061edd8fe103ec634.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": true,
+      "excerpt": "50 MEDICAL WRITING TASK + Sample Letters OET OCCUPATIONAI FNGUISH TEST I TIME ALLOWED: READING TIME: 5 MINUTES Task 1 WRITING TIME: 40 MINUTES Read the case notes below and complete the writing task which follows. notes: Hospital: St. Mary’s Public Hospital, 32 Fredrick Street, Proudhurst Patient Details: Ms Bethany Ta",
+      "duplicateOf": null,
+      "pageCount": 173,
+      "ocrPageCount": 1
+    },
+    {
+      "id": "genododi-test-bf1ea61bda33b444",
+      "filename": "Sample inform ebola.png",
+      "relativePath": "GENODODI OET/‪2.0 review materials‬‏/writing/Case notes(Nurse)/Inform letter/Ebola/Sample inform ebola.png",
+      "collection": "OET",
+      "format": "png",
+      "bytes": 348266,
+      "sha256": "8ea9d4b3a14a5b4db22e4fcc52d278902129898d9bbaf8b68bdf4f014a1f178b",
+      "assetPath": "supplied-materials/files/8ea9d4b3a14a5b4db22e4fcc52d278902129898d9bbaf8b68bdf4f014a1f178b.png",
+      "textPath": "supplied-materials/text/8ea9d4b3a14a5b4db22e4fcc52d278902129898d9bbaf8b68bdf4f014a1f178b.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": true,
+      "excerpt": "9:10 .00 0 • Д СC https://drive.google.com/drive/mobile... inform letter.docx W 28 January, 2018 To whom it may concern: I am writing to inform those of you about the possibility of exposure to the Ebola disease. Ebola is a virulent disease spreading through a direct or indirect contact with an infected person, animal ",
+      "duplicateOf": null,
+      "pageCount": 1,
+      "ocrPageCount": 1
+    },
+    {
+      "id": "genododi-test-c4e88d09020914f8",
+      "filename": "Benchmark corrected letters.pdf",
+      "relativePath": "GENODODI OET/‪2.0 review materials‬‏/writing/Corrected letters/Benchmark corrected letters.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 4740014,
+      "sha256": "b73f8fb27dd15ad41d5c8779ae94fd8c43a30eb1879723e7284cdfd9752961c2",
+      "assetPath": "supplied-materials/files/b73f8fb27dd15ad41d5c8779ae94fd8c43a30eb1879723e7284cdfd9752961c2.pdf",
+      "textPath": "supplied-materials/text/b73f8fb27dd15ad41d5c8779ae94fd8c43a30eb1879723e7284cdfd9752961c2.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": true,
+      "excerpt": "Community Nurse Head Care Well Hospital Birmingham. 05 May 2010 Dear Community Nurse Head, Re: Mr. Alfred Billy: I’m writing to refer Mr. Alfred Billy, a 52-year-old truck driver admitted to our hospital with diagnosis of Commented [AH1]: I am skin cancer – Basal Cell Carcinoma of the neck. Commented [AH2]: basal cell ",
+      "duplicateOf": null,
+      "pageCount": 18,
+      "ocrPageCount": 0
+    },
+    {
+      "id": "genododi-test-bb7d0862dba7d087",
+      "filename": "Model-Letter_2010.pdf",
+      "relativePath": "GENODODI OET/‪2.0 review materials‬‏/writing/model letters/Model-Letter_2010.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 163447,
+      "sha256": "38fe7297529c85a66747e7ef7cfc92d1de9a6287d3e2c45f02e9ba79f15ea541",
+      "assetPath": "supplied-materials/files/38fe7297529c85a66747e7ef7cfc92d1de9a6287d3e2c45f02e9ba79f15ea541.pdf",
+      "textPath": "supplied-materials/text/38fe7297529c85a66747e7ef7cfc92d1de9a6287d3e2c45f02e9ba79f15ea541.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": true,
+      "excerpt": "Ms Samantha Bruin, Senior nurse, Greywalls Nursing Home, 27 Station Road, Greywalls (Today’s date) Dear Ms Bruin, RE: Mr Gerald Baker, aged 79 Mr Baker will be discharged back into your care on the 7/9 after undergoing a total left hip replacement. He can bear his own weight, and with the help of a wheelie walker can w",
+      "duplicateOf": null,
+      "pageCount": 1,
+      "ocrPageCount": 0
+    },
+    {
+      "id": "genododi-test-85a56b6d86ad5751",
+      "filename": "Model-Letter_2014.pdf",
+      "relativePath": "GENODODI OET/‪2.0 review materials‬‏/writing/model letters/Model-Letter_2014.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 162740,
+      "sha256": "1a7b40f8911507f1f59ce04523d75b6096ebdb3cdca29db0ab9425f731b87fe6",
+      "assetPath": "supplied-materials/files/1a7b40f8911507f1f59ce04523d75b6096ebdb3cdca29db0ab9425f731b87fe6.pdf",
+      "textPath": "supplied-materials/text/1a7b40f8911507f1f59ce04523d75b6096ebdb3cdca29db0ab9425f731b87fe6.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": true,
+      "excerpt": "Ms Georgine Ponsford, Resident Community Nurse, Community Retirement Home 103 Light Street, Newtown (Today’s date) Dear Ms Ponsford, RE: Mr Lionel Ramamurthy, aged 63 years Mr Ramamurthy will be discharged tomorrow (11/2) from Newtown Public Hospital back into your care following a bout of pneumonia. He was admitted wi",
+      "duplicateOf": null,
+      "pageCount": 1,
+      "ocrPageCount": 0
+    },
+    {
+      "id": "genododi-test-a1a5a3198ddbc9a9",
+      "filename": "Writing-Nursing-Sample-Test-1.pdf",
+      "relativePath": "GENODODI OET/‪2.0 review materials‬‏/writing/model letters/Writing-Nursing-Sample-Test-1.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 200458,
+      "sha256": "e9d199e820413ebb4b71030bcc6e0402b336216f28cea3af9dd7ae3e46a7c8de",
+      "assetPath": "supplied-materials/files/e9d199e820413ebb4b71030bcc6e0402b336216f28cea3af9dd7ae3e46a7c8de.pdf",
+      "textPath": "supplied-materials/text/e9d199e820413ebb4b71030bcc6e0402b336216f28cea3af9dd7ae3e46a7c8de.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": true,
+      "excerpt": "Writing sub-test Nursing Sample Test Please print in BLOCK LETTERS Candidate number – – Family name Other name(s) City Date of test Candidate’s signature YOU MUST NOT REMOVE OET MATERIAL FROM THE TEST ROOM The OET Centre GPO Box 372 Telephone: +613 8656 4000 Melbourne VIC 3001 Facsimile: +613 8656 4020 Australia www.oc",
+      "duplicateOf": null,
+      "pageCount": 4,
+      "ocrPageCount": 0
+    },
+    {
+      "id": "genododi-test-35ade1d86af31f2d",
+      "filename": "Writing-Nursing-Sample-Test-2.pdf",
+      "relativePath": "GENODODI OET/‪2.0 review materials‬‏/writing/model letters/Writing-Nursing-Sample-Test-2.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 160666,
+      "sha256": "cc2f24d092f624d7f7630ddb532205a74845cf55d251cef7fe0f8a37e387a63f",
+      "assetPath": "supplied-materials/files/cc2f24d092f624d7f7630ddb532205a74845cf55d251cef7fe0f8a37e387a63f.pdf",
+      "textPath": "supplied-materials/text/cc2f24d092f624d7f7630ddb532205a74845cf55d251cef7fe0f8a37e387a63f.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": true,
+      "excerpt": "Writing sub-test Nursing Sample Test Please print in BLOCK LETTERS Candidate number – – Family name Other name(s) City Date of test Candidate’s signature YOU MUST NOT REMOVE OET MATERIAL FROM THE TEST ROOM The OET Centre GPO Box 372 Telephone: +613 8656 4000 Melbourne VIC 3001 Facsimile: +613 8656 4020 Australia www.oc",
+      "duplicateOf": null,
+      "pageCount": 4,
+      "ocrPageCount": 0
+    },
+    {
+      "id": "genododi-test-4211aaf68bebf85a",
+      "filename": "Nursing-Writing-Sample-Test-3.pdf",
+      "relativePath": "GENODODI OET/‪2.0 review materials‬‏/writing/Nursing-Writing-Sample-Test-3.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 603753,
+      "sha256": "ac2f594f873fe8d5838d0388dc440eec7006434bffc13acf3f65cf802a88776e",
+      "assetPath": "supplied-materials/files/ac2f594f873fe8d5838d0388dc440eec7006434bffc13acf3f65cf802a88776e.pdf",
+      "textPath": "supplied-materials/text/ac2f594f873fe8d5838d0388dc440eec7006434bffc13acf3f65cf802a88776e.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": true,
+      "excerpt": "NURSAMPLE03 WRITING SUB-TEST – TEST BOOKLET INSTRUCTIONS TO CANDIDATES You must write your answer for the Writing sub-test in the Writing Answer Booklet. You must NOT remove OET material from the test room. www.occupationalenglishtest.org © Cambridge Boxhill Language Assessment – ABN 51 988 559 414 (2019) Occupational ",
+      "duplicateOf": null,
+      "pageCount": 5,
+      "ocrPageCount": 0
+    },
+    {
+      "id": "genododi-test-581bbb47c3a36032",
+      "filename": "OET-Grammar-Writing-Letter-Structure.pdf",
+      "relativePath": "GENODODI OET/‪2.0 review materials‬‏/writing/OET-Grammar-Writing-Letter-Structure.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 544527,
+      "sha256": "51a8c3e6dbf515d5ec037998d12f098974fcd43bbc87b320e2a8962ba779bcfb",
+      "assetPath": "supplied-materials/files/51a8c3e6dbf515d5ec037998d12f098974fcd43bbc87b320e2a8962ba779bcfb.pdf",
+      "textPath": "supplied-materials/text/51a8c3e6dbf515d5ec037998d12f098974fcd43bbc87b320e2a8962ba779bcfb.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": true,
+      "excerpt": "Introductions There are a variety of ways to write introductions and with practice you can develop a formula that works for you. For the purpose of this document, the opening salutation and subject will be included as part of the introduction. Salutation: If the name of the person is included in the case notes then it ",
+      "duplicateOf": null,
+      "pageCount": 18,
+      "ocrPageCount": 0
+    },
+    {
+      "id": "genododi-test-4fbcc91b1a2f1356",
+      "filename": "sentence structure correction letter.pdf",
+      "relativePath": "GENODODI OET/‪2.0 review materials‬‏/writing/sentence structure correction letter.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 1188393,
+      "sha256": "140438f4885b07687b510cb243619a20f350f1bde3c8393205c68073b31a055a",
+      "assetPath": "supplied-materials/files/140438f4885b07687b510cb243619a20f350f1bde3c8393205c68073b31a055a.pdf",
+      "textPath": "supplied-materials/text/140438f4885b07687b510cb243619a20f350f1bde3c8393205c68073b31a055a.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": true,
+      "excerpt": "Medical Letter - Writing phrases Page 1 of 6 Writing Phrases for Medical Letter OPEN ING SALUTATION Dear Doctor / Registrar / Dr. Smith / Michael, Re: Patient … (John Smith) , DOB … (1.2.1950) [DOB – Date of birth] OPENING CLAUSE [Referral/Admission plus Patient data] Thank you for (urgently) seeing … (the above patien",
+      "duplicateOf": null,
+      "pageCount": 69,
+      "ocrPageCount": 19
+    },
+    {
+      "id": "genododi-test-c96afbb46d08b4a9",
+      "filename": "Material PDF.pdf",
+      "relativePath": "GENODODI OET/‪OET Collection‬‏/Listening/New Listenings & Readings/Material PDF.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 15407729,
+      "sha256": "e54123109b5ce2dfe176330a022f2ce7085c6a2ed2a820edbac94bb72a671f20",
+      "assetPath": "supplied-materials/files/e54123109b5ce2dfe176330a022f2ce7085c6a2ed2a820edbac94bb72a671f20.pdf",
+      "textPath": "supplied-materials/text/e54123109b5ce2dfe176330a022f2ce7085c6a2ed2a820edbac94bb72a671f20.json",
+      "skills": [
+        "listening"
+      ],
+      "hasText": true,
+      "excerpt": "PRACTICE MATERIALS LISTENING OET 20 READING MANJOORAN Connect OET 2 LISTENING MANJOORAN Connect MANJOORAN Connect 2| Page INDEX Listening FAQs 4 About the Listening sub-test 5 1. Listening test- Riley Cooper 7-14 2. Listening test- Michel Fisher 15-22 3. Listening test- Jill 23-30 4. Listening test- Jim Fisher 31-38 5.",
+      "duplicateOf": null,
+      "pageCount": 263,
+      "ocrPageCount": 10
+    },
+    {
+      "id": "genododi-test-085f612c9316a163",
+      "filename": "Authentic Reading Materials.pdf",
+      "relativePath": "GENODODI OET/‪OET Collection‬‏/Reading/Authentic Reading Materials.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 21565965,
+      "sha256": "dcd33da123191ef9f36e58869a8593d8f4c9cd976d195181076ca4b0bf440dac",
+      "assetPath": "supplied-materials/files/dcd33da123191ef9f36e58869a8593d8f4c9cd976d195181076ca4b0bf440dac.pdf",
+      "textPath": "supplied-materials/text/dcd33da123191ef9f36e58869a8593d8f4c9cd976d195181076ca4b0bf440dac.json",
+      "skills": [
+        "reading"
+      ],
+      "hasText": true,
+      "excerpt": "Occupational English Test 2.0 Reading Subtest (All authentic materials) Table of Contents 1. Test 1 (Practice book 1): Page 3 2. Test 2 (Practice book 2): Page 28 3. Test 3 (Practice book 3): Page 54 4. Test 4 (OET sample 1): Page 79 5. Test 5 (OET sample 2): Page 105 6. Test 6 (E2language 1): Page 125 7. Test 7 (E2lan",
+      "duplicateOf": null,
+      "pageCount": 275,
+      "ocrPageCount": 6
+    },
+    {
+      "id": "genododi-test-ef9c7c9d0dc07aab",
+      "filename": "OET-2.0-READING.pdf",
+      "relativePath": "GENODODI OET/‪OET Collection‬‏/Reading/OET-2.0-READING.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 2196877,
+      "sha256": "34e238affea0779f1b28fe4fac766562a0e3cbdf97aebb63a5500263d669e51d",
+      "assetPath": "supplied-materials/files/34e238affea0779f1b28fe4fac766562a0e3cbdf97aebb63a5500263d669e51d.pdf",
+      "textPath": "supplied-materials/text/34e238affea0779f1b28fe4fac766562a0e3cbdf97aebb63a5500263d669e51d.json",
+      "skills": [
+        "reading"
+      ],
+      "hasText": true,
+      "excerpt": "OET 2.0 PRACTICE TESTS READING TRACK FASTIELTS Practice Test 1. WWW.PASSMYIELTS.COM 1 Occupational English Test Reading Test Part A TIME: 15 minutes  Look at the four texts, A – D, on the following pages.  For each question, 1 – 20, look through the texts, A – D, to find the relevant information.  Write your answers",
+      "duplicateOf": null,
+      "pageCount": 190,
+      "ocrPageCount": 5
+    },
+    {
+      "id": "genododi-test-70d161942e97978a",
+      "filename": "Writing tasks.pdf",
+      "relativePath": "GENODODI OET/‪OET Collection‬‏/Writing/Writing tasks.pdf",
+      "collection": "OET",
+      "format": "pdf",
+      "bytes": 6504069,
+      "sha256": "d682d3bc23d51a5352cc77e62080aba820657925338158af272764465efaa246",
+      "assetPath": "supplied-materials/files/d682d3bc23d51a5352cc77e62080aba820657925338158af272764465efaa246.pdf",
+      "textPath": "supplied-materials/text/d682d3bc23d51a5352cc77e62080aba820657925338158af272764465efaa246.json",
+      "skills": [
+        "writing"
+      ],
+      "hasText": true,
+      "excerpt": "aminur0909@gmail.com 6**<7(;065(3\u0003,5.30:/\u0003;,:; >90;05.\u0003:<)\u0014;,:;!\u0003\u0003 4,+0*05, ;04,\u0003(336>,+!\u0003 9,(+05.\u0003;04,!\u0003 \u0003405<;,:\u0003 \u0003 >90;05.\u0003;04,!\u0003 \u001b\u0017\u0003405<;,: 9LHK\u0003[OL\u0003JHZL\u0003UV[LZ\u0003ILSV^\u0003HUK\u0003JVTWSL[L\u0003[OL\u0003^YP[PUN\u0003[HZR\u0003^OPJO\u0003MVSSV^Z\u0015 \u00035V[LZ!\u0003 7H[PLU[!\u0003\u0003 4YZ\u00037YP`H\u0003:OHYTH\u0003 +6)!\u0003 \u0017 \u0015\u0017 \u0015 \u001a\u0003\u000f(NL\u0003 \u0017\u0010 9LZPKLUJL!\u0003\u0003 \u0018\u0003:LHZPKL\u0003:[YLL[\u0013\u00035L^[V^U\u0003\u0003 :V",
+      "duplicateOf": null,
+      "pageCount": 35,
+      "ocrPageCount": 25
     }
   ]
 }

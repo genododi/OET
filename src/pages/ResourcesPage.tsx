@@ -6,6 +6,7 @@ import localSourceSummary from '../data/googleDriveFolderCatalog.generated.json'
 import { ListPagination } from '../components/ListPagination';
 import { usePagination } from '../hooks/usePagination';
 import { localSourceFileUrl } from '../lib/localSourceGateway';
+import suppliedMaterials from '../data/desktopMaterials.generated.json';
 
 const subtests: Array<OetSubtest | 'general' | 'all'> = ['all', 'general', 'listening', 'reading', 'writing', 'speaking'];
 const formats: Array<StudyResourceFormat | 'all'> = ['all', 'guide', 'sample-test', 'video', 'reference'];
@@ -70,7 +71,7 @@ export function ResourcesPage({ onNavigate }: Props) {
   return (
     <div className="page-section resources-page">
       <section className="card source-policy-banner">
-        <div><span className="hero-eyebrow">Your supplied study collection</span><h2>OET &amp; AMR files are ready to practise</h2><p>All 99 supplied files, including 35 AMR files, are available online with saved drafts, source previews and four practice modes.</p><button className="btn btn-primary" onClick={() => onNavigate?.('materials')}>Open my OET &amp; AMR files</button></div>
+        <div><span className="hero-eyebrow">Your supplied study collection</span><h2>OET &amp; AMR files are ready to practise</h2><p>All {suppliedMaterials.fileCount} supplied files, including {suppliedMaterials.amrCount} AMR files and new GENODODI practice tests, are available online with saved drafts, source previews and all four skills.</p><button className="btn btn-primary" onClick={() => onNavigate?.('materials')}>Open my OET &amp; AMR files</button></div>
       </section>
       <section className="card source-policy-banner">
         <div>

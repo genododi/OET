@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import { StudyAudioPlayer } from './StudyAudioPlayer';
-import { extractListeningKeywords } from '../lib/listeningKeywords';
+import { detectListeningPartStarts, extractListeningKeywords } from '../lib/listeningKeywords';
 import './jahshanListening.css';
 type Track = { id: string; name: string; sha256: string; url: string };
-interface Props { track: Track; audioUrl: string; transcriptPath: string; inlineTranscript?: Transcript; mimeType?: string; heading?: string; description?: string; playbackNote?: string; }
+interface Props { track: Track; audioUrl: string; transcriptPath: string; inlineTranscript?: Transcript; mimeType?: string; heading?: string; description?: string; playbackNote?: string; selectedPart?: 'A' | 'B' | 'C'; partSelection?: number; }
 type Segment = { start: number; end: number; text: string };
 export type Transcript = { trackId: string; sourceSha256: string; kind: string; segments: Segment[] };
 const matches = (data: Transcript, id: string, sha256: string) => data.trackId === id && data.sourceSha256 === sha256 && data.kind === 'automatic-transcription' && Array.isArray(data.segments) && data.segments.length > 0 && data.segments.every(s => Number.isFinite(s.start) && Number.isFinite(s.end) && s.start >= 0 && s.end >= s.start && typeof s.text === 'string');
@@ -11,11 +11,14 @@ const timestamp = (time: number) => `${Math.floor(time / 60)}:${Math.floor(time 
 export function RecordingTranscriptPlayer(props: Props) {
   return <Player key={`${props.track.id}:${props.track.sha256}:${props.transcriptPath}`} {...props} />;
 }
-function Player({ track, audioUrl, transcriptPath, inlineTranscript, mimeType, heading, description, playbackNote }: Props) {
+function Player({ track, audioUrl, transcriptPath, inlineTranscript, mimeType, heading, description, playbackNote, selectedPart, partSelection }: Props) {
   const player = useRef<HTMLAudioElement>(null);
   const [duration, setDuration] = useState(0);
   const activeLine = useRef<HTMLButtonElement>(null);
   const transcriptBox = useRef<HTMLDivElement>(null);
+  const previousPart = useRef(selectedPart);
+  const previousSelection = useRef(partSelection);
+  const pendingPart = useRef<'A' | 'B' | 'C' | null>(null);
   const [time, setTime] = useState(0);
   const [playing, setPlaying] = useState(false);
   const [audioEnded, setAudioEnded] = useState(false);
@@ -38,6 +41,26 @@ function Player({ track, audioUrl, transcriptPath, inlineTranscript, mimeType, h
     const position = Math.max(0, Math.min(next, duration));
     player.current.currentTime = position; setTime(position);
   };
+  useEffect(() => {
+    if (!selectedPart) return;
+    const partChanged = previousPart.current !== selectedPart;
+    const selectedAgain = previousSelection.current !== partSelection;
+    if (partChanged || selectedAgain) {
+      previousPart.current = selectedPart;
+      previousSelection.current = partSelection;
+      pendingPart.current = selectedPart;
+    }
+    if (!pendingPart.current || !transcript || duration <= 0) return;
+    const start = detectListeningPartStarts(transcript.segments, track.name)[pendingPart.current];
+    if (start !== undefined) {
+      const position = Math.max(0, Math.min(start, duration));
+      if (player.current) {
+        player.current.currentTime = position;
+        setTime(position);
+      }
+      pendingPart.current = null;
+    }
+  }, [selectedPart, partSelection, transcript, duration, track.name]);
   const current = transcript?.segments.findIndex(segment => time >= segment.start && time < segment.end) ?? -1;
   const revisionKeywords = transcript ? extractListeningKeywords(transcript.segments.map(segment => segment.text).join(' ')) : [];
   useEffect(() => {

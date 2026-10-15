@@ -5,7 +5,7 @@ type ContentNode = { text: string; sourcePage: number; questionId?: string };
 type Question = (typeof answerKeys.worksheets)[number]['parts'][number]['questions'][number];
 import './jahshanListening.css';
 
-interface Props { trackId: string; bookUrl?: string; onOpenKey: (page: number) => void }
+interface Props { trackId: string; bookUrl?: string; onOpenKey: (page: number) => void; onPartChange?: (part: 'A' | 'B' | 'C') => void }
 function readResponses(key: string): Record<string, string> {
   try {
     const value = JSON.parse(localStorage.getItem(key) ?? '{}');
@@ -17,11 +17,11 @@ function readResponses(key: string): Record<string, string> {
 export function JahshanListeningWorksheet(props: Props) {
   return <TrackWorksheet key={props.trackId} {...props} />;
 }
-function TrackWorksheet({ trackId, bookUrl, onOpenKey }: Props) {
+function TrackWorksheet({ trackId, bookUrl, onOpenKey, onPartChange }: Props) {
   const worksheetRef = useRef<HTMLElement>(null);
   const sheet = answerKeys.worksheets.find(item => item.trackId === trackId);
   const storageKey = `oet-jahshan-listening-blanks-v1-${trackId}`;
-  const [part, setPart] = useState(sheet?.parts[0].part ?? 'A');
+  const [part, setPart] = useState<'A' | 'B' | 'C'>((sheet?.parts[0].part as 'A' | 'B' | 'C' | undefined) ?? 'A');
   const [responses, setResponses] = useState(() => readResponses(storageKey));
   const [revealed, setRevealed] = useState<Record<string, boolean>>({});
   const [saveError, setSaveError] = useState(false);
@@ -98,7 +98,7 @@ function TrackWorksheet({ trackId, bookUrl, onOpenKey }: Props) {
         <p>Part {part} · {part === 'A' ? 'Complete the notes as you listen.' : 'Read each question and choose A, B or C.'} Reveal answers individually or together.</p></div>
       <span className="jahshan-part-badge">Part {part}</span>
     </header>
-    {sheet.parts.length > 1 && <div className="study-skill-tabs" role="group" aria-label="Listening worksheet part">{sheet.parts.map(section => <button key={section.part} aria-pressed={section.part === part} onClick={() => { setPart(section.part); setRevealed({}); }}>Part {section.part}</button>)}</div>}
+    {sheet.parts.length > 1 && <div className="study-skill-tabs" role="group" aria-label="Listening worksheet part">{sheet.parts.map(section => <button key={section.part} aria-pressed={section.part === part} onClick={() => { const nextPart = section.part as 'A' | 'B' | 'C'; setPart(nextPart); onPartChange?.(nextPart); setRevealed({}); }}>Part {section.part}</button>)}</div>}
     <div className="jahshan-worksheet-toolbar">
       <div className="jahshan-answer-progress"><strong>{answered} of {section.questions.length} answered</strong><progress aria-label="Questions answered" value={answered} max={section.questions.length} /></div>
       <button className="btn btn-secondary" disabled={answered === section.questions.length} onClick={focusNextUnanswered}>Next unanswered ↓</button>

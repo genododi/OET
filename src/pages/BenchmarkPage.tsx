@@ -124,6 +124,7 @@ function BenchmarkWriting({ response, onResponse }: { response: string; onRespon
 }
 function BenchmarkWorkspace({ entry }: { entry: Entry }) {
   const [part, setPart] = useState('A');
+  const [partSelection, setPartSelection] = useState(0);
   const [wide, setWide] = useState(false);
   const [sheet, setSheet] = useState<BenchmarkSheet | null>(null);
   const [failed, setFailed] = useState(false);
@@ -136,11 +137,11 @@ function BenchmarkWorkspace({ entry }: { entry: Entry }) {
       .catch(() => { if (!controller.signal.aborted) setFailed(true); });
     return () => controller.abort();
   }, [entry]);
-  const answers = <BenchmarkAnswers entry={entry} part={part} onPart={setPart} sheet={sheet} failed={failed} />;
+  const answers = <BenchmarkAnswers entry={entry} part={part} onPart={nextPart => { setPart(nextPart); setPartSelection(request => request + 1); }} sheet={sheet} failed={failed} />;
   return <div className="benchmark-workspace">
     {entry.skill === 'listening' ? <>
       <section className="card benchmark-listening-player" aria-label="Benchmark recording">
-        {entry.audio ? <RecordingTranscriptPlayer mimeType="audio/mpeg" audioUrl={entry.audio.url} track={{ id: entry.id, name: entry.title, sha256: entry.audio.sha256, url: entry.audio.sourceUrl }} transcriptPath={`benchmark/transcripts/${entry.id}.json`} heading="2 · Listen to the recording" description={entry.title} playbackNote="Original human recording · full test, Parts A–C. Use the worksheet below as you listen." /> : <><h3>2 · Listen to the recording</h3><p className="benchmark-notice">The supplied Drive folder has no recording for Test {entry.number}. You can review its paper and key here; audio practice is available in the other 18 tests.</p></>}
+        {entry.audio ? <RecordingTranscriptPlayer mimeType="audio/mpeg" audioUrl={entry.audio.url} track={{ id: entry.id, name: entry.title, sha256: entry.audio.sha256, url: entry.audio.sourceUrl }} transcriptPath={`benchmark/transcripts/${entry.id}.json`} selectedPart={part as 'A' | 'B' | 'C'} partSelection={partSelection} heading="2 · Listen to the recording" description={entry.title} playbackNote={`Original human recording · full test, Parts A–C. Selecting Part ${part} in the worksheet jumps the player to that section.`} /> : <><h3>2 · Listen to the recording</h3><p className="benchmark-notice">The supplied Drive folder has no recording for Test {entry.number}. You can review its paper and key here; audio practice is available in the other 18 tests.</p></>}
       </section>
       {answers}
       <details className="card benchmark-downloads"><summary>Optional books, downloads and offline listening</summary>

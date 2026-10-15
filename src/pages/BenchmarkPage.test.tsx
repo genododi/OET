@@ -99,6 +99,17 @@ it('guides Benchmark Writing through reading, drafting and a separate review ste
   expect(screen.getByRole('button', { name: 'Start writing →' })).toBeDisabled();
 });
 
+it('gives Benchmark Speaking a timed preparation, live role-play and review sequence', () => {
+  render(<BenchmarkPage itemId="speaking" onNavigate={vi.fn()} />);
+  expect(screen.getByRole('heading', { name: 'Step 1 · Prepare the role-play' })).toBeVisible();
+  expect(screen.getByRole('heading', { name: 'Step 2 · Role-play and record' })).toBeVisible();
+  expect(screen.getByRole('heading', { name: 'Step 3 · Review the conversation' })).toBeVisible();
+  expect(screen.getByText('GP consultation · Unexpected pregnancy')).toBeVisible();
+  expect(screen.getByRole('button', { name: 'Record speaking response' })).toBeVisible();
+  expect(screen.getByLabelText('Transcript or review notes')).toBeVisible();
+  expect(screen.getByText('Listen to Benchmark’s human role-play examples')).toBeVisible();
+});
+
 it('rejects a question file belonging to another paper without overwriting saved work', async () => {
   localStorage.setItem('oet-benchmark-v1:listening-2', JSON.stringify({ 'A-1': 'saved' }));
   vi.stubGlobal('fetch', vi.fn(async (url: string) => ({ ok: true, json: async () => url.includes('/questions/') ? questions('listening-1.json') : { pages: [{ number: 1, text: 'Complete source paper' }] } })));

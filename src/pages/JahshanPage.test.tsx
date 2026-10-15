@@ -72,3 +72,33 @@ it('uses selected files on the hosted page without contacting the HTTP gateway',
   expect(fetchSpy.mock.calls[0][0]).toMatch(/jahshan-transcripts\/[^/]+\.json$/);
   expect(fetchSpy.mock.calls.some(call => String(call[0]).includes('127.0.0.1:4318'))).toBe(false);
 });
+
+it('seeks the combined Jahshan recording when the worksheet changes part', async () => {
+  const response = {
+    trackId: collection.files.find(file => file.name === 'Track 21.mp3')!.id,
+    sourceSha256: collection.files.find(file => file.name === 'Track 21.mp3')!.sha256,
+    kind: 'automatic-transcription',
+    segments: [
+      { start: 0, end: 5, text: 'Opening instructions.' },
+      { start: 12, end: 15, text: 'Part A. In this part of the test.' },
+      { start: 48, end: 52, text: 'Now, look at Part B.' },
+      { start: 53, end: 58, text: 'Part B. In this part of the test.' },
+      { start: 90, end: 94, text: 'Now look at Part C.' },
+      { start: 95, end: 100, text: 'Part C. In this part of the test.' },
+    ],
+  };
+  vi.stubGlobal('fetch', vi.fn().mockResolvedValue({ ok: true, json: async () => response }));
+  const view = render(<JahshanPage />);
+  fireEvent.change(screen.getByLabelText('Listening set'), { target: { value: collection.groups.find(group => group.number === 2)!.id } });
+  const audio = await waitFor(() => {
+    const element = view.container.querySelector('audio');
+    if (!element) throw new Error('Audio not rendered');
+    return element;
+  });
+  Object.defineProperty(audio, 'duration', { value: 120, configurable: true });
+  fireEvent.loadedMetadata(audio);
+  await screen.findByRole('button', { name: /0:48 Now, look at Part B/ });
+  fireEvent.click(screen.getByRole('button', { name: 'Part B' }));
+  expect(audio.currentTime).toBe(48);
+  expect(screen.getByRole('button', { name: /0:48 Now, look at Part B/ })).toHaveAttribute('aria-current', 'true');
+});

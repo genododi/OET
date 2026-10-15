@@ -20,6 +20,12 @@ for sha,file in {f['sha256']:f for f in catalog['files']}.items():
  asset=repo/'public'/file['assetPath']
  assert hashlib.sha256(asset.read_bytes()).hexdigest()==sha
  if file['format']=='pdf':
+  existing=repo/f'public/supplied-materials/text/{sha}.json'
+  if existing.exists():
+   cached=json.loads(existing.read_text())
+   if cached.get('sourceSha256')==sha and isinstance(cached.get('pages'),list):
+    documents[sha]=cached['pages']
+    continue
   raw=subprocess.check_output(['pdftotext','-layout',str(asset),'-'],stderr=subprocess.DEVNULL).decode().split('\f')[:-1]
   documents[sha]=[dict(number=i+1,text=t.strip(),extraction='text') for i,t in enumerate(raw)]
   for page in documents[sha]:
