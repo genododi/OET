@@ -11,6 +11,7 @@ import shutil
 import subprocess
 import tempfile
 import hashlib
+import time
 from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -46,10 +47,11 @@ for i,batch in enumerate(batches):
                         checksum.update(data);dst.write(data)
                 if checksum.hexdigest()!=row['sha256']:raise RuntimeError(f'Original checksum changed: {row["filename"]}')
                 paths.append(str(target))
-            for attempt in range(4):
+            for attempt in range(8):
                 result=subprocess.run(['gh','release','upload',tag,*paths,'--clobber'],cwd=ROOT,capture_output=True,text=True)
                 if result.returncode==0:print(f'Uploaded {len(chunk)} originals to batch {i+1}',flush=True);return
                 print(f'Retrying upload batch {i+1}: {result.stderr[-300:]}',flush=True)
+                if attempt < 7: time.sleep(10 + attempt * 5)
             raise RuntimeError(result.stderr[-1500:])
     with concurrent.futures.ThreadPoolExecutor(max_workers=max(1,min(3,args.workers))) as pool:list(pool.map(upload,chunks))
     subprocess.run(['gh','release','edit',tag,'--draft=false'],cwd=ROOT,check=True)
@@ -62,7 +64,9 @@ for i,batch in enumerate(batches):
         shutil.copyfile(library/'text'/Path(row['textPath']).name,target)
         published.append(entry)
     # Save after each completed release so an interrupted upload never exposes broken links.
-    (ROOT/'public/imported-resources/catalog.json').write_text(json.dumps({'version':1,'files':published},ensure_ascii=False)+'\n')
+    index=ROOT/'public/imported-resources/catalog.json'
+    temporary=index.with_suffix('.tmp')
+    temporary.write_text(json.dumps({'version':1,'files':published},ensure_ascii=False)+'\n');temporary.replace(index)
     current=json.loads((library/'remote-assets.json').read_text());current.update(remote);(library/'remote-assets.json').write_text(json.dumps(current,indent=2)+'\n')
 print(f'Published {len(published)} new searchable resources.',flush=True)
 if args.finalize:
