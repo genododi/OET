@@ -15,7 +15,7 @@ for(const entry of entries){
  const local=path.join(audioRoot,entry.audio.filename);
  const audioPath=`audio/test-${String(entry.number).padStart(2,'0')}.mp3`;
  // Reuse an already verified pack copy if the external drive was disconnected.
- const bytes=await fs.readFile(local).catch(()=>fs.readFile(path.join(pack,audioPath)));
+ const bytes=await fs.readFile(local).catch(()=>fs.readFile(path.join('/Volumes/GENODODI/OET/oet-study-sources/normalized/mega-listening-audio/LISTENING Audio',entry.audio.filename))).catch(()=>fs.readFile(path.join(pack,audioPath)));
  const sha=crypto.createHash('sha256').update(bytes).digest('hex');
  if(sha!==entry.audio.sha256)throw Error(`Wrong recording: ${entry.id}`);
  await fs.writeFile(path.join(pack,audioPath),bytes);
@@ -30,7 +30,7 @@ const files=await fs.readdir(path.join(work,'build'));
 let css='';for(const file of files.filter(f=>f.endsWith('.css')))css+=await fs.readFile(path.join(work,'build',file),'utf8');
 const html=`<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Benchmark Listening · Offline</title><style>${css}</style></head><body><div id="root"></div><script>${js.replaceAll('</script','<\\/script')}</script></body></html>`;
 await fs.writeFile(path.join(pack,'START.html'),html);
-await fs.writeFile(path.join(pack,'READ ME.txt'),'BENCHMARK LISTENING — OFFLINE\n\n1. Extract the entire ZIP.\n2. Open START.html in your browser.\n3. Select a test and press Play recording.\n\nKeep START.html and the audio folder together. No internet or installation is needed. The 18 recordings are unchanged original human audio. Tests 10 and 17 were absent from the supplied source. Transcripts are automatic and may contain recognition errors. Click timestamps to seek. Follow the audio also follows seeking while paused.\n');
+await fs.writeFile(path.join(pack,'READ ME.txt'),'BENCHMARK LISTENING — OFFLINE\n\n1. Extract the entire ZIP.\n2. Open START.html in your browser.\n3. Select a test and press Play recording.\n\nKeep START.html and the audio folder together. No internet or installation is needed. The recordings are unchanged original human audio. Recovered Tests 10 and 17 are included when building from the complete GENODODI source folder. Transcripts are automatic and may contain recognition errors. Click timestamps to seek. Follow the audio also follows seeking while paused.\n');
 await fs.writeFile(path.join(pack,'recordings.json'),JSON.stringify(data.map(({id,sha256,audioPath})=>({id,sha256,audioPath})),null,2));
 const zip=path.join(work,'Benchmark-Offline.zip');
 execFileSync('python3',['-c',`import pathlib,zipfile\np=pathlib.Path(${JSON.stringify(pack)})\nwith zipfile.ZipFile(${JSON.stringify(zip)},'w',compression=zipfile.ZIP_STORED) as z:\n for f in sorted(p.rglob('*')):\n  if f.is_file(): z.write(f, str(f.relative_to(p.parent)))`]);

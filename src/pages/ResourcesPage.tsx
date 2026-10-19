@@ -7,6 +7,7 @@ import { ListPagination } from '../components/ListPagination';
 import { usePagination } from '../hooks/usePagination';
 import { localSourceFileUrl } from '../lib/localSourceGateway';
 import suppliedMaterials from '../data/desktopMaterials.generated.json';
+import { isDesktop } from '../lib/desktop';
 
 const subtests: Array<OetSubtest | 'general' | 'all'> = ['all', 'general', 'listening', 'reading', 'writing', 'speaking'];
 const formats: Array<StudyResourceFormat | 'all'> = ['all', 'guide', 'sample-test', 'video', 'reference'];
@@ -209,8 +210,8 @@ export function ResourcesPage({ onNavigate }: Props) {
                 <code>SHA-256 {file.sha256.slice(0, 16)}…</code>
                 <a
                   className="btn btn-primary btn-sm private-source-open"
-                  href={localSourceFileUrl(file.relativePath)}
-                  title="Requires the GENODODI drive and OET local source gateway on this Mac"
+                  href={isDesktop() ? `${import.meta.env.BASE_URL}desktop/original/${file.sha256}?format=${file.format.toLowerCase()}` : localSourceFileUrl(file.relativePath)}
+                  title={isDesktop() ? 'Open the original included in this app' : 'Requires the GENODODI drive and OET local source gateway on this Mac'}
                 >
                   Open local file
                 </a>

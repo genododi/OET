@@ -13,6 +13,7 @@ import mlx_whisper
 parser = argparse.ArgumentParser()
 parser.add_argument('--audio', default='/Volumes/GENODODI/OET/Benchmark tests/Audio')
 parser.add_argument('--output', default=None)
+parser.add_argument('--only', nargs='*', type=int, help='Only process these test numbers')
 parser.add_argument('--model', default='mlx-community/whisper-large-v3-turbo', help='MLX Whisper model; the multilingual large model recognises regional English accents more reliably')
 parser.add_argument('--dialect-hint', choices=['auto', 'uk', 'australia', 'us'], default='auto', help='Optional English dialect context for transcription')
 args = parser.parse_args()
@@ -30,6 +31,8 @@ prompts = {
     'us': 'Transcribe the healthcare conversation verbatim in American English. Preserve American wording and spelling. Pay close attention to clinical terminology, medicine names, units, and proper nouns.',
 }
 for entry in entries:
+    if args.only and entry['number'] not in args.only:
+        continue
     audio = entry.get('audio')
     if not audio:
         continue

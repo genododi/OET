@@ -1,5 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useApiKey } from '../lib/apiKeyStore';
+import { isDesktop, type LocalAiStatus } from '../lib/desktop';
+import { StudyDataTransfer } from './StudyDataTransfer';
 
 interface Props {
   open: boolean;
@@ -10,6 +12,8 @@ export function SettingsModal({ open, onClose }: Props) {
   const { apiKey, save, clear, hasKey } = useApiKey();
   const [draft, setDraft] = useState('');
   const [savedFlash, setSavedFlash] = useState(false);
+  const [localStatus, setLocalStatus] = useState<LocalAiStatus | null>(null);
+  useEffect(() => { if (open && isDesktop()) void window.oetDesktop!.aiStatus().then(setLocalStatus); }, [open]);
 
   if (!open) return null;
 
@@ -30,7 +34,7 @@ export function SettingsModal({ open, onClose }: Props) {
           </button>
         </div>
 
-        <section className="settings-section">
+        {isDesktop() ? <section className="settings-section"><h4>Offline AI mentor & response feedback</h4><p>Live mentoring and response review run entirely on this Mac. No API key, account, subscription or internet connection is required.</p><p><strong>{localStatus?.model ?? 'Local AI model'}</strong></p><p role="status">{localStatus?.message ?? 'Checking your local model…'}</p><p className="meta">The model loads when first used. Close heavy apps if replies are slow. The local mentor offers study feedback; its band estimates are practice guidance.</p></section> : <section className="settings-section">
           <h4>Live AI mentor & response feedback</h4>
           <p className="meta">
             Paste your own Anthropic API key for live conversational mentoring across Listening,
@@ -70,7 +74,8 @@ export function SettingsModal({ open, onClose }: Props) {
             </button>
           </div>
           {savedFlash && <p className="settings-saved-flash">Saved.</p>}
-        </section>
+        </section>}
+        {!isDesktop() && <StudyDataTransfer />}
       </div>
     </div>
   );

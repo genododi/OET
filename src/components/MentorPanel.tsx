@@ -7,6 +7,7 @@ import { guidedMentorReply, mentorGreeting, type MentorAction, type MentorContex
 import { streamMentorReply } from '../lib/mentorApi';
 import { buildLearnerMemory, readMentorLessons, saveMentorLesson } from '../lib/mentorMemory';
 import { MentorVoiceControls } from './MentorVoiceControls';
+import { hasLocalAi } from '../lib/localAi';
 
 interface Props {
   task: SessionTask;
@@ -28,12 +29,13 @@ const ACTIONS: { action: MentorAction; label: string; query: string }[] = [
 
 export function MentorPanel({ task, response, completed, topic, lessonKey, onInteraction, onReviewed, onPatientTurn }: Props) {
   const { apiKey, hasKey } = useApiKey();
+  const local = hasLocalAi();
   const { openSettings } = useSettingsContext();
   const key = lessonKey ?? `practice-${task.id}`;
   const [messages, setMessages] = useState<MentorMessage[]>(() => readMentorLessons()[key]?.messages ?? [
     { id: 'welcome', role: 'assistant', text: mentorGreeting(task, topic), source: 'guide' },
   ]);
-  const [engine, setEngine] = useState<'guide' | 'ai'>(hasKey ? 'ai' : 'guide');
+  const [engine, setEngine] = useState<'guide' | 'ai'>(hasKey || local ? 'ai' : 'guide');
   const [mode, setMode] = useState<'coach' | 'patient'>('coach');
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
@@ -75,7 +77,7 @@ export function MentorPanel({ task, response, completed, topic, lessonKey, onInt
   const request = async (action: MentorAction, query: string, retry?: MentorContext) => {
     if (busy.current || (!query.trim() && !retry)) return;
     if ((action === 'feedback' || action === 'explain') && !response.trim() && !retry) { setError('Try a response in the answer area first.'); return; }
-    if (engine === 'ai' && !hasKey) { openSettings(); return; }
+    if (engine === 'ai' && !hasKey && !local) { openSettings(); return; }
     onInteraction?.();
     const nextHint = action === 'hint' ? Math.min(3, hintLevel + 1) : hintLevel;
     setHintLevel(nextHint);
@@ -117,7 +119,7 @@ export function MentorPanel({ task, response, completed, topic, lessonKey, onInt
         <label>Tutor connection<select value={engine} disabled={loading} onChange={(event) => setEngine(event.target.value as 'ai' | 'guide')}><option value="guide">Built-in guide · no key needed</option><option value="ai">Live AI · conversational mentoring</option></select></label>
         {task.subtest === 'speaking' && <label>Conversation mode<select value={mode} disabled={loading} onChange={(event) => setMode(event.target.value as 'coach' | 'patient')}><option value="coach">Coach me</option><option value="patient">Play the patient</option></select></label>}
       </div>
-      {engine === 'ai' ? <p className="mentor-connection-note">Your task, response, recent conversation and study summary are sent directly to Anthropic when you send a message. API usage is billed to your account. <button type="button" className="link-btn" onClick={openSettings}>{hasKey ? 'Connection settings' : 'Add API key to connect'}</button></p> : <p className="mentor-connection-note">Structured strategies, hints and rubric checks work here without a key. Live AI adds open-ended follow-up and adaptive patient dialogue.</p>}
+      {engine === 'ai' ? local ? <p className="mentor-connection-note">Live AI runs on this Mac. Your task and conversation stay on your device. No API key, subscription or internet connection is needed.</p> : <p className="mentor-connection-note">Your task, response, recent conversation and study summary are sent directly to Anthropic when you send a message. API usage is billed to your account. <button type="button" className="link-btn" onClick={openSettings}>{hasKey ? 'Connection settings' : 'Add API key to connect'}</button></p> : <p className="mentor-connection-note">Structured strategies, hints and rubric checks work here without a key. Live AI adds open-ended follow-up and adaptive patient dialogue.</p>}
       <div className="mentor-chat" ref={log} role="log" aria-label="Mentor conversation" aria-live="polite" aria-relevant="additions">
         {messages.map((message) => <article key={message.id} className={`mentor-bubble mentor-${message.role}`}><span>{message.role === 'user' ? 'You' : message.source === 'ai' ? 'AI mentor' : 'Study guide'}</span><p>{message.text}</p></article>)}
         {loading && <article className="mentor-bubble mentor-assistant mentor-stream"><span>{mode === 'patient' ? 'Patient' : 'Mentor'}</span><p>{stream || 'Thinking through your task…'}</p></article>}

@@ -5,6 +5,8 @@ import { StudyAudioPlayer } from '../components/StudyAudioPlayer';
 import { notebookWritingChecklist } from '../data/notebookNotes';
 import catalog from '../data/desktopMaterials.generated.json';
 import type { NavSection, OetSubtest } from '../types';
+import { isDesktop } from '../lib/desktop';
+import { SourcePracticeCoach } from '../components/SourcePracticeCoach';
 import './materials.css';
 
 type Material = (typeof catalog.files)[number];
@@ -12,12 +14,12 @@ type SavedPractice = { response: string; notes: string; completed: boolean; chec
 const skills: OetSubtest[] = ['listening', 'reading', 'writing', 'speaking'];
 const blank: SavedPractice = { response: '', notes: '', completed: false, checks: [] };
 const title = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
-const url = (path: string) => `${import.meta.env.BASE_URL}${path}`;
+const url = (path: string) => /^https?:\/\//.test(path) ? path : `${import.meta.env.BASE_URL}${path}`;
 const size = (bytes: number) => bytes < 1024 * 1024 ? `${Math.max(1, Math.round(bytes / 1024))} KB` : `${(bytes / 1024 / 1024).toFixed(1)} MB`;
 const guidance: Record<OetSubtest, string> = {
   writing: 'Choose a task or page in the source. Identify the reader, purpose and relevant case notes, then write your letter. Use the original task instructions when they differ from your practice settings.',
   reading: 'Choose a passage and its questions in the document. Record numbered answers, then compare them with the source answer key if one is supplied. Use your notes to record evidence for each correction.',
-  listening: 'These supplied materials contain listening papers and vocabulary, but no audio recordings. Use a matching recording you already have, or open the existing audio tests. Paper-only work is vocabulary or transcript study, not a scored listening test.',
+  listening: 'Use the original recording with its matching paper. Match the title, test number and part before practising. Paper-only work is vocabulary or transcript study, not a scored listening test.',
   speaking: 'Choose a role-play or teaching point in the source. Prepare, then record your response and listen back. You can also type a transcript. Recordings stay in this session until downloaded.',
 };
 const checklists: Record<OetSubtest, string[]> = {
@@ -125,7 +127,7 @@ function PracticeWorkspace({ file, skill, onNavigate }: { file: Material; skill:
     {skill === 'listening' && <button className="btn btn-secondary" onClick={() => onNavigate('listening')}>Open real listening recordings</button>}
     {skill === 'writing' && <p className="meta">Applying your NotebookLM writing checklist. <a href="#notebook">Review the imported guide →</a></p>}
     <div className="material-workspace-grid">
-      <MaterialSourceText key={file.id} id={file.id} filename={file.filename} format={file.format} textPath={file.textPath} assetPath={file.assetPath}>{skill === 'listening' && <MaterialListeningAudio />}</MaterialSourceText>
+      <MaterialSourceText key={file.id} id={file.id} filename={file.filename} format={file.format} textPath={file.textPath} assetPath={file.assetPath}>{['mp3', 'm4a', 'wav'].includes(file.format) ? <StudyAudioPlayer src={url(file.assetPath)} label={file.filename} mimeType={file.format === 'mp3' ? 'audio/mpeg' : file.format === 'm4a' ? 'audio/mp4' : 'audio/wav'} /> : file.format === 'mp4' ? <video controls preload="metadata" aria-label={file.filename} style={{ width: '100%' }}><source src={url(file.assetPath)} type="video/mp4" /></video> : skill === 'listening' ? <MaterialListeningAudio /> : undefined}</MaterialSourceText>
       <section className="card material-answer" aria-label="Your practice response">
         <h3>3 · {skill === 'writing' ? 'Write your letter and review' : skill === 'speaking' ? 'Practise speaking and review' : 'Record your answers and review'}</h3>
         <div className="material-timer">
@@ -146,27 +148,43 @@ function PracticeWorkspace({ file, skill, onNavigate }: { file: Material; skill:
         <p className="meta">Self-directed source practice. No automatic answer key or official OET score is assigned. Drafts are saved per file and skill on this browser.</p>
       </section>
     </div>
+    <SourcePracticeCoach id={file.id} title={file.filename} skill={skill} response={saved.response} textPath={file.textPath} />
   </section>;
 }
 
 export function MaterialsPage({ itemId, onNavigate }: { itemId?: string; onNavigate: (section: NavSection, itemId?: string) => void }) {
+  const [files, setFiles] = useState<Material[]>(catalog.files);
+  const [libraryError, setLibraryError] = useState('');
+  useEffect(() => {
+    const controller = new AbortController();
+    void fetch(url(isDesktop() ? 'offline-library/catalog.json' : 'imported-resources/catalog.json'), { signal: controller.signal }).then(async result => {
+      if (!result.ok) throw Error('Connect GENODODI, then reopen this app to load the additional offline files.');
+      const extra = await result.json();
+      if (!Array.isArray(extra.files) || extra.files.some((file: Material) => typeof file.id !== 'string' || typeof file.assetPath !== 'string' || !Array.isArray(file.skills))) throw Error('The offline library index is invalid.');
+      const known = new Set(catalog.files.map(file => file.sha256));
+      if (!controller.signal.aborted) setFiles([...catalog.files, ...extra.files.filter((file: Material) => !known.has(file.sha256))]);
+    }).catch(error => { if (!controller.signal.aborted && isDesktop()) setLibraryError(error.message); });
+    return () => controller.abort();
+  }, []);
   const [query, setQuery] = useState('');
   const [collection, setCollection] = useState('all');
   const [skillFilter, setSkillFilter] = useState('all');
   const [format, setFormat] = useState('all');
-  const [skill, setSkill] = useState<OetSubtest>(() => (catalog.files.find(file => file.id === itemId)?.skills[0] as OetSubtest) || 'writing');
+  const [chosenSkill, setSkill] = useState<OetSubtest | null>(() => (catalog.files.find(file => file.id === itemId)?.skills[0] as OetSubtest) || null);
   const [limit, setLimit] = useState(18);
-  const selected = catalog.files.find(file => file.id === itemId);
-  const filtered = catalog.files.filter(file => {
+  const selected = files.find(file => file.id === itemId);
+  const skill = chosenSkill ?? (selected?.skills[0] as OetSubtest) ?? 'writing';
+  const filtered = files.filter(file => {
     const q = query.toLocaleLowerCase().trim();
     return (collection === 'all' || file.collection === collection) && (skillFilter === 'all' || file.skills.includes(skillFilter)) && (format === 'all' || file.format === format) && (!q || `${file.filename} ${file.relativePath} ${file.excerpt}`.toLocaleLowerCase().includes(q));
   });
   const open = (file: Material) => { setSkill((file.skills[0] as OetSubtest) || 'writing'); onNavigate('materials', file.id); };
   return <div className="page-section materials-page">
     <section className="card materials-hero">
-      <div><span className="hero-eyebrow">Your files. Your daily practice.</span><h2>OET & AMR study collection</h2><p>Choose a file, read its text or use a matching recording, then practise and review. Your AMR writing collection comes first.</p><div className="material-stats"><span><strong>{catalog.fileCount}</strong> supplied files</span><span><strong>{catalog.amrCount}</strong> AMR files</span><span><strong>4</strong> practice modes</span></div></div>
+      <div><span className="hero-eyebrow">Your files. Your daily practice.</span><h2>OET & AMR study collection</h2><p>Choose a file, read its text or use a matching recording, then practise and review. Your AMR writing collection comes first.</p><div className="material-stats"><span><strong>{files.length}</strong> supplied files</span><span><strong>{catalog.amrCount}</strong> AMR files</span><span><strong>4</strong> practice modes</span></div></div>
       <div className="materials-hero-mark" aria-hidden="true">OET<span>STUDY / PRACTISE / REVIEW</span></div>
     </section>
+    {libraryError && <p role="alert">{libraryError}</p>}
     {selected ? <>
       <button className="btn btn-ghost" onClick={() => onNavigate('materials')}>← Back to all supplied files</button>
       <div className="material-skill-tabs" role="group" aria-label="Practice skill">{skills.map(item => <button key={item} aria-pressed={skill === item} onClick={() => setSkill(item)}>{title(item)}</button>)}</div>
@@ -174,9 +192,9 @@ export function MaterialsPage({ itemId, onNavigate }: { itemId?: string; onNavig
     </> : <>
       {itemId && <p role="alert">That source was not found. Choose a file below.</p>}
       <h3>1 · Choose your practice</h3>
-      <div className="material-skill-tabs" role="group" aria-label="Filter materials by skill"><button aria-pressed={skillFilter === 'all'} onClick={() => { setSkillFilter('all'); setLimit(18); }}>All materials</button>{skills.map(item => <button key={item} aria-pressed={skillFilter === item} onClick={() => { setSkillFilter(item); setLimit(18); }}>{title(item)} <span>{catalog.files.filter(file => file.skills.includes(item)).length}</span></button>)}</div>
-      <div className="material-filters"><label>Search your files<input type="search" placeholder="Find a task, topic or filename…" value={query} onChange={e => { setQuery(e.target.value); setLimit(18); }} /></label><label>Collection<select value={collection} onChange={e => { setCollection(e.target.value); setLimit(18); }}><option value="all">OET + AMR</option><option value="AMR">AMR only · 35 files</option><option value="OET">OET folder</option></select></label><label>File type<select value={format} onChange={e => { setFormat(e.target.value); setLimit(18); }}><option value="all">All file types</option>{[...new Set(catalog.files.map(file => file.format))].sort().map(item => <option key={item} value={item}>{item.toUpperCase()}</option>)}</select></label></div>
-      <p className="meta">{filtered.length} files · Originals available on any device · Duplicate filenames retained</p>
+      <div className="material-skill-tabs" role="group" aria-label="Filter materials by skill"><button aria-pressed={skillFilter === 'all'} onClick={() => { setSkillFilter('all'); setLimit(18); }}>All materials</button>{skills.map(item => <button key={item} aria-pressed={skillFilter === item} onClick={() => { setSkillFilter(item); setLimit(18); }}>{title(item)} <span>{files.filter(file => file.skills.includes(item)).length}</span></button>)}</div>
+      <div className="material-filters"><label>Search your files<input type="search" placeholder="Find a task, topic or filename…" value={query} onChange={e => { setQuery(e.target.value); setLimit(18); }} /></label><label>Collection<select value={collection} onChange={e => { setCollection(e.target.value); setLimit(18); }}><option value="all">OET + AMR</option><option value="AMR">AMR only · 35 files</option><option value="OET">OET folder</option></select></label><label>File type<select value={format} onChange={e => { setFormat(e.target.value); setLimit(18); }}><option value="all">All file types</option>{[...new Set(files.map(file => file.format))].sort().map(item => <option key={item} value={item}>{item.toUpperCase()}</option>)}</select></label></div>
+      <p className="meta">{filtered.length} files · {isDesktop() ? 'Originals included offline in this Mac app' : 'Originals available on any device'} · Duplicate filenames retained</p>
       <div className="material-grid">{filtered.slice(0, limit).map(file => <article className="card material-card" key={file.id}>
         <div className="card-header-row"><span className={`tag ${file.collection === 'AMR' ? 'tag-available' : ''}`}>{file.collection} collection</span><span className="tag">{file.format.toUpperCase()}</span></div>
         <h3>{file.filename}</h3><p>{file.excerpt || 'Open the original document to study this material.'}</p>
@@ -185,7 +203,7 @@ export function MaterialsPage({ itemId, onNavigate }: { itemId?: string; onNavig
       </article>)}</div>
       {!filtered.length && <div className="card"><h3>No matching files</h3><p>Try another search or choose a different collection.</p></div>}
       {filtered.length > limit && <button className="btn btn-secondary" onClick={() => setLimit(limit + 18)}>Show more files ({filtered.length - limit} remaining)</button>}
-      <p className="material-library-note">All {catalog.fileCount} supplied paths are included; exact duplicates share {catalog.uniqueFileCount} stored originals. Scanned pages may not have searchable text. Anki decks and other non-previewable files are available to download. Materials retain their original authorship; inclusion does not grant a reuse licence.</p>
+      <p className="material-library-note">{files.length} supplied entries; exact duplicates share their stored originals. Scanned pages may not have searchable text. Anki decks and other non-previewable files are available to download. Materials retain their original authorship; inclusion does not grant a reuse licence.</p>
     </>}
   </div>;
 }

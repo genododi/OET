@@ -1,4 +1,5 @@
 import type { SessionTask } from '../types/session';
+import { hasLocalAi, localAiRequest } from './localAi';
 
 /**
  * Optional, opt-in AI examiner feedback. Calls the public Anthropic API directly from the
@@ -31,6 +32,14 @@ function isAiFeedbackError(x: AiFeedbackResult | AiFeedbackError): x is AiFeedba
 export { isAiFeedbackError };
 
 async function callClaude(system: string, userContent: string, apiKey: string): Promise<AiFeedbackResult | AiFeedbackError> {
+  if (hasLocalAi()) {
+    try {
+      const result = await localAiRequest([{ role: 'system', content: system }, { role: 'user', content: userContent.slice(0, 18000) }], AbortSignal.timeout(240_000), false, true);
+      const data = await result.json();
+      const parsed = parseAiFeedback(data?.choices?.[0]?.message?.content ?? '');
+      return parsed ?? { error: 'The local mentor did not return a complete review. Please retry.' };
+    } catch (error) { return { error: error instanceof Error ? error.message : 'The local mentor could not respond.' }; }
+  }
   if (!apiKey.trim()) {
     return { error: 'No API key set. Add your Anthropic API key in Settings to use AI feedback.' };
   }

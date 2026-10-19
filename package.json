@@ -48,13 +48,20 @@
     "sources:import-desktop": "python3 scripts/import-desktop-materials.py",
     "test:desktop-materials": "node scripts/verify-desktop-materials.mjs",
     "test:benchmark": "node scripts/verify-benchmark.mjs",
-    "build:benchmark-offline": "node scripts/build-benchmark-offline.mjs"
+    "build:benchmark-offline": "node scripts/build-benchmark-offline.mjs",
+    "desktop:dev": "electron desktop",
+    "desktop:import": "python3 scripts/import-offline-library.py --output \"/Volumes/GENODODI/OET/Mac App/offline-library\"",
+    "desktop:install-ai": "python3 scripts/install-local-ai.py --output \"$HOME/Library/Application Support/OET Study/local-ai\"",
+    "desktop:build": "node scripts/build-macos-app.mjs",
+    "test:desktop": "node --test desktop/core.test.mjs",
+    "test:imported-resources": "node scripts/verify-imported-resources.mjs"
   },
   "dependencies": {
     "react": "^19.2.6",
     "react-dom": "^19.2.6"
   },
   "devDependencies": {
+    "@electron/packager": "^20.3.0",
     "@eslint/js": "^10.0.1",
     "@playwright/test": "^1.62.1",
     "@testing-library/jest-dom": "^6.9.1",
@@ -63,6 +70,7 @@
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.1",
+    "electron": "^44.9.0",
     "eslint": "^10.3.0",
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.2",

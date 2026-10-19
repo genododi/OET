@@ -42,7 +42,7 @@ describe('supplied source practice', () => {
     const navigate = vi.fn();
     render(<MaterialsPage itemId={task.id} onNavigate={navigate} />);
     fireEvent.click(screen.getByRole('button', { name: 'Listening' }));
-    expect(screen.getByText(/no audio recordings/)).toBeInTheDocument();
+    expect(screen.getByText(/Match the title, test number and part/)).toBeInTheDocument();
     fireEvent.click(screen.getByRole('button', { name: 'Open real listening recordings' }));
     expect(navigate).toHaveBeenCalledWith('listening');
     await screen.findByText('Darren Walker — supplied case notes');

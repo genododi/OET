@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import type { ReactNode } from 'react';
 interface SourcePage { number: number; text: string; extraction?: string }
 interface Props { id: string; filename: string; format: string; textPath: string; assetPath: string; children?: ReactNode }
-const url = (path: string) => `${import.meta.env.BASE_URL}${path}`;
+const url = (path: string) => /^https?:\/\//.test(path) ? path : `${import.meta.env.BASE_URL}${path}`;
 export function MaterialSourceText({ id, filename, format, textPath, assetPath, children }: Props) {
   const storageKey = `oet-material-page-v1:${id}`;
   const [pages, setPages] = useState<SourcePage[] | null>(null);

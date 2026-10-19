@@ -1,4 +1,5 @@
 import { buildMentorSystemPrompt, type MentorContext } from './mentor';
+import { hasLocalAi, localAiReply } from './localAi';
 
 export const MENTOR_MODEL = 'claude-sonnet-5';
 export const MENTOR_TIMEOUT_MS = 60_000;
@@ -47,6 +48,12 @@ export function createMentorStreamParser(onText: (text: string) => void) {
 }
 
 export async function streamMentorReply(context: MentorContext, apiKey: string, signal: AbortSignal, onText: (text: string) => void): Promise<string> {
+  if (hasLocalAi()) {
+    const messages = context.messages.slice(-6).map(message => ({ role: message.role, content: message.text.slice(0, 1800) }));
+    while (messages[0]?.role === 'assistant') messages.shift();
+    if (!messages.length) throw new Error('Ask a question to start the conversation.');
+    return localAiReply([{ role: 'system', content: buildMentorSystemPrompt(context).slice(0, 14000) }, ...messages], AbortSignal.any([signal, AbortSignal.timeout(240_000)]), onText);
+  }
   if (!apiKey.trim()) throw new Error('Add your Anthropic API key in Settings to start Live AI.');
   const controller = new AbortController();
   const cancel = () => controller.abort();

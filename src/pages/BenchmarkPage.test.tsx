@@ -27,14 +27,13 @@ it('preserves a learner response when revealing the correct printed key and keep
   expect(screen.getByText('1 of 24 answered')).toBeVisible();
 });
 
-it('uses the original MP3 source with a Safari format hint and never substitutes missing recordings', async () => {
+it('uses original MP3 sources, including the recovered Test 10 recording', async () => {
   const view = render(<BenchmarkPage itemId="listening-1" onNavigate={vi.fn()} />);
   await screen.findByRole('textbox', { name: 'Question 1' });
   expect(view.container.querySelector('audio source')).toHaveAttribute('type', 'audio/mpeg');
   expect(view.container.querySelector('audio source')).toHaveAttribute('src', expect.stringContaining('/test-01.mp3'));
   view.rerender(<BenchmarkPage itemId="listening-10" onNavigate={vi.fn()} />);
-  expect(view.container.querySelector('audio')).toBeNull();
-  expect(screen.getByText(/no recording for Test 10/)).toBeVisible();
+  expect(view.container.querySelector('audio source')).toHaveAttribute('src', expect.stringContaining('/test-10.mp3'));
   await screen.findByText(/The questions could not load/);
 });
 

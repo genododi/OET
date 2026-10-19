@@ -26,7 +26,7 @@ const BooksPage = lazy(() => import('./pages/BooksPage').then((module) => ({ def
 const UsmlePage = lazy(() => import('./pages/UsmlePage').then((module) => ({ default: module.UsmlePage })));
 
 const pageMeta: Record<NavSection, { title: string; subtitle?: string }> = {
-  walkthrough: { title: '1 · Walkthroughs', subtitle: 'See the method, try an answer, understand the reasoning' },
+  walkthrough: { title: 'Exam walkthroughs', subtitle: 'See the method, try an answer, understand the reasoning' },
   dashboard: { title: 'Detailed dashboard', subtitle: 'Study history and advanced tools' },
   benchmark: { title: 'Benchmark tests', subtitle: 'Reading, Listening, Writing and Speaking practice' },
   jahshan: { title: 'Jahshan Collection', subtitle: 'Reading and Listening books · supplementary Writing and Speaking practice' },

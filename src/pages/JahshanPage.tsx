@@ -4,6 +4,7 @@ import { JahshanListeningWorksheet } from '../components/JahshanListeningWorkshe
 import { JahshanReadingWorkspace } from '../components/JahshanReadingWorkspace';
 import { JahshanProductivePractice } from './JahshanProductivePractice';
 import collection from '../data/jahshanCollection.json';
+import { isDesktop } from '../lib/desktop';
 import { canConnectLocalSource, localSourceFileUrl, LOCAL_SOURCE_GATEWAY_ORIGIN } from '../lib/localSourceGateway';
 import './officialExam.css';
 import './studySources.css';
@@ -48,7 +49,7 @@ export function JahshanPage({ initialSkill = 'listening' }: { initialSkill?: Jah
   const groupTracks = tracks.filter(file => file.relativePath.startsWith(`Audio/${group.title}/`)).sort(sortNames);
   const selectedTrack = groupTracks.find(file => file.id === trackId) ?? groupTracks[0];
   const book = books.find(file => file.name.startsWith(skill === 'listening' ? 'Listening' : 'Reading'))!;
-  const source = (file: Asset) => localUrls[file.id] ?? (gatewayAllowed && gateway === 'ready' ? localSourceFileUrl(file.sourceRelativePath) : undefined);
+  const source = (file: Asset) => localUrls[file.id] ?? (isDesktop() && file.mimeType === 'application/pdf' ? `${import.meta.env.BASE_URL}desktop/original/${file.sha256}` : gatewayAllowed && gateway === 'ready' ? localSourceFileUrl(file.sourceRelativePath) : undefined);
   const bookUrl = source(book);
   const audioUrl = selectedTrack ? source(selectedTrack) : undefined;
   useEffect(() => () => { Object.values(urls.current).forEach(URL.revokeObjectURL); }, []);

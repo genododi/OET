@@ -198,3 +198,7 @@ bundled editions retain their separate, matched, scored runners. Drafts are stor
 locally per recording/skill and can be downloaded. NotebookLM Audio Overviews are
 not used as authentic listening audio. The older generated drill library is
 explicitly distinguished from this new collection.
+
+## Offline Mac application
+
+See [the Mac app guide](docs/offline-macos.md) for local profiles, key-free offline AI, imported GENODODI resources, backups and rebuild instructions. The sidebar now prioritises official papers, timed mocks, review and the study plan; collections and reference tools are in expandable groups.

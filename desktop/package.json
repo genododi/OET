@@ -1,0 +1,10 @@
+{
+  "name": "oet-study-desktop",
+  "productName": "OET Study",
+  "version": "1.0.0",
+  "description": "Offline OET study with local profiles and a key-free AI mentor",
+  "author": "OET Study",
+  "license": "UNLICENSED",
+  "type": "module",
+  "main": "main.mjs"
+}

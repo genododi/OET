@@ -2,6 +2,7 @@ import { useState } from 'react';
 import type { SessionTask } from '../types/session';
 import { useApiKey } from '../lib/apiKeyStore';
 import { useSettingsContext } from '../lib/settingsContext';
+import { hasLocalAi } from '../lib/localAi';
 import {
   getAiWritingFeedback,
   getAiSpeakingFeedback,
@@ -22,6 +23,7 @@ interface Props {
 
 export function AiFeedbackPanel({ task, mode, draft, transcript }: Props) {
   const { apiKey, hasKey } = useApiKey();
+  const local = hasLocalAi();
   const { openSettings } = useSettingsContext();
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<AiFeedbackResult | null>(null);
@@ -76,7 +78,7 @@ export function AiFeedbackPanel({ task, mode, draft, transcript }: Props) {
         </div>
       )}
 
-      {!hasKey && (
+      {!hasKey && !local && (
         <div className="ai-feedback-locked">
           <span>Optional: add your own Anthropic key for a second AI review.</span>
           <button type="button" className="btn btn-ghost btn-sm" onClick={openSettings}>
@@ -85,12 +87,12 @@ export function AiFeedbackPanel({ task, mode, draft, transcript }: Props) {
         </div>
       )}
 
-      {hasKey && !result && !loading && (
+      {(hasKey || local) && !result && !loading && (
         <button type="button" className="btn btn-secondary btn-sm" onClick={request}>
-          Get optional AI review
+          {local ? 'Review with offline AI mentor' : 'Get optional AI review'}
         </button>
       )}
-      {loading && <p className="meta">Asking Claude for an examiner-style review…</p>}
+      {loading && <p className="meta">{local ? 'Your Mac is reviewing your response. The first review may take longer while the model loads…' : 'Asking Claude for an examiner-style review…'}</p>}
       {error && (
         <div className="ai-feedback-error">
           <p>{error}</p>

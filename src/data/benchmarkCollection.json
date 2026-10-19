@@ -656,7 +656,15 @@
         "41": "B",
         "42": "C"
       },
-      "audio": null
+      "audio": {
+        "filename": "LISTENING TEST 10.mp3",
+        "url": "https://github.com/genododi/OET/releases/download/benchmark-audio-2026-10-12/test-10.mp3",
+        "sourceUrl": "https://github.com/genododi/OET/releases/tag/genododi-library-2026-10-19",
+        "sha256": "965f345d3041777f012cdef260f7e0304908658bbe7a019fdd2da7c52dc9480a",
+        "bytes": 52908805,
+        "duration": 2204.467664,
+        "matchBasis": "Stored beside the identical checksummed Benchmark listening book in the supplied Mega archive; spoken question match verified against the paper (weight-loss consultation for Test 10; jaundice and haematuria consultations for Test 17)."
+      }
     },
     {
       "id": "listening-11",
@@ -1110,7 +1118,15 @@
         "41": "B",
         "42": "C"
       },
-      "audio": null
+      "audio": {
+        "filename": "LISTENING TEST 17.mp3",
+        "url": "https://github.com/genododi/OET/releases/download/benchmark-audio-2026-10-12/test-17.mp3",
+        "sourceUrl": "https://github.com/genododi/OET/releases/tag/genododi-library-2026-10-19",
+        "sha256": "aa1932a40d28935e1502a0ca609e487b48b410f9c0653af9daf9429462f8bde6",
+        "bytes": 51157100,
+        "duration": 2131.464127,
+        "matchBasis": "Stored beside the identical checksummed Benchmark listening book in the supplied Mega archive; spoken question match verified against the paper (weight-loss consultation for Test 10; jaundice and haematuria consultations for Test 17)."
+      }
     },
     {
       "id": "listening-18",

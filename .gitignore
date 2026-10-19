@@ -40,3 +40,6 @@ __pycache__/
 /*.PNG
 /*.apkg
 /658966428.html
+/release/
+/desktop-stage/
+*.gguf

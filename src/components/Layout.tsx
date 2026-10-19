@@ -50,7 +50,7 @@ export function Layout({ active, onNavigate, title, subtitle, children }: Props)
                 type="button"
                 className="settings-toggle"
                 aria-label="Open settings"
-                title="Settings — AI feedback API key"
+                title="Settings — mentor and feedback"
                 onClick={() => setSettingsOpen(true)}
               >
                 <AppIcon name="settings" />

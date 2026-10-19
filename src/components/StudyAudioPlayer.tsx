@@ -1,6 +1,7 @@
 import { useEffect, useImperativeHandle, useRef, useState } from 'react';
 import type { RefObject } from 'react';
 import './jahshanListening.css';
+import { studyAssetUrl } from '../lib/desktop';
 const timestamp = (time: number) => `${Math.floor(time / 60)}:${Math.floor(time % 60).toString().padStart(2, '0')}`;
 interface Props {
   src: string;
@@ -15,7 +16,7 @@ interface Props {
 }
 // Shared HTML controls avoid depending on Safari's native media-control icons.
 export function StudyAudioPlayer(props: Props) {
-  return <Playback key={props.src} {...props} />;
+  return <Playback key={props.src} {...props} src={studyAssetUrl(props.src)} />;
 }
 function Playback({ src, label, sourceUrl, mimeType, audioRef, onTimeChange, onPlayingChange, onReady, onEnded }: Props) {
   const resumeAt = useRef<number | null>(null);
