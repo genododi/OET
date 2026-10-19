@@ -9,7 +9,7 @@ const root = process.cwd();
 const data = process.env.OET_SMOKE_DATA || await fs.mkdtemp(path.join(os.tmpdir(), 'oet-mac-smoke-'));
 const app = await electron.launch({
   ...(process.env.OET_SMOKE_EXECUTABLE ? { executablePath: process.env.OET_SMOKE_EXECUTABLE, args: [] } : { args: [path.join(root, 'desktop')] }),
-  env: { ...process.env, OET_DESKTOP_USER_DATA: data, ...(!process.env.OET_SMOKE_EXECUTABLE ? { OET_DESKTOP_WEB: path.join(root, 'dist'), OET_DESKTOP_LIBRARY: '/Volumes/GENODODI/OET/Mac App/offline-library', OET_DESKTOP_AI: '/Volumes/GENODODI/OET/Mac App/local-ai' } : {}) },
+  env: { ...process.env, OET_DESKTOP_USER_DATA: data, ...(!process.env.OET_SMOKE_EXECUTABLE ? { OET_DESKTOP_WEB: path.join(root, 'dist'), OET_DESKTOP_LIBRARY: '/Volumes/GENODODI/OET/Mac App/offline-library', OET_DESKTOP_AI: path.join(os.homedir(), 'Library/Application Support/OET Study/local-ai') } : {}) },
   timeout: 60000,
 });
 try {
@@ -27,7 +27,7 @@ try {
   await page.evaluate(() => { localStorage.setItem('oet-smoke-answer', 'First learner draft'); location.hash = '#jahshan/listening'; });
   const audio = page.locator('audio').first();
   await audio.waitFor({ state: 'attached' });
-  await page.waitForFunction(() => document.querySelector('audio')?.duration > 0, { timeout: 60000 });
+  await page.waitForFunction(() => document.querySelector('audio')?.duration > 0, null, { timeout: 60000 });
   const duration = await audio.evaluate(el => el.duration);
   assert(duration > 60);
   const played = await audio.evaluate(async el => { await el.play(); return !el.paused; }); assert.equal(played, true);
@@ -46,6 +46,19 @@ try {
   await page.reload();
   assert.equal(await page.evaluate(() => localStorage.getItem('oet-smoke-answer')), 'First learner draft');
   await page.getByRole('heading', { name: 'Start here. One step at a time.' }).waitFor();
+  let importedOriginals = null;
+  if (process.env.OET_SMOKE_LIBRARY === '1') {
+    const result = await page.evaluate(async () => {
+      const catalog = await (await fetch('/OET/offline-library/catalog.json')).json();
+      const file = catalog.files.find(file => file.format === 'pdf' && file.hasText);
+      const original = await fetch(`/OET/${file.assetPath}`, { method: 'HEAD' });
+      const text = await (await fetch(`/OET/${file.textPath}`)).json();
+      return { count: catalog.files.length, bytes: Number(original.headers.get('content-length')), expected: file.bytes, sha: file.sha256, textSha: text.sourceSha256, text: text.text.length };
+    });
+    assert(result.count > 2000); assert.equal(result.bytes, result.expected);
+    assert.equal(result.sha, result.textSha); assert(result.text > 0);
+    importedOriginals = result.count;
+  }
   let aiVerified = false;
   if (process.env.OET_SMOKE_AI === '1') {
     const result = await page.evaluate(async () => {
@@ -57,5 +70,5 @@ try {
   }
   await fs.mkdir(path.join(root, 'output/playwright'), { recursive: true });
   await page.screenshot({ path: path.join(root, 'output/playwright/macos-offline-workspace.png'), fullPage: false });
-  console.log(JSON.stringify({ profilesIsolated: true, draftsSurviveReload: true, localAudioPlaysSeeksAndResumes: true, networkBlocked: true, localAiNeedsNoKey: aiVerified, duration }));
+  console.log(JSON.stringify({ profilesIsolated: true, draftsSurviveReload: true, localAudioPlaysSeeksAndResumes: true, networkBlocked: true, localAiNeedsNoKey: aiVerified, importedOriginals, duration }));
 } finally { await app.close(); }
