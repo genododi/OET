@@ -24,7 +24,17 @@ batches=[files[i:i+500] for i in range(0,len(files),500)]
 if not args.apply:raise SystemExit(f'{len(files)} originals in {len(batches)} release batches. Use --apply to publish.')
 # macOS's native resolver remains reliable when Go's DNS lookup is interrupted.
 os.environ.setdefault('GODEBUG','netdns=cgo')
-token=subprocess.check_output(['gh','auth','token'],text=True).strip()
+def gh_output(arguments, absent_ok=False):
+    for attempt in range(6):
+        try:
+            result=subprocess.run(['gh',*arguments],cwd=ROOT,capture_output=True,timeout=120)
+            if result.returncode==0:return result.stdout
+            problem=result.stderr.decode(errors='replace')[-300:]
+            if absent_ok and ('release not found' in problem.lower() or 'HTTP 404' in problem):return b''
+        except subprocess.TimeoutExpired:problem='GitHub metadata request timed out.'
+        if attempt==5:raise RuntimeError(problem)
+        print(f'Retrying GitHub metadata: {problem}',flush=True);time.sleep(10+attempt*5)
+token=gh_output(['auth','token']).decode().strip()
 upload_ip=None
 try:
     dns=subprocess.run(['curl','-fsS','--max-time','15','-H','accept: application/dns-json','https://cloudflare-dns.com/dns-query?name=uploads.github.com&type=A'],capture_output=True,text=True,check=True)
@@ -33,13 +43,13 @@ except (subprocess.SubprocessError,ValueError,StopIteration):pass
 remote={};published=[]
 for i,batch in enumerate(batches):
     tag='genododi-library-2026-10-19'+(f'-{i+1}' if i else '')
-    exists=subprocess.run(['gh','release','view',tag,'--json','isDraft'],cwd=ROOT,capture_output=True)
-    if exists.returncode:
+    exists=gh_output(['release','view',tag,'--json','isDraft'],absent_ok=True)
+    if not exists:
         notes=library/f'release-notes-{i+1}.md'
         notes.write_text('Original OET study resources supplied by the repository owner, imported from GENODODI. Files retain their original authorship. This release stores checksummed originals outside Git history for browser downloads and the offline Mac application.\n')
-        subprocess.run(['gh','release','create',tag,'--draft','--title',f'GENODODI OET library · batch {i+1}','--notes-file',str(notes)],cwd=ROOT,check=True)
-    release_id=subprocess.check_output(['gh','release','view',tag,'--json','databaseId','--jq','.databaseId'],cwd=ROOT,text=True).strip()
-    release=json.loads(subprocess.check_output(['gh','api',f'repos/genododi/OET/releases/{release_id}'],cwd=ROOT))
+        gh_output(['release','create',tag,'--draft','--title',f'GENODODI OET library · batch {i+1}','--notes-file',str(notes)])
+    release_id=gh_output(['release','view',tag,'--json','databaseId','--jq','.databaseId']).decode().strip()
+    release=json.loads(gh_output(['api',f'repos/genododi/OET/releases/{release_id}']))
     uploaded=release['assets']
     existing={r['name']:r['size'] for r in uploaded}
     todo=[r for r in batch if existing.get(Path(r['assetPath']).name)!=r['bytes']]
@@ -58,7 +68,7 @@ for i,batch in enumerate(batches):
                         checksum.update(data);dst.write(data)
                 if checksum.hexdigest()!=row['sha256']:raise RuntimeError(f'Original checksum changed: {row["filename"]}')
                 previous=next((asset for asset in uploaded if asset['name']==target.name),None)
-                if previous:subprocess.run(['gh','api','-X','DELETE',f'repos/genododi/OET/releases/assets/{previous["id"]}'],check=True,capture_output=True)
+                if previous:gh_output(['api','-X','DELETE',f'repos/genododi/OET/releases/assets/{previous["id"]}'])
                 for attempt in range(8):
                     command=['curl','-fsS','--connect-timeout','20','--max-time','900','--speed-limit','1024','--speed-time','60','-X','POST','-H','@-','-H','Content-Type: application/octet-stream','--data-binary',f'@{target}',f'https://uploads.github.com/repos/genododi/OET/releases/{release["id"]}/assets?name={target.name}']
                     if upload_ip:command.extend(['--resolve',f'uploads.github.com:443:{upload_ip}'])
@@ -67,16 +77,17 @@ for i,batch in enumerate(batches):
                     asset=json.loads(result.stdout) if result.returncode==0 else None
                     if asset and asset.get('size')==row['bytes'] and asset.get('digest') in (None,f'sha256:{row["sha256"]}'):
                         print(f'Uploaded and verified {row["bytes"]} bytes: {target.name}',flush=True);break
-                    pages=json.loads(subprocess.check_output(['gh','api','--paginate','--slurp',f'repos/genododi/OET/releases/{release["id"]}/assets?per_page=100'],text=True))
+                    print(f'Rechecking transfer: {target.name}: {result.stderr[-200:]}',flush=True)
+                    pages=json.loads(gh_output(['api','--paginate','--slurp',f'repos/genododi/OET/releases/{release["id"]}/assets?per_page=100']))
                     current=[asset for page in pages for asset in page]
                     found=next((asset for asset in current if asset['name']==target.name),None)
                     if found and found.get('size')==row['bytes'] and found.get('digest') in (None,f'sha256:{row["sha256"]}'):break
-                    if found:subprocess.run(['gh','api','-X','DELETE',f'repos/genododi/OET/releases/assets/{found["id"]}'],check=True,capture_output=True)
+                    if found:gh_output(['api','-X','DELETE',f'repos/genododi/OET/releases/assets/{found["id"]}'])
                     if attempt==7:raise RuntimeError(f'Upload failed: {target.name}: {result.stderr[-300:]}')
                     print(f'Retrying {target.name}: {result.stderr[-200:]}',flush=True);time.sleep(10+attempt*5)
                 target.unlink()
     with concurrent.futures.ThreadPoolExecutor(max_workers=max(1,min(3,args.workers))) as pool:list(pool.map(upload,chunks))
-    subprocess.run(['gh','release','edit',tag,'--draft=false'],cwd=ROOT,check=True)
+    gh_output(['release','edit',tag,'--draft=false'])
     for row in batch:
         entry={k:v for k,v in row.items() if k not in {'sourcePaths'}}
         original=row['assetPath'];entry['assetPath']=f'https://github.com/genododi/OET/releases/download/{tag}/{Path(original).name}'
@@ -98,4 +109,4 @@ if args.finalize:
     subprocess.run(['git','add','--','public/imported-resources'],cwd=ROOT,check=True)
     if subprocess.run(['git','diff','--cached','--quiet'],cwd=ROOT).returncode:
         subprocess.run(['git','commit','-m','Publish complete GENODODI OET resource library'],cwd=ROOT,check=True)
-        subprocess.run(['git','push','origin','main'],cwd=ROOT,check=True)
+    subprocess.run(['git','push','origin','main'],cwd=ROOT,check=True)
