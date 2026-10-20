@@ -12,6 +12,8 @@ import subprocess
 import tempfile
 import hashlib
 import time
+import os
+import ipaddress
 from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -20,6 +22,14 @@ library=Path(args.library).resolve();catalog=json.loads((library/'catalog.json')
 files=sorted(catalog['files'],key=lambda row: (0 if row['format'] in {'pdf','docx'} else 1 if row['format'] in {'jpg','jpeg','png'} else 3 if row['format']=='mp4' else 2,row['bytes'],row['id']))
 batches=[files[i:i+500] for i in range(0,len(files),500)]
 if not args.apply:raise SystemExit(f'{len(files)} originals in {len(batches)} release batches. Use --apply to publish.')
+# macOS's native resolver remains reliable when Go's DNS lookup is interrupted.
+os.environ.setdefault('GODEBUG','netdns=cgo')
+token=subprocess.check_output(['gh','auth','token'],text=True).strip()
+upload_ip=None
+try:
+    dns=subprocess.run(['curl','-fsS','--max-time','15','-H','accept: application/dns-json','https://cloudflare-dns.com/dns-query?name=uploads.github.com&type=A'],capture_output=True,text=True,check=True)
+    upload_ip=next(answer['data'] for answer in json.loads(dns.stdout).get('Answer',[]) if answer.get('type')==1 and ipaddress.ip_address(answer['data']).is_global)
+except (subprocess.SubprocessError,ValueError,StopIteration):pass
 remote={};published=[]
 for i,batch in enumerate(batches):
     tag='genododi-library-2026-10-19'+(f'-{i+1}' if i else '')
@@ -28,7 +38,9 @@ for i,batch in enumerate(batches):
         notes=library/f'release-notes-{i+1}.md'
         notes.write_text('Original OET study resources supplied by the repository owner, imported from GENODODI. Files retain their original authorship. This release stores checksummed originals outside Git history for browser downloads and the offline Mac application.\n')
         subprocess.run(['gh','release','create',tag,'--draft','--title',f'GENODODI OET library · batch {i+1}','--notes-file',str(notes)],cwd=ROOT,check=True)
-    uploaded=json.loads(subprocess.check_output(['gh','release','view',tag,'--json','assets'],cwd=ROOT))['assets']
+    release_id=subprocess.check_output(['gh','release','view',tag,'--json','databaseId','--jq','.databaseId'],cwd=ROOT,text=True).strip()
+    release=json.loads(subprocess.check_output(['gh','api',f'repos/genododi/OET/releases/{release_id}'],cwd=ROOT))
+    uploaded=release['assets']
     existing={r['name']:r['size'] for r in uploaded}
     todo=[r for r in batch if existing.get(Path(r['assetPath']).name)!=r['bytes']]
     print(f'Batch {i+1}: {len(todo)} originals to upload; {len(existing)} already present.',flush=True)
@@ -36,7 +48,6 @@ for i,batch in enumerate(batches):
     def upload(chunk):
         # Stage on the Mac so a slow/removable drive cannot starve an HTTP upload.
         with tempfile.TemporaryDirectory(prefix='oet-release-',dir=ROOT/'tmp') as cache:
-            paths=[]
             for row in chunk:
                 source=library/'files'/Path(row['assetPath']).name;target=Path(cache)/source.name
                 checksum=hashlib.sha256()
@@ -46,13 +57,24 @@ for i,batch in enumerate(batches):
                         if not data:break
                         checksum.update(data);dst.write(data)
                 if checksum.hexdigest()!=row['sha256']:raise RuntimeError(f'Original checksum changed: {row["filename"]}')
-                paths.append(str(target))
-            for attempt in range(8):
-                result=subprocess.run(['gh','release','upload',tag,*paths,'--clobber'],cwd=ROOT,capture_output=True,text=True)
-                if result.returncode==0:print(f'Uploaded {len(chunk)} originals to batch {i+1}',flush=True);return
-                print(f'Retrying upload batch {i+1}: {result.stderr[-300:]}',flush=True)
-                if attempt < 7: time.sleep(10 + attempt * 5)
-            raise RuntimeError(result.stderr[-1500:])
+                previous=next((asset for asset in uploaded if asset['name']==target.name),None)
+                if previous:subprocess.run(['gh','api','-X','DELETE',f'repos/genododi/OET/releases/assets/{previous["id"]}'],check=True,capture_output=True)
+                for attempt in range(8):
+                    command=['curl','-fsS','--connect-timeout','20','--max-time','900','--speed-limit','1024','--speed-time','60','-X','POST','-H','@-','-H','Content-Type: application/octet-stream','--data-binary',f'@{target}',f'https://uploads.github.com/repos/genododi/OET/releases/{release["id"]}/assets?name={target.name}']
+                    if upload_ip:command.extend(['--resolve',f'uploads.github.com:443:{upload_ip}'])
+                    # Keep the credential in stdin, outside command arguments and logs.
+                    result=subprocess.run(command,input=f'Authorization: Bearer {token}\n',capture_output=True,text=True)
+                    asset=json.loads(result.stdout) if result.returncode==0 else None
+                    if asset and asset.get('size')==row['bytes'] and asset.get('digest') in (None,f'sha256:{row["sha256"]}'):
+                        print(f'Uploaded and verified {row["bytes"]} bytes: {target.name}',flush=True);break
+                    pages=json.loads(subprocess.check_output(['gh','api','--paginate','--slurp',f'repos/genododi/OET/releases/{release["id"]}/assets?per_page=100'],text=True))
+                    current=[asset for page in pages for asset in page]
+                    found=next((asset for asset in current if asset['name']==target.name),None)
+                    if found and found.get('size')==row['bytes'] and found.get('digest') in (None,f'sha256:{row["sha256"]}'):break
+                    if found:subprocess.run(['gh','api','-X','DELETE',f'repos/genododi/OET/releases/assets/{found["id"]}'],check=True,capture_output=True)
+                    if attempt==7:raise RuntimeError(f'Upload failed: {target.name}: {result.stderr[-300:]}')
+                    print(f'Retrying {target.name}: {result.stderr[-200:]}',flush=True);time.sleep(10+attempt*5)
+                target.unlink()
     with concurrent.futures.ThreadPoolExecutor(max_workers=max(1,min(3,args.workers))) as pool:list(pool.map(upload,chunks))
     subprocess.run(['gh','release','edit',tag,'--draft=false'],cwd=ROOT,check=True)
     for row in batch:
