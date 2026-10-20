@@ -4,6 +4,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import os from 'node:os';
+import { execFileSync } from 'node:child_process';
 
 const root = process.cwd();
 const data = process.env.OET_SMOKE_DATA || await fs.mkdtemp(path.join(os.tmpdir(), 'oet-mac-smoke-'));
@@ -15,6 +16,11 @@ const app = await electron.launch({
 try {
   let page = await app.firstWindow();
   await page.getByRole('heading', { name: 'Who is studying today?' }).waitFor();
+  if (process.env.OET_SMOKE_EXECUTABLE) {
+    const build = await page.evaluate(async () => (await window.oetDesktop.info()).build);
+    assert.equal(build?.gitCommit, execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim(), 'Installed app must run the current source commit');
+    await page.getByText(`App source: ${build.gitCommit.slice(0, 7)}`, { exact: false }).waitFor();
+  }
   const first = await page.evaluate(() => window.oetDesktop.createProfile('First learner'));
   const second = await page.evaluate(() => window.oetDesktop.createProfile('Second learner'));
   const switchTo = async id => {

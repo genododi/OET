@@ -3,14 +3,20 @@ import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { packager } from '@electron/packager';
 import { createHash } from 'node:crypto';
+import { githubRevision, sourceRevision, verifyBuildRevision } from './macos-build-info.mjs';
 
 const root = process.cwd();
+const source = sourceRevision(root);
+if (source.gitCommit !== githubRevision(root)) throw Error('Push or synchronize committed source with GitHub main before building the Mac app.');
 const resourceRoot = process.env.OET_MAC_RESOURCES || '/Volumes/GENODODI/OET/Mac App';
 const output = process.env.OET_MAC_OUTPUT || path.join(root, 'tmp/macos-build');
 const aiRoot = process.env.OET_MAC_AI || path.join(process.env.HOME, 'Library/Application Support/OET Study/local-ai');
 const bundled = JSON.parse(await fs.readFile(path.join(root, 'src/data/desktopMaterials.generated.json'), 'utf8'));
-await fs.access(path.join(root, 'dist/index.html'));
 for (const resource of ['model.json', 'runtime/llama-server', 'Qwen3.5-4B-Q4_K_M.gguf']) await fs.access(path.join(aiRoot, resource));
+// Never package an earlier dist directory as if it belonged to the current commit.
+execFileSync('npm', ['run', 'build'], { cwd: root, stdio: 'inherit' });
+const build = { format: 'oet-macos-build', ...source, builtAt: new Date().toISOString() };
+verifyBuildRevision(build, sourceRevision(root), githubRevision(root));
 const iconset = path.join(root, 'tmp/oet-app.iconset');
 await fs.mkdir(iconset, { recursive: true });
 for (const size of [16, 32, 128, 256, 512]) {
@@ -29,6 +35,7 @@ const results = await packager({
 for (const directory of results) {
   const app = path.join(directory, 'OET Study.app');
   const resources = path.join(app, 'Contents/Resources');
+  await fs.writeFile(path.join(resources, 'build-info.json'), JSON.stringify(build, null, 2) + '\n');
   // APFS clones keep the existing 1.3 GB study assets from consuming a second copy.
   await fs.cp(path.join(root, 'dist'), path.join(resources, 'dist'), { recursive: true, mode: 2 });
   await fs.writeFile(path.join(resources, 'dist/bundled-assets.json'), JSON.stringify(Object.fromEntries(bundled.files.map(file => [file.sha256, file.assetPath]))));
@@ -50,7 +57,9 @@ for (const directory of results) {
   // Remove web font network references from the desktop copy. CSS has local system fallbacks.
   const html = path.join(app, 'Contents/Resources/dist/index.html');
   await fs.writeFile(html, (await fs.readFile(html, 'utf8')).replace(/\s*<link[^>]+href="https:\/\/fonts\.[^>]+>/g, ''));
+  verifyBuildRevision(build, sourceRevision(root), githubRevision(root));
   execFileSync('codesign', ['--force', '--deep', '--sign', '-', app], { stdio: 'inherit' });
+  execFileSync('codesign', ['--verify', '--deep', '--strict', app], { stdio: 'inherit' });
   const applications = path.join(process.env.HOME, 'Applications');
   await fs.mkdir(applications, { recursive: true });
   const installed = path.join(applications, 'OET Study.app');
@@ -62,3 +71,4 @@ for (const directory of results) {
   await fs.writeFile(path.join(resourceRoot, 'START HERE.txt'), 'OET STUDY — OFFLINE MAC INSTALLATION\n\nOpen ~/Applications/OET Study.app, then create or choose your study profile.\nKeep GENODODI connected for the additional offline-library. The AI model is installed on this Mac.\nThe app includes its own runtime; no browser, Node.js, API key or internet is required.\nThe local mentor loads on first use.\nYour profile data is saved under ~/Library/Application Support/OET Study on this Mac.\nBack up answers, drafts and study history through Profiles & backups.\n');
   console.log(`Mac application ready: ${installed}`);
 }
+execFileSync(process.execPath, ['scripts/verify-macos-version.mjs'], { cwd: root, stdio: 'inherit' });

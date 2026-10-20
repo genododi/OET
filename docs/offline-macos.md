@@ -46,14 +46,25 @@ npm ci
 node node_modules/electron/install.js
 python3 scripts/import-offline-library.py --output "/Volumes/GENODODI/OET/Mac App/offline-library"
 python3 scripts/install-local-ai.py --output "$HOME/Library/Application Support/OET Study/local-ai"
-npm run build
+# Commit and push source changes before building the installed release.
 npm run desktop:build
+npm run desktop:check
 ```
 
 The builder installs an ad-hoc signed application in `~/Applications`, with a
 stethoscope icon and its own bundled Electron runtime. Application Support data
 and the original library are preserved during a rebuild. `OET_MAC_RESOURCES`,
 `OET_MAC_AI` and `OET_MAC_OUTPUT` configure other installation locations.
+
+Every release build requires clean source matching the live GitHub main commit,
+rebuilds the frontend, and records its commit, Git tree and build date inside the
+signed application. **Profiles & backups** shows the running app's source commit.
+`desktop:check` independently compares the installed app with GitHub main and
+verifies its signature; an unreachable GitHub server is an unverified check,
+never a successful one. Run it after every publication and rebuild if the app
+differs. This release check uses the internet; normal study does not. An already
+open app keeps running its earlier version until you reopen it. Saved profiles
+survive the update. `AGENTS.md` records this required workflow for future changes.
 
 ## Import and publication
 

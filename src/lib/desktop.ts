@@ -1,5 +1,5 @@
 export interface OfflineProfile { id: string; name: string; createdAt: string }
-export interface DesktopInfo { profile: OfflineProfile | null; profiles: OfflineProfile[]; offline: boolean }
+export interface DesktopInfo { profile: OfflineProfile | null; profiles: OfflineProfile[]; offline: boolean; build?: { gitCommit: string; builtAt: string } | null }
 export interface LocalAiStatus { installed: boolean; state: string; model: string; message: string }
 declare global {
   interface Window {

@@ -53,7 +53,8 @@
     "desktop:import": "python3 scripts/import-offline-library.py --output \"/Volumes/GENODODI/OET/Mac App/offline-library\"",
     "desktop:install-ai": "python3 scripts/install-local-ai.py --output \"$HOME/Library/Application Support/OET Study/local-ai\"",
     "desktop:build": "node scripts/build-macos-app.mjs",
-    "test:desktop": "node --test desktop/core.test.mjs",
+    "desktop:check": "node scripts/verify-macos-version.mjs",
+    "test:desktop": "node --test desktop/core.test.mjs desktop/build-info.test.mjs",
     "test:imported-resources": "node scripts/verify-imported-resources.mjs"
   },
   "dependencies": {

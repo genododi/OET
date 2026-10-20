@@ -9,6 +9,8 @@ import { LocalMentor } from './mentor.mjs';
 const here = path.dirname(fileURLToPath(import.meta.url));
 const installation = path.resolve(process.resourcesPath, '../../..');
 let locations = {};
+let build = null;
+try { build = JSON.parse(fs.readFileSync(path.join(process.resourcesPath, 'build-info.json'), 'utf8')); } catch { /* Development build has no release stamp. */ }
 try { locations = JSON.parse(fs.readFileSync(path.join(process.resourcesPath, 'offline-locations.json'), 'utf8')); } catch { /* Portable installation beside the library. */ }
 const webRoot = process.env.OET_DESKTOP_WEB || path.join(process.resourcesPath, 'dist');
 const libraryRoot = process.env.OET_DESKTOP_LIBRARY || locations.library || path.join(installation, 'offline-library');
@@ -105,7 +107,7 @@ function authorized(event) {
 app.whenReady().then(async () => {
   profiles = new ProfileStore(app.getPath('userData'));
   mentor = new LocalMentor(aiRoot, app.getPath('logs'));
-  ipcMain.handle('desktop:info', event => { const id = authorized(event); return { profile: id ? profiles.get(id) : null, profiles: profiles.list(), offline: true }; });
+  ipcMain.handle('desktop:info', event => { const id = authorized(event); return { profile: id ? profiles.get(id) : null, profiles: profiles.list(), offline: true, build }; });
   ipcMain.handle('desktop:create-profile', (event, name) => { authorized(event); return profiles.create(name); });
   ipcMain.handle('desktop:switch-profile', (event, id) => { authorized(event); return openProfile(id); });
   ipcMain.handle('desktop:rename-profile', (event, name) => { const id = authorized(event); return profiles.rename(id, name); });
