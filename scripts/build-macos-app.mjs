@@ -68,7 +68,12 @@ for (const directory of results) {
   await fs.rename(app, installed);
   const shortcut = path.join(process.env.HOME, 'Desktop/OET Study.app');
   try { await fs.lstat(shortcut); } catch (error) { if (error.code === 'ENOENT') await fs.symlink(installed, shortcut); else throw error; }
-  await fs.writeFile(path.join(resourceRoot, 'START HERE.txt'), 'OET STUDY — OFFLINE MAC INSTALLATION\n\nOpen ~/Applications/OET Study.app, then create or choose your study profile.\nKeep GENODODI connected for the additional offline-library. The AI model is installed on this Mac.\nThe app includes its own runtime; no browser, Node.js, API key or internet is required.\nThe local mentor loads on first use.\nYour profile data is saved under ~/Library/Application Support/OET Study on this Mac.\nBack up answers, drafts and study history through Profiles & backups.\n');
+  try {
+    await fs.writeFile(path.join(resourceRoot, 'START HERE.txt'), 'OET STUDY — OFFLINE MAC INSTALLATION\n\nOpen ~/Applications/OET Study.app, then create or choose your study profile.\nKeep GENODODI connected for the additional offline-library. The AI model is installed on this Mac.\nThe app includes its own runtime; no browser, Node.js, API key or internet is required.\nThe local mentor loads on first use.\nYour profile data is saved under ~/Library/Application Support/OET Study on this Mac.\nBack up answers, drafts and study history through Profiles & backups.\n');
+  } catch (error) {
+    if (error.code !== 'ENOENT') throw error;
+    console.log('The external library is disconnected. The app is installed; its existing external instructions will be retained.');
+  }
   console.log(`Mac application ready: ${installed}`);
 }
 execFileSync(process.execPath, ['scripts/verify-macos-version.mjs'], { cwd: root, stdio: 'inherit' });
