@@ -47,4 +47,5 @@ for(const entry of catalog.entries){
  }
 }
 assert.deepEqual(catalog.entries.filter(e=>e.skill==='listening'&&!e.audio).map(e=>e.number),[]);
+assert.deepEqual(catalog.audioMissing,[]);
 console.log('Benchmark: 20 reading tests, 20 listening papers/keys, 20 original recordings and complete matching transcripts, 10 Medicine writing tasks; source hashes, timestamps, 840 keys and 1,680 question rows verified.');

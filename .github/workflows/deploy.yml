@@ -38,6 +38,7 @@ jobs:
       - run: npm run test:unit
       - run: npm run test:desktop
       - run: node scripts/verify-imported-resources.mjs
+      - run: npm run test:material-practice
       - run: npm run test:oet
       - run: npm run test:benchmark
       - run: npm run test:desktop-materials

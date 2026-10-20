@@ -1,10 +1,7 @@
 {
   "source": "User-supplied local Benchmark PDFs and original Drive audio",
   "driveFolder": "https://drive.google.com/drive/folders/1lr1YAQgVMM08T3tKFzrzk43mdmsPYGqt",
-  "audioMissing": [
-    10,
-    17
-  ],
+  "audioMissing": [],
   "entries": [
     {
       "id": "listening-1",

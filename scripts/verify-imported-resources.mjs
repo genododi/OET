@@ -8,7 +8,7 @@ for (const file of catalog.files) {
   assert.match(file.sha256, /^[a-f0-9]{64}$/);
   assert.equal(file.id, `offline-${file.sha256.slice(0, 20)}`);
   assert.ok(Number.isSafeInteger(file.bytes) && file.bytes > 0);
-  assert.ok(['pdf', 'docx', 'mp3', 'm4a', 'mp4', 'jpg', 'jpeg', 'png', 'wav'].includes(file.format));
+  assert.match(file.format, /^[a-z0-9]{1,12}$/);
   assert.match(file.assetPath, /^https:\/\/github\.com\/genododi\/OET\/releases\/download\/genododi-library-2026-10-19(?:-\d+)?\//);
   assert.ok(file.assetPath.endsWith(`/${file.sha256}.${file.format}`));
   assert.equal(file.textPath, `imported-resources/text/${file.sha256}.json`);

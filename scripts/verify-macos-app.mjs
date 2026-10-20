@@ -2,6 +2,7 @@
 import { _electron as electron } from 'playwright-core';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
+import fsSync from 'node:fs';
 import path from 'node:path';
 import os from 'node:os';
 import { execFileSync } from 'node:child_process';
@@ -53,6 +54,7 @@ try {
   assert.equal(await page.evaluate(() => localStorage.getItem('oet-smoke-answer')), 'First learner draft');
   await page.getByRole('heading', { name: 'Start here. One step at a time.' }).waitFor();
   let importedOriginals = null;
+  let suppliedPracticeVerified = false;
   if (process.env.OET_SMOKE_LIBRARY === '1') {
     const result = await page.evaluate(async () => {
       const catalog = await (await fetch('/OET/offline-library/catalog.json')).json();
@@ -64,6 +66,31 @@ try {
     assert(result.count > 2000); assert.equal(result.bytes, result.expected);
     assert.equal(result.sha, result.textSha); assert(result.text > 0);
     importedOriginals = result.count;
+    const collection=JSON.parse(await fs.readFile(path.join(root,'public/imported-resources/catalog.json'),'utf8')).files;
+    let chosen;
+    for(const file of collection.filter(file=>file.skills.includes('reading'))) {
+      const sheet=JSON.parse(await fs.readFile(path.join(root,`public/material-practice/sheets/${file.sha256}.json`),'utf8'));
+      const unit=sheet.units.find(unit=>unit.skills.includes('reading')&&unit.questions.some(question=>question.answer));
+      if(unit) {chosen={file,unit};break;}
+    }
+    assert(chosen,'A source-backed reading practice paper must be available');
+    await page.evaluate(id=>{location.hash=`#materials/${id}`;},chosen.file.id);
+    await page.getByRole('group',{name:'Practice skill',exact:true}).getByRole('button',{name:'Reading',exact:true}).click();
+    await page.getByRole('combobox',{name:'Task or part',exact:true}).selectOption(chosen.unit.id);
+    await page.locator('.material-question-row').first().waitFor();
+    const question=chosen.unit.questions.find(question=>question.answer);
+    const row=page.getByRole('article',{name:`Question ${question.number}`,exact:true});
+    await row.getByRole('button',{name:`Show answer for Question ${question.number}`,exact:true}).click();
+    await row.locator('.material-printed-answer').waitFor();
+    const audioFile=collection.find(file=>['mp3','m4a','ogg'].includes(file.format)&&fsSync.existsSync(path.join(root,`public/material-practice/transcripts/${file.sha256}.json`)));
+    assert(audioFile,'A source-matched listening transcript must be available');
+    await page.evaluate(id=>{location.hash=`#materials/${id}`;},audioFile.id);
+    await page.getByRole('group',{name:'Practice skill',exact:true}).getByRole('button',{name:'Listening',exact:true}).click();
+    await page.locator('audio').first().waitFor({state:'attached'});
+    await page.waitForFunction(()=>document.querySelector('audio')?.duration>0,null,{timeout:60000});
+    const transcript=await page.evaluate(async sha=>{const response=await fetch(`/OET/material-practice/transcripts/${sha}.json`);return response.json();},audioFile.sha256);
+    assert.equal(transcript.sourceSha256,audioFile.sha256);assert(transcript.segments.length>0);
+    suppliedPracticeVerified=true;
   }
   let aiVerified = false;
   if (process.env.OET_SMOKE_AI === '1') {
@@ -76,5 +103,5 @@ try {
   }
   await fs.mkdir(path.join(root, 'output/playwright'), { recursive: true });
   await page.screenshot({ path: path.join(root, 'output/playwright/macos-offline-workspace.png'), fullPage: false });
-  console.log(JSON.stringify({ profilesIsolated: true, draftsSurviveReload: true, localAudioPlaysSeeksAndResumes: true, networkBlocked: true, localAiNeedsNoKey: aiVerified, importedOriginals, duration }));
+  console.log(JSON.stringify({ profilesIsolated: true, draftsSurviveReload: true, localAudioPlaysSeeksAndResumes: true, networkBlocked: true, localAiNeedsNoKey: aiVerified, importedOriginals, suppliedPracticeVerified, duration }));
 } finally { await app.close(); }

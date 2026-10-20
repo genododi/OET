@@ -55,7 +55,10 @@
     "desktop:build": "node scripts/build-macos-app.mjs",
     "desktop:check": "node scripts/verify-macos-version.mjs",
     "test:desktop": "node --test desktop/core.test.mjs desktop/build-info.test.mjs",
-    "test:imported-resources": "node scripts/verify-imported-resources.mjs"
+    "test:imported-resources": "node scripts/verify-imported-resources.mjs",
+    "materials:prepare": "python3 scripts/build-material-practice.py",
+    "materials:sync": "python3 scripts/sync-study-library.py",
+    "test:material-practice": "python3 -m unittest discover -s scripts/tests -p 'test_material*.py' && node scripts/verify-material-practice.mjs"
   },
   "dependencies": {
     "react": "^19.2.6",

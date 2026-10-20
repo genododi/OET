@@ -3,7 +3,7 @@ import { StudyAudioPlayer } from './StudyAudioPlayer';
 import { detectListeningPartStarts, extractListeningKeywords } from '../lib/listeningKeywords';
 import './jahshanListening.css';
 type Track = { id: string; name: string; sha256: string; url: string };
-interface Props { track: Track; audioUrl: string; transcriptPath: string; inlineTranscript?: Transcript; mimeType?: string; heading?: string; description?: string; playbackNote?: string; selectedPart?: 'A' | 'B' | 'C'; partSelection?: number; }
+interface Props { track: Track; audioUrl: string; transcriptPath: string; inlineTranscript?: Transcript; mimeType?: string; heading?: string; description?: string; playbackNote?: string; selectedPart?: 'A' | 'B' | 'C'; partSelection?: number; onPlaybackPart?: (part: 'A' | 'B' | 'C') => void; seekOnLoad?: boolean; }
 type Segment = { start: number; end: number; text: string };
 export type Transcript = { trackId: string; sourceSha256: string; kind: string; segments: Segment[] };
 const matches = (data: Transcript, id: string, sha256: string) => data.trackId === id && data.sourceSha256 === sha256 && data.kind === 'automatic-transcription' && Array.isArray(data.segments) && data.segments.length > 0 && data.segments.every(s => Number.isFinite(s.start) && Number.isFinite(s.end) && s.start >= 0 && s.end >= s.start && typeof s.text === 'string');
@@ -11,14 +11,14 @@ const timestamp = (time: number) => `${Math.floor(time / 60)}:${Math.floor(time 
 export function RecordingTranscriptPlayer(props: Props) {
   return <Player key={`${props.track.id}:${props.track.sha256}:${props.transcriptPath}`} {...props} />;
 }
-function Player({ track, audioUrl, transcriptPath, inlineTranscript, mimeType, heading, description, playbackNote, selectedPart, partSelection }: Props) {
+function Player({ track, audioUrl, transcriptPath, inlineTranscript, mimeType, heading, description, playbackNote, selectedPart, partSelection, onPlaybackPart, seekOnLoad }: Props) {
   const player = useRef<HTMLAudioElement>(null);
   const [duration, setDuration] = useState(0);
   const activeLine = useRef<HTMLButtonElement>(null);
   const transcriptBox = useRef<HTMLDivElement>(null);
   const previousPart = useRef(selectedPart);
   const previousSelection = useRef(partSelection);
-  const pendingPart = useRef<'A' | 'B' | 'C' | null>(null);
+  const pendingPart = useRef<'A' | 'B' | 'C' | null>(seekOnLoad ? selectedPart ?? null : null);
   const [time, setTime] = useState(0);
   const [playing, setPlaying] = useState(false);
   const [audioEnded, setAudioEnded] = useState(false);
@@ -62,6 +62,12 @@ function Player({ track, audioUrl, transcriptPath, inlineTranscript, mimeType, h
     }
   }, [selectedPart, partSelection, transcript, duration, track.name]);
   const current = transcript?.segments.findIndex(segment => time >= segment.start && time < segment.end) ?? -1;
+  useEffect(() => {
+    if (!playing || !transcript || !onPlaybackPart) return;
+    const starts = detectListeningPartStarts(transcript.segments, track.name);
+    const currentPart = (Object.entries(starts) as ['A' | 'B' | 'C', number][]).filter(([, start]) => time >= start).sort((a,b) => b[1]-a[1])[0]?.[0];
+    if (currentPart) onPlaybackPart(currentPart);
+  }, [time, playing, transcript, onPlaybackPart, track.name]);
   const revisionKeywords = transcript ? extractListeningKeywords(transcript.segments.map(segment => segment.text).join(' ')) : [];
   useEffect(() => {
     const box = transcriptBox.current; const line = activeLine.current;
@@ -80,7 +86,7 @@ function Player({ track, audioUrl, transcriptPath, inlineTranscript, mimeType, h
       <h3>Recording transcript</h3><p className="meta">{description ?? track.name}</p>
       <p className="meta">Automatically transcribed from the original human recording. Recognition errors are possible. Intervals with unreliable recognition are marked “Unclear”; replay those timestamps. Use the printed answer key for marking.</p>
       {state === 'loading' && <p role="status">Loading this recording’s transcript…</p>}
-      {state === 'unavailable' && <p role="status">The transcript for this recording is unavailable. Try reloading when your connection is available.</p>}
+      {state === 'unavailable' && <p role="status">The transcript for this recording is unavailable. You can still use the original audio. Reopen this task after the next library update.</p>}
       {state === 'ready' && transcript && <>
         <div className="transcript-actions"><label><input type="checkbox" checked={follow} onChange={event => setFollow(event.target.checked)} /> Follow the audio</label><a href={`data:text/plain;charset=utf-8,${encodeURIComponent(transcript.segments.map(s => `[${timestamp(s.start)}] ${s.text}`).join('\n'))}`} download={`${track.name.replace(/\.mp3$/i, '')}-transcript.txt`}>Download transcript</a></div>
         <div ref={transcriptBox} className="transcript-box" tabIndex={0} aria-label="Recording text">{transcript.segments.map((segment, index) => <button type="button" ref={index === current ? activeLine : undefined} key={index} aria-label={`${timestamp(segment.start)} ${segment.text}`} className={`transcript-line${index === current ? ' transcript-current' : ''}`} aria-current={index === current ? 'true' : undefined} disabled={!duration} onClick={() => seek(segment.start)}><span className="transcript-time">{timestamp(segment.start)}</span><span>{segment.text}</span></button>)}</div>

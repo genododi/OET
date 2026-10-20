@@ -88,3 +88,24 @@ it('plays only the matching audio selected by the learner and releases it on lea
   expect(revoke).toHaveBeenCalledWith('blob:local-matching-audio');
   expect(view.container.querySelector('audio')).toBeNull();
 });
+
+it('keeps separate writing drafts per selected case and preserves an earlier file-level draft',async()=>{
+  const previous={response:'My earlier saved letter',notes:'Keep these notes',completed:false,checks:[]};
+  localStorage.setItem(`oet-supplied-v1:${task.id}:writing`,JSON.stringify(previous));
+  const document={...task,role:'paper'};
+  const sheet={version:1,sourceSha256:task.sha256,documents:[document],units:[1,2].map(number=>({id:`case-${number}`,label:`Case ${number}`,sourceSha256:task.sha256,pages:[number],questions:[],skills:['writing'],recordings:[],answerSources:[]}))};
+  vi.stubGlobal('fetch',vi.fn(async(url:string)=>({ok:true,json:async()=>url.includes('/sheets/')?sheet:{text:'Cases',pages:[{number:1,text:'Full case one notes'},{number:2,text:'Full case two notes'}]}})));
+  render(<MaterialsPage itemId={task.id} onNavigate={vi.fn()} />);
+  await screen.findByText('Full case one notes');
+  expect(screen.getByLabelText('Your letter')).toHaveValue(previous.response);
+  fireEvent.change(screen.getByLabelText('Task or part'),{target:{value:'case-2'}});
+  await screen.findByText('Full case two notes');
+  expect(screen.getByLabelText('Your letter')).toHaveValue('');
+  fireEvent.change(screen.getByLabelText('Your letter'),{target:{value:'Letter for case two'}});
+  fireEvent.change(screen.getByLabelText('Task or part'),{target:{value:'case-1'}});
+  await screen.findByText('Full case one notes');
+  expect(screen.getByLabelText('Your letter')).toHaveValue(previous.response);
+  expect(screen.getByLabelText('Page / task, corrections and next steps')).toHaveValue(previous.notes);
+  fireEvent.change(screen.getByLabelText('Task or part'),{target:{value:'case-2'}});
+  expect(screen.getByLabelText('Your letter')).toHaveValue('Letter for case two');
+});

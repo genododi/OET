@@ -474,7 +474,7 @@ test('Jahshan reveals the selected blank and preserves my response across record
 
 test('OET and AMR use text-first steps and retain drafts across practice modes', async ({ page }) => {
   await page.goto('./#materials/desktop-a2a6c6e4ef5e7812');
-  await expect(page.getByRole('heading', { name: '2 · Read the source text' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: '2 · Read the case notes and writing task' })).toBeVisible();
   await expect(page.getByRole('region', { name: 'Source document' })).toContainText('Darren Walker');
   await expect(page.locator('iframe')).toHaveCount(0);
   await page.getByLabel('Your letter', { exact: true }).fill('Dear Dr Booker, I am referring Mr Walker.');
@@ -485,6 +485,8 @@ test('OET and AMR use text-first steps and retain drafts across practice modes',
   await expect(page.getByLabel('Your letter', { exact: true })).toHaveValue('Dear Dr Booker, I am referring Mr Walker.');
   await page.goto('./#materials/desktop-d7f58401600ee3da');
   await expect(page.getByLabel('Source page', { exact: true })).toHaveValue('1');
+  await expect(page.getByLabel('Show all pages',{exact:true})).toBeChecked();
+  await page.getByLabel('Show all pages',{exact:true}).uncheck();
   await page.getByRole('button', { name: 'Next page', exact: true }).click();
   await expect(page.getByRole('link', { name: 'Open original · page 2 ↗' })).toHaveAttribute('href', /#page=2$/);
   await page.reload();

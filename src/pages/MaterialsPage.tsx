@@ -1,11 +1,11 @@
-import { useEffect, useRef, useState } from 'react';
-import { MaterialSourceText } from '../components/MaterialSourceText';
-import { MaterialListeningAudio } from '../components/MaterialListeningAudio';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { MaterialPracticePaper, type MaterialContext } from '../components/MaterialPracticePaper';
 import { StudyAudioPlayer } from '../components/StudyAudioPlayer';
 import { notebookWritingChecklist } from '../data/notebookNotes';
 import catalog from '../data/desktopMaterials.generated.json';
 import type { NavSection, OetSubtest } from '../types';
 import { isDesktop } from '../lib/desktop';
+import { materialOriginal } from '../lib/materialPractice';
 import { SourcePracticeCoach } from '../components/SourcePracticeCoach';
 import './materials.css';
 
@@ -97,12 +97,37 @@ export function VoiceRecorder() {
 }
 
 function PracticeWorkspace({ file, skill, onNavigate }: { file: Material; skill: OetSubtest; onNavigate: (section: NavSection, itemId?: string) => void }) {
-  const storageKey = `oet-supplied-v1:${file.id}:${skill}`;
-  const [saved, setSaved] = useState(() => readSaved(storageKey));
+  const baseKey = `oet-supplied-v1:${file.id}:${skill}`;
+  const [drafts, setDrafts] = useState<Record<string,SavedPractice>>(() => ({[baseKey]:readSaved(baseKey)}));
   const [saveError, setSaveError] = useState(false);
+  const [structured, setStructured] = useState(false);
+  const [context, setContext] = useState<MaterialContext | null>(null);
   const [duration, setDuration] = useState(skill === 'writing' ? 40 : skill === 'speaking' ? 5 : 15);
   const [remaining, setRemaining] = useState(duration * 60);
   const [deadline, setDeadline] = useState<number | null>(null);
+  const firstUnit = useRef<string | null>(null);
+  const lastUnit = useRef<string | null>(null);
+  const storageKey = context ? `${baseKey}:${context.id}` : baseKey;
+  const saved = drafts[storageKey] ?? readSaved(storageKey);
+  const changeContext = useCallback((next:MaterialContext | null) => {
+    setContext(next);
+    if (!next) return;
+    if (lastUnit.current!==next.id) { lastUnit.current=next.id;setDeadline(null);setRemaining(duration*60); }
+    if (firstUnit.current===null) {
+      firstUnit.current=next.id;
+      // Keep an earlier file-level draft visible in the first selected task.
+      const destination=`${baseKey}:${next.id}`;
+      try {
+        if (!localStorage.getItem(destination)) {
+          const previous=readSaved(baseKey);
+          if (previous.response || previous.notes || previous.checks.length) {
+            localStorage.setItem(destination,JSON.stringify(previous));
+            setDrafts(current=>({...current,[destination]:previous}));
+          }
+        }
+      } catch { setSaveError(true); }
+    }
+  },[baseKey,duration]);
   useEffect(() => {
     if (!deadline) return;
     const timer = window.setInterval(() => {
@@ -113,7 +138,7 @@ function PracticeWorkspace({ file, skill, onNavigate }: { file: Material; skill:
     return () => clearInterval(timer);
   }, [deadline]);
   const update = (changes: Partial<SavedPractice>) => {
-    const next = { ...saved, ...changes }; setSaved(next);
+    const next = { ...saved, ...changes }; setDrafts(current=>({...current,[storageKey]:next}));
     try { localStorage.setItem(storageKey, JSON.stringify(next)); setSaveError(false); } catch { setSaveError(true); }
   };
   const wordCount = saved.response.trim().split(/\s+/).filter(Boolean).length;
@@ -121,15 +146,15 @@ function PracticeWorkspace({ file, skill, onNavigate }: { file: Material; skill:
   return <section className="material-workspace" aria-label="Source practice workspace">
     <header className="card material-workspace-header">
       <div><span className="hero-eyebrow">{file.collection} collection · {title(skill)} practice</span><h2>1 · {file.filename}</h2><p>{file.relativePath}</p></div>
-      <a className="btn btn-secondary" href={url(file.assetPath)} download={file.format === 'html' ? `${file.filename}.txt` : file.filename}>Download original · {size(file.bytes)}</a>
+      <a className="btn btn-secondary" href={materialOriginal(file)} download={file.filename}>Download original · {size(file.bytes)}</a>
     </header>
     <p className="material-guidance">{guidance[skill]}</p>
     {skill === 'listening' && <button className="btn btn-secondary" onClick={() => onNavigate('listening')}>Open real listening recordings</button>}
     {skill === 'writing' && <p className="meta">Applying your NotebookLM writing checklist. <a href="#notebook">Review the imported guide →</a></p>}
     <div className="material-workspace-grid">
-      <MaterialSourceText key={file.id} id={file.id} filename={file.filename} format={file.format} textPath={file.textPath} assetPath={file.assetPath}>{['mp3', 'm4a', 'wav'].includes(file.format) ? <StudyAudioPlayer src={url(file.assetPath)} label={file.filename} mimeType={file.format === 'mp3' ? 'audio/mpeg' : file.format === 'm4a' ? 'audio/mp4' : 'audio/wav'} /> : file.format === 'mp4' ? <video controls preload="metadata" aria-label={file.filename} style={{ width: '100%' }}><source src={url(file.assetPath)} type="video/mp4" /></video> : skill === 'listening' ? <MaterialListeningAudio /> : undefined}</MaterialSourceText>
+      <MaterialPracticePaper file={file} skill={skill} onAnswers={response=>update({response,completed:false})} onQuestionMode={setStructured} onContext={changeContext} />
       <section className="card material-answer" aria-label="Your practice response">
-        <h3>3 · {skill === 'writing' ? 'Write your letter and review' : skill === 'speaking' ? 'Practise speaking and review' : 'Record your answers and review'}</h3>
+        <h3>{structured ? '4' : '3'} · {skill === 'writing' ? 'Write your letter and review' : skill === 'speaking' ? 'Practise speaking and review' : structured ? 'Review your work and save notes' : 'Record your answers and review'}</h3>
         <div className="material-timer">
           <label>Practice timer<select value={duration} disabled={deadline !== null} onChange={e => { const minutes = Number(e.target.value); setDuration(minutes); setRemaining(minutes * 60); }}>{[3, 5, 15, 40, 45, 60].map(minutes => <option key={minutes} value={minutes}>{minutes} minutes</option>)}</select></label>
           <strong aria-label="Time remaining">{String(Math.floor(remaining / 60)).padStart(2, '0')}:{String(remaining % 60).padStart(2, '0')}</strong>
@@ -138,17 +163,17 @@ function PracticeWorkspace({ file, skill, onNavigate }: { file: Material; skill:
         </div>
         {remaining === 0 && <p role="status">Practice time is up. Your response remains editable and saved.</p>}
         {skill === 'speaking' && <VoiceRecorder />}
-        <label className="material-response-label" htmlFor="material-response">{skill === 'writing' ? 'Your letter' : skill === 'speaking' ? 'Your transcript or speaking notes' : 'Your numbered answers'}</label>
+        <label className="material-response-label" htmlFor="material-response">{skill === 'writing' ? 'Your letter' : skill === 'speaking' ? 'Your transcript or speaking notes' : structured ? 'Answer summary or additional notes' : 'Your numbered answers'}</label>
         <textarea id="material-response" placeholder={skill === 'writing' ? 'Write your letter here…' : 'Choose the page or task, then record your answers here…'} value={saved.response} onChange={e => update({ response: e.target.value, completed: false })} />
         <div className="material-answer-meta"><span>{wordCount} words</span><span role="status">{saveError ? 'Browser storage unavailable — download your work' : 'Saved on this browser'}</span></div>
         <label htmlFor="material-notes">Page / task, corrections and next steps</label>
         <textarea id="material-notes" className="material-notes" value={saved.notes} onChange={e => update({ notes: e.target.value })} placeholder="e.g. Page 12, Task 2. What will you improve next time?" />
         <fieldset><legend>Self-review</legend>{checklists[skill].map(check => <label key={check}><input type="checkbox" checked={saved.checks.includes(check)} onChange={e => update({ checks: e.target.checked ? [...saved.checks, check] : saved.checks.filter(item => item !== check) })} />{check}</label>)}</fieldset>
         <div className="material-actions"><button className="btn btn-primary" disabled={!saved.response.trim()} onClick={() => update({ completed: !saved.completed })}>{saved.completed ? 'Reviewed ✓ — reopen' : 'Mark as reviewed'}</button><button className="btn btn-secondary" onClick={exportDraft}>Download my work</button></div>
-        <p className="meta">Self-directed source practice. No automatic answer key or official OET score is assigned. Drafts are saved per file and skill on this browser.</p>
+        <p className="meta">Printed keys are shown only when matched to the supplied source. Writing and speaking have no single correct response. Drafts are saved separately for each file, skill and selected task in this profile or browser.</p>
       </section>
     </div>
-    <SourcePracticeCoach id={file.id} title={file.filename} skill={skill} response={saved.response} textPath={file.textPath} />
+    <SourcePracticeCoach id={context?.id ?? file.id} title={context?.title ?? file.filename} skill={skill} response={saved.response} textPath={context?.textPath ?? file.textPath} startPage={context?.startPage} endPage={context?.endPage} sourceRanges={context?.ranges} />
   </section>;
 }
 

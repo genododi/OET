@@ -40,10 +40,10 @@ async function asset(request) {
     const relative = decodeURIComponent(url.pathname).replace(/^\/OET\//, '');
     if (relative.startsWith('desktop/original/')) {
       const file = originals.get(relative.slice('desktop/original/'.length));
-      if (file) return assetResponse(await confined(file.root, file.asset), request);
+      if (file) return originalResponse(await confined(file.root, file.asset), request);
       const sha = relative.slice('desktop/original/'.length), format = url.searchParams.get('format') || 'pdf';
-      if (!/^[a-f0-9]{64}$/.test(sha) || !['pdf','docx','mp3','m4a','mp4','jpg','jpeg','png','wav'].includes(format)) return new Response(null, { status: 404 });
-      return assetResponse(await confined(libraryRoot, `files/${sha}.${format}`), request);
+      if (!/^[a-f0-9]{64}$/.test(sha) || !/^[a-z0-9]{1,12}$/.test(format)) return new Response(null, { status: 404 });
+      return originalResponse(await confined(libraryRoot, `files/${sha}.${format}`), request);
     }
     if (relative.startsWith('desktop/remote/')) {
       const original = relative.slice('desktop/remote/'.length);
@@ -51,9 +51,19 @@ async function asset(request) {
       const entry = remoteAssets[original];
       return entry ? assetResponse(await confined(libraryRoot, entry), request) : new Response('This online resource was not supplied locally.', { status: 404 });
     }
-    if (relative.startsWith('offline-library/')) return assetResponse(await confined(libraryRoot, relative.slice('offline-library/'.length)), request);
+    if (relative.startsWith('offline-library/')) return originalResponse(await confined(libraryRoot, relative.slice('offline-library/'.length)), request);
     return assetResponse(await confined(webRoot, !relative || relative === '/' ? 'index.html' : relative), request);
   } catch { return new Response(null, { status: 400 }); }
+}
+
+async function originalResponse(path, request) {
+  const response=await assetResponse(path,request);
+  const format=path.split('.').at(-1)?.toLowerCase();
+  if (['html','htm','svg'].includes(format)) {
+    response.headers.set('Content-Type','application/octet-stream');
+    response.headers.set('Content-Disposition',`attachment; filename="original.${format}"`);
+  }
+  return response;
 }
 
 async function openProfile(id = null) {
