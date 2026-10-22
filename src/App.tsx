@@ -3,6 +3,7 @@ import { Layout } from './components/Layout';
 import type { NavSection } from './types';
 import { buildHash, isPracticeFilter, parseRoute } from './lib/routing';
 import { initPreferredProfession } from './lib/preferredProfession';
+const WebAppPage = lazy(() => import('./pages/WebAppPage').then(m => ({ default: m.WebAppPage })));
 
 const StartPage = lazy(() => import('./pages/StartPage').then(m => ({ default: m.StartPage })));
 const PracticeChoicePage = lazy(() => import('./pages/StartPage').then(m => ({ default: m.PracticeChoicePage })));
@@ -26,6 +27,7 @@ const BooksPage = lazy(() => import('./pages/BooksPage').then((module) => ({ def
 const UsmlePage = lazy(() => import('./pages/UsmlePage').then((module) => ({ default: module.UsmlePage })));
 
 const pageMeta: Record<NavSection, { title: string; subtitle?: string }> = {
+  app: { title: 'Install & offline study', subtitle: 'iPhone, iPad and your local study profiles' },
   walkthrough: { title: 'Exam walkthroughs', subtitle: 'See the method, try an answer, understand the reasoning' },
   dashboard: { title: 'Detailed dashboard', subtitle: 'Study history and advanced tools' },
   benchmark: { title: 'Benchmark tests', subtitle: 'Reading, Listening, Writing and Speaking practice' },
@@ -121,6 +123,7 @@ function App() {
 
   const renderPage = () => {
     switch (route.section) {
+      case 'app': return <WebAppPage />;
       case 'notebook': return <NotebookPage />;
       case 'listening': return <AuthenticListeningPage />;
       case 'materials':

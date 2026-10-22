@@ -15,4 +15,10 @@ declare global {
   }
 }
 export const isDesktop = () => typeof window !== 'undefined' && !!window.oetDesktop;
-export const studyAssetUrl = (url: string) => isDesktop() && /^https?:\/\//.test(url) ? `${import.meta.env.BASE_URL}desktop/remote/${encodeURIComponent(url)}` : url;
+export const studyAssetUrl = (url: string) => {
+  if (isDesktop() && /^https?:\/\//.test(url)) return `${import.meta.env.BASE_URL}desktop/remote/${encodeURIComponent(url)}`;
+  // A same-origin document route lets iOS open a saved external PDF offline.
+  // Cross-origin top-level navigations cannot be controlled by this app's worker.
+  if (typeof navigator !== 'undefined' && navigator.serviceWorker?.controller && /^https:\/\/github\.com\/genododi\/OET\/releases\/download\/.+\.pdf(?:[?#]|$)/.test(url)) return `${import.meta.env.BASE_URL}offline-file?source=${encodeURIComponent(url)}`;
+  return url;
+};

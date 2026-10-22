@@ -142,6 +142,7 @@ export interface ExperiencePdf {
 }
 
 export type NavSection =
+  | 'app'
   | 'benchmark'
   | 'jahshan'
   | 'drills'

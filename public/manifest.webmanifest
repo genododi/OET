@@ -1,0 +1,20 @@
+{
+  "id": "/OET/",
+  "name": "OET Study",
+  "short_name": "OET Study",
+  "description": "OET on Paper preparation, original recordings and your offline study profiles.",
+  "start_url": "/OET/",
+  "scope": "/OET/",
+  "display": "standalone",
+  "background_color": "#f8fafc",
+  "theme_color": "#134e4a",
+  "lang": "en",
+  "icons": [
+    { "src": "app-icons/stethoscope-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "app-icons/stethoscope-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ],
+  "shortcuts": [
+    { "name": "Official exam practice", "url": "/OET/#practice" },
+    { "name": "Saved offline tests", "url": "/OET/#app" }
+  ]
+}

@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { AudioPlayer } from './AudioPlayer';
+import { SaveStudyOffline } from './SaveStudyOffline';
 import { PdfViewer } from './PdfViewer';
 import { useProgress } from '../hooks/useProgress';
 import { paperSamples } from '../data/officialExamPractice';
@@ -97,6 +98,11 @@ export function RealListeningTestRunner({ test, onExit, onComplete, onPlaybackSt
         <article className="card real-listening-intro">
           <span className="session-kind">Real source audio · 42 questions</span>
           <h2>{test.title}</h2>
+          <SaveStudyOffline id={`official-${test.id}`} title={test.title} assets={[
+            { url: `${baseUrl}${test.audioPath.slice(1)}`, label: 'Original full-test recording', sha256: audioManifest.tests.find(item => item.id === test.id)!.outputSha256, mimeType: 'audio/mpeg' },
+            { url: `${baseUrl}${test.questionPdf.slice(1)}`, label: 'Listening question paper', mimeType: 'application/pdf' },
+            { url: paperSamples[test.id.endsWith('2') ? 1 : 0].answersUrl, label: 'Official answer key', mimeType: 'application/pdf' },
+          ]} />
           <p>
             The original question paper, answer key and human recordings form a verified sample set.
             Print the paper before starting if you want to handwrite your answers. The recording

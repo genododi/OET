@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 import { StudyAudioPlayer } from './StudyAudioPlayer';
 import { detectListeningPartStarts, extractListeningKeywords } from '../lib/listeningKeywords';
+import { SaveStudyOffline } from './SaveStudyOffline';
+import type { OfflineAsset } from '../lib/offlineStudy';
 import './jahshanListening.css';
 type Track = { id: string; name: string; sha256: string; url: string };
-interface Props { track: Track; audioUrl: string; transcriptPath: string; inlineTranscript?: Transcript; mimeType?: string; heading?: string; description?: string; playbackNote?: string; selectedPart?: 'A' | 'B' | 'C'; partSelection?: number; onPlaybackPart?: (part: 'A' | 'B' | 'C') => void; seekOnLoad?: boolean; }
+interface Props { track: Track; audioUrl: string; offlineAudioUrl?: string; offlineAssets?: OfflineAsset[]; transcriptPath: string; inlineTranscript?: Transcript; mimeType?: string; heading?: string; description?: string; playbackNote?: string; selectedPart?: 'A' | 'B' | 'C'; partSelection?: number; onPlaybackPart?: (part: 'A' | 'B' | 'C') => void; seekOnLoad?: boolean; }
 type Segment = { start: number; end: number; text: string };
 export type Transcript = { trackId: string; sourceSha256: string; kind: string; segments: Segment[] };
 const matches = (data: Transcript, id: string, sha256: string) => data.trackId === id && data.sourceSha256 === sha256 && data.kind === 'automatic-transcription' && Array.isArray(data.segments) && data.segments.length > 0 && data.segments.every(s => Number.isFinite(s.start) && Number.isFinite(s.end) && s.start >= 0 && s.end >= s.start && typeof s.text === 'string');
@@ -11,7 +13,7 @@ const timestamp = (time: number) => `${Math.floor(time / 60)}:${Math.floor(time 
 export function RecordingTranscriptPlayer(props: Props) {
   return <Player key={`${props.track.id}:${props.track.sha256}:${props.transcriptPath}`} {...props} />;
 }
-function Player({ track, audioUrl, transcriptPath, inlineTranscript, mimeType, heading, description, playbackNote, selectedPart, partSelection, onPlaybackPart, seekOnLoad }: Props) {
+function Player({ track, audioUrl, offlineAudioUrl, offlineAssets = [], transcriptPath, inlineTranscript, mimeType, heading, description, playbackNote, selectedPart, partSelection, onPlaybackPart, seekOnLoad }: Props) {
   const player = useRef<HTMLAudioElement>(null);
   const [duration, setDuration] = useState(0);
   const activeLine = useRef<HTMLButtonElement>(null);
@@ -82,6 +84,10 @@ function Player({ track, audioUrl, transcriptPath, inlineTranscript, mimeType, h
     {description && <p className="meta">{description} · Original human recording</p>}
     <StudyAudioPlayer src={audioUrl} mimeType={mimeType} label={track.name} sourceUrl={track.url} audioRef={player} onTimeChange={setTime} onPlayingChange={setPlaying} onReady={setDuration} onEnded={() => setAudioEnded(true)} />
     {playbackNote && <p className="meta">{playbackNote}</p>}
+    <SaveStudyOffline id={`recording-${track.sha256}`} title={track.name} assets={[
+      { url: offlineAudioUrl ?? audioUrl, label: 'Original recording', sha256: track.sha256, mimeType: mimeType ?? (/\.mp3(?:$|\?)/i.test(offlineAudioUrl ?? audioUrl) ? 'audio/mpeg' : /\.ogg(?:$|\?)/i.test(audioUrl) ? 'audio/ogg' : /\.wav(?:$|\?)/i.test(audioUrl) ? 'audio/wav' : 'audio/mp4') },
+      { url: `${import.meta.env.BASE_URL}${transcriptPath}`, label: 'Recording transcript', optional: true }, ...offlineAssets,
+    ]} />
     <section className="jahshan-transcript" aria-label="Transcript of selected recording">
       <h3>Recording transcript</h3><p className="meta">{description ?? track.name}</p>
       <p className="meta">Automatically transcribed from the original human recording. Recognition errors are possible. Intervals with unreliable recognition are marked “Unclear”; replay those timestamps. Use the printed answer key for marking.</p>

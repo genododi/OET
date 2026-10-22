@@ -1,0 +1,34 @@
+.webapp-page { max-width: 1100px; margin-inline: auto; }
+.webapp-hero { display: flex; gap: 1.4rem; align-items: flex-start; background: linear-gradient(135deg,#ecfdf5,#f0fdfa); border: 1px solid #99f6e4; }
+.webapp-hero img { border-radius: 20px; flex-shrink: 0; }
+.webapp-status { color: #115e59; font-weight: 600; }
+.webapp-step h2 { margin: .45rem 0 .8rem; }
+.webapp-install-steps { padding-left: 1.4rem; }
+.webapp-install-steps li { padding: .5rem 0 .5rem .4rem; }
+.webapp-actions, .webapp-profiles, .webapp-profile-form { display: flex; gap: .75rem; align-items: center; flex-wrap: wrap; margin-block: 1rem; }
+.webapp-profile-form label { flex: 1; min-width: 180px; display: grid; gap: .4rem; }
+.webapp-profile-form input { padding: .8rem; border: 1px solid var(--border); border-radius: 9px; }
+.webapp-file { display: grid; gap: .4rem; }
+.webapp-pack-list { list-style: none; padding: 0; }
+.webapp-pack-list li { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--border); }
+.webapp-pack-list p { margin: .35rem 0 0; }
+.offline-save { margin-block: 1rem; border: 1px solid var(--border); border-radius: 12px; background: #f0fdfa; padding: .85rem 1rem; overflow-wrap: anywhere; }
+.offline-save summary { font-weight: 600; color: #115e59; cursor: pointer; min-height: 32px; }
+.offline-save p { margin: .65rem 0; }
+.offline-missing { padding-left: 1.2rem; }
+.offline-missing li { padding-block: .7rem; }
+.offline-missing label { display: grid; gap: .4rem; margin-top: .6rem; }
+.webapp-nav-link { display: block; padding: .65rem; color: inherit; border-radius: 8px; }
+@media(max-width:768px) {
+  .app-shell { min-height: 100dvh; }
+  .topbar { padding-top: max(1rem,env(safe-area-inset-top)); padding-left: max(1rem,env(safe-area-inset-left)); padding-right: max(1rem,env(safe-area-inset-right)); }
+  .page-content { padding-bottom: max(1.5rem,env(safe-area-inset-bottom)); }
+  .sidebar { padding-top: env(safe-area-inset-top); padding-bottom: env(safe-area-inset-bottom); height: 100dvh; }
+  input:not([type=range]):not([type=checkbox]):not([type=radio]), textarea, select { font-size: 16px; }
+  .webapp-hero { display: block; }
+  .webapp-hero img { margin-bottom: 1rem; }
+  .webapp-pack-list li { align-items: flex-start; flex-direction: column; }
+  .webapp-actions > *, .webapp-profile-form > button { width: 100%; }
+  .offline-save input[type=file] { max-width: 100%; }
+  .webapp-profiles .btn, .offline-save .btn { min-height: 44px; }
+}

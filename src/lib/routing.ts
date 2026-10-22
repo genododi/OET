@@ -6,6 +6,7 @@ export interface AppRoute {
 }
 
 const validSections = new Set<string>([
+  'app',
   'benchmark',
   'jahshan',
   'drills',

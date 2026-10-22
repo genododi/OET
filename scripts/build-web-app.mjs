@@ -1,0 +1,15 @@
+import { readdir, readFile, writeFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
+import { execFileSync } from 'node:child_process';
+const base = '/OET/';
+const assets = (await readdir('dist/assets')).filter(name => /\.(?:js|css|woff2?|wasm)$/.test(name)).sort();
+const files = ['index.html', 'manifest.webmanifest', 'apple-touch-icon.png', 'stethoscope-icon.svg', 'app-icons/stethoscope-192.png', 'app-icons/stethoscope-512.png', 'icons.svg', 'imported-resources/catalog.json', 'material-practice/index.json', ...assets.map(name => `assets/${name}`)];
+const hash = createHash('sha256');
+const commit = execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim();
+hash.update(commit);
+for (const path of files) hash.update(await readFile(`dist/${path}`));
+const version = hash.digest('hex').slice(0, 16);
+const source = await readFile('scripts/study-service-worker.js', 'utf8');
+await writeFile('dist/sw.js', source.replace('__OET_VERSION__', JSON.stringify(version)).replace('__OET_SHELL_FILES__', JSON.stringify(files.map(path => base + path))));
+await writeFile('dist/web-app-build.json', JSON.stringify({ version, gitCommit: commit, shellFiles: files.length }) + '\n');
+console.log(`iPhone/iPad offline app prepared: ${files.length} core files; recordings download only when selected.`);

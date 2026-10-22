@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { SaveStudyOffline } from './SaveStudyOffline';
 import { JahshanReadingQuestions } from './JahshanReadingQuestions';
 import { JahshanReadingPaper } from './JahshanReadingPaper';
 import questionData from '../data/jahshanReadingQuestions.json';
@@ -64,6 +65,7 @@ export function JahshanReadingWorkspace({ bookUrl }: { bookUrl?: string }) {
       {test.kind !== 'paper' && <p className="reading-notice">{test.kind === 'strategies' ? 'Strategies and practice exercises: use this for learning; it is not one standard 42-question mock.' : 'The collection lists this paper as 34 questions. It is shorter than a full 42-question OET Reading test.'}</p>}
       <div className="study-source-links"><button className="btn btn-secondary" disabled={visibleTests[0].number === test.number} onClick={() => selectTest(visibleTests[visibleTests.findIndex(item => item.number === test.number) - 1].number)}>Previous test</button><button className="btn btn-secondary" disabled={visibleTests.at(-1)!.number === test.number} onClick={() => selectTest(visibleTests[visibleTests.findIndex(item => item.number === test.number) + 1].number)}>Next test</button><a href="#practice/reading">Use a timed official Reading paper →</a></div>
     </section>
+    <SaveStudyOffline key={test.number} id={`jahshan-reading-${test.number}`} title={`Jahshan · ${test.title}`} assets={Array.from({length:test.lastPage-test.questionPage+1},(_,index)=>({url:`${import.meta.env.BASE_URL}jahshan-reading-pages/${test.questionPage+index}.webp`,label:`Original reading page ${test.questionPage+index}`}))} />
     {saveError && <p role="alert">Your browser could not save these answers. Download them before leaving.</p>}
     <div className={`reading-workbench${wide ? ' reading-workbench-wide' : ''}`}>
       <section className="card reading-paper"><h3>3 · Read the complete text</h3>

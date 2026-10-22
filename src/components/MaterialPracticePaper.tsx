@@ -4,6 +4,7 @@ import { MaterialSourceText } from './MaterialSourceText';
 import { MaterialListeningAudio } from './MaterialListeningAudio';
 import { RecordingTranscriptPlayer } from './RecordingTranscriptPlayer';
 import { StudyAudioPlayer } from './StudyAudioPlayer';
+import { SaveStudyOffline } from './SaveStudyOffline';
 import { materialOriginal, materialUrl, validMaterialSheet, type MaterialDocument, type MaterialSheet, type MaterialUnit, type MaterialTextRange } from '../lib/materialPractice';
 import './jahshanListening.css';
 
@@ -67,6 +68,12 @@ export function MaterialPracticePaper({ file, skill, onAnswers, onQuestionMode, 
   const unit = units.find(item=>item.id===selected) ?? (chosenTrack ? units.find(item=>item.recordings.includes(chosenTrack)) : undefined) ?? units.find(item=>item.sourceSha256===file.sha256 && item.questions.length>0) ?? units.find(item=>item.sourceSha256===file.sha256) ?? units[0];
   const source = sheet?.documents.find(item=>item.sha256===unit?.sourceSha256);
   const recordings = sheet?.documents.filter(item=>item.role==='recording') ?? [];
+  const offlineAssets = [
+    { url: materialUrl(`material-practice/sheets/${file.sha256}.json`), label: 'Questions and source matches' },
+    { url: materialUrl(file.textPath), label: 'Complete source text' },
+    ...(sheet?.documents.filter(document => !audioFormats.includes(document.format)).map(document => ({ url: materialUrl(document.textPath), label: document.filename })) ?? []),
+    ...(sheet?.documents.filter(document => document.format === 'pdf').map(document => ({ url: materialUrl(document.assetPath), label: `Original PDF · ${document.filename}`, sha256: document.sha256, mimeType: 'application/pdf', optional: true })) ?? []),
+  ];
   const trackSha = chosenTrack || (unit?.recordings.length===1 ? unit.recordings[0] : '');
   const track = recordings.find(item=>item.sha256===trackSha) ?? (audioFormats.includes(file.format) && trackSha===file.sha256 ? {...file,role:'recording'} : undefined);
   const hasQuestions = !!unit?.questions.length;
@@ -83,8 +90,9 @@ export function MaterialPracticePaper({ file, skill, onAnswers, onQuestionMode, 
     const next = units.find(item=>item.part===part && item.recordings.includes(trackSha));
     if (next) { setSelected(next.id); try { localStorage.setItem(selectionKey,next.id); } catch { /* Continue playback. */ } }
   },[followQuestions,unit?.part,units,trackSha,selectionKey]);
-  const originalAudio = track && <RecordingTranscriptPlayer track={{id:`material-${track.sha256}`,name:track.filename,sha256:track.sha256,url:materialOriginal(track)}} audioUrl={materialOriginal(track)} transcriptPath={`material-practice/transcripts/${track.sha256}.json`} selectedPart={manualPart} partSelection={partSelection} onPlaybackPart={playbackPart} seekOnLoad heading="2 · Listen to the matching recording" description={track.filename} />;
+  const originalAudio = track && <RecordingTranscriptPlayer offlineAssets={offlineAssets} track={{id:`material-${track.sha256}`,name:track.filename,sha256:track.sha256,url:materialOriginal(track)}} audioUrl={materialOriginal(track)} transcriptPath={`material-practice/transcripts/${track.sha256}.json`} selectedPart={manualPart} partSelection={partSelection} onPlaybackPart={playbackPart} seekOnLoad heading="2 · Listen to the matching recording" description={track.filename} />;
   return <div className="material-practice-paper">
+    {!loading && !track && <SaveStudyOffline key={file.sha256} id={`material-${file.sha256}`} title={file.filename} assets={offlineAssets} />}
     {loading && <p role="status">Matching the paper, recording and printed key…</p>}
     {units.length>0 && <section className="card material-task-picker"><h3>Choose a test, part or task</h3><label>Task or part<select value={unit?.id ?? ''} onChange={event=>{const next=units.find(item=>item.id===event.target.value);if(next)selectUnit(next);}}>{units.map(item=><option key={item.id} value={item.id}>{item.label} · pages {item.pages[0]}–{item.pages.at(-1)}{item.questions.length ? ` · ${item.questions.length} questions` : ''}</option>)}</select></label>{units.some(item=>item.part) && <div className="material-skill-tabs" role="group" aria-label="Source exam part">{(['A','B','C'] as const).map(part=><button type="button" key={part} aria-pressed={unit?.part===part} disabled={!units.some(item=>item.part===part)} onClick={()=>{const next=units.find(item=>item.part===part && item.recordings.includes(trackSha)) ?? units.find(item=>item.part===part);if(next)selectUnit(next);}}>Part {part}</button>)}</div>}</section>}
     {(recordings.length>0 || track) && <section className="card material-recording-picker"><label>Matching recording<select value={track?.sha256 ?? ''} onChange={event=>{const sha=event.target.value;setTrack(sha);try { localStorage.setItem(`${selectionKey}:recording`,sha); } catch { /* Continue playback. */ } const next=units.find(item=>item.recordings.includes(sha));if(next)selectUnit(next,false);setManualPart(undefined);}}><option value="">Choose the original recording…</option>{recordings.map(item=><option value={item.sha256} key={item.sha256}>{item.filename}</option>)}</select></label><label><input type="checkbox" checked={followQuestions} onChange={event=>setFollowQuestions(event.target.checked)} /> Follow the playing audio’s part in the questions</label>{originalAudio}</section>}
