@@ -53,7 +53,7 @@ for (const directory of results) {
     media[entry.audio.url] = `benchmark-audio/${name}`;
   }
   await fs.writeFile(path.join(resources, 'dist/offline-media.json'), JSON.stringify(media));
-  await fs.writeFile(path.join(resources, 'offline-locations.json'), JSON.stringify({ library: path.join(resourceRoot, 'offline-library'), ai: aiRoot }, null, 2));
+  await fs.writeFile(path.join(resources, 'offline-locations.json'), JSON.stringify({ library: path.join(resourceRoot, 'offline-library'), source: process.env.OET_MAC_SOURCE || '/Volumes/GENODODI/OET', ai: aiRoot }, null, 2));
   // Remove web font network references from the desktop copy. CSS has local system fallbacks.
   const html = path.join(app, 'Contents/Resources/dist/index.html');
   await fs.writeFile(html, (await fs.readFile(html, 'utf8')).replace(/\s*<link[^>]+href="https:\/\/fonts\.[^>]+>/g, ''));

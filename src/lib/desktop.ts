@@ -1,5 +1,6 @@
 export interface OfflineProfile { id: string; name: string; createdAt: string }
-export interface DesktopInfo { profile: OfflineProfile | null; profiles: OfflineProfile[]; offline: boolean; build?: { gitCommit: string; builtAt: string } | null }
+export interface StartupUpdateStatus { state: string; checking: boolean; message: string; checkedAt?: string; files?: { state: string; checkedFiles?: number; changedFiles?: number; pendingPracticeFiles?: number }; published?: { state: string; remoteCommit?: string } }
+export interface DesktopInfo { profile: OfflineProfile | null; profiles: OfflineProfile[]; offline: boolean; build?: { gitCommit: string; builtAt: string } | null; updates?: StartupUpdateStatus }
 export interface LocalAiStatus { installed: boolean; state: string; model: string; message: string }
 declare global {
   interface Window {
@@ -11,6 +12,8 @@ declare global {
       backup(data: Record<string, string>): Promise<boolean>;
       restore(): Promise<Record<string, string> | null>;
       aiStatus(): Promise<LocalAiStatus>;
+      checkUpdates?(): Promise<StartupUpdateStatus>;
+      onUpdateStatus?(callback: (status: StartupUpdateStatus) => void): () => void;
     };
   }
 }

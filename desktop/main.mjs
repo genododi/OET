@@ -1,10 +1,11 @@
-import { app, BrowserWindow, dialog, ipcMain, Menu, protocol, session, shell } from 'electron';
+import { app, BrowserWindow, dialog, ipcMain, Menu, net, protocol, session, shell } from 'electron';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { ProfileStore } from './profiles.mjs';
 import { assetResponse, confined } from './assets.mjs';
 import { LocalMentor } from './mentor.mjs';
+import { StartupChecks } from './startup-check.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const installation = path.resolve(process.resourcesPath, '../../..');
@@ -20,7 +21,8 @@ app.setName('OET Study');
 app.commandLine.appendSwitch('disable-background-networking');
 protocol.registerSchemesAsPrivileged([{ scheme: 'oet', privileges: { standard: true, secure: true, supportFetchAPI: true, stream: true, corsEnabled: true } }]);
 const origin = 'oet://study';
-let profiles, window, mentor;
+let profiles, window, mentor, startup;
+let workspaceReady = false;
 const windows = new Map();
 const readySessions = new Set();
 let remoteAssets = {};
@@ -30,7 +32,7 @@ try { bundledMedia = JSON.parse(fs.readFileSync(path.join(webRoot, 'offline-medi
 const originals = new Map();
 try { for (const [sha, asset] of Object.entries(JSON.parse(fs.readFileSync(path.join(webRoot, 'bundled-assets.json'), 'utf8')))) originals.set(sha, { root: webRoot, asset }); } catch { /* Available with a complete build. */ }
 if (!app.requestSingleInstanceLock()) app.quit();
-app.on('second-instance', () => { window?.show(); window?.focus(); });
+app.on('second-instance', () => { window?.show(); window?.focus(); void startup?.run(); });
 
 async function asset(request) {
   const url = new URL(request.url);
@@ -117,7 +119,12 @@ function authorized(event) {
 app.whenReady().then(async () => {
   profiles = new ProfileStore(app.getPath('userData'));
   mentor = new LocalMentor(aiRoot, app.getPath('logs'));
-  ipcMain.handle('desktop:info', event => { const id = authorized(event); return { profile: id ? profiles.get(id) : null, profiles: profiles.list(), offline: true, build }; });
+  startup = new StartupChecks({ sourceRoot: process.env.OET_DESKTOP_SOURCE || locations.source || '/Volumes/GENODODI/OET', libraryRoot, webRoot, stateRoot: path.join(app.getPath('userData'), 'library-sync'), resourcesPath: process.resourcesPath, build,
+    fetcher: (url, options) => net.fetch(url, options),
+    onChange: status => { for (const target of BrowserWindow.getAllWindows()) if (!target.isDestroyed() && windows.has(target.webContents.id)) target.webContents.send('desktop:update-status', status); },
+  });
+  ipcMain.handle('desktop:info', event => { const id = authorized(event); return { profile: id ? profiles.get(id) : null, profiles: profiles.list(), offline: true, build, updates: startup.status }; });
+  ipcMain.handle('desktop:check-updates', event => { authorized(event); return startup.run(); });
   ipcMain.handle('desktop:create-profile', (event, name) => { authorized(event); return profiles.create(name); });
   ipcMain.handle('desktop:switch-profile', (event, id) => { authorized(event); return openProfile(id); });
   ipcMain.handle('desktop:rename-profile', (event, name) => { const id = authorized(event); return profiles.rename(id, name); });
@@ -138,9 +145,17 @@ app.whenReady().then(async () => {
     if (backup.format !== 'oet-profile-backup' || backup.version !== 1 || !backup.data || typeof backup.data !== 'object' || Array.isArray(backup.data) || Object.values(backup.data).some(value => typeof value !== 'string')) throw Error('This is not a valid OET profile backup.');
     return backup.data;
   });
-  Menu.setApplicationMenu(Menu.buildFromTemplate([{ role: 'appMenu' }, { label: 'Study', submenu: [{ label: 'Switch profile…', click: () => openProfile() }, { label: 'Local AI status', click: () => dialog.showMessageBox(window, { message: 'Offline AI mentor', detail: JSON.stringify(mentor.status(), null, 2) }) }] }, { role: 'editMenu' }, { role: 'viewMenu' }, { role: 'windowMenu' }]));
+  Menu.setApplicationMenu(Menu.buildFromTemplate([{ role: 'appMenu' }, { label: 'Study', submenu: [{ label: 'Switch profile…', click: () => openProfile() }, { label: 'Check for file updates', click: () => { void startup.run(); } }, { label: 'Local AI status', click: () => dialog.showMessageBox(window, { message: 'Offline AI mentor', detail: JSON.stringify(mentor.status(), null, 2) }) }] }, { role: 'editMenu' }, { role: 'viewMenu' }, { role: 'windowMenu' }]));
   await openProfile();
+  workspaceReady = true;
+  // Never await remote or drive checks before showing offline study profiles.
+  void startup.run();
 }).catch(error => { dialog.showErrorBox('OET Study could not open', error.message); app.quit(); });
-app.on('activate', () => { if (!BrowserWindow.getAllWindows().length && profiles) void openProfile(); });
+app.on('activate', () => {
+  if (!BrowserWindow.getAllWindows().length && profiles) void openProfile();
+  // Ignore activation caused by our own first window/profile switch. A later
+  // Dock reopen checks again; explicit Check again always runs immediately.
+  if (workspaceReady && Date.now() - startup.lastStartedAt > 30000) void startup.run();
+});
 app.on('window-all-closed', () => app.quit());
 app.on('before-quit', () => mentor?.stop());

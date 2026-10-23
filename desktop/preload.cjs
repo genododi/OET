@@ -7,4 +7,10 @@ contextBridge.exposeInMainWorld('oetDesktop', {
   backup: data => ipcRenderer.invoke('desktop:backup', data),
   restore: () => ipcRenderer.invoke('desktop:restore'),
   aiStatus: () => ipcRenderer.invoke('desktop:ai-status'),
+  checkUpdates: () => ipcRenderer.invoke('desktop:check-updates'),
+  onUpdateStatus: callback => {
+    const listener = (_event, value) => callback(value);
+    ipcRenderer.on('desktop:update-status', listener);
+    return () => ipcRenderer.removeListener('desktop:update-status', listener);
+  },
 });
