@@ -1,10 +1,10 @@
 import { isDesktop } from './desktop';
 export const hasLocalAi = isDesktop;
 export interface LocalMessage { role: 'system' | 'user' | 'assistant'; content: string }
-export async function localAiRequest(messages: LocalMessage[], signal: AbortSignal, stream = false, json = false) {
+export async function localAiRequest(messages: LocalMessage[], signal: AbortSignal, stream = false, json = false, temperature?: number, careful = false) {
   const result = await fetch(`${import.meta.env.BASE_URL}desktop/ai/chat`, {
     method: 'POST', headers: { 'Content-Type': 'application/json' }, signal,
-    body: JSON.stringify({ messages, stream, json, max_tokens: json ? 1100 : 1600 }),
+    body: JSON.stringify({ messages, stream, json, max_tokens: json ? 1100 : 1600, ...(temperature !== undefined ? {temperature} : {}), ...(careful ? {careful:true} : {}) }),
   });
   if (!result.ok) {
     const data = await result.json().catch(() => null);
@@ -12,8 +12,8 @@ export async function localAiRequest(messages: LocalMessage[], signal: AbortSign
   }
   return result;
 }
-export async function localAiReply(messages: LocalMessage[], signal: AbortSignal, onText: (text: string) => void) {
-  const result = await localAiRequest(messages, signal, true);
+export async function localAiReply(messages: LocalMessage[], signal: AbortSignal, onText: (text: string) => void, temperature?: number, careful = false) {
+  const result = await localAiRequest(messages, signal, true, false, temperature, careful);
   if (!result.body) throw Error('The local mentor returned no reply.');
   const reader = result.body.getReader(), decoder = new TextDecoder();
   let buffer = '', text = '', finished = false;

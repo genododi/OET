@@ -1,8 +1,11 @@
 import type { SessionTask } from '../types/session';
 import { hasLocalAi, localAiRequest } from './localAi';
+import { buildMedicalEvidencePacket, MEDICAL_COACH_POLICY, MEDICAL_SKILL_FOCUS } from './oetMedicalCoach';
+import { medicalReviewMessages } from './medicalReview';
 
 /**
- * Optional, opt-in AI examiner feedback. Calls the public Anthropic API directly from the
+ * OET communication coaching: the Mac uses the local model and a second evidence check.
+ * The optional browser connection calls the public Anthropic API directly from the
  * browser using a key the person pastes into Settings (stored only in their own localStorage —
  * see lib/apiKeyStore.ts). This app has no backend, so the key never touches any server of ours;
  * requests go straight from the browser to api.anthropic.com.
@@ -31,13 +34,18 @@ function isAiFeedbackError(x: AiFeedbackResult | AiFeedbackError): x is AiFeedba
 
 export { isAiFeedbackError };
 
-async function callClaude(system: string, userContent: string, apiKey: string): Promise<AiFeedbackResult | AiFeedbackError> {
+async function callClaude(system: string, userContent: string, apiKey: string, task: SessionTask, learnerResponse: string): Promise<AiFeedbackResult | AiFeedbackError> {
   if (hasLocalAi()) {
     try {
-      const result = await localAiRequest([{ role: 'system', content: system }, { role: 'user', content: userContent.slice(0, 18000) }], AbortSignal.timeout(240_000), false, true);
+      const signal = AbortSignal.timeout(240_000);
+      const result = await localAiRequest([{ role: 'system', content: system }, { role: 'user', content: userContent }], signal, false, true);
       const data = await result.json();
-      const parsed = parseAiFeedback(data?.choices?.[0]?.message?.content ?? '');
-      return parsed ?? { error: 'The local mentor did not return a complete review. Please retry.' };
+      const draft = data?.choices?.[0]?.message?.content;
+      if (!parseAiFeedback(draft ?? '')) return { error: 'The local mentor did not return a complete review. Please retry.' };
+      const checked = await localAiRequest(medicalReviewMessages(task, learnerResponse, draft, RESPONSE_FORMAT_INSTRUCTION), signal, false, true, 0, true);
+      const final = await checked.json();
+      const parsed = parseAiFeedback(final?.choices?.[0]?.message?.content ?? '');
+      return parsed ? {...parsed,estimatedGrade:'Practice review only'} : { error: 'The local mentor did not return a complete review. Please retry.' };
     } catch (error) { return { error: error instanceof Error ? error.message : 'The local mentor could not respond.' }; }
   }
   if (!apiKey.trim()) {
@@ -94,7 +102,7 @@ async function callClaude(system: string, userContent: string, apiKey: string): 
   }
 
   const parsed = parseAiFeedback(raw);
-  if (parsed) return parsed;
+  if (parsed) return {...parsed,estimatedGrade:'Practice review only'};
   return {
     error: 'The AI response did not match the required feedback format. Your built-in tutor feedback is still available.',
   };
@@ -119,7 +127,7 @@ export function parseAiFeedback(raw: string): AiFeedbackResult | null {
 }
 
 const RESPONSE_FORMAT_INSTRUCTION = `Respond with ONLY a JSON object (no markdown fences, no preamble) in exactly this shape:
-{"estimatedGrade": "A/B/C+/C/D-style OET band estimate", "summary": "2-3 sentence overall assessment", "strengths": ["short point", "short point"], "improvements": ["short actionable point", "short actionable point"]}`;
+{"estimatedGrade": "Practice review only", "summary": "2-3 sentences identifying the most important evidence-based priority and any missing source", "strengths": ["specific strength evidenced by actual candidate wording"], "improvements": ["criterion: actual wording → why it matters → fact-preserving suggested wording", "one short next drill"]}`;
 
 export async function getAiWritingFeedback(
   task: SessionTask,
@@ -129,9 +137,11 @@ export async function getAiWritingFeedback(
   if (!draft.trim()) {
     return { error: 'Write a draft before requesting AI feedback.' };
   }
-  const system = `You are an experienced OET (Occupational English Test) Writing sub-test examiner for the Medicine profession. Grade referral/discharge/transfer/advice letters strictly against the real OET Writing criteria: Purpose, Content, Conciseness & Clarity, Genre, Organisation & Layout, and Language. Be specific and actionable, referencing the candidate's actual wording where relevant. ${RESPONSE_FORMAT_INSTRUCTION}`;
-  const userContent = `Task: ${task.title}\n\n${task.prompt ?? ''}\n\n---\nCandidate's letter draft:\n${draft}`;
-  return callClaude(system, userContent, apiKey);
+  const system = `${MEDICAL_COACH_POLICY}
+${MEDICAL_SKILL_FOCUS.writing}
+Evaluate the draft against the supplied notes, not an imagined ideal case. If the draft changes a clinical fact, identify the exact discrepancy before polishing grammar. Do not assign an official band or turn heuristic percentages into OET scores. ${RESPONSE_FORMAT_INSTRUCTION}`;
+  const userContent = buildMedicalEvidencePacket({ task, response: draft, reveal: true, query: 'reader purpose requested action clinical factual accuracy urgency medication allergy chronology', maxChars: 12000 });
+  return callClaude(system, userContent, apiKey, task, draft);
 }
 
 export async function getAiSpeakingFeedback(
@@ -142,7 +152,9 @@ export async function getAiSpeakingFeedback(
   if (!transcript.trim()) {
     return { error: 'No transcript available yet — record or type a response first.' };
   }
-  const system = `You are an experienced OET (Occupational English Test) Speaking sub-test examiner for the Medicine profession. Grade the candidate's role-play response strictly against the real OET Speaking criteria: Intelligibility, Fluency, Appropriateness of Language, Resources of Grammar and Expression (linguistic criteria), and Relationship-building, Understanding & Incorporating the Patient's Perspective, Providing Structure, Information-gathering, and Information-giving (clinical communication criteria). This transcript comes from speech-to-text and may contain minor recognition errors — judge content and structure, not transcription artefacts. Be specific and actionable. ${RESPONSE_FORMAT_INSTRUCTION}`;
-  const userContent = `Role-play card: ${task.title}\n\n${task.prompt ?? ''}\n\nExpected checklist: ${(task.checklist ?? []).join('; ')}\n\n---\nCandidate's spoken transcript:\n${transcript}`;
-  return callClaude(system, userContent, apiKey);
+  const system = `${MEDICAL_COACH_POLICY}
+${MEDICAL_SKILL_FOCUS.speaking}
+This is text-only review. Speech recognition can mishear names and medical terms; flag an ambiguous word for checking instead of inventing a correction. Do not grade pronunciation, accent, intelligibility or actual fluency. Assess only evidenced communication and language; do not assign an overall speaking band from text. ${RESPONSE_FORMAT_INSTRUCTION}`;
+  const userContent = buildMedicalEvidencePacket({ task, response: transcript, reveal: true, query: 'patient concerns empathy explanation understanding next step clinical meaning', maxChars: 12000 });
+  return callClaude(system, userContent, apiKey, task, transcript);
 }

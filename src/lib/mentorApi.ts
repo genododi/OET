@@ -1,5 +1,7 @@
 import { buildMentorSystemPrompt, type MentorContext } from './mentor';
 import { hasLocalAi, localAiReply } from './localAi';
+import { evidenceExcerpt } from './oetMedicalCoach';
+import { medicalPatientReviewMessages, medicalReviewMessages } from './medicalReview';
 
 export const MENTOR_MODEL = 'claude-sonnet-5';
 export const MENTOR_TIMEOUT_MS = 60_000;
@@ -47,12 +49,30 @@ export function createMentorStreamParser(onText: (text: string) => void) {
   };
 }
 
+/** Preserve the latest question/doctor turn; trim older turns before current clinical detail. */
+export function buildLocalMentorConversation(context: MentorContext) {
+  const recent = context.messages.slice(-6);
+  const messages = recent.map((message, index) => ({ role: message.role, content: evidenceExcerpt(message.text, index === recent.length - 1 ? 4000 : 1100) }));
+  const trimLeading = () => { while (messages[0]?.role === 'assistant') messages.shift(); };
+  trimLeading();
+  while (messages.length > 1 && messages.reduce((sum, message) => sum + message.content.length, 0) > 6500) {
+    messages.shift();
+    trimLeading();
+  }
+  return messages;
+}
+
 export async function streamMentorReply(context: MentorContext, apiKey: string, signal: AbortSignal, onText: (text: string) => void): Promise<string> {
   if (hasLocalAi()) {
-    const messages = context.messages.slice(-6).map(message => ({ role: message.role, content: message.text.slice(0, 1800) }));
+    const messages = buildLocalMentorConversation(context);
     while (messages[0]?.role === 'assistant') messages.shift();
     if (!messages.length) throw new Error('Ask a question to start the conversation.');
-    return localAiReply([{ role: 'system', content: buildMentorSystemPrompt(context).slice(0, 14000) }, ...messages], AbortSignal.any([signal, AbortSignal.timeout(240_000)]), onText);
+    const localSignal = AbortSignal.any([signal, AbortSignal.timeout(240_000)]);
+    const review = Boolean(context.response.trim()) && (context.action === 'feedback' || context.action === 'explain');
+    const patient = context.action === 'patient';
+    if (patient) return localAiReply(medicalPatientReviewMessages(context.task, messages.at(-1)?.content ?? '', messages.slice(0,-1)), localSignal, onText, 0);
+    const draft = await localAiReply([{ role: 'system', content: buildMentorSystemPrompt(context, 14000) }, ...messages], localSignal, review ? () => {} : onText);
+    return review ? localAiReply(medicalReviewMessages(context.task, context.response, draft, '', messages.at(-1)?.content ?? ''), localSignal, onText, 0, true) : draft;
   }
   if (!apiKey.trim()) throw new Error('Add your Anthropic API key in Settings to start Live AI.');
   const controller = new AbortController();

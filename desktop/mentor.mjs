@@ -35,7 +35,7 @@ export class LocalMentor {
     });
     fs.mkdirSync(this.logs, { recursive: true });
     const log = fs.openSync(path.join(this.logs, 'local-mentor.log'), 'a', 0o600);
-    this.child = spawn(path.join(this.root, config.server), ['--model', path.join(this.root, config.model), '--host', '127.0.0.1', '--port', String(this.port), '--api-key', this.key, '--ctx-size', '8192', '--parallel', '1', '--n-gpu-layers', '99', '--threads', '4', '--jinja', '--chat-template-kwargs', '{"enable_thinking":false}', '--no-webui'], { cwd: this.root, stdio: ['ignore', log, log], env: { ...process.env, LLAMA_CACHE: path.join(this.logs, 'llama-cache') } });
+    this.child = spawn(path.join(this.root, config.server), ['--model', path.join(this.root, config.model), '--host', '127.0.0.1', '--port', String(this.port), '--api-key', this.key, '--ctx-size', '8192', '--parallel', '1', '--n-gpu-layers', '99', '--threads', '4', '--jinja', '--reasoning', 'on', '--reasoning-budget', '384', '--reasoning-format', 'deepseek', '--no-webui'], { cwd: this.root, stdio: ['ignore', log, log], env: { ...process.env, LLAMA_CACHE: path.join(this.logs, 'llama-cache') } });
     fs.closeSync(log);
     this.child.on('error', () => { this.state = 'error'; });
     this.child.on('exit', () => { if (this.state !== 'idle') this.state = 'error'; this.child = null; });
@@ -54,7 +54,7 @@ export class LocalMentor {
       const body = JSON.parse(raw);
       if (!Array.isArray(body.messages) || body.messages.length > 24 || body.messages.some(m => !['system', 'user', 'assistant'].includes(m.role) || typeof m.content !== 'string')) throw Error('Invalid mentor request.');
       await this.start();
-      const response = await fetch(`http://127.0.0.1:${this.port}/v1/chat/completions`, { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${this.key}` }, body: JSON.stringify({ model: 'local-oet-mentor', messages: body.messages, max_tokens: Math.min(1800, Math.max(100, Number(body.max_tokens) || 1000)), temperature: 0.4, stream: body.stream === true, chat_template_kwargs: { enable_thinking: false }, ...(body.json ? { response_format: { type: 'json_object' } } : {}) }), signal: request.signal });
+      const response = await fetch(`http://127.0.0.1:${this.port}/v1/chat/completions`, { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${this.key}` }, body: JSON.stringify({ model: 'local-oet-mentor', messages: body.messages, max_tokens: Math.min(2200, Math.max(100, Number(body.max_tokens) || 1000) + (body.careful === true ? 384 : 0)), temperature: Number.isFinite(body.temperature) ? Math.max(0, Math.min(1, body.temperature)) : 0.4, stream: body.stream === true, reasoning_effort: body.careful === true ? 'medium' : 'none', chat_template_kwargs: { enable_thinking: body.careful === true }, ...(body.json ? { response_format: { type: 'json_object' } } : {}) }), signal: request.signal });
       return new Response(response.body, { status: response.status, headers: { 'Content-Type': response.headers.get('content-type') || 'application/json' } });
     } catch (error) { return new Response(JSON.stringify({ error: error.message }), { status: 503, headers: { 'Content-Type': 'application/json' } }); }
   }

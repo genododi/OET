@@ -24,6 +24,7 @@ const ACTIONS: { action: MentorAction; label: string; query: string }[] = [
   { action: 'strategy', label: 'Teach the approach', query: 'Walk me through a strategy for this task. Ask me one question to check my understanding.' },
   { action: 'hint', label: 'Give me a hint', query: 'Give me one hint without revealing the answer.' },
   { action: 'feedback', label: 'Review my response', query: 'Review my current response. Be specific about what works, what to change, and what I should try next.' },
+  { action: 'feedback', label: 'Check clinical meaning', query: 'Check my response against this case: look for changed diagnoses, negation, family versus personal history, medication details, chronology and the requested next action. Quote an actual discrepancy if present; do not invent one. Give a fact-preserving repair.' },
   { action: 'explain', label: 'Explain the worked answer', query: 'Explain how a strong answer is built and compare it with my attempt.' },
 ];
 
@@ -39,6 +40,7 @@ export function MentorPanel({ task, response, completed, topic, lessonKey, onInt
   const [mode, setMode] = useState<'coach' | 'patient'>('coach');
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
+  const [activeAction, setActiveAction] = useState<MentorAction | null>(null);
   const [stream, setStream] = useState('');
   const [error, setError] = useState('');
   const [saveError, setSaveError] = useState('');
@@ -89,7 +91,7 @@ export function MentorPanel({ task, response, completed, topic, lessonKey, onInt
     const context: MentorContext = retry ?? { task, response, topic, learnerMemory, hintLevel: nextHint, action, messages: history };
     setMessages(history.slice(-40)); setInput(''); setError(''); setStream(''); setFailedContext(null);
     if (action === 'patient' && !retry) onPatientTurn?.(query.trim());
-    busy.current = true; setLoading(true);
+    busy.current = true; setActiveAction(context.action); setLoading(true);
     const controller = new AbortController(); controllerRef.current = controller;
     try {
       const reply = engine === 'ai'
@@ -112,8 +114,8 @@ export function MentorPanel({ task, response, completed, topic, lessonKey, onInt
   return (
     <section className="mentor-panel" aria-label="Interactive OET mentor">
       <div className="mentor-panel-head">
-        <div><span className="section-kicker">Your private study room</span><h3>{mode === 'patient' ? 'Patient role-play' : 'Let’s work it out together'}</h3></div>
-        <span className={`mentor-engine-badge ${engine === 'ai' ? 'live' : ''}`}>{engine === 'ai' ? 'Live AI' : 'Built-in guide'}</span>
+        <div><span className="section-kicker">OET MEDICINE · YOUR STUDY ROOM</span><h3>{mode === 'patient' ? 'Patient role-play' : 'Medicine-focused OET mentor'}</h3></div>
+        <span className={`mentor-engine-badge ${engine === 'ai' ? 'live' : ''}`}>{engine === 'ai' ? local ? 'Offline AI' : 'Live AI' : 'Built-in guide'}</span>
       </div>
       <div className="mentor-controls">
         <label>Tutor connection<select value={engine} disabled={loading} onChange={(event) => setEngine(event.target.value as 'ai' | 'guide')}><option value="guide">Built-in guide · no key needed</option><option value="ai">Live AI · conversational mentoring</option></select></label>
@@ -122,11 +124,11 @@ export function MentorPanel({ task, response, completed, topic, lessonKey, onInt
       {engine === 'ai' ? local ? <p className="mentor-connection-note">Live AI runs on this Mac. Your task and conversation stay on your device. No API key, subscription or internet connection is needed.</p> : <p className="mentor-connection-note">Your task, response, recent conversation and study summary are sent directly to Anthropic when you send a message. API usage is billed to your account. <button type="button" className="link-btn" onClick={openSettings}>{hasKey ? 'Connection settings' : 'Add API key to connect'}</button></p> : <p className="mentor-connection-note">Structured strategies, hints and rubric checks work here without a key. Live AI adds open-ended follow-up and adaptive patient dialogue.</p>}
       <div className="mentor-chat" ref={log} role="log" aria-label="Mentor conversation" aria-live="polite" aria-relevant="additions">
         {messages.map((message) => <article key={message.id} className={`mentor-bubble mentor-${message.role}`}><span>{message.role === 'user' ? 'You' : message.source === 'ai' ? 'AI mentor' : 'Study guide'}</span><p>{message.text}</p></article>)}
-        {loading && <article className="mentor-bubble mentor-assistant mentor-stream"><span>{mode === 'patient' ? 'Patient' : 'Mentor'}</span><p>{stream || 'Thinking through your task…'}</p></article>}
+        {loading && <article className="mentor-bubble mentor-assistant mentor-stream"><span>{mode === 'patient' ? 'Patient' : 'Mentor'}</span><p>{stream || (local && (activeAction === 'feedback' || activeAction === 'explain') ? 'Reviewing your response and checking it against the case…' : 'Thinking through your task…')}</p></article>}
       </div>
       {error && <div className="mentor-error" role="alert"><p>{error}</p>{failedContext && <button type="button" className="btn btn-secondary btn-sm" disabled={loading} onClick={() => request(failedContext.action, '', failedContext)}>Retry reply</button>}</div>}
       {saveError && <p className="mentor-error" role="status">{saveError}</p>}
-      {mode === 'coach' && <div className="mentor-prompts">{ACTIONS.map(({ action, label, query }) => <button type="button" key={action} disabled={loading || ((action === 'feedback' || action === 'explain') && !response.trim())} onClick={() => request(action, query)}>{label}</button>)}</div>}
+      {mode === 'coach' && <div className="mentor-prompts">{ACTIONS.map(({ action, label, query }) => <button type="button" key={label} disabled={loading || ((action === 'feedback' || action === 'explain') && !response.trim())} onClick={() => request(action, query)}>{label}</button>)}</div>}
       {mode === 'patient' && <p className="meta">Speak or type as the doctor. The patient replies one turn at a time. Switch to “Coach me” for feedback.</p>}
       <MentorVoiceControls allowSpeech={task.subtest !== 'listening'} onDictation={setInput} reply={lastReply} disabled={loading} />
       <form className="mentor-composer" onSubmit={(event) => { event.preventDefault(); void request(mode === 'patient' ? 'patient' : 'ask', input); }}>
