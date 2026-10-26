@@ -30,7 +30,11 @@ for sha,file in {f['sha256']:f for f in catalog['files']}.items():
   documents[sha]=[dict(number=i+1,text=t.strip(),extraction='text') for i,t in enumerate(raw)]
   for page in documents[sha]:
    if len(re.sub(r'[^A-Za-z]','',page['text']))<50:jobs.append((sha,page['number'],file))
- elif file['format'] in ('jpg','jpeg','png'):
+ elif file['format'] in ('jpg','jpeg','png','webp','heic','heif','tif','tiff','bmp','gif','avif'):
+  existing=repo/f'public/supplied-materials/text/{sha}.json'
+  cached=json.loads(existing.read_text()) if existing.exists() else {}
+  if cached.get('sourceSha256')==sha and cached.get('pages') and all(page.get('ocrLayoutVersion')==1 for page in cached['pages']):
+   documents[sha]=cached['pages'];continue
   documents[sha]=[dict(number=1,text='',extraction='none')];jobs.append((sha,1,file))
 print('Reading',len(documents),'unique documents;',len(jobs),'pages need recognition',flush=True)
 def render(job):
@@ -39,7 +43,7 @@ def render(job):
  if file['format']=='pdf':
   subprocess.run(['pdftoppm','-f',str(number),'-l',str(number),'-scale-to','2200','-singlefile','-png',str(asset),str(stem)],check=True,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
  else:
-  image=Image.open(asset);image.thumbnail((2200,2200));image.convert('RGB').save(stem.with_suffix('.png'))
+  subprocess.run(['sips','-s','format','png','--resampleHeightWidthMax','2800',str(asset),'--out',str(stem.with_suffix('.png'))],check=True,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
 with ThreadPoolExecutor(max_workers=4) as pool:list(pool.map(render,jobs))
 for start in range(0,len(jobs),40):
  paths=[str(root/f'{sha}-{number}.png') for sha,number,file in jobs[start:start+40] if not (root/f'{sha}-{number}.vision.json').exists()]

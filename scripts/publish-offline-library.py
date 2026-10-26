@@ -115,6 +115,10 @@ for number,batch in batches:
         target=ROOT/'public'/entry['textPath'];target.parent.mkdir(parents=True,exist_ok=True)
         staging=target.with_suffix('.publish.tmp')
         shutil.copyfile(library/'text'/Path(row['textPath']).name,staging);staging.replace(target)
+        preview=library/'previews'/f'{entry["sha256"]}.png'
+        if preview.exists():
+            preview_target=ROOT/'public/imported-resources/previews'/preview.name;preview_target.parent.mkdir(exist_ok=True)
+            shutil.copyfile(preview,preview_target)
         published_by_sha[entry['sha256']]=entry
     # Save after each completed release so an interrupted upload never exposes broken links.
     index=ROOT/'public/imported-resources/catalog.json'

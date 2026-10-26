@@ -12,7 +12,7 @@ import tempfile
 import shutil
 
 ROOT=Path(__file__).resolve().parents[1]
-FORMATS={'pdf','doc','docx','ppt','pptx','xls','xlsx','csv','txt','md','rtf','html','htm','mp3','m4a','ogg','wav','flac','aac','mp4','mov','jpg','jpeg','png','webp','heic'}
+FORMATS={'pdf','doc','docx','ppt','pptx','xls','xlsx','csv','txt','md','rtf','html','htm','mp3','m4a','ogg','wav','flac','aac','mp4','mov','jpg','jpeg','png','webp','heic','heif','tif','tiff','bmp','gif','avif'}
 
 def safe_entry(entry):
     name=entry.get('XADFileName','').replace('\\','/');path=PurePosixPath(name)

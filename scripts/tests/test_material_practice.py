@@ -41,4 +41,9 @@ class PrintedSourceTests(unittest.TestCase):
         self.assertEqual(match[0]['number'],10)
         self.assertEqual(match[1][('A',1)],'dizziness')
 
+    def test_unverified_handwriting_is_not_promoted_to_a_question_or_key(self):
+        self.assertEqual(questions('Part A\n(1) _______ mg',1,'A',needs_review=True),[])
+        unit={'sourceSha256':'same','part':'A','pages':[1],'questions':[{'number':1}]}
+        self.assertIsNone(module['in_book_key'](unit,[unit],[{'number':2,'text':'ANSWER KEY\nPart A\n1. 50 mg','needsReview':True}]))
+
 if __name__=='__main__':unittest.main()

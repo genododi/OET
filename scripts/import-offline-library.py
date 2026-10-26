@@ -17,7 +17,7 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-EXTENSIONS = {'.pdf', '.docx', '.doc', '.pptx', '.ppt', '.xlsx', '.xls', '.csv', '.tsv', '.txt', '.md', '.rtf', '.html', '.htm', '.json', '.apkg', '.zip', '.rar', '.7z', '.mp3', '.m4a', '.wav', '.ogg', '.flac', '.aac', '.mp4', '.webm', '.mov', '.jpg', '.jpeg', '.png', '.webp', '.heic'}
+EXTENSIONS = {'.pdf', '.docx', '.doc', '.pptx', '.ppt', '.xlsx', '.xls', '.csv', '.tsv', '.txt', '.md', '.rtf', '.html', '.htm', '.json', '.apkg', '.zip', '.rar', '.7z', '.mp3', '.m4a', '.wav', '.ogg', '.flac', '.aac', '.mp4', '.webm', '.mov', '.jpg', '.jpeg', '.png', '.webp', '.heic', '.heif', '.tif', '.tiff', '.bmp', '.gif', '.avif'}
 SKIP = {'.git', 'node_modules', 'dist', 'public', 'assets', 'output', 'tmp', 'quarantine', 'work', 'Mac App', 'Benchmark Offline', 'repo-duplicate-backup', 'manifests', 'reports', 'channel-pages', 'linked-pages', 'youtube-metadata'}
 
 def excluded_source(relative):

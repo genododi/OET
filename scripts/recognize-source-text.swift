@@ -10,7 +10,7 @@ for filename in CommandLine.arguments.dropFirst() {
  try VNImageRequestHandler(url: url).perform([request])
  let rows = (request.results ?? []).compactMap { observation -> [String: Any]? in
   guard let text = observation.topCandidates(1).first?.string else { return nil }
-  return ["text": text, "x": observation.boundingBox.minX, "y": observation.boundingBox.minY, "height": observation.boundingBox.height]
+  return ["text": text, "x": observation.boundingBox.minX, "y": observation.boundingBox.minY, "height": observation.boundingBox.height, "width": observation.boundingBox.width, "confidence": observation.topCandidates(1).first!.confidence]
  }
  let data = try JSONSerialization.data(withJSONObject: rows, options: [.prettyPrinted,.sortedKeys])
  try data.write(to: url.deletingPathExtension().appendingPathExtension("vision.json"))

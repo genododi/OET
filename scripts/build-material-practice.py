@@ -70,13 +70,14 @@ def in_book_key(unit, units, pages):
     following=[min(other['pages']) for other in peers if min(other['pages'])>max(unit['pages'])]
     stop=min(following,default=float('inf'))
     for page in pages:
-        if not max(unit['pages'])<page['number']<stop or not key_page(page['text']):continue
+        if not max(unit['pages'])<page['number']<stop or page.get('needsReview') or not key_page(page['text']):continue
         answers=parse_key(page['text'])
         if any(part==unit['part'] for part,number in answers):return page,answers
     return None
 
-def questions_on_page(text, number, part=None):
+def questions_on_page(text, number, part=None, needs_review=False):
     """Extract printed numbered prompts and numbered blanks, preserving wording."""
+    if needs_review:return []
     lines = text.replace('\u00a0',' ').splitlines(); questions=[]; active=None; in_range=False
     blank = re.compile(r'\((\d{1,2})\)\s*(?:[_.…·]{2,}|[.…]\s*[.…])')
     # A blank can wrap onto the following line in a PDF table.
@@ -169,7 +170,7 @@ def build(library):
                 text=page['text']; marker=re.search(r'\b(?:READING|LISTENING)?\s*(?:SUB[- ]?TEST[^\n]*?)?\bPART\s*[-:]?\s*([ABC])\b',text[:900],re.I)
                 part=marker.group(1).upper() if marker else (current or {}).get('part',default_part)
                 if key_page(text):in_key=True;current=None;previous_numbers=set();continue
-                qs=[] if productive else questions_on_page(text,page['number'],part)
+                qs=[] if productive else questions_on_page(text,page['number'],part,page.get('needsReview',False))
                 if in_key and not marker and not qs:continue
                 in_key=False
                 blocks=[];seen=set()
@@ -248,7 +249,7 @@ def build(library):
                 key_part=part_of(files[key]['filename'])
                 if key_part and unit['part'] and key_part!=unit['part']:continue
                 unit['answerSources'].append(doc(key))
-                key_text='\n'.join(p['text'] for p in data[key]['pages'])
+                key_text='\n'.join(p['text'] for p in data[key]['pages'] if not p.get('needsReview'))
                 values=parse_key(key_text,plain=True)
                 overlap=len(words(files[key]['filename'])&words(unit['label']+' '+body[:1200]))
                 specific=stem(files[key])==stem(source) and len(words(stem(source)))>=2
@@ -268,7 +269,7 @@ def build(library):
                     if value and 'answer' not in q:q['answer']={'text':value,'source':doc(unit['sourceSha256']),'page':page['number']}
             # Keep printed pages accessible even when their row-level mapping is uncertain.
             next_test=min((min(other['pages']) for other in units if other['sourceSha256']==unit['sourceSha256'] and other['part']==unit['part'] and other['questions'] and min(other['pages'])>max(unit['pages'])),default=float('inf'))
-            review_pages=[p['number'] for p in data[unit['sourceSha256']]['pages'] if max(unit['pages'])<p['number']<next_test and key_page(p['text'])]
+            review_pages=[p['number'] for p in data[unit['sourceSha256']]['pages'] if max(unit['pages'])<p['number']<next_test and not p.get('needsReview') and key_page(p['text'])]
             if review_pages:unit['answerSources'].append(doc(unit['sourceSha256'])|{'pages':review_pages})
             stats['questions']+=len(unit['questions']);stats['answers']+=sum('answer' in q for q in unit['questions'])
         # Audio-only sources remain playable, with their actual transcript rather than invented questions.

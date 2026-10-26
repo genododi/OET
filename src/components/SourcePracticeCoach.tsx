@@ -17,7 +17,7 @@ export function SourcePracticeCoach({ id, title, skill, response, textPath, star
       const data = await result.json();
       const page = startPage ?? Number(localStorage.getItem(`oet-material-page-v1:${id}`) || 1);
       const pages = Array.isArray(data.pages) ? data.pages.filter((p: { number: number }) => p.number >= page && p.number <= (endPage ?? page)) : [];
-      const text = pages.length ? pages.map((p: { number: number; text: string }) => {const range=sourceRanges?.find(range=>range.page===p.number);return `Page ${p.number}\n${range ? p.text.slice(range.start,range.end) : p.text}`;}).join('\n\n') : sourceRanges?.length ? (data.text || '').slice(sourceRanges[0].start,sourceRanges[0].end) : data.text || '';
+      const text = pages.length ? pages.map((p: { number: number; text: string; needsReview?: boolean }) => {const range=sourceRanges?.find(range=>range.page===p.number);return `Page ${p.number}${p.needsReview ? ' [Unverified transcription of handwriting or difficult text. Ask the learner to check names, numbers and medical terms against the original before judging clinical meaning.]' : ''}\n${range ? p.text.slice(range.start,range.end) : p.text}`;}).join('\n\n') : sourceRanges?.length ? (data.text || '').slice(sourceRanges[0].start,sourceRanges[0].end) : data.text || '';
       if (!controller.signal.aborted) { setSource(evidenceExcerpt(text, 60000, title)); setState(text.trim() ? 'Source text loaded for this task.' : 'This source is a scan or recording. Include the task wording in your message for specific feedback.'); }
     }).catch(() => { if (!controller.signal.aborted) setState('Source text is unavailable. Include the task wording in your message for specific feedback.'); });
     return () => controller.abort();

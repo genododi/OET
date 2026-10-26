@@ -14,7 +14,7 @@ assert.equal(catalog.files.reduce((sum, file) => sum + file.bytes, 0), catalog.t
 assert.ok(catalog.publicationBasis.includes('explicitly requested'));
 const verified = new Set();
 for (const file of catalog.files) {
-  assert.match(file.assetPath, /^supplied-materials\/files\/[a-f0-9]{64}\.(pdf|docx|pptx|jpg|jpeg|png|apkg|html\.txt|mp3|m4a|wav|mp4)$/);
+  assert.match(file.assetPath, /^supplied-materials\/files\/[a-f0-9]{64}\.(pdf|docx|pptx|jpg|jpeg|png|webp|heic|heif|tif|tiff|bmp|gif|avif|apkg|html\.txt|mp3|m4a|wav|mp4)$/);
   assert.equal(file.textPath, `supplied-materials/text/${file.sha256}.json`);
   assert.ok(file.skills.every(skill => ['listening', 'reading', 'writing', 'speaking'].includes(skill)));
   if (file.duplicateOf) assert.ok(catalog.files.some(other => other.id === file.duplicateOf && other.sha256 === file.sha256 && !other.duplicateOf));
@@ -41,7 +41,7 @@ for (const file of catalog.files) {
       assert.ok(['text', 'ocr', 'none'].includes(page.extraction));
     }
     assert.equal(text.text, text.pages.map(page => page.text).join('\n\f\n'));
-  } else assert.ok(!['pdf', 'jpg', 'jpeg', 'png'].includes(file.format), 'Every PDF and source image needs page-numbered text or an explicit empty page');
+  } else assert.ok(!['pdf', 'jpg', 'jpeg', 'png', 'webp', 'heic', 'heif', 'tif', 'tiff', 'bmp', 'gif', 'avif'].includes(file.format), 'Every PDF and source image needs page-numbered text or an explicit empty page');
   verified.add(file.sha256);
 }
 assert.equal((await readdir(path.join(root, 'public/supplied-materials/files'))).length, catalog.uniqueFileCount, 'Uncatalogued original in public folder');

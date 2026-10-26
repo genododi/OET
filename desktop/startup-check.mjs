@@ -1,7 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-const EXTENSIONS = new Set('pdf docx doc pptx ppt xlsx xls csv tsv txt md rtf html htm json apkg zip rar 7z mp3 m4a wav ogg flac aac mp4 webm mov jpg jpeg png webp heic'.split(' '));
+const EXTENSIONS = new Set('pdf docx doc pptx ppt xlsx xls csv tsv txt md rtf html htm json apkg zip rar 7z mp3 m4a wav ogg flac aac mp4 webm mov jpg jpeg png webp heic heif tif tiff bmp gif avif'.split(' '));
 const SKIP = new Set(['.git', 'node_modules', 'dist', 'public', 'assets', 'output', 'tmp', 'quarantine', 'work', 'Mac App', 'Benchmark Offline', 'repo-duplicate-backup', 'manifests', 'reports', 'channel-pages', 'linked-pages', 'youtube-metadata']);
 const ROOT_CODE = new Set(['src', 'scripts', 'sources', 'docs', 'desktop']);
 const SHA = /^[a-f0-9]{40}$/;

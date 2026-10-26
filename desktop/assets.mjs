@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { Readable } from 'node:stream';
 
-const types = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.txt':'text/plain; charset=utf-8', '.pdf': 'application/pdf', '.mp3': 'audio/mpeg', '.m4a': 'audio/mp4', '.wav': 'audio/wav', '.ogg': 'audio/ogg', '.flac':'audio/flac', '.aac':'audio/aac', '.webm':'video/webm', '.mov':'video/quicktime', '.mp4': 'video/mp4', '.png': 'image/png', '.webp':'image/webp', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.svg': 'image/svg+xml', '.woff2': 'font/woff2' };
+const types = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.txt':'text/plain; charset=utf-8', '.pdf': 'application/pdf', '.mp3': 'audio/mpeg', '.m4a': 'audio/mp4', '.wav': 'audio/wav', '.ogg': 'audio/ogg', '.flac':'audio/flac', '.aac':'audio/aac', '.webm':'video/webm', '.mov':'video/quicktime', '.mp4': 'video/mp4', '.png': 'image/png', '.webp':'image/webp', '.avif':'image/avif', '.gif':'image/gif', '.bmp':'image/bmp', '.tif':'image/tiff', '.tiff':'image/tiff', '.heic':'image/heic', '.heif':'image/heif', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.svg': 'image/svg+xml', '.woff2': 'font/woff2' };
 export async function confined(root, relative) {
   const file = path.resolve(root, relative);
   const rel = path.relative(root, file);

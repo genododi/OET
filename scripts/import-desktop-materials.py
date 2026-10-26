@@ -15,7 +15,7 @@ import xml.etree.ElementTree as ET
 
 REPO = Path(__file__).resolve().parents[1]
 SOURCE = Path(sys.argv[1]).resolve() if len(sys.argv) > 1 else REPO
-EXTENSIONS = {'.pdf', '.docx', '.pptx', '.jpg', '.jpeg', '.png', '.html', '.apkg', '.mp3', '.m4a', '.wav', '.mp4'}
+EXTENSIONS = {'.pdf', '.docx', '.pptx', '.jpg', '.jpeg', '.png', '.webp', '.heic', '.heif', '.tif', '.tiff', '.bmp', '.gif', '.avif', '.html', '.apkg', '.mp3', '.m4a', '.wav', '.mp4'}
 SKILLS = ['listening', 'reading', 'writing', 'speaking']
 OUT = REPO / 'public' / 'supplied-materials'
 

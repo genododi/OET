@@ -73,7 +73,7 @@ def main():
                 path=line[3:]
                 if not any(path==allowed or path.startswith(allowed+'/') for allowed in GENERATED):raise ValueError('Other source work appeared during sync; generated files were preserved without committing it.')
             if changed:
-                run(['npm','run','test:unit'],timeout=600)
+                run(['npm','run','test:unit','--','--maxWorkers=2'],timeout=600)
                 run(['git','add','--',*GENERATED]);run(['git','commit','-m','Update supplied OET practice resources and source-matched transcripts']);run(['git','push','origin','main'],timeout=300)
             current=run(['git','rev-parse','HEAD'],capture=True)
             try:installed=json.loads((Path.home()/'Applications/OET Study.app/Contents/Resources/build-info.json').read_text())

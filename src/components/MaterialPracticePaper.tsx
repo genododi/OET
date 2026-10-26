@@ -4,6 +4,7 @@ import { MaterialSourceText } from './MaterialSourceText';
 import { MaterialListeningAudio } from './MaterialListeningAudio';
 import { RecordingTranscriptPlayer } from './RecordingTranscriptPlayer';
 import { StudyAudioPlayer } from './StudyAudioPlayer';
+import { sourceImageFormats } from '../lib/sourceTextLayout';
 import { SaveStudyOffline } from './SaveStudyOffline';
 import { materialOriginal, materialUrl, validMaterialSheet, type MaterialDocument, type MaterialSheet, type MaterialUnit, type MaterialTextRange } from '../lib/materialPractice';
 import './jahshanListening.css';
@@ -71,6 +72,10 @@ export function MaterialPracticePaper({ file, skill, onAnswers, onQuestionMode, 
   const offlineAssets = [
     { url: materialUrl(`material-practice/sheets/${file.sha256}.json`), label: 'Questions and source matches' },
     { url: materialUrl(file.textPath), label: 'Complete source text' },
+    ...[file,...(sheet?.documents ?? [])].filter(document => sourceImageFormats.includes(document.format)).flatMap(document => [
+      {url: materialUrl(document.assetPath),label:`Original photo · ${document.filename}`,sha256:document.sha256,optional:true},
+      ...(!['jpg','jpeg','png','webp','gif','avif'].includes(document.format) ? [{url:materialUrl(`imported-resources/previews/${document.sha256}.png`),label:`Photo preview · ${document.filename}`,optional:true}] : []),
+    ]),
     ...(sheet?.documents.filter(document => !audioFormats.includes(document.format)).map(document => ({ url: materialUrl(document.textPath), label: document.filename })) ?? []),
     ...(sheet?.documents.filter(document => document.format === 'pdf').map(document => ({ url: materialUrl(document.assetPath), label: `Original PDF · ${document.filename}`, sha256: document.sha256, mimeType: 'application/pdf', optional: true })) ?? []),
   ];
