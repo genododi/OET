@@ -1,0 +1,21 @@
+.recent-materials-page { display: grid; gap: 18px; }
+.recent-materials-page > .card, .recent-material { padding: 24px; }
+.recent-materials-intro .hero-eyebrow { color: #087d70; }
+.recent-materials-intro h2 { margin: 9px 0; }
+.recent-materials-intro p { max-width: 850px; }
+.recent-materials-filters { display: grid; grid-template-columns: minmax(180px, 2fr) repeat(3, minmax(130px, 1fr)); gap: 16px; align-items: end; }
+.recent-materials-filters label { display: grid; gap: 7px; font-size: .9rem; font-weight: 600; min-width: 0; }
+.recent-materials-filters input, .recent-materials-filters select { width: 100%; min-width: 0; padding: 11px 12px; border: 1px solid var(--border, #d9e3e8); border-radius: 10px; color: inherit; background: var(--surface, #fff); font: inherit; }
+.recent-materials-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.recent-material { display: flex; gap: 18px; align-items: center; min-width: 0; }
+.recent-file-icon { width: 44px; height: 44px; border-radius: 13px; background: #e8f6f2; color: #087d70; display: grid; place-items: center; flex-shrink: 0; }
+.recent-file-icon svg { width: 24px; height: 24px; }
+.recent-file-details { flex: 1; min-width: 0; }
+.recent-file-details h3 { margin: 8px 0 10px; font-size: 1.05rem; overflow-wrap: anywhere; }
+.recent-file-meta { display: flex; flex-wrap: wrap; gap: 5px 16px; color: var(--text-muted, #607686); font-size: .8rem; }
+.recent-file-sources { display: flex; flex-wrap: wrap; gap: 6px; }
+.recent-file-sources span { border-radius: 6px; padding: 3px 7px; background: #edf4f7; color: #365b68; font-size: .78rem; overflow-wrap: anywhere; }
+.recent-file-details .meta { margin: 9px 0 0; }
+.recent-material > button { flex-shrink: 0; }
+@media (max-width: 1000px) { .recent-materials-filters { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 600px) { .recent-materials-filters { grid-template-columns: 1fr; } .recent-material { flex-wrap: wrap; gap: 12px; } .recent-file-details { flex-basis: calc(100% - 60px); } .recent-material > button { width: 100%; } }

@@ -3,7 +3,7 @@ import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 const base = '/OET/';
 const assets = (await readdir('dist/assets')).filter(name => /\.(?:js|css|woff2?|wasm)$/.test(name)).sort();
-const files = ['index.html', 'manifest.webmanifest', 'apple-touch-icon.png', 'stethoscope-icon.svg', 'app-icons/stethoscope-192.png', 'app-icons/stethoscope-512.png', 'icons.svg', 'imported-resources/catalog.json', 'material-practice/index.json', ...assets.map(name => `assets/${name}`)];
+const files = ['index.html', 'manifest.webmanifest', 'apple-touch-icon.png', 'stethoscope-icon.svg', 'app-icons/stethoscope-192.png', 'app-icons/stethoscope-512.png', 'icons.svg', 'recent-materials.json', 'imported-resources/catalog.json', 'material-practice/index.json', ...assets.map(name => `assets/${name}`)];
 const hash = createHash('sha256');
 const commit = execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim();
 hash.update(commit);

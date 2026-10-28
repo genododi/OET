@@ -15,6 +15,7 @@ const validSections = new Set<string>([
   'notebook',
   'listening',
   'materials',
+  'recent',
   'home',
   'mentor',
   'mistakes',

@@ -9,7 +9,7 @@ ROOT=Path(__file__).resolve().parents[1]
 
 def main():
     commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()
-    targets=['material-practice/index.json','imported-resources/catalog.json']
+    targets=['recent-materials.json','material-practice/index.json','imported-resources/catalog.json']
     index=json.loads((ROOT/'public/material-practice/index.json').read_text())
     targets.append(next(iter(index['files'].values()))['sheetPath'])
     transcripts=sorted((ROOT/'public/material-practice/transcripts').glob('*.json'))

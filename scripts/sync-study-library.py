@@ -17,7 +17,7 @@ import signal
 ROOT=Path(__file__).resolve().parents[1]
 NODE_RUNTIME=Path.home()/'.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin'
 os.environ['PATH']=os.pathsep.join([str(NODE_RUNTIME),'/opt/homebrew/bin',str(Path.home()/'.local/bin'),os.environ.get('PATH','')])
-GENERATED=['public/imported-resources','public/material-practice','src/data/desktopMaterials.generated.json','public/supplied-materials/text']
+GENERATED=['public/recent-materials.json','public/imported-resources','public/material-practice','src/data/desktopMaterials.generated.json','public/supplied-materials/text']
 
 def run(command,timeout=21600,capture=False):
     process=subprocess.Popen(command,cwd=ROOT,text=True,stdout=subprocess.PIPE if capture else None,start_new_session=True)
@@ -65,6 +65,7 @@ def main():
             save(status='publishing-originals')
             run([sys.executable,'scripts/publish-offline-library.py','--library',args.library,'--workers','1','--apply'])
             run([sys.executable,'scripts/build-material-practice.py','--library',args.library])
+            run([sys.executable,'scripts/build-recent-materials.py','--library',args.library])
             run(['node','scripts/verify-material-practice.mjs'])
             run(['node','scripts/verify-imported-resources.mjs'])
             changed=run(['git','status','--porcelain'],capture=True)

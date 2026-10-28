@@ -151,6 +151,7 @@ export type NavSection =
   | 'notebook'
   | 'listening'
   | 'materials'
+  | 'recent'
   | 'home'
   | 'mentor'
   | 'mistakes'

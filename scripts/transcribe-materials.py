@@ -6,6 +6,7 @@ cached multilingual MLX Whisper model, without a hosted service or API key.
 import argparse
 import hashlib
 import json
+import math
 import os
 from pathlib import Path
 import runpy
@@ -15,6 +16,24 @@ import tempfile
 import time
 
 ROOT = Path(__file__).resolve().parents[1]
+
+def normalise_segments(raw_segments, duration):
+    segments, uncertain = [], []
+    if not math.isfinite(duration) or duration <= 0:
+        raise ValueError('Recording duration is invalid')
+    for segment in raw_segments:
+        text = segment['text'].strip()
+        start, end = float(segment['start']), float(segment['end'])
+        if not text or not math.isfinite(start) or not math.isfinite(end) or start >= duration:
+            continue
+        clipped_start = round(max(0, start), 2)
+        clipped_end = max(clipped_start, round(min(duration, max(0, end)), 2))
+        row = {'start': clipped_start, 'end': clipped_end, 'text': text}
+        if end < start or start < 0:
+            row['timingUncertain'] = True
+            uncertain.append({'start': max(0, clipped_start - .25), 'end': min(duration, clipped_end + .25), 'reason': 'Automatic recognition returned an invalid timestamp; replay this interval.'})
+        segments.append(row)
+    return segments, uncertain
 
 def main():
     parser = argparse.ArgumentParser()
@@ -69,8 +88,9 @@ def main():
                 result = mlx_whisper.transcribe(str(staged), path_or_hf_repo=args.model, language='en' if english else None,
                     initial_prompt='Transcribe the healthcare recording verbatim. Speakers may use British, Australian or American English. Preserve clinical terms, medicine names, numbers and units.' if english else None,
                     condition_on_previous_text=False, temperature=0, verbose=None)
-            segments = [{'start': round(s['start'],2), 'end': round(min(s['end'],duration),2), 'text': s['text'].strip()} for s in result['segments'] if s['text'].strip() and s['start'] < duration]
+            segments, timing_uncertain = normalise_segments(result['segments'], duration)
             segments, uncertain = clean(segments)
+            uncertain.extend(timing_uncertain)
             if not segments: raise ValueError('No intelligible speech recognised')
             data = dict(trackId='material-'+sha, sourceSha256=sha, kind='automatic-transcription', model=args.model,
                 language=result.get('language','en'), dialectHint='auto', duration=duration, complete=True,

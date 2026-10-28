@@ -10,6 +10,7 @@ const PracticeChoicePage = lazy(() => import('./pages/StartPage').then(m => ({ d
 const WalkthroughPage = lazy(() => import('./pages/WalkthroughPage').then(m => ({ default: m.WalkthroughPage })));
 const NotebookPage = lazy(() => import('./pages/NotebookPage').then(m => ({ default: m.NotebookPage })));
 const AuthenticListeningPage = lazy(() => import('./pages/AuthenticListeningPage').then(m => ({ default: m.AuthenticListeningPage })));
+const RecentMaterialsPage = lazy(() => import('./pages/RecentMaterialsPage').then(module => ({ default: module.RecentMaterialsPage })));
 const MaterialsPage = lazy(() => import('./pages/MaterialsPage').then((module) => ({ default: module.MaterialsPage })));
 const HomePage = lazy(() => import('./pages/HomePage').then((module) => ({ default: module.HomePage })));
 const MentorPage = lazy(() => import('./pages/MentorPage').then((module) => ({ default: module.MentorPage })));
@@ -35,6 +36,7 @@ const pageMeta: Record<NavSection, { title: string; subtitle?: string }> = {
   drills: { title: 'Supplementary learning exercises', subtitle: 'Short coached exercises; not full OET exam papers' },
   notebook: { title: 'NotebookLM Study Notes', subtitle: 'Apply your saved notes to daily practice' },
   listening: { title: 'Real Listening', subtitle: 'Original OET recordings and matching papers' },
+  recent: { title: 'Recently added', subtitle: 'New study files from Telegram, local resources and your other collections' },
   materials: { title: 'My OET & AMR Files', subtitle: 'Your supplied materials, with saved practice for every skill' },
   mentor: { title: 'Your OET Mentor', subtitle: 'Interactive lessons, guided answers, and patient conversations' },
   mistakes: {
@@ -126,6 +128,7 @@ function App() {
       case 'app': return <WebAppPage />;
       case 'notebook': return <NotebookPage />;
       case 'listening': return <AuthenticListeningPage />;
+      case 'recent': return <RecentMaterialsPage onNavigate={navigate} />;
       case 'materials':
         return <MaterialsPage key={route.itemId ?? 'library'} itemId={route.itemId} onNavigate={navigate} />;
       case 'mentor':
