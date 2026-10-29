@@ -13,6 +13,11 @@ type File = { id: string; sha256: string; filename: string; format: string; text
 export type MaterialContext = { id: string; title: string; textPath: string; startPage: number; endPage: number; ranges?: MaterialTextRange[] };
 type Props = { file: File; skill: OetSubtest; onAnswers: (value: string) => void; onQuestionMode: (value: boolean) => void; onContext: (value: MaterialContext | null) => void };
 const audioFormats = ['mp3','m4a','wav','ogg','flac','aac','webm'];
+const audioMimeTypes: Record<string, string> = {
+  mp3: 'audio/mpeg', m4a: 'audio/mp4', wav: 'audio/wav', ogg: 'audio/ogg',
+  flac: 'audio/flac', aac: 'audio/aac', webm: 'audio/webm',
+};
+const audioMimeType = (format: string) => audioMimeTypes[format.toLowerCase()];
 function read(key: string) { try { const data = JSON.parse(localStorage.getItem(key) || '{}'); return Object.fromEntries(Object.entries(data).filter((pair): pair is [string,string] => typeof pair[1] === 'string')); } catch { return {}; } }
 
 function QuestionRows({ unit, source, skill, onAnswers }: { unit: MaterialUnit; source: MaterialDocument; skill: OetSubtest; onAnswers: Props['onAnswers'] }) {
@@ -95,7 +100,7 @@ export function MaterialPracticePaper({ file, skill, onAnswers, onQuestionMode, 
     const next = units.find(item=>item.part===part && item.recordings.includes(trackSha));
     if (next) { setSelected(next.id); try { localStorage.setItem(selectionKey,next.id); } catch { /* Continue playback. */ } }
   },[followQuestions,unit?.part,units,trackSha,selectionKey]);
-  const originalAudio = track && <RecordingTranscriptPlayer offlineAssets={offlineAssets} track={{id:`material-${track.sha256}`,name:track.filename,sha256:track.sha256,url:materialOriginal(track)}} audioUrl={materialOriginal(track)} transcriptPath={`material-practice/transcripts/${track.sha256}.json`} selectedPart={manualPart} partSelection={partSelection} onPlaybackPart={playbackPart} seekOnLoad heading="2 · Listen to the matching recording" description={track.filename} />;
+  const originalAudio = track && <RecordingTranscriptPlayer offlineAssets={offlineAssets} track={{id:`material-${track.sha256}`,name:track.filename,sha256:track.sha256,url:materialOriginal(track)}} audioUrl={materialOriginal(track)} mimeType={audioMimeType(track.format)} transcriptPath={`material-practice/transcripts/${track.sha256}.json`} selectedPart={manualPart} partSelection={partSelection} onPlaybackPart={playbackPart} seekOnLoad heading="2 · Listen to the matching recording" description={track.filename} />;
   return <div className="material-practice-paper">
     {!loading && !track && <SaveStudyOffline key={file.sha256} id={`material-${file.sha256}`} title={file.filename} assets={offlineAssets} />}
     {loading && <p role="status">Matching the paper, recording and printed key…</p>}
@@ -107,7 +112,7 @@ export function MaterialPracticePaper({ file, skill, onAnswers, onQuestionMode, 
       {hasQuestions && <QuestionRows key={`answers-${unit.id}`} unit={unit} source={source} skill={skill} onAnswers={onAnswers} />}
       {unit.answerSources.length>0 && <details className="card material-source-review"><summary>{skill==='writing'?'Show / hide supplied model letters or feedback':skill==='speaking'?'Show / hide supplied review material':'Show / hide original answer documents'}</summary>{unit.answerSources.map(key=><MaterialSourceText key={key.id} id={`${unit.id}-${key.id}`} filename={key.filename} format={key.format} textPath={key.textPath} assetPath={materialOriginal(key)} pageNumbers={key.pages} defaultAll heading={key.filename} />)}</details>}
       {skill==='speaking' && sheet?.documents.filter(item=>item.role==='partner-card' && item.sha256!==source.sha256).map(partner=><details className="card material-source-review" key={partner.id}><summary>Show / hide partner card · {partner.filename}</summary><MaterialSourceText id={partner.id} filename={partner.filename} format={partner.format} textPath={partner.textPath} assetPath={materialOriginal(partner)} defaultAll heading="Partner card" /></details>)}
-    </> : <MaterialSourceText key={file.id} id={file.id} filename={file.filename} format={file.format} textPath={file.textPath} assetPath={materialOriginal(file)}>{!track && audioFormats.includes(file.format) ? <StudyAudioPlayer src={materialOriginal(file)} label={file.filename} /> : ['mp4','mov'].includes(file.format) ? <video controls preload="metadata" aria-label={file.filename} style={{width:'100%'}} src={materialOriginal(file)} /> : skill==='listening' && !recordings.length && !track ? <MaterialListeningAudio /> : undefined}</MaterialSourceText>}
+    </> : <MaterialSourceText key={file.id} id={file.id} filename={file.filename} format={file.format} textPath={file.textPath} assetPath={materialOriginal(file)}>{!track && audioFormats.includes(file.format) ? <StudyAudioPlayer src={materialOriginal(file)} label={file.filename} mimeType={audioMimeType(file.format)} /> : ['mp4','mov'].includes(file.format) ? <video controls preload="metadata" aria-label={file.filename} style={{width:'100%'}} src={materialOriginal(file)} /> : skill==='listening' && !recordings.length && !track ? <MaterialListeningAudio /> : undefined}</MaterialSourceText>}
     {!loading && !hasQuestions && ['reading','listening'].includes(skill) && <p className="meta">This source has no confidently extracted numbered questions for this selection. Its full text and original remain available; use the answer notes below.</p>}
   </div>;
 }

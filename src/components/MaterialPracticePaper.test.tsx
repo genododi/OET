@@ -41,6 +41,7 @@ it('shows the complete matched reading passage and keeps each printed answer bes
 it('changes the visible questions with the playing audio part and keeps the matching timed transcript',async()=>{
   const view=render(<MaterialPracticePaper {...props} skill="listening" />);
   await screen.findByText('Part A.');
+  expect(view.container.querySelector('audio source')).toHaveAttribute('type','audio/mpeg');
   const audio=view.container.querySelector('audio')!;
   Object.defineProperty(audio,'duration',{value:120,configurable:true});fireEvent.loadedMetadata(audio);
   fireEvent.play(audio);fireEvent.timeUpdate(audio,{target:{currentTime:52}});
