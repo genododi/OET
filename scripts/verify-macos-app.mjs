@@ -1,5 +1,6 @@
 // Exercises the real Electron application with a disposable profile directory.
 import { _electron as electron } from 'playwright-core';
+import { expect } from '@playwright/test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import fsSync from 'node:fs';
@@ -22,12 +23,11 @@ try {
     assert.equal(build?.gitCommit, execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim(), 'Installed app must run the current source commit');
     await page.getByText(`App source: ${build.gitCommit.slice(0, 7)}`, { exact: false }).waitFor();
   }
-  const settledStartup = await page.waitForFunction(async () => {
-    const { updates } = await window.oetDesktop.info();
-    return updates && !updates.checking ? updates : false;
-  }, null, { timeout: 30000 });
-  // Capture the same completed result, even if a later activation starts a check.
-  const startupResult = await settledStartup.jsonValue();
+  let startupResult;
+  await expect.poll(async () => {
+    startupResult = await page.evaluate(async () => (await window.oetDesktop.info()).updates);
+    return startupResult?.checking;
+  }, { timeout: 30000 }).toBe(false);
   assert.equal(startupResult.checking, false);
   await page.getByText(startupResult.message, { exact: true }).waitFor();
   await page.getByRole('button', { name: 'Check again', exact: true }).waitFor();
