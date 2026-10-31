@@ -20,7 +20,11 @@ update, a newer published app, an installed replacement needing a reopen, a
 disconnected drive, and an unavailable online check.
 
 Drive scans have a deadline; network or drive failures do not prevent offline
-study. Startup checks never close the app, change a profile, replace originals,
+study. The online request, response body and metadata reads also have deadlines,
+even if a request does not respond to cancellation. A completed status takes
+precedence over an older workspace response when a profile opens.
+The checking message explicitly says studying can start while it runs.
+Startup checks never close the app, change a profile, replace originals,
 publish material, or start a competing recognition job. The existing scheduled
 library update handles import, publication, rebuild, signature/version checks
 and the installed-app smoke test. The user reopens an installed update when ready.

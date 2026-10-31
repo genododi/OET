@@ -13,9 +13,15 @@ export function DesktopWorkspace({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (!isDesktop()) return;
     const api = window.oetDesktop!;
-    const unsubscribe = api.onUpdateStatus?.(setUpdates);
-    void api.info().then(value => { setInfo(value); setUpdates(value.updates); }).catch(error => setError(String(error)));
-    return unsubscribe;
+    let active = true, receivedUpdate = false;
+    const unsubscribe = api.onUpdateStatus?.(value => { receivedUpdate = true; if (active) setUpdates(value); });
+    void api.info().then(value => {
+      if (!active) return;
+      setInfo(value);
+      // A completed check event can arrive before an older info reply.
+      if (!receivedUpdate) setUpdates(value.updates);
+    }).catch(error => { if (active) setError(String(error)); });
+    return () => { active = false; unsubscribe?.(); };
   }, []);
   if (!isDesktop()) return children;
   const api = window.oetDesktop!;

@@ -1,7 +1,7 @@
 import { act, render, screen } from '@testing-library/react';
 import { afterEach, expect, it, vi } from 'vitest';
 import { DesktopWorkspace } from './DesktopWorkspace';
-import type { StartupUpdateStatus } from '../lib/desktop';
+import type { DesktopInfo, StartupUpdateStatus } from '../lib/desktop';
 
 afterEach(() => vi.unstubAllGlobals());
 it('keeps offline study usable while a startup check is running and shows its later result', async () => {
@@ -22,4 +22,23 @@ it('keeps offline study usable while a startup check is running and shows its la
   expect(screen.getByText('Local files checked. Keep studying offline.')).toBeVisible();
   expect(screen.getByRole('button', {name:'Check again'})).toBeEnabled();
   view.unmount(); expect(unsubscribe).toHaveBeenCalledOnce();
+});
+
+it('keeps a completed check when an older initial workspace reply arrives later', async () => {
+  let listener: ((value: StartupUpdateStatus) => void) | undefined;
+  let resolveInfo!: (value: DesktopInfo) => void;
+  vi.stubGlobal('oetDesktop', {
+    info: () => new Promise<DesktopInfo>(resolve => { resolveInfo = resolve; }),
+    checkUpdates: vi.fn(),
+    onUpdateStatus: (callback: (value: StartupUpdateStatus) => void) => { listener = callback; return () => {}; },
+  });
+  const view = render(<DesktopWorkspace><h2>Practice</h2></DesktopWorkspace>);
+  act(() => listener?.({state:'current',checking:false,message:'Startup check complete.'}));
+  await act(async () => resolveInfo({ profile: null, profiles: [], offline: true,
+    updates: {state:'checking',checking:true,message:'Checking for updates…'},
+  }));
+  expect(screen.getByText('Startup check complete.')).toBeVisible();
+  expect(screen.getByRole('button', {name:'Check again'})).toBeEnabled();
+  expect(screen.queryByText('Checking for updates…')).toBeNull();
+  view.unmount();
 });

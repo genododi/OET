@@ -70,3 +70,20 @@ test('slow drive checks have a deadline and repeated launch checks share one sca
     assert.equal(await fs.readFile(path.join(f.options.webRoot, 'bundled-assets.json'), 'utf8'), '{}');
   } finally { await f.close(); }
 });
+
+test('unresponsive version requests and response bodies cannot leave checking stuck', async () => {
+  for (const fetcher of [() => new Promise(() => {}), async () => ({ ok: true, text: () => new Promise(() => {}) })]) {
+    const f = await fixture();
+    try {
+      let requests = 0;
+      const checks = new StartupChecks({ ...f.options, timeoutMs: 25,
+        scan: async () => ({ state: 'checked', changedFiles: 0, pendingPracticeFiles: 0 }),
+        fetcher: (...args) => { requests++; return requests === 1 ? fetcher(...args) : Promise.resolve(new Response(commit)); },
+      });
+      const result = await checks.run();
+      assert.equal(result.checking, false); assert.equal(result.state, 'offline');
+      assert.equal(checks.pending, null);
+      assert.equal((await checks.run()).state, 'current');
+    } finally { await f.close(); }
+  }
+});

@@ -7,6 +7,17 @@ const ROOT_CODE = new Set(['src', 'scripts', 'sources', 'docs', 'desktop']);
 const SHA = /^[a-f0-9]{40}$/;
 const PROCESSING = new Set(['checking', 'source-checked', 'recognising-source-pages', 'transcribing-recordings', 'publishing-originals', 'building-mac-app', 'releasing-startup-check']);
 const readJson = async file => JSON.parse(await fs.readFile(file, 'utf8'));
+const CHECKING_MESSAGE = 'Checking for updates in the background. You can start studying.';
+
+async function withinDeadline(task, timeoutMs, fallback, onTimeout = () => {}) {
+  let timer;
+  try {
+    return await Promise.race([
+      Promise.resolve().then(task),
+      new Promise(resolve => { timer = setTimeout(() => { onTimeout(); resolve(fallback); }, timeoutMs); }),
+    ]);
+  } finally { clearTimeout(timer); }
+}
 
 // Preserve nanosecond integers from Python's cache; JSON numbers would round them.
 export const parseSourceCache = text => JSON.parse(text.replace(/"(mtimeNs|ctimeNs)"\s*:\s*(\d+)/g, '"$1":"$2"'));
@@ -61,23 +72,27 @@ export async function scanSourceFiles({ sourceRoot, libraryRoot, webRoot, signal
   } catch { return { state: signal?.aborted ? 'timeout' : 'unavailable' }; }
 }
 
-export async function checkPublishedApp(build, fetcher = fetch, signal) {
+export async function checkPublishedApp(build, fetcher = fetch, signal, timeoutMs = 7000) {
+  const controller = new AbortController();
   try {
-    signal ||= AbortSignal.timeout(7000);
-    const response = await fetcher('https://api.github.com/repos/genododi/OET/commits/main', {
-      headers: { Accept: 'application/vnd.github.sha', 'User-Agent': 'OET-Study-startup-check' }, credentials: 'omit', signal,
-    });
-    if (!response.ok) return { state: 'unavailable' };
-    const remoteCommit = (await response.text()).trim();
-    if (!SHA.test(remoteCommit) || !SHA.test(build?.gitCommit || '')) return { state: 'unavailable' };
-    return { state: build.gitCommit === remoteCommit ? 'current' : 'newer', remoteCommit };
+    signal = signal ? AbortSignal.any([signal, controller.signal]) : controller.signal;
+    // Some fetch implementations and response bodies do not settle on abort.
+    return await withinDeadline(async () => {
+      const response = await fetcher('https://api.github.com/repos/genododi/OET/commits/main', {
+        headers: { Accept: 'application/vnd.github.sha', 'User-Agent': 'OET-Study-startup-check' }, credentials: 'omit', signal,
+      });
+      if (!response.ok) return { state: 'unavailable' };
+      const remoteCommit = (await response.text()).trim();
+      if (!SHA.test(remoteCommit) || !SHA.test(build?.gitCommit || '')) return { state: 'unavailable' };
+      return { state: build.gitCommit === remoteCommit ? 'current' : 'newer', remoteCommit };
+    }, timeoutMs, { state: 'unavailable' }, () => controller.abort());
   } catch { return { state: 'unavailable' }; }
 }
 
 export function describeStartupCheck({ files, published, sync, runningCommit, installedCommit }) {
   if (SHA.test(installedCommit || '') && SHA.test(runningCommit || '') && installedCommit !== runningCommit) return { state: 'reopen', message: 'An app update is installed. Finish your work, save any recording, then reopen OET Study.' };
   if (PROCESSING.has(sync?.status)) return { state: 'processing', message: 'A library update has not finished yet. Keep studying; new files will appear after publication and a verified app update.' };
-  if (sync?.status === 'needs-attention') return { state: 'attention', message: 'The latest library update needs attention. Your saved study work is available.' };
+  if (sync?.status === 'needs-attention') return { state: 'attention', message: 'The last library update did not finish. You can study offline; the next scheduled update will retry.' };
   if (files.changedFiles > 0 || files.pendingPracticeFiles > 0) return { state: 'updates', message: 'New or changed study files are waiting for the scheduled library update. They are not all installed yet.' };
   if (published.state === 'newer') return { state: 'updates', message: 'A newer app version is published. The scheduled update will install and verify it; keep studying in this version.' };
   if (files.state === 'disconnected') return { state: 'drive-missing', message: published.state === 'current' ? 'Published app version checked. Connect your OET resource drive to check new files.' : 'OET resource drive is disconnected and the online version could not be checked. Offline study is available.' };
@@ -89,12 +104,12 @@ export function describeStartupCheck({ files, published, sync, runningCommit, in
 export class StartupChecks {
   constructor({ sourceRoot, libraryRoot, webRoot, stateRoot, resourcesPath, build, onChange = () => {}, fetcher = fetch, scan = scanSourceFiles, timeoutMs = 20000 }) {
     Object.assign(this, { sourceRoot, libraryRoot, webRoot, stateRoot, resourcesPath, build, onChange, fetcher, scan, timeoutMs });
-    this.status = { state: 'checking', checking: true, message: 'Checking for new study files and app updates…' };
+    this.status = { state: 'checking', checking: true, message: CHECKING_MESSAGE };
   }
   run() {
     if (this.pending) return this.pending;
     this.lastStartedAt = Date.now();
-    this.status = { ...this.status, state: 'checking', checking: true, message: 'Checking for new study files and app updates…' };
+    this.status = { ...this.status, state: 'checking', checking: true, message: CHECKING_MESSAGE };
     this.onChange(this.status);
     this.pending = this.check().catch(error => {
       console.warn('OET startup check could not finish:', error.message);
@@ -104,25 +119,25 @@ export class StartupChecks {
     return this.pending;
   }
   async check() {
-    const controller = new AbortController(); let timer;
-    const filesPromise = Promise.race([
-      this.scan({ sourceRoot: this.sourceRoot, libraryRoot: this.libraryRoot, webRoot: this.webRoot, signal: controller.signal }).catch(() => ({ state: 'unavailable' })),
-      new Promise(resolve => { timer = setTimeout(() => { controller.abort(); resolve({ state: 'timeout' }); }, this.timeoutMs); }),
-    ]);
+    const controller = new AbortController();
+    const filesPromise = withinDeadline(() => this.scan({ sourceRoot: this.sourceRoot, libraryRoot: this.libraryRoot, webRoot: this.webRoot, signal: controller.signal }), this.timeoutMs, { state: 'timeout' }, () => controller.abort()).catch(() => ({ state: 'unavailable' }));
+    const metadata = file => withinDeadline(() => readJson(file), this.timeoutMs, null).catch(() => null);
     const [files, published, sync, diskBuild] = await Promise.all([
-      filesPromise, checkPublishedApp(this.build, this.fetcher),
-      readJson(path.join(this.stateRoot, 'status.json')).catch(() => null),
-      readJson(path.join(this.resourcesPath, 'build-info.json')).catch(() => null),
+      filesPromise, checkPublishedApp(this.build, this.fetcher, undefined, Math.min(7000, this.timeoutMs)),
+      metadata(path.join(this.stateRoot, 'status.json')),
+      metadata(path.join(this.resourcesPath, 'build-info.json')),
     ]);
-    clearTimeout(timer);
     this.status = { ...describeStartupCheck({ files, published, sync, runningCommit: this.build?.gitCommit, installedCommit: diskBuild?.gitCommit }), checking: false, checkedAt: new Date().toISOString(), files, published };
     this.onChange(this.status);
     // A small receipt helps the daily updater reconcile startup findings. It
     // contains no profile answers, credentials, filenames or chat histories.
     try {
-      await fs.mkdir(this.stateRoot, { recursive: true });
-      const target = path.join(this.stateRoot, 'startup-check.json'), temporary = target + '.' + process.pid + '.tmp';
-      await fs.writeFile(temporary, JSON.stringify(this.status) + '\n', { mode: 0o600 }); await fs.rename(temporary, target);
+      const receipt = JSON.stringify(this.status) + '\n';
+      await withinDeadline(async () => {
+        await fs.mkdir(this.stateRoot, { recursive: true });
+        const target = path.join(this.stateRoot, 'startup-check.json'), temporary = target + '.' + process.pid + '.tmp';
+        await fs.writeFile(temporary, receipt, { mode: 0o600 }); await fs.rename(temporary, target);
+      }, this.timeoutMs, null);
     } catch { /* A storage error must not prevent opening the study app. */ }
     return this.status;
   }

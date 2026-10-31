@@ -27,6 +27,9 @@ def main():
     catalogs=[ROOT/'src/data/desktopMaterials.generated.json',ROOT/'public/imported-resources/catalog.json',library/'catalog.json']
     inventories=[json.loads(path.read_text()) for path in catalogs]
     files={f['sha256']:f for c in inventories for f in c['files'] if f['format'] in ({'pdf'} | IMAGE_FORMATS) and (not args.images_only or f['format'] in IMAGE_FORMATS)}
+    # A fresh checkout or cleanup can remove tmp between daily updates.
+    # Both the compiler output and page staging require this parent directory.
+    (ROOT/'tmp').mkdir(parents=True,exist_ok=True)
     binary=ROOT/'tmp/oet-recognize-source'
     source=ROOT/'scripts/recognize-source-text.swift'
     tesseract=shutil.which('tesseract')

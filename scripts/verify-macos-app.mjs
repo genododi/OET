@@ -22,6 +22,10 @@ try {
     assert.equal(build?.gitCommit, execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim(), 'Installed app must run the current source commit');
     await page.getByText(`App source: ${build.gitCommit.slice(0, 7)}`, { exact: false }).waitFor();
   }
+  await page.waitForFunction(async () => (await window.oetDesktop.info()).updates?.checking === false, null, { timeout: 30000 });
+  const startupResult = await page.evaluate(async () => (await window.oetDesktop.info()).updates);
+  await page.getByText(startupResult.message, { exact: true }).waitFor();
+  await page.getByRole('button', { name: 'Check again', exact: true }).waitFor();
   const first = await page.evaluate(() => window.oetDesktop.createProfile('First learner'));
   const second = await page.evaluate(() => window.oetDesktop.createProfile('Second learner'));
   const switchTo = async id => {
@@ -103,5 +107,5 @@ try {
   }
   await fs.mkdir(path.join(root, 'output/playwright'), { recursive: true });
   await page.screenshot({ path: path.join(root, 'output/playwright/macos-offline-workspace.png'), fullPage: false });
-  console.log(JSON.stringify({ profilesIsolated: true, draftsSurviveReload: true, localAudioPlaysSeeksAndResumes: true, networkBlocked: true, localAiNeedsNoKey: aiVerified, importedOriginals, suppliedPracticeVerified, duration }));
+  console.log(JSON.stringify({ startupCheckFinishes: !startupResult.checking, startupState: startupResult.state, profilesIsolated: true, draftsSurviveReload: true, localAudioPlaysSeeksAndResumes: true, networkBlocked: true, localAiNeedsNoKey: aiVerified, importedOriginals, suppliedPracticeVerified, duration }));
 } finally { await app.close(); }
