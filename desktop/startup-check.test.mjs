@@ -64,6 +64,7 @@ test('slow drive checks have a deadline and repeated launch checks share one sca
     const checks = new StartupChecks({ ...f.options, timeoutMs: 25, fetcher: async () => new Response(commit), scan: () => { scans++; return new Promise(() => {}); }, onChange: value => updates.push(value) });
     const first = checks.run(); assert.equal(checks.run(), first);
     const result = await first; assert.equal(scans, 1); assert.equal(result.checking, false); assert.equal(result.state, 'unverified');
+    assert.match(result.message, /taking too long/);
     assert.equal(updates[0].checking, true); assert.equal(updates.at(-1).checking, false);
     const receipt = JSON.parse(await fs.readFile(path.join(f.options.stateRoot, 'startup-check.json'), 'utf8'));
     assert.equal(receipt.files.state, 'timeout'); assert(!JSON.stringify(receipt).includes('profile'));

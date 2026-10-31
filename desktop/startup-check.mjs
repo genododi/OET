@@ -96,6 +96,7 @@ export function describeStartupCheck({ files, published, sync, runningCommit, in
   if (files.changedFiles > 0 || files.pendingPracticeFiles > 0) return { state: 'updates', message: 'New or changed study files are waiting for the scheduled library update. They are not all installed yet.' };
   if (published.state === 'newer') return { state: 'updates', message: 'A newer app version is published. The scheduled update will install and verify it; keep studying in this version.' };
   if (files.state === 'disconnected') return { state: 'drive-missing', message: published.state === 'current' ? 'Published app version checked. Connect your OET resource drive to check new files.' : 'OET resource drive is disconnected and the online version could not be checked. Offline study is available.' };
+  if (files.state === 'timeout') return { state: 'unverified', message: 'The resource drive is taking too long to respond. You can study offline and choose Check again later.' };
   if (files.state !== 'checked') return { state: 'unverified', message: 'Resource files could not be fully checked. Offline study is available; reconnect the drive and choose Check again.' };
   if (published.state !== 'current') return { state: 'offline', message: 'Local resource files checked. The online app version could not be checked; keep studying offline.' };
   return { state: 'current', message: 'Startup check complete. No new source files detected; published app version is current.' };

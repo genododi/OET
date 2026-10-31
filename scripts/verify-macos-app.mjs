@@ -22,8 +22,13 @@ try {
     assert.equal(build?.gitCommit, execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim(), 'Installed app must run the current source commit');
     await page.getByText(`App source: ${build.gitCommit.slice(0, 7)}`, { exact: false }).waitFor();
   }
-  await page.waitForFunction(async () => (await window.oetDesktop.info()).updates?.checking === false, null, { timeout: 30000 });
-  const startupResult = await page.evaluate(async () => (await window.oetDesktop.info()).updates);
+  const settledStartup = await page.waitForFunction(async () => {
+    const { updates } = await window.oetDesktop.info();
+    return updates && !updates.checking ? updates : false;
+  }, null, { timeout: 30000 });
+  // Capture the same completed result, even if a later activation starts a check.
+  const startupResult = await settledStartup.jsonValue();
+  assert.equal(startupResult.checking, false);
   await page.getByText(startupResult.message, { exact: true }).waitFor();
   await page.getByRole('button', { name: 'Check again', exact: true }).waitFor();
   const first = await page.evaluate(() => window.oetDesktop.createProfile('First learner'));
