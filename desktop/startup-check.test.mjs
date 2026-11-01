@@ -3,7 +3,9 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
-import { checkPublishedApp, describeStartupCheck, eligibleSource, parseSourceCache, scanSourceFiles, StartupChecks } from './startup-check.mjs';
+import { spawn } from 'node:child_process';
+import { once } from 'node:events';
+import { checkPublishedApp, checkSyncLock, describeStartupCheck, eligibleSource, parseSourceCache, readSyncStatus, scanSourceFiles, StartupChecks } from './startup-check.mjs';
 
 const commit = 'a'.repeat(40);
 async function fixture() {
@@ -51,10 +53,44 @@ test('the public version check has no API key and does not call an offline app c
 
 test('an unfinished import and an installed replacement are never reported as fully current', () => {
   const current = { files: { state: 'checked', changedFiles: 0, pendingPracticeFiles: 0 }, published: { state: 'current' } };
-  assert.equal(describeStartupCheck({ ...current, sync: { status: 'transcribing-recordings' } }).state, 'processing');
+  assert.equal(describeStartupCheck({ ...current, sync: { status: 'transcribing-recordings', worker: 'active' } }).state, 'processing');
   assert.equal(describeStartupCheck({ ...current, files: { state: 'checked', pendingPracticeFiles: 3 } }).state, 'updates');
   assert.equal(describeStartupCheck({ ...current, runningCommit: commit, installedCommit: 'b'.repeat(40) }).state, 'reopen');
   assert.equal(describeStartupCheck({ ...current, files: { state: 'disconnected' } }).state, 'drive-missing');
+});
+
+test('a stopped worker cannot leave startup reporting an update in progress', async () => {
+  const f = await fixture();
+  try {
+    await f.json(path.join(f.options.stateRoot, 'status.json'), { status: 'transcribing-recordings' });
+    const checks = new StartupChecks({ ...f.options, fetcher: async () => new Response(commit),
+      scan: async () => ({ state: 'checked', changedFiles: 0, pendingPracticeFiles: 0 }),
+    });
+    const stopped = await checks.run();
+    assert.equal(stopped.state, 'attention');
+    assert.match(stopped.message, /stopped before finishing/);
+    assert.equal(stopped.checking, false);
+    // A successful retry must clear the stale warning on the next check.
+    await f.json(path.join(f.options.stateRoot, 'status.json'), { status: 'complete' });
+    assert.equal((await checks.run()).state, 'current');
+    const unknown = await readSyncStatus(f.options.stateRoot, async () => { throw Error('not needed for a completed update'); });
+    assert.equal(unknown.status, 'complete');
+    assert.equal(describeStartupCheck({ files: {}, published: {}, sync: { status: 'checking', worker: 'unavailable' } }).state, 'unverified');
+  } finally { await f.close(); }
+});
+
+test('the worker check honors a held OS lock and never modifies its contents', async () => {
+  const f = await fixture();
+  const lockPath = path.join(f.options.stateRoot, 'sync.lock');
+  await fs.writeFile(lockPath, 'preserve lock contents');
+  const holder = spawn('/usr/bin/perl', ['-MFcntl=:flock', '-e', 'open(my $lock, "<", $ARGV[0]) or die $!; flock($lock, LOCK_EX) or die $!; $|=1; print "locked\\n"; <STDIN>;', lockPath], { stdio: ['pipe', 'pipe', 'pipe'] });
+  try {
+    await once(holder.stdout, 'data');
+    assert.equal(await checkSyncLock(f.options.stateRoot), 'active');
+    holder.stdin.end('\n'); await once(holder, 'exit');
+    assert.equal(await checkSyncLock(f.options.stateRoot), 'idle');
+    assert.equal(await fs.readFile(lockPath, 'utf8'), 'preserve lock contents');
+  } finally { holder.kill(); await f.close(); }
 });
 
 test('slow drive checks have a deadline and repeated launch checks share one scan', async () => {

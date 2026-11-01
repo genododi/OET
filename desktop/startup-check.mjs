@@ -1,13 +1,32 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import { execFile } from 'node:child_process';
+import { promisify } from 'node:util';
 
 const EXTENSIONS = new Set('pdf docx doc pptx ppt xlsx xls csv tsv txt md rtf html htm json apkg zip rar 7z mp3 m4a wav ogg flac aac mp4 webm mov jpg jpeg png webp heic heif tif tiff bmp gif avif'.split(' '));
 const SKIP = new Set(['.git', 'node_modules', 'dist', 'public', 'assets', 'output', 'tmp', 'quarantine', 'work', 'Mac App', 'Benchmark Offline', 'repo-duplicate-backup', 'manifests', 'reports', 'channel-pages', 'linked-pages', 'youtube-metadata']);
 const ROOT_CODE = new Set(['src', 'scripts', 'sources', 'docs', 'desktop']);
 const SHA = /^[a-f0-9]{40}$/;
-const PROCESSING = new Set(['checking', 'source-checked', 'recognising-source-pages', 'transcribing-recordings', 'publishing-originals', 'building-mac-app', 'releasing-startup-check']);
+const PROCESSING = new Set(['checking', 'source-checked', 'recognising-source-pages', 'transcribing-recordings', 'publishing-originals', 'building-mac-app', 'releasing-startup-check', 'preparing-recognition-runtime']);
 const readJson = async file => JSON.parse(await fs.readFile(file, 'utf8'));
 const CHECKING_MESSAGE = 'Checking for updates in the background. You can start studying.';
+const execute = promisify(execFile);
+
+export async function checkSyncLock(stateRoot) {
+  // Probe the same OS lock as the Python updater. A saved stage or an old PID
+  // cannot prove that its worker is still running. Never create/remove a lock.
+  const probe = 'open(my $lock, "<", $ARGV[0]) or do { print $!{ENOENT} ? "idle" : "unavailable"; exit }; my $state = flock($lock, LOCK_EX | LOCK_NB) ? "idle" : ($!{EWOULDBLOCK} || $!{EAGAIN}) ? "active" : "unavailable"; print $state;';
+  try {
+    const { stdout } = await execute('/usr/bin/perl', ['-MFcntl=:flock', '-e', probe, path.join(stateRoot, 'sync.lock')], { timeout: 2000, maxBuffer: 1024 });
+    return ['active', 'idle'].includes(stdout) ? stdout : 'unavailable';
+  } catch { return 'unavailable'; }
+}
+
+export async function readSyncStatus(stateRoot, probe = checkSyncLock) {
+  const sync = await readJson(path.join(stateRoot, 'status.json'));
+  if (!PROCESSING.has(sync?.status)) return sync;
+  return { ...sync, worker: await probe(stateRoot) };
+}
 
 async function withinDeadline(task, timeoutMs, fallback, onTimeout = () => {}) {
   let timer;
@@ -91,7 +110,14 @@ export async function checkPublishedApp(build, fetcher = fetch, signal, timeoutM
 
 export function describeStartupCheck({ files, published, sync, runningCommit, installedCommit }) {
   if (SHA.test(installedCommit || '') && SHA.test(runningCommit || '') && installedCommit !== runningCommit) return { state: 'reopen', message: 'An app update is installed. Finish your work, save any recording, then reopen OET Study.' };
-  if (PROCESSING.has(sync?.status)) return { state: 'processing', message: 'A library update has not finished yet. Keep studying; new files will appear after publication and a verified app update.' };
+  if (PROCESSING.has(sync?.status)) {
+    if (sync.worker === 'idle') return { state: 'attention', message: 'The previous library update stopped before finishing. Your existing study materials are ready; the next scheduled update will retry.' };
+    if (sync.worker !== 'active') return { state: 'unverified', message: 'The library update status could not be verified. Your existing study materials are ready to use.' };
+    const message = sync.status === 'transcribing-recordings'
+      ? 'Preparing new recording transcripts in the background. Your current study materials are ready to use.'
+      : 'Updating study materials in the background. You can keep studying; new files will appear after the update is verified.';
+    return { state: 'processing', message };
+  }
   if (sync?.status === 'needs-attention') return { state: 'attention', message: 'The last library update did not finish. You can study offline; the next scheduled update will retry.' };
   if (files.changedFiles > 0 || files.pendingPracticeFiles > 0) return { state: 'updates', message: 'New or changed study files are waiting for the scheduled library update. They are not all installed yet.' };
   if (published.state === 'newer') return { state: 'updates', message: 'A newer app version is published. The scheduled update will install and verify it; keep studying in this version.' };
@@ -103,8 +129,8 @@ export function describeStartupCheck({ files, published, sync, runningCommit, in
 }
 
 export class StartupChecks {
-  constructor({ sourceRoot, libraryRoot, webRoot, stateRoot, resourcesPath, build, onChange = () => {}, fetcher = fetch, scan = scanSourceFiles, timeoutMs = 20000 }) {
-    Object.assign(this, { sourceRoot, libraryRoot, webRoot, stateRoot, resourcesPath, build, onChange, fetcher, scan, timeoutMs });
+  constructor({ sourceRoot, libraryRoot, webRoot, stateRoot, resourcesPath, build, onChange = () => {}, fetcher = fetch, scan = scanSourceFiles, syncReader = readSyncStatus, timeoutMs = 20000 }) {
+    Object.assign(this, { sourceRoot, libraryRoot, webRoot, stateRoot, resourcesPath, build, onChange, fetcher, scan, syncReader, timeoutMs });
     this.status = { state: 'checking', checking: true, message: CHECKING_MESSAGE };
   }
   run() {
@@ -125,7 +151,7 @@ export class StartupChecks {
     const metadata = file => withinDeadline(() => readJson(file), this.timeoutMs, null).catch(() => null);
     const [files, published, sync, diskBuild] = await Promise.all([
       filesPromise, checkPublishedApp(this.build, this.fetcher, undefined, Math.min(7000, this.timeoutMs)),
-      metadata(path.join(this.stateRoot, 'status.json')),
+      withinDeadline(() => this.syncReader(this.stateRoot), this.timeoutMs, null).catch(() => null),
       metadata(path.join(this.resourcesPath, 'build-info.json')),
     ]);
     this.status = { ...describeStartupCheck({ files, published, sync, runningCommit: this.build?.gitCommit, installedCommit: diskBuild?.gitCommit }), checking: false, checkedAt: new Date().toISOString(), files, published };
