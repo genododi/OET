@@ -19,6 +19,14 @@ NODE_RUNTIME=Path.home()/'.cache/codex-runtimes/codex-primary-runtime/dependenci
 os.environ['PATH']=os.pathsep.join([str(NODE_RUNTIME),'/opt/homebrew/bin',str(Path.home()/'.local/bin'),os.environ.get('PATH','')])
 GENERATED=['public/recent-materials.json','public/imported-resources','public/material-practice','src/data/desktopMaterials.generated.json','public/supplied-materials/text']
 
+def configure_developer_tools(environment,platform=sys.platform,tools=Path('/Library/Developer/CommandLineTools')):
+    # Use the installed standalone tools when a newly selected Xcode has not
+    # been configured. Never accept a license or change the system selection.
+    if platform=='darwin' and (tools/'usr/bin/git').is_file():
+        environment.setdefault('DEVELOPER_DIR',str(tools))
+
+configure_developer_tools(os.environ)
+
 def run(command,timeout=21600,capture=False):
     process=subprocess.Popen(command,cwd=ROOT,text=True,stdout=subprocess.PIPE if capture else None,start_new_session=True)
     try:output,_=process.communicate(timeout=timeout)

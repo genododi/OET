@@ -1,5 +1,6 @@
 import runpy
 import unittest
+import tempfile
 from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -8,6 +9,22 @@ imports=runpy.run_path(str(ROOT/'import-offline-library.py'))
 sync=runpy.run_path(str(ROOT/'sync-study-library.py'))
 
 class LibraryIntegrityTests(unittest.TestCase):
+    def test_updates_use_installed_tools_without_replacing_an_explicit_selection(self):
+        configure=sync['configure_developer_tools']
+        with tempfile.TemporaryDirectory() as folder:
+            tools=Path(folder)
+            (tools/'usr/bin').mkdir(parents=True)
+            (tools/'usr/bin/git').touch()
+            environment={}
+            configure(environment,'darwin',tools)
+            self.assertEqual(environment['DEVELOPER_DIR'],str(tools))
+            environment={'DEVELOPER_DIR':'/selected/tools'}
+            configure(environment,'darwin',tools)
+            self.assertEqual(environment['DEVELOPER_DIR'],'/selected/tools')
+            environment={}
+            configure(environment,'linux',tools)
+            self.assertEqual(environment,{})
+
     def test_archive_paths_cannot_escape_or_follow_links(self):
         safe=archives['safe_entry']
         self.assertTrue(safe({'XADFileName':'Test 1/questions.pdf','XADFileSize':100}))

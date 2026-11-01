@@ -17,7 +17,7 @@ def main():
     for attempt in range(6):
         try:
             for target in targets:
-                live=subprocess.check_output(['curl','--fail','--silent','--show-error','--location','--max-time','30',f'https://genododi.github.io/OET/{target}?release={commit}'],timeout=40)
+                live=subprocess.check_output(['curl','--fail','--silent','--show-error','--location','--max-time','90',f'https://genododi.github.io/OET/{target}?release={commit}'],timeout=100)
                 expected=(ROOT/'public'/target).read_bytes()
                 if hashlib.sha256(live).digest()!=hashlib.sha256(expected).digest():raise ValueError('GitHub Pages still serves a different '+target)
             print(json.dumps({'githubPagesMatches':commit,'verifiedFiles':len(targets)}));return
