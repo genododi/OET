@@ -9,6 +9,20 @@ imports=runpy.run_path(str(ROOT/'import-offline-library.py'))
 sync=runpy.run_path(str(ROOT/'sync-study-library.py'))
 
 class LibraryIntegrityTests(unittest.TestCase):
+    def test_transcription_prefers_persistent_runtime_and_stays_offline(self):
+        command=sync['transcription_command']
+        with tempfile.TemporaryDirectory() as folder:
+            runtime=Path(folder)
+            fallback=command('/library',runtime)
+            self.assertEqual(fallback[:3],['env','HF_HUB_OFFLINE=1','uv'])
+            self.assertIn('--offline',fallback)
+            interpreter=runtime/'venv/bin/python'
+            interpreter.parent.mkdir(parents=True)
+            interpreter.touch()
+            installed=command('/library',runtime)
+            self.assertEqual(installed[:3],['env','HF_HUB_OFFLINE=1',str(interpreter)])
+            self.assertNotIn('uv',installed)
+
     def test_updates_use_installed_tools_without_replacing_an_explicit_selection(self):
         configure=sync['configure_developer_tools']
         with tempfile.TemporaryDirectory() as folder:

@@ -68,6 +68,14 @@ survive the update. `AGENTS.md` records this required workflow for future change
 
 ## Import and publication
 
+Scheduled refreshes use the persistent transcription environment at
+`~/Library/Application Support/OET Study/local-ai/transcription/venv` and keep
+its Whisper model under `transcription/models`. These files survive temporary
+cache cleanup. The refresh runs transcription with network access disabled;
+the runtime and model must be installed before processing new recordings.
+If this environment is absent, the updater tries the existing offline `uv`
+cache. A failed refresh preserves completed recognition work and saved profiles.
+
 The importer deduplicates by SHA-256, retains source paths, extracts PDF and Word
 text, and copies originals unchanged. Archives, executables, repository/build
 copies, quarantine, sidecars and temporary Word lock files are excluded. Scanned
