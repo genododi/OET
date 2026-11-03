@@ -7,6 +7,17 @@ beforeEach(() => { localStorage.clear(); vi.stubGlobal('fetch', vi.fn().mockReso
 afterEach(() => { cleanup(); vi.unstubAllGlobals(); });
 
 describe('supplied source practice', () => {
+  it('returns to Recently Added only when the file was opened there', async () => {
+    const navigate = vi.fn();
+    const view = render(<MaterialsPage itemId={task.id} returnTo="recent" onNavigate={navigate} />);
+    fireEvent.click(screen.getByRole('button', { name: '← Back to recently added files' }));
+    expect(navigate).toHaveBeenCalledWith('recent');
+    expect(screen.queryByRole('button', { name: '← Back to all supplied files' })).toBeNull();
+    view.rerender(<MaterialsPage itemId={task.id} onNavigate={navigate} />);
+    fireEvent.click(screen.getByRole('button', { name: '← Back to all supplied files' }));
+    expect(navigate).toHaveBeenLastCalledWith('materials');
+    await screen.findByText('Darren Walker — supplied case notes');
+  });
   it('filters the complete AMR collection and searches original filenames', () => {
     render(<MaterialsPage onNavigate={vi.fn()} />);
     fireEvent.change(screen.getByLabelText('Collection'), { target: { value: 'AMR' } });

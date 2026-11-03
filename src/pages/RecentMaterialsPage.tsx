@@ -7,12 +7,31 @@ import './recentMaterials.css';
 const skillName = (value: string) => value.charAt(0).toUpperCase() + value.slice(1);
 const date = (value: string) => new Date(value).toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' });
 const size = (bytes: number) => bytes < 1048576 ? `${Math.max(1, Math.round(bytes / 1024))} KB` : `${(bytes / 1048576).toFixed(1)} MB`;
-export function RecentMaterialsPage({ onNavigate }: { onNavigate: (section: NavSection, itemId?: string) => void }) {
+const viewKey = 'oet-recent-files-view-v1';
+function savedView() {
+  const defaults = { query: '', origin: 'all', skill: 'all', format: 'all', limit: 30, scrollY: 0 };
+  try {
+    const value = JSON.parse(sessionStorage.getItem(viewKey) || 'null');
+    if (!value || ['query', 'origin', 'skill', 'format'].some(key => typeof value[key] !== 'string') || !Number.isSafeInteger(value.limit) || value.limit < 30 || !Number.isFinite(value.scrollY) || value.scrollY < 0) return defaults;
+    return { ...defaults, ...value } as typeof defaults;
+  } catch { return defaults; }
+}
+export function RecentMaterialsPage({ onNavigate }: { onNavigate: (section: NavSection, itemId?: string, returnTo?: 'recent') => void }) {
+  const [initial] = useState(savedView);
   const [files, setFiles] = useState<RecentMaterial[]>([]);
   const [state, setState] = useState<'loading' | 'ready' | 'error'>('loading');
   const [attempt, setAttempt] = useState(0);
-  const [query, setQuery] = useState(''), [origin, setOrigin] = useState('all'), [skill, setSkill] = useState('all'), [format, setFormat] = useState('all');
-  const [limit, setLimit] = useState(30);
+  const [query, setQuery] = useState(initial.query), [origin, setOrigin] = useState(initial.origin), [skill, setSkill] = useState(initial.skill), [format, setFormat] = useState(initial.format);
+  const [limit, setLimit] = useState(initial.limit);
+  useEffect(() => {
+    if (state !== 'ready') return;
+    const frame = requestAnimationFrame(() => window.scrollTo({ top: initial.scrollY, behavior: 'instant' }));
+    return () => cancelAnimationFrame(frame);
+  }, [state, initial]);
+  const openFile = (file: RecentMaterial) => {
+    try { sessionStorage.setItem(viewKey, JSON.stringify({ query, origin, skill, format, limit, scrollY: window.scrollY })); } catch { /* Navigation still works when storage is unavailable. */ }
+    onNavigate('materials', file.id, 'recent');
+  };
   useEffect(() => {
     const controller = new AbortController();
     void fetch(`${import.meta.env.BASE_URL}recent-materials.json`, { signal: controller.signal }).then(async response => {
@@ -40,7 +59,7 @@ export function RecentMaterialsPage({ onNavigate }: { onNavigate: (section: NavS
       <ul className="recent-materials-list" aria-label="Recently added study files">{filtered.slice(0, limit).map(file => <li className="card recent-material" key={file.sha256}>
         <div className="recent-file-icon" aria-hidden="true"><AppIcon name={['mp3', 'wav', 'm4a', 'ogg', 'flac', 'aac'].includes(file.format) ? 'headphones' : 'book'} /></div>
         <div className="recent-file-details"><div className="recent-file-meta"><span>{file.format.toUpperCase()} · {size(file.bytes)}</span><time dateTime={file.addedAt}>Added {date(file.addedAt)}</time></div><h3>{file.filename}</h3><div className="recent-file-sources">{file.sources.map(source => <span key={`${source.kind}:${source.label}`}>{source.label}</span>)}</div><p className="meta">{file.collection} · {file.skills.map(skillName).join(' / ')}</p></div>
-        <button className="btn btn-secondary" aria-label={`Open ${file.filename}`} onClick={() => onNavigate('materials', file.id)}>Open file →</button>
+        <button className="btn btn-secondary" aria-label={`Open ${file.filename}`} onClick={() => openFile(file)}>Open file →</button>
       </li>)}</ul>
       {!filtered.length && <section className="card"><h3>{files.length ? 'No matching files' : 'No additions yet'}</h3><p>{files.length ? 'Try another file name, source or skill.' : 'New study files will appear after the next verified library import.'}</p>{files.length > 0 && <button className="btn btn-secondary" onClick={reset}>Clear filters</button>}</section>}
       {filtered.length > limit && <button className="btn btn-secondary" onClick={() => setLimit(value => value + 30)}>Show 30 more files</button>}

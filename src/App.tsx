@@ -108,15 +108,15 @@ function App() {
     };
   }, []);
 
-  const navigate = (section: NavSection, itemId?: string) => {
-    setRoute({ section, itemId });
-    const hash = buildHash(section, itemId);
+  const navigate = (section: NavSection, itemId?: string, returnTo?: 'recent') => {
+    setRoute({ section, itemId, returnTo });
+    const hash = buildHash(section, itemId, returnTo);
     if (hash) {
       window.history.pushState(null, '', hash);
     } else {
       window.history.pushState(null, '', window.location.pathname);
     }
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: section === 'recent' ? 'instant' : 'smooth' });
   };
 
   const practiceFilter = route.section === 'practice' && isPracticeFilter(route.itemId)
@@ -130,7 +130,7 @@ function App() {
       case 'listening': return <AuthenticListeningPage />;
       case 'recent': return <RecentMaterialsPage onNavigate={navigate} />;
       case 'materials':
-        return <MaterialsPage key={route.itemId ?? 'library'} itemId={route.itemId} onNavigate={navigate} />;
+        return <MaterialsPage key={route.itemId ?? 'library'} itemId={route.itemId} returnTo={route.returnTo} onNavigate={navigate} />;
       case 'mentor':
         return <MentorPage onNavigate={navigate} />;
       case 'mistakes':

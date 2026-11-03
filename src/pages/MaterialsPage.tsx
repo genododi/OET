@@ -193,7 +193,7 @@ function PracticeWorkspace({ file, skill, onNavigate }: { file: Material; skill:
   </section>;
 }
 
-export function MaterialsPage({ itemId, onNavigate }: { itemId?: string; onNavigate: (section: NavSection, itemId?: string) => void }) {
+export function MaterialsPage({ itemId, returnTo, onNavigate }: { itemId?: string; returnTo?: 'recent'; onNavigate: (section: NavSection, itemId?: string) => void }) {
   const [files, setFiles] = useState<Material[]>(catalog.files);
   const [libraryError, setLibraryError] = useState('');
   useEffect(() => {
@@ -227,7 +227,7 @@ export function MaterialsPage({ itemId, onNavigate }: { itemId?: string; onNavig
     </section>
     {libraryError && <p role="alert">{libraryError}</p>}
     {selected ? <>
-      <button className="btn btn-ghost" onClick={() => onNavigate('materials')}>← Back to all supplied files</button>
+      <button className="btn btn-ghost" onClick={() => onNavigate(returnTo === 'recent' ? 'recent' : 'materials')}>← {returnTo === 'recent' ? 'Back to recently added files' : 'Back to all supplied files'}</button>
       <div className="material-skill-tabs" role="group" aria-label="Practice skill">{skills.map(item => <button key={item} aria-pressed={skill === item} onClick={() => setSkill(item)}>{title(item)}</button>)}</div>
       <PracticeWorkspace key={`${selected.id}:${skill}`} file={selected} skill={skill} onNavigate={onNavigate} />
     </> : <>

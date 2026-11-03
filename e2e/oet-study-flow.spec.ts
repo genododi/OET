@@ -1,4 +1,32 @@
 import { expect, test } from '@playwright/test';
+import suppliedCatalog from '../src/data/desktopMaterials.generated.json' with { type: 'json' };
+
+test('recent files return to the same filtered list after viewing and reloading a source', async ({ page }) => {
+  const source = suppliedCatalog.files.find(file => file.filename === 'Sample Writing Task 1.docx')!;
+  const files = Array.from({ length: 45 }, (_, index) => ({
+    id: index === 40 ? source.id : `recent-file-${index}`, sha256: index.toString(16).padStart(64, '0'),
+    filename: `Recent writing ${String(index).padStart(2, '0')}.docx`, format: 'docx', bytes: 200,
+    collection: 'AMR', skills: ['writing'], addedAt: '2026-11-03T00:00:00Z', sources: [{ kind: 'local', label: 'Local resources' }],
+  }));
+  await page.route('**/recent-materials.json', route => route.fulfill({ json: { version: 1, files } }));
+  await page.goto('./#recent');
+  await page.getByLabel('Search files').fill('Recent writing');
+  await page.getByRole('combobox', { name: 'Source', exact: true }).selectOption('local');
+  await page.getByRole('button', { name: 'Show 30 more files' }).click();
+  const open = page.getByRole('button', { name: 'Open Recent writing 40.docx' });
+  await open.scrollIntoViewIfNeeded();
+  const scrollY = await page.evaluate(() => window.scrollY);
+  expect(scrollY).toBeGreaterThan(500);
+  await open.click();
+  await expect(page).toHaveURL(/\?from=recent$/);
+  await page.reload();
+  await page.getByRole('button', { name: '← Back to recently added files' }).click();
+  await expect(page).toHaveURL(/#recent$/);
+  await expect(page.getByLabel('Search files')).toHaveValue('Recent writing');
+  await expect(page.getByRole('combobox', { name: 'Source', exact: true })).toHaveValue('local');
+  await expect(page.getByRole('button', { name: 'Open Recent writing 44.docx' })).toHaveCount(1);
+  await expect.poll(async () => Math.abs(await page.evaluate(() => window.scrollY) - scrollY)).toBeLessThan(5);
+});
 
 test('first-run diagnostic creates a Grade A plan', async ({ page }) => {
   await page.goto('./#planner');

@@ -1,0 +1,20 @@
+import { cleanup, fireEvent, render, screen } from '@testing-library/react';
+import { afterEach, expect, it, vi } from 'vitest';
+import { JahshanProductivePractice } from './JahshanProductivePractice';
+vi.mock('../components/SourcePracticeCoach',()=>({SourcePracticeCoach:({response,textPath,skill}:{response:string;textPath:string;skill:string})=><div role="region" aria-label="Following productive draft" data-source={textPath} data-skill={skill}>{response}</div>}));
+afterEach(cleanup);
+it('keeps the mentor on the selected official sample and the actual writing or speaking draft',()=>{
+ render(<JahshanProductivePractice skill="writing"/>);
+ fireEvent.change(screen.getByLabelText('Your letter draft'),{target:{value:'My first letter draft'}});
+ expect(screen.getByRole('region',{name:'Following productive draft'})).toHaveTextContent('My first letter draft');
+ fireEvent.change(screen.getByLabelText('Choose a sample'),{target:{value:'2'}});
+ expect(screen.getByRole('region',{name:'Following productive draft'})).toHaveAttribute('data-source','official-exam-text/sample-2-writing.json');
+ expect(screen.getByLabelText('Your letter draft')).toHaveValue('');
+ fireEvent.change(screen.getByLabelText('Your letter draft'),{target:{value:'My second draft'}});
+ fireEvent.change(screen.getByLabelText('Choose a sample'),{target:{value:'1'}});
+ expect(screen.getByLabelText('Your letter draft')).toHaveValue('My first letter draft');
+ cleanup();render(<JahshanProductivePractice skill="speaking"/>);
+ fireEvent.change(screen.getByLabelText('Transcript or notes from your role-play'),{target:{value:'My current consultation transcript'}});
+ expect(screen.getByRole('region',{name:'Following productive draft'})).toHaveAttribute('data-source','official-exam-text/sample-1-speaking-candidate.json');
+ expect(screen.getByRole('region',{name:'Following productive draft'})).toHaveTextContent('My current consultation transcript');
+});
