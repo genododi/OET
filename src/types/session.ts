@@ -78,6 +78,9 @@ export interface SessionTask {
   usmleDiscipline?: UsmleDiscipline;
   /** USMLE question format */
   usmleQuestionFormat?: UsmleQuestionFormat;
+  usmleSource?: string;
+  usmleQuestionImages?: string[];
+  usmleAnswerImages?: string[];
   /** Whether this question has an associated image */
   hasImage?: boolean;
   /** Path to vignette image (under public/usmle/images/) */

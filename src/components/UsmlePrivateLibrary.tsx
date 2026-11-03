@@ -1,0 +1,57 @@
+import { useState } from 'react';
+import type { PrivateUsmleLibrary, PrivateUsmleQuestion } from '../types/usmleLibrary';
+import type { PrivateStudyProgress, PrivateQuestionProgress } from '../lib/usmleLibrary';
+import type { UsmleStep } from '../types/usmle';
+import { UsmleSourceImages } from './UsmleSourceImages';
+import { privateUsmleUrl } from '../lib/usmleLibrary';
+
+export function UsmlePrivateLibrary({ library, progress, onChange, reviewing = false }: {
+  library: PrivateUsmleLibrary; progress: PrivateStudyProgress; onChange: (id: string, value: PrivateQuestionProgress) => void; reviewing?: boolean;
+}) {
+  const [step, setStep] = useState(''), [subject, setSubject] = useState(''), [search, setSearch] = useState('');
+  const [reviewFilter, setReviewFilter] = useState(reviewing ? 'needs-review' : 'all');
+  const [selected, setSelected] = useState<string | null>(null), [page, setPage] = useState(0);
+  const subjects = [...new Set(library.questions.map(question => question.subject).filter(Boolean))].sort() as string[];
+  const filtered = library.questions.filter(question => {
+    const saved = progress[question.id] ?? {}, effectiveStep = saved.step ?? question.step;
+    return (!step || (step === 'unassigned' ? !effectiveStep : effectiveStep === step)) && (!subject || question.subject === subject)
+      && (!search || `${question.prompt} ${question.sourceName} ${question.block ?? ''} ${question.number ?? ''}`.toLowerCase().includes(search.toLowerCase()))
+      && (reviewFilter === 'all' || reviewFilter === 'unseen' && !(saved.reviewed ?? saved.revealed) || reviewFilter === 'flagged' && saved.flagged || reviewFilter === 'needs-review' && (saved.flagged || (saved.reviewed ?? saved.revealed) && saved.answer !== question.key));
+  });
+  const safePage = Math.min(page, Math.max(0, Math.ceil(filtered.length / 15) - 1));
+  const visible = filtered.slice(safePage * 15, safePage * 15 + 15);
+  const question = filtered.find(item => item.id === selected) ?? visible[0];
+  const reset = () => { setPage(0); setSelected(null); };
+  return <section className="usmle-private-library">
+    <div className="card usmle-library-filters"><h3>{reviewing ? 'Review mistakes and flagged questions' : 'Your private question library'}</h3>
+      <div className="usmle-filter-grid">
+        <label>Step<select value={step} onChange={event => { setStep(event.target.value); reset(); }}><option value="">All steps</option><option value="step1">Step 1</option><option value="step2">Step 2 CK</option><option value="unassigned">Step unassigned</option></select></label>
+        <label>Subject<select value={subject} onChange={event => { setSubject(event.target.value); reset(); }}><option value="">All subjects</option>{subjects.map(value => <option key={value}>{value}</option>)}</select></label>
+        <label>Review status<select value={reviewFilter} onChange={event => { setReviewFilter(event.target.value); reset(); }}><option value="all">All questions</option><option value="unseen">Not reviewed</option><option value="needs-review">Incorrect or flagged</option><option value="flagged">Flagged</option></select></label>
+        <label>Find a question<input type="search" value={search} placeholder="Topic, block or source file" onChange={event => { setSearch(event.target.value); reset(); }} /></label>
+      </div><p className="meta">{filtered.length} questions match. Source deck Step/subject labels may be inferred; you can change a question’s Step for your own profile.</p>
+    </div>
+    <div className="usmle-library-columns"><aside className="card usmle-question-list" aria-label="Matching questions">
+      {!visible.length && <p>No questions match. Change the filters or import a study folder.</p>}
+      {visible.map(item => <button type="button" key={item.id} className={item.id === question?.id ? 'selected' : ''} onClick={() => setSelected(item.id)}><strong>Block {item.block ?? '—'} · Q{item.number ?? '—'} {progress[item.id]?.flagged ? '★' : ''}</strong><span>{item.prompt.slice(0, 125) || 'Source review card'}</span><small>{item.subject ?? 'Subject unassigned'}{item.reviewOnly ? ' · Review only' : ''}</small></button>)}
+      <div className="usmle-pagination"><button className="btn btn-secondary btn-sm" disabled={safePage === 0} onClick={() => { setPage(safePage - 1); setSelected(null); }}>Previous</button><span>{safePage + 1} / {Math.max(1, Math.ceil(filtered.length / 15))}</span><button className="btn btn-secondary btn-sm" disabled={(safePage + 1) * 15 >= filtered.length} onClick={() => { setPage(safePage + 1); setSelected(null); }}>Next</button></div>
+    </aside>{question && <Question key={question.id} question={question} saved={progress[question.id] ?? {}} onChange={value => onChange(question.id, value)} />}</div>
+    {!reviewing && <section className="card usmle-document-list"><h3>Your source PDFs</h3><p className="meta">Stored on this Mac for offline use. Scanned blocks retain their original pages; questions above provide readable text and source images.</p>{library.resources.filter(resource => resource.kind === 'pdf' && resource.asset).map(resource => <a key={resource.id} href={privateUsmleUrl(resource.asset!)} target="_blank" rel="noreferrer">{resource.name} <span>Open PDF ↗</span></a>)}</section>}
+  </section>;
+}
+
+function Question({ question, saved, onChange }: { question: PrivateUsmleQuestion; saved: PrivateQuestionProgress; onChange: (value: PrivateQuestionProgress) => void }) {
+  const update = (change: PrivateQuestionProgress) => onChange({ ...saved, ...change });
+  return <article className="card usmle-study-question" aria-label="Selected study question">
+    <header><p className="eyebrow">{saved.step ?? question.step ?? 'Step unassigned'} · {question.subject ?? 'Subject unassigned'}</p><h3>Block {question.block ?? '—'} · Question {question.number ?? '—'}</h3><button type="button" className="btn btn-secondary btn-sm" aria-pressed={!!saved.flagged} onClick={() => update({ flagged: !saved.flagged })}>{saved.flagged ? '★ Flagged' : '☆ Flag for review'}</button></header>
+    <p className="meta">{question.sourceName} · {question.classification}</p>
+    <label className="usmle-step-assignment">My Step label<select value={saved.step ?? question.step ?? ''} onChange={event => update({ step: event.target.value ? event.target.value as UsmleStep : undefined })}><option value="">Use source label / unassigned</option><option value="step1">Step 1</option><option value="step2">Step 2 CK</option></select></label>
+    {question.reviewOnly && <p role="note" className="usmle-quality-note">Review-only source card. A complete question or valid printed key is missing, so this card is excluded from scored blocks.</p>}
+    <div className="usmle-readable-text">{question.prompt || 'Read the question source images below.'}</div>
+    <UsmleSourceImages images={question.questionImages} label="Clinical exhibits and original question" />
+    <fieldset className="usmle-study-options"><legend>Choose your answer</legend>{question.options.map(option => <label key={option.id} className={saved.revealed && option.correct ? 'correct' : saved.revealed && saved.answer === option.id ? 'incorrect' : ''}><input type="radio" name={question.id} value={option.id} checked={saved.answer === option.id} disabled={!!saved.revealed || question.reviewOnly} onChange={() => update({ answer: option.id })} /><span><strong>{option.id}.</strong> {option.label}</span></label>)}</fieldset>
+    <div className="usmle-actions"><button type="button" className="btn btn-primary" aria-expanded={!!saved.revealed} onClick={() => update({ revealed: !saved.revealed, reviewed: true })}>{saved.revealed ? 'Hide answer' : 'Reveal answer and explanation'}</button>{saved.revealed && <button type="button" className="btn btn-secondary" onClick={() => update({ answer: undefined, revealed: false, reviewed: false })}>Try again</button>}</div>
+    {saved.revealed && <section className="usmle-answer-box" aria-label="Printed answer and explanation"><h4>{question.key ? `Printed key: ${question.key}` : 'Original answer source'}</h4>{saved.answer && <p>{saved.answer === question.key ? 'Your answer is correct.' : `Your answer: ${saved.answer}. Review the source explanation.`}</p>}<div className="usmle-readable-text">{question.explanation || 'A readable explanation was not supplied. Review the original answer images.'}</div><UsmleSourceImages images={question.answerImages} label="Original answer pages" />{question.sourceNote && <p className="meta usmle-readable-text">{question.sourceNote}</p>}</section>}
+    <label className="usmle-review-note">My revision notes<textarea rows={3} value={saved.note ?? ''} onChange={event => update({ note: event.target.value })} placeholder="Why I missed it, key clue, next review…" /></label>
+  </article>;
+}

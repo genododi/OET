@@ -88,8 +88,8 @@ const pageMeta: Record<NavSection, { title: string; subtitle?: string }> = {
     subtitle: 'Curated, traceable, and rights-aware preparation material',
   },
   usmle: {
-    title: 'USMLE Q-Bank',
-    subtitle: 'Practice questions for Step 1, Step 2 CK, and Step 3',
+    title: 'USMLE Study',
+    subtitle: 'Your private Step 1 and Step 2 CK study workspace',
   },
 };
 

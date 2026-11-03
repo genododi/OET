@@ -12,7 +12,8 @@ const root = process.cwd();
 const data = process.env.OET_SMOKE_DATA || await fs.mkdtemp(path.join(os.tmpdir(), 'oet-mac-smoke-'));
 const app = await electron.launch({
   ...(process.env.OET_SMOKE_EXECUTABLE ? { executablePath: process.env.OET_SMOKE_EXECUTABLE, args: [] } : { args: [path.join(root, 'desktop')] }),
-  env: { ...process.env, OET_DESKTOP_USER_DATA: data, ...(!process.env.OET_SMOKE_EXECUTABLE ? { OET_DESKTOP_WEB: path.join(root, 'dist'), OET_DESKTOP_LIBRARY: '/Volumes/GENODODI/OET/Mac App/offline-library', OET_DESKTOP_AI: path.join(os.homedir(), 'Library/Application Support/OET Study/local-ai') } : {}) },
+  ...(!process.env.OET_SMOKE_EXECUTABLE && process.env.OET_SMOKE_DEV_EXECUTABLE ? { executablePath: process.env.OET_SMOKE_DEV_EXECUTABLE } : {}),
+  env: { ...process.env, OET_DESKTOP_USER_DATA: data, ...(process.env.OET_SMOKE_USMLE === '1' ? { OET_DESKTOP_USMLE: path.join(os.homedir(), 'Library/Application Support/OET Study/usmle-library') } : {}), ...(!process.env.OET_SMOKE_EXECUTABLE ? { OET_DESKTOP_WEB: path.join(root, 'dist'), OET_DESKTOP_LIBRARY: '/Volumes/GENODODI/OET/Mac App/offline-library', OET_DESKTOP_AI: path.join(os.homedir(), 'Library/Application Support/OET Study/local-ai') } : {}) },
   timeout: 60000,
 });
 try {
@@ -101,6 +102,63 @@ try {
     assert.equal(transcript.sourceSha256,audioFile.sha256);assert(transcript.segments.length>0);
     suppliedPracticeVerified=true;
   }
+  let privateUsmleVerified = false;
+  if (process.env.OET_SMOKE_USMLE === '1') {
+    await page.evaluate(() => { location.hash = '#usmle'; });
+    await page.getByRole('heading', { name: 'Your USMLE study workspace' }).waitFor();
+    const index = await page.evaluate(() => window.oetDesktop.usmleLibrary());
+    assert(index.questions.filter(question => !question.reviewOnly).length >= 2180);
+    assert(index.questions.filter(question => question.reviewOnly).length >= 7);
+    assert(index.resources.filter(resource => resource.kind === 'pdf').length >= 22);
+    assert(JSON.stringify(index) === await fs.readFile(path.join(os.homedir(), 'Library/Application Support/OET Study/usmle-library/index.json'), 'utf8'), 'The app must expose the complete current private index.');
+    assert.equal(index.questions.find(question => question.block === 15 && question.number === 24).key, 'B');
+    assert.equal(index.questions.find(question => question.block === 7 && question.number === 16).key, 'C');
+    await page.getByRole('button', { name: '1 · Study files', exact: true }).click();
+    const question = page.getByRole('article', { name: 'Selected study question' });
+    await question.waitFor();
+    await expect(question.getByLabel('Printed answer and explanation')).toHaveCount(0);
+    await question.getByRole('radio').first().check();
+    await question.getByRole('button', { name: '☆ Flag for review' }).click();
+    await question.getByLabel('My revision notes').fill('Disposable profile revision note');
+    await question.getByRole('button', { name: 'Reveal answer and explanation' }).click();
+    await expect(question.getByLabel('Printed answer and explanation')).toBeVisible();
+    await question.getByRole('button', { name: 'Hide answer', exact: true }).click();
+    await expect(question.getByLabel('Printed answer and explanation')).toHaveCount(0);
+    const images = question.locator('.usmle-source-images').first();
+    await images.locator('summary').click();
+    await expect.poll(() => images.locator('img').first().evaluate(image => image.naturalWidth)).toBeGreaterThan(0);
+    const privateAssets = await page.evaluate(async index => {
+      const pdf = index.resources.find(resource => resource.asset);
+      const response = await fetch(`/OET/desktop/usmle/${pdf.asset}`, { method: 'HEAD' });
+      const forbidden = await fetch('/OET/desktop/usmle/index.json');
+      return { pdf: response.status, type: response.headers.get('content-type'), forbidden: forbidden.status };
+    }, index);
+    assert.deepEqual(privateAssets, { pdf: 200, type: 'application/pdf', forbidden: 404 });
+    await page.reload();
+    await page.getByRole('button', { name: '1 · Study files', exact: true }).click();
+    await expect(page.getByLabel('My revision notes')).toHaveValue('Disposable profile revision note');
+    await switchTo(second.id);
+    assert.equal(await page.evaluate(() => localStorage.getItem('usmle-private-study-v1')), null);
+    assert.equal((await page.evaluate(() => window.oetDesktop.usmleLibrary())).questions.length, index.questions.length);
+    await switchTo(first.id);
+    await page.evaluate(() => { location.hash = '#usmle'; });
+    await page.getByRole('button', { name: /Step 1.*available questions/ }).click();
+    await page.getByRole('radio', { name: /Custom Quiz/ }).check();
+    await page.getByLabel('Number of questions').focus();
+    await page.getByLabel('Number of questions').press('Home');
+    await page.getByRole('button', { name: 'Start Quiz (1 questions, 30 min)' }).click();
+    await page.getByRole('button', { name: 'Start 30-minute session' }).click();
+    await expect(page.getByRole('button', { name: /Check answer/ })).toHaveCount(0);
+    await page.getByRole('button', { name: 'Finish session', exact: true }).click();
+    await expect(page.getByText('0/1', { exact: true })).toBeVisible();
+    await expect(page.getByText('Unanswered (counted in total)', { exact: true })).toBeVisible();
+    await expect(page.getByText('Estimated Score', { exact: true })).toHaveCount(0);
+    await page.getByRole('heading', { name: 'Review every question' }).waitFor();
+    await page.getByRole('button', { name: 'Back to USMLE', exact: true }).click();
+    await page.getByRole('heading', { name: 'Review mistakes and flagged questions' }).waitFor();
+    privateUsmleVerified = true;
+    await page.getByRole('button', { name: '2 · Practise a block', exact: true }).click();
+  }
   let aiVerified = false;
   if (process.env.OET_SMOKE_AI === '1') {
     const result = await page.evaluate(async () => {
@@ -112,5 +170,5 @@ try {
   }
   await fs.mkdir(path.join(root, 'output/playwright'), { recursive: true });
   await page.screenshot({ path: path.join(root, 'output/playwright/macos-offline-workspace.png'), fullPage: false });
-  console.log(JSON.stringify({ startupCheckFinishes: !startupResult.checking, startupState: startupResult.state, profilesIsolated: true, draftsSurviveReload: true, localAudioPlaysSeeksAndResumes: true, networkBlocked: true, localAiNeedsNoKey: aiVerified, importedOriginals, suppliedPracticeVerified, duration }));
+  console.log(JSON.stringify({ startupCheckFinishes: !startupResult.checking, startupState: startupResult.state, profilesIsolated: true, draftsSurviveReload: true, localAudioPlaysSeeksAndResumes: true, networkBlocked: true, localAiNeedsNoKey: aiVerified, importedOriginals, suppliedPracticeVerified, privateUsmleVerified, duration }));
 } finally { await app.close(); }

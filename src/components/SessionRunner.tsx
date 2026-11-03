@@ -20,8 +20,10 @@ import {
 } from '../lib/oetScoring';
 import type { SpeakingEvaluationResult } from '../lib/speakingEvaluation';
 import { usmleDisciplineMap } from '../data/usmleDisciplines';
+import { UsmleSourceImages } from './UsmleSourceImages';
 import { computeUsmleScore } from '../lib/usmleScoring';
 import { saveUsmleSession } from '../lib/usmleAnalytics';
+import { loadPrivateStudy, savePrivateStudy } from '../lib/usmleLibrary';
 import { LabValuesPanel } from './LabValuesPanel';
 import { CalculatorPanel } from './CalculatorPanel';
 import { QuestionFlagButton } from './QuestionFlagButton';
@@ -136,7 +138,7 @@ function SessionRunnerContent({ config, onExit }: Props) {
 
   const speakingEval = speakingResults[task?.id ?? ''] ?? null;
   const taskRevealed = task ? revealed[task.id] : false;
-  const allowImmediateReview = config.kind !== 'mock';
+  const allowImmediateReview = config.kind === 'practice';
   const responseLocked =
     currentStage?.mode === 'reading-only' ||
     currentStage?.mode === 'speaking-preparation' ||
@@ -189,18 +191,24 @@ function SessionRunnerContent({ config, onExit }: Props) {
     });
 
     if (isUsmle) {
+      const privateStudy = loadPrivateStudy();
+      for (const item of config.tasks.filter(item => item.id.startsWith('private-usmle-'))) {
+        privateStudy[item.id] = { ...privateStudy[item.id], answer: answers[item.id], revealed: true, reviewed: true, flagged: flaggedTasks[item.id] || privateStudy[item.id]?.flagged };
+      }
+      savePrivateStudy(privateStudy);
       const usmleScore = computeUsmleScore(config.tasks, answers);
       const step = config.tasks.find((t) => t.usmleStep)?.usmleStep ?? 'step1';
       saveUsmleSession(
         step,
         usmleScore.percentCorrect,
         usmleScore.total,
-        usmleScore.disciplineBreakdown.map((d) => ({ discipline: d.discipline, percentCorrect: d.percentCorrect })),
+        usmleScore.disciplineBreakdown,
+        usmleScore.correct,
       );
     }
 
     setPhase('done');
-  }, [config, markComplete, answers, notes, speakingResults, coached]);
+  }, [config, markComplete, answers, notes, speakingResults, coached, flaggedTasks]);
 
   const enterStage = useCallback(
     (nextStageIndex: number) => {
@@ -351,7 +359,7 @@ function SessionRunnerContent({ config, onExit }: Props) {
           )}
           <p className="meta session-threshold-note">
             {config.kind === 'usmle-block' || config.kind === 'usmle-custom'
-              ? 'Answers are hidden until you submit. A three-digit estimated score and pass/fail assessment are shown at the end of each block.'
+              ? 'Answers are hidden until you submit. Review your accuracy, skipped questions and source explanations afterwards. Practice accuracy does not predict an official USMLE score or pass/fail result.'
               : `Exam-like mode: answers are hidden until you submit.${enforceSinglePlayListening ? ' Listening audio is one-use in this session.' : ''} Practice signals are coaching indicators, not official OET score predictions; use the Grade A command center for stricter internal targets.`}
           </p>
           <div className="badge-row">
@@ -384,7 +392,17 @@ function SessionRunnerContent({ config, onExit }: Props) {
           <p className="description">
             {config.title} — progress and review saved locally on this device.
           </p>
-          <SessionSummaryPanel title={config.title} review={sessionReview} />
+          {!usmleScore && <SessionSummaryPanel title={config.title} review={sessionReview} />}
+          {usmleScore && <section className="usmle-block-review"><h3>Review every question</h3>{config.tasks.filter(item => item.options?.length).map(item => <details key={item.id}>
+            <summary>{item.title} · {answers[item.id] ? item.options?.find(option => option.id === answers[item.id])?.correct ? 'Correct' : 'Incorrect' : 'Unanswered'}</summary>
+            <p style={{ whiteSpace: 'pre-wrap' }}>{item.prompt}</p>
+            <UsmleSourceImages images={item.usmleQuestionImages} label="Question source" />
+            <p>Your answer: {answers[item.id] ?? 'None'}</p>
+            <p><strong>Answer: {item.options?.find(option => option.correct)?.id}. {item.options?.find(option => option.correct)?.label}</strong></p>
+            <p style={{ whiteSpace: 'pre-wrap' }}>{item.explanation}</p>
+            <UsmleSourceImages images={item.usmleAnswerImages} label="Printed answer source" />
+            {item.usmleSource && <p className="meta">{item.usmleSource}</p>}
+          </details>)}</section>}
           {coached && <p className="mentor-coached-note">Coached learning saved. Complete a fresh timed session without mentor help to measure independent readiness.</p>}
           {config.kind === 'mock' && config.tasks.some((item) => ['listening', 'reading', 'writing', 'speaking'].includes(item.subtest)) && <SessionMentor
             tasks={config.tasks.filter((item) => ['listening', 'reading', 'writing', 'speaking'].includes(item.subtest))}
@@ -405,17 +423,9 @@ function SessionRunnerContent({ config, onExit }: Props) {
                   <span className="usmle-score-stat-value">{usmleScore.correct}/{usmleScore.total}</span>
                   <span className="usmle-score-stat-label">Correct</span>
                 </div>
-                {usmleScore.estimatedThreeDigitScore != null && (
-                  <div className="usmle-score-stat">
-                    <span className="usmle-score-stat-value">{usmleScore.estimatedThreeDigitScore}</span>
-                    <span className="usmle-score-stat-label">Estimated Score</span>
-                  </div>
-                )}
                 <div className="usmle-score-stat">
-                  <span className={`usmle-score-stat-value ${usmleScore.passed ? 'usmle-pass' : 'usmle-fail'}`}>
-                    {usmleScore.passed ? 'PASS' : 'FAIL'}
-                  </span>
-                  <span className="usmle-score-stat-label">{usmleScore.passed ? 'Above threshold' : 'Needs improvement'}</span>
+                  <span className="usmle-score-stat-value">{usmleScore.unanswered}</span>
+                  <span className="usmle-score-stat-label">Unanswered (counted in total)</span>
                 </div>
               </div>
             </div>
@@ -434,6 +444,7 @@ function SessionRunnerContent({ config, onExit }: Props) {
                 setTaskIndex(0);
                 setStageIndex(0);
                 setAnswers({});
+                setFlaggedTasks({});
                 setNotes({});
                 setRevealed({});
                 setWritingSubmitted({});
@@ -594,6 +605,8 @@ function SessionRunnerContent({ config, onExit }: Props) {
             />
           )}
 
+          {task.usmleSource && <p className="meta">{task.usmleSource}</p>}
+          <UsmleSourceImages images={task.usmleQuestionImages} label="Question source" />
           {task.hasImage && task.imageSrc && (
             <figure className="usmle-image-figure">
               <img src={task.imageSrc} alt={task.imageCaption ?? 'Clinical image'} className="usmle-vignette-image" />

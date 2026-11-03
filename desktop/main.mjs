@@ -1,4 +1,4 @@
-import { app, BrowserWindow, dialog, ipcMain, Menu, net, protocol, session, shell } from 'electron';
+import { app, BrowserWindow, dialog, ipcMain, Menu, net, protocol, session, shell, utilityProcess } from 'electron';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -6,6 +6,7 @@ import { ProfileStore } from './profiles.mjs';
 import { assetResponse, confined } from './assets.mjs';
 import { LocalMentor } from './mentor.mjs';
 import { StartupChecks } from './startup-check.mjs';
+import { readPrivateLibrary, privateUsmleResponse } from './usmle-library.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const installation = path.resolve(process.resourcesPath, '../../..');
@@ -21,6 +22,9 @@ app.setName('OET Study');
 app.commandLine.appendSwitch('disable-background-networking');
 protocol.registerSchemesAsPrivileged([{ scheme: 'oet', privileges: { standard: true, secure: true, supportFetchAPI: true, stream: true, corsEnabled: true } }]);
 const origin = 'oet://study';
+const usmleRoot = process.env.OET_DESKTOP_USMLE || path.join(app.getPath('userData'), 'usmle-library');
+let usmleWorker = null;
+let usmleImportStatus = { state: 'idle', message: 'Import your local study folder for private offline practice.' };
 let profiles, window, mentor, startup;
 let workspaceReady = false;
 const windows = new Map();
@@ -40,6 +44,7 @@ async function asset(request) {
   if (url.pathname === '/OET/desktop/ai/chat') return mentor.reply(request);
   try {
     const relative = decodeURIComponent(url.pathname).replace(/^\/OET\//, '');
+    if (relative.startsWith('desktop/usmle/')) return privateUsmleResponse(usmleRoot, relative.slice('desktop/usmle/'.length), request);
     if (relative.startsWith('desktop/original/')) {
       const file = originals.get(relative.slice('desktop/original/'.length));
       if (file) return originalResponse(await confined(file.root, file.asset), request);
@@ -129,6 +134,22 @@ app.whenReady().then(async () => {
   ipcMain.handle('desktop:switch-profile', (event, id) => { authorized(event); return openProfile(id); });
   ipcMain.handle('desktop:rename-profile', (event, name) => { const id = authorized(event); return profiles.rename(id, name); });
   ipcMain.handle('desktop:ai-status', event => { authorized(event); return mentor.status(); });
+  ipcMain.handle('desktop:usmle-library', event => { if (!authorized(event)) throw Error('Choose a profile first.'); return readPrivateLibrary(usmleRoot); });
+  ipcMain.handle('desktop:usmle-status', event => { authorized(event); return usmleImportStatus; });
+  ipcMain.handle('desktop:usmle-import', async event => {
+    if (!authorized(event)) throw Error('Choose a profile first.');
+    if (usmleWorker) return usmleImportStatus;
+    const result = await dialog.showOpenDialog(window, { title: 'Choose your own USMLE study folder', properties: ['openDirectory'] });
+    if (result.canceled || usmleWorker) return usmleImportStatus;
+    usmleImportStatus = { state: 'importing', message: 'Preparing your private USMLE library…' };
+    usmleWorker = utilityProcess.fork(path.join(here, 'usmle-import-worker.mjs'), [result.filePaths[0], usmleRoot], { serviceName: 'Private USMLE import' });
+    usmleWorker.on('message', value => { usmleImportStatus = value; if (['complete', 'failed'].includes(value.state)) usmleWorker?.postMessage({ type: 'acknowledged' }); });
+    usmleWorker.on('exit', code => {
+      if (usmleImportStatus.state === 'importing') usmleImportStatus = { state: 'failed', message: `The import stopped (${code}). Existing study files remain available.` };
+      usmleWorker = null;
+    });
+    return usmleImportStatus;
+  });
   ipcMain.handle('desktop:backup', async (event, data) => {
     const id = authorized(event); if (!id) throw Error('Choose a profile first.');
     if (!data || typeof data !== 'object' || Array.isArray(data) || Object.values(data).some(value => typeof value !== 'string') || JSON.stringify(data).length > 20_000_000) throw Error('Invalid backup data.');

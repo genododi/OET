@@ -4,8 +4,7 @@ export interface UsmleScoreEstimate {
   percentCorrect: number;
   correct: number;
   total: number;
-  estimatedThreeDigitScore: number | null;
-  passed: boolean;
+  unanswered: number;
   disciplineBreakdown: UsmleDisciplineScore[];
 }
 
@@ -16,54 +15,29 @@ export interface UsmleDisciplineScore {
   percentCorrect: number;
 }
 
-const PASS_THRESHOLDS: Record<string, number> = {
-  step1: 60,
-  step2: 62,
-  step3: 60,
-};
-
 export function computeUsmleScore(
   tasks: SessionTask[],
   answers: Record<string, string>,
 ): UsmleScoreEstimate {
-  const answered = tasks.filter((t) => t.options?.length && answers[t.id] != null);
+  const scorable = tasks.filter((t) => t.options?.length && t.options.filter(option => option.correct).length === 1);
+  const answered = scorable.filter((t) => t.options?.some(option => option.id === answers[t.id]));
   const correct = answered.filter((t) => {
     const selected = answers[t.id];
     const right = t.options?.find((o) => o.correct);
     return selected && right && selected === right.id;
   });
-  const total = answered.length;
+  const total = scorable.length;
   const percentCorrect = total > 0 ? Math.round((correct.length / total) * 100) : 0;
 
-  const step = tasks.find((t) => t.usmleStep)?.usmleStep;
-  const threshold = step ? PASS_THRESHOLDS[step] ?? 60 : 60;
-  const passed = percentCorrect >= threshold;
-
-  const estimatedThreeDigitScore = estimateThreeDigitScore(percentCorrect, step ?? null);
-
-  const disciplineScores = computeDisciplineBreakdown(tasks, answers);
+  const disciplineScores = computeDisciplineBreakdown(scorable, answers);
 
   return {
     percentCorrect,
     correct: correct.length,
     total,
-    estimatedThreeDigitScore,
-    passed,
+    unanswered: total - answered.length,
     disciplineBreakdown: disciplineScores,
   };
-}
-
-function estimateThreeDigitScore(percentCorrect: number, step: string | null): number | null {
-  if (step === 'step1') {
-    return Math.round(150 + percentCorrect * 0.8);
-  }
-  if (step === 'step2') {
-    return Math.round(130 + percentCorrect * 1.2);
-  }
-  if (step === 'step3') {
-    return Math.round(100 + percentCorrect * 1.5);
-  }
-  return null;
 }
 
 function computeDisciplineBreakdown(

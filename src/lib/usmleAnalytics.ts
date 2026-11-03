@@ -6,7 +6,8 @@ interface UsmleSessionRecord {
   completedAt: string;
   percentCorrect: number;
   total: number;
-  disciplineScores: { discipline: string; percentCorrect: number }[];
+  correct?: number;
+  disciplineScores: { discipline: string; percentCorrect: number; total?: number; correct?: number }[];
 }
 
 interface UsmleDisciplineStat {
@@ -36,7 +37,8 @@ export function saveUsmleSession(
   step: string,
   percentCorrect: number,
   total: number,
-  disciplineScores: { discipline: string; percentCorrect: number }[],
+  disciplineScores: { discipline: string; percentCorrect: number; total: number; correct: number }[],
+  correct?: number,
 ): void {
   const records = loadRecords();
   records.push({
@@ -45,6 +47,7 @@ export function saveUsmleSession(
     completedAt: new Date().toISOString(),
     percentCorrect,
     total,
+    correct,
     disciplineScores,
   });
   saveRecords(records);
@@ -62,9 +65,12 @@ export function getUsmleDisciplineStats(step?: UsmleStep): UsmleDisciplineStat[]
 
   filtered.forEach((record) => {
     record.disciplineScores.forEach((ds) => {
+      // Legacy rows have no subject denominator; retain their history without
+      // fabricating per-subject question counts from the whole block size.
+      if (ds.total == null || ds.correct == null) return;
       const entry = byDiscipline.get(ds.discipline) ?? { correctSum: 0, totalSum: 0, sessionCount: 0 };
-      entry.totalSum += record.total;
-      entry.correctSum += Math.round((ds.percentCorrect / 100) * record.total);
+      entry.totalSum += ds.total;
+      entry.correctSum += ds.correct;
       entry.sessionCount += 1;
       byDiscipline.set(ds.discipline, entry);
     });
@@ -92,8 +98,8 @@ export function getUsmleOverallStats(step?: UsmleStep): {
   const totalSessions = filtered.length;
   const totalQuestions = filtered.reduce((sum, r) => sum + r.total, 0);
   const averagePercent =
-    totalSessions > 0
-      ? Math.round(filtered.reduce((sum, r) => sum + r.percentCorrect, 0) / totalSessions)
+    totalQuestions > 0
+      ? Math.round(filtered.reduce((sum, r) => sum + (r.correct != null ? r.correct * 100 : r.percentCorrect * r.total), 0) / totalQuestions)
       : 0;
 
   return { totalSessions, totalQuestions, averagePercent };

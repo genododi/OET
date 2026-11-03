@@ -2,9 +2,11 @@ import { useState } from 'react';
 import type { UsmleStep, UsmleDiscipline } from '../types/usmle';
 import { usmleDisciplines } from '../data/usmleDisciplines';
 import { getUsmleTaskCount } from '../lib/usmleSessionBuilder';
+import type { SessionTask } from '../types/session';
 
 interface Props {
   step: UsmleStep;
+  pool?: SessionTask[];
   onStart: (step: UsmleStep, discipline: UsmleDiscipline | undefined, questionCount: number, timeMinutes: number, isCustom: boolean) => void;
   onBack: () => void;
 }
@@ -16,26 +18,26 @@ const STEP_LABELS: Record<UsmleStep, string> = {
 };
 
 const DEFAULT_BLOCK_SIZES: Record<UsmleStep, number> = {
-  step1: 40,
-  step2: 40,
-  step3: 30,
+  step1: 20,
+  step2: 20,
+  step3: 20,
 };
 
 const DEFAULT_BLOCK_TIMES: Record<UsmleStep, number> = {
-  step1: 60,
-  step2: 60,
-  step3: 45,
+  step1: 30,
+  step2: 30,
+  step3: 30,
 };
 
-export function UsmleBlockSetup({ step, onStart, onBack }: Props) {
-  const totalAvailable = getUsmleTaskCount(step);
+export function UsmleBlockSetup({ step, pool, onStart, onBack }: Props) {
   const [mode, setMode] = useState<'block' | 'custom'>('block');
   const [discipline, setDiscipline] = useState<string>('');
   const [customCount, setCustomCount] = useState(20);
   const [customTime, setCustomTime] = useState(30);
+  const totalAvailable = pool ? pool.filter(task => task.usmleStep === step && (!discipline || task.usmleDiscipline === discipline)).length : getUsmleTaskCount(step);
 
   const isBlock = mode === 'block';
-  const questionCount = isBlock ? Math.min(DEFAULT_BLOCK_SIZES[step], totalAvailable) : customCount;
+  const questionCount = Math.min(isBlock ? DEFAULT_BLOCK_SIZES[step] : customCount, totalAvailable);
   const timeMinutes = isBlock ? DEFAULT_BLOCK_TIMES[step] : customTime;
 
   const handleStart = () => {
@@ -67,7 +69,7 @@ export function UsmleBlockSetup({ step, onStart, onBack }: Props) {
             onChange={() => setMode('block')}
           />
           <span className="usmle-mode-label">
-            <strong>Standard Block</strong>
+            <strong>Timed practice block</strong>
             <span className="meta">
               {DEFAULT_BLOCK_SIZES[step]} questions · {DEFAULT_BLOCK_TIMES[step]} minutes
             </span>
@@ -111,12 +113,12 @@ export function UsmleBlockSetup({ step, onStart, onBack }: Props) {
               <input
                 id="usmle-count"
                 type="range"
-                min={5}
-                max={Math.min(40, totalAvailable)}
-                value={customCount}
+                min={1}
+                max={Math.max(1, Math.min(40, totalAvailable))}
+                value={Math.max(1, questionCount)}
                 onChange={(e) => setCustomCount(Number(e.target.value))}
               />
-              <span className="usmle-slider-value">{customCount}</span>
+              <span className="usmle-slider-value">{questionCount}</span>
             </div>
           </div>
           <div className="usmle-setup-field">
@@ -136,6 +138,8 @@ export function UsmleBlockSetup({ step, onStart, onBack }: Props) {
           </div>
         </div>
       )}
+
+      <p className="meta">Practice timing follows the 2026 format: up to 20 questions in 30 minutes. This is a practice block, not a full official exam. {totalAvailable < 20 ? `Only ${totalAvailable} questions match these filters.` : ''}</p>
 
       <button
         type="button"

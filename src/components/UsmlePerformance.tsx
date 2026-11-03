@@ -22,8 +22,9 @@ export function UsmlePerformance() {
   return (
     <div className="card usmle-performance">
       <div className="usmle-performance-header">
-        <h3>Performance Analytics</h3>
+        <h3>Your practice progress</h3>
         <select
+          aria-label="Performance step"
           value={stepFilter}
           onChange={(e) => setStepFilter(e.target.value as UsmleStep | '')}
         >
@@ -54,6 +55,7 @@ export function UsmlePerformance() {
             </div>
           </div>
 
+          <p className="meta">Practice accuracy only. Earlier saved sessions keep their original results; subject counts appear only when exact counts were recorded.</p>
           {stats.length > 0 && (
             <div className="usmle-discipline-breakdown">
               <h4>Discipline Breakdown</h4>

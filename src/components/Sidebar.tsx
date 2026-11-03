@@ -28,7 +28,7 @@ const reference: NavItem[] = [
   { id: 'drills', label: 'Learning exercises', icon: 'pen' },
   { id: 'resources', label: 'Source Library', icon: 'folder' },
   { id: 'books', label: 'Book PDFs', icon: 'book' },
-  { id: 'usmle', label: 'USMLE Q-Banks', icon: 'activity' },
+  { id: 'usmle', label: 'USMLE Study', icon: 'activity' },
 ];
 interface Props { active: NavSection; onNavigate: (section: NavSection, itemId?: string) => void; mobileOpen: boolean; onCloseMobile: () => void }
 export function Sidebar({ active, onNavigate, mobileOpen, onCloseMobile }: Props) {
