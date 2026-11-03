@@ -7,6 +7,7 @@ import { guidedMentorReply, mentorGreeting, type MentorAction, type MentorContex
 import { streamMentorReply } from '../lib/mentorApi';
 import { buildLearnerMemory, readMentorLessons, saveMentorLesson } from '../lib/mentorMemory';
 import { MentorVoiceControls } from './MentorVoiceControls';
+import { automaticMentorObservation, automaticReviewReady } from '../lib/automaticMentor';
 import { hasLocalAi } from '../lib/localAi';
 
 interface Props {
@@ -21,7 +22,7 @@ interface Props {
 }
 
 const ACTIONS: { action: MentorAction; label: string; query: string }[] = [
-  { action: 'strategy', label: 'Teach the approach', query: 'Walk me through a strategy for this task. Ask me one question to check my understanding.' },
+  { action: 'strategy', label: 'Teach the approach', query: 'Walk me through the next useful step for this task. Give direct guidance without quizzing me.' },
   { action: 'hint', label: 'Give me a hint', query: 'Give me one hint without revealing the answer.' },
   { action: 'feedback', label: 'Review my response', query: 'Review my current response. Be specific about what works, what to change, and what I should try next.' },
   { action: 'feedback', label: 'Check clinical meaning', query: 'Check my response against this case: look for changed diagnoses, negation, family versus personal history, medication details, chronology and the requested next action. Quote an actual discrepancy if present; do not invent one. Give a fact-preserving repair.' },
@@ -36,6 +37,11 @@ export function MentorPanel({ task, response, completed, topic, lessonKey, onInt
   const [messages, setMessages] = useState<MentorMessage[]>(() => readMentorLessons()[key]?.messages ?? [
     { id: 'welcome', role: 'assistant', text: mentorGreeting(task, topic), source: 'guide' },
   ]);
+  const [automatic, setAutomatic] = useState(true);
+  const liveResponse = useRef(response);
+  useEffect(() => { liveResponse.current = response; }, [response]);
+  const lastAutomatic = useRef({ response: '', at: 0 });
+  const observation = useMemo(() => automaticMentorObservation(task, response), [task, response]);
   const [engine, setEngine] = useState<'guide' | 'ai'>(hasKey || local ? 'ai' : 'guide');
   const [mode, setMode] = useState<'coach' | 'patient'>('coach');
   const [input, setInput] = useState('');
@@ -76,7 +82,7 @@ export function MentorPanel({ task, response, completed, topic, lessonKey, onInt
     if (log.current) log.current.scrollTop = log.current.scrollHeight;
   }, [messages, stream]);
 
-  const request = async (action: MentorAction, query: string, retry?: MentorContext) => {
+  const request = async (action: MentorAction, query: string, retry?: MentorContext, auto = false) => {
     if (busy.current || (!query.trim() && !retry)) return;
     if ((action === 'feedback' || action === 'explain') && !response.trim() && !retry) { setError('Try a response in the answer area first.'); return; }
     if (engine === 'ai' && !hasKey && !local) { openSettings(); return; }
@@ -87,7 +93,7 @@ export function MentorPanel({ task, response, completed, topic, lessonKey, onInt
     const questionText = (action === 'feedback' || action === 'explain')
       ? `${query.trim()}\n\nMy current response:\n${responseLabel}`
       : query.trim();
-    const history: MentorMessage[] = retry?.messages ?? [...messages, { id: crypto.randomUUID(), role: 'user', text: questionText.slice(0, 12000) }];
+    const history: MentorMessage[] = retry?.messages ?? [...messages, { id: crypto.randomUUID(), role: 'user', text: questionText.slice(0, 12000), ...(auto ? { automatic: true } : {}) }];
     const context: MentorContext = retry ?? { task, response, topic, learnerMemory, hintLevel: nextHint, action, messages: history };
     setMessages(history.slice(-40)); setInput(''); setError(''); setStream(''); setFailedContext(null);
     if (action === 'patient' && !retry) onPatientTurn?.(query.trim());
@@ -97,8 +103,8 @@ export function MentorPanel({ task, response, completed, topic, lessonKey, onInt
       const reply = engine === 'ai'
         ? await streamMentorReply(context, apiKey ?? '', controller.signal, (text) => { if (alive.current) setStream(text); })
         : guidedMentorReply(context);
-      if (!alive.current || controller.signal.aborted) return;
-      const next: MentorMessage[] = [...history, { id: crypto.randomUUID(), role: 'assistant', text: reply, source: engine }];
+      if (!alive.current || controller.signal.aborted || auto && liveResponse.current !== context.response) return;
+      const next: MentorMessage[] = [...history, { id: crypto.randomUUID(), role: 'assistant', text: reply, source: engine, ...(auto ? { automatic: true } : {}) }];
       setMessages(next.slice(-40)); setStream('');
       if (context.action === 'feedback' || context.action === 'explain') onReviewed?.(context.response);
     } catch (cause) {
@@ -111,19 +117,35 @@ export function MentorPanel({ task, response, completed, topic, lessonKey, onInt
       if (alive.current) setLoading(false);
     }
   };
+  const automaticRequest = useRef(request);
+  useEffect(() => { automaticRequest.current = request; });
+  useEffect(() => {
+    if (!automatic || !local || engine !== 'ai' || mode !== 'coach' || !automaticReviewReady(task.subtest, response)) return;
+    const readyAt = Date.now() + 12000;
+    const timer = window.setInterval(() => {
+      if (Date.now() < readyAt) return;
+      const last = lastAutomatic.current;
+      if (busy.current || document.visibilityState === 'hidden' || response === last.response || Date.now() - last.at < 60000 || document.querySelector('[data-recording="true"]') || [...document.querySelectorAll('audio,video')].some(media => !(media as HTMLMediaElement).paused)) return;
+      lastAutomatic.current = { response, at: Date.now() };
+      void automaticRequest.current('feedback', 'Automatic review of the current task and draft. Give one specific supported strength, the most useful correction and one concrete next step. Do not ask questions. If this is an incomplete draft, coach the next step without treating it as a finished response.', undefined, true);
+    }, 2000);
+    return () => window.clearInterval(timer);
+  }, [automatic, local, engine, mode, task.subtest, response, loading]);
   return (
     <section className="mentor-panel" aria-label="Interactive OET mentor">
       <div className="mentor-panel-head">
         <div><span className="section-kicker">OET MEDICINE · YOUR STUDY ROOM</span><h3>{mode === 'patient' ? 'Patient role-play' : 'Medicine-focused OET mentor'}</h3></div>
         <span className={`mentor-engine-badge ${engine === 'ai' ? 'live' : ''}`}>{engine === 'ai' ? local ? 'Offline AI' : 'Live AI' : 'Built-in guide'}</span>
       </div>
-      <div className="mentor-controls">
+      <aside className="mentor-live-observation" aria-label="Live study progress"><span className="section-kicker">{observation.stage}</span><p>{observation.progress}</p><strong>Next useful step</strong><p>{observation.next}</p><label><input type="checkbox" checked={automatic} onChange={event => setAutomatic(event.target.checked)} /> Follow my work automatically</label><small>{local ? 'Local feedback follows a pause in your draft. It pauses during audio playback and recording.' : 'Immediate guidance follows your draft. Open-ended AI feedback is available in the Mac app.'}</small></aside>
+      <details className="mentor-advanced"><summary>Mentor settings</summary><div className="mentor-controls">
         <label>Tutor connection<select value={engine} disabled={loading} onChange={(event) => setEngine(event.target.value as 'ai' | 'guide')}><option value="guide">Built-in guide · no key needed</option><option value="ai">Live AI · conversational mentoring</option></select></label>
         {task.subtest === 'speaking' && <label>Conversation mode<select value={mode} disabled={loading} onChange={(event) => setMode(event.target.value as 'coach' | 'patient')}><option value="coach">Coach me</option><option value="patient">Play the patient</option></select></label>}
       </div>
+      </details>
       {engine === 'ai' ? local ? <p className="mentor-connection-note">Live AI runs on this Mac. Your task and conversation stay on your device. No API key, subscription or internet connection is needed.</p> : <p className="mentor-connection-note">Your task, response, recent conversation and study summary are sent directly to Anthropic when you send a message. API usage is billed to your account. <button type="button" className="link-btn" onClick={openSettings}>{hasKey ? 'Connection settings' : 'Add API key to connect'}</button></p> : <p className="mentor-connection-note">Structured strategies, hints and rubric checks work here without a key. Live AI adds open-ended follow-up and adaptive patient dialogue.</p>}
       <div className="mentor-chat" ref={log} role="log" aria-label="Mentor conversation" aria-live="polite" aria-relevant="additions">
-        {messages.map((message) => <article key={message.id} className={`mentor-bubble mentor-${message.role}`}><span>{message.role === 'user' ? 'You' : message.source === 'ai' ? 'AI mentor' : 'Study guide'}</span><p>{message.text}</p></article>)}
+        {messages.map((message) => <article key={message.id} className={`mentor-bubble mentor-${message.role}`}><span>{message.automatic ? message.role === 'user' ? 'Study activity' : 'Automatic mentor review' : message.role === 'user' ? 'You' : message.source === 'ai' ? 'AI mentor' : 'Study guide'}</span><p>{message.text}</p></article>)}
         {loading && <article className="mentor-bubble mentor-assistant mentor-stream"><span>{mode === 'patient' ? 'Patient' : 'Mentor'}</span><p>{stream || (local && (activeAction === 'feedback' || activeAction === 'explain') ? 'Reviewing your response and checking it against the case…' : 'Thinking through your task…')}</p></article>}
       </div>
       {error && <div className="mentor-error" role="alert"><p>{error}</p>{failedContext && <button type="button" className="btn btn-secondary btn-sm" disabled={loading} onClick={() => request(failedContext.action, '', failedContext)}>Retry reply</button>}</div>}

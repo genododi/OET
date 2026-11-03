@@ -4598,3 +4598,11 @@ body {
 .mentor-resume-list .btn { justify-content: flex-start; text-align: left; white-space: normal; }
 .mentor-resume-list .btn > span:nth-child(2) { flex: 1; }
 .mentor-resume-list small { display: block; color: var(--text-muted); font-weight: 400; margin-top: 4px; }
+.mentor-live-observation { margin:16px 0; padding:18px; border:1px solid #bfdcd1; border-left:4px solid #198573; border-radius:12px; background:#f1faf6; }
+.mentor-live-observation p { margin:6px 0 12px; line-height:1.65; }
+.mentor-live-observation > label { display:flex; gap:9px; align-items:center; font-size:13px; }
+.mentor-live-observation small { display:block; margin-top:9px; color:#57746a; }
+.mentor-advanced { margin:12px 0; }
+.mentor-advanced > summary { cursor:pointer; color:#336c60; font-size:13px; }
+.source-practice-coach { padding:24px; }
+.source-practice-coach > summary { cursor:pointer; font-weight:700; color:#176d63; }

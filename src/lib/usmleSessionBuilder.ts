@@ -29,7 +29,7 @@ export function buildUsmleBlockSession(options: UsmleBlockOptions): SessionConfi
     ? pool.filter((t) => t.usmleDiscipline === discipline)
     : pool;
 
-  const shuffled = shuffleArray(filtered);
+  const shuffled = shuffleArray(filtered).sort((a,b) => (b.usmleYear ?? 0) - (a.usmleYear ?? 0));
   if (!Number.isInteger(questionCount) || questionCount < 1 || !Number.isFinite(timeMinutes) || timeMinutes <= 0 || !filtered.length) throw Error('Choose an available question set and a positive time limit.');
   const selected = shuffled.slice(0, Math.min(questionCount, shuffled.length));
 
@@ -69,7 +69,7 @@ export function buildUsmleCustomSession(options: UsmleBlockOptions): SessionConf
     ? pool.filter((t) => t.usmleDiscipline === discipline)
     : pool;
 
-  const shuffled = shuffleArray(filtered);
+  const shuffled = shuffleArray(filtered).sort((a,b) => (b.usmleYear ?? 0) - (a.usmleYear ?? 0));
   if (!Number.isInteger(questionCount) || questionCount < 1 || !Number.isFinite(timeMinutes) || timeMinutes <= 0 || !filtered.length) throw Error('Choose an available question set and a positive time limit.');
   const selected = shuffled.slice(0, Math.min(questionCount, shuffled.length));
 

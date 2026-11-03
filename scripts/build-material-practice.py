@@ -22,6 +22,15 @@ def stem(file):
     name = Path(file['filename']).stem.casefold()
     return re.sub(r'[^a-z0-9]+',' ', re.sub(r'\b(?:answers?|key|text|questions?|booklet|copy|doctor|patient|candidate|partner|card)\b','',name)).strip()
 
+def named_test_folder(folder):
+    # A numbered subject/library folder ("3. Reading") is not a test identity.
+    # Check the actual leaf, not a subject ancestor in a concatenated path.
+    return bool(re.search(r'(?:test|mock|sample|set)\s*[-_ ]*(?:\d+|one|two|three)\b', Path(folder).name, re.I))
+
+def descriptive_stem(file):
+    # "Sample Test 1" is reused by unrelated publishers and editions.
+    return len([token for token in words(stem(file)) if token.isalpha() and len(token) >= 3]) >= 2
+
 def part_of(value):
     match = re.search(r'\bpart\s*[-:]?\s*([abc])\b',value,re.I)
     if not match: match = re.match(r'^\s*([abc])(?:[-_.\s]|\d)',Path(value).stem,re.I)
@@ -139,14 +148,12 @@ def build(library):
     memberships=collections.defaultdict(set)
     for folder,members in folders.items():
         # A broad downloads folder is not evidence that files belong together.
-        tail='/'.join(Path(folder).parts[-3:])
-        named_test=re.search(r'(?:test|mock|sample|set)\s*[-_ ]*(?:\d|one|two|three)|mock[- ]test|^\d+[. -]+[A-Za-z]',tail,re.I)
-        if len(members)<=35 and named_test:
+        if len(members)<=35 and named_test_folder(folder):
             for sha in members:memberships[sha].update(members)
     named=collections.defaultdict(set)
     for sha,file in files.items():
         signature=stem(file)
-        if len(words(signature))>=2 or re.search(r'(?:practice|sample)\s*test\s*\d',signature):named[signature].add(sha)
+        if descriptive_stem(file):named[signature].add(sha)
     for members in named.values():
         for sha in members:memberships[sha].update(members)
     def doc(sha,role=None):

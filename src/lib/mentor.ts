@@ -9,7 +9,7 @@ import { referencesForSkill } from '../data/mentorReferences';
 import { buildMedicalEvidencePacket, MEDICAL_COACH_POLICY, MEDICAL_SKILL_FOCUS } from './oetMedicalCoach';
 
 export type MentorAction = 'strategy' | 'hint' | 'feedback' | 'explain' | 'ask' | 'patient';
-export interface MentorMessage { id: string; role: 'user' | 'assistant'; text: string; source?: 'guide' | 'ai'; }
+export interface MentorMessage { id: string; role: 'user' | 'assistant'; text: string; source?: 'guide' | 'ai'; automatic?: boolean; }
 export interface MentorContext {
   task: SessionTask;
   response: string;
@@ -26,7 +26,7 @@ export function topicForTask(task: SessionTask): MentorTopic {
 }
 
 export function mentorGreeting(task: SessionTask, topic = topicForTask(task)) {
-  return `Let’s work through “${task.title}” together.\n\nOur goal: ${topic.goal}\n\n${topic.checkpoint}\n\nTry an answer in the response area whenever you’re ready. I can give you a hint before you commit, then help you improve it.`;
+  return `Let’s work through “${task.title}” together.\n\nOur goal: ${topic.goal}\n\nNext step: ${topic.steps[0]}\n\nI follow the current task and your response as you work.`;
 }
 
 export function guidedMentorReply(context: MentorContext): string {
@@ -38,10 +38,10 @@ export function guidedMentorReply(context: MentorContext): string {
     if (/question|sense|understood|understanding/.test(lastTurn)) return 'Could you go over the main point once more? I want to be sure I understand what happens next.';
     return 'I would like to understand what this means for me. What would you like to ask me first?';
   }
-  if (action === 'strategy') return `${topic.goal}\n\n${topic.steps.map((step, index) => `${index + 1}. ${step}`).join('\n')}\n\nYour turn: ${topic.checkpoint}`;
+  if (action === 'strategy') return `${topic.goal}\n\n${topic.steps.map((step, index) => `${index + 1}. ${step}`).join('\n')}\n\nNext step: ${topic.steps[0]}`;
   if (action === 'hint') {
     const index = Math.min(Math.max(context.hintLevel - 1, 0), topic.steps.length - 1);
-    return `Hint ${index + 1}: ${topic.steps[index]}\n\nApply it to this question: ${task.prompt?.slice(0, 450) ?? task.title}\n\nTell me which clue you would use and why.`;
+    return `Hint ${index + 1}: ${topic.steps[index]}\n\nApply it to this question: ${task.prompt?.slice(0, 450) ?? task.title}\n\nUse the clue in the supplied text before committing your answer.`;
   }
   if (action === 'feedback' || action === 'explain') {
     if (!response.trim()) return 'Make a first attempt in the response area. Even an uncertain answer gives us something specific to improve.';
@@ -63,7 +63,7 @@ export function guidedMentorReply(context: MentorContext): string {
   const question = context.messages.filter((message) => message.role === 'user').at(-1)?.text ?? '';
   if (/plan|start|approach|structure|how.*answer/i.test(question)) return guidedMentorReply({ ...context, action: 'strategy' });
   if (/hint|stuck|clue/i.test(question)) return guidedMentorReply({ ...context, action: 'hint', hintLevel: Math.max(1, context.hintLevel) });
-  return `For this task, focus on: ${topic.goal}\n\n${topic.checkpoint}\n\nThe built-in guide can walk through a strategy, give hints and review your attempt. Enable Live AI for an individual answer to “${question.slice(0, 200)}” and follow-up discussion.`;
+  return `For this task, focus on: ${topic.goal}\n\n${topic.steps[0]}\n\nThe built-in guide can walk through a strategy, give hints and review your attempt. Enable Live AI for an individual answer to “${question.slice(0, 200)}” and follow-up discussion.`;
 }
 
 /** Before an attempt, omit answer keys, transcripts, rubric model points and distractor explanations. */
@@ -73,7 +73,7 @@ export function buildMentorSystemPrompt(context: MentorContext, maxChars = 30000
   const topic = context.topic ?? topicForTask(task);
   const lessonFocus = !context.topic && (task.subtest === 'reading' || task.subtest === 'listening') && !oetTaskPart(task)
     ? 'Determine the selected part from the supplied instructions; do not assume Part A when the part is not stated.'
-    : `${topic.goal.slice(0, 280)}. ${topic.checkpoint.slice(0, 200)}`;
+    : `${topic.goal.slice(0, 280)}. ${topic.steps[0].slice(0, 200)}`;
   const references = referencesForSkill(task.subtest as OetSubtest).filter(reference => reference.teachingNote).slice(0, 2).map(reference => ({ url: reference.url, note: reference.teachingNote }));
   const fixed = `${MEDICAL_COACH_POLICY}
 ${MEDICAL_SKILL_FOCUS[task.subtest as OetSubtest] ?? ''}

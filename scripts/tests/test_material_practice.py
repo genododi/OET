@@ -6,6 +6,13 @@ module=runpy.run_path(str(Path(__file__).resolve().parents[1]/'build-material-pr
 questions=module['questions_on_page'];keys=module['parse_key']
 
 class PrintedSourceTests(unittest.TestCase):
+    def test_unrelated_papers_are_not_linked_by_a_numbered_subject_folder_or_generic_test_title(self):
+        self.assertFalse(module['named_test_folder']('/sources/3. Reading'))
+        self.assertFalse(module['named_test_folder']('/sources/Sample Test 1/Reading references'))
+        self.assertTrue(module['named_test_folder']('/sources/4- Sample Test 2'))
+        self.assertFalse(module['descriptive_stem']({'filename':'Sample Test 1 Questions.pdf'}))
+        self.assertTrue(module['descriptive_stem']({'filename':'Summary Depression Questions.pdf'}))
+
     def test_numbered_blanks_keep_their_actual_context(self):
         actual=questions('Patient Chloe\nSymptoms\nUnsteady after (1) …………………\nMedication (2)\n ………………… for anxiety',3,'A')
         self.assertEqual([q['number'] for q in actual],[1,2])

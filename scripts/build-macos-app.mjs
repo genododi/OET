@@ -63,8 +63,16 @@ for (const directory of results) {
   const applications = path.join(process.env.HOME, 'Applications');
   await fs.mkdir(applications, { recursive: true });
   const installed = path.join(applications, 'OET Study.app');
-  const previous = path.join(applications, 'OET Study.previous.app');
-  try { await fs.access(installed); await fs.rm(previous, { recursive: true, force: true }); await fs.rename(installed, previous); } catch (error) { if (error.code !== 'ENOENT') throw error; }
+  // Keep every prior installed bundle intact. A running older version may still
+  // have resources open, and an existing previous.app must never be removed.
+  try {
+    await fs.access(installed);
+    let prior = 'unrecorded';
+    try { const stamp = JSON.parse(await fs.readFile(path.join(installed, 'Contents/Resources/build-info.json'), 'utf8')).gitCommit; prior = /^[a-f0-9]{40}$/.test(stamp ?? '') ? stamp : 'unrecorded'; } catch { /* Preserve an unstamped install too. */ }
+    const backup = path.join(process.env.HOME, 'Library/Application Support/OET Study/app-backups', `${String(prior).slice(0, 40)}-${Date.now()}`);
+    await fs.mkdir(backup, { recursive: true });
+    await fs.rename(installed, path.join(backup, 'OET Study.app'));
+  } catch (error) { if (error.code !== 'ENOENT') throw error; }
   await fs.rename(app, installed);
   const shortcut = path.join(process.env.HOME, 'Desktop/OET Study.app');
   try { await fs.lstat(shortcut); } catch (error) { if (error.code === 'ENOENT') await fs.symlink(installed, shortcut); else throw error; }

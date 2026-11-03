@@ -3,18 +3,20 @@ import type { PrivateUsmleLibrary, PrivateUsmleQuestion } from '../types/usmleLi
 import type { PrivateStudyProgress, PrivateQuestionProgress } from '../lib/usmleLibrary';
 import type { UsmleStep } from '../types/usmle';
 import { UsmleSourceImages } from './UsmleSourceImages';
-import { privateUsmleUrl } from '../lib/usmleLibrary';
+import { newestUsmleFirst, privateUsmleUrl } from '../lib/usmleLibrary';
 
 export function UsmlePrivateLibrary({ library, progress, onChange, reviewing = false }: {
   library: PrivateUsmleLibrary; progress: PrivateStudyProgress; onChange: (id: string, value: PrivateQuestionProgress) => void; reviewing?: boolean;
 }) {
   const [step, setStep] = useState(''), [subject, setSubject] = useState(''), [search, setSearch] = useState('');
+  const [year, setYear] = useState('');
+  const years = [...new Set(library.questions.flatMap(q => q.productionYear ? [q.productionYear] : []))].sort((a,b) => b-a);
   const [reviewFilter, setReviewFilter] = useState(reviewing ? 'needs-review' : 'all');
   const [selected, setSelected] = useState<string | null>(null), [page, setPage] = useState(0);
   const subjects = [...new Set(library.questions.map(question => question.subject).filter(Boolean))].sort() as string[];
-  const filtered = library.questions.filter(question => {
+  const filtered = newestUsmleFirst(library.questions).filter(question => {
     const saved = progress[question.id] ?? {}, effectiveStep = saved.step ?? question.step;
-    return (!step || (step === 'unassigned' ? !effectiveStep : effectiveStep === step)) && (!subject || question.subject === subject)
+    return (!year || (year === 'unknown' ? !question.productionYear : question.productionYear === Number(year))) && (!step || (step === 'unassigned' ? !effectiveStep : effectiveStep === step)) && (!subject || question.subject === subject)
       && (!search || `${question.prompt} ${question.sourceName} ${question.block ?? ''} ${question.number ?? ''}`.toLowerCase().includes(search.toLowerCase()))
       && (reviewFilter === 'all' || reviewFilter === 'unseen' && !(saved.reviewed ?? saved.revealed) || reviewFilter === 'flagged' && saved.flagged || reviewFilter === 'needs-review' && (saved.flagged || (saved.reviewed ?? saved.revealed) && saved.answer !== question.key));
   });
@@ -26,17 +28,18 @@ export function UsmlePrivateLibrary({ library, progress, onChange, reviewing = f
     <div className="card usmle-library-filters"><h3>{reviewing ? 'Review mistakes and flagged questions' : 'Your private question library'}</h3>
       <div className="usmle-filter-grid">
         <label>Step<select value={step} onChange={event => { setStep(event.target.value); reset(); }}><option value="">All steps</option><option value="step1">Step 1</option><option value="step2">Step 2 CK</option><option value="unassigned">Step unassigned</option></select></label>
+        <label>Production year / edition<select value={year} onChange={event => { setYear(event.target.value); reset(); }}><option value="">All years · newest first</option>{years.map(value => <option key={value} value={value}>{value}</option>)}<option value="unknown">Year not stated</option></select></label>
         <label>Subject<select value={subject} onChange={event => { setSubject(event.target.value); reset(); }}><option value="">All subjects</option>{subjects.map(value => <option key={value}>{value}</option>)}</select></label>
         <label>Review status<select value={reviewFilter} onChange={event => { setReviewFilter(event.target.value); reset(); }}><option value="all">All questions</option><option value="unseen">Not reviewed</option><option value="needs-review">Incorrect or flagged</option><option value="flagged">Flagged</option></select></label>
         <label>Find a question<input type="search" value={search} placeholder="Topic, block or source file" onChange={event => { setSearch(event.target.value); reset(); }} /></label>
-      </div><p className="meta">{filtered.length} questions match. Source deck Step/subject labels may be inferred; you can change a question’s Step for your own profile.</p>
+      </div><p className="meta">{filtered.length} questions match · newest source-labelled edition first. Source deck Step/subject labels may be inferred; you can change a question’s Step for your own profile.</p>
     </div>
     <div className="usmle-library-columns"><aside className="card usmle-question-list" aria-label="Matching questions">
       {!visible.length && <p>No questions match. Change the filters or import a study folder.</p>}
-      {visible.map(item => <button type="button" key={item.id} className={item.id === question?.id ? 'selected' : ''} onClick={() => setSelected(item.id)}><strong>Block {item.block ?? '—'} · Q{item.number ?? '—'} {progress[item.id]?.flagged ? '★' : ''}</strong><span>{item.prompt.slice(0, 125) || 'Source review card'}</span><small>{item.subject ?? 'Subject unassigned'}{item.reviewOnly ? ' · Review only' : ''}</small></button>)}
+      {visible.map(item => <button type="button" key={item.id} className={item.id === question?.id ? 'selected' : ''} onClick={() => setSelected(item.id)}><strong>Block {item.block ?? '—'} · Q{item.number ?? '—'} {progress[item.id]?.flagged ? '★' : ''}</strong><span>{item.prompt.slice(0, 125) || 'Source review card'}</span><small>{item.productionYear ?? 'Year not stated'} · {item.subject ?? 'Subject unassigned'}{item.reviewOnly ? ' · Review only' : ''}</small></button>)}
       <div className="usmle-pagination"><button className="btn btn-secondary btn-sm" disabled={safePage === 0} onClick={() => { setPage(safePage - 1); setSelected(null); }}>Previous</button><span>{safePage + 1} / {Math.max(1, Math.ceil(filtered.length / 15))}</span><button className="btn btn-secondary btn-sm" disabled={(safePage + 1) * 15 >= filtered.length} onClick={() => { setPage(safePage + 1); setSelected(null); }}>Next</button></div>
     </aside>{question && <Question key={question.id} question={question} saved={progress[question.id] ?? {}} onChange={value => onChange(question.id, value)} />}</div>
-    {!reviewing && <section className="card usmle-document-list"><h3>Your source PDFs</h3><p className="meta">Stored on this Mac for offline use. Scanned blocks retain their original pages; questions above provide readable text and source images.</p>{library.resources.filter(resource => resource.kind === 'pdf' && resource.asset).map(resource => <a key={resource.id} href={privateUsmleUrl(resource.asset!)} target="_blank" rel="noreferrer">{resource.name} <span>Open PDF ↗</span></a>)}</section>}
+    {!reviewing && <section className="card usmle-document-list"><h3>Your source PDFs</h3><p className="meta">Stored on this Mac for offline use. Scanned blocks retain their original pages; questions above provide readable text and source images.</p>{newestUsmleFirst(library.resources.filter(resource => resource.kind === 'pdf' && resource.asset)).map(resource => <a key={resource.id} href={privateUsmleUrl(resource.asset!)} target="_blank" rel="noreferrer">{resource.name} <small>{resource.productionYear ?? 'Year not stated'}</small> <span>Open PDF ↗</span></a>)}</section>}
   </section>;
 }
 
@@ -44,7 +47,7 @@ function Question({ question, saved, onChange }: { question: PrivateUsmleQuestio
   const update = (change: PrivateQuestionProgress) => onChange({ ...saved, ...change });
   return <article className="card usmle-study-question" aria-label="Selected study question">
     <header><p className="eyebrow">{saved.step ?? question.step ?? 'Step unassigned'} · {question.subject ?? 'Subject unassigned'}</p><h3>Block {question.block ?? '—'} · Question {question.number ?? '—'}</h3><button type="button" className="btn btn-secondary btn-sm" aria-pressed={!!saved.flagged} onClick={() => update({ flagged: !saved.flagged })}>{saved.flagged ? '★ Flagged' : '☆ Flag for review'}</button></header>
-    <p className="meta">{question.sourceName} · {question.classification}</p>
+    <p className="meta">{question.sourceName} · {question.classification} · {question.productionYear ? `Source-labelled edition: ${question.productionYear}` : 'Production year not stated'}</p>{!!question.yearEvidence?.length && <details className="usmle-year-evidence"><summary>Year provenance</summary><ul>{question.yearEvidence.map(item => <li key={item}>{item}</li>)}</ul><p>Edition labels come from the supplied filename or explicit source tag. They are not independently verified publication dates. Download and import dates are never used as production years.</p></details>}
     <label className="usmle-step-assignment">My Step label<select value={saved.step ?? question.step ?? ''} onChange={event => update({ step: event.target.value ? event.target.value as UsmleStep : undefined })}><option value="">Use source label / unassigned</option><option value="step1">Step 1</option><option value="step2">Step 2 CK</option></select></label>
     {question.reviewOnly && <p role="note" className="usmle-quality-note">Review-only source card. A complete question or valid printed key is missing, so this card is excluded from scored blocks.</p>}
     <div className="usmle-readable-text">{question.prompt || 'Read the question source images below.'}</div>

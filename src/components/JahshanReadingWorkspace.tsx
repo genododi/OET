@@ -1,4 +1,7 @@
 import { useState } from 'react';
+import { ReadingEvidenceProvider, ReadingEvidenceToggle } from './ReadingEvidence';
+import { SourcePracticeCoach } from './SourcePracticeCoach';
+import readingPages from '../data/jahshanReadingPages.json';
 import { SaveStudyOffline } from './SaveStudyOffline';
 import { JahshanReadingQuestions } from './JahshanReadingQuestions';
 import { JahshanReadingPaper } from './JahshanReadingPaper';
@@ -54,7 +57,7 @@ export function JahshanReadingWorkspace({ bookUrl }: { bookUrl?: string }) {
   const navigatePaper = (next: typeof view) => { setView(next); setPageOverride(null); };
   const numberedAnswers = questionData.tests.find(item => item.number === test.number)!.sections.map(section => `Part ${section.part} · ${section.label}\n${section.questions.map(q => `${q.group ? `${q.group} · ` : ''}${q.number}. ${draft.responses[q.id] ?? ''}`).join('\n')}`).join('\n\n');
   const exportText = `${test.title}\nQuestions: page ${test.questionPage}; answers: page ${test.answerPage}\n\n${numberedAnswers}\n\nEarlier free-form Part A notes\n${draft.A}\n\nPart B\n${draft.B}\n\nPart C\n${draft.C}\n\nCorrections\n${draft.corrections}\n\nSelf-marked: ${draft.score || 'not entered'}${test.questionCount ? ` / ${test.questionCount}` : ''}\nReviewed: ${draft.reviewed ? 'yes' : 'no'}\n`;
-  return <section className="jahshan-reading" aria-label="Reading practice workspace">
+  return <ReadingEvidenceProvider key={`${test.number}-${part}`} storageKey={`jahshan-${test.number}-${part}`} questions={questionData.tests.find(t => t.number === test.number)!.sections.filter(s => s.part === part).flatMap(s => s.questions.map(q => ({id:q.id,prompt:q.prompt,answer:q.answer ?? undefined,pages:q.sourceTextPage ? [q.sourceTextPage] : undefined,label:`Question ${q.number}`})))}><section className="jahshan-reading" aria-label="Reading practice workspace">
     <section className="card">
       <h3>Choose a Reading test</h3>
       <p>Start with Sample Test 1, work through the paper, then use its answer key to review. Your answers and corrections are saved separately for each entry.</p>
@@ -65,8 +68,9 @@ export function JahshanReadingWorkspace({ bookUrl }: { bookUrl?: string }) {
       {test.kind !== 'paper' && <p className="reading-notice">{test.kind === 'strategies' ? 'Strategies and practice exercises: use this for learning; it is not one standard 42-question mock.' : 'The collection lists this paper as 34 questions. It is shorter than a full 42-question OET Reading test.'}</p>}
       <div className="study-source-links"><button className="btn btn-secondary" disabled={visibleTests[0].number === test.number} onClick={() => selectTest(visibleTests[visibleTests.findIndex(item => item.number === test.number) - 1].number)}>Previous test</button><button className="btn btn-secondary" disabled={visibleTests.at(-1)!.number === test.number} onClick={() => selectTest(visibleTests[visibleTests.findIndex(item => item.number === test.number) + 1].number)}>Next test</button><a href="#practice/reading">Use a timed official Reading paper →</a></div>
     </section>
-    <SaveStudyOffline key={test.number} id={`jahshan-reading-${test.number}`} title={`Jahshan · ${test.title}`} assets={Array.from({length:test.lastPage-test.questionPage+1},(_,index)=>({url:`${import.meta.env.BASE_URL}jahshan-reading-pages/${test.questionPage+index}.webp`,label:`Original reading page ${test.questionPage+index}`}))} />
+    <SaveStudyOffline key={test.number} id={`jahshan-reading-${test.number}`} title={`Jahshan · ${test.title}`} assets={Array.from({length:test.lastPage-test.questionPage+1},(_,index)=>({url:`${import.meta.env.BASE_URL}jahshan-reading-pages/${test.questionPage+index}.webp`,label:`Original reading page ${test.questionPage+index}`})).concat(Array.from({length:test.lastPage-test.questionPage+1},(_,index)=>({url:`${import.meta.env.BASE_URL}jahshan-reading-layouts/${test.questionPage+index}.json`,label:`Study highlight geometry ${test.questionPage+index}`,optional:true})))} />
     {saveError && <p role="alert">Your browser could not save these answers. Download them before leaving.</p>}
+    <ReadingEvidenceToggle />
     <div className={`reading-workbench${wide ? ' reading-workbench-wide' : ''}`}>
       <section className="card reading-paper"><h3>3 · Read the complete text</h3>
         <label>Reading passage part<select value={part} onChange={event => { setPart(event.target.value as Part); setView('questions'); setPageOverride(null); }}>{(['A', 'B', 'C'] as const).map(item => <option value={item} key={item}>Part {item}</option>)}</select></label>
@@ -89,6 +93,7 @@ export function JahshanReadingWorkspace({ bookUrl }: { bookUrl?: string }) {
         <a className="btn btn-secondary" href={`data:text/plain;charset=utf-8,${encodeURIComponent(exportText)}`} download={`jahshan-reading-${test.number}-answers.txt`}>Download this test’s answers</a>
       </section>
     </div>
+    <SourcePracticeCoach id={`jahshan-reading-${test.number}-${part}`} title={`${test.title} · Reading Part ${part}`} skill="reading" response={questionData.tests.find(t=>t.number===test.number)!.sections.filter(s=>s.part===part).flatMap(s=>s.questions.filter(q=>draft.responses[q.id]?.trim()).map(q=>`${q.number}. ${draft.responses[q.id]}`)).join('\n')} textPath="imported-resources/text/e41a1df70a74341806de8943a4a8c66be832f4513379e3f3ea92ae8ff633f6b4.json" startPage={readingPages.tests.find(t=>t.number===test.number)!.parts[part][0]} endPage={readingPages.tests.find(t=>t.number===test.number)!.parts[part].at(-1)} />
     {legacy && <details className="card"><summary>My earlier general Reading notes</summary><pre className="official-response-review">{legacy}</pre></details>}
-  </section>;
+  </section></ReadingEvidenceProvider>;
 }

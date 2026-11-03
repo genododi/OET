@@ -1,3 +1,4 @@
+import { ReadingEvidenceLocate } from './ReadingEvidence';
 import { useRef, useState } from 'react';
 
 export type BenchmarkQuestion = { part: string; number: number; prompt: string; group: string; sourcePage: number; numberingNote?: string; sourceNote?: string; choices?: string[] };
@@ -56,6 +57,7 @@ function QuestionList({ entry, part, sheet, failed, responses, onAnswer }: Props
           <div id={`benchmark-${part}-${question.number}-prompt`} className="jahshan-question-text">{question.prompt}</div>
           {question.sourceNote && <p className="meta">{question.sourceNote}</p>}{question.numberingNote && <p className="meta">{question.numberingNote}</p>}
           {controls(question)}
+          {reading && <ReadingEvidenceLocate id={`${part}-${question.number}`} />}
           <a className="benchmark-question-source" href={`${import.meta.env.BASE_URL}${entry.assetPath}#page=${question.sourcePage}`} target="_blank" rel="noopener noreferrer">Original question · page {question.sourcePage} ↗</a>
         </article>)}</div>}
       </section>)}

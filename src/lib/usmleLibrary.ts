@@ -16,10 +16,13 @@ export function privateQuestionTask(question: PrivateUsmleQuestion, progress: Pr
     id: question.id, subtest: 'usmle', title: `Block ${question.block ?? '—'} · Question ${question.number ?? '—'}`,
     prompt: question.prompt, instructions: 'Choose the single best answer. Inspect the question source for any clinical images or tables.',
     options: question.options, explanation: question.explanation,
+    usmleYear: question.productionYear ?? undefined,
     usmleStep: step, usmleDiscipline: question.discipline, usmleQuestionFormat: 'single-best-answer',
     usmleQuestionImages: question.questionImages, usmleAnswerImages: question.answerImages,
     usmleSource: `${question.sourceName} · ${question.subject ?? 'Subject unassigned'} · ${progress.step ? 'Step assigned by you' : question.classification}${question.sourceNote ? `\n${question.sourceNote}` : ''}`,
   };
 }
+
+export const newestUsmleFirst = <T extends { productionYear?: number | null }>(items: T[]) => [...items].sort((a,b) => (b.productionYear ?? 0) - (a.productionYear ?? 0));
 
 export const privateUsmleUrl = (asset: string) => `${import.meta.env.BASE_URL}desktop/usmle/${asset}`;

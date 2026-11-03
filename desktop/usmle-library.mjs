@@ -1,4 +1,5 @@
 // Private, on-device study imports. No source content is written to web assets.
+import { sourceYear, mergeSourceYears } from './usmle-years.mjs';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import os from 'node:os';
@@ -170,7 +171,8 @@ export async function importUsmleFolder(source, root, onProgress = () => {}) {
         const bytes = await fs.readFile(file);
         if (!bytes.subarray(0, 5).equals(Buffer.from('%PDF-'))) { warnings.push(`${name}: not a valid PDF.`); continue; }
         const sha256 = digest(bytes);
-        if (!resources.has(sha256)) resources.set(sha256, { id: sha256, sha256, name, kind: 'pdf', asset: await store(bytes, 'originals', '.pdf'), addedAt: new Date().toISOString(), size: bytes.length });
+        if (!resources.has(sha256)) resources.set(sha256, { ...sourceYear(name), id: sha256, sha256, name, kind: 'pdf', asset: await store(bytes, 'originals', '.pdf'), addedAt: new Date().toISOString(), size: bytes.length });
+        else resources.set(sha256, { ...resources.get(sha256), ...mergeSourceYears(resources.get(sha256), sourceYear(name)) });
         continue;
       }
       // Hash streams avoid loading a large deck archive into memory.
@@ -218,22 +220,22 @@ export async function importUsmleFolder(source, root, onProgress = () => {}) {
             const normalize = value => value.toLowerCase().replace(/\W/g, '');
             const before = normalize(existing.prompt), after = normalize(parsed.prompt);
             const sameQuestion = before === after || before.length > 100 && after.length > 100 && (before.startsWith(after) || after.startsWith(before));
-            if (sameQuestion && existing.sourceName.includes('Step and Subject') && !name.includes('Step and Subject')) continue;
+            if (sameQuestion && existing.sourceName.includes('Step and Subject') && !name.includes('Step and Subject')) { questions.set(identity, { ...existing, ...mergeSourceYears(existing, sourceYear(name, note.tags ?? '')) }); continue; }
             // A repeated coordinate with a different stem is a different edition.
             if (!sameQuestion) identity = digest(`${identity}\0${after}`);
           }
           const contentKey = digest(parsed.prompt.toLowerCase().replace(/\W/g, '') + parsed.options.map(option => option.label.toLowerCase().replace(/\W/g, '')).join('|'));
           const duplicate = seenContent.get(contentKey);
-          if (duplicate && duplicate !== identity) continue;
+          if (duplicate && duplicate !== identity) { const current = questions.get(duplicate); questions.set(duplicate, { ...current, ...mergeSourceYears(current, sourceYear(name, note.tags ?? '')) }); continue; }
           seenContent.set(contentKey, identity);
           const supplement = coordinate && supplemental.get(coordinate);
           if (supplement && parsed.step && supplement.key === parsed.key) question.explanation = [supplement.explanation, supplement.objective].filter(Boolean).join('\n\n');
           if (supplement && parsed.step && supplement.key !== parsed.key) question.sourceNote += '\nThe final deck key differs from the earlier text extraction. The final printed-key correction is retained; review the original answer pages.';
           const old = questions.get(identity);
-          questions.set(identity, { ...question, id: `private-usmle-${identity.slice(0, 24)}`, identity, sourceId: sha256, sourceName: name, addedAt: old?.addedAt ?? new Date().toISOString(), questionImages: await images(questionHtml), answerImages: await images(answerHtml) });
+          questions.set(identity, { ...question, ...mergeSourceYears(old, sourceYear(name, note.tags ?? '')), id: `private-usmle-${identity.slice(0, 24)}`, identity, sourceId: sha256, sourceName: name, addedAt: old?.addedAt ?? new Date().toISOString(), questionImages: await images(questionHtml), answerImages: await images(answerHtml) });
         }
         if (!supported) throw Error('No supported multiple-choice or source study cards were found.');
-        resources.set(sha256, { id: sha256, sha256, name, kind: 'deck', questions: supported, size: (await fs.stat(file)).size, addedAt: resources.get(sha256)?.addedAt ?? new Date().toISOString() });
+        resources.set(sha256, { ...mergeSourceYears(resources.get(sha256), sourceYear(name)), id: sha256, sha256, name, kind: 'deck', questions: supported, size: (await fs.stat(file)).size, addedAt: resources.get(sha256)?.addedAt ?? new Date().toISOString() });
       } catch (error) {
         questions.clear(); for (const [key, value] of beforeDeck) questions.set(key, value);
         seenContent.clear(); for (const question of questions.values()) seenContent.set(digest(question.prompt.toLowerCase().replace(/\W/g, '') + question.options.map(option => option.label.toLowerCase().replace(/\W/g, '')).join('|')), question.identity);
@@ -241,7 +243,7 @@ export async function importUsmleFolder(source, root, onProgress = () => {}) {
       }
       finally { await archive.close(); }
     }
-    const index = { version: 1, importedAt: new Date().toISOString(), questions: [...questions.values()], resources: [...resources.values()], warnings: [...new Set(warnings)] };
+    const index = { version: 1, importedAt: new Date().toISOString(), questions: [...questions.values()].sort((a,b) => (b.productionYear ?? 0) - (a.productionYear ?? 0)), resources: [...resources.values()].sort((a,b) => (b.productionYear ?? 0) - (a.productionYear ?? 0)), warnings: [...new Set(warnings)] };
     const pending = path.join(root, 'index.next.json');
     await fs.writeFile(pending, JSON.stringify(index), { mode: 0o600 });
     await fs.rename(pending, path.join(root, 'index.json'));

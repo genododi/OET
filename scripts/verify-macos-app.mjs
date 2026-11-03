@@ -87,11 +87,11 @@ try {
     await page.evaluate(id=>{location.hash=`#materials/${id}`;},chosen.file.id);
     await page.getByRole('group',{name:'Practice skill',exact:true}).getByRole('button',{name:'Reading',exact:true}).click();
     await page.getByRole('combobox',{name:'Task or part',exact:true}).selectOption(chosen.unit.id);
-    await page.locator('.material-question-row').first().waitFor();
+    await page.locator('.material-paper-question').first().waitFor();
     const question=chosen.unit.questions.find(question=>question.answer);
     const row=page.getByRole('article',{name:`Question ${question.number}`,exact:true});
     await row.getByRole('button',{name:`Show answer for Question ${question.number}`,exact:true}).click();
-    await row.locator('.material-printed-answer').waitFor();
+    await row.locator('.reading-revealed').waitFor();
     const audioFile=collection.find(file=>['mp3','m4a','ogg'].includes(file.format)&&fsSync.existsSync(path.join(root,`public/material-practice/transcripts/${file.sha256}.json`)));
     assert(audioFile,'A source-matched listening transcript must be available');
     await page.evaluate(id=>{location.hash=`#materials/${id}`;},audioFile.id);

@@ -1,0 +1,14 @@
+.daily-pearl-anchor { position: fixed; right: 24px; bottom: 24px; z-index: 35; display: grid; justify-items: end; gap: 15px; pointer-events: none; }
+.daily-pearl-anchor > * { pointer-events: auto; }
+.daily-pearl-trigger { border:1px solid #a6d5c9; border-radius:999px; background:#124a44; color:#fff; padding:12px 18px; box-shadow:0 5px 18px #113e3822; cursor:pointer; font-family:inherit; font-size:13px; font-weight:600; }
+.daily-pearl-balloon { position:relative; width:min(360px,calc(100vw - 32px)); max-height:70vh; overflow:auto; padding:22px; border:1px solid #c9dfd6; border-radius:18px; background:#fff; color:#24413a; box-shadow:0 12px 50px #143a332a; }
+.daily-pearl-balloon header, .daily-pearl-balloon footer { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+.daily-pearl-balloon header span { font-size:10px; text-transform:uppercase; letter-spacing:.1em; font-weight:800; color:#22776a; }
+.daily-pearl-balloon header button { border:0; background:#eef5f2; border-radius:50%; width:32px; height:32px; cursor:pointer; font-size:22px; color:#33574e; }
+.daily-pearl-balloon h2 { font-size:20px; margin:12px 0; }
+.daily-pearl-balloon p { font-size:14px; line-height:1.65; margin:8px 0 14px; }
+.daily-pearl-pitfall { padding:12px; background:#fff7e5; border-radius:9px; border-left:3px solid #d4a443; }
+.daily-pearl-pitfall p { margin:4px 0 0; }
+.daily-pearl-balloon footer a { font-size:12px; }
+.daily-pearl-preference { display:flex; align-items:center; gap:8px; font-size:12px; margin-top:16px; }
+@media(max-width:650px) { .daily-pearl-anchor { right:16px; bottom:16px; } }

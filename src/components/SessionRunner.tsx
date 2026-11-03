@@ -1,3 +1,4 @@
+import { rememberCurrentStudy } from '../lib/currentStudy';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type {
   OetSessionStage,
@@ -106,6 +107,7 @@ function SessionRunnerContent({ config, onExit }: Props) {
   const completionStarted = useRef(false);
 
   const task = config.tasks[taskIndex];
+  useEffect(() => { if (task) rememberCurrentStudy(task, answers[task.id] ?? notes[task.id] ?? ''); }, [task, answers, notes]);
   const currentStage = config.stages?.[stageIndex];
   const listeningGroup = useMemo(() => getListeningGroup(config.tasks, taskIndex), [config.tasks, taskIndex]);
   const groupSize = listeningGroup?.length ?? 1;

@@ -12,7 +12,7 @@ describe('interactive mentor', () => {
     render(<MentorPanel task={bankBySubtest.reading[0]} response="" completed={[]} />);
     expect(screen.getByRole('button', { name: 'Review my response' })).toBeDisabled();
     fireEvent.click(screen.getByRole('button', { name: 'Teach the approach' }));
-    expect(await screen.findByText(/Your turn:/)).toBeVisible();
+    expect((await screen.findAllByText(/Next step:/)).at(-1)).toBeVisible();
     fireEvent.click(screen.getByRole('button', { name: 'Give me a hint' }));
     expect(await screen.findByText(/Hint 1:/)).toBeVisible();
     fireEvent.click(screen.getByRole('button', { name: 'Give me a hint' }));
@@ -31,15 +31,16 @@ describe('interactive mentor', () => {
     const task = bankBySubtest.reading[0];
     const { unmount } = render(<MentorPanel task={task} response="My latest draft" completed={[]} lessonKey="resume-test" />);
     fireEvent.click(screen.getByRole('button', { name: 'Teach the approach' }));
-    await screen.findByText(/Your turn:/);
+    await screen.findAllByText(/Next step:/);
     unmount();
     const lesson = readMentorLessons()['resume-test'];
     expect(lesson.response).toBe('My latest draft');
-    expect(lesson.messages.at(-1)?.text).toContain('Your turn:');
+    expect(lesson.messages.at(-1)?.text).toContain('Next step:');
   });
   it('collects doctor turns in patient mode and makes the guide limitation visible', async () => {
     const onPatientTurn = vi.fn();
     render(<MentorPanel task={bankBySubtest.speaking[0]} response="" completed={[]} onPatientTurn={onPatientTurn} />);
+    fireEvent.click(screen.getByText('Mentor settings'));
     fireEvent.change(screen.getByLabelText('Conversation mode'), { target: { value: 'patient' } });
     fireEvent.change(screen.getByLabelText('Your words to the patient'), { target: { value: 'I understand your concern.' } });
     fireEvent.click(screen.getByRole('button', { name: 'Speak to patient' }));
@@ -60,4 +61,21 @@ describe('interactive mentor', () => {
     await waitFor(() => expect(screen.getByText('Try checking the qualifier.')).toBeVisible());
     expect(screen.getAllByText('Which clue should I inspect?')).toHaveLength(1);
   });
+});
+
+it('automatically reviews a paused draft using only the local model, without an API key or a question from the learner', async () => {
+  vi.useFakeTimers();
+  vi.stubGlobal('oetDesktop', {});
+  const event='data: {"choices":[{"delta":{"content":"Source-supported coaching: keep the purpose clear."}}]}\n\ndata: [DONE]\n\n';
+  const fetch=vi.fn(async()=>new Response(event));vi.stubGlobal('fetch',fetch);
+  try {
+    render(<MentorPanel task={bankBySubtest.writing[0]} response={Array(45).fill('draft').join(' ')} completed={[]} />);
+    await act(async()=>{await vi.advanceTimersByTimeAsync(14000);});
+    expect(fetch).toHaveBeenCalledTimes(2);
+    for(const [url] of fetch.mock.calls as unknown as [string][]) expect(url).toContain('/desktop/ai/chat');
+    expect(screen.getByText('Automatic mentor review')).toBeVisible();
+    expect(screen.getAllByText(/Source-supported coaching/).at(-1)).toBeVisible();
+    await act(async()=>{await vi.advanceTimersByTimeAsync(120000);});
+    expect(fetch).toHaveBeenCalledTimes(2);
+  } finally { vi.useRealTimers(); }
 });

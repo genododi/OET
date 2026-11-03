@@ -1,3 +1,4 @@
+import { ReadingEvidenceLocate } from './ReadingEvidence';
 import { useState } from 'react';
 import source from '../data/jahshanReadingQuestions.json';
 
@@ -35,6 +36,7 @@ function QuestionList({ testNumber, part, responses, onAnswer, onPage }: Props) 
         <div className="reading-answer-row">{q.kind === 'choice' ? <select id={id} aria-describedby={`${id}-prompt`} value={responses[q.id] ?? ''} onChange={event => onAnswer(q.id, event.target.value)}><option value="">Choose…</option>{(part === 'B' ? ['A', 'B', 'C'] : ['A', 'B', 'C', 'D']).map(letter => <option key={letter}>{letter}</option>)}</select> : <input id={id} aria-describedby={`${id}-prompt`} value={responses[q.id] ?? ''} placeholder="Type your answer" autoComplete="off" onChange={event => onAnswer(q.id, event.target.value)} />}
         <button className="btn btn-secondary" aria-expanded={Boolean(revealed[q.id])} aria-controls={`${id}-answer`} aria-label={`${revealed[q.id] ? 'Hide' : 'Show'} answer for ${name}`} onClick={() => setRevealed({ ...revealed, [q.id]: !revealed[q.id] })}>{revealed[q.id] ? 'Hide answer' : 'Show answer'}</button></div>
         {revealed[q.id] && <div className="reading-revealed" id={`${id}-answer`}><strong>{q.answer ?? 'No answer is printed for this question in the supplied key.'}</strong><p className="meta">Printed collection key · page {q.keyPage}. Original wording is retained.</p><button className="btn btn-ghost" onClick={() => onPage(q.keyPage, true)}>View printed key · page {q.keyPage}</button></div>}
+        <ReadingEvidenceLocate id={q.id} />
         <button className="btn btn-ghost reading-source-page" onClick={() => onPage(q.sourcePage, false)}>Question page {q.sourcePage}</button>
       </article>;
     })}</div>

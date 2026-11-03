@@ -11,3 +11,8 @@
 .material-source .material-original-image { display: block; max-width: 100%; height: auto; margin: 14px auto; border: 1px solid #d5e2dc; }
 
 .recognised-word-uncertain { color: inherit; background: #fff0cd; text-decoration: underline dotted #b87817; text-underline-offset: 3px; }
+.recognised-fixed-scroll { max-width: 100%; overflow: auto; border: 1px solid #d3dfdb; border-radius: 8px; background: #fafcfb; }
+.material-source .recognised-fixed-scroll pre { max-height: none; margin: 0; white-space: pre; overflow-wrap: normal; width: max-content; min-width: 100%; font: 13px/1.65 ui-monospace, SFMono-Regular, Menlo, monospace; background: transparent; }
+.recognised-page-scroll { max-height: 80vh; }
+.recognised-reader p { text-wrap: pretty; }
+.material-source-zoom .recognised-page { width:max(100%,1200px); }

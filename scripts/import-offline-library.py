@@ -15,6 +15,7 @@ import subprocess
 import zipfile
 import xml.etree.ElementTree as ET
 from pathlib import Path
+from pdf_layout import attach_pdf_display
 
 ROOT = Path(__file__).resolve().parents[1]
 EXTENSIONS = {'.pdf', '.docx', '.doc', '.pptx', '.ppt', '.xlsx', '.xls', '.csv', '.tsv', '.txt', '.md', '.rtf', '.html', '.htm', '.json', '.apkg', '.zip', '.rar', '.7z', '.mp3', '.m4a', '.wav', '.ogg', '.flac', '.aac', '.mp4', '.webm', '.mov', '.jpg', '.jpeg', '.png', '.webp', '.heic', '.heif', '.tif', '.tiff', '.bmp', '.gif', '.avif'}
@@ -54,7 +55,10 @@ def source_text(source, sha):
         parts = result.stdout.decode(errors='replace').split('\f')
         if parts[-1] == '': parts.pop()
         pages = [{'number': i + 1, 'text': p.strip(), 'extraction': 'text' if p.strip() else 'none'} for i, p in enumerate(parts)]
-        return {'sourceSha256': sha, 'text': '\n\f\n'.join(p['text'] for p in pages), 'pages': pages}
+        data = {'sourceSha256': sha, 'text': '\n\f\n'.join(p['text'] for p in pages), 'pages': pages}
+        try: attach_pdf_display(data, source, columns_only=True)
+        except (OSError, ValueError, ET.ParseError, subprocess.SubprocessError): pass
+        return data
     if source.suffix.lower() == '.docx':
         with zipfile.ZipFile(source) as doc:
             tree = ET.fromstring(doc.read('word/document.xml'))

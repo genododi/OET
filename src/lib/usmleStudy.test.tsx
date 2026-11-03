@@ -57,3 +57,11 @@ describe('USMLE private study and honest scoring', () => {
     expect(change).toHaveBeenLastCalledWith(question.id, { revealed: false, reviewed: true });
   });
 });
+
+it('prioritises newer source-labelled USMLE editions and keeps an unknown year separate',()=>{
+ const current={...question,id:'year-2026',identity:'year-2026',step:'step1' as const,productionYear:2026};
+ const older={...question,id:'year-2025',identity:'year-2025',step:'step1' as const,productionYear:2025};
+ const unknown={...question,id:'unknown-year',identity:'unknown-year',step:'step1' as const};
+ const tasks=[older,unknown,current].map(q=>privateQuestionTask(q)!).filter(Boolean);
+ expect(buildUsmleBlockSession({step:'step1',questionCount:1,timeMinutes:30,pool:tasks}).tasks[1].id).toBe('year-2026');
+});

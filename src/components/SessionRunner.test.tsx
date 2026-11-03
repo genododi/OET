@@ -56,12 +56,12 @@ describe('timed session completion', () => {
       id: 'timed-expiry-regression',
       review: { overallPercent: 0 },
     });
-    expect(storageWrite).toHaveBeenCalledTimes(1);
+    expect(storageWrite.mock.calls.filter(([key]) => key === 'oet-study-partner-progress')).toHaveLength(1);
 
     await act(async () => {
       await vi.advanceTimersByTimeAsync(5_000);
     });
-    expect(storageWrite).toHaveBeenCalledTimes(1);
+    expect(storageWrite.mock.calls.filter(([key]) => key === 'oet-study-partner-progress')).toHaveLength(1);
   });
 
   it('replaces generated mocks with complete official papers', () => {

@@ -174,7 +174,7 @@ export function SpeakingRecorder({ taskId, criteria, onResult, showDetailedRevie
   const scoreClass = evalResult ? speakingPassClass(evalResult) : '';
 
   return (
-    <div className="speaking-recorder">
+    <div className="speaking-recorder" data-recording={state === 'recording'}>
       <div className="speaking-recorder-controls">
         {state === 'recording' ? (
           <button type="button" className="btn btn-primary btn-sm speaking-record-btn" onClick={stopRecording}>

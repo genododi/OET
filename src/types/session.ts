@@ -73,6 +73,7 @@ export interface SessionTask {
   /** Content-derived cache revision for the question/audio pair. */
   audioRevision?: string;
   /** USMLE step (step1, step2, step3) */
+  usmleYear?: number;
   usmleStep?: UsmleStep;
   /** USMLE discipline tag */
   usmleDiscipline?: UsmleDiscipline;

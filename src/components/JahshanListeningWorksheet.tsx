@@ -1,3 +1,4 @@
+import { SourcePracticeCoach } from './SourcePracticeCoach';
 import { useRef, useState } from 'react';
 import answerKeys from '../data/jahshanListeningAnswers.json';
 import printedQuestions from '../data/jahshanListeningQuestions.json';
@@ -133,5 +134,6 @@ function TrackWorksheet({ trackId, bookUrl, onOpenKey, onPartChange }: Props) {
       </div>
       <a className="btn btn-secondary" href={`data:text/plain;charset=utf-8,${encodeURIComponent(exportText)}`} download={`jahshan-listening-${sheet.setNumber}-${trackId}-responses.txt`}>Download my responses</a>
     </footer>
+    <SourcePracticeCoach key={`${trackId}-${part}`} id={`jahshan-listening-${trackId}-${part}`} title={`Jahshan set ${sheet.setNumber} · Listening Part ${part}`} skill="listening" sourceText={`Selected listening paper, Part ${part}.\n${content.map(node=>node.text).join('\n')}\nThe recording itself has not been supplied to this mentor. Do not invent what the speaker said or claim to have heard it.`} response={section.questions.filter(q=>responses[q.id]?.trim()).map(q=>`${q.number}. ${responses[q.id]}`).join('\n')} />
   </section>;
 }

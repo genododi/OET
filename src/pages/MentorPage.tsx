@@ -1,3 +1,4 @@
+import { readCurrentStudy } from '../lib/currentStudy';
 import { useMemo, useState } from 'react';
 import type { NavSection, OetSubtest } from '../types';
 import type { SessionConfig, SessionTask } from '../types/session';
@@ -61,7 +62,8 @@ function MentorLesson({ task, topic, onBack, onNext }: { task: SessionTask; topi
 
 export function MentorPage({ onNavigate }: { onNavigate: (section: NavSection, itemId?: string) => void }) {
   const { completed } = useProgress();
-  const [skill, setSkill] = useState<OetSubtest>('listening');
+  const [currentStudy] = useState(readCurrentStudy);
+  const [skill, setSkill] = useState<OetSubtest>(currentStudy?.task.subtest as OetSubtest ?? 'listening');
   const [lesson, setLesson] = useState<{ task: SessionTask; topic: MentorTopic } | null>(null);
   const recommendation = useMemo(() => recommendGradeAFocus(completed), [completed]);
   const startLesson = (topic: MentorTopic, previousId?: string) => {
@@ -85,6 +87,7 @@ export function MentorPage({ onNavigate }: { onNavigate: (section: NavSection, i
       return topic && task ? [{ key, topic, task }] : [];
     }).slice(0, 3);
   return <div className="mentor-home">
+    {currentStudy && <section className="mentor-current-study"><div className="card"><span className="section-kicker">Following your latest study activity</span><h2>{currentStudy.task.title}</h2><p>Your current task and latest saved response are loaded below. Continue writing or answering in the collection; the task mentor follows your changes there.</p></div><MentorPanel key={currentStudy.task.id} task={currentStudy.task} response={currentStudy.response} completed={completed} lessonKey={`source-${currentStudy.task.id}-${currentStudy.task.subtest}`} /></section>}
     <section className="mentor-hero">
       <div><span className="section-kicker">One learner. Four skills. A method that sticks.</span><h2>Your OET mentor,<br /><em>beside you at every step.</em></h2><p>Ask questions, think aloud, practise with a patient, and improve your answers through a real conversation. Start with a focused lesson, then take the method into timed practice.</p><button type="button" className="btn btn-primary" onClick={() => startLesson(mentorCurriculum.find((topic) => topic.subtest === recommendedSkill)!)}>Start my recommended lesson <AppIcon name="sparkles" /></button></div>
       <div className="mentor-course-card"><span className="section-kicker">Your learning journey</span><strong>{coached}</strong><span>coached lessons saved</span><div className="mentor-course-steps"><span>01 · Understand the approach</span><span>02 · Try, discuss, revise</span><span>03 · Apply it independently</span></div><button type="button" className="link-btn" onClick={() => onNavigate('practice')}>Go to timed practice →</button></div>

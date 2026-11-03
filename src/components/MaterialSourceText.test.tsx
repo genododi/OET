@@ -33,3 +33,15 @@ it('labels difficult handwriting as unverified rather than displaying it as a ch
  await screen.findByText(/Handwritten or difficult text/);
  expect(screen.getByText('Handwritten draft')).toBeVisible();
 });
+
+it('uses recovered PDF positions and rotation without changing the stable question-range text',async()=>{
+ const stable='Original source used by the question range';
+ const display={text:'Category',layout:{version:1,width:1000,height:700,blocks:[{text:'Category',lines:[{text:'Category',x:.03,y:.1,width:.02,height:.3,rotation:-90,confidence:1}]}]}};
+ vi.stubGlobal('fetch',vi.fn(async()=>({ok:true,json:async()=>({text:stable,pages:[{number:1,text:stable,extraction:'text',display}]})})));
+ const view=render(<MaterialSourceText {...props} format="pdf"/>);
+ await screen.findByText('Category');
+ fireEvent.click(screen.getByRole('button',{name:'Match page layout'}));
+ expect(view.container.querySelector('text[transform]')).toHaveAttribute('transform','translate(47.6 280) rotate(-90)');
+ view.rerender(<MaterialSourceText {...props} format="pdf" ranges={[{page:1,start:0,end:8}]} />);
+ expect(screen.getByText('Original')).toBeVisible();expect(screen.queryByText('Category')).toBeNull();
+});

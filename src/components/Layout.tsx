@@ -1,5 +1,6 @@
 import { useState, type ReactNode } from 'react';
 import type { NavSection } from '../types';
+import { DailyPearlBalloon } from './DailyPearlBalloon';
 import { Sidebar } from './Sidebar';
 import { SettingsModal } from './SettingsModal';
 import { SettingsContext } from '../lib/settingsContext';
@@ -59,6 +60,7 @@ export function Layout({ active, onNavigate, title, subtitle, children }: Props)
           </header>
           <main className="page-content">{children}</main>
         </div>
+        <DailyPearlBalloon section={active} />
         <SettingsModal open={settingsOpen} onClose={() => setSettingsOpen(false)} />
       </div>
     </SettingsContext.Provider>

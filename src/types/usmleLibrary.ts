@@ -16,12 +16,15 @@ export interface PrivateUsmleQuestion {
   number?: number;
   sourceNote: string;
   reviewOnly: boolean;
+  productionYear?: number | null;
+  productionYears?: number[];
+  yearEvidence?: string[];
   sourceId: string;
   sourceName: string;
   addedAt: string;
   questionImages: string[];
   answerImages: string[];
 }
-export interface PrivateUsmleResource { id: string; sha256: string; name: string; kind: 'pdf' | 'deck'; asset?: string; addedAt: string; size: number; questions?: number }
+export interface PrivateUsmleResource { id: string; sha256: string; name: string; kind: 'pdf' | 'deck'; asset?: string; addedAt: string; size: number; questions?: number; productionYear?: number | null; productionYears?: number[]; yearEvidence?: string[] }
 export interface PrivateUsmleLibrary { version: number; importedAt: string | null; questions: PrivateUsmleQuestion[]; resources: PrivateUsmleResource[]; warnings: string[] }
 export interface UsmleImportStatus { state: 'idle' | 'importing' | 'complete' | 'failed'; message: string; questions?: number; resources?: number; warnings?: string[] }

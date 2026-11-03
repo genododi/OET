@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { ReadingEvidenceProvider, ReadingEvidenceToggle, HighlightedReadingText } from '../components/ReadingEvidence';
 import catalog from '../data/benchmarkCollection.json';
 import { BenchmarkQuestionRows, type BenchmarkSheet } from '../components/BenchmarkQuestionRows';
 import offline from '../data/benchmarkOffline.json';
@@ -78,7 +79,7 @@ function BenchmarkPaper({ entry }: { entry: Entry }) {
   return <section className={`card benchmark-paper benchmark-paper-${entry.skill}`} aria-label="Benchmark source paper"><div className="material-toolbar"><div><span className="benchmark-paper-kicker">ORIGINAL PRACTICE MATERIAL</span><h3>2 · {entry.skill === 'listening' ? 'Listen and read the questions' : 'Read the complete paper'}</h3></div><a href={`${asset(entry.assetPath)}#page=${page}`} target="_blank" rel="noopener noreferrer">Open original · page {page} ↗</a></div>
 
     {pages && <div className="material-page-controls"><button className="btn btn-secondary" disabled={all || index === 0} onClick={() => setIndex(index - 1)}>Previous page</button><label htmlFor="benchmark-page">Paper page</label><select id="benchmark-page" disabled={all} value={index} onChange={e => setIndex(Number(e.target.value))}>{pages.map((p, i) => <option key={p.number} value={i}>Book page {p.number} · {i + 1} of {pages.length}</option>)}</select><button className="btn btn-secondary" disabled={all || index === pages.length - 1} onClick={() => setIndex(index + 1)}>Next page</button><label><input type="checkbox" checked={all} onChange={e => setAll(e.target.checked)} /> Show all pages</label></div>}
-    {failed ? <p role="alert">The paper text could not load. Open the original above, or reload to try again.</p> : !pages ? <p role="status">Loading this paper…</p> : <div className="benchmark-paper-stack">{(all ? pages : [pages[index]]).map(p => <article className="material-text-page benchmark-paper-sheet" key={p.number}><header><span>{entry.title}</span><span>Book page {p.number}</span></header>{p.extraction === 'ocr' && <p className="meta">Recognised from a scan. Check the original for diagrams or uncertain text.</p>}<div className="material-readable-text">{cleanPaperText(p.text)}</div></article>)}</div>}
+    {failed ? <p role="alert">The paper text could not load. Open the original above, or reload to try again.</p> : !pages ? <p role="status">Loading this paper…</p> : <div className="benchmark-paper-stack">{(all ? pages : [pages[index]]).map(p => <article className="material-text-page benchmark-paper-sheet" key={p.number}><header><span>{entry.title}</span><span>Book page {p.number}</span></header>{p.extraction === 'ocr' && <p className="meta">Recognised from a scan. Check the original for diagrams or uncertain text.</p>}<div className="material-readable-text"><HighlightedReadingText text={cleanPaperText(p.text)} /></div></article>)}</div>}
   </section>;
 }
 function BenchmarkAnswers({ entry, part, onPart, sheet, failed }: { entry: Entry; part: string; onPart: (part: string) => void; sheet: BenchmarkSheet | null; failed: boolean }) {
@@ -96,7 +97,7 @@ function BenchmarkAnswers({ entry, part, onPart, sheet, failed }: { entry: Entry
       {!listening && !entry.keyPages?.length && <p className="meta">No printed key page was identified for this reading test. Answers are saved for your own review.</p>}
     </>}
     <label htmlFor="benchmark-notes">Corrections and review notes</label><textarea id="benchmark-notes" className="material-notes" value={responses.notes ?? ''} onChange={e => update('notes', e.target.value)} /><p role={error ? 'alert' : 'status'} className="meta">{error ? 'Browser storage unavailable. Download your work before leaving.' : 'Saved in this browser for this test. Revealing a key keeps your response unchanged.'}</p><a className="btn btn-secondary" href={`data:text/plain;charset=utf-8,${encodeURIComponent(exportText)}`} download={`benchmark-${entry.id}.txt`}>Download my responses</a>
-    <SourcePracticeCoach id={`benchmark-${entry.id}`} title={entry.title} skill={entry.skill as OetSubtest} response={writing ? responses.letter ?? '' : exportText} textPath={entry.textPath} startPage={entry.startPage} endPage={entry.endPage} />
+    <SourcePracticeCoach id={`benchmark-${entry.id}-${writing ? 'writing' : part}`} title={writing ? entry.title : `${entry.title} · Part ${part}`} skill={entry.skill as OetSubtest} response={writing ? responses.letter ?? '' : (sheet?.questions ?? []).filter(q => q.part === part && responses[`${part}-${q.number}`]?.trim()).map(q => `${q.number}. ${responses[`${part}-${q.number}`]}`).join('\n')} textPath={entry.textPath} startPage={writing ? entry.startPage : Math.min(...(sheet?.questions.filter(q => q.part === part).map(q => q.sourcePage) ?? [entry.startPage]))} endPage={writing ? entry.endPage : Math.max(...(sheet?.questions.filter(q => q.part === part).map(q => q.sourcePage) ?? [entry.endPage]))} />
   </section>;
 }
 
@@ -157,7 +158,7 @@ function BenchmarkWorkspace({ entry }: { entry: Entry }) {
     { url: asset(entry.assetPath), label: 'Original paper PDF', optional: true },
     ...(entry.keyPath ? [{ url: asset(entry.keyPath), label: 'Original key PDF', optional: true }] : []),
   ];
-  return <div className="benchmark-workspace">
+  return <ReadingEvidenceProvider storageKey={`benchmark-${entry.id}-${part}`} questions={entry.skill === 'reading' ? (sheet?.questions ?? []).filter(q => q.part === part).map(q => ({ id: `${part}-${q.number}`, prompt: q.prompt, label: `Question ${q.number}` })) : []}><div className="benchmark-workspace">
     {entry.skill !== 'listening' && <SaveStudyOffline key={entry.id} id={`benchmark-${entry.id}`} title={entry.title} assets={offlineAssets} />}
     {entry.skill === 'listening' ? <>
       <section className="card benchmark-listening-player" aria-label="Benchmark recording">
@@ -168,17 +169,17 @@ function BenchmarkWorkspace({ entry }: { entry: Entry }) {
         <aside className="benchmark-offline" aria-label="Offline listening"><h3>Listen offline</h3><p>The Mac app includes all {entries.filter(item => item.skill === 'listening' && item.audio).length} original recordings. This browser ZIP contains {offline.recordings} recordings and transcripts; extract it and open <strong>START.html</strong> beside the audio folder. The recovered Tests 10 and 17 are available in their individual players.</p><a className="btn btn-secondary" href={offline.url}>Download offline collection · {Math.round(offline.bytes / 1000000)} MB</a></aside>
         <a href={`${asset(entry.assetPath)}#page=${entry.startPage}`} target="_blank" rel="noopener noreferrer">Open original question paper · page {entry.startPage} ↗</a>
       </details>
-    </> : entry.skill === 'reading' ? <div className={`reading-workbench${wide ? ' reading-workbench-wide' : ''}`}>
+    </> : entry.skill === 'reading' ? <><ReadingEvidenceToggle /><div className={`reading-workbench${wide ? ' reading-workbench-wide' : ''}`}>
       <section className="card reading-paper"><h3>2 · Read the complete text</h3>
         <label>Reading passage part<select value={part} onChange={e => setPart(e.target.value)}>{['A', 'B', 'C'].map(p => <option key={p} value={p}>Part {p}</option>)}</select></label>
         <div className="reading-paper-actions"><button className="btn btn-secondary" onClick={() => setWide(!wide)}>{wide ? 'Show paper beside answers' : 'Expand paper'}</button><a className="btn btn-ghost" href={`${asset(entry.assetPath)}#page=${sheet?.readingParts[part]?.[0]?.number ?? entry.startPage}`} target="_blank" rel="noopener noreferrer">Open original paper ↗</a></div>
         <div key={part} className="reading-page-scroll" aria-label={`Complete reading text · Part ${part}`}>
-          {failed ? <p role="alert">The reading text could not load. Open the original paper above.</p> : !sheet ? <p role="status">Loading complete reading text…</p> : sheet.readingParts[part]?.map(page => <article className="benchmark-reading-page" key={page.number}><h4>Book page {page.number}</h4><div className="material-readable-text">{readingParagraphs(page.text).map((paragraph, index) => <p key={index}>{paragraph}</p>)}</div></article>)}
+          {failed ? <p role="alert">The reading text could not load. Open the original paper above.</p> : !sheet ? <p role="status">Loading complete reading text…</p> : sheet.readingParts[part]?.map(page => <article className="benchmark-reading-page" key={page.number}><h4>Book page {page.number}</h4><div className="material-readable-text">{readingParagraphs(page.text).map((paragraph, index) => <p key={index}><HighlightedReadingText text={paragraph} /></p>)}</div></article>)}
         </div>
         <p className="meta">Complete extracted text for Part {part}. Check the original PDF for diagrams and tables.</p>
       </section>{answers}
-    </div> : entry.skill === 'writing' ? <div className="benchmark-writing-layout"><BenchmarkPaper entry={entry} /><div className="benchmark-writing-practice">{answers}</div></div> : <><BenchmarkPaper entry={entry} />{answers}</>}
-  </div>;
+    </div></> : entry.skill === 'writing' ? <div className="benchmark-writing-layout"><BenchmarkPaper entry={entry} /><div className="benchmark-writing-practice">{answers}</div></div> : <><BenchmarkPaper entry={entry} />{answers}</>}
+  </div></ReadingEvidenceProvider>;
 }
 function BenchmarkSpeaking() {
   const { responses, update, error } = useResponses('speaking-pregnancy');

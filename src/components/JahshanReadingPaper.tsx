@@ -1,3 +1,4 @@
+import { ReadingPageClues } from './ReadingEvidence';
 import { useEffect, useRef, useState } from 'react';
 import pageData from '../data/jahshanReadingPages.json';
 import collection from '../data/jahshanCollection.json';
@@ -29,7 +30,7 @@ export function JahshanReadingPaper({ testNumber, part, view, selectedPage }: Pr
     <div ref={pane} className={`reading-page-scroll${zoom ? ' reading-page-zoom' : ''}`} tabIndex={0} role="region" aria-label="Original Reading pages">
       {pages.map((page, index) => <figure key={page} data-paper-page={page} className="reading-full-page">
         <figcaption>Reading collection · Page {page} <a href={`${import.meta.env.BASE_URL}jahshan-reading-pages/${page}.webp`} target="_blank" rel="noopener noreferrer">Open full-size page ↗</a></figcaption>
-        <img src={`${import.meta.env.BASE_URL}jahshan-reading-pages/${page}.webp`} alt={`Complete original Reading page ${page}`} loading={index === 0 || page === targetPage ? 'eager' : 'lazy'} width={dimensions[page].width} height={dimensions[page].height} />
+        <div className="reading-page-image-wrap"><img src={`${import.meta.env.BASE_URL}jahshan-reading-pages/${page}.webp`} alt={`Complete original Reading page ${page}`} loading={index === 0 || page === targetPage ? 'eager' : 'lazy'} width={dimensions[page].width} height={dimensions[page].height} />{view === 'questions' && <ReadingPageClues key={page} page={page} />}</div>
       </figure>)}
     </div>
   </section>;
