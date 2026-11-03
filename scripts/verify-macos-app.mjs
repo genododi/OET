@@ -110,7 +110,7 @@ try {
     assert(index.questions.filter(question => !question.reviewOnly).length >= 2180);
     assert(index.questions.filter(question => question.reviewOnly).length >= 7);
     assert(index.resources.filter(resource => resource.kind === 'pdf').length >= 22);
-    assert(JSON.stringify(index) === await fs.readFile(path.join(os.homedir(), 'Library/Application Support/OET Study/usmle-library/index.json'), 'utf8'), 'The app must expose the complete current private index.');
+    assert.deepEqual(index, JSON.parse(await fs.readFile(path.join(os.homedir(), 'Library/Application Support/OET Study/usmle-library/index.json'), 'utf8')), 'The app must expose the complete current private index.');
     assert.equal(index.questions.find(question => question.block === 15 && question.number === 24).key, 'B');
     assert.equal(index.questions.find(question => question.block === 7 && question.number === 16).key, 'C');
     await page.getByRole('button', { name: '1 · Study files', exact: true }).click();
@@ -161,11 +161,17 @@ try {
   }
   let aiVerified = false;
   if (process.env.OET_SMOKE_AI === '1') {
-    const result = await page.evaluate(async () => {
-      const response = await fetch('/OET/desktop/ai/chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ messages: [{ role: 'system', content: 'You are an OET English writing coach. Give concise language guidance.' }, { role: 'user', content: 'Give two short tips for an OET referral-letter opening. Use fewer than 60 words.' }], max_tokens: 180, stream: false }) });
+    const policySource = await fs.readFile(path.join(root, 'src/lib/oetMedicalCoach.ts'), 'utf8');
+    const policy = policySource.match(/MEDICAL_COACH_POLICY = `([^`]+)`/s)?.[1];
+    assert(policy, 'The actual Medicine coaching policy must be available.');
+    const result = await page.evaluate(async policy => {
+      const response = await fetch('/OET/desktop/ai/chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ messages: [{ role: 'system', content: policy }, { role: 'user', content: 'Synthetic OET writing case, not medical advice. Source notes: Chris Lee is referred for assessment of suspected asthma; no diagnosis is confirmed. Learner sentence: "Chris Lee has confirmed asthma." Give direct feedback on the change in meaning and one source-faithful replacement. Do not ask a question. Use fewer than 80 words.' }], max_tokens: 300, stream: false, careful: true }) });
       const data = await response.json(); return { ok: response.ok, reply: data.choices?.[0]?.message?.content, error: data.error };
-    });
-    assert(result.ok, result.error); assert(result.reply?.length > 20); aiVerified = true;
+    }, policy);
+    assert(result.ok, result.error); assert(result.reply?.length > 20);
+    assert.match(result.reply, /suspected|not confirmed|certainty/i, 'The offline model must preserve diagnostic uncertainty.');
+    assert(!result.reply.includes('?'), 'Direct coaching must not append an unnecessary question.');
+    aiVerified = true;
     console.log('Local AI response:', result.reply);
   }
   await fs.mkdir(path.join(root, 'output/playwright'), { recursive: true });
