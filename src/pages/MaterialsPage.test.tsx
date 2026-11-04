@@ -29,6 +29,10 @@ describe('supplied source practice', () => {
   it('restores a writing draft after reload and isolates it from other skill responses', async () => {
     const first = render(<MaterialsPage itemId={task.id} onNavigate={vi.fn()} />);
     await screen.findByText('Darren Walker — supplied case notes');
+    expect(first.container.querySelector('.material-productive-workbench')).toBeNull();
+    fireEvent.click(screen.getByRole('button', { name: 'Show source beside my response' }));
+    expect(first.container.querySelector('.material-productive-workbench')).not.toBeNull();
+    fireEvent.click(screen.getByRole('button', { name: 'Expand source to full width' }));
     fireEvent.change(screen.getByLabelText('Your letter'), { target: { value: 'Dear Dr Booker, I am referring Mr Walker.' } });
     fireEvent.change(screen.getByLabelText('Page / task, corrections and next steps'), { target: { value: 'Task 1: improve the opening.' } });
     fireEvent.click(screen.getByRole('button', { name: 'Mark as reviewed' }));

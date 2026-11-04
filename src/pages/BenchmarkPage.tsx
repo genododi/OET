@@ -139,7 +139,7 @@ function BenchmarkWriting({ response, onResponse }: { response: string; onRespon
 function BenchmarkWorkspace({ entry }: { entry: Entry }) {
   const [part, setPart] = useState('A');
   const [partSelection, setPartSelection] = useState(0);
-  const [wide, setWide] = useState(false);
+  const [wide, setWide] = useState(true);
   const [sheet, setSheet] = useState<BenchmarkSheet | null>(null);
   const [failed, setFailed] = useState(false);
   useEffect(() => {

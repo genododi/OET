@@ -28,4 +28,13 @@ for(const name of fs.readdirSync('public/material-practice/transcripts').filter(
   for(const segment of data.segments) {assert(segment.start>=0&&segment.end>=segment.start);assert.equal(typeof segment.text,'string');}
   transcripts++;
 }
-console.log(JSON.stringify({sourceFiles:Object.keys(index.files).length,questionRows:questions,sourceBackedAnswers:answers,exactRecordingTranscripts:transcripts}));
+const audioMatches=JSON.parse(fs.readFileSync('public/material-practice/audio-matches.json','utf8'));
+assert.equal(audioMatches.version,1);
+for(const match of audioMatches.files) {
+  assert(index.files[match.sha256]);
+  const sheet=JSON.parse(fs.readFileSync(`public/${index.files[match.sha256].sheetPath}`,'utf8'));
+  const linked=sheet.units.filter(unit=>unit.skills.includes('listening')&&unit.recordings.includes(match.sha256));
+  assert.equal(match.matchedQuestions,linked.reduce((sum,unit)=>sum+unit.questions.length,0));
+  assert(sheet.units.every(unit=>unit.recordings.length===1&&unit.recordings[0]===match.sha256),'An opened recording must not silently switch to a different audio file');
+}
+console.log(JSON.stringify({sourceFiles:Object.keys(index.files).length,questionRows:questions,sourceBackedAnswers:answers,exactRecordingTranscripts:transcripts,audioFiles:audioMatches.files.length,audioWithMatchedQuestions:audioMatches.files.filter(file=>file.matchedQuestions>0).length}));

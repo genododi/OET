@@ -65,6 +65,9 @@
 
 .material-page-select { display: flex; align-items: center; gap: 8px; }
 .material-practice-paper { display: grid; gap: 20px; min-width: 0; }
+.material-contained-files { display:grid; gap:10px; padding-left:20px; }
+.material-contained-files li { overflow-wrap:anywhere; }
+.material-contained-files .tag { margin-left:10px; }
 .material-task-picker, .material-recording-picker, .material-questions, .material-source-review { padding: 24px; min-width: 0; }
 .material-task-picker > label, .material-recording-picker > label { display: grid; gap: 9px; margin: 12px 0; font-weight: 600; }
 .material-task-picker select, .material-recording-picker select, .material-question-controls input, .material-question-controls select { width: 100%; min-width: 0; padding: 12px; border: 1px solid #bdceca; border-radius: 8px; font: inherit; color: #233a36; background: #fff; }

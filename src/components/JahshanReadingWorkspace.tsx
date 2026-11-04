@@ -41,7 +41,7 @@ export function JahshanReadingWorkspace({ bookUrl }: { bookUrl?: string }) {
   const [part, setPart] = useState<Part>('A');
   const [view, setView] = useState<'questions' | 'answers' | 'index'>('questions');
   const [pageOverride, setPageOverride] = useState<number | null>(null);
-  const [wide, setWide] = useState(false);
+  const [wide, setWide] = useState(true);
   const [saveError, setSaveError] = useState(false);
   const [legacy] = useState(() => { try { return localStorage.getItem('oet-jahshan-notes-reading-book') ?? ''; } catch { return ''; } });
   const test = tests.find(test => test.number === saved.selected)!;

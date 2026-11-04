@@ -1,0 +1,1365 @@
+{
+  "version": 1,
+  "links": [
+    {
+      "recordingSha256": "cadc3b431545f283c561d1e91f1b76d3c19216c73bf2e34c588d6dd9f7638b1b",
+      "referenceSha256": "640788fb5e1e5b13370dde27052774fe4f0881f28c0773584939ab26d3e13449",
+      "questions": {
+        "C": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      "verification": {
+        "method": "three-separated-acoustic-envelope-windows",
+        "minimumCorrelation": 0.975874,
+        "transcriptCoverage": 0.831338,
+        "referenceTranscriptCoverage": 0.451004
+      }
+    },
+    {
+      "recordingSha256": "7a3b5ab229461a9c91c48525ed3d8a2b4b88c85a7e965a686752fd8f126de6b9",
+      "referenceSha256": "86f6064e4fdd5f2af9d50069332b15aea43ff1e41f6bb314534c2fc0803e98cf",
+      "questions": {
+        "B": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      "verification": {
+        "method": "three-separated-acoustic-envelope-windows",
+        "minimumCorrelation": 0.978285,
+        "transcriptCoverage": 0.839106,
+        "referenceTranscriptCoverage": 0.840985
+      }
+    },
+    {
+      "recordingSha256": "ee527aaf0a4442957d042c9d710f96dbf200083cca9549daec8763f2429a6069",
+      "referenceSha256": "640788fb5e1e5b13370dde27052774fe4f0881f28c0773584939ab26d3e13449",
+      "questions": {
+        "C": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      "verification": {
+        "method": "three-separated-acoustic-envelope-windows",
+        "minimumCorrelation": 0.964348,
+        "transcriptCoverage": 0.904575,
+        "referenceTranscriptCoverage": 0.408501
+      }
+    },
+    {
+      "recordingSha256": "fc1c1372caee53acf5271b79d92936d4b768b02606ed8e0c8771b8c80c390d5a",
+      "referenceSha256": "6a5a4dbdf23d00c8147081172adf3176eec440012f03595dd486c153e0e6e35f",
+      "questions": {
+        "B": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      "verification": {
+        "method": "three-separated-acoustic-envelope-windows",
+        "minimumCorrelation": 0.971088,
+        "transcriptCoverage": 0.865263,
+        "referenceTranscriptCoverage": 0.869841
+      }
+    },
+    {
+      "recordingSha256": "c5a67e244a393f81a58b6c347dcce2e0b9195227786674677e5f24fd9edfb23e",
+      "referenceSha256": "31d83103944801d88ef58968d9c498c6c2df3f756f9c5641535028ad8caeddd9",
+      "questions": {
+        "C": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      "verification": {
+        "method": "three-separated-acoustic-envelope-windows",
+        "minimumCorrelation": 0.963072,
+        "transcriptCoverage": 0.887588,
+        "referenceTranscriptCoverage": 0.447726
+      }
+    },
+    {
+      "recordingSha256": "45cf5f22300ba1b6e5ca957b0dce710826bf0322364569560603fa9a1b21c36e",
+      "referenceSha256": "31d83103944801d88ef58968d9c498c6c2df3f756f9c5641535028ad8caeddd9",
+      "questions": {
+        "C": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      "verification": {
+        "method": "three-separated-acoustic-envelope-windows",
+        "minimumCorrelation": 0.962423,
+        "transcriptCoverage": 0.889021,
+        "referenceTranscriptCoverage": 0.440047
+      }
+    },
+    {
+      "recordingSha256": "d31f8e14f832b306fa9994df7810801ed4f0e7bbab05ee770d07f0c8ec88dcc2",
+      "referenceSha256": "2d035ef1c7c5ffdbf8630b07565a37645a2e3b8d74d4632db00957d41e17631a",
+      "questions": {
+        "A": [
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24
+        ]
+      },
+      "verification": {
+        "method": "three-separated-acoustic-envelope-windows",
+        "minimumCorrelation": 0.979356,
+        "transcriptCoverage": 0.782116,
+        "referenceTranscriptCoverage": 0.366588
+      }
+    },
+    {
+      "recordingSha256": "71249e8e3e8c4ffba5283978f7a0784048b83eda2bdb0ced41f9a2554adc7ff2",
+      "referenceSha256": "2d035ef1c7c5ffdbf8630b07565a37645a2e3b8d74d4632db00957d41e17631a",
+      "questions": {
+        "A": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ]
+      },
+      "verification": {
+        "method": "three-separated-acoustic-envelope-windows",
+        "minimumCorrelation": 0.97957,
+        "transcriptCoverage": 0.837079,
+        "referenceTranscriptCoverage": 0.439787
+      }
+    },
+    {
+      "recordingSha256": "f1cbeff83baa690409344e333303d8fb4c9bc36298843f513a9c3c0f30240fb9",
+      "referenceSha256": "e88c823b938e36786f60a11e553fc99705867b9a3957de159fb72db4352f40d1",
+      "questions": {
+        "C": [
+          31,
+          32,
+          33,
+          34,
+          35,
+          36
+        ]
+      },
+      "verification": {
+        "method": "three-separated-acoustic-envelope-windows",
+        "minimumCorrelation": 0.975714,
+        "transcriptCoverage": 0.856209,
+        "referenceTranscriptCoverage": 0.443567
+      }
+    },
+    {
+      "recordingSha256": "642c8c017e6cc18bbe39ca1af715a029b1cf9f516ac8ec07cb943891f7b3591c",
+      "referenceSha256": "e88c823b938e36786f60a11e553fc99705867b9a3957de159fb72db4352f40d1",
+      "questions": {
+        "C": [
+          37,
+          38,
+          39,
+          40,
+          41,
+          42
+        ]
+      },
+      "verification": {
+        "method": "three-separated-acoustic-envelope-windows",
+        "minimumCorrelation": 0.973217,
+        "transcriptCoverage": 0.907621,
+        "referenceTranscriptCoverage": 0.443567
+      }
+    },
+    {
+      "recordingSha256": "97f263a22c1fef16054796eb9fc10583c758b6fef70ff047d2a4f9d9c5d6ab79",
+      "referenceSha256": "ee34c40828319f3133bde933230caf92a96c0c242c17589a96630b86a5191988",
+      "questions": {
+        "B": [
+          25,
+          26,
+          27,
+          28,
+          29,
+          30
+        ]
+      },
+      "verification": {
+        "method": "three-separated-acoustic-envelope-windows",
+        "minimumCorrelation": 0.966046,
+        "transcriptCoverage": 0.8199,
+        "referenceTranscriptCoverage": 0.819085
+      }
+    },
+    {
+      "recordingSha256": "05538a5355c410a6e417c33922358a22aa343ff4a76fae049b8f32be4c299386",
+      "referenceSha256": "a3f03042f4f360d49224bd88e5b6258ea78f6aa948ff797e37f9e3ca2c46311d",
+      "questions": {
+        "B": [
+          25,
+          26,
+          27,
+          28,
+          29,
+          30
+        ]
+      },
+      "verification": {
+        "method": "three-separated-acoustic-envelope-windows",
+        "minimumCorrelation": 0.97281,
+        "transcriptCoverage": 0.839175,
+        "referenceTranscriptCoverage": 0.804348
+      }
+    },
+    {
+      "recordingSha256": "15fc6ac9c9e60dbc50f61317f6b06271f8bb85d833e88edd0fd935a691672b6c",
+      "referenceSha256": "5b49f7fd305c756f61fd9a011f72b36a8d900d770540e0df0a59af87c73165cc",
+      "questions": {
+        "A": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24
+        ]
+      },
+      "verification": {
+        "method": "three-separated-acoustic-envelope-windows",
+        "minimumCorrelation": 0.980029,
+        "transcriptCoverage": 0.842884,
+        "referenceTranscriptCoverage": 0.842365
+      }
+    },
+    {
+      "recordingSha256": "dd7920007b485e3b193b6b9ba4822b0bfb9fc407e6cff5376a7434b5043c9343",
+      "referenceSha256": "49d8190a73c357f0ebc3587b91443fec5676399ae6714322f835f9e9ab9057ca",
+      "questions": {
+        "A": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24
+        ]
+      },
+      "verification": {
+        "method": "three-separated-acoustic-envelope-windows",
+        "minimumCorrelation": 0.975565,
+        "transcriptCoverage": 0.813389,
+        "referenceTranscriptCoverage": 0.820681
+      }
+    },
+    {
+      "recordingSha256": "913aaa7215ec85a34b24937d24700962c02e28d27eab0a97c782bcf7b0be426d",
+      "referenceSha256": "1ac122a4430c9b164609264951b211ac0cdca640434b0dcd75c22bde04ee19cf",
+      "questions": {
+        "A": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24
+        ],
+        "B": [
+          25,
+          26,
+          27,
+          28,
+          29,
+          30
+        ],
+        "C": [
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42
+        ]
+      },
+      "verification": {
+        "method": "three-separated-acoustic-envelope-windows",
+        "minimumCorrelation": 0.999994,
+        "transcriptCoverage": 0.848184,
+        "referenceTranscriptCoverage": 0.842898
+      }
+    },
+    {
+      "recordingSha256": "1c033696569b0fc6cebf664ac05142c5d1a1a4a1e0d947a19f9d65ae84246880",
+      "referenceSha256": "026f1686edd506e1e5644e7531e86af48bb0a8ddc3c45fae27ef35ed8ce839c9",
+      "questions": {
+        "A": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24
+        ],
+        "B": [
+          25,
+          26,
+          27,
+          28,
+          29,
+          30
+        ],
+        "C": [
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42
+        ]
+      },
+      "verification": {
+        "method": "three-separated-acoustic-envelope-windows",
+        "minimumCorrelation": 0.999992,
+        "transcriptCoverage": 0.864156,
+        "referenceTranscriptCoverage": 0.858937
+      }
+    },
+    {
+      "recordingSha256": "dbc1c6208cfcf65d33a95fa09941f7598551ee41de6532f51dc8cc79d74d2869",
+      "referenceSha256": "7d35c58748f1fbf06b441851fcafa12ab01e02d3043fb9549f53bd70d28109c9",
+      "questions": {
+        "A": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24
+        ],
+        "B": [
+          25,
+          26,
+          27,
+          28,
+          29,
+          30
+        ],
+        "C": [
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42
+        ]
+      },
+      "verification": {
+        "method": "three-separated-acoustic-envelope-windows",
+        "minimumCorrelation": 0.999997,
+        "transcriptCoverage": 0.832804,
+        "referenceTranscriptCoverage": 0.839661
+      }
+    },
+    {
+      "recordingSha256": "157c80706c7f78888a5a648b10a876532da3ebd80d1aef71750260a2d141ab9d",
+      "referenceSha256": "d97e1b3327eb3d6820a3bca822be1675b3f75fc3d544576e2fb2a205d00c6aaa",
+      "questions": {
+        "A": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24
+        ],
+        "B": [
+          25,
+          26,
+          27,
+          28,
+          29,
+          30
+        ],
+        "C": [
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42
+        ]
+      },
+      "verification": {
+        "method": "three-separated-acoustic-envelope-windows",
+        "minimumCorrelation": 0.999984,
+        "transcriptCoverage": 0.87731,
+        "referenceTranscriptCoverage": 0.868394
+      }
+    },
+    {
+      "recordingSha256": "8d0dce3bd606d4b1e5620f943249e2ddf75a22a9537e94324baeeb12a4791d0a",
+      "referenceSha256": "50cb9905705fce8632966911412bbf684ad9d543fc9086bb38678000ed5ca2ec",
+      "questions": {
+        "A": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24
+        ],
+        "B": [
+          25,
+          26,
+          27,
+          28,
+          29,
+          30
+        ],
+        "C": [
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42
+        ]
+      },
+      "verification": {
+        "method": "three-separated-acoustic-envelope-windows",
+        "minimumCorrelation": 0.999995,
+        "transcriptCoverage": 0.800459,
+        "referenceTranscriptCoverage": 0.801687
+      }
+    },
+    {
+      "recordingSha256": "b12e14d14670b31a7d4014ce23b1eb29f706ca65af8307633e10b48a272b1a63",
+      "referenceSha256": "c950fcab1da87f0523c9b2ccada400febc8276052cca5355a8d18706cb0f568b",
+      "questions": {
+        "A": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24
+        ],
+        "B": [
+          25,
+          26,
+          27,
+          28,
+          29,
+          30
+        ],
+        "C": [
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42
+        ]
+      },
+      "verification": {
+        "method": "three-separated-acoustic-envelope-windows",
+        "minimumCorrelation": 0.999995,
+        "transcriptCoverage": 0.893527,
+        "referenceTranscriptCoverage": 0.888319
+      }
+    },
+    {
+      "recordingSha256": "fa271ec3f1524d1cae5329d70c90033f02ba42723ce2bff7627637b4d164d6d8",
+      "referenceSha256": "79b6a2a572820ae2a5f336a644a0d80267215bde436854fbd45b3126b393f20a",
+      "questions": {
+        "A": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24
+        ],
+        "B": [
+          25,
+          26,
+          27,
+          28,
+          29,
+          30
+        ],
+        "C": [
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42
+        ]
+      },
+      "verification": {
+        "method": "three-separated-acoustic-envelope-windows",
+        "minimumCorrelation": 0.999519,
+        "transcriptCoverage": 0.858845,
+        "referenceTranscriptCoverage": 0.856848
+      }
+    },
+    {
+      "recordingSha256": "80c8682bf67dbedb8664f28899595cee1daa6735e863d461b2db287f95cf88bd",
+      "referenceSha256": "128cb4d827df46eb638dfc846d7085c30c2ef63047c7cf01f7f630d520deca0a",
+      "questions": {
+        "A": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24
+        ],
+        "B": [
+          25,
+          26,
+          27,
+          28,
+          29,
+          30
+        ],
+        "C": [
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42
+        ]
+      },
+      "verification": {
+        "method": "three-separated-acoustic-envelope-windows",
+        "minimumCorrelation": 0.999995,
+        "transcriptCoverage": 0.85339,
+        "referenceTranscriptCoverage": 0.856201
+      }
+    },
+    {
+      "recordingSha256": "527c2cb259124030680de3f7e2799aa468219696bea0ced54586fb9b1c971c46",
+      "referenceSha256": "1277c769d704ca981fdfd15ce67d6f6b0f991c2fdabd54cd8099a121caec31fb",
+      "questions": {
+        "A": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24
+        ],
+        "B": [
+          25,
+          26,
+          27,
+          28,
+          29,
+          30
+        ],
+        "C": [
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42
+        ]
+      },
+      "verification": {
+        "method": "three-separated-acoustic-envelope-windows",
+        "minimumCorrelation": 0.999998,
+        "transcriptCoverage": 0.886881,
+        "referenceTranscriptCoverage": 0.88471
+      }
+    },
+    {
+      "recordingSha256": "ffdc5140c76659ce4d2fb585f9c09a0e229553b2ee870bd6a57dd1b9599935e1",
+      "referenceSha256": "9d6949936ab90d9359a73c357adbe09cf067c340cae154fa46bef3b9fcadde4a",
+      "questions": {
+        "A": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24
+        ],
+        "B": [
+          25,
+          26,
+          27,
+          28,
+          29,
+          30
+        ],
+        "C": [
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42
+        ]
+      },
+      "verification": {
+        "method": "three-separated-acoustic-envelope-windows",
+        "minimumCorrelation": 0.999998,
+        "transcriptCoverage": 0.86824,
+        "referenceTranscriptCoverage": 0.86824
+      }
+    },
+    {
+      "recordingSha256": "3b1008640225ade885e780b31fae3b047ab04f9cf2ba6168cf074eb8e9aa84f1",
+      "referenceSha256": "a4d1b80232a474ccb4d586f696110c8cb8a1615b171aa633b562bcd48df6301f",
+      "questions": {
+        "A": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24
+        ],
+        "B": [
+          25,
+          26,
+          27,
+          28,
+          29,
+          30
+        ],
+        "C": [
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42
+        ]
+      },
+      "verification": {
+        "method": "three-separated-acoustic-envelope-windows",
+        "minimumCorrelation": 0.999999,
+        "transcriptCoverage": 0.884127,
+        "referenceTranscriptCoverage": 0.88671
+      }
+    },
+    {
+      "recordingSha256": "76540fd80fe6e5649ba64eecf558377b4e9d509a17d0811d2f495c5307a9d09d",
+      "referenceSha256": "66ab6b4790d58ea0ca8beb1f4adb1d59b22079820373eea049f87f22ddd90a50",
+      "questions": {
+        "A": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24
+        ],
+        "B": [
+          25,
+          26,
+          27,
+          28,
+          29,
+          30
+        ],
+        "C": [
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42
+        ]
+      },
+      "verification": {
+        "method": "three-separated-acoustic-envelope-windows",
+        "minimumCorrelation": 0.994048,
+        "transcriptCoverage": 0.857584,
+        "referenceTranscriptCoverage": 0.847346
+      }
+    },
+    {
+      "recordingSha256": "9a478598132f83ab1c7646acee16b023ee7270290ba54014552647acbbd41264",
+      "referenceSha256": "9d6949936ab90d9359a73c357adbe09cf067c340cae154fa46bef3b9fcadde4a",
+      "questions": {
+        "A": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24
+        ],
+        "B": [
+          25,
+          26,
+          27,
+          28,
+          29,
+          30
+        ],
+        "C": [
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42
+        ]
+      },
+      "verification": {
+        "method": "three-separated-acoustic-envelope-windows",
+        "minimumCorrelation": 0.994546,
+        "transcriptCoverage": 0.854662,
+        "referenceTranscriptCoverage": 0.857012
+      }
+    },
+    {
+      "recordingSha256": "c0493e2dc260456b5814116fb91e1156e3184427ee0b6538595cf089933af132",
+      "referenceSha256": "965f345d3041777f012cdef260f7e0304908658bbe7a019fdd2da7c52dc9480a",
+      "questions": {
+        "A": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24
+        ],
+        "B": [
+          25,
+          26,
+          27,
+          28,
+          29,
+          30
+        ],
+        "C": [
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42
+        ]
+      },
+      "verification": {
+        "method": "three-separated-acoustic-envelope-windows",
+        "minimumCorrelation": 0.999845,
+        "transcriptCoverage": 0.986061,
+        "referenceTranscriptCoverage": 0.982005
+      }
+    },
+    {
+      "recordingSha256": "289afe36f863eda97240d537832574c7524aff0222dd6e470ac10a815eb6558b",
+      "referenceSha256": "aa1932a40d28935e1502a0ca609e487b48b410f9c0653af9daf9429462f8bde6",
+      "questions": {
+        "A": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24
+        ],
+        "B": [
+          25,
+          26,
+          27,
+          28,
+          29,
+          30
+        ],
+        "C": [
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42
+        ]
+      },
+      "verification": {
+        "method": "three-separated-acoustic-envelope-windows",
+        "minimumCorrelation": 0.992173,
+        "transcriptCoverage": 0.973404,
+        "referenceTranscriptCoverage": 0.971291
+      }
+    },
+    {
+      "recordingSha256": "96feca070c140fec5abd29049bb61452cd59ecd27b6c7701c671a478e26cc5ad",
+      "referenceSha256": "bc5381030daced1515d88f15ffce92ce55772cff3bbdddbc95d2e367b3fedaa5",
+      "questions": {
+        "B": [
+          29,
+          30
+        ]
+      },
+      "verification": {
+        "method": "reviewed-spoken-script-and-printed-question",
+        "sourcePaperSha256": "51c74510842bc49d5babacdaf2a5b241a20e90979e03a98534645f748a7120fa",
+        "reviewedTopics": "Pharmacist and Mrs Milton\u2019s anti-inflammatory prescription; surgeon and surgical sign-out",
+        "transcriptCoverage": 0.883,
+        "referenceTranscriptCoverage": 0.257
+      }
+    },
+    {
+      "recordingSha256": "36bd9b22bff7ce686fa7f2a3ea92903e0b8d087a8d6ee7fbfb63e96a144145a6",
+      "referenceSha256": "2d035ef1c7c5ffdbf8630b07565a37645a2e3b8d74d4632db00957d41e17631a",
+      "questions": {
+        "A": [
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24
+        ]
+      },
+      "verification": {
+        "method": "reviewed-spoken-script-and-printed-question",
+        "sourcePaperSha256": "51c74510842bc49d5babacdaf2a5b241a20e90979e03a98534645f748a7120fa",
+        "reviewedTopics": "Gastroenterologist and Toby Smithers; initial stomach upset and subsequent symptoms",
+        "transcriptCoverage": 0.841,
+        "referenceTranscriptCoverage": 0.392
+      }
+    },
+    {
+      "recordingSha256": "2578de0de5c6a4972e34a5cf09416c65b0dfb629e7efc4acc6bfbc673e52e346",
+      "referenceSha256": "bc5381030daced1515d88f15ffce92ce55772cff3bbdddbc95d2e367b3fedaa5",
+      "questions": {
+        "B": [
+          25,
+          26,
+          27,
+          28
+        ]
+      },
+      "verification": {
+        "method": "reviewed-spoken-script-and-printed-question",
+        "sourcePaperSha256": "51c74510842bc49d5babacdaf2a5b241a20e90979e03a98534645f748a7120fa",
+        "reviewedTopics": "Consultant and admitted patient\u2019s daughter; trainee nurse feedback; COPD handover; volunteer training",
+        "transcriptCoverage": 0.901,
+        "referenceTranscriptCoverage": 0.647
+      }
+    },
+    {
+      "recordingSha256": "40d9c526c384e90d30d1045e25919bc6172fb02b80af95bf67e3653b8a994834",
+      "referenceSha256": "2d035ef1c7c5ffdbf8630b07565a37645a2e3b8d74d4632db00957d41e17631a",
+      "questions": {
+        "A": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ]
+      },
+      "verification": {
+        "method": "reviewed-spoken-script-and-printed-question",
+        "sourcePaperSha256": "51c74510842bc49d5babacdaf2a5b241a20e90979e03a98534645f748a7120fa",
+        "reviewedTopics": "Consultant rheumatologist and Suzanne Hines; chapped lips, painful joints and the first patient\u2019s case notes",
+        "transcriptCoverage": 0.875,
+        "referenceTranscriptCoverage": 0.474
+      }
+    },
+    {
+      "recordingSha256": "7ba1fc1c2781652d98de00e8c2d23242386cc672699fb2833471ce16d99a5332",
+      "referenceSha256": "e88c823b938e36786f60a11e553fc99705867b9a3957de159fb72db4352f40d1",
+      "questions": {
+        "C": [
+          31,
+          32,
+          33,
+          34,
+          35,
+          36
+        ]
+      },
+      "verification": {
+        "method": "reviewed-spoken-script-and-printed-question",
+        "sourcePaperSha256": "51c74510842bc49d5babacdaf2a5b241a20e90979e03a98534645f748a7120fa",
+        "reviewedTopics": "Dr Bob Dean discussing a trial of treatments for tennis elbow",
+        "transcriptCoverage": 0.882,
+        "referenceTranscriptCoverage": 0.457
+      }
+    },
+    {
+      "recordingSha256": "08323723af6d1577a76768fa64214c371db758b1700accfc784ec5e6770b00c9",
+      "referenceSha256": "e88c823b938e36786f60a11e553fc99705867b9a3957de159fb72db4352f40d1",
+      "questions": {
+        "C": [
+          37,
+          38,
+          39,
+          40,
+          41,
+          42
+        ]
+      },
+      "verification": {
+        "method": "reviewed-spoken-script-and-printed-question",
+        "sourcePaperSha256": "51c74510842bc49d5babacdaf2a5b241a20e90979e03a98534645f748a7120fa",
+        "reviewedTopics": "Dr Sarah Jones discussing brief weight-loss interventions by GPs",
+        "transcriptCoverage": 0.94,
+        "referenceTranscriptCoverage": 0.452
+      }
+    }
+  ]
+}

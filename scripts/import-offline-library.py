@@ -16,6 +16,7 @@ import zipfile
 import xml.etree.ElementTree as ET
 from pathlib import Path
 from pdf_layout import attach_pdf_display
+from presentation_text import presentation_text, plain_text, VERSION as FORMAT_VERSION
 
 ROOT = Path(__file__).resolve().parents[1]
 EXTENSIONS = {'.pdf', '.docx', '.doc', '.pptx', '.ppt', '.xlsx', '.xls', '.csv', '.tsv', '.txt', '.md', '.rtf', '.html', '.htm', '.json', '.apkg', '.zip', '.rar', '.7z', '.mp3', '.m4a', '.wav', '.ogg', '.flac', '.aac', '.mp4', '.webm', '.mov', '.jpg', '.jpeg', '.png', '.webp', '.heic', '.heif', '.tif', '.tiff', '.bmp', '.gif', '.avif'}
@@ -65,15 +66,16 @@ def source_text(source, sha):
             paragraphs = [''.join(t.text or '' for t in p.iter() if t.tag.endswith('}t')) for p in tree.iter() if p.tag.endswith('}p')]
         return {'sourceSha256': sha, 'text': '\n'.join(paragraphs)}
     if source.suffix.lower() in {'.txt','.md','.csv','.tsv','.json','.html','.htm'}:
-        content=source.read_text(errors='replace')
+        content=plain_text(source)
         if source.suffix.lower() in {'.html','.htm'}:
             content=re.sub(r'<(?:script|style)\b[^>]*>.*?</(?:script|style)>','',content,flags=re.I|re.S)
             content=re.sub(r'<[^>]+>',' ',content)
-        return {'sourceSha256':sha,'text':content}
+        return {'sourceSha256':sha,'text':content,'formatExtractionVersion':FORMAT_VERSION}
     if source.suffix.lower() in {'.doc','.rtf'}:
         result=subprocess.run(['textutil','-convert','txt','-stdout',str(source)],capture_output=True,timeout=90,check=True)
         return {'sourceSha256':sha,'text':result.stdout.decode(errors='replace')}
-    if source.suffix.lower() in {'.pptx','.xlsx'}:
+    if source.suffix.lower() in {'.ppt','.pptx'}:return presentation_text(source,sha,ROOT)
+    if source.suffix.lower() == '.xlsx':
         with zipfile.ZipFile(source) as document:
             names=sorted(n for n in document.namelist() if re.match(r'ppt/slides/slide\d+\.xml$|xl/sharedStrings.xml$',n))
             pages=[]
@@ -94,6 +96,31 @@ def valid_magic(source):
     if ext in {'.m4a', '.mp4'}: return b'ftyp' in head[:40]
     if ext == '.wav': return head.startswith(b'RIFF')
     return bool(head)
+
+def attach_container_entries(source,out,files):
+    by_path={path:row for row in files.values() for path in row.get('sourcePaths',[])}
+    for directory in ['Imported Archives','Imported Presentations']:
+        base=source/directory
+        if not base.is_dir():continue
+        for marker in sorted([*base.rglob('archive-import.json'),*base.rglob('.oet-archive-import.json')]):
+            if any(part.startswith('._') for part in marker.relative_to(base).parts):continue
+            try:info=json.loads(marker.read_text())
+            except (OSError,ValueError):continue
+            row=files.get(info.get('sourceSha256'))
+            if not row:continue
+            related={}
+            for name in info.get('files',[]):
+                candidate=marker.parent/name
+                if candidate.is_symlink() or not candidate.resolve().is_relative_to(marker.parent.resolve()):continue
+                child=by_path.get(candidate.relative_to(source).as_posix())
+                if child and child['sha256']!=row['sha256']:related[child['sha256']]={k:child[k] for k in ['id','filename','sha256','format']}
+            text_path=out/'text'/f'{row["sha256"]}.json';payload=json.loads(text_path.read_text())
+            payload['relatedFiles']=list(related.values())
+            if row['format'] in {'rar','zip','7z'}:
+                payload['text']='Extracted study files from '+row['filename']+'\n\n'+'\n'.join(child['filename'] for child in related.values())
+                payload['containerType']='archive'
+            row['hasText']=bool(payload['text'].strip());row['excerpt']=re.sub(r'\s+',' ',payload['text'])[:320]
+            text_path.write_text(json.dumps(payload,ensure_ascii=False)+'\n')
 
 def main():
     parser = argparse.ArgumentParser()
@@ -130,19 +157,23 @@ def main():
         cache[str(p)]={**signature,'sha256':sha}
         if sha in published: continue
         relative=p.relative_to(source).as_posix()
-        if sha in unique and (out/'files'/Path(unique[sha]['assetPath']).name).exists():
+        ext=p.suffix.lower();text_path=out/'text'/f'{sha}.json'
+        refresh=ext in {'.ppt','.pptx','.txt','.md','.csv','.tsv','.json','.html','.htm'} and (not text_path.exists() or json.loads(text_path.read_text()).get('formatExtractionVersion')!=FORMAT_VERSION)
+        if sha in unique and (out/'files'/Path(unique[sha]['assetPath']).name).exists() and not refresh:
             if relative not in unique[sha]['sourcePaths']:unique[sha]['sourcePaths'].append(relative)
             continue
-        ext=p.suffix.lower(); target=out/'files'/f'{sha}{ext}'; text_path=out/'text'/f'{sha}.json'
+        target=out/'files'/f'{sha}{ext}'
         try:
-            text=json.loads(text_path.read_text()) if text_path.exists() else source_text(p,sha)
+            text=json.loads(text_path.read_text()) if text_path.exists() and not refresh else source_text(p,sha)
         except Exception as error: rejected.append({'path':relative,'reason':str(error)}); continue
         if not target.exists(): shutil.copyfile(p,target)
-        if not text_path.exists(): text_path.write_text(json.dumps(text,ensure_ascii=False))
+        if not text_path.exists() or refresh: text_path.write_text(json.dumps(text,ensure_ascii=False))
         content=text['text']
-        unique[sha]={'id':'offline-'+sha[:20], 'filename':p.name, 'relativePath':'GENODODI OET/'+relative, 'sourcePaths':[relative], 'collection':'OET', 'format':ext[1:], 'bytes':p.stat().st_size, 'sha256':sha, 'assetPath':f'offline-library/files/{sha}{ext}', 'textPath':f'offline-library/text/{sha}.json', 'skills':classify(relative,content,ext), 'hasText':bool(content.strip()), 'excerpt':re.sub(r'\s+',' ',content)[:320], 'duplicateOf':None, 'pageCount':len(text.get('pages',[])), 'ocrPageCount':0}
-        added+=1
+        previous=unique.get(sha,{})
+        unique[sha]=previous|{'id':'offline-'+sha[:20], 'filename':previous.get('filename',p.name), 'relativePath':previous.get('relativePath','GENODODI OET/'+relative), 'sourcePaths':list(dict.fromkeys(previous.get('sourcePaths',[])+[relative])), 'collection':'OET', 'format':ext[1:], 'bytes':p.stat().st_size, 'sha256':sha, 'assetPath':f'offline-library/files/{sha}{ext}', 'textPath':f'offline-library/text/{sha}.json', 'skills':classify(relative,content,ext), 'hasText':bool(content.strip()), 'excerpt':re.sub(r'\s+',' ',content)[:320], 'duplicateOf':None, 'pageCount':len(text.get('pages',[])), 'ocrPageCount':sum(page.get('extraction')=='ocr' for page in text.get('pages',[]))}
+        added+=not bool(previous)
         if len(unique)%50==0: print(f'Imported {len(unique)} additional originals ({i+1}/{len(candidates)} paths)',flush=True)
+    attach_container_entries(source,out,unique)
     catalog={'version':1,'source':'GENODODI OET','fileCount':len(unique),'totalBytes':sum(r['bytes'] for r in unique.values()),'files':list(unique.values()),'rejected':rejected}
     temporary=(out/'catalog.json').with_suffix('.tmp');temporary.write_text(json.dumps(catalog,ensure_ascii=False,indent=2)+'\n');temporary.replace(out/'catalog.json')
     cache_path.write_text(json.dumps(cache,ensure_ascii=False)+'\n')

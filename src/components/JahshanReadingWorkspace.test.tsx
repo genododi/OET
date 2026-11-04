@@ -3,7 +3,8 @@ import { afterEach, expect, it } from 'vitest';
 import { JahshanReadingWorkspace } from './JahshanReadingWorkspace';
 afterEach(() => { cleanup(); localStorage.clear(); });
 it('uses the Reading index and separates the shorter paper from full papers', () => {
-  render(<JahshanReadingWorkspace bookUrl="blob:reading-book" />);
+  const view = render(<JahshanReadingWorkspace bookUrl="blob:reading-book" />);
+  expect(view.container.querySelector('.reading-workbench-wide')).not.toBeNull();
   expect(screen.getByTitle('Jahshan reading collection')).toHaveAttribute('src', 'blob:reading-book#page=83');
   fireEvent.click(screen.getByRole('button', { name: 'Review answer key' }));
   expect(screen.getByTitle('Jahshan reading collection')).toHaveAttribute('src', 'blob:reading-book#page=102');

@@ -100,7 +100,7 @@ function PracticeWorkspace({ file, skill, onNavigate }: { file: Material; skill:
   const baseKey = `oet-supplied-v1:${file.id}:${skill}`;
   const [drafts, setDrafts] = useState<Record<string,SavedPractice>>(() => ({[baseKey]:readSaved(baseKey)}));
   const [saveError, setSaveError] = useState(false);
-  const [wideSource,setWideSource] = useState(file.skills.length === 4);
+  const [wideSource,setWideSource] = useState(true);
   const [structured, setStructured] = useState(false);
   const [context, setContext] = useState<MaterialContext | null>(null);
   const [duration, setDuration] = useState(skill === 'writing' ? 40 : skill === 'speaking' ? 5 : 15);
@@ -165,9 +165,9 @@ function PracticeWorkspace({ file, skill, onNavigate }: { file: Material; skill:
     <p className="material-guidance">{guidance[skill]}</p>
     {skill === 'listening' && <button className="btn btn-secondary" onClick={() => onNavigate('listening')}>Open real listening recordings</button>}
     {skill === 'writing' && <p className="meta">Applying your NotebookLM writing checklist. <a href="#notebook">Review the imported guide →</a></p>}
-    {(skill === 'writing' || skill === 'speaking') && <div className="reading-paper-actions"><button className="btn btn-secondary" aria-pressed={wideSource} onClick={() => setWideSource(!wideSource)}>{wideSource ? 'Show source beside my response' : 'Expand source to full width'}</button></div>}
+    {skill !== 'listening' && <div className="reading-paper-actions"><button className="btn btn-secondary" aria-pressed={wideSource} onClick={() => setWideSource(!wideSource)}>{wideSource ? skill === 'reading' ? 'Show source beside questions' : 'Show source beside my response' : 'Expand source to full width'}</button></div>}
     <div className={`material-workspace-grid${(skill === 'writing' || skill === 'speaking') && !wideSource ? ' material-productive-workbench' : ''}`}>
-      <MaterialPracticePaper file={file} skill={skill} onAnswers={response=>update({response,completed:false})} onQuestionMode={setStructured} onContext={changeContext} />
+      <MaterialPracticePaper file={file} skill={skill} wideSource={wideSource} onAnswers={response=>update({response,completed:false})} onQuestionMode={setStructured} onContext={changeContext} />
       <ReviewContainer className="card material-answer material-review-details" aria-label="Your practice response">
         {structured && <summary>4 · Review notes, timer and saved work</summary>}
         <h3>{structured ? '4' : '3'} · {skill === 'writing' ? 'Write your letter and review' : skill === 'speaking' ? 'Practise speaking and review' : structured ? 'Review your work and save notes' : 'Record your answers and review'}</h3>

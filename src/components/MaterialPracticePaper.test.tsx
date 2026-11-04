@@ -15,10 +15,20 @@ beforeEach(()=>{
   vi.stubGlobal('fetch',vi.fn(async (url:string)=>({ok:true,json:async()=>url.includes('/sheets/')?sheet:url.includes('/transcripts/')?{trackId:`material-${audioSha}`,sourceSha256:audioSha,kind:'automatic-transcription',segments:[{start:0,end:5,text:'Part A.'},{start:50,end:55,text:'Now look at Part B.'}]}:url.endsWith('passage.json')?{text:'Full passage',pages:[{number:1,text:'Complete reading text A.'},{number:2,text:'Complete reading text B.'}]}:{text:'Question pages',pages:Array.from({length:8},(_,i)=>({number:i+1,text:`Original page ${i+1}`}))}})));
 });
 afterEach(()=>{cleanup();vi.unstubAllGlobals();});
+it('exposes extracted archive members without losing the matching source worksheet',async()=>{
+ vi.stubGlobal('fetch',vi.fn(async(url:string)=>({ok:true,json:async()=>url.includes('/sheets/')?{...sheet,relatedFiles:[{id:'audio-child',filename:'Part A.ogg',format:'ogg'},{id:'paper-child',filename:'Question paper.pdf',format:'pdf'}]}:{text:'Source notes',pages:[{number:1,text:'Source notes'}]}})));
+ render(<MaterialPracticePaper {...props} file={{...file,filename:'Listening.rar',format:'rar'}}/>);
+ await screen.findByText('Files extracted from this archive · 2');
+ expect(screen.getByRole('link',{name:'Part A.ogg'})).toHaveAttribute('href','#materials/audio-child');
+ expect(screen.getByRole('article',{name:'Question 1'})).toBeInTheDocument();
+});
 
 it('shows the complete matched reading passage and keeps each printed answer beside its question without replacing the attempt',async()=>{
   const view=render(<MaterialPracticePaper {...props} />);
   await screen.findByText('Complete reading text A.');
+  expect(view.container.querySelector('.material-reading-workbench')).toBeNull();
+  view.rerender(<MaterialPracticePaper {...props} wideSource={false} />);
+  expect(view.container.querySelector('.material-reading-workbench')).not.toBeNull();
   expect(screen.getByText('Complete reading text B.')).toBeVisible();
   expect(screen.getByText('Original page 3')).toBeVisible();expect(screen.getByText('Original page 4')).toBeVisible();
   expect(screen.queryByText('Original page 8')).toBeNull();

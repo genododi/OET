@@ -1,5 +1,36 @@
 import { expect, test } from '@playwright/test';
 import suppliedCatalog from '../src/data/desktopMaterials.generated.json' with { type: 'json' };
+import importedCatalog from '../public/imported-resources/catalog.json' with { type: 'json' };
+
+test('RAR members and image-only PowerPoint slides use the source practice layout', async ({ page }) => {
+  const archive=importedCatalog.files.find(file=>file.filename==='50 letter with A score.rar')!;
+  await page.goto(`./#materials/${archive.id}`);
+  await page.getByText('Files extracted from this archive · 71').click();
+  await expect(page.locator('.material-contained-files a')).toHaveCount(71);
+  await expect(page.locator('.material-productive-workbench')).toHaveCount(0);
+  const slides=importedCatalog.files.find(file=>file.filename==='Dr. Ahmed.pptx')!;
+  await page.goto(`./#materials/${slides.id}`);
+  await page.getByRole('group',{name:'Practice skill',exact:true}).getByRole('button',{name:'Writing',exact:true}).click();
+  await page.getByText('View original slide image').first().click();
+  const original=page.getByAltText('Original slide 1: Dr. Ahmed.pptx');
+  await expect.poll(()=>original.evaluate(image=>(image as HTMLImageElement).naturalWidth)).toBeGreaterThan(0);
+  await expect(page.locator('.material-source .recognised-page').first()).toBeVisible();
+  await expect(page.getByRole('button',{name:'Show source beside my response'})).toBeVisible();
+});
+
+test('an OGG excerpt reveals only its own printed questions and preserves the chosen answer',async({page})=>{
+  const audio=importedCatalog.files.find(file=>file.filename==='PArt B 29-30.ogg')!;
+  await page.goto(`./#materials/${audio.id}`);
+  await expect(page.getByRole('article',{name:'Question 29',exact:true})).toBeVisible();
+  await expect(page.locator('.material-paper-question')).toHaveCount(2);
+  await expect(page.getByRole('article',{name:'Question 25',exact:true})).toHaveCount(0);
+  const row=page.getByRole('article',{name:'Question 29',exact:true});
+  await row.getByRole('combobox').selectOption('B');
+  await row.getByRole('button',{name:'Show answer for Question 29',exact:true}).click();
+  await expect(row.locator('.reading-revealed')).toContainText('Printed answer:');
+  await expect(row.getByRole('combobox')).toHaveValue('B');
+  await expect(page.locator('audio source')).toHaveAttribute('type','audio/ogg');
+});
 
 test('recent files return to the same filtered list after viewing and reloading a source', async ({ page }) => {
   const source = suppliedCatalog.files.find(file => file.filename === 'Sample Writing Task 1.docx')!;

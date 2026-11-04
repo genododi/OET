@@ -15,6 +15,7 @@ export function MaterialSourceText({ id, filename, format, textPath, assetPath, 
   const [zoom,setZoom] = useState(false);
   const [pageLayout, setPageLayout] = useState(false);
   const image = sourceImageFormats.includes(format.toLowerCase());
+  const slide = ['ppt','pptx'].includes(format.toLowerCase());
   const [error, setError] = useState(false);
   const [all, setAll] = useState(defaultAll);
   const [page, setPage] = useState(() => { try { const value = Number(localStorage.getItem(storageKey)); return Number.isInteger(value) && value > 0 ? value : 1; } catch { return 1; } });
@@ -42,16 +43,17 @@ export function MaterialSourceText({ id, filename, format, textPath, assetPath, 
     <div className="material-toolbar"><h3>{heading ?? (children ? '2 · Listen and read the source text' : '2 · Read the source text')}</h3><a href={original} target="_blank" rel="noopener noreferrer">Open original{format === 'pdf' ? ` · page ${current}` : ''} ↗</a></div>
     {children}
     {pages && pages.length > 1 && <div className="material-page-controls" role="group" aria-label="Source pages">
-      <button className="btn btn-secondary" disabled={all || currentIndex === 0} onClick={() => changePage(pages[currentIndex - 1].number)}>Previous page</button>
-      <div className="material-page-select"><label htmlFor={pageControl}>Source page</label><select id={pageControl} value={current} disabled={all} onChange={event => changePage(Number(event.target.value))}>{pages.map(entry => <option key={entry.number} value={entry.number}>Page {entry.number} of {pages.length}</option>)}</select></div>
-      <button className="btn btn-secondary" disabled={all || currentIndex === pages.length - 1} onClick={() => changePage(pages[currentIndex + 1].number)}>Next page</button>
-      <label><input type="checkbox" checked={all} onChange={event => setAll(event.target.checked)} /> Show all pages</label>
+      <button className="btn btn-secondary" disabled={all || currentIndex === 0} onClick={() => changePage(pages[currentIndex - 1].number)}>Previous {slide ? 'slide' : 'page'}</button>
+      <div className="material-page-select"><label htmlFor={pageControl}>Source {slide ? 'slide' : 'page'}</label><select id={pageControl} value={current} disabled={all} onChange={event => changePage(Number(event.target.value))}>{pages.map(entry => <option key={entry.number} value={entry.number}>{slide ? 'Slide' : 'Page'} {entry.number} of {pages.length}</option>)}</select></div>
+      <button className="btn btn-secondary" disabled={all || currentIndex === pages.length - 1} onClick={() => changePage(pages[currentIndex + 1].number)}>Next {slide ? 'slide' : 'page'}</button>
+      <label><input type="checkbox" checked={all} onChange={event => setAll(event.target.checked)} /> Show all {slide ? 'slides' : 'pages'}</label>
     </div>}
     {visible.some(entry => validSourceLayout(entry.display?.layout ?? entry.layout, entry.display?.text ?? entry.text)) && <div className="material-text-view-controls" role="group" aria-label="Text display"><button type="button" aria-pressed={!pageLayout} onClick={() => setPageLayout(false)}>Readable text</button><button type="button" aria-pressed={pageLayout} onClick={() => setPageLayout(true)}>Match page layout</button><button type="button" aria-pressed={zoom} onClick={() => setZoom(!zoom)}>{zoom ? 'Fit text to pane' : 'Enlarge text'}</button><span className="meta">Page layout preserves columns and tables. Readable text follows the source blocks. Underlined text needs checking against the original.</span></div>}
     {error && loadedPath === textPath ? <p role="alert">Text could not be loaded. Open or download the original, or reopen this task to retry.</p> : !pages ? <p role="status">Loading source text…</p> : visible.map(entry => <article className="material-text-page" key={entry.number} aria-label={`Source page ${entry.number}`}>
-      {pages.length > 1 && <h4>Page {entry.number}</h4>}
+      {pages.length > 1 && <h4>{slide ? 'Slide' : 'Page'} {entry.number}</h4>}
       {entry.extraction === 'ocr' && <p className="meta">{entry.needsReview ? 'Handwritten or difficult text: this automatic transcription needs checking against the original image, especially names, numbers and medical terms.' : 'Text recognised from the scanned page. Check the original for diagrams, tables or uncertain wording.'}</p>}
       {entry.text.trim() ? <RecognisedSourceText text={entry.display && validSourceLayout(entry.display.layout, entry.display.text) ? entry.display.text : entry.text} layout={entry.display?.layout ?? entry.layout} pageLayout={pageLayout} /> : <p>Text recognition is pending or found no readable words on this page. <a href={`${url(assetPath)}${format === 'pdf' ? `#page=${entry.number}` : ''}`} target="_blank" rel="noopener noreferrer">Open the original page ↗</a></p>}
+      {slide && entry.previewPath && <details><summary>View original slide image</summary><img className="material-original-image" src={url(entry.previewPath)} alt={`Original slide ${entry.number}: ${filename}`} loading="lazy" /></details>}
     </article>)}
     {image && <details open={visible.every(entry => !entry.text.trim())}><summary>View original image</summary><img className="material-original-image" src={url(visible[0]?.previewPath ?? assetPath)} alt={`Original source: ${filename}`} loading="lazy" /></details>}
     <small>Full source text, with the supplied wording. Your response and review are saved separately below.</small>

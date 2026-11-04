@@ -9,6 +9,7 @@ import hashlib
 import json
 import re
 from pathlib import Path
+from material_audio_matches import publish_audio_matches, publish_container_matches
 
 ROOT = Path(__file__).resolve().parents[1]
 SKILLS = ['reading','listening','writing','speaking']
@@ -32,11 +33,17 @@ def descriptive_stem(file):
     return len([token for token in words(stem(file)) if token.isalpha() and len(token) >= 3]) >= 2
 
 def part_of(value):
-    match = re.search(r'\bpart\s*[-:]?\s*([abc])\b',value,re.I)
-    if not match: match = re.match(r'^\s*([abc])(?:[-_.\s]|\d)',Path(value).stem,re.I)
+    name=Path(value).stem
+    match = re.search(r'\bpart\s*[-:]?\s*([abc])(?:[12])?(?=\W|$)',name,re.I)
+    if not match: match = re.match(r'^\s*([abc])(?:[12])?(?=[-_.\s]|$)',name,re.I)
+    if not match: match = re.search(r'(?:[-_\s])([abc])\s*$',name,re.I)
     return match.group(1).upper() if match else None
 
+def script_file(file):
+    return bool(re.search(r'\b(?:transcript|tapescript|audio\s*script)\b',file['filename'],re.I))
+
 def key_file(file, text=''):
+    if file.get('format') in AUDIO:return False
     name = file['filename'].casefold()
     return ('answer booklet' not in name and bool(re.search(r'answers|answer[- _]?key|\bkey\b|model[- _]?(?:letter|answer)|\bcorrected letter\b', name))) or bool(re.match(r'^\s*(?:OET[^\n]*\n)?[^\n]{0,60}Answer Key\b', text, re.I))
 
@@ -158,15 +165,15 @@ def build(library):
         for sha in members:memberships[sha].update(members)
     def doc(sha,role=None):
         file=files[sha]
-        return {k:file[k] for k in ['id','filename','sha256','assetPath','textPath','format']}|{'role':role or ('answer-key' if data[sha]['key'] else 'recording' if file['format'] in AUDIO else 'partner-card' if re.search(r'(?:partner|patient)\s*card',file['filename'],re.I) else 'paper')}
+        return {k:file[k] for k in ['id','filename','sha256','assetPath','textPath','format']}|{'role':role or ('recording' if file['format'] in AUDIO else 'answer-key' if data[sha]['key'] else 'transcript' if script_file(file) else 'partner-card' if re.search(r'(?:partner|patient)\s*card',file['filename'],re.I) else 'paper')}
     out=ROOT/'public/material-practice';(out/'sheets').mkdir(parents=True,exist_ok=True)
-    index={};stats=collections.Counter()
+    index={};stats=collections.Counter();payloads={}
     benchmark=json.loads((ROOT/'src/data/benchmarkCollection.json').read_text())['entries']
     named_recordings={s:words(Path(f['filename']).stem) for s,f in files.items() if f['format'] in AUDIO and len(words(Path(f['filename']).stem))>=2 and all(word.isalpha() for word in words(Path(f['filename']).stem))}
     for sha,file in files.items():
         related={sha}|memberships[sha]
         # A selected audio or key opens its matched source paper automatically.
-        papers=[s for s in sorted(related,key=lambda s:(files[s]['filename'].casefold(),s)) if files[s]['format'] not in AUDIO and not data[s]['key'] and files[s]['format']!='mp4']
+        papers=[s for s in sorted(related,key=lambda s:(files[s]['filename'].casefold(),s)) if files[s]['format'] not in AUDIO and not data[s]['key'] and files[s]['format']!='mp4' and not script_file(files[s])]
         if sha in papers:papers.remove(sha);papers.insert(0,sha)
         units=[]
         for source_sha in papers:
@@ -239,7 +246,7 @@ def build(library):
         for unit in units:
             source=files[unit['sourceSha256']];ranges={r['page']:r for r in unit.get('ranges',[])}
             body=' '.join(p['text'][ranges[p['number']]['start']:ranges[p['number']]['end']] if p['number'] in ranges else p['text'] for p in data[unit['sourceSha256']]['pages'] if p['number'] in unit['pages'])
-            relevant=[s for s in recordings if not part_of(files[s]['filename']) or not unit['part'] or part_of(files[s]['filename'])==unit['part']]
+            relevant=[s for s in recordings if 'listening' in unit['skills'] and (not part_of(files[s]['filename']) or not unit['part'] or part_of(files[s]['filename'])==unit['part'])]
             scored=sorted([(len(words(Path(files[s]['filename']).stem) & words(unit['label']+' '+body[:1200])),s) for s in relevant],reverse=True)
             # A named patient/topic can identify one extract inside a multi-page Part A paper.
             if not unit['recordings']:
@@ -283,10 +290,18 @@ def build(library):
         documents=[doc(s) for s in sorted(related)]
         recordings=[s for s in related if files[s]['format'] in AUDIO]
         payload={'version':1,'sourceSha256':sha,'documents':documents,'units':units}
-        target=out/'sheets'/f'{sha}.json';target.write_text(json.dumps(payload,ensure_ascii=False)+'\n')
-        index[sha]={'sheetPath':f'material-practice/sheets/{sha}.json','units':len(units),'questions':sum(len(u['questions']) for u in units),'recordings':len(recordings)}
+        payloads[sha]=payload
+    publish_container_matches(ROOT,files,payloads,doc)
+    audio_report=publish_audio_matches(ROOT,files,payloads,doc,AUDIO)
+    publish_container_matches(ROOT,files,payloads,doc)
+    stats=collections.Counter()
+    for sha,payload in payloads.items():
+        units=payload['units'];target=out/'sheets'/f'{sha}.json';target.write_text(json.dumps(payload,ensure_ascii=False)+'\n')
+        index[sha]={'sheetPath':f'material-practice/sheets/{sha}.json','units':len(units),'questions':sum(len(u['questions']) for u in units),'recordings':sum(d['role']=='recording' for d in payload['documents'])}
+        stats['questions']+=index[sha]['questions'];stats['answers']+=sum('answer' in q for unit in units for q in unit['questions'])
     (out/'index.json').write_text(json.dumps({'version':1,'files':index},ensure_ascii=False)+'\n')
-    print(json.dumps({'sourceFiles':len(index),**stats}),flush=True)
+    (out/'audio-matches.json').write_text(json.dumps(audio_report,ensure_ascii=False)+'\n')
+    print(json.dumps({'sourceFiles':len(index),**stats,'audioFiles':len(audio_report['files']),'matchedAudioFiles':sum(row['matchedQuestions']>0 for row in audio_report['files'])}),flush=True)
 
 if __name__=='__main__':
     parser=argparse.ArgumentParser();parser.add_argument('--library',default='/Volumes/GENODODI/OET/Mac App/offline-library');args=parser.parse_args();build(Path(args.library))

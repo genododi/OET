@@ -5,6 +5,14 @@ const layout={version:1,width:1000,height:1400,blocks:[{text:'PATIENT DETAILS',l
 const text=layout.blocks.map(b=>b.text).join('\n\n');
 const props={id:'photo',filename:'case.jpg',format:'jpg',assetPath:'case.jpg',textPath:'case.json'};
 afterEach(()=>{cleanup();vi.unstubAllGlobals();});
+it('presents extracted slide text in order and retains the original scanned slide for checking',async()=>{
+ vi.stubGlobal('fetch',vi.fn(async()=>({ok:true,json:async()=>({text:'Dose 5 mg\nReview in two weeks',pages:[{number:1,text:'Dose 5 mg',extraction:'ocr',previewPath:'slide-1.png'},{number:2,text:'Review in two weeks',extraction:'text'}]})})));
+ render(<MaterialSourceText {...props} format="pptx" filename="Case notes.pptx"/>);
+ await screen.findByText('Dose 5 mg');
+ expect(screen.getByAltText('Original slide 1: Case notes.pptx')).toHaveAttribute('src',expect.stringContaining('slide-1.png'));
+ fireEvent.click(screen.getByRole('button',{name:'Next slide'}));
+ expect(screen.getByLabelText('Source slide')).toHaveValue('2');expect(screen.getByText('Review in two weeks')).toBeVisible();
+});
 it('shows selectable positioned OCR and uncertain wording, while a restricted task cannot expose the full page',async()=>{
  vi.stubGlobal('fetch',vi.fn(async()=>({ok:true,json:async()=>({text,pages:[{number:1,text,layout,extraction:'ocr'}]})})));
  const view=render(<MaterialSourceText {...props}/>);

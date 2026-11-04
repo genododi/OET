@@ -129,13 +129,16 @@ it('rejects a question file belonging to another paper without overwriting saved
 });
 
 it('synchronises reading passages and questions and expands the paper without clearing answers', async () => {
-  render(<BenchmarkPage itemId="reading-6" onNavigate={vi.fn()} />);
+  const view = render(<BenchmarkPage itemId="reading-6" onNavigate={vi.fn()} />);
   await screen.findByRole('article', { name: 'Part A · Question 1' });
   fireEvent.change(screen.getByRole('textbox', { name: 'Question 1' }), { target: { value: 'D' } });
   fireEvent.change(screen.getByRole('combobox', { name: 'Reading passage part' }), { target: { value: 'B' } });
   expect(screen.getByRole('button', { name: 'Part B' })).toHaveAttribute('aria-pressed', 'true');
   expect(screen.getByLabelText('Complete reading text · Part B')).toHaveTextContent('The shocking abuse in our nursing homes');
   expect(screen.getByRole('article', { name: 'Part B · Question 1' })).toBeVisible();
+  expect(view.container.querySelector('.reading-workbench-wide')).not.toBeNull();
+  fireEvent.click(screen.getByRole('button', { name: 'Show paper beside answers' }));
+  expect(view.container.querySelector('.reading-workbench-wide')).toBeNull();
   fireEvent.click(screen.getByRole('button', { name: 'Expand paper' }));
   expect(screen.getByRole('button', { name: 'Show paper beside answers' })).toBeVisible();
   fireEvent.click(screen.getByRole('button', { name: 'Part A' }));

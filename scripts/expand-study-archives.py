@@ -10,6 +10,8 @@ import re
 import subprocess
 import tempfile
 import shutil
+import zipfile
+from presentation_text import embedded_audio
 
 ROOT=Path(__file__).resolve().parents[1]
 FORMATS={'pdf','doc','docx','ppt','pptx','xls','xlsx','csv','txt','md','rtf','html','htm','mp3','m4a','ogg','wav','flac','aac','mp4','mov','jpg','jpeg','png','webp','heic','heif','tif','tiff','bmp','gif','avif'}
@@ -23,6 +25,21 @@ def main():
     library=Path(args.library);destination=Path(args.destination);destination.mkdir(parents=True,exist_ok=True)
     rows=json.loads((library/'catalog.json').read_text())['files'];reports=[]
     for file in rows:
+        if file['format']=='pptx':
+            archive=library/'files'/Path(file['assetPath']).name
+            with zipfile.ZipFile(archive) as presentation:
+                media=embedded_audio(presentation)
+                if media:
+                    if sum(item.file_size for item in media)>8*1024**3:raise ValueError('Embedded audio exceeds the study import limit: '+file['filename'])
+                    folder=destination.parent/'Imported Presentations'/(file['filename']+'-'+file['sha256'][:12]);folder.mkdir(parents=True,exist_ok=True)
+                    names=[]
+                    for item in media:
+                        name=Path(item.filename).name;target=folder/name
+                        if not target.exists():
+                            with presentation.open(item) as incoming,target.with_suffix(target.suffix+'.partial').open('wb') as outgoing:shutil.copyfileobj(incoming,outgoing)
+                            target.with_suffix(target.suffix+'.partial').replace(target)
+                        names.append(name)
+                    (folder/'.oet-archive-import.json').write_text(json.dumps({'sourceSha256':file['sha256'],'files':names})+'\n')
         if file['format'] not in {'zip','rar','7z'}:continue
         folder=destination/(re.sub(r'[^\w .-]','',Path(file['filename']).stem)[:100]+'-'+file['sha256'][:12]);marker=folder/'.oet-archive-import.json'
         if marker.exists() or (folder/'archive-import.json').exists():continue

@@ -19,7 +19,7 @@ NODE_RUNTIME=Path.home()/'.cache/codex-runtimes/codex-primary-runtime/dependenci
 TRANSCRIPTION_ROOT=Path.home()/'Library/Application Support/OET Study/local-ai/transcription'
 os.environ['PATH']=os.pathsep.join([str(NODE_RUNTIME),'/opt/homebrew/bin',str(Path.home()/'.local/bin'),os.environ.get('PATH','')])
 os.environ.setdefault('HF_HOME',str(TRANSCRIPTION_ROOT/'models'))
-GENERATED=['public/recent-materials.json','public/imported-resources','public/material-practice','src/data/desktopMaterials.generated.json','public/supplied-materials/text']
+GENERATED=['public/recent-materials.json','public/imported-resources','public/material-practice','src/data/desktopMaterials.generated.json','public/supplied-materials/text','src/data/recordingQuestionMatches.json']
 
 def configure_developer_tools(environment,platform=sys.platform,tools=Path('/Library/Developer/CommandLineTools')):
     # Use the installed standalone tools when a newly selected Xcode has not
@@ -72,6 +72,7 @@ def main():
                 run(['npm','run','desktop:check'],timeout=120);save(status='verified');return
             run([sys.executable,'scripts/import-offline-library.py','--source',args.source,'--output',args.library])
             run([sys.executable,'scripts/expand-study-archives.py','--library',args.library,'--destination',str(Path(args.source)/'Imported Archives')])
+            run([sys.executable,'scripts/refresh-supplied-formats.py'])
             run([sys.executable,'scripts/import-offline-library.py','--source',args.source,'--output',args.library])
             save(status='recognising-source-pages')
             run([sys.executable,'scripts/recognize-material-pages.py','--library',args.library,'--limit','250'])
@@ -80,6 +81,10 @@ def main():
             save(status='publishing-originals')
             run([sys.executable,'scripts/publish-offline-library.py','--library',args.library,'--workers','1','--apply'])
             run([sys.executable,'scripts/build-material-practice.py','--library',args.library])
+            matcher=TRANSCRIPTION_ROOT/'venv/bin/python'
+            if matcher.is_file():
+                run([str(matcher),'scripts/verify-recording-question-links.py','--library',args.library,'--apply'])
+                run([sys.executable,'scripts/build-material-practice.py','--library',args.library])
             run([sys.executable,'scripts/build-recent-materials.py','--library',args.library])
             run(['node','scripts/verify-material-practice.mjs'])
             run(['node','scripts/verify-imported-resources.mjs'])

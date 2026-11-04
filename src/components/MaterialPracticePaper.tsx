@@ -11,17 +11,18 @@ import { materialOriginal, materialUrl, validMaterialSheet, type MaterialSheet, 
 import './jahshanListening.css';
 import './jahshanReading.css';
 import { MaterialQuestionRows } from './MaterialQuestionRows';
+import { buildHash, parseRoute } from '../lib/routing';
 
 type File = { id: string; sha256: string; filename: string; format: string; textPath: string; assetPath: string };
 export type MaterialContext = { id: string; title: string; textPath: string; startPage: number; endPage: number; ranges?: MaterialTextRange[] };
-type Props = { file: File; skill: OetSubtest; onAnswers: (value: string) => void; onQuestionMode: (value: boolean) => void; onContext: (value: MaterialContext | null) => void };
+type Props = { file: File; skill: OetSubtest; wideSource?: boolean; onAnswers: (value: string) => void; onQuestionMode: (value: boolean) => void; onContext: (value: MaterialContext | null) => void };
 const audioFormats = ['mp3','m4a','wav','ogg','flac','aac','webm'];
 const audioMimeTypes: Record<string, string> = {
   mp3: 'audio/mpeg', m4a: 'audio/mp4', wav: 'audio/wav', ogg: 'audio/ogg',
   flac: 'audio/flac', aac: 'audio/aac', webm: 'audio/webm',
 };
 const audioMimeType = (format: string) => audioMimeTypes[format.toLowerCase()];
-export function MaterialPracticePaper({ file, skill, onAnswers, onQuestionMode, onContext }: Props) {
+export function MaterialPracticePaper({ file, skill, wideSource = true, onAnswers, onQuestionMode, onContext }: Props) {
   const [sheet, setSheet] = useState<MaterialSheet | null>(null);
   const [loading, setLoading] = useState(true);
   const selectionKey = `oet-material-unit-v1:${file.sha256}:${skill}`;
@@ -78,11 +79,13 @@ export function MaterialPracticePaper({ file, skill, onAnswers, onQuestionMode, 
   return <ReadingEvidenceProvider storageKey={`material-${file.id}`} questions={skill === 'reading' ? (unit?.questions ?? []).map(q => ({ id: String(q.number), prompt: q.prompt, answer: q.answer?.text, label: `Question ${q.number}` })) : []}><div className="material-practice-paper">
     {!loading && !track && <SaveStudyOffline key={file.sha256} id={`material-${file.sha256}`} title={file.filename} assets={offlineAssets} />}
     {loading && <p role="status">Matching the paper, recording and printed key…</p>}
+    {!!sheet?.relatedFiles?.length && <details className="card material-source-review"><summary>Files extracted from this {['ppt','pptx'].includes(file.format) ? 'presentation' : 'archive'} · {sheet.relatedFiles.length}</summary><ul className="material-contained-files">{sheet.relatedFiles.map(child=><li key={child.id}><a href={buildHash('materials',child.id,parseRoute().returnTo)}>{child.filename}</a><span className="tag">{child.format.toUpperCase()}</span></li>)}</ul><p className="meta">Original files are retained. Select a matched task below, or open an individual file.</p></details>}
+    {!loading && audioFormats.includes(file.format) && <p className="meta" role="status">{hasQuestions ? `Matched question paper: ${source?.filename}. Questions follow the selected part of this recording.` : 'No verified question paper has been found for this recording yet. You can still listen and read its available recording transcript. General podcasts may have no exam question paper.'}</p>}
     {units.length>0 && <section className="card material-task-picker"><span className="hero-eyebrow">STEP 1 · SELECT YOUR PAPER</span><h3>Choose a test, part or task</h3><label>Task or part<select value={unit?.id ?? ''} onChange={event=>{const next=units.find(item=>item.id===event.target.value);if(next)selectUnit(next);}}>{units.map(item=><option key={item.id} value={item.id}>{item.label} · pages {item.pages[0]}–{item.pages.at(-1)}{item.questions.length ? ` · ${item.questions.length} questions` : ''}</option>)}</select></label>{units.some(item=>item.part) && <div className="material-skill-tabs" role="group" aria-label="Source exam part">{(['A','B','C'] as const).map(part=><button type="button" key={part} aria-pressed={unit?.part===part} disabled={!units.some(item=>item.part===part)} onClick={()=>{const next=units.find(item=>item.part===part && item.recordings.includes(trackSha)) ?? units.find(item=>item.part===part);if(next)selectUnit(next);}}>Part {part}</button>)}</div>}</section>}
     {(recordings.length>0 || track) && <section className="card material-recording-picker"><label>Matching recording<select value={track?.sha256 ?? ''} onChange={event=>{const sha=event.target.value;setTrack(sha);try { localStorage.setItem(`${selectionKey}:recording`,sha); } catch { /* Continue playback. */ } const next=units.find(item=>item.recordings.includes(sha));if(next)selectUnit(next,false);setManualPart(undefined);}}><option value="">Choose the original recording…</option>{recordings.map(item=><option value={item.sha256} key={item.sha256}>{item.filename}</option>)}</select></label><label><input type="checkbox" checked={followQuestions} onChange={event=>setFollowQuestions(event.target.checked)} /> Follow the playing audio’s part in the questions</label>{originalAudio}</section>}
     {source && unit ? <>
       {skill === 'reading' && hasQuestions && <ReadingEvidenceToggle />}
-      <div className={skill === 'reading' && hasQuestions ? 'reading-workbench material-reading-workbench' : 'material-source-stack'}>
+      <div className={skill === 'reading' && hasQuestions && !wideSource ? 'reading-workbench material-reading-workbench' : 'material-source-stack'}>
         <div className="material-paper-pane">
           {(unit.passages ?? []).map(passage => { const paper = sheet!.documents.find(item => item.sha256 === passage.sourceSha256); return paper ? <MaterialSourceText key={`${unit.id}-${paper.sha256}`} id={`${unit.id}-${paper.id}`} filename={paper.filename} format={paper.format} textPath={paper.textPath} assetPath={materialOriginal(paper)} pageNumbers={passage.pages} defaultAll heading="2 · Read the complete passage" /> : null; })}
           {skill === 'listening' && hasQuestions ? null : <MaterialSourceText key={unit.id} id={`${file.id}-${unit.id}`} filename={source.filename} format={source.format} textPath={source.textPath} assetPath={materialOriginal(source)} pageNumbers={unit.pages} ranges={unit.ranges} defaultAll heading={skill === 'writing' ? '2 · Read the case notes and writing task' : skill === 'speaking' ? '2 · Read the candidate role-play card' : '2 · Read the complete source text'} />}
