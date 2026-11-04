@@ -551,3 +551,36 @@ test('OET and AMR use text-first steps and retain drafts across practice modes',
   await page.reload();
   await expect(page.getByLabel('Source page', { exact: true })).toHaveValue('2');
 });
+
+test('HTML and JSON resources show readable source text and ZIP contents remain accessible',async({page})=>{
+ const html=importedCatalog.files.find(f=>f.filename==='50Writingtasksampleletters.html')!;
+ await page.goto(`./#materials/${html.id}`);
+ await page.getByLabel('Task or part').selectOption('6d5c93ba1b8de2ca-p2');
+ const source=page.getByRole('region',{name:'Source document'}).first();
+ await expect(source).toContainText('St. Mary’s Public Hospital');await expect(source).toContainText('Hypertension secondary to fibromuscular dysplasia');await expect(source).not.toContainText('&rsquo;');
+ await expect(source.locator('.structured-source')).toBeVisible();
+ const json=importedCatalog.files.find(f=>f.format==='json')!;
+ await page.goto(`./#materials/${json.id}`);await expect(page.getByRole('region',{name:'Source document'}).first()).toContainText('OET Speaking for Doctors');
+ const download=page.waitForEvent('download');await page.getByRole('button',{name:'Download readable TXT'}).first().click();expect((await download).suggestedFilename()).toMatch(/\.txt$/);
+ const zip=importedCatalog.files.find(f=>f.filename==='50 Writing task + sample letters.zip')!;
+ await page.goto(`./#materials/${zip.id}`);await expect(page.locator('.material-contained-files a').filter({hasText:'50Writingtasksampleletters.html'})).toBeVisible();
+});
+
+test('a formerly unmatched full OGG test opens matching Parts A B C and printed answers',async({page})=>{
+ const audio=importedCatalog.files.find(f=>f.filename==='Task 2.ogg')!;
+ await page.goto(`./#materials/${audio.id}`);
+ await expect(page.getByRole('textbox',{name:'Question 1',exact:true})).toBeVisible();await page.getByRole('textbox',{name:'Question 1',exact:true}).fill('my attempt');
+ await page.getByRole('button',{name:'Show answer for Question 1',exact:true}).click();await expect(page.locator('.jahshan-inline-key').first()).toContainText('Weight Of 40 Pounds');
+ await page.getByRole('group',{name:'Source exam part'}).getByRole('button',{name:'Part B',exact:true}).click();await expect(page.getByRole('combobox',{name:'Question 25',exact:true})).toBeVisible();await expect(page.getByRole('region',{name:'Questions and answers for the selected task'})).toContainText('Knuckle calluses');
+ await page.getByRole('group',{name:'Source exam part'}).getByRole('button',{name:'Part C',exact:true}).click();await expect(page.getByRole('combobox',{name:'Question 31',exact:true})).toBeVisible();
+});
+
+test('Recently Added skill checkboxes and Done follow the file across opening and returning',async({page,browser})=>{
+ const file=suppliedCatalog.files.find(f=>f.format==='docx')!;
+ const data={version:1,files:[{id:file.id,sha256:file.sha256,filename:file.filename,format:file.format,bytes:file.bytes,collection:file.collection,skills:['writing'],addedAt:'2026-10-25T00:00:00Z',sources:[{kind:'local',label:'Local resources'}]}]};
+ await page.route('**/recent-materials.json',r=>r.fulfill({json:data}));await page.goto('./#recent');await page.getByRole('checkbox',{name:'Writing',exact:true}).check();
+ await page.getByLabel(`Done: ${file.filename}`,{exact:true}).check();await page.getByLabel('Filter by completion').selectOption('undone');await expect(page.getByText('No matching files',{exact:true})).toBeVisible();
+ await page.getByLabel('Filter by completion').selectOption('done');await page.getByRole('button',{name:`Open ${file.filename}`,exact:true}).click();await expect(page.getByLabel(`Done: ${file.filename}`,{exact:true})).toBeChecked();await page.reload();await expect(page.getByLabel(`Done: ${file.filename}`,{exact:true})).toBeChecked();
+ await page.getByRole('button',{name:'← Back to recently added files',exact:true}).click();await expect(page.getByLabel('Writing',{exact:true})).toBeChecked();await expect(page.getByLabel('Filter by completion')).toHaveValue('done');
+ const other=await browser.newContext();const second=await other.newPage();await second.route('**/recent-materials.json',r=>r.fulfill({json:data}));await second.goto('http://127.0.0.1:4173/OET/#recent');await expect(second.getByLabel(`Done: ${file.filename}`,{exact:true})).not.toBeChecked();await other.close();
+});

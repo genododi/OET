@@ -4,6 +4,14 @@ import { MaterialSourceText } from './MaterialSourceText';
 const layout={version:1,width:1000,height:1400,blocks:[{text:'PATIENT DETAILS',lines:[{text:'PATIENT DETAILS',x:.1,y:.05,width:.4,height:.025,confidence:.99}]},{text:'SpO2 88% on room air\n(1) __________ mg',lines:[{text:'SpO2 88% on room air',x:.1,y:.15,width:.4,height:.02,confidence:.7,uncertainWords:['88%']},{text:'(1) __________ mg',x:.1,y:.2,width:.4,height:.02,confidence:.98}]}]};
 const text=layout.blocks.map(b=>b.text).join('\n\n');
 const props={id:'photo',filename:'case.jpg',format:'jpg',assetPath:'case.jpg',textPath:'case.json'};
+it('renders inert HTML tables and headings, and restricted ranges cannot reveal other source blocks',async()=>{
+ vi.stubGlobal('fetch',vi.fn(async()=>({ok:true,json:async()=>({text:'Dose\n5 mg',pages:[{number:1,text:'Dose\n5 mg',blocks:[{kind:'heading',text:'Dose',level:3},{kind:'table',rows:[[{text:'5 mg',header:false,colSpan:1,rowSpan:1}]]}]}]})})));
+ const view=render(<MaterialSourceText {...props} format="html"/>);
+ await screen.findByRole('heading',{name:'Dose'});expect(screen.getByRole('cell')).toHaveTextContent('5 mg');
+ expect(screen.getByRole('button',{name:'Download readable TXT'})).toBeVisible();expect(view.container.querySelector('iframe')).toBeNull();
+ view.rerender(<MaterialSourceText {...props} format="html" ranges={[{page:1,start:0,end:4}]}/>);
+ expect(screen.queryByRole('cell')).toBeNull();expect(screen.queryByText('5 mg')).toBeNull();
+});
 afterEach(()=>{cleanup();vi.unstubAllGlobals();});
 it('presents extracted slide text in order and retains the original scanned slide for checking',async()=>{
  vi.stubGlobal('fetch',vi.fn(async()=>({ok:true,json:async()=>({text:'Dose 5 mg\nReview in two weeks',pages:[{number:1,text:'Dose 5 mg',extraction:'ocr',previewPath:'slide-1.png'},{number:2,text:'Review in two weeks',extraction:'text'}]})})));

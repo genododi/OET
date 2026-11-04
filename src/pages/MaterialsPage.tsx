@@ -7,6 +7,8 @@ import type { NavSection, OetSubtest } from '../types';
 import { isDesktop } from '../lib/desktop';
 import { materialOriginal } from '../lib/materialPractice';
 import { SourcePracticeCoach } from '../components/SourcePracticeCoach';
+import { MaterialDone, CompletionFilter } from '../components/MaterialDone';
+import { useMaterialCompletion } from '../lib/materialCompletion';
 import './materials.css';
 
 type Material = (typeof catalog.files)[number];
@@ -14,6 +16,7 @@ type SavedPractice = { response: string; notes: string; completed: boolean; chec
 const skills: OetSubtest[] = ['listening', 'reading', 'writing', 'speaking'];
 const blank: SavedPractice = { response: '', notes: '', completed: false, checks: [] };
 const title = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+const defaultSkill = (file?: Material): OetSubtest => file && ['mp3','m4a','wav','ogg','flac','aac','webm'].includes(file.format) ? 'listening' : (file?.skills[0] as OetSubtest) || 'writing';
 const url = (path: string) => /^https?:\/\//.test(path) ? path : `${import.meta.env.BASE_URL}${path}`;
 const size = (bytes: number) => bytes < 1024 * 1024 ? `${Math.max(1, Math.round(bytes / 1024))} KB` : `${(bytes / 1024 / 1024).toFixed(1)} MB`;
 const guidance: Record<OetSubtest, string> = {
@@ -198,9 +201,17 @@ export function MaterialsPage({ itemId, returnTo, onNavigate }: { itemId?: strin
   const [libraryError, setLibraryError] = useState('');
   useEffect(() => {
     const controller = new AbortController();
-    void fetch(url(isDesktop() ? 'offline-library/catalog.json' : 'imported-resources/catalog.json'), { signal: controller.signal }).then(async result => {
-      if (!result.ok) throw Error('Connect GENODODI, then reopen this app to load the additional offline files.');
-      const extra = await result.json();
+    const readCatalog = async (path: string) => {
+      const response=await fetch(url(path),{signal:controller.signal});
+      if (!response.ok) throw Error('Library unavailable');
+      return response.json();
+    };
+    void (isDesktop() ? readCatalog('offline-library/catalog.json').catch(async error => {
+      if (controller.signal.aborted) throw error;
+      const cached=await readCatalog('imported-resources/catalog.json');
+      setLibraryError('GENODODI is disconnected. Saved text, questions and answers are available; reconnect it to open external originals and recordings.');
+      return cached;
+    }) : readCatalog('imported-resources/catalog.json')).then(extra => {
       if (!Array.isArray(extra.files) || extra.files.some((file: Material) => typeof file.id !== 'string' || typeof file.assetPath !== 'string' || !Array.isArray(file.skills))) throw Error('The offline library index is invalid.');
       const known = new Set(catalog.files.map(file => file.sha256));
       if (!controller.signal.aborted) setFiles([...catalog.files, ...extra.files.filter((file: Material) => !known.has(file.sha256))]);
@@ -211,15 +222,18 @@ export function MaterialsPage({ itemId, returnTo, onNavigate }: { itemId?: strin
   const [collection, setCollection] = useState('all');
   const [skillFilter, setSkillFilter] = useState('all');
   const [format, setFormat] = useState('all');
-  const [chosenSkill, setSkill] = useState<OetSubtest | null>(() => (catalog.files.find(file => file.id === itemId)?.skills[0] as OetSubtest) || null);
+  const [completion, setCompletion] = useState('all');
+  const { isDone } = useMaterialCompletion();
+  const [chosenSkill, setSkill] = useState<OetSubtest | null>(() => {const file=catalog.files.find(file => file.id === itemId);return file ? defaultSkill(file) : null;});
   const [limit, setLimit] = useState(18);
   const selected = files.find(file => file.id === itemId);
-  const skill = chosenSkill ?? (selected?.skills[0] as OetSubtest) ?? 'writing';
+  const skill = chosenSkill ?? defaultSkill(selected);
   const filtered = files.filter(file => {
+    if (completion === 'undone' && isDone(file.sha256) || completion === 'done' && !isDone(file.sha256)) return false;
     const q = query.toLocaleLowerCase().trim();
     return (collection === 'all' || file.collection === collection) && (skillFilter === 'all' || file.skills.includes(skillFilter)) && (format === 'all' || file.format === format) && (!q || `${file.filename} ${file.relativePath} ${file.excerpt}`.toLocaleLowerCase().includes(q));
   });
-  const open = (file: Material) => { setSkill((file.skills[0] as OetSubtest) || 'writing'); onNavigate('materials', file.id); };
+  const open = (file: Material) => { setSkill(defaultSkill(file)); onNavigate('materials', file.id); };
   return <div className="page-section materials-page">
     <section className="card materials-hero">
       <div><span className="hero-eyebrow">Your files. Your daily practice.</span><h2>OET & AMR study collection</h2><p>Choose a file, read its text or use a matching recording, then practise and review. Your AMR writing collection comes first.</p><div className="material-stats"><span><strong>{files.length}</strong> supplied files</span><span><strong>{catalog.amrCount}</strong> AMR files</span><span><strong>4</strong> practice modes</span></div></div>
@@ -227,7 +241,7 @@ export function MaterialsPage({ itemId, returnTo, onNavigate }: { itemId?: strin
     </section>
     {libraryError && <p role="alert">{libraryError}</p>}
     {selected ? <>
-      <button className="btn btn-ghost" onClick={() => onNavigate(returnTo === 'recent' ? 'recent' : 'materials')}>← {returnTo === 'recent' ? 'Back to recently added files' : 'Back to all supplied files'}</button>
+      <div className="material-completion-toolbar"><button className="btn btn-ghost" onClick={() => onNavigate(returnTo === 'recent' ? 'recent' : 'materials')}>← {returnTo === 'recent' ? 'Back to recently added files' : 'Back to all supplied files'}</button><MaterialDone fileId={selected.sha256} filename={selected.filename} /></div>
       <div className="material-skill-tabs" role="group" aria-label="Practice skill">{skills.map(item => <button key={item} aria-pressed={skill === item} onClick={() => setSkill(item)}>{title(item)}</button>)}</div>
       <PracticeWorkspace key={`${selected.id}:${skill}`} file={selected} skill={skill} onNavigate={onNavigate} />
     </> : <>
@@ -235,12 +249,12 @@ export function MaterialsPage({ itemId, returnTo, onNavigate }: { itemId?: strin
       <h3>1 · Choose your practice</h3>
       <div className="material-skill-tabs" role="group" aria-label="Filter materials by skill"><button aria-pressed={skillFilter === 'all'} onClick={() => { setSkillFilter('all'); setLimit(18); }}>All materials</button>{skills.map(item => <button key={item} aria-pressed={skillFilter === item} onClick={() => { setSkillFilter(item); setLimit(18); }}>{title(item)} <span>{files.filter(file => file.skills.includes(item)).length}</span></button>)}</div>
       <div className="material-filters"><label>Search your files<input type="search" placeholder="Find a task, topic or filename…" value={query} onChange={e => { setQuery(e.target.value); setLimit(18); }} /></label><label>Collection<select value={collection} onChange={e => { setCollection(e.target.value); setLimit(18); }}><option value="all">OET + AMR</option><option value="AMR">AMR only · 35 files</option><option value="OET">OET folder</option></select></label><label>File type<select value={format} onChange={e => { setFormat(e.target.value); setLimit(18); }}><option value="all">All file types</option>{[...new Set(files.map(file => file.format))].sort().map(item => <option key={item} value={item}>{item.toUpperCase()}</option>)}</select></label></div>
-      <p className="meta">{filtered.length} files · {isDesktop() ? 'Originals included offline in this Mac app' : 'Originals available on any device'} · Duplicate filenames retained</p>
+      <div className="material-completion-toolbar"><p className="meta">{filtered.length} files · {isDesktop() ? 'Originals included offline in this Mac app' : 'Originals available on any device'} · Duplicate filenames retained</p><CompletionFilter value={completion} onChange={value => { setCompletion(value); setLimit(18); }} /></div>
       <div className="material-grid">{filtered.slice(0, limit).map(file => <article className="card material-card" key={file.id}>
         <div className="card-header-row"><span className={`tag ${file.collection === 'AMR' ? 'tag-available' : ''}`}>{file.collection} collection</span><span className="tag">{file.format.toUpperCase()}</span></div>
         <h3>{file.filename}</h3><p>{file.excerpt || 'Open the original document to study this material.'}</p>
         <div className="badge-row">{file.skills.length ? file.skills.map(item => <span key={item} className={`subtest-badge subtest-${item}`}>{item}</span>) : <span className="tag">Unclassified source</span>}{file.duplicateOf && <span className="tag">Duplicate copy</span>}</div>
-        <div className="material-card-footer"><button className="btn btn-primary btn-sm" onClick={() => open(file)}>Open & practise →</button><span>{size(file.bytes)}</span></div>
+        <div className="material-card-footer"><button className="btn btn-primary btn-sm" onClick={() => open(file)}>Open & practise →</button><MaterialDone fileId={file.sha256} filename={file.filename} /><span>{size(file.bytes)}</span></div>
       </article>)}</div>
       {!filtered.length && <div className="card"><h3>No matching files</h3><p>Try another search or choose a different collection.</p></div>}
       {filtered.length > limit && <button className="btn btn-secondary" onClick={() => setLimit(limit + 18)}>Show more files ({filtered.length - limit} remaining)</button>}

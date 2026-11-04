@@ -4,7 +4,7 @@ import { RecentMaterialsPage } from './RecentMaterialsPage';
 import { readRecentMaterials } from '../lib/recentMaterials';
 const local = { id: 'local-file', sha256: 'a'.repeat(64), filename: 'Local writing task.pdf', format: 'pdf', bytes: 200, collection: 'AMR', skills: ['writing'], addedAt: '2026-10-20T00:00:00Z', sources: [{ kind: 'local', label: 'Local resources' }] };
 const telegram = { ...local, id: 'telegram-file', sha256: 'b'.repeat(64), filename: 'New listening recording.mp3', format: 'mp3', skills: ['listening'], addedAt: '2026-10-28T00:00:00Z', sources: [{ kind: 'telegram', label: 'Telegram · Study group' }] };
-beforeEach(() => sessionStorage.clear());
+beforeEach(() => {sessionStorage.clear();localStorage.clear();});
 afterEach(() => { cleanup(); vi.unstubAllGlobals(); });
 it('shows newest first, filters across sources and opens the right source workspace', async () => {
   vi.stubGlobal('fetch', vi.fn().mockResolvedValue({ ok: true, json: async () => ({ version: 1, files: [local, telegram] }) }));
@@ -15,7 +15,7 @@ it('shows newest first, filters across sources and opens the right source worksp
   expect(screen.queryByText(local.filename)).toBeNull();
   fireEvent.click(screen.getByRole('button', { name: `Open ${telegram.filename}` }));
   expect(navigate).toHaveBeenCalledWith('materials', 'telegram-file', 'recent');
-  fireEvent.change(screen.getByLabelText('Skill'), { target: { value: 'reading' } });
+  fireEvent.click(screen.getByLabelText('Reading'));
   expect(screen.getByText('No matching files')).toBeVisible();
   fireEvent.click(screen.getByRole('button', { name: 'Clear filters' }));
   fireEvent.change(screen.getByLabelText('Search files'), { target: { value: 'AMR' } });
@@ -51,4 +51,16 @@ it('keeps the main library accessible after an offline list failure and can retr
 it('rejects malformed or duplicate manifest entries instead of mislabelling arrivals', () => {
   expect(() => readRecentMaterials({ version: 1, files: [local, local] })).toThrow();
   expect(() => readRecentMaterials({ version: 1, files: [{ ...local, addedAt: 'yesterday' }] })).toThrow();
+});
+
+it('combines four skill checkboxes with completion filters and retains both on return',async()=>{
+ vi.stubGlobal('fetch',vi.fn().mockResolvedValue({ok:true,json:async()=>({version:1,files:[local,telegram]})}));
+ const view=render(<RecentMaterialsPage onNavigate={vi.fn()}/>);await screen.findByText(local.filename);
+ fireEvent.click(screen.getByLabelText('Writing'));expect(screen.queryByText(telegram.filename)).toBeNull();
+ fireEvent.click(screen.getByLabelText('Listening'));expect(screen.getByText(telegram.filename)).toBeVisible();
+ fireEvent.click(screen.getByLabelText(`Done: ${local.filename}`));
+ fireEvent.change(screen.getByLabelText('Filter by completion'),{target:{value:'undone'}});expect(screen.queryByText(local.filename)).toBeNull();
+ fireEvent.click(screen.getByRole('button',{name:`Open ${telegram.filename}`}));view.unmount();
+ render(<RecentMaterialsPage onNavigate={vi.fn()}/>);await screen.findByText(telegram.filename);
+ expect(screen.getByLabelText('Writing')).toBeChecked();expect(screen.getByLabelText('Listening')).toBeChecked();expect(screen.getByLabelText('Filter by completion')).toHaveValue('undone');
 });

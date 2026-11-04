@@ -54,6 +54,7 @@
     "desktop:install-ai": "python3 scripts/install-local-ai.py --output \"$HOME/Library/Application Support/OET Study/local-ai\"",
     "desktop:build": "node scripts/build-macos-app.mjs",
     "desktop:check": "node scripts/verify-macos-version.mjs",
+    "desktop:mentor-check": "node scripts/evaluate-local-mentor.mjs",
     "test:desktop": "node --test desktop/*.test.mjs",
     "test:imported-resources": "node scripts/verify-imported-resources.mjs",
     "materials:prepare": "python3 scripts/build-material-practice.py",

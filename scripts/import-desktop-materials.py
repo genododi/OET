@@ -12,6 +12,7 @@ import sys
 import zipfile
 from pathlib import Path
 import xml.etree.ElementTree as ET
+from html_text import html_text
 
 REPO = Path(__file__).resolve().parents[1]
 SOURCE = Path(sys.argv[1]).resolve() if len(sys.argv) > 1 else REPO
@@ -34,7 +35,7 @@ def extract(path):
             return '\n\n'.join('\n'.join(''.join(node.itertext()) for node in ET.fromstring(archive.read(name)).iter()
                                         if node.tag.endswith('}t')) for name in names)
     if path.suffix.lower() == '.html':
-        return path.read_text(errors='replace')  # Displayed only as escaped plain text; never executed.
+        return html_text(path,hashlib.sha256(path.read_bytes()).hexdigest())['text']
     return ''
 
 
@@ -89,7 +90,7 @@ def main():
                 texts[sha] = prior['text']
             else:
                 texts[sha] = extract(path)
-                text_file.write_text(json.dumps({'text': texts[sha]}, ensure_ascii=False))
+                text_file.write_text(json.dumps(html_text(path,sha) if ext == '.html' else {'text': texts[sha]}, ensure_ascii=False))
         text = texts[sha]
         relative = path.relative_to(SOURCE).as_posix()
         rows.append({

@@ -1,0 +1,665 @@
+{
+  "version": 1,
+  "sourcePaperSha256": "0300375e981d9b16a4214982bdc40c52b4b76d2e6197811448bc8dcb96f2f8fc",
+  "links": [
+    {
+      "recordingSha256": "1a85c4b6bd565433991f8db27d750f79fe64345270ba2965506fd76a9b4c9806",
+      "filename": "Task 1.mp3",
+      "task": 1,
+      "verification": {
+        "method": "reviewed-spoken-cases-and-printed-task-topics",
+        "intro": "You hear a doctor talking to a patient called DeChambeau",
+        "partTransitions": [
+          {
+            "time": 529.44,
+            "text": "Now look at Part B."
+          },
+          {
+            "time": 536.64,
+            "text": "Part B"
+          },
+          {
+            "time": 550.34,
+            "text": "For questions 25 to 30, choose the answer A, B or C, which fits best according to what you hear."
+          },
+          {
+            "time": 1415.18,
+            "text": "That is the end of Part B."
+          },
+          {
+            "time": 1417.96,
+            "text": "Now look at Part C."
+          },
+          {
+            "time": 1421.72,
+            "text": "Part C"
+          },
+          {
+            "time": 1441.56,
+            "text": "For questions 31 to 42, choose the answer A, B or C, which fits best according to what you hear."
+          },
+          {
+            "time": 1463.74,
+            "text": "Questions 31 to 36."
+          }
+        ],
+        "transcriptPath": "material-practice/transcripts/1a85c4b6bd565433991f8db27d750f79fe64345270ba2965506fd76a9b4c9806.json",
+        "note": "Patient history and subsequent healthcare extract topics agree with the printed task."
+      }
+    },
+    {
+      "recordingSha256": "5073cffff2934f7ccdeba2c62e7f7bcdb4fe019a15b9a5a0776cf27992953aea",
+      "filename": "Audio 6.mp3",
+      "task": 7,
+      "verification": {
+        "method": "reviewed-spoken-cases-and-printed-task-topics",
+        "intro": "You hear a doctor talking to a patient called Tynatongo. For questions 1 to 12,",
+        "partTransitions": [
+          {
+            "time": 427.46,
+            "text": "That is the end of Part A. Now look at Part B."
+          },
+          {
+            "time": 447.38,
+            "text": "Part B. In this part of the test, you will hear six different extracts. In each extract,"
+          },
+          {
+            "time": 457.14,
+            "text": "For questions 25-30, choose the answer A, B, or C, which fits best according to what"
+          },
+          {
+            "time": 978.96,
+            "text": "That is the end of Part B. Now look at Part C."
+          },
+          {
+            "time": 992.46,
+            "text": "Part C. In this part of the test, you will hear two different extracts."
+          },
+          {
+            "time": 1003.64,
+            "text": "For questions 31 to 42, choose the answer A, B, or C, which fits best according to what"
+          },
+          {
+            "time": 1017.94,
+            "text": "Extract 1, questions 31 to 36."
+          },
+          {
+            "time": 1027.54,
+            "text": "disease. You have 90 seconds to read questions 31 to 36."
+          }
+        ],
+        "transcriptPath": "material-practice/transcripts/5073cffff2934f7ccdeba2c62e7f7bcdb4fe019a15b9a5a0776cf27992953aea.json",
+        "note": "Patient history and subsequent healthcare extract topics agree with the printed task."
+      }
+    },
+    {
+      "recordingSha256": "0dbf85e4d47956f8a515f50bf039ff1db8fc2324001f3777d2505f7ce60e4e8c",
+      "filename": "Task 15.mp3",
+      "task": 15,
+      "verification": {
+        "method": "reviewed-spoken-cases-and-printed-task-topics",
+        "intro": "You hear a doctor talking to a patient called Mr. Chong Walton.",
+        "partTransitions": [
+          {
+            "time": 492.7,
+            "text": "That is the end of Part A. Now look at Part B."
+          },
+          {
+            "time": 501.34,
+            "text": "Part B. In this part of the test, you will hear six different extracts."
+          },
+          {
+            "time": 510.98,
+            "text": "For questions 25 to 30, choose the answer A, B or C, which fits best according to what you hear."
+          },
+          {
+            "time": 998.62,
+            "text": "That is the end of part B."
+          },
+          {
+            "time": 1000.94,
+            "text": "Now look at part C."
+          },
+          {
+            "time": 1007.28,
+            "text": "Part C."
+          },
+          {
+            "time": 1017.3,
+            "text": "For questions 31 to 42, choose the answer A, B or C, which fits best according to what you hear."
+          },
+          {
+            "time": 1030.66,
+            "text": "Extract 1. Questions 31 to 36."
+          }
+        ],
+        "transcriptPath": "material-practice/transcripts/0dbf85e4d47956f8a515f50bf039ff1db8fc2324001f3777d2505f7ce60e4e8c.json",
+        "note": "Patient history and subsequent healthcare extract topics agree with the printed task."
+      }
+    },
+    {
+      "recordingSha256": "b7f76451de8aef3ea97de033828eca631a40e7950798114b36bbb578e74c226a",
+      "filename": "Task 6.mp3",
+      "task": 6,
+      "verification": {
+        "method": "reviewed-spoken-cases-and-printed-task-topics",
+        "intro": "You hear a doctor talking to a patient called Mr. Gonzalvez.",
+        "partTransitions": [
+          {
+            "time": 565.96,
+            "text": "That is the end of Part A. Now, look at Part B."
+          },
+          {
+            "time": 571.48,
+            "text": "Part B. In this part of the test, you will hear six different extracts. In each extract,"
+          },
+          {
+            "time": 581.8,
+            "text": "you'll hear people talking in a different healthcare environment. For questions 25 to"
+          },
+          {
+            "time": 1130.98,
+            "text": "That is the end of Part B."
+          },
+          {
+            "time": 1132.98,
+            "text": "Now, look at Part C."
+          },
+          {
+            "time": 1140.98,
+            "text": "Part C. In this part of the test, you'll hear two different extracts."
+          },
+          {
+            "time": 1152.58,
+            "text": "For questions 31 to 42, choose the answer A, B or C which fits best according to what"
+          },
+          {
+            "time": 1166.58,
+            "text": "Extract 1, Questions 31 to 36."
+          }
+        ],
+        "transcriptPath": "material-practice/transcripts/b7f76451de8aef3ea97de033828eca631a40e7950798114b36bbb578e74c226a.json",
+        "note": "Patient history and subsequent healthcare extract topics agree with the printed task."
+      }
+    },
+    {
+      "recordingSha256": "9b30c7a52c2dd9a4ae6eb5ea9eac07c0a9767d11259d5d75c4729499583b1634",
+      "filename": "Task 14.mp3",
+      "task": 14,
+      "verification": {
+        "method": "reviewed-spoken-cases-and-printed-task-topics",
+        "intro": "You hear a physician talking to a new patient called Mrs. Delilah.",
+        "partTransitions": [
+          {
+            "time": 632.12,
+            "text": "That is the end of Part A. Now, look at Part B."
+          },
+          {
+            "time": 639.88,
+            "text": "Part B. In this part of the test, you will hear six different extracts. In each extract,"
+          },
+          {
+            "time": 650.38,
+            "text": "you'll hear people talking in a different healthcare environment. For questions 25 to 30,"
+          },
+          {
+            "time": 1251.9,
+            "text": "That is the end of Part B."
+          },
+          {
+            "time": 1255.02,
+            "text": "Now look at Part C."
+          },
+          {
+            "time": 1261.86,
+            "text": "Part C. In this part of the test, you'll hear two different extracts."
+          },
+          {
+            "time": 1274.8,
+            "text": "For questions 31 to 42, choose the answer A, B, or C, which fits best according to what you hear."
+          },
+          {
+            "time": 1289.64,
+            "text": "Extract 1, questions 31 to 36"
+          }
+        ],
+        "transcriptPath": "material-practice/transcripts/9b30c7a52c2dd9a4ae6eb5ea9eac07c0a9767d11259d5d75c4729499583b1634.json",
+        "note": "Patient history and subsequent healthcare extract topics agree with the printed task."
+      }
+    },
+    {
+      "recordingSha256": "d3530ea9167357b47346d24e57937046571708a650a5b8d2e0f519047b4ade81",
+      "filename": "Task 5.ogg",
+      "task": 5,
+      "verification": {
+        "method": "reviewed-spoken-cases-and-printed-task-topics",
+        "intro": "You hear a neurologist talking to a new patient called Mrs. Lizavita.",
+        "partTransitions": [
+          {
+            "time": 542.3,
+            "text": "That is the end of Part A. Now look at Part B."
+          },
+          {
+            "time": 550.98,
+            "text": "Part B. In this part of the test, you will hear six different extracts. In each extract,"
+          },
+          {
+            "time": 557.84,
+            "text": "you'll hear people talking in a different health care environment. For questions 25 to 30,"
+          },
+          {
+            "time": 1046.48,
+            "text": "any signs or symptoms. That is the end of Part B. Now look at Part C."
+          },
+          {
+            "time": 1075.68,
+            "text": "For questions 31 to 42, choose the answer A, B, or C, which fit best according to what you hear."
+          },
+          {
+            "time": 1091.52,
+            "text": "Extract one, questions 31 to 36. You hear the lecture given by a senior physician to junior"
+          },
+          {
+            "time": 1099.7,
+            "text": "doctors on risk factors of osteoporosis disease. You have 90 seconds to read questions 31 to 36."
+          },
+          {
+            "time": 1890.5,
+            "text": "That is the end of Part C."
+          }
+        ],
+        "transcriptPath": "material-practice/transcripts/d3530ea9167357b47346d24e57937046571708a650a5b8d2e0f519047b4ade81.json",
+        "note": "Patient history and subsequent healthcare extract topics agree with the printed task."
+      }
+    },
+    {
+      "recordingSha256": "b6c1f8008838d05baede4d5534d935fd56a060b56901563ca6a60f369d9d0662",
+      "filename": "Task 7.ogg",
+      "task": 7,
+      "verification": {
+        "method": "reviewed-spoken-cases-and-printed-task-topics",
+        "intro": "You hear a doctor talking to a patient called Tynatongo.",
+        "partTransitions": [
+          {
+            "time": 435.98,
+            "text": "That is the end of Part A. Now look at Part B."
+          },
+          {
+            "time": 446.74,
+            "text": "Part B. In this part of the test, you will hear six different extracts. In each extract,"
+          },
+          {
+            "time": 453.64,
+            "text": "you'll hear people talking in a different healthcare environment. For questions 25 to 30,"
+          },
+          {
+            "time": 982.74,
+            "text": "that is the end of part B now look at part C"
+          },
+          {
+            "time": 991.5,
+            "text": "part C in this part of the test you will hear two different extracts in each"
+          },
+          {
+            "time": 1003.58,
+            "text": "For questions 31 to 42 choose the answer A, B or C which fits best according to what you"
+          },
+          {
+            "time": 1018.5,
+            "text": "1. Questions 31 to 36. You hear the lecture given by a physician on the topic amyotrophic"
+          },
+          {
+            "time": 1026.24,
+            "text": "lateral sclerosis disease. You have 90 seconds to read questions 31 to 36."
+          }
+        ],
+        "transcriptPath": "material-practice/transcripts/b6c1f8008838d05baede4d5534d935fd56a060b56901563ca6a60f369d9d0662.json",
+        "note": "Patient history and subsequent healthcare extract topics agree with the printed task."
+      }
+    },
+    {
+      "recordingSha256": "c72b1bfd347e060ed089eea96d902064bb84baf583070e091778ed1a107e53f5",
+      "filename": "Task 11.ogg",
+      "task": 11,
+      "verification": {
+        "method": "reviewed-spoken-cases-and-printed-task-topics",
+        "intro": "You hear a doctor talking to a patient called Mr. Jonathan. For questions 1 to 12, complete the following notes with a word of short phrase. You now have 30 seconds to look at the notes.",
+        "partTransitions": [
+          {
+            "time": 513.7,
+            "text": "That is the end of part A. Now look at part B."
+          },
+          {
+            "time": 536.16,
+            "text": "Part B. In this part of the test, you will hear six different extracts."
+          },
+          {
+            "time": 546.8,
+            "text": "For questions 25 to 30, choose the answer A, B or C, which fits best according to what you hear."
+          },
+          {
+            "time": 1046.28,
+            "text": "That is the end of Part B. Now look at Part C."
+          },
+          {
+            "time": 1050.04,
+            "text": "Part C. In this part of the test, you'll hear two different extracts."
+          },
+          {
+            "time": 1064.48,
+            "text": "For questions 31 to 42, choose the answer A, B or C, which fits best according to what you hear."
+          },
+          {
+            "time": 1077.2,
+            "text": "Extract 1, questions 31 to 36."
+          },
+          {
+            "time": 1087.86,
+            "text": "You have 90 seconds to read questions 31 to 36."
+          }
+        ],
+        "transcriptPath": "material-practice/transcripts/c72b1bfd347e060ed089eea96d902064bb84baf583070e091778ed1a107e53f5.json",
+        "note": "Patient history and subsequent healthcare extract topics agree with the printed task."
+      }
+    },
+    {
+      "recordingSha256": "9dcb6dd76965a004eb1ab8168df31cbefc3bdbcd1bf83c50c5994c117e2f7cb9",
+      "filename": "Task 9.ogg",
+      "task": 9,
+      "verification": {
+        "method": "reviewed-spoken-cases-and-printed-task-topics",
+        "intro": "become thickened and tight, a condition called frozen shoulder. I am prescribing you Vioxx 25",
+        "partTransitions": [
+          {
+            "time": 520.2,
+            "text": "That is the end of Part A. Now look at Part B. Part B."
+          },
+          {
+            "time": 537.74,
+            "text": "For questions 25 to 30, choose the answer A, B, or C, which best fits according to what you hear."
+          },
+          {
+            "time": 1150.46,
+            "text": "This is the end of Part B."
+          },
+          {
+            "time": 1164.46,
+            "text": "Now, look at Part C."
+          },
+          {
+            "time": 1171.42,
+            "text": "Part C."
+          },
+          {
+            "time": 1183.36,
+            "text": "For questions 31 to 42, choose the answer A, B, or C, which best fits according to what you hear."
+          },
+          {
+            "time": 1201.28,
+            "text": "Questions 31 to 36."
+          },
+          {
+            "time": 1208.66,
+            "text": "You have 90 seconds to read questions 31 to 36."
+          }
+        ],
+        "transcriptPath": "material-practice/transcripts/9dcb6dd76965a004eb1ab8168df31cbefc3bdbcd1bf83c50c5994c117e2f7cb9.json",
+        "note": "Patient history and subsequent healthcare extract topics agree with the printed task."
+      }
+    },
+    {
+      "recordingSha256": "366e107aa18527c618a057e84a51f01ec6f88843ff7a39382055ea826e6d67df",
+      "filename": "Task 10.ogg",
+      "task": 10,
+      "verification": {
+        "method": "reviewed-spoken-cases-and-printed-task-topics",
+        "intro": "You hear a doctor talking to a patient called Polina.",
+        "partTransitions": [
+          {
+            "time": 467.24,
+            "text": "That is the end of Part A. Now look at Part B."
+          },
+          {
+            "time": 492.54,
+            "text": "For questions 25 to 30, choose the answer A, B, or C."
+          },
+          {
+            "time": 1118.48,
+            "text": "That is the end of Part B."
+          },
+          {
+            "time": 1121.4,
+            "text": "Now, look at Part C."
+          },
+          {
+            "time": 1123.3,
+            "text": "Part C. In this part of the test, you'll hear two different extracts. In each extract,"
+          },
+          {
+            "time": 1140.54,
+            "text": "For questions 31 to 42, choose the answer A, B, or C, which fits best according to what you hear."
+          },
+          {
+            "time": 1151.84,
+            "text": "now look at extract one extract one questions 31 to 36 you hear the discussion between a senior"
+          },
+          {
+            "time": 1162.92,
+            "text": "doctor and junior doctors on epidermal nevi you have 90 seconds to read questions 31 to 36"
+          }
+        ],
+        "transcriptPath": "material-practice/transcripts/366e107aa18527c618a057e84a51f01ec6f88843ff7a39382055ea826e6d67df.json",
+        "note": "Patient history and subsequent healthcare extract topics agree with the printed task."
+      }
+    },
+    {
+      "recordingSha256": "e284ff5b129a15384a32740e1cb398a369f2526e078205f38479eba2501404db",
+      "filename": "Task 12.ogg",
+      "task": 12,
+      "verification": {
+        "method": "reviewed-spoken-cases-and-printed-task-topics",
+        "intro": "You hear a physician talking to a new patient, called Mrs. Delilah.",
+        "partTransitions": [
+          {
+            "time": 468.1,
+            "text": "This is the end of Part A. Now, look at Part B."
+          },
+          {
+            "time": 483.6,
+            "text": "Part B In this part of the test, you will hear six"
+          },
+          {
+            "time": 491.42,
+            "text": "environment. For questions 25 to 30, choose the answer A, B, or C, which fits best in"
+          },
+          {
+            "time": 1024.9,
+            "text": "This is the end of Part B. Now look at Part C."
+          },
+          {
+            "time": 1034.14,
+            "text": "Part C. In this part of the test, you'll hear two different extracts."
+          },
+          {
+            "time": 1043.38,
+            "text": "For questions 31 to 42, choose the answer A, B, or C, which best fits according to what you hear."
+          },
+          {
+            "time": 1056.56,
+            "text": "Extract 1 for questions 31 to 36."
+          },
+          {
+            "time": 1068.84,
+            "text": "You have 90 seconds to read questions 31 to 36."
+          }
+        ],
+        "transcriptPath": "material-practice/transcripts/e284ff5b129a15384a32740e1cb398a369f2526e078205f38479eba2501404db.json",
+        "note": "Task 12 audio names the patient Delilah; the matching printed case names her Garcia/Gracia. Match is based on the same left-leg weakness, left-hand numbness, carotid Dopplers and later extracts, not the name."
+      }
+    },
+    {
+      "recordingSha256": "c7ceac3d06755e9fa2659babda5121f73fddfb860afda73ac7d29fe73f588ffd",
+      "filename": "Task 4.ogg",
+      "task": 4,
+      "verification": {
+        "method": "reviewed-spoken-cases-and-printed-task-topics",
+        "intro": "You hear a doctor talking to a patient called Hiramichi.",
+        "partTransitions": [
+          {
+            "time": 461.42,
+            "text": "That is the end for part A. Now look at part B."
+          },
+          {
+            "time": 465.42,
+            "text": "Part B. In this part of the test, you will hear six different extracts."
+          },
+          {
+            "time": 480.62,
+            "text": "For questions 25 to 30, choose the best answer, A, B, or C, which fits best according to what you hear."
+          },
+          {
+            "time": 974.16,
+            "text": "That is the end of Part B. Now look at Part C."
+          },
+          {
+            "time": 993.9,
+            "text": "Part C. In this part of the test, you'll hear two different extracts. In each extract,"
+          },
+          {
+            "time": 1004.86,
+            "text": "For questions 31 to 42, choose the best answer, A, B, or C, which fits best according to what"
+          },
+          {
+            "time": 1020.78,
+            "text": "Questions 31 to 36."
+          },
+          {
+            "time": 1028.46,
+            "text": "You have 90 seconds to read the questions 31 to 36."
+          }
+        ],
+        "transcriptPath": "material-practice/transcripts/c7ceac3d06755e9fa2659babda5121f73fddfb860afda73ac7d29fe73f588ffd.json",
+        "note": "Patient history and subsequent healthcare extract topics agree with the printed task."
+      }
+    },
+    {
+      "recordingSha256": "c22616711cadf208e8c4191a42ddc1e45c37cd6d2f8832685cfcc5516dd6a37e",
+      "filename": "Task 13.ogg",
+      "task": 13,
+      "verification": {
+        "method": "reviewed-spoken-cases-and-printed-task-topics",
+        "intro": "You hear a doctor talking to a patient called Brian Harris.",
+        "partTransitions": [
+          {
+            "time": 600.26,
+            "text": "Now look at part B"
+          },
+          {
+            "time": 616.0,
+            "text": "For questions 25 to 30, choose the answer A, B or C, which fits best according to what you hear"
+          },
+          {
+            "time": 1130.14,
+            "text": "This is the end of Part B. Now look at Part C."
+          },
+          {
+            "time": 1136.6,
+            "text": "Part C"
+          },
+          {
+            "time": 1149.94,
+            "text": "For questions 31 to 42, choose the answer A, B or C, which fits best according to what you hear."
+          },
+          {
+            "time": 1162.42,
+            "text": "Extract 1, questions 31-36"
+          },
+          {
+            "time": 1172.74,
+            "text": "You have 90 seconds to read questions 31-36."
+          },
+          {
+            "time": 1738.42,
+            "text": "This is the end of Part C. You now have two minutes to check your answers."
+          }
+        ],
+        "transcriptPath": "material-practice/transcripts/c22616711cadf208e8c4191a42ddc1e45c37cd6d2f8832685cfcc5516dd6a37e.json",
+        "note": "Patient history and subsequent healthcare extract topics agree with the printed task."
+      }
+    },
+    {
+      "recordingSha256": "7b30a4b5460c8e74c80de610ca75982a1990a6f00ec019fe0f82c66d38e580f1",
+      "filename": "Task 2.ogg",
+      "task": 2,
+      "verification": {
+        "method": "reviewed-spoken-cases-and-printed-task-topics",
+        "intro": "You hear a doctor talking to a patient called Mrs. Melissa.",
+        "partTransitions": [
+          {
+            "time": 356.64,
+            "text": "That is the end of Part A. Now, look at Part B."
+          },
+          {
+            "time": 361.72,
+            "text": "Part B. In this part of the test, you will hear six different extracts."
+          },
+          {
+            "time": 371.76,
+            "text": "For questions 25 to 30, choose the answer A, B or C, which fits best according to what"
+          },
+          {
+            "time": 924.64,
+            "text": "That is the end of Part B. Now look at Part C."
+          },
+          {
+            "time": 931.82,
+            "text": "Part C. In this part of the test, you'll hear two different extracts."
+          },
+          {
+            "time": 946.08,
+            "text": "For questions 31 to 42, choose the answer A, B or C which fits best according to what"
+          },
+          {
+            "time": 959.98,
+            "text": "Fact 1, Questions 31 to 36."
+          },
+          {
+            "time": 969.04,
+            "text": "You have 90 seconds to read Questions 31 to 36."
+          }
+        ],
+        "transcriptPath": "material-practice/transcripts/7b30a4b5460c8e74c80de610ca75982a1990a6f00ec019fe0f82c66d38e580f1.json",
+        "note": "Patient history and subsequent healthcare extract topics agree with the printed task."
+      }
+    },
+    {
+      "recordingSha256": "5becedcb769da542a44730bc343f1cbb67768f609a293230ab3d3473eaf2ca59",
+      "filename": "Task 3.ogg",
+      "task": 3,
+      "verification": {
+        "method": "reviewed-spoken-cases-and-printed-task-topics",
+        "intro": "You hear a doctor talking to a patient called Alejandro.",
+        "partTransitions": [
+          {
+            "time": 544.96,
+            "text": "experience. That is the end of part A. Now look at part B. Part B, in this part of the test,"
+          },
+          {
+            "time": 1092.66,
+            "text": "That is the end of Part B. Now look at Part C."
+          },
+          {
+            "time": 1108.66,
+            "text": "Part C. In this part of the test, you will hear two different extracts."
+          },
+          {
+            "time": 1854.46,
+            "text": "That is the end of Part C. You now have two minutes to check your answers."
+          }
+        ],
+        "transcriptPath": "material-practice/transcripts/5becedcb769da542a44730bc343f1cbb67768f609a293230ab3d3473eaf2ca59.json",
+        "note": "Patient history and subsequent healthcare extract topics agree with the printed task."
+      }
+    }
+  ]
+}

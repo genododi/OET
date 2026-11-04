@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { MaterialDone, CompletionFilter } from './MaterialDone';
+import { useMaterialCompletion } from '../lib/materialCompletion';
 import type { PrivateUsmleLibrary, PrivateUsmleQuestion } from '../types/usmleLibrary';
 import type { PrivateStudyProgress, PrivateQuestionProgress } from '../lib/usmleLibrary';
 import type { UsmleStep } from '../types/usmle';
@@ -10,6 +12,8 @@ export function UsmlePrivateLibrary({ library, progress, onChange, reviewing = f
 }) {
   const [step, setStep] = useState(''), [subject, setSubject] = useState(''), [search, setSearch] = useState('');
   const [year, setYear] = useState('');
+  const [sourceCompletion, setSourceCompletion] = useState('all');
+  const { isDone } = useMaterialCompletion();
   const years = [...new Set(library.questions.flatMap(q => q.productionYear ? [q.productionYear] : []))].sort((a,b) => b-a);
   const [reviewFilter, setReviewFilter] = useState(reviewing ? 'needs-review' : 'all');
   const [selected, setSelected] = useState<string | null>(null), [page, setPage] = useState(0);
@@ -39,7 +43,7 @@ export function UsmlePrivateLibrary({ library, progress, onChange, reviewing = f
       {visible.map(item => <button type="button" key={item.id} className={item.id === question?.id ? 'selected' : ''} onClick={() => setSelected(item.id)}><strong>Block {item.block ?? '—'} · Q{item.number ?? '—'} {progress[item.id]?.flagged ? '★' : ''}</strong><span>{item.prompt.slice(0, 125) || 'Source review card'}</span><small>{item.productionYear ?? 'Year not stated'} · {item.subject ?? 'Subject unassigned'}{item.reviewOnly ? ' · Review only' : ''}</small></button>)}
       <div className="usmle-pagination"><button className="btn btn-secondary btn-sm" disabled={safePage === 0} onClick={() => { setPage(safePage - 1); setSelected(null); }}>Previous</button><span>{safePage + 1} / {Math.max(1, Math.ceil(filtered.length / 15))}</span><button className="btn btn-secondary btn-sm" disabled={(safePage + 1) * 15 >= filtered.length} onClick={() => { setPage(safePage + 1); setSelected(null); }}>Next</button></div>
     </aside>{question && <Question key={question.id} question={question} saved={progress[question.id] ?? {}} onChange={value => onChange(question.id, value)} />}</div>
-    {!reviewing && <section className="card usmle-document-list"><h3>Your source PDFs</h3><p className="meta">Stored on this Mac for offline use. Scanned blocks retain their original pages; questions above provide readable text and source images.</p>{newestUsmleFirst(library.resources.filter(resource => resource.kind === 'pdf' && resource.asset)).map(resource => <a key={resource.id} href={privateUsmleUrl(resource.asset!)} target="_blank" rel="noreferrer">{resource.name} <small>{resource.productionYear ?? 'Year not stated'}</small> <span>Open PDF ↗</span></a>)}</section>}
+    {!reviewing && <section className="card usmle-document-list"><h3>Your source PDFs</h3><p className="meta">Stored on this Mac for offline use. Scanned blocks retain their original pages; questions above provide readable text and source images.</p><CompletionFilter value={sourceCompletion} onChange={setSourceCompletion} />{newestUsmleFirst(library.resources.filter(resource => resource.kind === 'pdf' && resource.asset && (sourceCompletion === 'undone' ? !isDone(resource.sha256) : sourceCompletion === 'done' ? isDone(resource.sha256) : true))).map(resource => <div className="material-completion-toolbar" key={resource.id}><a href={privateUsmleUrl(resource.asset!)} target="_blank" rel="noreferrer">{resource.name} <small>{resource.productionYear ?? 'Year not stated'}</small> <span>Open PDF ↗</span></a><MaterialDone fileId={resource.sha256} filename={resource.name} /></div>)}</section>}
   </section>;
 }
 

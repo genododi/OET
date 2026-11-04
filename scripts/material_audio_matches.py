@@ -3,6 +3,7 @@ import collections
 import copy
 import json
 import re
+from listening_book_matches import book_matches
 
 
 def printed_questions(part, answers):
@@ -71,6 +72,8 @@ def publish_audio_matches(root,files,payloads,doc,audio_formats):
             for audio in unit['recordings']:
                 if audio in files and files[audio]['format'] in audio_formats:matched[audio][unit['id']]=unit
     for audio,units in jahshan_matches(root,files,doc).items():
+        for unit in units:matched[audio][unit['id']]=unit
+    for audio,units in book_matches(root,files,payloads,doc).items():
         for unit in units:matched[audio][unit['id']]=unit
     links_path=root/'src/data/recordingQuestionMatches.json'
     if links_path.exists():

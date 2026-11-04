@@ -15,8 +15,8 @@ test('local evidence editing accepts deterministic sampling while bounding calle
     assert(sent.every(body=>body.chat_template_kwargs.enable_thinking===false));
     assert(sent.every(body=>body.reasoning_effort==='none'));
     await mentor.reply(new Request('oet://study/OET/desktop/ai/chat',{method:'POST',body:JSON.stringify({messages:[{role:'user',content:'Check source fidelity.'}],careful:true,max_tokens:1600})}));
-    assert.equal(sent.at(-1).reasoning_effort,'medium');
+    assert.equal(sent.at(-1).reasoning_effort,'high');
     assert.equal(sent.at(-1).chat_template_kwargs.enable_thinking,true);
-    assert.equal(sent.at(-1).max_tokens,1984);
+    assert.equal(sent.at(-1).max_tokens,2368);
   } finally {globalThis.fetch=original;}
 });

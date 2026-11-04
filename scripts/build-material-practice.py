@@ -135,6 +135,8 @@ def questions_on_page(text, number, part=None, needs_review=False):
     return sorted((q for q in questions if q['prompt'].strip()),key=lambda q:q['offset'])
 
 def build(library):
+    if not (library/'catalog.json').is_file():
+        raise ValueError('Connect GENODODI before regenerating practice matches. Existing published questions have been left intact.')
     bundled=json.loads((ROOT/'src/data/desktopMaterials.generated.json').read_text())['files']
     published=json.loads((ROOT/'public/imported-resources/catalog.json').read_text())['files']
     offline=json.loads((library/'catalog.json').read_text())['files'] if (library/'catalog.json').exists() else []
@@ -184,7 +186,7 @@ def build(library):
                 text=page['text']; marker=re.search(r'\b(?:READING|LISTENING)?\s*(?:SUB[- ]?TEST[^\n]*?)?\bPART\s*[-:]?\s*([ABC])\b',text[:900],re.I)
                 part=marker.group(1).upper() if marker else (current or {}).get('part',default_part)
                 if key_page(text):in_key=True;current=None;previous_numbers=set();continue
-                qs=[] if productive else questions_on_page(text,page['number'],part,page.get('needsReview',False))
+                qs=[] if productive or page.get('questionExtractionBlocked') else questions_on_page(text,page['number'],part,page.get('needsReview',False))
                 if in_key and not marker and not qs:continue
                 in_key=False
                 blocks=[];seen=set()
@@ -207,7 +209,7 @@ def build(library):
                     continue
                 first_line=next((line.strip() for line in text.splitlines() if line.strip()),'')[:100]
                 reset=bool(qs and previous_numbers & {q['number'] for q in qs})
-                new_task=bool(re.search(r'Case Notes Study\s*\d|Candidate.*Card|ROLE[- ]?PLAY\s*\d|Writing Task\s*\d',text[:350],re.I))
+                new_task=bool(re.search(r'Case Notes Study\s*\d|Candidate.*Card|ROLE[- ]?PLAY\s*\d|\b(?:Writing )?Task\s*\d',text[:350],re.I))
                 is_key_page=key_page(text)
                 if is_key_page:continue
                 if current is None or current.get('part')!=part or reset or new_task:

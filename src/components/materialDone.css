@@ -1,0 +1,6 @@
+.material-done-control { display: inline-flex; flex-direction: column; gap: 5px; flex-shrink: 0; }
+.material-done-control label { display: inline-flex !important; align-items: center; gap: 8px; padding: 8px 12px; border: 1px solid #c8dcd4; border-radius: 9px; background: #f5faf7; color: #245a4c; font-size: .9rem; font-weight: 600; cursor: pointer; }
+.material-done-control input { width: 19px !important; height: 19px; margin: 0; accent-color: #147c67; flex-shrink: 0; }
+.material-done-control label:has(input:checked) { background: #def4e9; border-color: #228265; }
+.material-done-control small { max-width: 240px; color: #9b432d; }
+.material-completion-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin: 10px 0; }

@@ -892,9 +892,11 @@
       "assetPath": "supplied-materials/files/230bee1facc0791a5548f7a2455f07a20d4dbd19ae45990c4a63bb47d03a2f45.html.txt",
       "textPath": "supplied-materials/text/230bee1facc0791a5548f7a2455f07a20d4dbd19ae45990c4a63bb47d03a2f45.json",
       "skills": [],
-      "hasText": true,
-      "excerpt": "Supplied HTML file. Download or read as plain text.",
-      "duplicateOf": null
+      "hasText": false,
+      "excerpt": "",
+      "duplicateOf": null,
+      "pageCount": 0,
+      "ocrPageCount": 0
     },
     {
       "id": "desktop-d1242a5090ef16a6",

@@ -42,6 +42,20 @@ class PrintedSourceTests(unittest.TestCase):
             with patch('material_audio_matches.jahshan_matches',return_value={}):publish_audio_matches(root,files,payloads,lambda sha:{'sha256':sha}, {'mp3'})
         self.assertEqual([q['number'] for q in payloads['excerpt']['units'][0]['questions']],[29,30])
         self.assertEqual(payloads['excerpt']['units'][0]['recordings'],['excerpt'])
+    def test_british_academy_ogg_questions_keep_printed_keys_and_missing_items(self):
+        from listening_book_matches import book_matches
+        root=Path(__file__).resolve().parents[2]
+        files={row['sha256']:row for row in json.loads((root/'public/imported-resources/catalog.json').read_text())['files']}
+        payloads={};matched=book_matches(root,files,payloads,lambda sha:files[sha])
+        self.assertEqual(len(matched),15)
+        units=next(iter(payloads.values()))['units'];self.assertEqual(sum(len(u['questions']) for u in units),629)
+        second=next(u for u in units if u['id']=='british-academy-task-2-A')
+        self.assertEqual([q['number'] for q in second['questions']],list(range(1,25)))
+        self.assertIn('40 Pounds',second['questions'][0]['answer']['text'])
+        self.assertIn('______',second['questions'][0]['prompt'])
+        last=next(u for u in units if u['id']=='british-academy-task-15-B')
+        self.assertEqual([q['number'] for q in last['questions']],[25,26,28,29,30]);self.assertIn('omit Question 27',last['notice'])
+
     def test_unrelated_papers_are_not_linked_by_a_numbered_subject_folder_or_generic_test_title(self):
         self.assertFalse(module['named_test_folder']('/sources/3. Reading'))
         self.assertFalse(module['named_test_folder']('/sources/Sample Test 1/Reading references'))

@@ -4,8 +4,8 @@ export interface MaterialDocument { id: string; filename: string; sha256: string
 export interface MaterialAnswer { text?: string; page: number; source: Partial<MaterialDocument> & { assetPath: string; filename: string; format: string } }
 export interface MaterialQuestion { number: number; prompt: string; sourcePage: number; choices: string[]; answer?: MaterialAnswer; kind: string }
 export interface MaterialTextRange { page: number; start: number; end: number }
-export interface MaterialUnit { id: string; label: string; part?: 'A' | 'B' | 'C'; sourceSha256: string; pages: number[]; ranges?: MaterialTextRange[]; questions: MaterialQuestion[]; skills: OetSubtest[]; recordings: string[]; passages?: { sourceSha256: string; pages: number[] }[]; answerSources: MaterialDocument[] }
-export interface MaterialSheet { version: number; sourceSha256: string; documents: MaterialDocument[]; units: MaterialUnit[]; relatedFiles?: { id: string; filename: string; format: string }[] }
+export interface MaterialUnit { id: string; label: string; notice?: string; part?: 'A' | 'B' | 'C'; sourceSha256: string; pages: number[]; ranges?: MaterialTextRange[]; questions: MaterialQuestion[]; skills: OetSubtest[]; recordings: string[]; passages?: { sourceSha256: string; pages: number[] }[]; answerSources: MaterialDocument[] }
+export interface MaterialSheet { version: number; sourceSha256: string; documents: MaterialDocument[]; units: MaterialUnit[]; relatedFiles?: { id: string; sha256?: string; filename: string; format: string }[] }
 export const materialUrl = (value: string) => /^(?:https?:|oet:|blob:)/.test(value) ? value : `${import.meta.env.BASE_URL}${value}`;
 export const materialOriginal = (file: Pick<MaterialDocument,'sha256'|'format'|'assetPath'>) => isDesktop() ? `${import.meta.env.BASE_URL}desktop/original/${file.sha256}?format=${file.format}` : studyAssetUrl(materialUrl(file.assetPath));
 export function validMaterialSheet(data: MaterialSheet, sha: string) {

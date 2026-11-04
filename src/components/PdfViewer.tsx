@@ -1,4 +1,5 @@
 import { usePdfAvailable } from '../hooks/usePdfAvailable';
+import { MaterialDone } from './MaterialDone';
 
 interface PdfViewerProps {
   src: string;
@@ -24,6 +25,7 @@ export function PdfViewer({
       <div className="pdf-toolbar">
         <span className="pdf-title">{title}</span>
         <div className="pdf-toolbar-actions">
+          <MaterialDone fileId={`resource-file:${src}`} filename={title} />
           {status === 'available' && (
             <a href={src} target="_blank" rel="noopener noreferrer" className="btn btn-ghost btn-sm">
               Open in new tab ↗

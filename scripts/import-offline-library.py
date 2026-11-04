@@ -17,6 +17,8 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 from pdf_layout import attach_pdf_display
 from presentation_text import presentation_text, plain_text, VERSION as FORMAT_VERSION
+from html_text import html_text, VERSION as HTML_VERSION
+from study_text import study_text, VERSION as TEXT_VERSION
 
 ROOT = Path(__file__).resolve().parents[1]
 EXTENSIONS = {'.pdf', '.docx', '.doc', '.pptx', '.ppt', '.xlsx', '.xls', '.csv', '.tsv', '.txt', '.md', '.rtf', '.html', '.htm', '.json', '.apkg', '.zip', '.rar', '.7z', '.mp3', '.m4a', '.wav', '.ogg', '.flac', '.aac', '.mp4', '.webm', '.mov', '.jpg', '.jpeg', '.png', '.webp', '.heic', '.heif', '.tif', '.tiff', '.bmp', '.gif', '.avif'}
@@ -38,6 +40,7 @@ def digest(path):
 
 def classify(relative, text, extension):
     value = relative.casefold()
+    if extension in {'.mp3', '.m4a', '.wav', '.ogg', '.flac', '.aac', '.webm'}: return ['listening']
     found = [skill for skill in ('listening', 'reading', 'writing', 'speaking') if skill in value]
     if found: return found
     if any(word in value for word in ('letter', 'case note')): return ['writing']
@@ -65,11 +68,10 @@ def source_text(source, sha):
             tree = ET.fromstring(doc.read('word/document.xml'))
             paragraphs = [''.join(t.text or '' for t in p.iter() if t.tag.endswith('}t')) for p in tree.iter() if p.tag.endswith('}p')]
         return {'sourceSha256': sha, 'text': '\n'.join(paragraphs)}
-    if source.suffix.lower() in {'.txt','.md','.csv','.tsv','.json','.html','.htm'}:
+    if source.suffix.lower() in {'.html','.htm'}: return html_text(source,sha)
+    if source.suffix.lower() in {'.txt','.json'}: return study_text(source,sha)
+    if source.suffix.lower() in {'.txt','.md','.csv','.tsv','.json'}:
         content=plain_text(source)
-        if source.suffix.lower() in {'.html','.htm'}:
-            content=re.sub(r'<(?:script|style)\b[^>]*>.*?</(?:script|style)>','',content,flags=re.I|re.S)
-            content=re.sub(r'<[^>]+>',' ',content)
         return {'sourceSha256':sha,'text':content,'formatExtractionVersion':FORMAT_VERSION}
     if source.suffix.lower() in {'.doc','.rtf'}:
         result=subprocess.run(['textutil','-convert','txt','-stdout',str(source)],capture_output=True,timeout=90,check=True)
@@ -158,8 +160,10 @@ def main():
         if sha in published: continue
         relative=p.relative_to(source).as_posix()
         ext=p.suffix.lower();text_path=out/'text'/f'{sha}.json'
-        refresh=ext in {'.ppt','.pptx','.txt','.md','.csv','.tsv','.json','.html','.htm'} and (not text_path.exists() or json.loads(text_path.read_text()).get('formatExtractionVersion')!=FORMAT_VERSION)
+        version_key,version=('htmlExtractionVersion',HTML_VERSION) if ext in {'.html','.htm'} else ('documentTextVersion',TEXT_VERSION) if ext in {'.txt','.json'} else ('formatExtractionVersion',FORMAT_VERSION)
+        refresh=ext in {'.ppt','.pptx','.txt','.md','.csv','.tsv','.json','.html','.htm'} and (not text_path.exists() or json.loads(text_path.read_text()).get(version_key)!=version)
         if sha in unique and (out/'files'/Path(unique[sha]['assetPath']).name).exists() and not refresh:
+            if ext in {'.mp3','.m4a','.wav','.ogg','.flac','.aac','.webm'}:unique[sha]['skills']=['listening']
             if relative not in unique[sha]['sourcePaths']:unique[sha]['sourcePaths'].append(relative)
             continue
         target=out/'files'/f'{sha}{ext}'

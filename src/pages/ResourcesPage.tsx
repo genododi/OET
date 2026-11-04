@@ -8,6 +8,8 @@ import { usePagination } from '../hooks/usePagination';
 import { localSourceFileUrl } from '../lib/localSourceGateway';
 import suppliedMaterials from '../data/desktopMaterials.generated.json';
 import { isDesktop } from '../lib/desktop';
+import { MaterialDone, CompletionFilter } from '../components/MaterialDone';
+import { useMaterialCompletion } from '../lib/materialCompletion';
 
 const subtests: Array<OetSubtest | 'general' | 'all'> = ['all', 'general', 'listening', 'reading', 'writing', 'speaking'];
 const formats: Array<StudyResourceFormat | 'all'> = ['all', 'guide', 'sample-test', 'video', 'reference'];
@@ -25,6 +27,9 @@ export function ResourcesPage({ onNavigate }: Props) {
   const [privateFormat, setPrivateFormat] = useState('all');
   const [learningRole, setLearningRole] = useState('all');
   const [integrationStatus, setIntegrationStatus] = useState('all');
+  const [completion, setCompletion] = useState('all');
+  const { isDone } = useMaterialCompletion();
+  const matchesCompletion = (id: string) => completion === 'undone' ? !isDone(id) : completion === 'done' ? isDone(id) : true;
   const resources = useMemo(
     () => filterStudyResources(studyResources, { query, subtest, format, source }),
     [query, subtest, format, source],
@@ -43,7 +48,7 @@ export function ResourcesPage({ onNavigate }: Props) {
         .includes(q);
     });
   }, [integrationStatus, learningRole, privateFormat, query, subtest]);
-  const privatePagination = usePagination(privateFiles);
+  const privatePagination = usePagination(privateFiles.filter(file => matchesCompletion(file.sha256)));
   const privateFormats = useMemo(
     () => ['all', ...new Set(localSourceFiles.map((file) => file.format).sort())],
     [],
@@ -150,6 +155,7 @@ export function ResourcesPage({ onNavigate }: Props) {
         <input type="search" aria-label={libraryView === 'private' ? 'Search private source index' : 'Search resources'} placeholder={libraryView === 'private' ? 'Search every indexed filename…' : 'Search resources…'} value={query} onChange={(event) => setQuery(event.target.value)} />
       </div>
       <div className="resource-filter-row">
+        <CompletionFilter value={completion} onChange={setCompletion} />
         <label>Sub-test<select value={subtest} onChange={(event) => setSubtest(event.target.value as (typeof subtests)[number])}>{subtests.map((item) => <option key={item} value={item}>{item}</option>)}</select></label>
         {libraryView === 'published' && <label>Format<select value={format} onChange={(event) => setFormat(event.target.value as (typeof formats)[number])}>{formats.map((item) => <option key={item} value={item}>{item}</option>)}</select></label>}
         {libraryView === 'published' && <label>Source<select value={source} onChange={(event) => setSource(event.target.value as typeof source)}><option value="all">all</option><option value="official">official</option><option value="community">community</option></select></label>}
@@ -160,15 +166,16 @@ export function ResourcesPage({ onNavigate }: Props) {
 
       {libraryView === 'published' ? (
         <>
-          <p className="meta">{resources.length} publication-eligible resources</p>
+          <p className="meta">{resources.filter(resource => matchesCompletion(`resource:${resource.id}`)).length} publication-eligible resources</p>
           <div className="resource-grid" data-testid="resource-grid">
-            {resources.map((resource) => (
+            {resources.filter(resource => matchesCompletion(`resource:${resource.id}`)).map((resource) => (
               <article key={resource.id} className="card resource-card">
                 <div className="card-header-row">
                   <span className={`subtest-badge ${resource.subtest === 'general' ? '' : `subtest-${resource.subtest}`}`}>{resource.subtest}</span>
                   <span className="tag">{resource.format}</span>
                 </div>
                 <h3>{resource.title}</h3>
+                <MaterialDone fileId={`resource:${resource.id}`} filename={resource.title} />
                 <p>{resource.description}</p>
                 <div className="resource-provenance">
                   <strong>{resource.sourceLabel}</strong>
@@ -185,7 +192,7 @@ export function ResourcesPage({ onNavigate }: Props) {
       ) : (
         <>
           <div className="private-vault-note">
-            <strong>{privateFiles.length.toLocaleString()} indexed private files</strong>
+            <strong>{privateFiles.filter(file => matchesCompletion(file.sha256)).length.toLocaleString()} indexed private files</strong>
             <span>Open files through the read-only local gateway when GENODODI is mounted. Private bytes stay on this Mac and are never uploaded by the public site.</span>
           </div>
           <ListPagination {...privatePagination} onPageChange={privatePagination.setPage} />
@@ -197,6 +204,7 @@ export function ResourcesPage({ onNavigate }: Props) {
                   <span className="tag">{file.format}</span>
                 </div>
                 <h3 title={file.filename}>{file.filename}</h3>
+                <MaterialDone fileId={file.sha256} filename={file.filename} />
                 <p className="private-source-path">{file.relativePath}</p>
                 <div className="source-file-flags">
                   <span>{humanize(file.learningRole)}</span>

@@ -14,7 +14,7 @@ import zipfile
 from presentation_text import embedded_audio
 
 ROOT=Path(__file__).resolve().parents[1]
-FORMATS={'pdf','doc','docx','ppt','pptx','xls','xlsx','csv','txt','md','rtf','html','htm','mp3','m4a','ogg','wav','flac','aac','mp4','mov','jpg','jpeg','png','webp','heic','heif','tif','tiff','bmp','gif','avif'}
+FORMATS={'pdf','doc','docx','ppt','pptx','xls','xlsx','csv','tsv','txt','md','json','rtf','html','htm','mp3','m4a','ogg','wav','flac','aac','webm','mp4','mov','jpg','jpeg','png','webp','heic','heif','tif','tiff','bmp','gif','avif','zip','rar','7z'}
 
 def safe_entry(entry):
     name=entry.get('XADFileName','').replace('\\','/');path=PurePosixPath(name)

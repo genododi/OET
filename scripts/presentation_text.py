@@ -16,8 +16,13 @@ AUDIO={'.mp3','.m4a','.wav','.ogg','.flac','.aac','.webm'}
 
 def plain_text(source):
     raw=source.read_bytes()
-    for encoding in (['utf-16'] if raw.startswith((b'\xff\xfe',b'\xfe\xff')) else ['utf-8-sig','cp1252']):
-        try:return raw.decode(encoding)
+    if raw.startswith((b'\xff\xfe\0\0',b'\0\0\xfe\xff')):encodings=['utf-32']
+    elif raw.startswith((b'\xff\xfe',b'\xfe\xff')):encodings=['utf-16']
+    elif len(raw)>8 and raw[1::2].count(0)>len(raw[1::2])*.6:encodings=['utf-16-le','utf-8-sig','cp1252']
+    elif len(raw)>8 and raw[::2].count(0)>len(raw[::2])*.6:encodings=['utf-16-be','utf-8-sig','cp1252']
+    else:encodings=['utf-8-sig','cp1252']
+    for encoding in encodings:
+        try:return raw.decode(encoding).replace('\r\n','\n').replace('\r','\n')
         except UnicodeError:pass
     return raw.decode('utf-8',errors='replace')
 
