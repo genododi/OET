@@ -3,7 +3,7 @@ import { CompletionFilter, MaterialDone } from './MaterialDone';
 import { useMaterialCompletion } from '../lib/materialCompletion';
 import './collectionTestPicker.css';
 
-type Test = { id: string; title: string; note?: string };
+type Test = { id: string; title: string; note?: string; noteSeparator?: string };
 
 // Test IDs are independent of the source book: many tests share one PDF.
 export function CollectionTestPicker({ collectionId, collectionName, tests, selectedId, label, onSelect }: {
@@ -27,7 +27,7 @@ export function CollectionTestPicker({ collectionId, collectionName, tests, sele
   const previous = visible.filter(test => tests.indexOf(test) < selectedIndex).at(-1);
   const next = visible.find(test => tests.indexOf(test) > selectedIndex);
   const selectedHidden = !visible.includes(selected);
-  const option = (test: Test) => <option key={test.id} value={test.id}>{test.title}{test.note ? ` · ${test.note}` : ''}{isDone(completionId(test)) ? ' · Done' : ''}</option>;
+  const option = (test: Test) => <option key={test.id} value={test.id}>{test.title}{test.note ? `${test.noteSeparator ?? ' · '}${test.note}` : ''}{isDone(completionId(test)) ? ' · Done' : ''}</option>;
   return <div className="collection-test-picker">
     <div className="collection-test-controls">
       <label htmlFor={id}>{label}<select id={id} value={selectedId} onChange={event => onSelect(event.target.value)}>

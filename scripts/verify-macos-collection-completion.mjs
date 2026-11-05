@@ -62,9 +62,9 @@ try {
   await page.getByRole('button', { name: 'Next test', exact: true }).click();
   await expect(done()).not.toBeChecked();
   await listeningSet.selectOption(initialSet); await expect(done()).toBeChecked();
-  await open('jahshan/reading', 'Done: Jahshan Reading · Sample Test 1');
-  const readingAnswer = page.getByRole('textbox', { name: 'Part A · Question 1', exact: true });
-  await readingAnswer.fill('D'); await done().check();
+  await open('jahshan/reading', 'Done: Jahshan Reading · 3- Sample Test 1');
+  const readingAnswer = page.getByRole('combobox', { name: 'Part A · Question 1', exact: true });
+  await readingAnswer.selectOption('D'); await done().check();
   await expect(readingAnswer).toHaveValue('D');
   await select('Reading test').selectOption('4'); await expect(done()).not.toBeChecked();
   await select('Filter by completion').selectOption('done');
