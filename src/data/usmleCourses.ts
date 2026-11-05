@@ -1,6 +1,7 @@
 // Publisher links only. Account-based materials are never scraped or bundled.
 export const usmleOfficialResources = [
   { name: 'USMLE Step 1 sample questions', url: 'https://www.usmle.org/exam-resources/step-1-materials/step-1-sample-test-questions', description: 'Official sample PDF and interactive testing experience.', step: 'Step 1', access: 'Free official samples' },
+  { name: 'Cohort open Step 1 practice', url: 'https://github.com/todd866/cohort', description: 'Original generated practice with source citations and explanations. Supplementary exercises with incomplete blueprint coverage; not official exam items. Imported copies work offline on this Mac.', step: 'Step 1', access: 'CC BY 4.0 · MD3 contributors' },
   { name: 'USMLE Step 2 CK sample questions', url: 'https://www.usmle.org/exam-resources/step-2-ck-materials/step-2-ck-sample-test-questions', description: 'Official sample PDF and interactive testing experience.', step: 'Step 2 CK', access: 'Free official samples' },
   { name: 'UWorld sample questions', url: 'https://medical.uworld.com/usmle/features/sample-questions/', description: 'Publisher-provided samples and question bank information.', step: 'Step 1 / Step 2 CK', access: 'Samples; full bank requires publisher access' },
   { name: 'AMBOSS USMLE', url: 'https://www.amboss.com/us/usmle', description: 'Official question bank, medical library and trial options.', step: 'Step 1 / Step 2 CK', access: 'Publisher account / trial terms apply' },

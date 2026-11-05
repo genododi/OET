@@ -56,6 +56,20 @@ describe('USMLE private study and honest scoring', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Hide answer' }));
     expect(change).toHaveBeenLastCalledWith(question.id, { revealed: false, reviewed: true });
   });
+  it('filters imported banks and identifies generated practice before revealing its source answer', () => {
+    const open: PrivateUsmleQuestion = { ...question, id: 'open-test', identity: 'open-test', sourceId: 'open-bank', sourceName: 'Synthetic open bank', step: 'step1', sourceOrigin: 'generated', sourceLicense: 'CC-BY-4.0', sourceAttribution: 'Synthetic contributors', sourceUrl: 'https://example.com/source' };
+    const library = { version: 1, importedAt: null, questions: [question, open], resources: [], warnings: [] };
+    const { rerender } = render(<UsmlePrivateLibrary library={library} progress={{}} onChange={() => {}} />);
+    fireEvent.change(screen.getByLabelText('Question bank / source'), { target: { value: 'open-bank' } });
+    expect(screen.getByText(/1 questions match/)).toBeVisible();
+    expect(screen.getByText(/Generated practice from the source publisher/)).toBeVisible();
+    expect(screen.getByRole('link', { name: 'Original source and licence ↗' })).toHaveAttribute('href', open.sourceUrl);
+    expect(screen.queryByText('Source answer: A')).not.toBeInTheDocument();
+    rerender(<UsmlePrivateLibrary library={library} progress={{ [open.id]: { revealed: true } }} onChange={() => {}} />);
+    expect(screen.getByText('Source answer: A')).toBeVisible();
+    expect(privateQuestionTask(open)?.usmleSource).toContain('Generated source practice');
+    expect(privateQuestionTask(open)?.usmleSource).toContain('CC-BY-4.0');
+  });
 });
 
 it('prioritises newer source-labelled USMLE editions and keeps an unknown year separate',()=>{

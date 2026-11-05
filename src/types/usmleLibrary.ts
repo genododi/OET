@@ -24,7 +24,12 @@ export interface PrivateUsmleQuestion {
   addedAt: string;
   questionImages: string[];
   answerImages: string[];
+  sourceUrl?: string;
+  sourceLicense?: string;
+  sourceAttribution?: string;
+  sourceOrigin?: 'generated' | 'authored';
+  sourceRevision?: string;
 }
-export interface PrivateUsmleResource { id: string; sha256: string; name: string; kind: 'pdf' | 'deck'; asset?: string; addedAt: string; size: number; questions?: number; productionYear?: number | null; productionYears?: number[]; yearEvidence?: string[] }
+export interface PrivateUsmleResource { id: string; sha256: string; name: string; kind: 'pdf' | 'deck' | 'question-bank'; asset?: string; addedAt: string; size: number; questions?: number; productionYear?: number | null; productionYears?: number[]; yearEvidence?: string[] }
 export interface PrivateUsmleLibrary { version: number; importedAt: string | null; questions: PrivateUsmleQuestion[]; resources: PrivateUsmleResource[]; warnings: string[] }
 export interface UsmleImportStatus { state: 'idle' | 'importing' | 'complete' | 'failed'; message: string; questions?: number; resources?: number; warnings?: string[] }

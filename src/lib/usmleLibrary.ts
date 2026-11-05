@@ -19,7 +19,7 @@ export function privateQuestionTask(question: PrivateUsmleQuestion, progress: Pr
     usmleYear: question.productionYear ?? undefined,
     usmleStep: step, usmleDiscipline: question.discipline, usmleQuestionFormat: 'single-best-answer',
     usmleQuestionImages: question.questionImages, usmleAnswerImages: question.answerImages,
-    usmleSource: `${question.sourceName} · ${question.subject ?? 'Subject unassigned'} · ${progress.step ? 'Step assigned by you' : question.classification}${question.sourceNote ? `\n${question.sourceNote}` : ''}`,
+    usmleSource: `${question.sourceName} · ${question.subject ?? 'Subject unassigned'} · ${progress.step ? 'Step assigned by you' : question.classification}${question.sourceOrigin ? ` · ${question.sourceOrigin === 'generated' ? 'Generated source practice' : 'Source-authored practice'} · ${question.sourceAttribution ?? ''} · ${question.sourceLicense ?? ''}` : ''}${question.sourceNote ? `\n${question.sourceNote}` : ''}`,
   };
 }
 
