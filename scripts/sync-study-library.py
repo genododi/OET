@@ -53,6 +53,7 @@ def main():
     with (state_root/'sync.lock').open('w') as lock:
         try:fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
         except BlockingIOError:print('A study-library update is already running.');return
+        os.environ['OET_LIBRARY_SYNC_LOCK_PID']=str(os.getpid())
         state={'checkedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'source':args.source,'status':'checking'}
         def save(**changes):
             state.update(changes);temporary=state_root/'status.tmp';temporary.write_text(json.dumps(state,ensure_ascii=False,indent=2)+'\n');temporary.replace(state_root/'status.json')

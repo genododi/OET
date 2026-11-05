@@ -27,7 +27,12 @@ speaking recording before leaving its session.
 `npm run materials:sync` checks `/Volumes/GENODODI/OET`, preserves exact originals
 in its `Mac App/offline-library` archive, safely expands supported study archives,
 recognises scanned pages and recordings locally, publishes verified resources,
-and rebuilds the installed Mac app after committing to GitHub main.
+and rebuilds the installed Mac app after committing to GitHub main. The build
+also maintains a checksummed permanent copy of all released originals on the
+Mac under `~/Library/Application Support/OET Study/offline-library`. Saved files
+play and open without the external drive. New originals can be copied from the
+drive or recovered from their public GitHub Releases; private USMLE data stays
+in its separate local library.
 
 Recognition runs in resumable batches (250 pages and 10 new recordings per run)
 so new original files can be published without waiting for an entire scanned

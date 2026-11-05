@@ -209,7 +209,7 @@ export function MaterialsPage({ itemId, returnTo, onNavigate }: { itemId?: strin
     void (isDesktop() ? readCatalog('offline-library/catalog.json').catch(async error => {
       if (controller.signal.aborted) throw error;
       const cached=await readCatalog('imported-resources/catalog.json');
-      setLibraryError('GENODODI is disconnected. Saved text, questions and answers are available; reconnect it to open external originals and recordings.');
+      setLibraryError('The local original-file copy is incomplete. Saved text, questions and answers are available; the library update can restore missing originals from GitHub.');
       return cached;
     }) : readCatalog('imported-resources/catalog.json')).then(extra => {
       if (!Array.isArray(extra.files) || extra.files.some((file: Material) => typeof file.id !== 'string' || typeof file.assetPath !== 'string' || !Array.isArray(file.skills))) throw Error('The offline library index is invalid.');

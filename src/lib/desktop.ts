@@ -1,6 +1,6 @@
 import type { PrivateUsmleLibrary, UsmleImportStatus } from '../types/usmleLibrary';
 export interface OfflineProfile { id: string; name: string; createdAt: string }
-export interface StartupUpdateStatus { state: string; checking: boolean; message: string; checkedAt?: string; files?: { state: string; checkedFiles?: number; changedFiles?: number; pendingPracticeFiles?: number }; published?: { state: string; remoteCommit?: string } }
+export interface StartupUpdateStatus { state: string; checking: boolean; message: string; checkedAt?: string; files?: { state: string; checkedFiles?: number; changedFiles?: number; pendingPracticeFiles?: number }; published?: { state: string; remoteCommit?: string }; localLibrary?: { state: string; files?: number; bytes?: number; missingFiles?: number } }
 export interface DesktopInfo { profile: OfflineProfile | null; profiles: OfflineProfile[]; offline: boolean; build?: { gitCommit: string; builtAt: string } | null; updates?: StartupUpdateStatus }
 export interface LocalAiStatus { installed: boolean; state: string; model: string; message: string }
 declare global {

@@ -15,10 +15,11 @@ let build = null;
 try { build = JSON.parse(fs.readFileSync(path.join(process.resourcesPath, 'build-info.json'), 'utf8')); } catch { /* Development build has no release stamp. */ }
 try { locations = JSON.parse(fs.readFileSync(path.join(process.resourcesPath, 'offline-locations.json'), 'utf8')); } catch { /* Portable installation beside the library. */ }
 const webRoot = process.env.OET_DESKTOP_WEB || path.join(process.resourcesPath, 'dist');
-const libraryRoot = process.env.OET_DESKTOP_LIBRARY || locations.library || path.join(installation, 'offline-library');
 const aiRoot = process.env.OET_DESKTOP_AI || locations.ai || path.join(installation, 'local-ai');
 if (process.env.OET_DESKTOP_USER_DATA) app.setPath('userData', process.env.OET_DESKTOP_USER_DATA);
 app.setName('OET Study');
+const libraryRoot = process.env.OET_DESKTOP_LIBRARY || locations.library || path.join(app.getPath('userData'), 'offline-library');
+const sourceLibraryRoot = process.env.OET_DESKTOP_SOURCE_LIBRARY || locations.sourceLibrary || '/Volumes/GENODODI/OET/Mac App/offline-library';
 app.commandLine.appendSwitch('disable-background-networking');
 protocol.registerSchemesAsPrivileged([{ scheme: 'oet', privileges: { standard: true, secure: true, supportFetchAPI: true, stream: true, corsEnabled: true } }]);
 const origin = 'oet://study';
@@ -124,7 +125,7 @@ function authorized(event) {
 app.whenReady().then(async () => {
   profiles = new ProfileStore(app.getPath('userData'));
   mentor = new LocalMentor(aiRoot, app.getPath('logs'));
-  startup = new StartupChecks({ sourceRoot: process.env.OET_DESKTOP_SOURCE || locations.source || '/Volumes/GENODODI/OET', libraryRoot, webRoot, stateRoot: path.join(app.getPath('userData'), 'library-sync'), resourcesPath: process.resourcesPath, build,
+  startup = new StartupChecks({ sourceRoot: process.env.OET_DESKTOP_SOURCE || locations.source || '/Volumes/GENODODI/OET', libraryRoot: sourceLibraryRoot, localLibraryRoot: libraryRoot, webRoot, stateRoot: path.join(app.getPath('userData'), 'library-sync'), resourcesPath: process.resourcesPath, build,
     fetcher: (url, options) => net.fetch(url, options),
     onChange: status => { for (const target of BrowserWindow.getAllWindows()) if (!target.isDestroyed() && windows.has(target.webContents.id)) target.webContents.send('desktop:update-status', status); },
   });

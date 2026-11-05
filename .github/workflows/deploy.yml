@@ -37,6 +37,7 @@ jobs:
       - run: npm run lint
       - run: npm run test:unit
       - run: npm run test:desktop
+      - run: npm run test:offline-library
       - run: node scripts/verify-imported-resources.mjs
       - run: npm run test:material-practice
       - run: npm run test:oet

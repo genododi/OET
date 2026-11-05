@@ -11,10 +11,27 @@ password-protected accounts. Recordings made with the speaking recorder should
 be downloaded before leaving the recording screen.
 
 The application bundles the existing study library, all 20 Benchmark recordings
-and the 90 Jahshan recordings. Additional originals imported from GENODODI stay
-in `/Volumes/GENODODI/OET/Mac App/offline-library` because the complete collection
-is larger than the Mac's available storage. Keep that drive connected to use
-the additional collection. Reopen the app after reconnecting it.
+and the 90 Jahshan recordings. The complete released OET collection is also saved
+once under `~/Library/Application Support/OET Study/offline-library` on the Mac.
+Recordings, PDFs, images, archives and other released originals open without
+GENODODI or an internet connection. The permanent copy is shared by local profiles
+and survives application updates; each profile's study progress stays separate.
+GENODODI is needed only to check/import newly added source material.
+
+Every build checks this permanent copy against the committed release catalog.
+It copies and hashes available external originals, or downloads missing files
+from their existing GitHub Releases, verifies size and SHA-256, and replaces each
+file atomically. Interrupted copies resume by verified file. An altered local copy
+is preserved in the library's `quarantine` directory. Originals, profiles, backups
+and models are not deleted. The build fails before replacing the app if space or
+verification is insufficient. Full collections stay outside Git history and the
+signed app bundle, avoiding a 14 GB duplicate on every application update.
+
+`npm run desktop:cache-library` repairs the permanent copy without rebuilding.
+The maintenance pipeline invokes it as part of app builds under its existing
+exclusive lock. `npm run desktop:check` verifies library completeness as well as
+the installed signature and live GitHub source. Private USMLE files remain local
+in their separate private library and are never uploaded by this process.
 
 The local AI engine is llama.cpp with Metal acceleration and a pinned
 Qwen3.5 4B Q4_K_M model, chosen for this Mac's 8 GB of memory. The model and
