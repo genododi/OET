@@ -1,0 +1,10 @@
+.collection-test-picker { margin: 16px 0; }
+.collection-test-controls { display: flex; align-items: end; flex-wrap: wrap; gap: 12px; }
+.collection-test-controls > label { display: grid; gap: 6px; flex: 1 1 190px; min-width: 0; }
+.collection-test-controls > label:first-child { flex: 3 1 300px; }
+.collection-test-controls select { width: 100%; min-width: 0; }
+.collection-test-controls .material-done-control { align-self: end; }
+.collection-test-picker .meta { margin: 10px 0; }
+@media (max-width: 600px) {
+  .collection-test-controls > label:first-child { flex-basis: 100%; }
+}

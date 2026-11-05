@@ -2,7 +2,21 @@ import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, expect, it, vi } from 'vitest';
 import { JahshanProductivePractice } from './JahshanProductivePractice';
 vi.mock('../components/SourcePracticeCoach',()=>({SourcePracticeCoach:({response,textPath,skill}:{response:string;textPath:string;skill:string})=><div role="region" aria-label="Following productive draft" data-source={textPath} data-skill={skill}>{response}</div>}));
-afterEach(cleanup);
+afterEach(() => { cleanup(); localStorage.clear(); });
+it('keeps completion separate for each Writing and Speaking sample without changing a draft', () => {
+ const view = render(<JahshanProductivePractice skill="writing"/>);
+ fireEvent.change(screen.getByLabelText('Your letter draft'), {target:{value:'My saved letter'}});
+ fireEvent.click(screen.getByRole('checkbox',{name:'Done: Jahshan Writing · Official sample 1'}));
+ expect(screen.getByLabelText('Your letter draft')).toHaveValue('My saved letter');
+ fireEvent.change(screen.getByLabelText('Choose a sample'),{target:{value:'2'}});
+ expect(screen.getByRole('checkbox',{name:/^Done:/})).not.toBeChecked();
+ view.unmount();
+ render(<JahshanProductivePractice skill="speaking"/>);
+ expect(screen.getByRole('checkbox',{name:'Done: Jahshan Speaking · Official sample 1'})).not.toBeChecked();
+ fireEvent.click(screen.getByRole('checkbox',{name:/^Done:/}));
+ fireEvent.change(screen.getByLabelText('Choose a sample'),{target:{value:'2'}});
+ expect(screen.getByRole('checkbox',{name:/^Done:/})).not.toBeChecked();
+});
 it('keeps the mentor on the selected official sample and the actual writing or speaking draft',()=>{
  render(<JahshanProductivePractice skill="writing"/>);
  fireEvent.change(screen.getByLabelText('Your letter draft'),{target:{value:'My first letter draft'}});

@@ -2,6 +2,22 @@ import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, expect, it } from 'vitest';
 import { JahshanReadingWorkspace } from './JahshanReadingWorkspace';
 afterEach(() => { cleanup(); localStorage.clear(); });
+it('marks only the selected reading test done and keeps numbered answers and review records intact', () => {
+  const view = render(<JahshanReadingWorkspace />);
+  fireEvent.change(screen.getByLabelText('Part A · Question 1', { exact: true }), { target: { value: 'D' } });
+  fireEvent.click(screen.getByRole('checkbox', { name: /^Done: Jahshan Reading/ }));
+  expect(screen.getByLabelText('Part A · Question 1', { exact: true })).toHaveValue('D');
+  expect(screen.getByLabelText('I compared my answers with the key and reviewed my mistakes')).not.toBeChecked();
+  fireEvent.change(screen.getByLabelText('Reading test'), { target: { value: '4' } });
+  expect(screen.getByRole('checkbox', { name: /^Done: Jahshan Reading/ })).not.toBeChecked();
+  fireEvent.change(screen.getByLabelText('Filter by completion'), { target: { value: 'done' } });
+  fireEvent.click(screen.getByRole('button', { name: 'Previous test' }));
+  expect(screen.getByLabelText('Reading test')).toHaveValue('3');
+  expect(screen.getByLabelText('Part A · Question 1', { exact: true })).toHaveValue('D');
+  view.unmount(); render(<JahshanReadingWorkspace />);
+  expect(screen.getByRole('checkbox', { name: /^Done: Jahshan Reading/ })).toBeChecked();
+  expect(screen.getByLabelText('Filter by completion')).toHaveValue('done');
+});
 it('uses the Reading index and separates the shorter paper from full papers', () => {
   const view = render(<JahshanReadingWorkspace bookUrl="blob:reading-book" />);
   expect(view.container.querySelector('.reading-workbench-wide')).not.toBeNull();

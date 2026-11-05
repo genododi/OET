@@ -5,6 +5,22 @@ import * as gateway from '../lib/localSourceGateway';
 import collection from '../data/jahshanCollection.json';
 beforeEach(() => { Object.defineProperty(HTMLDialogElement.prototype, 'showModal', { configurable: true, value: function () { this.setAttribute('open', ''); } }); vi.stubGlobal('fetch', vi.fn().mockRejectedValue(new Error('No transcript fixture'))); });
 afterEach(() => { cleanup(); localStorage.clear(); vi.unstubAllGlobals(); vi.restoreAllMocks(); });
+it('saves Listening completion per set while keeping its recording and answers in place', () => {
+  const view = render(<JahshanPage />);
+  const audio = view.container.querySelector('audio');
+  fireEvent.change(screen.getByLabelText('My numbered answers, evidence and corrections'), { target: { value: 'My saved evidence' } });
+  fireEvent.click(screen.getByRole('checkbox', { name: /^Done: Jahshan Listening/ }));
+  fireEvent.change(screen.getByLabelText('Filter by completion'), { target: { value: 'undone' } });
+  expect(view.container.querySelector('audio')).toBe(audio);
+  expect(screen.getByLabelText('My numbered answers, evidence and corrections')).toHaveValue('My saved evidence');
+  fireEvent.click(screen.getByRole('button', { name: 'Next test' }));
+  expect(screen.getByLabelText('Listening set')).toHaveValue(collection.groups[3].id);
+  expect(screen.getByRole('checkbox', { name: /^Done: Jahshan Listening/ })).not.toBeChecked();
+  fireEvent.change(screen.getByLabelText('Filter by completion'), { target: { value: 'done' } });
+  fireEvent.click(screen.getByRole('button', { name: 'Previous test' }));
+  expect(screen.getByRole('checkbox', { name: /^Done: Jahshan Listening/ })).toBeChecked();
+  expect(screen.getByLabelText('My numbered answers, evidence and corrections')).toHaveValue('My saved evidence');
+});
 it('pairs the selected set with its indexed questions and never substitutes missing audio', () => {
   render(<JahshanPage />);
   expect(screen.getByText('Question page 39 · Answer page 49 in the Listening collection.')).toBeInTheDocument();

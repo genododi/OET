@@ -13,6 +13,35 @@ beforeEach(() => {
 });
 afterEach(() => { cleanup(); localStorage.clear(); vi.unstubAllGlobals(); });
 
+it('keeps Done separate for every skill and test, with persistent unfinished navigation', async () => {
+  const navigate = vi.fn();
+  const view = render(<BenchmarkPage itemId="listening-1" onNavigate={navigate} />);
+  const answer = await screen.findByRole('textbox', { name: 'Question 1' });
+  fireEvent.change(answer, { target: { value: 'Keep this answer' } });
+  const audio = view.container.querySelector('audio');
+  fireEvent.click(screen.getByRole('checkbox', { name: 'Done: Benchmark · Listening Test 1' }));
+  fireEvent.change(screen.getByLabelText('Filter by completion'), { target: { value: 'undone' } });
+  expect(view.container.querySelector('audio')).toBe(audio);
+  expect(answer).toHaveValue('Keep this answer');
+  fireEvent.click(screen.getByRole('button', { name: 'Next test' }));
+  expect(navigate).toHaveBeenLastCalledWith('benchmark', 'listening-2');
+  view.unmount();
+  const second = render(<BenchmarkPage itemId="listening-2" onNavigate={navigate} />);
+  await screen.findByRole('textbox', { name: 'Question 1' });
+  expect(screen.getByLabelText('Filter by completion')).toHaveValue('undone');
+  expect(screen.getByRole('checkbox', { name: 'Done: Benchmark · Listening Test 2' })).not.toBeChecked();
+  for (const id of ['reading-1', 'writing-1', 'speaking']) {
+    second.rerender(<BenchmarkPage itemId={id} onNavigate={navigate} />);
+    const done = screen.getByRole('checkbox', { name: /^Done: Benchmark/ });
+    expect(done).not.toBeChecked();
+    fireEvent.click(done);
+  }
+  expect(Object.keys(JSON.parse(localStorage.getItem('oet-file-completion-v1')!))).toEqual([
+    'collection-test:benchmark:listening-1', 'collection-test:benchmark:reading-1',
+    'collection-test:benchmark:writing-1', 'collection-test:benchmark:speaking-pregnancy',
+  ]);
+});
+
 it('preserves a learner response when revealing the correct printed key and keeps tests separate', async () => {
   const view = render(<BenchmarkPage itemId="listening-1" onNavigate={vi.fn()} />);
   await screen.findByRole('textbox', { name: 'Question 1' });
@@ -113,7 +142,7 @@ it('gives Benchmark Speaking a timed preparation, live role-play and review sequ
   expect(screen.getByRole('heading', { name: 'Step 1 · Prepare the role-play' })).toBeVisible();
   expect(screen.getByRole('heading', { name: 'Step 2 · Role-play and record' })).toBeVisible();
   expect(screen.getByRole('heading', { name: 'Step 3 · Review the conversation' })).toBeVisible();
-  expect(screen.getByText('GP consultation · Unexpected pregnancy')).toBeVisible();
+  expect(screen.getByRole('heading', { name: 'GP consultation · Unexpected pregnancy' })).toBeVisible();
   expect(screen.getByRole('button', { name: 'Record speaking response' })).toBeVisible();
   expect(screen.getByLabelText('Transcript or review notes')).toBeVisible();
   expect(screen.getByText('Listen to Benchmark’s human role-play examples')).toBeVisible();
