@@ -24,7 +24,15 @@ self.addEventListener('message', event => {
 });
 
 async function savedResponse(request) {
-  const cached = await (await caches.open(PACKS)).match(request.url);
+  const cache = await caches.open(PACKS);
+  let cached = await cache.match(request.url);
+  if (!cached) {
+    const url = new URL(request.url);
+    const source = url.origin === 'https://raw.githubusercontent.com' && /^\/genododi\/OET\/(?:main|[a-f0-9]{40})\/public\/(.+)$/.exec(url.pathname);
+    if (source && /^(?:usmle-library\/pages\/|jahshan-audio\/|supplied-materials\/files\/|audio\/listening\/)/.test(source[1])) {
+      cached = await cache.match(`${self.location.origin}/OET/${source[1]}${url.search}`);
+    }
+  }
   if (!cached) return null;
   const range = request.headers.get('Range');
   if (!range) return cached;

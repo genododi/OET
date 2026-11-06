@@ -75,7 +75,7 @@ it('uses selected files on the hosted page without contacting the HTTP gateway',
   const fetchSpy = vi.fn().mockRejectedValue(new Error('No transcript fixture'));
   vi.stubGlobal('fetch', fetchSpy);
   const createUrl = vi.fn().mockReturnValue('blob:https://genododi.github.io/local-track');
-  vi.stubGlobal('URL', { createObjectURL: createUrl, revokeObjectURL: vi.fn() });
+  vi.stubGlobal('URL', Object.assign(class extends URL {}, { createObjectURL: createUrl, revokeObjectURL: vi.fn() }));
   const view = render(<JahshanPage />);
   expect(screen.queryByRole('button', { name: 'Connect GENODODI' })).not.toBeInTheDocument();
   const track = collection.files.find(file => file.relativePath === 'Audio/3- Sample Test 1/3-Part A.mp3')!;

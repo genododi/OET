@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { extractListeningKeywords } from '../lib/listeningKeywords';
+import { studyAssetUrl } from '../lib/desktop';
 
 interface Props {
   src?: string;
@@ -20,7 +21,7 @@ interface Props {
 
 export function AudioPlayer(props: Props) {
   if (props.src?.includes('/audio/question-matched/')) return <p>Generated listening clips are retired. <a href="#listening">Choose an original OET recording →</a></p>;
-  return <VerifiedAudioPlayer {...props} />;
+  return <VerifiedAudioPlayer {...props} src={props.src ? studyAssetUrl(props.src) : undefined} />;
 }
 
 function VerifiedAudioPlayer({

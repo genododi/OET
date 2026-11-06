@@ -6,8 +6,8 @@ import type { OfflineAsset } from '../lib/offlineStudy';
 import './jahshanListening.css';
 type Track = { id: string; name: string; sha256: string; url: string };
 interface Props { track: Track; audioUrl: string; offlineAudioUrl?: string; offlineAssets?: OfflineAsset[]; transcriptPath: string; inlineTranscript?: Transcript; mimeType?: string; heading?: string; description?: string; playbackNote?: string; selectedPart?: 'A' | 'B' | 'C'; partSelection?: number; onPlaybackPart?: (part: 'A' | 'B' | 'C') => void; seekOnLoad?: boolean; }
-type Segment = { start: number; end: number; text: string };
-export type Transcript = { trackId: string; sourceSha256: string; kind: string; segments: Segment[] };
+type Segment = { start: number; end: number; text: string; reviewTerms?: string[] };
+export type Transcript = { trackId: string; sourceSha256: string; kind: string; segments: Segment[]; recognitionProfile?: { id: string; wordTimestamps?: boolean } };
 const matches = (data: Transcript, id: string, sha256: string) => data.trackId === id && data.sourceSha256 === sha256 && data.kind === 'automatic-transcription' && Array.isArray(data.segments) && data.segments.length > 0 && data.segments.every(s => Number.isFinite(s.start) && Number.isFinite(s.end) && s.start >= 0 && s.end >= s.start && typeof s.text === 'string');
 const timestamp = (time: number) => `${Math.floor(time / 60)}:${Math.floor(time % 60).toString().padStart(2, '0')}`;
 export function RecordingTranscriptPlayer(props: Props) {
@@ -91,11 +91,12 @@ function Player({ track, audioUrl, offlineAudioUrl, offlineAssets = [], transcri
     <section className="jahshan-transcript" aria-label="Transcript of selected recording">
       <h3>Recording transcript</h3><p className="meta">{description ?? track.name}</p>
       <p className="meta">Automatically transcribed from the original human recording. Recognition errors are possible. Intervals with unreliable recognition are marked “Unclear”; replay those timestamps. Use the printed answer key for marking.</p>
+      {transcript?.recognitionProfile?.id === 'medical-english-v1' && <p className="meta">Medical vocabulary and word timing enabled. “Check wording” marks uncertain medical terms, numbers or negation. Select that line to replay; the spoken text has not been automatically corrected.</p>}
       {state === 'loading' && <p role="status">Loading this recording’s transcript…</p>}
       {state === 'unavailable' && <p role="status">The transcript for this recording is unavailable. You can still use the original audio. Reopen this task after the next library update.</p>}
       {state === 'ready' && transcript && <>
         <div className="transcript-actions"><label><input type="checkbox" checked={follow} onChange={event => setFollow(event.target.checked)} /> Follow the audio</label><a href={`data:text/plain;charset=utf-8,${encodeURIComponent(transcript.segments.map(s => `[${timestamp(s.start)}] ${s.text}`).join('\n'))}`} download={`${track.name.replace(/\.mp3$/i, '')}-transcript.txt`}>Download transcript</a></div>
-        <div ref={transcriptBox} className="transcript-box" tabIndex={0} aria-label="Recording text">{transcript.segments.map((segment, index) => <button type="button" ref={index === current ? activeLine : undefined} key={index} aria-label={`${timestamp(segment.start)} ${segment.text}`} className={`transcript-line${index === current ? ' transcript-current' : ''}`} aria-current={index === current ? 'true' : undefined} disabled={!duration} onClick={() => seek(segment.start)}><span className="transcript-time">{timestamp(segment.start)}</span><span>{segment.text}</span></button>)}</div>
+        <div ref={transcriptBox} className="transcript-box" tabIndex={0} aria-label="Recording text">{transcript.segments.map((segment, index) => <button type="button" ref={index === current ? activeLine : undefined} key={index} aria-label={`${timestamp(segment.start)} ${segment.text}`} className={`transcript-line${index === current ? ' transcript-current' : ''}`} aria-current={index === current ? 'true' : undefined} disabled={!duration} onClick={() => seek(segment.start)}><span className="transcript-time">{timestamp(segment.start)}</span><span>{segment.text}{Array.isArray(segment.reviewTerms) && segment.reviewTerms.length > 0 && <small className="transcript-word-check" title={`Replay to check: ${segment.reviewTerms.filter(t => typeof t === 'string').join(', ')}`}>Check wording</small>}</span></button>)}</div>
         <p className="meta">Select a timestamp to move the recording to that sentence.</p>
         {audioEnded && revisionKeywords.length > 0 && <aside className="listening-keyword-review" aria-label="Listening keywords to revise"><h4>After listening · keywords to revise</h4><p className="meta">Key terms picked from this recording’s transcript.</p><ul>{revisionKeywords.map(keyword => <li key={keyword}>{keyword}</li>)}</ul></aside>}
       </>}

@@ -1,4 +1,5 @@
 import type { PrivateUsmleLibrary, UsmleImportStatus } from '../types/usmleLibrary';
+import { repositoryStudyUrl } from './repositoryAssets';
 export interface OfflineProfile { id: string; name: string; createdAt: string }
 export interface StartupUpdateStatus { state: string; checking: boolean; message: string; checkedAt?: string; files?: { state: string; checkedFiles?: number; changedFiles?: number; pendingPracticeFiles?: number }; published?: { state: string; remoteCommit?: string }; localLibrary?: { state: string; files?: number; bytes?: number; missingFiles?: number } }
 export interface DesktopInfo { profile: OfflineProfile | null; profiles: OfflineProfile[]; offline: boolean; build?: { gitCommit: string; builtAt: string } | null; updates?: StartupUpdateStatus }
@@ -27,5 +28,5 @@ export const studyAssetUrl = (url: string) => {
   // A same-origin document route lets iOS open a saved external PDF offline.
   // Cross-origin top-level navigations cannot be controlled by this app's worker.
   if (typeof navigator !== 'undefined' && navigator.serviceWorker?.controller && /^https:\/\/github\.com\/genododi\/OET\/releases\/download\/.+\.pdf(?:[?#]|$)/.test(url)) return `${import.meta.env.BASE_URL}offline-file?source=${encodeURIComponent(url)}`;
-  return url;
+  return repositoryStudyUrl(url);
 };

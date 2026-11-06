@@ -22,6 +22,7 @@ class LibraryIntegrityTests(unittest.TestCase):
             installed=command('/library',runtime)
             self.assertEqual(installed[:3],['env','HF_HUB_OFFLINE=1',str(interpreter)])
             self.assertNotIn('uv',installed)
+            self.assertIn('--upgrade-existing',installed)
 
     def test_updates_use_installed_tools_without_replacing_an_explicit_selection(self):
         configure=sync['configure_developer_tools']
@@ -57,6 +58,7 @@ class LibraryIntegrityTests(unittest.TestCase):
     def test_automatic_commit_cannot_include_unrelated_edits(self):
         generated=sync['generated_only']
         self.assertTrue(generated(' M public/material-practice/index.json\n?? public/imported-resources/text/new.json'))
+        self.assertTrue(generated(' M public/jahshan-transcripts/exact-track.json\n M public/benchmark/transcripts/listening-1.json'))
         self.assertFalse(generated(' M src/pages/MaterialsPage.tsx'))
         self.assertFalse(generated(' M public/material-practice-other/private.txt'))
         self.assertFalse(generated(' M public/material-practice/index.json\n M package.json'))

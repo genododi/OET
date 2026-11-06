@@ -22,6 +22,16 @@ function worker() {
 }
 
 describe('iOS offline media worker', () => {
+  it('retains saved recordings after their online hosting moves to public GitHub source',async()=>{
+    const sw=worker();
+    const path='jahshan-audio/source.m4a';
+    sw.files.set(`https://example.org/OET/${path}`,new Response(new Uint8Array([1,2,3,4]),{headers:{'Content-Type':'audio/mp4'}}));
+    const request=new Request(`https://raw.githubusercontent.com/genododi/OET/${'a'.repeat(40)}/public/${path}`,{headers:{Range:'bytes=1-2'}});
+    const response=await sw.savedResponse(request);
+    expect(response.status).toBe(206);
+    expect([...new Uint8Array(await response.arrayBuffer())]).toEqual([2,3]);
+    expect(await sw.savedResponse(new Request('https://unrelated.example/public/'+path))).toBeNull();
+  });
   it('serves cached byte ranges for seeking and resuming without downloading audio again', async () => {
     const sw = worker(); const url = 'https://example.org/OET/audio.mp3';
     sw.files.set(url, new Response(new Uint8Array([0, 1, 2, 3, 4, 5]), { headers: { 'Content-Type': 'audio/mpeg' } }));

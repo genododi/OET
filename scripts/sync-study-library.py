@@ -19,7 +19,7 @@ NODE_RUNTIME=Path.home()/'.cache/codex-runtimes/codex-primary-runtime/dependenci
 TRANSCRIPTION_ROOT=Path.home()/'Library/Application Support/OET Study/local-ai/transcription'
 os.environ['PATH']=os.pathsep.join([str(NODE_RUNTIME),'/opt/homebrew/bin',str(Path.home()/'.local/bin'),os.environ.get('PATH','')])
 os.environ.setdefault('HF_HOME',str(TRANSCRIPTION_ROOT/'models'))
-GENERATED=['public/recent-materials.json','public/imported-resources','public/material-practice','src/data/desktopMaterials.generated.json','public/supplied-materials/text','src/data/recordingQuestionMatches.json']
+GENERATED=['public/recent-materials.json','public/imported-resources','public/material-practice','public/jahshan-transcripts','public/benchmark/transcripts','src/data/desktopMaterials.generated.json','public/supplied-materials/text','src/data/recordingQuestionMatches.json']
 
 def configure_developer_tools(environment,platform=sys.platform,tools=Path('/Library/Developer/CommandLineTools')):
     # Use the installed standalone tools when a newly selected Xcode has not
@@ -32,7 +32,7 @@ configure_developer_tools(os.environ)
 def transcription_command(library,runtime=TRANSCRIPTION_ROOT):
     interpreter=runtime/'venv/bin/python'
     prefix=[str(interpreter)] if interpreter.is_file() else ['uv','run','--offline','--with','mlx-whisper','python']
-    return ['env','HF_HUB_OFFLINE=1',*prefix,'scripts/transcribe-materials.py','--library',str(library),'--limit','10']
+    return ['env','HF_HUB_OFFLINE=1',*prefix,'scripts/transcribe-materials.py','--library',str(library),'--limit','10','--upgrade-existing']
 
 def run(command,timeout=21600,capture=False):
     process=subprocess.Popen(command,cwd=ROOT,text=True,stdout=subprocess.PIPE if capture else None,start_new_session=True)

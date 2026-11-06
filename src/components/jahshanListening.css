@@ -13,6 +13,7 @@
 .transcript-line { display: flex; width: 100%; text-align: left; gap: 12px; padding: 10px; border: 0; border-radius: 4px; font: inherit; line-height: 1.6; background: transparent; color: #243b30; cursor: pointer; }
 .transcript-line:disabled { opacity: 1; cursor: default; color: #243b30; }
 .transcript-time { font-variant-numeric: tabular-nums; font-size: .85em; color: #536e5f; min-width: 42px; }
+.transcript-word-check { display: inline-block; margin-left: .65em; padding: .05em .5em; border-radius: .35em; background: #fff0b7; color: #654800; font-size: .8em; font-weight: 600; }
 .transcript-line:hover:not(:disabled), .transcript-current { background: #e3f1e6; }
 .listening-keyword-review { margin-top: 18px; padding: 16px; border: 1px solid #bfd1c6; border-radius: 10px; background: #f7faf7; }
 .listening-keyword-review h4 { margin: 0 0 4px; }

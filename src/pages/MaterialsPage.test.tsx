@@ -90,7 +90,7 @@ it('opens PDF text first and remembers the original page without changing the dr
 it('plays only the matching audio selected by the learner and releases it on leaving', async () => {
   const create = vi.fn().mockReturnValue('blob:local-matching-audio');
   const revoke = vi.fn();
-  vi.stubGlobal('URL', { createObjectURL: create, revokeObjectURL: revoke });
+  vi.stubGlobal('URL', Object.assign(class extends URL {}, { createObjectURL: create, revokeObjectURL: revoke }));
   const view = render(<MaterialsPage itemId={task.id} onNavigate={vi.fn()} />);
   fireEvent.click(screen.getByRole('button', { name: 'Listening' }));
   expect(view.container.querySelector('audio')).toBeNull();

@@ -1,10 +1,11 @@
+import { canonicalStudyUrl, repositoryStudyUrl } from './repositoryAssets';
 export const STUDY_CACHE = 'oet-study-packs-v1';
 const PACK_KEY = 'oet-webapp-packs-v1';
 export type OfflineAsset = { url: string; label: string; sha256?: string; mimeType?: string; optional?: boolean };
 export type OfflinePack = { id: string; title: string; route: string; assets: OfflineAsset[]; savedAt: string };
 export type OfflineProgress = { done: number; total: number; label: string };
 export const deviceOfflineSupported = () => typeof caches !== 'undefined' && window.isSecureContext;
-export const offlineUrl = (value: string) => new URL(value, window.location.href).href.split('#')[0];
+export const offlineUrl = canonicalStudyUrl;
 export const offlineAssets = (assets: OfflineAsset[]) => [...new Map(assets.filter(a => a.url && !/^(blob:|oet:|data:)/.test(a.url)).map(a => [offlineUrl(a.url), { ...a, url: offlineUrl(a.url) }])).values()];
 
 export function savedStudyPacks(): OfflinePack[] {
@@ -56,7 +57,8 @@ export async function saveStudyPack(pack: OfflinePack, progress?: (value: Offlin
     if (existing && (!refresh || (asset.sha256 && existing.headers.get('X-OET-SHA256') === asset.sha256))) { done++; continue; }
     if (asset.optional && /\.pdf(?:\?|$)/i.test(asset.url) && !existing) { missing.push(asset); done++; continue; }
     try {
-      const response = await fetch(asset.url, { mode: 'cors', credentials: new URL(asset.url).origin === location.origin ? 'same-origin' : 'omit', cache: 'no-cache' });
+      const download = repositoryStudyUrl(asset.url);
+      const response = await fetch(download, { mode: 'cors', credentials: new URL(download).origin === location.origin ? 'same-origin' : 'omit', cache: 'no-cache' });
       if (!response.ok || response.status !== 200 || response.type === 'opaque') throw Error('File unavailable');
       await storeOfflineFile(await response.blob(), asset);
     } catch (error) {

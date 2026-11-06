@@ -30,6 +30,16 @@ it('refuses an offline transcript belonging to another recording',()=>{
  expect(screen.getByRole('status')).toHaveTextContent('unavailable');
  expect(fetcher).not.toHaveBeenCalled();
 });
+it('flags medical uncertainty without changing clinical words, and replays that line',()=>{
+ const data={...transcript,recognitionProfile:{id:'medical-english-v1',wordTimestamps:true},segments:[{start:5,end:10,text:'No tachyarithmia. 0.5 micrograms.',reviewTerms:['tachyarithmia','0.5']}]};
+ const view=render(<RecordingTranscriptPlayer track={track} audioUrl="audio/test.mp3" transcriptPath="" inlineTranscript={data} />);
+ expect(screen.getByText(/Medical vocabulary and word timing enabled/)).toBeInTheDocument();
+ expect(screen.getByText('Check wording')).toHaveAttribute('title','Replay to check: tachyarithmia, 0.5');
+ const audio=view.container.querySelector('audio')!;Object.defineProperty(audio,'duration',{value:60,configurable:true});fireEvent.loadedMetadata(audio);
+ fireEvent.click(screen.getByRole('button',{name:'0:05 No tachyarithmia. 0.5 micrograms.'}));
+ expect(audio.currentTime).toBe(5);
+ expect(screen.getByText('No tachyarithmia. 0.5 micrograms.')).toBeInTheDocument();
+});
 it('jumps to the selected part and its matching transcript lines', () => {
  const fetcher=vi.fn();vi.stubGlobal('fetch',fetcher);
  const sectional={...transcript,segments:[
