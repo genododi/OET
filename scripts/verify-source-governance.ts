@@ -14,6 +14,10 @@ const forbiddenExtensions = new Set(['.rar', '.7z', '.exe', '.dmg', '.pkg']);
 const maxPublicBytes = 30 * 1024 * 1024;
 // Owner-requested desktop uploads have an explicit catalog and a separate checksum gate.
 const suppliedAssets = new Set(desktopMaterials.files.map((file) => path.join(publicRoot, file.assetPath)));
+// The owner explicitly shared the imported USMLE banks. Their catalog has a
+// separate privacy, provenance and image-checksum gate in test:usmle-shared;
+// apply the existing supplied-data bound rather than the generic asset bound.
+suppliedAssets.add(path.join(publicRoot, 'usmle-library/index.json'));
 
 async function walk(directory: string): Promise<string[]> {
   const entries = await readdir(directory, { withFileTypes: true });
