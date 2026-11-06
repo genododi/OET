@@ -6,6 +6,8 @@ and source-page images are static web assets, available on the Mac offline too.
 """
 import argparse
 import concurrent.futures
+import copy
+import datetime
 import hashlib
 import json
 import os
@@ -18,6 +20,22 @@ import time
 ROOT = Path(__file__).resolve().parents[1]
 REPO = 'genododi/OET'
 TAG = 'usmle-telegram-library-v1'
+MEDIA_URL = f'https://raw.githubusercontent.com/{REPO}/main/shared-usmle-media/'
+
+
+def select_shared_sources(index, selected_source_ids):
+    """Select study banks without ever touching profile or learner records."""
+    selected = set(selected_source_ids)
+    result = copy.deepcopy(index)
+    for question in result['questions']:
+        if question['sourceId'] in selected:
+            question['publicSharing'] = True
+            question.setdefault('sourceGroup', 'Imported USMLE question library')
+    for resource in result['resources']:
+        if resource.get('id') in selected or resource['sha256'] in selected:
+            resource['publicSharing'] = True
+            resource.setdefault('sourceGroup', 'Imported USMLE question library')
+    return result
 
 
 def digest(path):
@@ -38,15 +56,17 @@ def gh(*args, absent_ok=False):
 
 def build_snapshot(index, library, output, originals):
     resources = [dict(row) for row in index['resources'] if row.get('publicSharing') is True]
-    source_ids = {row['sha256'] for row in resources}
-    question_fields = {'id', 'identity', 'prompt', 'options', 'key', 'explanation', 'step', 'subject', 'discipline', 'classification', 'block', 'number', 'sourceNote', 'reviewOnly', 'productionYear', 'productionYears', 'yearEvidence', 'sourceId', 'sourceName', 'addedAt', 'questionImages', 'answerImages', 'publicSharing', 'sourceGroup', 'questionPages', 'answerPages', 'answerProvenance', 'unverifiedAnswerHint', 'sourceKeyReference'}
-    questions = [{key: value for key, value in q.items() if key in question_fields} for q in index['questions'] if q.get('publicSharing') is True and q['sourceId'] in source_ids]
+    sources = {identity: row for row in resources for identity in [row.get('id', row['sha256']), row['sha256']]}
+    question_fields = {'id', 'identity', 'prompt', 'options', 'key', 'explanation', 'step', 'subject', 'discipline', 'classification', 'block', 'number', 'sourceNote', 'reviewOnly', 'productionYear', 'productionYears', 'yearEvidence', 'sourceId', 'sourceName', 'addedAt', 'questionImages', 'answerImages', 'publicSharing', 'sourceGroup', 'questionPages', 'answerPages', 'answerProvenance', 'unverifiedAnswerHint', 'sourceKeyReference', 'sourceOrigin', 'sourceLicense', 'sourceAttribution', 'sourceUrl', 'sourceRevision'}
+    questions = [{key: value for key, value in q.items() if key in question_fields} for q in index['questions'] if q.get('publicSharing') is True and q['sourceId'] in sources]
     page_root = output / 'pages'; page_root.mkdir(parents=True, exist_ok=True)
     assets = {}
     for q in questions:
-        q['originalAsset'] = f'https://github.com/{REPO}/releases/download/{TAG}/{q["sourceId"]}.pdf'
+        source_resource = sources[q['sourceId']]
+        if source_resource.get('kind') == 'pdf':
+            q['originalAsset'] = f'https://github.com/{REPO}/releases/download/{TAG}/{source_resource["sha256"]}.pdf'
         for field in ['questionImages', 'answerImages']:
-            if field == 'answerImages':
+            if field == 'answerImages' and q.get('sourceGroup') == 'GENODODI Telegram folder':
                 # Full explanation scans remain in the public original PDF and
                 # the Mac's local cache. Do not duplicate every scroll capture
                 # into the website bundle; keep its clinical question exhibits.
@@ -54,38 +74,49 @@ def build_snapshot(index, library, output, originals):
                 continue
             images = []
             for asset in q[field]:
-                if not re.fullmatch(r'media/[a-f0-9]{64}\.jpg', asset): raise ValueError('Unexpected shared image identity')
+                if not re.fullmatch(r'media/[a-f0-9]{64}\.(?:jpg|png|webp)', asset): raise ValueError('Unexpected shared image identity')
                 source = library / asset
                 if digest(source) != source.stem: raise ValueError('Source-page image integrity mismatch')
                 target = page_root / (source.stem + '.webp')
                 if not target.exists():
                     from PIL import Image
                     with Image.open(source) as image: image.convert('RGB').save(target, 'WEBP', quality=88, method=5)
-                images.append('usmle-library/pages/' + target.name)
-                assets[target.name] = {'sha256': digest(target), 'bytes': target.stat().st_size}
+                in_repository = q.get('sourceGroup') != 'GENODODI Telegram folder'
+                images.append(MEDIA_URL + target.name if in_repository else 'usmle-library/pages/' + target.name)
+                in_repository = in_repository or assets.get(target.name, {}).get('storage') == 'repository'
+                assets[target.name] = {'sha256': digest(target), 'bytes': target.stat().st_size, 'storage': 'repository' if in_repository else 'pages'}
             q[field] = images
+    for q in questions:
+        for field in ['questionImages', 'answerImages']:
+            q[field] = [MEDIA_URL + Path(asset).name if assets[Path(asset).name]['storage'] == 'repository' else 'usmle-library/pages/' + Path(asset).name for asset in q[field]]
     public_resources = []
     for row in resources:
-        sha = row['sha256']; original = library / 'originals' / (sha + '.pdf')
-        if digest(original) != sha or original.stat().st_size != row['size']: raise ValueError('Original PDF integrity mismatch')
-        allowed = {'id', 'sha256', 'name', 'kind', 'addedAt', 'size', 'questions', 'productionYear', 'productionYears', 'yearEvidence', 'publicSharing', 'sourceGroup', 'block', 'pageCount', 'questionBoundaryReview', 'expectedQuestions'}
+        sha = row['sha256']
+        allowed = {'id', 'sha256', 'name', 'kind', 'addedAt', 'size', 'questions', 'productionYear', 'productionYears', 'yearEvidence', 'publicSharing', 'sourceGroup', 'block', 'pageCount', 'questionBoundaryReview', 'expectedQuestions', 'sourceOrigin', 'sourceLicense', 'sourceAttribution', 'sourceUrl', 'sourceRevision'}
         item = {key: value for key, value in row.items() if key in allowed}
-        item['asset'] = f'https://github.com/{REPO}/releases/download/{TAG}/{sha}.pdf'
+        if row.get('kind') == 'pdf':
+            original = library / 'originals' / (sha + '.pdf')
+            if digest(original) != sha or original.stat().st_size != row['size']: raise ValueError('Original PDF integrity mismatch')
+            item['asset'] = f'https://github.com/{REPO}/releases/download/{TAG}/{sha}.pdf'
+            originals[sha] = original
         public_resources.append(item)
-        originals[sha] = original
     snapshot = {'version': 1, 'importedAt': index['importedAt'], 'questions': questions, 'resources': public_resources,
-                'warnings': ['Scanned worked explanations are preserved. Items without an explicit letter answer key remain review-only and are excluded from scored blocks.']}
+                'warnings': ['Source keys, authorship and classification are retained. Incomplete or unkeyed cards remain review-only and are excluded from scored blocks. Full Telegram explanation scans are in their original PDFs; imported-deck explanation images are also displayed with their questions.']}
     (output / 'index.json').write_text(json.dumps(snapshot, ensure_ascii=False) + '\n')
     (output / 'page-manifest.json').write_text(json.dumps({'version': 1, 'files': assets}, ensure_ascii=False) + '\n')
     return snapshot
 
 
 def main():
-    parser = argparse.ArgumentParser(); parser.add_argument('--library', type=Path, required=True); parser.add_argument('--apply', action='store_true'); args = parser.parse_args()
+    parser = argparse.ArgumentParser(); parser.add_argument('--library', type=Path, required=True); parser.add_argument('--apply', action='store_true'); parser.add_argument('--share-imported-questions', action='store_true', help='Explicitly select every current imported question bank for public study sharing; never export learner data'); args = parser.parse_args()
     if (args.library / 'import.lock').exists(): raise SystemExit('Recognition/import is still running; do not publish a partial snapshot.')
     receipt = json.loads((args.library / 'telegram-import-receipt.json').read_text())
     if not receipt.get('complete'): raise SystemExit('The Telegram import is incomplete')
-    index = json.loads((args.library / 'index.json').read_text())
+    index_path = args.library / 'index.json'; initial = index_path.read_bytes(); index = json.loads(initial)
+    selection_path = args.library / 'public-sharing-selection.json'
+    selected_sources = set(json.loads(selection_path.read_text()).get('sourceIds', [])) if selection_path.exists() else set()
+    if args.share_imported_questions: selected_sources.update(q['sourceId'] for q in index['questions'])
+    index = select_shared_sources(index, selected_sources)
     stage = ROOT / 'tmp/usmle-public-stage'; stage.mkdir(parents=True, exist_ok=True)
     originals = {}; snapshot = build_snapshot(index, args.library, stage, originals)
     print(json.dumps({'originals': len(originals), 'questions': len(snapshot['questions']), 'sourcePages': len(list((stage / 'pages').glob('*.webp')))}), flush=True)
@@ -124,10 +155,27 @@ def main():
     for sha, original in originals.items():
         asset = verified.get(original.name)
         if not asset or asset['size'] != original.stat().st_size or asset.get('digest') != 'sha256:' + sha: raise ValueError('The public original was not verified by GitHub digest')
-    gh('release', 'edit', TAG, '--repo', REPO, '--draft=false')
+    if index_path.read_bytes() != initial: raise RuntimeError('The local question bank changed during publication; preserve the new imports and prepare a fresh snapshot.')
+    notes = stage / 'release-notes.md'
+    notes.write_text('Public source PDFs for the owner-authorized USMLE study library. Original authorship is retained. Selected imported question banks and their question/answer images are published separately in the repository, with source attribution and license metadata where supplied. Profiles, personal answers, revision notes, Anki learner history, models and credentials are not included.\n')
+    gh('release', 'edit', TAG, '--repo', REPO, '--draft=false', '--title', 'USMLE study library originals', '--notes-file', str(notes))
     destination = ROOT / 'public/usmle-library'; destination.mkdir(exist_ok=True)
-    shutil.copytree(stage / 'pages', destination / 'pages', dirs_exist_ok=True)
+    manifest = json.loads((stage / 'page-manifest.json').read_text())['files']
+    for name, asset in manifest.items():
+        folder = ROOT / 'shared-usmle-media' if asset['storage'] == 'repository' else destination / 'pages'
+        folder.mkdir(parents=True, exist_ok=True); target = folder / name; source = stage / 'pages' / name
+        if target.exists():
+            if digest(target) != asset['sha256']: raise ValueError('A published source image differs from the prepared snapshot; preserve it for review')
+        else:
+            try: os.link(source, target)
+            except OSError: shutil.copyfile(source, target)
     for name in ['index.json', 'page-manifest.json']: shutil.copyfile(stage / name, destination / name)
+    if selected_sources:
+        if initial != (json.dumps(index, ensure_ascii=False) + '\n').encode():
+            stamp = datetime.datetime.now(datetime.timezone.utc).strftime('%Y%m%dT%H%M%SZ')
+            backup = args.library / 'import-backups' / f'before-public-sharing-{stamp}.json'; backup.parent.mkdir(exist_ok=True); backup.write_bytes(initial); backup.chmod(0o600)
+            pending = index_path.with_suffix('.sharing.next.json'); pending.write_text(json.dumps(index, ensure_ascii=False) + '\n'); pending.chmod(0o600); pending.replace(index_path)
+        pending_selection = selection_path.with_suffix('.next.json'); pending_selection.write_text(json.dumps({'version': 1, 'sourceIds': sorted(selected_sources), 'selectedAt': datetime.datetime.now(datetime.timezone.utc).isoformat()}) + '\n'); pending_selection.chmod(0o600); pending_selection.replace(selection_path)
     publication = {'version': 1, 'releaseTag': TAG, 'files': len(originals), 'questions': len(snapshot['questions']), 'originalSha256': sorted(originals), 'githubDigestVerified': True, 'sourcePages': len(json.loads((stage / 'page-manifest.json').read_text())['files'])}
     (args.library / 'telegram-publication-receipt.json').write_text(json.dumps(publication, indent=2) + '\n')
     print(json.dumps(publication), flush=True)

@@ -232,10 +232,10 @@ export async function importUsmleFolder(source, root, onProgress = () => {}) {
           if (supplement && parsed.step && supplement.key === parsed.key) question.explanation = [supplement.explanation, supplement.objective].filter(Boolean).join('\n\n');
           if (supplement && parsed.step && supplement.key !== parsed.key) question.sourceNote += '\nThe final deck key differs from the earlier text extraction. The final printed-key correction is retained; review the original answer pages.';
           const old = questions.get(identity);
-          questions.set(identity, { ...question, ...mergeSourceYears(old, sourceYear(name, note.tags ?? '')), id: `private-usmle-${identity.slice(0, 24)}`, identity, sourceId: sha256, sourceName: name, addedAt: old?.addedAt ?? new Date().toISOString(), questionImages: await images(questionHtml), answerImages: await images(answerHtml) });
+          questions.set(identity, { ...question, ...(old?.publicSharing ? { publicSharing: true, sourceGroup: old.sourceGroup } : {}), ...mergeSourceYears(old, sourceYear(name, note.tags ?? '')), id: `private-usmle-${identity.slice(0, 24)}`, identity, sourceId: sha256, sourceName: name, addedAt: old?.addedAt ?? new Date().toISOString(), questionImages: await images(questionHtml), answerImages: await images(answerHtml) });
         }
         if (!supported) throw Error('No supported multiple-choice or source study cards were found.');
-        resources.set(sha256, { ...mergeSourceYears(resources.get(sha256), sourceYear(name)), id: sha256, sha256, name, kind: 'deck', questions: supported, size: (await fs.stat(file)).size, addedAt: resources.get(sha256)?.addedAt ?? new Date().toISOString() });
+        resources.set(sha256, { ...resources.get(sha256), ...mergeSourceYears(resources.get(sha256), sourceYear(name)), id: sha256, sha256, name, kind: 'deck', questions: supported, size: (await fs.stat(file)).size, addedAt: resources.get(sha256)?.addedAt ?? new Date().toISOString() });
       } catch (error) {
         questions.clear(); for (const [key, value] of beforeDeck) questions.set(key, value);
         seenContent.clear(); for (const question of questions.values()) seenContent.set(digest(question.prompt.toLowerCase().replace(/\W/g, '') + question.options.map(option => option.label.toLowerCase().replace(/\W/g, '')).join('|')), question.identity);

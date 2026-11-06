@@ -13,6 +13,7 @@ const data = await fs.mkdtemp(path.join(os.tmpdir(), 'oet-shared-usmle-'));
 const executable = process.env.OET_SMOKE_EXECUTABLE || path.join(os.homedir(), 'Applications/OET Study.app/Contents/MacOS/OET Study');
 const raw = await fs.readFile('public/usmle-library/index.json');
 const catalog = JSON.parse(raw);
+const originals = catalog.resources.filter(resource => resource.kind === 'pdf');
 const originalIndex = await fs.readFile(path.join(root, 'index.json'));
 const app = await electron.launch({ executablePath: executable, args: [], timeout: 60000,
   env: { ...process.env, OET_DESKTOP_USER_DATA: data, OET_DESKTOP_USMLE: root,
@@ -41,12 +42,12 @@ try {
       results.push({ status: response.status, magic: await response.text(), range: response.headers.get('content-range') });
     }
     return results;
-  }, catalog.resources);
+  }, originals);
   for (let i = 0; i < readiness.length; i++) {
     assert.equal(readiness[i].status, 206); assert.equal(readiness[i].magic, '%PDF-');
-    assert.equal(readiness[i].range, `bytes 0-4/${catalog.resources[i].size}`);
+    assert.equal(readiness[i].range, `bytes 0-4/${originals[i].size}`);
   }
-  const shared = catalog.questions.find(q => q.options.length > 1 && q.questionImages.length);
+  const shared = catalog.questions.find(q => q.sourceGroup === 'GENODODI Telegram folder' && q.options.length > 1 && q.questionImages.length);
   const local = JSON.parse(originalIndex).questions.find(q => q.id === shared.id);
   const openStudy = async () => {
     await page.evaluate(() => { location.hash = '#usmle'; });
@@ -71,6 +72,20 @@ try {
   const viewer = await viewerOpened; await viewer.waitForLoadState('domcontentloaded');
   assert.match(viewer.url(), /oet:\/\/study\/OET\/desktop\/usmle\/originals\/[a-f0-9]{64}\.pdf/);
   await viewer.close();
+  const imported = catalog.questions.find(q => q.sourceGroup === 'Imported USMLE question library' && q.block && q.number && q.questionImages.length && q.answerImages.length);
+  assert.ok(imported, 'Previously local question and answer images must be published');
+  await page.getByLabel('Question bank / source').selectOption(imported.sourceId);
+  await page.getByRole('button').filter({ hasText: `Block ${imported.block} · Q${imported.number} ` }).first().click();
+  await expect(page.getByRole('article', { name: 'Selected study question' })).toContainText(imported.prompt.slice(0, 70));
+  await page.getByRole('button', { name: 'Reveal answer and explanation' }).click();
+  const answerGallery = page.getByLabel('Printed answer and explanation').locator('.usmle-source-images');
+  await answerGallery.locator('summary').click();
+  await expect.poll(() => answerGallery.locator('img').first().evaluate(image => image.naturalWidth)).toBeGreaterThan(0);
+  const open = catalog.questions.find(q => q.sourceOrigin === 'generated');
+  assert.ok(open?.sourceLicense && open?.sourceAttribution);
+  await page.getByLabel('Question bank / source').selectOption(open.sourceId);
+  await expect(page.getByRole('article', { name: 'Selected study question' })).toContainText(open.sourceAttribution);
+  await expect(page.getByRole('article', { name: 'Selected study question' })).toContainText(open.sourceLicense);
   const withheld = catalog.resources.find(resource => resource.questionBoundaryReview);
   if (withheld) {
     await page.getByLabel('Question bank / source').selectOption(withheld.sha256);
@@ -86,10 +101,24 @@ try {
   await expect(page.getByLabel('Printed answer and explanation')).toBeVisible();
   await page.reload(); await openStudy();
   await expect(page.getByLabel('My revision notes')).toHaveValue('Disposable profile note only');
-  await page.screenshot({ path: 'tmp/usmle-telegram/installed-shared-study.png', fullPage: false });
+  // Exercise the published catalog by itself, even if a local import index
+  // cannot load. This changes only this disposable Electron instance.
+  await app.evaluate(({ ipcMain }) => {
+    ipcMain.removeHandler('desktop:usmle-library');
+    ipcMain.handle('desktop:usmle-library', () => ({ version: 1, importedAt: null, questions: [], resources: [], warnings: [] }));
+  });
+  await page.reload(); await openStudy();
+  await page.getByLabel('Question bank / source').selectOption(imported.sourceId);
+  await page.getByRole('button').filter({ hasText: `Block ${imported.block} · Q${imported.number} ` }).first().click();
+  const bundledAnswers = page.getByLabel('Printed answer and explanation').locator('.usmle-source-images');
+  await bundledAnswers.locator('summary').click();
+  const bundledImage = bundledAnswers.locator('img').first();
+  await expect(bundledImage).toHaveAttribute('src', /\/OET\/usmle-library\/pages\/[a-f0-9]{64}\.webp$/);
+  await expect.poll(() => bundledImage.evaluate(image => image.naturalWidth)).toBeGreaterThan(0);
+  await page.screenshot({ path: 'tmp/usmle-public-extension/installed-public-bank.png', fullPage: false });
   assert.deepEqual(await fs.readFile(path.join(root, 'index.json')), originalIndex);
   console.log(JSON.stringify({ gitCommit: build.gitCommit, sharedOriginalsOffline: readiness.length,
-    sharedAndExistingLocalQuestions: true, questionAndAnswerImages: true, originalViewer: true,
+    sharedAndExistingLocalQuestions: true, formerlyLocalBankAnswersPublic: true, publicOnlySnapshotWorksOffline: true, openBankAttributionPreserved: true, questionAndAnswerImages: true, originalViewer: true,
     uncertainBoundariesWithheld: !!withheld, isolatedProfiles: true, progressSurvivesReload: true,
     localQuestionIndexUnchanged: true, noSourceDriveOrInternetNeeded: true, disposableProfile: true }));
 } finally { await app.close(); }

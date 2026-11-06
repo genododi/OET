@@ -100,10 +100,12 @@ it('loads the published bank in an ordinary browser and rejects an incomplete ca
 
 it('keeps original download links public on web and source-page images on the same origin', () => {
  const original='https://github.com/genododi/OET/releases/download/usmle-test/'+'a'.repeat(64)+'.pdf';
+ const sharedImage='https://raw.githubusercontent.com/genododi/OET/main/shared-usmle-media/'+'c'.repeat(64)+'.webp';
  expect(privateUsmleUrl(original)).toBe(original);
+ expect(privateUsmleUrl(sharedImage)).toBe(sharedImage);
  expect(privateUsmleUrl('usmle-library/pages/'+'b'.repeat(64)+'.webp')).toContain('/usmle-library/pages/');
  vi.stubGlobal('oetDesktop',{});
- try {expect(privateUsmleUrl(original)).toContain('/desktop/usmle/originals/'+'a'.repeat(64)+'.pdf');} finally {vi.unstubAllGlobals();}
+ try {expect(privateUsmleUrl(original)).toContain('/desktop/usmle/originals/'+'a'.repeat(64)+'.pdf');expect(privateUsmleUrl(sharedImage)).toContain('/usmle-library/pages/'+'c'.repeat(64)+'.webp');} finally {vi.unstubAllGlobals();}
 });
 
 it('lets learners attempt review-only material without inventing a correct or incorrect grade', () => {

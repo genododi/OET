@@ -61,7 +61,7 @@
     "desktop:mentor-check": "node scripts/evaluate-local-mentor.mjs",
     "test:desktop": "node --test desktop/*.test.mjs",
     "test:offline-library": "python3 -m unittest discover -s scripts/tests -p 'test_internal_library.py'",
-    "test:usmle-shared": "python3 -m unittest discover -s scripts/tests -p 'test_usmle_shared.py' && python3 scripts/verify-usmle-shared.py",
+    "test:usmle-shared": "python3 -m unittest discover -s scripts/tests -p 'test_usmle_shared.py' && python3 scripts/verify-usmle-shared.py && node --test scripts/tests/usmle-shared-media.node.mjs",
     "test:imported-resources": "node scripts/verify-imported-resources.mjs",
     "materials:prepare": "python3 scripts/build-material-practice.py",
     "materials:sync": "python3 scripts/sync-study-library.py",

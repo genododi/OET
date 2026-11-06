@@ -19,7 +19,7 @@ def sha256(path):
 def mirror(public, library, check_only=False):
     if library.is_symlink() or (library / 'originals').is_symlink(): raise ValueError('The shared library cannot link outside its local folder')
     raw = (public / 'index.json').read_bytes(); index = json.loads(raw)
-    resources = index['resources']; targets = []
+    resources = [row for row in index['resources'] if row.get('kind') == 'pdf']; targets = []
     for row in resources:
         sha = row['sha256']; url = row['asset']
         if row.get('publicSharing') is not True or not re.fullmatch(r'[a-f0-9]{64}', sha): raise ValueError('Not an explicitly shared PDF')

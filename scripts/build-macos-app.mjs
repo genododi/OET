@@ -5,6 +5,7 @@ import { packager } from '@electron/packager';
 import { createHash } from 'node:crypto';
 import { githubRevision, sourceRevision, verifyBuildRevision } from './macos-build-info.mjs';
 import { checkInternalLibrary } from '../desktop/offline-library.mjs';
+import { checkSharedMedia } from './usmle-shared-media.mjs';
 
 const root = process.cwd();
 const source = sourceRevision(root);
@@ -26,6 +27,7 @@ let sharedUsmleLibrary;
 try {
   await fs.access(path.join(root, 'public/usmle-library/index.json'));
   sharedUsmleLibrary = JSON.parse(execFileSync('python3', ['scripts/mirror-usmle-library.py', '--public', path.join(root, 'public/usmle-library'), '--library', usmleRoot], { cwd: root, encoding: 'utf8' }));
+  sharedUsmleLibrary.media = await checkSharedMedia(path.join(root, 'public/usmle-library'), { repository: root });
 } catch (error) { if (error.code !== 'ENOENT') throw error; }
 // Never package an earlier dist directory as if it belonged to the current commit.
 execFileSync('npm', ['run', 'build'], { cwd: root, stdio: 'inherit' });
@@ -52,6 +54,7 @@ for (const directory of results) {
   await fs.writeFile(path.join(resources, 'build-info.json'), JSON.stringify(build, null, 2) + '\n');
   // APFS clones keep the existing 1.3 GB study assets from consuming a second copy.
   await fs.cp(path.join(root, 'dist'), path.join(resources, 'dist'), { recursive: true, mode: 2 });
+  if (sharedUsmleLibrary?.media.repositoryFiles) await fs.cp(path.join(root, 'shared-usmle-media'), path.join(resources, 'dist/usmle-library/pages'), { recursive: true, mode: 2 });
   await fs.writeFile(path.join(resources, 'dist/bundled-assets.json'), JSON.stringify(Object.fromEntries(bundled.files.map(file => [file.sha256, file.assetPath]))));
   const media = {};
   const benchmark = JSON.parse(await fs.readFile(path.join(root, 'src/data/benchmarkCollection.json'), 'utf8'));

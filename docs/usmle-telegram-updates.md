@@ -10,6 +10,11 @@ The owner explicitly requested public sharing of these USMLE study blocks.
 Only records marked `publicSharing: true` are exported. Profiles, personal
 answers, revision notes, local paths, credentials and models stay on the Mac.
 Earlier local imports remain local unless separately selected for sharing.
+The owner subsequently selected all previously imported question banks too.
+Their persistent source selection is recorded in the local
+`usmle-library/public-sharing-selection.json`; ordinary weekly publication
+retains that selection alongside newly imported Telegram blocks. It never
+selects profiles or learner notes.
 
 ## Before importing
 
@@ -30,6 +35,8 @@ an empty recognition batch or release merely to change the import date.
 
 Use CommandLineTools DEVELOPER_DIR when the selected Xcode license blocks Swift
 or Git. Use the existing local Python/Pillow/Tesseract tools and Node 24+.
+Set `GODEBUG=netdns=cgo` for GitHub CLI operations on this Mac to avoid the
+intermittent resolver timeouts observed during release verification.
 Compile the recognizer, then run the maintained importer:
 
 ```sh
@@ -69,10 +76,21 @@ npm run lint
 ```
 
 Originals use the `usmle-telegram-library-v1` GitHub Release, named by SHA-256;
-GitHub size/digests must match before publication. Static recognised text and
-question-page images go in `public/usmle-library`. Full explanation scans remain
-in the public original PDFs and richer local cache. The Mac merges by stable ID,
-retaining existing local source images, questions and private profile progress.
+GitHub size/digests must match before publication. Recognised text and Telegram
+question-page images go in `public/usmle-library`. Full Telegram explanation scans
+remain in the public original PDFs and richer local cache. Previously local
+question-bank images, including answer diagrams, are public files in
+`shared-usmle-media`; the website reads them from GitHub and the Mac build copies
+them into its signed offline bundle. The media manifest verifies both locations.
+Source authorship, license labels and classification stay with each question.
+The Mac merges by stable ID, retaining existing source images and profile progress.
+
+The one-time `--share-imported-questions` selection publishes every current
+imported question bank and its relevant source PDFs. It does not publish a raw
+Anki learner database, unselected reference books or personal profile history.
+Future publication retains this explicit selection. Native reimport must retain
+its sharing flags, and exact-key matching must continue accepting verified
+original-source keys after publication, without circular derivative matching.
 
 Review and commit only the intended source/static changes, then push main.
 Check disk space before `npm run desktop:build` with Node 24+; set

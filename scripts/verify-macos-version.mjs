@@ -4,6 +4,7 @@ import os from 'node:os';
 import { execFileSync } from 'node:child_process';
 import { githubRevision, sourceRevision, verifyBuildRevision } from './macos-build-info.mjs';
 import { checkInternalLibrary } from '../desktop/offline-library.mjs';
+import { checkSharedMedia } from './usmle-shared-media.mjs';
 
 try {
   const root = process.cwd();
@@ -23,6 +24,8 @@ try {
   if (build.sharedUsmleLibrary) {
     sharedUsmleLibrary = JSON.parse(execFileSync('python3', ['scripts/mirror-usmle-library.py', '--public', path.join(installed, 'Contents/Resources/dist/usmle-library'), '--library', path.join(os.homedir(), 'Library/Application Support/OET Study/usmle-library'), '--check-only'], { cwd: root, encoding: 'utf8' }));
     if (sharedUsmleLibrary.catalogSha256 !== build.sharedUsmleLibrary.catalogSha256) throw Error('The shared USMLE originals differ from the signed release.');
+    sharedUsmleLibrary.media = await checkSharedMedia(path.join(installed, 'Contents/Resources/dist/usmle-library'), { installed: true });
+    if (sharedUsmleLibrary.media.manifestSha256 !== build.sharedUsmleLibrary.media?.manifestSha256) throw Error('The shared USMLE images differ from the signed release.');
   }
   console.log(JSON.stringify({ installed, gitCommit: build.gitCommit, builtAt: build.builtAt, matchesGitHubMain: true, signatureVerified: true, ...(offlineLibrary ? { offlineLibrary } : {}), ...(sharedUsmleLibrary ? { sharedUsmleLibrary } : {}) }));
 } catch (error) {

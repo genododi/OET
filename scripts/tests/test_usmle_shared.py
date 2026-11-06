@@ -33,12 +33,39 @@ class SharedUsmle(unittest.TestCase):
             (library / 'originals').mkdir(parents=True)
             data = b'%PDF-1.4\nSynthetic block\n%%EOF'; import hashlib
             sha = hashlib.sha256(data).hexdigest(); (library / 'originals' / (sha + '.pdf')).write_bytes(data)
-            resource = {'sha256': sha, 'publicSharing': True, 'size': len(data), 'path': '/Users/private/original.pdf'}
-            q = {'id': 'shared', 'sourceId': sha, 'publicSharing': True, 'questionImages': [], 'answerImages': ['media/private.jpg'], 'note': 'private learner note', 'profile': 'Private profile'}
+            resource = {'sha256': sha, 'kind': 'pdf', 'publicSharing': True, 'size': len(data), 'path': '/Users/private/original.pdf'}
+            q = {'id': 'shared', 'sourceId': sha, 'sourceGroup': 'GENODODI Telegram folder', 'publicSharing': True, 'questionImages': [], 'answerImages': ['media/private.jpg'], 'note': 'private learner note', 'profile': 'Private profile'}
             snapshot = publisher.build_snapshot({'importedAt': None, 'resources': [resource, {'publicSharing': False}], 'questions': [q, {**q, 'id': 'private', 'publicSharing': False}]}, library, stage, {})
             self.assertEqual(len(snapshot['questions']), 1); self.assertEqual(len(snapshot['resources']), 1)
             self.assertNotIn('note', snapshot['questions'][0]); self.assertNotIn('profile', snapshot['questions'][0]); self.assertNotIn('path', snapshot['resources'][0])
             self.assertEqual(snapshot['questions'][0]['answerImages'], [])
+
+    def test_explicit_bank_selection_preserves_original_records_and_public_licensed_answer_images(self):
+        import hashlib
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder); library = root / 'library'; stage = root / 'stage'
+            (library / 'media').mkdir(parents=True); (stage / 'pages').mkdir(parents=True)
+            data = b'synthetic source PNG'; sha = hashlib.sha256(data).hexdigest()
+            (library / 'media' / (sha + '.png')).write_bytes(data)
+            (stage / 'pages' / (sha + '.webp')).write_bytes(b'RIFF\x04\x00\x00\x00WEBP')
+            resource = {'id': 'open-bank', 'sha256': 'b' * 64, 'kind': 'question-bank', 'size': 100, 'sourceLicense': 'CC-BY-4.0'}
+            q = {'id': 'same-stable-id', 'sourceId': 'open-bank', 'questionImages': [], 'answerImages': ['media/' + sha + '.png'], 'sourceOrigin': 'generated', 'sourceLicense': 'CC-BY-4.0', 'sourceAttribution': 'Synthetic contributors', 'note': 'Personal note'}
+            index = {'importedAt': None, 'resources': [resource], 'questions': [q]}
+            selected = publisher.select_shared_sources(index, ['open-bank'])
+            self.assertNotIn('publicSharing', q); self.assertNotIn('publicSharing', resource)
+            originals = {}; result = publisher.build_snapshot(selected, library, stage, originals)
+            self.assertEqual(len(result['questions']), 1); self.assertEqual(result['questions'][0]['id'], q['id'])
+            self.assertEqual(result['questions'][0]['answerImages'], [publisher.MEDIA_URL + sha + '.webp'])
+            self.assertEqual(result['questions'][0]['sourceLicense'], 'CC-BY-4.0'); self.assertEqual(result['questions'][0]['sourceAttribution'], 'Synthetic contributors')
+            self.assertNotIn('note', result['questions'][0]); self.assertNotIn('originalAsset', result['questions'][0]); self.assertEqual(originals, {})
+
+    def test_verified_source_keys_remain_usable_when_shared_without_circular_telegram_matching(self):
+        prompt = 'Synthetic exact clinical stem with 1.60 units. ' * 4
+        source = {'prompt': prompt, 'publicSharing': True, 'sourceGroup': 'Imported USMLE question library', 'key': 'A', 'reviewOnly': False, 'options': [{'id': 'A', 'label': 'One', 'correct': True}, {'id': 'B', 'label': 'Two', 'correct': False}]}
+        derivative = {**source, 'prompt': 'Derived stem', 'sourceKeyReference': {'questionId': 'source'}}
+        telegram = {**source, 'prompt': 'Telegram stem', 'sourceGroup': 'GENODODI Telegram folder'}
+        trusted = blocks.trusted_source_keys([source, derivative, telegram])
+        self.assertEqual(list(trusted), [blocks.normalise_clinical_text(prompt)])
 
     def test_phone_overlay_and_explanation_choice_exclusion_do_not_create_a_scored_key(self):
         pages = [page(1, '9:30 AM phone overlay', '1001', ['A synthetic question. Which option?', 'A. Synthetic one', 'B. Synthetic two', 'Submit']),
@@ -76,7 +103,7 @@ class SharedUsmle(unittest.TestCase):
             root = Path(folder); public = root / 'public'; library = root / 'library'; public.mkdir(); library.mkdir()
             data = b'%PDF-1.4\nSynthetic source\n%%EOF'; import hashlib
             sha = hashlib.sha256(data).hexdigest()
-            catalog = {'resources': [{'sha256': sha, 'size': len(data), 'publicSharing': True, 'asset': f'https://github.com/genododi/OET/releases/download/usmle-test/{sha}.pdf'}], 'questions': []}
+            catalog = {'resources': [{'kind': 'pdf', 'sha256': sha, 'size': len(data), 'publicSharing': True, 'asset': f'https://github.com/genododi/OET/releases/download/usmle-test/{sha}.pdf'}, {'id': 'open-bank', 'sha256': 'c' * 64, 'kind': 'question-bank', 'publicSharing': True}], 'questions': []}
             (public / 'index.json').write_text(json.dumps(catalog)); (library / 'index.json').write_text('saved local bank')
             with patch.object(mirror.urllib.request, 'urlopen', return_value=io.BytesIO(data)):
                 self.assertEqual(mirror.mirror(public, library)['state'], 'ready')

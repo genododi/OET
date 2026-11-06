@@ -70,8 +70,14 @@ test('real Anki ZIP import keeps source images, keys, dates and deduplicates rep
     assert.equal(first.questions.length, 1); assert.equal(first.questions[0].key, 'B'); assert.equal(first.questions[0].step, null);
     assert.equal(first.questions[0].questionImages.length, 1); assert.deepEqual(first.questions[0].questionImages, first.questions[0].answerImages);
     assert.equal(first.resources.length, 2); assert.deepEqual(first.warnings, []);
+    const shared = JSON.parse(await fs.readFile(path.join(output, 'index.json'), 'utf8'));
+    shared.questions[0].publicSharing = true; shared.questions[0].sourceGroup = 'Explicitly shared study bank';
+    for (const resource of shared.resources) resource.publicSharing = true;
+    await fs.writeFile(path.join(output, 'index.json'), JSON.stringify(shared));
     const second = await importUsmleFolder(source, output);
     assert.equal(second.questions.length, 1); assert.equal(second.questions[0].addedAt, first.questions[0].addedAt); assert.equal(second.resources[0].addedAt, first.resources[0].addedAt);
+    assert.equal(second.questions[0].publicSharing, true); assert.equal(second.questions[0].sourceGroup, 'Explicitly shared study bank');
+    assert.equal(second.resources.every(resource => resource.publicSharing), true);
     // A damaged source must fail integrity validation rather than silently
     // producing a different printed key or extracting an unchecked member.
     bytes[30 + 'collection.anki2'.length + 20] ^= 1;

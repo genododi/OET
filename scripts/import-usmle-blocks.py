@@ -50,6 +50,17 @@ def normalise_clinical_text(value):
     return re.sub(r'\s+', ' ', value).strip().casefold().replace('’', "'").replace('–', '-')
 
 
+def trusted_source_keys(questions):
+    # Public visibility does not change an original deck's verified key.
+    # Exclude derivative Telegram matches so keys cannot propagate in a circle.
+    trusted = {}
+    for q in questions:
+        correct = [option['id'] for option in q.get('options', []) if option.get('correct')]
+        if q.get('sourceGroup') != 'GENODODI Telegram folder' and not q.get('sourceKeyReference') and not q.get('reviewOnly') and q.get('key') and correct == [q['key']]:
+            trusted.setdefault(normalise_clinical_text(q['prompt']), []).append(q)
+    return trusted
+
+
 def match_existing_key(question, previous):
     # Keep decimal points, operators and units. Whitespace and typographic
     # apostrophes may differ; clinical numbers and option wording may not.
@@ -183,10 +194,7 @@ def main():
         backup = root / 'import-backups' / f'before-telegram-{stamp}.json'
         if index_path.exists(): backup.parent.mkdir(exist_ok=True); shutil.copyfile(index_path, backup)
         questions = {q['id']: q for q in index['questions']}
-        trusted = {}
-        for q in index['questions']:
-            if not q.get('publicSharing') and not q.get('reviewOnly') and q.get('key'):
-                trusted.setdefault(normalise_clinical_text(q['prompt']), []).append(q)
+        trusted = trusted_source_keys(index['questions'])
         resources = {r['sha256']: r for r in index['resources']}
         files = [] if args.reparse_only or args.resume_snapshot else sorted(p for p in args.source.rglob('*') if p.is_file() and not p.is_symlink() and eligible_pdf(p, args.source))
         inventory = []

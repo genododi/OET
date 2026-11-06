@@ -27,6 +27,8 @@ export const newestUsmleFirst = <T extends { productionYear?: number | null }>(i
 
 export function privateUsmleUrl(asset: string) {
   if (/^usmle-library\/pages\/[a-f0-9]{64}\.webp$/.test(asset)) return `${import.meta.env.BASE_URL}${asset}`;
+  const sharedImage = /^https:\/\/raw\.githubusercontent\.com\/genododi\/OET\/main\/shared-usmle-media\/([a-f0-9]{64}\.webp)$/.exec(asset);
+  if (sharedImage) return window.oetDesktop ? `${import.meta.env.BASE_URL}usmle-library/pages/${sharedImage[1]}` : asset;
   const original = /^https:\/\/github\.com\/genododi\/OET\/releases\/download\/usmle-[A-Za-z0-9._-]+\/([a-f0-9]{64}\.pdf)$/.exec(asset);
   if (original) return window.oetDesktop ? `${import.meta.env.BASE_URL}desktop/usmle/originals/${original[1]}` : asset;
   return `${import.meta.env.BASE_URL}desktop/usmle/${asset}`;

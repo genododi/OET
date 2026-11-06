@@ -21,10 +21,13 @@ The source library is shared between profiles; personal study data is separate.
 
 Local question content, media and PDF copies live under
 `~/Library/Application Support/OET Study/usmle-library`, outside this repository,
-GitHub Pages and the application bundle. The owner's explicitly shared Telegram
-blocks also have a public source catalog in `public/usmle-library` and original
-PDFs on GitHub Releases; they merge with local entries by stable identity. Other
-local imports and all personal answers/notes remain on the Mac. Sources continue working without the
+GitHub Pages and the application bundle. The owner also selected every existing
+imported question bank for public sharing, alongside the Telegram blocks.
+Their public catalog is in `public/usmle-library`, relevant original PDFs are on
+GitHub Releases, and clinical question/answer images are in `shared-usmle-media`.
+The website reads those public repository images; the Mac bundles them for
+offline use. All personal answers/notes and unselected reference files remain
+on the Mac. Shared and local entries merge by stable identity. Sources continue working without the
 internet or the original external drive. Keep separate backups of this folder
 and of the original study files; profile backups contain personal study data,
 not the shared source library. Re-importing preserves original added dates.
