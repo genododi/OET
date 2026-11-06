@@ -100,6 +100,14 @@ installing the signed app. Run `npm run desktop:check` against live GitHub main,
 `npm run desktop:check-usmle-shared`, and verify the actual Pages workflow,
 `web-app-build.json` commit, public catalog and changed image hashes.
 
+On macOS the builder requires native copy-on-write asset clones rather than
+silently duplicating large study folders. The clone helper also checks that
+workspace changes cannot alter a staged copy. Keep app/profile backups and
+canonical internal originals intact when resolving low disk space; the build
+can use canonical Benchmark recordings if its temporary export cache is absent.
+Pages has a 30-minute action timeout for this verified library; a deployment
+still syncing files must be left alone rather than restarted.
+
 If publication succeeded but a later build/deployment step failed, preserve the
 same source commit and resume remaining steps; do not repeat recognition just to
 retry installation. Preserve dirty source work, originals, models and backups.

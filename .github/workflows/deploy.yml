@@ -65,3 +65,6 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          # The verified study library can remain in syncing_files past 10 min.
+          timeout: 1800000

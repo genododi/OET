@@ -6,6 +6,7 @@ import { createHash } from 'node:crypto';
 import { githubRevision, sourceRevision, verifyBuildRevision } from './macos-build-info.mjs';
 import { checkInternalLibrary } from '../desktop/offline-library.mjs';
 import { checkSharedMedia } from './usmle-shared-media.mjs';
+import { copyBuildAssets } from './copy-build-assets.mjs';
 
 const root = process.cwd();
 const source = sourceRevision(root);
@@ -53,8 +54,8 @@ for (const directory of results) {
   const resources = path.join(app, 'Contents/Resources');
   await fs.writeFile(path.join(resources, 'build-info.json'), JSON.stringify(build, null, 2) + '\n');
   // APFS clones keep the existing 1.3 GB study assets from consuming a second copy.
-  await fs.cp(path.join(root, 'dist'), path.join(resources, 'dist'), { recursive: true, mode: 2 });
-  if (sharedUsmleLibrary?.media.repositoryFiles) await fs.cp(path.join(root, 'shared-usmle-media'), path.join(resources, 'dist/usmle-library/pages'), { recursive: true, mode: 2 });
+  await copyBuildAssets(path.join(root, 'dist'), path.join(resources, 'dist'), { recursive: true });
+  if (sharedUsmleLibrary?.media.repositoryFiles) await copyBuildAssets(path.join(root, 'shared-usmle-media'), path.join(resources, 'dist/usmle-library/pages'), { recursive: true });
   await fs.writeFile(path.join(resources, 'dist/bundled-assets.json'), JSON.stringify(Object.fromEntries(bundled.files.map(file => [file.sha256, file.assetPath]))));
   const media = {};
   const benchmark = JSON.parse(await fs.readFile(path.join(root, 'src/data/benchmarkCollection.json'), 'utf8'));
@@ -66,7 +67,7 @@ for (const directory of results) {
     try { await fs.access(cached); source = cached; } catch { source = path.join(internalLibrary, 'files', `${entry.audio.sha256}.mp3`); }
     const hash = createHash('sha256').update(await fs.readFile(source)).digest('hex');
     if (hash !== entry.audio.sha256) throw Error(`The recording does not match ${entry.id}`);
-    await fs.copyFile(source, path.join(resources, 'dist/benchmark-audio', name), 2);
+    await copyBuildAssets(source, path.join(resources, 'dist/benchmark-audio', name));
     media[entry.audio.url] = `benchmark-audio/${name}`;
   }
   await fs.writeFile(path.join(resources, 'dist/offline-media.json'), JSON.stringify(media));
