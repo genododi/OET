@@ -1,0 +1,30 @@
+import { expect, test } from '@playwright/test';
+import catalog from '../public/usmle-library/index.json' with { type: 'json' };
+
+test('shared Telegram blocks work on the website without the desktop bridge', async ({ page }) => {
+  const question = catalog.questions.find(q => q.options.length > 1 && q.questionImages.length)!;
+  await page.goto('./#usmle');
+  await page.getByRole('button', { name: '1 · Study files' }).click();
+  await page.getByLabel('Question bank / source').selectOption(question.sourceId);
+  await page.getByRole('button').filter({ hasText: `Block ${question.block} · Q${question.number} ` }).first().click();
+  const selected = page.getByRole('article', { name: 'Selected study question' });
+  await expect(selected).toContainText(question.prompt.slice(0, 70));
+  await expect(selected.getByLabel('Printed answer and explanation')).toHaveCount(0);
+  await selected.locator('.usmle-source-images summary').first().click();
+  const image = selected.locator('img').first();
+  await expect.poll(() => image.evaluate(element => (element as HTMLImageElement).naturalWidth)).toBeGreaterThan(0);
+  await expect(selected.getByRole('link', { name: 'Open complete original block PDF ↗' })).toHaveAttribute('href', /^https:\/\/github.com\/genododi\/OET\/releases\/download\/usmle-/);
+  await selected.getByRole('radio').first().check();
+  await selected.getByLabel('My revision notes').fill('Browser-local revision note');
+  await selected.getByRole('button', { name: 'Reveal answer and explanation' }).click();
+  await expect(selected.getByLabel('Printed answer and explanation')).toContainText(question.explanation.slice(0, 70));
+  await page.reload();
+  await page.getByRole('button', { name: '1 · Study files' }).click();
+  await page.getByLabel('Question bank / source').selectOption(question.sourceId);
+  await page.getByRole('button').filter({ hasText: `Block ${question.block} · Q${question.number} ` }).first().click();
+  await expect(selected.getByLabel('My revision notes')).toHaveValue('Browser-local revision note');
+  const originalOnly = catalog.resources.find(resource => resource.questionBoundaryReview)!;
+  await page.getByLabel('Question bank / source').selectOption(originalOnly.sha256);
+  await expect(page.getByRole('article', { name: 'Selected study question' })).toHaveCount(0);
+  await expect(page.getByRole('link', { name: 'Open complete original PDF ↗', exact: true })).toBeVisible();
+});

@@ -1,4 +1,4 @@
-# Private USMLE study on Mac
+# USMLE source study on Mac
 
 Open **USMLE Study** in the sidebar. Use **Study files**, **Practise a block**,
 then **Review & revise**. Each offline profile keeps separate answers, flags,
@@ -17,19 +17,23 @@ deduplicates repeated question content, and keeps source labels. Incomplete
 cards stay review-only. Source-deck Step/subject classifications may be inferred;
 unassigned questions stay out of timed Step blocks until the learner assigns a
 Step. A final corrected source key takes priority over an earlier text extraction.
-The private library is shared between profiles; personal study data is separate.
+The source library is shared between profiles; personal study data is separate.
 
-Private question content, media and PDF copies live under
+Local question content, media and PDF copies live under
 `~/Library/Application Support/OET Study/usmle-library`, outside this repository,
-GitHub Pages and the application bundle. They continue working without the
+GitHub Pages and the application bundle. The owner's explicitly shared Telegram
+blocks also have a public source catalog in `public/usmle-library` and original
+PDFs on GitHub Releases; they merge with local entries by stable identity. Other
+local imports and all personal answers/notes remain on the Mac. Sources continue working without the
 internet or the original external drive. Keep separate backups of this folder
 and of the original study files; profile backups contain personal study data,
 not the shared source library. Re-importing preserves original added dates.
 
 Publisher links open the official USMLE, NBME, UWorld, AMBOSS and El Husseiny
-sites. The app does not scrape paid accounts or unofficial Telegram mirrors.
-Only import material you are entitled to use; private imports are never part of
-the public release pipeline.
+sites. The app does not scrape paid accounts. The separately authorized weekly
+Telegram-folder workflow imports locally saved attachments, without claiming
+live Telegram-group coverage. See [weekly updates](usmle-telegram-updates.md)
+for explicit public scope, source verification and Mac/GitHub release checks.
 
 Practice blocks default to up to 20 questions in 30 minutes, reflecting the 2026
 USMLE software format. They are not full official examinations. Practice results

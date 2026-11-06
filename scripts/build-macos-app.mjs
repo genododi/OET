@@ -21,9 +21,15 @@ for (const resource of ['model.json', 'runtime/llama-server', 'Qwen3.5-4B-Q4_K_M
 execFileSync('python3', ['scripts/mirror-offline-library.py', '--source', sourceLibrary, '--destination', internalLibrary, ...(process.env.OET_LIBRARY_SYNC_LOCK_PID ? ['--managed'] : [])], { cwd: root, stdio: 'inherit' });
 const offlineLibrary = await checkInternalLibrary(internalLibrary, path.join(root, 'public/imported-resources/catalog.json'));
 if (offlineLibrary.state !== 'ready') throw Error('The permanent Mac library is not complete; existing app was preserved.');
+const usmleRoot = path.join(process.env.HOME, 'Library/Application Support/OET Study/usmle-library');
+let sharedUsmleLibrary;
+try {
+  await fs.access(path.join(root, 'public/usmle-library/index.json'));
+  sharedUsmleLibrary = JSON.parse(execFileSync('python3', ['scripts/mirror-usmle-library.py', '--public', path.join(root, 'public/usmle-library'), '--library', usmleRoot], { cwd: root, encoding: 'utf8' }));
+} catch (error) { if (error.code !== 'ENOENT') throw error; }
 // Never package an earlier dist directory as if it belonged to the current commit.
 execFileSync('npm', ['run', 'build'], { cwd: root, stdio: 'inherit' });
-const build = { format: 'oet-macos-build', ...source, builtAt: new Date().toISOString(), offlineLibrary };
+const build = { format: 'oet-macos-build', ...source, builtAt: new Date().toISOString(), offlineLibrary, ...(sharedUsmleLibrary ? { sharedUsmleLibrary } : {}) };
 verifyBuildRevision(build, sourceRevision(root), githubRevision(root));
 const iconset = path.join(root, 'tmp/oet-app.iconset');
 await fs.mkdir(iconset, { recursive: true });

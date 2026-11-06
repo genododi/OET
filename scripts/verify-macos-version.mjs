@@ -13,13 +13,18 @@ try {
   verifyBuildRevision(build, source, githubRevision(root));
   execFileSync('codesign', ['--verify', '--deep', '--strict', installed], { stdio: 'pipe', timeout: 60000 });
   let offlineLibrary;
+  let sharedUsmleLibrary;
   if (build.offlineLibrary) {
     const resources = path.join(installed, 'Contents/Resources');
     const locations = JSON.parse(await fs.readFile(path.join(resources, 'offline-locations.json'), 'utf8'));
     offlineLibrary = await checkInternalLibrary(locations.library, path.join(resources, 'dist/imported-resources/catalog.json'));
     if (offlineLibrary.state !== 'ready' || offlineLibrary.catalogSha256 !== build.offlineLibrary.catalogSha256) throw Error('The permanent Mac library is incomplete or differs from the released catalog.');
   }
-  console.log(JSON.stringify({ installed, gitCommit: build.gitCommit, builtAt: build.builtAt, matchesGitHubMain: true, signatureVerified: true, ...(offlineLibrary ? { offlineLibrary } : {}) }));
+  if (build.sharedUsmleLibrary) {
+    sharedUsmleLibrary = JSON.parse(execFileSync('python3', ['scripts/mirror-usmle-library.py', '--public', path.join(installed, 'Contents/Resources/dist/usmle-library'), '--library', path.join(os.homedir(), 'Library/Application Support/OET Study/usmle-library'), '--check-only'], { cwd: root, encoding: 'utf8' }));
+    if (sharedUsmleLibrary.catalogSha256 !== build.sharedUsmleLibrary.catalogSha256) throw Error('The shared USMLE originals differ from the signed release.');
+  }
+  console.log(JSON.stringify({ installed, gitCommit: build.gitCommit, builtAt: build.builtAt, matchesGitHubMain: true, signatureVerified: true, ...(offlineLibrary ? { offlineLibrary } : {}), ...(sharedUsmleLibrary ? { sharedUsmleLibrary } : {}) }));
 } catch (error) {
   console.error(`Mac app version check failed: ${error.message}`);
   process.exitCode = 1;

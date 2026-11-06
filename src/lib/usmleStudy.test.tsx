@@ -3,7 +3,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { computeUsmleScore } from './usmleScoring';
 import { buildUsmleBlockSession } from './usmleSessionBuilder';
 import { getUsmleDisciplineStats, getUsmleOverallStats, saveUsmleSession } from './usmleAnalytics';
-import { privateQuestionTask } from './usmleLibrary';
+import { privateQuestionTask, mergeUsmleLibraries, loadPublishedUsmleLibrary, privateUsmleUrl } from './usmleLibrary';
 import { UsmleBlockSetup } from '../components/UsmleBlockSetup';
 import { UsmlePrivateLibrary } from '../components/UsmlePrivateLibrary';
 import type { SessionTask } from '../types/session';
@@ -78,4 +78,41 @@ it('prioritises newer source-labelled USMLE editions and keeps an unknown year s
  const unknown={...question,id:'unknown-year',identity:'unknown-year',step:'step1' as const};
  const tasks=[older,unknown,current].map(q=>privateQuestionTask(q)!).filter(Boolean);
  expect(buildUsmleBlockSession({step:'step1',questionCount:1,timeMinutes:30,pool:tasks}).tasks[1].id).toBe('year-2026');
+});
+
+it('merges shared records without replacing richer local source images or changing question IDs', () => {
+ const shared = {...question, publicSharing:true, questionImages:['usmle-library/pages/'+'a'.repeat(64)+'.webp']};
+ const local = {...shared, questionImages:['media/'+'b'.repeat(64)+'.jpg']};
+ const empty = {version:1,importedAt:null,resources:[],warnings:[]};
+ const merged=mergeUsmleLibraries({...empty,questions:[shared]},{...empty,questions:[local]});
+ expect(merged.questions).toEqual([local]);expect(shared.questionImages[0]).toContain('usmle-library/pages/');
+});
+
+it('loads the published bank in an ordinary browser and rejects an incomplete catalog', async () => {
+ const bank={version:1,importedAt:null,questions:[question],resources:[],warnings:[]};
+ vi.stubGlobal('fetch',vi.fn().mockResolvedValue({ok:true,json:async()=>bank}));
+ try {
+  expect(await loadPublishedUsmleLibrary()).toEqual(bank);
+  vi.stubGlobal('fetch',vi.fn().mockResolvedValue({ok:true,json:async()=>({version:1,questions:[]})}));
+  await expect(loadPublishedUsmleLibrary()).rejects.toThrow('catalog is invalid');
+ } finally {vi.unstubAllGlobals();}
+});
+
+it('keeps original download links public on web and source-page images on the same origin', () => {
+ const original='https://github.com/genododi/OET/releases/download/usmle-test/'+'a'.repeat(64)+'.pdf';
+ expect(privateUsmleUrl(original)).toBe(original);
+ expect(privateUsmleUrl('usmle-library/pages/'+'b'.repeat(64)+'.webp')).toContain('/usmle-library/pages/');
+ vi.stubGlobal('oetDesktop',{});
+ try {expect(privateUsmleUrl(original)).toContain('/desktop/usmle/originals/'+'a'.repeat(64)+'.pdf');} finally {vi.unstubAllGlobals();}
+});
+
+it('lets learners attempt review-only material without inventing a correct or incorrect grade', () => {
+ const item={...question,key:null,reviewOnly:true};const change=vi.fn();
+ const library={version:1,importedAt:null,questions:[item],resources:[],warnings:[]};
+ const view=render(<UsmlePrivateLibrary library={library} progress={{}} onChange={change}/>);
+ fireEvent.click(screen.getByRole('radio',{name:/A\. Synthetic option one/}));
+ expect(change).toHaveBeenCalledWith(item.id,{answer:'A'});
+ view.rerender(<UsmlePrivateLibrary library={library} progress={{[item.id]:{answer:'A',revealed:true}}} onChange={change}/>);
+ expect(screen.getByText(/No confirmed letter key is supplied/)).toBeVisible();
+ expect(screen.queryByText('Your answer is correct.')).toBeNull();expect(privateQuestionTask(item,{step:'step1'})).toBeNull();
 });

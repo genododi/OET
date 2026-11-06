@@ -89,7 +89,7 @@ const pageMeta: Record<NavSection, { title: string; subtitle?: string }> = {
   },
   usmle: {
     title: 'USMLE Study',
-    subtitle: 'Your private Step 1 and Step 2 CK study workspace',
+    subtitle: 'Step 1 and Step 2 CK sources, with your own saved study progress',
   },
 };
 

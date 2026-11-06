@@ -25,7 +25,7 @@ protocol.registerSchemesAsPrivileged([{ scheme: 'oet', privileges: { standard: t
 const origin = 'oet://study';
 const usmleRoot = process.env.OET_DESKTOP_USMLE || path.join(app.getPath('userData'), 'usmle-library');
 let usmleWorker = null;
-let usmleImportStatus = { state: 'idle', message: 'Import your local study folder for private offline practice.' };
+let usmleImportStatus = { state: 'idle', message: 'Import your local study folder for offline practice.' };
 let profiles, window, mentor, startup;
 let workspaceReady = false;
 const windows = new Map();
@@ -142,8 +142,8 @@ app.whenReady().then(async () => {
     if (usmleWorker) return usmleImportStatus;
     const result = await dialog.showOpenDialog(window, { title: 'Choose your own USMLE study folder', properties: ['openDirectory'] });
     if (result.canceled || usmleWorker) return usmleImportStatus;
-    usmleImportStatus = { state: 'importing', message: 'Preparing your private USMLE library…' };
-    usmleWorker = utilityProcess.fork(path.join(here, 'usmle-import-worker.mjs'), [result.filePaths[0], usmleRoot], { serviceName: 'Private USMLE import' });
+    usmleImportStatus = { state: 'importing', message: 'Preparing your USMLE study library…' };
+    usmleWorker = utilityProcess.fork(path.join(here, 'usmle-import-worker.mjs'), [result.filePaths[0], usmleRoot], { serviceName: 'USMLE study import' });
     usmleWorker.on('message', value => { usmleImportStatus = value; if (['complete', 'failed'].includes(value.state)) usmleWorker?.postMessage({ type: 'acknowledged' }); });
     usmleWorker.on('exit', code => {
       if (usmleImportStatus.state === 'importing') usmleImportStatus = { state: 'failed', message: `The import stopped (${code}). Existing study files remain available.` };
