@@ -1,3 +1,4 @@
+import { installedMacApp } from './macos-installation.mjs';
 // Read shared sources using disposable profiles. Never touch the learner's window.
 import { _electron as electron } from 'playwright-core';
 import { expect } from '@playwright/test';
@@ -10,7 +11,7 @@ import { execFileSync } from 'node:child_process';
 
 const root = path.join(os.homedir(), 'Library/Application Support/OET Study/usmle-library');
 const data = await fs.mkdtemp(path.join(os.tmpdir(), 'oet-shared-usmle-'));
-const executable = process.env.OET_SMOKE_EXECUTABLE || path.join(os.homedir(), 'Applications/OET Study.app/Contents/MacOS/OET Study');
+const executable = process.env.OET_SMOKE_EXECUTABLE || path.join(installedMacApp(), 'Contents/MacOS/OET Study');
 const raw = await fs.readFile('public/usmle-library/index.json');
 const catalog = JSON.parse(raw);
 const originals = catalog.resources.filter(resource => resource.kind === 'pdf');

@@ -1,6 +1,10 @@
 .reading-evidence-tools { display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin:14px 0; padding:12px; background:#fffdf0; border:1px solid #e8d98d; border-radius:10px; }
 .reading-evidence-tools small { flex-basis:100%; color:#6d6237; line-height:1.5; }
 .reading-evidence-tools button[aria-pressed=true] { background:#fff2a4; border-color:#c3a331; color:#443c18; }
+.reading-evidence-tools > label { display:flex; align-items:center; flex-wrap:wrap; gap:8px; font-size:.78rem; color:#65582b; }
+.reading-evidence-tools select { max-width:100%; padding:8px; border:1px solid #d9c96c; border-radius:7px; background:#fffef7; color:#51481e; font:inherit; }
+.reading-keyword-chips { display:flex; flex-wrap:wrap; gap:7px; flex-basis:100%; }
+.reading-keyword-chips mark { padding:3px 7px; background:#ffed83; border-radius:5px; font-size:.75rem; }
 .reading-evidence-mark { background:#ffeb70; color:inherit; border-radius:2px; box-decoration-break:clone; -webkit-box-decoration-break:clone; }
 .reading-page-image-wrap { position:relative; }
 .reading-page-clues { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; mix-blend-mode:multiply; }

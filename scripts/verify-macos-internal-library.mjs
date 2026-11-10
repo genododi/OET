@@ -1,3 +1,4 @@
+import { installedMacApp } from './macos-installation.mjs';
 // Exercise the installed app with both external source locations unavailable.
 // Uses disposable profiles and never reloads or closes the learner's running app.
 import { _electron as electron } from 'playwright-core';
@@ -7,7 +8,7 @@ import fs from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 
-const installed = process.env.OET_MAC_APP || path.join(os.homedir(), 'Applications/OET Study.app');
+const installed = installedMacApp();
 const resources = path.join(installed, 'Contents/Resources');
 const locations = JSON.parse(await fs.readFile(path.join(resources, 'offline-locations.json'), 'utf8'));
 assert(!locations.library.startsWith('/Volumes/'), 'The default study library must be on the Mac');

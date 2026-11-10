@@ -1,3 +1,4 @@
+import { installedMacApp } from './macos-installation.mjs';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import os from 'node:os';
@@ -8,11 +9,11 @@ import { checkSharedMedia } from './usmle-shared-media.mjs';
 
 try {
   const root = process.cwd();
-  const installed = process.env.OET_MAC_APP || path.join(os.homedir(), 'Applications/OET Study.app');
+  const installed = installedMacApp();
   const build = JSON.parse(await fs.readFile(path.join(installed, 'Contents/Resources/build-info.json'), 'utf8'));
   const source = sourceRevision(root);
   verifyBuildRevision(build, source, githubRevision(root));
-  execFileSync('codesign', ['--verify', '--deep', '--strict', installed], { stdio: 'pipe', timeout: 60000 });
+  execFileSync('codesign', ['--verify', '--deep', '--strict', installed], { stdio: 'pipe', timeout: installed.startsWith('/Volumes/') ? 600000 : 60000 });
   let offlineLibrary;
   let sharedUsmleLibrary;
   if (build.offlineLibrary) {

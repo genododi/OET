@@ -1,3 +1,4 @@
+import { CompletedTestReview } from './CompletedTestReview';
 import { useId, useState } from 'react';
 import { CompletionFilter, MaterialDone } from './MaterialDone';
 import { useMaterialCompletion } from '../lib/materialCompletion';
@@ -37,6 +38,7 @@ export function CollectionTestPicker({ collectionId, collectionName, tests, sele
       <CompletionFilter value={filter} onChange={changeFilter} noun="tests" />
       <MaterialDone key={completionId(selected)} fileId={completionId(selected)} filename={`${collectionName} · ${selected.title}`} />
     </div>
+    <CompletedTestReview completionId={completionId(selected)} />
     <p className="meta" aria-live="polite">{tests.filter(test => isDone(completionId(test))).length} of {tests.length} tests done · Saved for this profile.</p>
     {selectedHidden && <p className="meta">{visible.length ? 'This test does not match the completion filter.' : 'No tests match the completion filter.'} Your current test stays open so you can keep working. Choose another test or change the filter.</p>}
     {tests.length > 1 && <div className="study-source-links">

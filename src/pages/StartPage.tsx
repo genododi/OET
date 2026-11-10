@@ -1,20 +1,23 @@
+import { priorityCollections } from '../lib/studyNavigation';
+import { readStudyLocation } from '../lib/studyResume';
+import { useTestReviews } from '../lib/testReviews';
+import { AppIcon } from '../components/AppIcon';
 import type { NavSection } from '../types';
 import { readWalkthroughProgress, walkthroughs } from '../data/walkthroughs';
 import './walkthrough.css';
 
-type Props = { onNavigate: (section: NavSection, itemId?: string) => void };
+type Props = { onNavigate: (section: NavSection, itemId?: string, returnTo?: 'recent') => void };
 export function StartPage({ onNavigate }: Props) {
   const done = readWalkthroughProgress();
   const next = walkthroughs.find(lesson => !done.includes(lesson.id));
-  return <div className="learning-path">
-    <section className="card path-hero"><span className="section-kicker">YOUR PREPARATION PRIORITIES</span><h2>Start here. One step at a time.</h2><p>Start with an official paper. Build toward timed mocks, then review your errors and plan your next practice.</p><button className="btn btn-primary" onClick={() => onNavigate('practice')}>Start official exam practice</button><p className="meta">Need the method first? Use a worked walkthrough.</p><button className="btn btn-secondary" onClick={() => onNavigate(next ? 'walkthrough' : 'practice', next?.id)}>{done.length === 0 ? 'Start my first walkthrough' : next ? 'Continue my walkthroughs' : 'Choose my practice'}</button><p className="path-progress">{done.length} of 8 walkthroughs completed · Progress saved on this device</p>{next && <p className="meta">Next walkthrough: {next.title}</p>}</section>
-    <ol className="path-steps">{[
-      { title: 'Practise official papers', text: 'Choose Reading, Listening, Writing or Speaking. Use the original task and its matching human recording.', section: 'practice' as const, label: '1 · Official exam practice' },
-      { title: 'Try a timed mock', text: 'Apply the method under OET on Paper timing. For Listening, play the original recording once.', section: 'mock' as const, label: '2 · Timed mock exams' },
-      { title: 'Review your mistakes', text: 'Find the evidence you missed. Write one correction and repeat your weakest skill.', section: 'mistakes' as const, label: '3 · Review mistakes' },
-      { title: 'Plan the next session', text: 'Use your results to decide what to practise next. Keep your plan focused on the skills that need work.', section: 'planner' as const, label: '4 · My study plan' },
-    ].map(step => <li className="card" key={step.section}><span className="section-kicker">{step.label}</span><h3>{step.title}</h3><p>{step.text}</p><button className="btn btn-secondary" onClick={() => onNavigate(step.section)}>{step.label} →</button></li>)}</ol>
-    <p className="meta">Benchmark, Jahshan and your OET & AMR files are in “Extra practice collections”. Walkthroughs, the mentor and NotebookLM notes are in “Help & exam methods”.</p>
+  const last = readStudyLocation();
+  const reviews = useTestReviews();
+  const latest = reviews.find(review => review.state === 'complete');
+  return <div className="study-hub study-desk">
+    <section className="study-desk-hero"><div><span className="section-kicker">A LITTLE FOCUS. A BETTER SESSION.</span><h2>Your next test starts here.</h2><p>Choose your collection, work through one test, then let your mentor help you review what you learned.</p><button type="button" className="btn btn-primary" onClick={()=>onNavigate(last?.section ?? 'benchmark',last?.itemId,last?.returnTo)}>{last ? `Return to ${last.label}` : 'Start with Benchmark'} <span aria-hidden="true">→</span></button>{last && <span className="study-resume-note">Your last study page · answers stay with their test</span>}</div><div className="study-desk-method" aria-label="Study steps"><span><b>01</b> Choose a test</span><span><b>02</b> Find the evidence</span><span><b>03</b> Review & improve</span></div></section>
+    <section aria-labelledby="my-collections"><div className="study-section-heading"><div><span className="section-kicker">YOUR PRIORITIES</span><h2 id="my-collections">My study collections</h2></div><span>Everything you use most, together.</span></div><div className="study-collection-grid">{priorityCollections.map(collection=><button type="button" key={collection.id} aria-label={`Open ${collection.label}`} className={`study-collection-card collection-${collection.accent}`} onClick={()=>onNavigate(collection.id)}><span className="study-collection-icon"><AppIcon name={collection.icon}/></span><strong>{collection.label}</strong><span>{collection.description}</span><b>Open collection <span aria-hidden="true">↗</span></b></button>)}</div></section>
+    <section className="study-desk-review"><div><span className="section-kicker">TURN A FINISHED TEST INTO PROGRESS</span><h3>{latest ? 'Your latest mentor review is ready' : 'Finish a test. Keep the learning.'}</h3><p>{latest ? latest.title : 'Mark your test Done to save a review of mistakes, important points and useful takeaways.'}</p></div><button className="btn btn-secondary" onClick={()=>onNavigate('reviews')}>My test reviews →</button></section>
+    <div className="study-desk-help"><span>Need the method first?</span><button type="button" className="link-btn" onClick={()=>onNavigate(next ? 'walkthrough':'tools',next?.id)}>{done.length===0?'Start my first walkthrough':next?'Continue my walkthroughs':'Browse study tools'}</button><span>{done.length} / {walkthroughs.length} walkthroughs completed</span></div>
   </div>;
 }
 

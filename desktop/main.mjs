@@ -7,6 +7,7 @@ import { assetResponse, confined } from './assets.mjs';
 import { LocalMentor } from './mentor.mjs';
 import { StartupChecks } from './startup-check.mjs';
 import { readPrivateLibrary, privateUsmleResponse } from './usmle-library.mjs';
+import { FirstAidLibrary } from './first-aid.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const installation = path.resolve(process.resourcesPath, '../../..');
@@ -24,6 +25,7 @@ app.commandLine.appendSwitch('disable-background-networking');
 protocol.registerSchemesAsPrivileged([{ scheme: 'oet', privileges: { standard: true, secure: true, supportFetchAPI: true, stream: true, corsEnabled: true } }]);
 const origin = 'oet://study';
 const usmleRoot = process.env.OET_DESKTOP_USMLE || path.join(app.getPath('userData'), 'usmle-library');
+const firstAid = new FirstAidLibrary(usmleRoot);
 let usmleWorker = null;
 let usmleImportStatus = { state: 'idle', message: 'Import your local study folder for offline practice.' };
 let profiles, window, mentor, startup;
@@ -43,6 +45,7 @@ async function asset(request) {
   const url = new URL(request.url);
   if (url.host !== 'study') return new Response(null, { status: 403 });
   if (url.pathname === '/OET/desktop/ai/chat') return mentor.reply(request);
+  if (url.pathname === '/OET/desktop/first-aid/search') return firstAid.response(request);
   try {
     const relative = decodeURIComponent(url.pathname).replace(/^\/OET\//, '');
     if (relative.startsWith('desktop/usmle/')) return privateUsmleResponse(usmleRoot, relative.slice('desktop/usmle/'.length), request);

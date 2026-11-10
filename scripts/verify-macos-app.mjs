@@ -62,7 +62,7 @@ try {
   assert.equal(await page.evaluate(() => localStorage.getItem('oet-smoke-answer')), 'First learner draft');
   await page.reload();
   assert.equal(await page.evaluate(() => localStorage.getItem('oet-smoke-answer')), 'First learner draft');
-  await page.getByRole('heading', { name: 'Start here. One step at a time.' }).waitFor();
+  await page.getByRole('heading', { name: 'Your next test starts here.' }).waitFor();
   let importedOriginals = null;
   let suppliedPracticeVerified = false;
   if (process.env.OET_SMOKE_LIBRARY === '1') {

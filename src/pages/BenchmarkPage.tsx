@@ -1,3 +1,5 @@
+import { finishTestReview } from '../lib/testReviews';
+import { useMaterialCompletion } from '../lib/materialCompletion';
 import { CollectionTestPicker } from '../components/CollectionTestPicker';
 import { useEffect, useState } from 'react';
 import { ReadingEvidenceProvider, ReadingEvidenceToggle, HighlightedReadingText } from '../components/ReadingEvidence';
@@ -85,12 +87,13 @@ function BenchmarkPaper({ entry }: { entry: Entry }) {
 }
 function BenchmarkAnswers({ entry, part, onPart, sheet, failed }: { entry: Entry; part: string; onPart: (part: string) => void; sheet: BenchmarkSheet | null; failed: boolean }) {
   const { responses, update, error } = useResponses(entry.id);
+  const {setDone}=useMaterialCompletion();
   const [review, setReview] = useState(false);
   const writing = entry.skill === 'writing';
   const listening = entry.skill === 'listening';
   const exportText = `${entry.title}\n\n${Object.entries(responses).map(([key, value]) => `${key}: ${value}`).join('\n')}`;
   return <section className={`card material-answer ${listening ? 'jahshan-listening-worksheet' : 'reading-worksheet'}`} aria-label="Benchmark answers"><header className="jahshan-worksheet-heading"><div><h3>{listening ? '3 · Fill the blanks and check answers' : writing ? '3 · Write your letter and review' : '3 · Record your answers and review'}</h3>{!writing && <p>{listening ? 'Complete the notes as you listen, then review individual printed answers.' : 'Keep the full reading text beside your questions and answers.'}</p>}</div>{!writing && <span className="jahshan-part-badge">Part {part}</span>}</header>{!writing && <details className="benchmark-timer"><summary>Practice timer</summary><PracticeTimer minutes={listening ? [40] : [15, 45]} /></details>}
-    {writing ? <BenchmarkWriting response={responses.letter ?? ''} onResponse={value => update('letter', value)} /> : <>
+    {writing ? <BenchmarkWriting response={responses.letter ?? ''} onResponse={value => update('letter', value)} onFinish={()=>{const id=`collection-test:benchmark:${entry.id}`;setDone(id,true);finishTestReview(id,`Benchmark · ${entry.title}`);}} /> : <>
       <div className="study-skill-tabs" role="group" aria-label="Answer sheet part">{['A', 'B', 'C'].map(p => <button key={p} aria-pressed={part === p} onClick={() => onPart(p)}>Part {p}</button>)}</div>
       <p className="meta">Answer each question below. Your response stays beside its question. {listening ? 'Show answer reveals the supplied printed key.' : 'Part B uses 1–6 and Part C uses 7–22. Any numbering errors in the paper are noted beside the question.'}</p>
       <BenchmarkQuestionRows key={entry.id} entry={entry} part={part} sheet={sheet} failed={failed} responses={responses} onAnswer={update} />
@@ -117,7 +120,7 @@ function useCountdown(minutes: number) {
   return { left, running, setRunning, reset, time: `${Math.floor(left / 60)}:${String(left % 60).padStart(2, '0')}` };
 }
 
-function BenchmarkWriting({ response, onResponse }: { response: string; onResponse: (value: string) => void }) {
+function BenchmarkWriting({ response, onResponse, onFinish }: { response: string; onResponse: (value: string) => void; onFinish: () => void }) {
   const [phase, setPhase] = useState<'read' | 'write' | 'review'>('read');
   const reading = useCountdown(5);
   const writing = useCountdown(40);
@@ -133,7 +136,7 @@ function BenchmarkWriting({ response, onResponse }: { response: string; onRespon
   return <div className="benchmark-writing-flow">
     <div className="benchmark-writing-steps" aria-label="Writing practice steps"><span aria-current={phase === 'read' ? 'step' : undefined}>1 · Read case notes</span><span aria-current={phase === 'write' ? 'step' : undefined}>2 · Write the letter</span><span aria-current={phase === 'review' ? 'step' : undefined}>3 · Review</span></div>
     {phase === 'read' && <section className="benchmark-phase-card"><h4>Step 1 · Read the case notes and task</h4><p>Use the source paper above. Identify who will receive the letter, why they need it, and the key facts they need to act on.</p><div className="benchmark-phase-actions"><strong>Reading time · {reading.time}</strong><button className="btn btn-primary" disabled={reading.running || reading.left === 0} onClick={() => reading.setRunning(true)}>{reading.running ? 'Reading time running…' : reading.left === 0 ? 'Reading time complete' : 'Start 5-minute reading time'}</button><button className="btn btn-secondary" disabled={reading.left > 0} onClick={() => setPhase('write')}>Start writing →</button><button className="btn btn-ghost" onClick={reading.reset}>Reset</button></div>{reading.left === 0 && <p role="status">Reading time is complete. Start the 40-minute writing phase when ready.</p>}</section>}
-    {phase === 'write' && <section className="benchmark-phase-card"><h4>Step 2 · Write your letter</h4><p>Write directly from the task. Keep the recipient and purpose in view; prioritise, paraphrase, and avoid copying the case notes word for word.</p><div className="benchmark-phase-actions"><strong>Writing time · {writing.time}</strong><button className="btn btn-secondary" disabled={writing.running || writing.left === 0} onClick={() => writing.setRunning(true)}>{writing.running ? 'Writing time running…' : writing.left === 0 ? 'Writing time complete' : 'Start 40-minute writing time'}</button><button className="btn btn-ghost" onClick={writing.reset}>Reset writing time</button><button className="btn btn-primary" onClick={() => { writing.setRunning(false); setPhase('review'); }}>Finish and review →</button></div><label htmlFor="benchmark-letter">Your letter</label><textarea id="benchmark-letter" value={response} onChange={e => onResponse(e.target.value)} placeholder="Write your letter here…" /><p className="meta">{words} words · Draft saves automatically in this browser.</p></section>}
+    {phase === 'write' && <section className="benchmark-phase-card"><h4>Step 2 · Write your letter</h4><p>Write directly from the task. Keep the recipient and purpose in view; prioritise, paraphrase, and avoid copying the case notes word for word.</p><div className="benchmark-phase-actions"><strong>Writing time · {writing.time}</strong><button className="btn btn-secondary" disabled={writing.running || writing.left === 0} onClick={() => writing.setRunning(true)}>{writing.running ? 'Writing time running…' : writing.left === 0 ? 'Writing time complete' : 'Start 40-minute writing time'}</button><button className="btn btn-ghost" onClick={writing.reset}>Reset writing time</button><button className="btn btn-primary" onClick={() => { writing.setRunning(false); setPhase('review'); onFinish(); }}>Finish and review →</button></div><label htmlFor="benchmark-letter">Your letter</label><textarea id="benchmark-letter" value={response} onChange={e => onResponse(e.target.value)} placeholder="Write your letter here…" /><p className="meta">{words} words · Draft saves automatically in this browser.</p></section>}
     {phase === 'review' && <section className="benchmark-phase-card"><h4>Step 3 · Review your letter</h4><p>Read your letter once as the recipient. Check each point, then return to editing if needed.</p><ul className="benchmark-review-checklist">{checklist.map((item, index) => <li key={item}><label><input type="checkbox" checked={!!checks[String(index)]} onChange={event => setChecks({ ...checks, [String(index)]: event.target.checked })} />{item}</label></li>)}</ul><p>{words} words</p><button className="btn btn-secondary" onClick={() => setPhase('write')}>Back to my letter</button></section>}
   </div>;
 }

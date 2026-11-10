@@ -1,4 +1,5 @@
 import runpy
+import json
 import unittest
 import tempfile
 from pathlib import Path
@@ -9,6 +10,19 @@ imports=runpy.run_path(str(ROOT/'import-offline-library.py'))
 sync=runpy.run_path(str(ROOT/'sync-study-library.py'))
 
 class LibraryIntegrityTests(unittest.TestCase):
+    def test_updates_follow_the_external_app_and_remember_its_location_when_disconnected(self):
+        locate=sync['installed_app_path']
+        with tempfile.TemporaryDirectory() as folder:
+            home=Path(folder);external=home/'drive/OET Study.app'
+            external.mkdir(parents=True)
+            self.assertEqual(locate(home,{},external),external)
+            receipt=home/'Library/Application Support/OET Study/installation.json'
+            receipt.parent.mkdir(parents=True)
+            receipt.write_text(json.dumps({'appPath':str(external)}))
+            external.rmdir()
+            self.assertEqual(locate(home,{},external),external)
+            self.assertEqual(locate(home,{'OET_MAC_APP':'/chosen/OET Study.app'},external),Path('/chosen/OET Study.app'))
+
     def test_transcription_prefers_persistent_runtime_and_stays_offline(self):
         command=sync['transcription_command']
         with tempfile.TemporaryDirectory() as folder:

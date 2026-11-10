@@ -124,7 +124,8 @@ test('source learning map accounts for the folder and routes into practice', asy
 
 test('real listening mock pairs the imported audio with its 42-question paper', async ({ page, request }) => {
   await page.goto('./');
-  await page.getByRole('button', { name: '2 · Timed mock exams', exact: true }).click();
+  await page.getByRole('button', { name: 'More study tools', exact: true }).click();
+  await page.getByRole('button', { name: /Timed mock exams/ }).click();
   await expect(page.getByRole('heading', { name: 'Real audio listening exams' })).toBeVisible();
   await page.getByRole('button', { name: 'Start real test' }).first().click();
   await expect(page.getByRole('heading', { name: 'Real Audio Listening Test 1' })).toBeVisible();

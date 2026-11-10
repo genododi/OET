@@ -1,3 +1,5 @@
+import { finishTestReview } from '../lib/testReviews';
+import { useMaterialCompletion } from '../lib/materialCompletion';
 import { CollectionTestPicker } from './CollectionTestPicker';
 import { useState } from 'react';
 import { ReadingEvidenceProvider, ReadingEvidenceToggle } from './ReadingEvidence';
@@ -38,6 +40,7 @@ const method: Record<Part, { title: string; text: string }> = {
 };
 export function JahshanReadingWorkspace({ bookUrl }: { bookUrl?: string }) {
   const [saved, setSaved] = useState(readSaved);
+  const {isDone,setDone}=useMaterialCompletion();
   const [filter, setFilter] = useState('All sources');
   const [part, setPart] = useState<Part>('A');
   const [view, setView] = useState<'questions' | 'answers' | 'index'>('questions');
@@ -89,7 +92,7 @@ export function JahshanReadingWorkspace({ bookUrl }: { bookUrl?: string }) {
         <details><summary>Earlier free-form answers and extra Part {part} notes</summary><label htmlFor="jahshan-reading-answers">Part {part} answers</label><textarea id="jahshan-reading-answers" rows={5} value={draft[part]} onChange={event => update({ [part]: event.target.value })} /></details>
         <label htmlFor="jahshan-reading-corrections">Evidence, corrections and next steps</label><textarea id="jahshan-reading-corrections" rows={5} value={draft.corrections} onChange={event => update({ corrections: event.target.value })} />
         {test.questionCount && <label>My self-marked result (out of {test.questionCount})<input type="number" min={0} max={test.questionCount} value={draft.score} onChange={event => { const value = event.target.value; if (value === '' || (Number.isInteger(Number(value)) && Number(value) >= 0 && Number(value) <= test.questionCount!)) update({ score: value }); }} /></label>}
-        <p><label><input type="checkbox" checked={draft.reviewed} onChange={event => update({ reviewed: event.target.checked })} /> I compared my answers with the key and reviewed my mistakes</label></p>
+        <p><label><input type="checkbox" checked={draft.reviewed} onChange={event => {const id=`collection-test:jahshan:reading:${test.number}`,done=event.target.checked;update({reviewed:done});const wasDone=isDone(id);setDone(id,done);if(done&&!wasDone)finishTestReview(id,`Jahshan Reading · ${test.title}`);}} /> I compared my answers with the key and reviewed my mistakes</label></p>
         <p className="meta">{saveError ? 'Not saved — download below.' : 'Saved in this browser.'} Self-marking is a practice record, not an official OET grade.</p>
         <a className="btn btn-secondary" href={`data:text/plain;charset=utf-8,${encodeURIComponent(exportText)}`} download={`jahshan-reading-${test.number}-answers.txt`}>Download this test’s answers</a>
       </section>

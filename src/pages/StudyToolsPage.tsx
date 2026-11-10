@@ -1,0 +1,9 @@
+import {useState} from 'react';
+import type {NavSection} from '../types';
+import {AppIcon} from '../components/AppIcon';
+import {studyTools} from '../lib/studyNavigation';
+export function StudyToolsPage({onNavigate}:{onNavigate:(section:NavSection,itemId?:string)=>void}) {
+  const [query,setQuery]=useState(''),[category,setCategory]=useState('practice');
+  const tools=studyTools.filter(item=>query.trim()?`${item.label} ${item.description}`.toLowerCase().includes(query.trim().toLowerCase()):item.category===category);
+  return <div className="study-hub"><section className="study-page-intro"><span className="section-kicker">WHEN YOU NEED SOMETHING EXTRA</span><h2>More study tools</h2><p>Your main collections stay in the menu. Find additional practice, notes and planning here.</p></section><label className="study-tool-search"><AppIcon name="search"/><span className="sr-only">Find a study tool</span><input type="search" value={query} onChange={event=>setQuery(event.target.value)} placeholder="Find a tool, notes or USMLE…"/></label><div className="study-hub-tabs" role="group" aria-label="Study tool categories">{[{id:'practice',label:'Extra practice'},{id:'guidance',label:'Methods & notes'},{id:'planning',label:'Planning & other study'}].map(item=><button key={item.id} type="button" aria-pressed={category===item.id && !query} onClick={()=>{setCategory(item.id);setQuery('');}}>{item.label}</button>)}</div><div className="study-tool-grid">{tools.map(item=><button className="study-tool-card" aria-label={item.label} key={item.id} onClick={()=>onNavigate(item.id)}><AppIcon name={item.icon}/><strong>{item.label}</strong><span>{item.description}</span><b aria-hidden="true">→</b></button>)}</div>{!tools.length&&<p role="status">No tools match “{query}”. Try another word.</p>}</div>;
+}

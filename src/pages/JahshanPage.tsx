@@ -1,3 +1,4 @@
+import { rememberStudyLocation } from '../lib/studyResume';
 import { CollectionTestPicker } from '../components/CollectionTestPicker';
 import { useEffect, useRef, useState } from 'react';
 import { JahshanListeningPlayer } from '../components/JahshanListeningPlayer';
@@ -37,6 +38,7 @@ type JahshanSkill = 'listening' | 'reading' | 'writing' | 'speaking';
 export function JahshanPage({ initialSkill = 'listening' }: { initialSkill?: JahshanSkill }) {
   const gatewayAllowed = canConnectLocalSource();
   const [skill, setSkill] = useState<JahshanSkill>(initialSkill);
+  useEffect(()=>rememberStudyLocation({section:'jahshan',itemId:skill}),[skill]);
   const [groupId, setGroupId] = useState(collection.groups[2].id);
   const [trackId, setTrackId] = useState('');
   const [listeningPart, setListeningPart] = useState<'A' | 'B' | 'C'>(() => trackPart(initialListeningTrack?.name) ?? 'A');

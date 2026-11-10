@@ -1,3 +1,5 @@
+import { CompletedTestReview } from '../components/CompletedTestReview';
+import { finishTestReview } from '../lib/testReviews';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { MaterialPracticePaper, type MaterialContext } from '../components/MaterialPracticePaper';
 import { StudyAudioPlayer } from '../components/StudyAudioPlayer';
@@ -188,10 +190,11 @@ function PracticeWorkspace({ file, skill, onNavigate }: { file: Material; skill:
         <label htmlFor="material-notes">Page / task, corrections and next steps</label>
         <textarea id="material-notes" className="material-notes" value={saved.notes} onChange={e => update({ notes: e.target.value })} placeholder="e.g. Page 12, Task 2. What will you improve next time?" />
         <fieldset><legend>Self-review</legend>{checklists[skill].map(check => <label key={check}><input type="checkbox" checked={saved.checks.includes(check)} onChange={e => update({ checks: e.target.checked ? [...saved.checks, check] : saved.checks.filter(item => item !== check) })} />{check}</label>)}</fieldset>
-        <div className="material-actions"><button className="btn btn-primary" disabled={!saved.response.trim()} onClick={() => update({ completed: !saved.completed })}>{saved.completed ? 'Reviewed ✓ — reopen' : 'Mark as reviewed'}</button><button className="btn btn-secondary" onClick={exportDraft}>Download my work</button></div>
+        <div className="material-actions"><button className="btn btn-primary" disabled={!saved.response.trim()} onClick={() => { update({ completed: !saved.completed }); if(!saved.completed)finishTestReview(context ? `material-unit:${file.sha256}:${context.id}:${skill}` : file.sha256,context?.title ?? file.filename); }}>{saved.completed ? 'Reviewed ✓ — reopen' : 'Mark as reviewed'}</button><button className="btn btn-secondary" onClick={exportDraft}>Download my work</button></div>
         <p className="meta">Printed keys are shown only when matched to the supplied source. Writing and speaking have no single correct response. Drafts are saved separately for each file, skill and selected task in this profile or browser.</p>
       </ReviewContainer>
     </div>
+    <CompletedTestReview completionId={context ? `material-unit:${file.sha256}:${context.id}:${skill}` : file.sha256} />
     <SourcePracticeCoach id={context?.id ?? file.id} title={context?.title ?? file.filename} skill={skill} response={saved.response} textPath={context?.textPath ?? file.textPath} startPage={context?.startPage} endPage={context?.endPage} sourceRanges={context?.ranges} />
   </section>;
 }
@@ -241,6 +244,7 @@ export function MaterialsPage({ itemId, returnTo, onNavigate }: { itemId?: strin
     </section>
     {libraryError && <p role="alert">{libraryError}</p>}
     {selected ? <>
+      <CompletedTestReview completionId={selected.sha256} />
       <div className="material-completion-toolbar"><button className="btn btn-ghost" onClick={() => onNavigate(returnTo === 'recent' ? 'recent' : 'materials')}>← {returnTo === 'recent' ? 'Back to recently added files' : 'Back to all supplied files'}</button><MaterialDone fileId={selected.sha256} filename={selected.filename} /></div>
       <div className="material-skill-tabs" role="group" aria-label="Practice skill">{skills.map(item => <button key={item} aria-pressed={skill === item} onClick={() => setSkill(item)}>{title(item)}</button>)}</div>
       <PracticeWorkspace key={`${selected.id}:${skill}`} file={selected} skill={skill} onNavigate={onNavigate} />

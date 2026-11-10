@@ -4,7 +4,8 @@ The Mac application runs the OET workspace, original recordings, transcripts,
 papers and live AI mentoring without an internet connection or an API key.
 It targets the supplied Apple Silicon Mac. The browser website remains available.
 
-Open `~/Applications/OET Study.app` and create a profile. Each profile uses a
+Open `/Volumes/GENODODI/OET Study.app` and create a profile. Keep GENODODI
+connected while using this copy of the application. Each profile uses a
 separate persistent Chromium session, including its own answers, drafts, notes,
 preferences and mentor conversations. Profiles are local study spaces, not
 password-protected accounts. Recordings made with the speaking recorder should
@@ -68,7 +69,8 @@ npm run desktop:build
 npm run desktop:check
 ```
 
-The builder installs an ad-hoc signed application in `~/Applications`, with a
+The builder installs an ad-hoc signed application at its remembered location (currently
+`/Volumes/GENODODI/OET Study.app`), with a
 stethoscope icon and its own bundled Electron runtime. Application Support data
 and the original library are preserved during a rebuild. `OET_MAC_RESOURCES`,
 `OET_MAC_AI` and `OET_MAC_OUTPUT` configure other installation locations.
@@ -121,3 +123,27 @@ download is pinned to a repository revision and full SHA-256. The inference runt
 comes from [llama.cpp](https://github.com/ggml-org/llama.cpp/releases/tag/b11734);
 the quantized model comes from
 [Unsloth's Qwen3.5 4B repository](https://huggingface.co/unsloth/Qwen3.5-4B-GGUF).
+
+## Study desk and revision
+
+Benchmark, Jahshan, My OET & AMR files and Recently added are the main collections.
+Other modules are under More study tools. Yellow highlights match question
+keywords to source words without using an answer key. Mark a completed test Done
+to queue a mentor review; saved reviews are in My test reviews. The request uses
+that test's response snapshot, continues across page navigation and waits while
+recording or audio is playing. No AI review is claimed when answers or the
+configured mentor are unavailable.
+
+Step 1 answer review automatically retrieves related extracts from the learner's
+local First Aid for Step 1 PDF. The Mac app indexes the latest labelled edition
+from its private USMLE library and shows the actual PDF page and an original-page
+link. The textbook and its text index stay in Application Support and are not
+published with the website. Timed questions do not show textbook matches before
+submission. Image-only questions can be searched using a typed concept when no
+confident automatic match is possible.
+
+The installer remembers the app's location in
+`~/Library/Application Support/OET Study/installation.json`. `OET_MAC_APP` overrides
+that location. Updates on another volume are copied and verified before the old
+bundle is moved into a dated backup beside the installed app. Profiles, models
+and the existing offline library remain in their current locations.

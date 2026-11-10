@@ -1,3 +1,4 @@
+import { installedMacApp } from './macos-installation.mjs';
 // Exercise only a disposable instance; never reload or close the learner's app.
 import { _electron as electron } from 'playwright-core';
 import { expect } from '@playwright/test';
@@ -8,7 +9,7 @@ import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 
 const data = await fs.mkdtemp(path.join(os.tmpdir(), 'oet-collection-done-'));
-const executable = process.env.OET_SMOKE_EXECUTABLE || path.join(os.homedir(), 'Applications/OET Study.app/Contents/MacOS/OET Study');
+const executable = process.env.OET_SMOKE_EXECUTABLE || path.join(installedMacApp(), 'Contents/MacOS/OET Study');
 const app = await electron.launch({ executablePath: executable, args: [], timeout: 60000,
   env: { ...process.env, OET_DESKTOP_USER_DATA: data, OET_DESKTOP_SOURCE: path.join(data, 'missing-drive'), OET_DESKTOP_SOURCE_LIBRARY: path.join(data, 'missing-source-cache') } });
 try {

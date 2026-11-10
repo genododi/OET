@@ -7,6 +7,7 @@ import { githubRevision, sourceRevision, verifyBuildRevision } from './macos-bui
 import { checkInternalLibrary } from '../desktop/offline-library.mjs';
 import { checkSharedMedia } from './usmle-shared-media.mjs';
 import { copyBuildAssets } from './copy-build-assets.mjs';
+import { installedMacApp, installMacApp } from './macos-installation.mjs';
 
 const root = process.cwd();
 const source = sourceRevision(root);
@@ -78,24 +79,12 @@ for (const directory of results) {
   verifyBuildRevision(build, sourceRevision(root), githubRevision(root));
   execFileSync('codesign', ['--force', '--deep', '--sign', '-', app], { stdio: 'inherit' });
   execFileSync('codesign', ['--verify', '--deep', '--strict', app], { stdio: 'inherit' });
-  const applications = path.join(process.env.HOME, 'Applications');
-  await fs.mkdir(applications, { recursive: true });
-  const installed = path.join(applications, 'OET Study.app');
-  // Keep every prior installed bundle intact. A running older version may still
-  // have resources open, and an existing previous.app must never be removed.
-  try {
-    await fs.access(installed);
-    let prior = 'unrecorded';
-    try { const stamp = JSON.parse(await fs.readFile(path.join(installed, 'Contents/Resources/build-info.json'), 'utf8')).gitCommit; prior = /^[a-f0-9]{40}$/.test(stamp ?? '') ? stamp : 'unrecorded'; } catch { /* Preserve an unstamped install too. */ }
-    const backup = path.join(process.env.HOME, 'Library/Application Support/OET Study/app-backups', `${String(prior).slice(0, 40)}-${Date.now()}`);
-    await fs.mkdir(backup, { recursive: true });
-    await fs.rename(installed, path.join(backup, 'OET Study.app'));
-  } catch (error) { if (error.code !== 'ENOENT') throw error; }
-  await fs.rename(app, installed);
+  const installed = installedMacApp();
+  await installMacApp(app,installed);
   const shortcut = path.join(process.env.HOME, 'Desktop/OET Study.app');
   try { await fs.lstat(shortcut); } catch (error) { if (error.code === 'ENOENT') await fs.symlink(installed, shortcut); else throw error; }
   try {
-    await fs.writeFile(path.join(resourceRoot, 'START HERE.txt'), 'OET STUDY — OFFLINE MAC INSTALLATION\n\nOpen ~/Applications/OET Study.app, then create or choose your study profile.\nReleased recordings and originals are saved in ~/Library/Application Support/OET Study/offline-library on this Mac. GENODODI is only needed to import newly added source files.\nThe AI model is installed on this Mac. No browser, Node.js, API key, external drive or internet connection is required for saved study material.\nThe local mentor loads on first use.\nYour profile data is saved under ~/Library/Application Support/OET Study on this Mac.\nBack up answers, drafts and study history through Profiles & backups.\n');
+    await fs.writeFile(path.join(resourceRoot, 'START HERE.txt'), `OET STUDY — OFFLINE MAC INSTALLATION\n\nOpen ${installed}, then create or choose your study profile.\nReleased recordings and originals are saved in ~/Library/Application Support/OET Study/offline-library on this Mac. GENODODI is only needed to import newly added source files.\nThe AI model is installed on this Mac. No browser, Node.js, API key or internet connection is required. Keep the drive containing the application connected while using it.\nThe local mentor loads on first use.\nYour profile data is saved under ~/Library/Application Support/OET Study on this Mac.\nBack up answers, drafts and study history through Profiles & backups.\n`);
   } catch (error) {
     if (error.code !== 'ENOENT') throw error;
     console.log('The external library is disconnected. The app is installed; its existing external instructions will be retained.');

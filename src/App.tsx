@@ -1,8 +1,11 @@
 import { lazy, Suspense, useEffect, useState } from 'react';
+import { rememberStudyLocation } from './lib/studyResume';
 import { Layout } from './components/Layout';
 import type { NavSection } from './types';
 import { buildHash, isPracticeFilter, parseRoute } from './lib/routing';
 import { initPreferredProfession } from './lib/preferredProfession';
+const StudyToolsPage = lazy(() => import('./pages/StudyToolsPage').then(m => ({default:m.StudyToolsPage})));
+const TestReviewsPage = lazy(() => import('./pages/TestReviewsPage').then(m => ({default:m.TestReviewsPage})));
 const WebAppPage = lazy(() => import('./pages/WebAppPage').then(m => ({ default: m.WebAppPage })));
 
 const StartPage = lazy(() => import('./pages/StartPage').then(m => ({ default: m.StartPage })));
@@ -28,6 +31,8 @@ const BooksPage = lazy(() => import('./pages/BooksPage').then((module) => ({ def
 const UsmlePage = lazy(() => import('./pages/UsmlePage').then((module) => ({ default: module.UsmlePage })));
 
 const pageMeta: Record<NavSection, { title: string; subtitle?: string }> = {
+  tools: { title: 'More study tools', subtitle: 'Extra practice, guidance and planning' },
+  reviews: { title: 'My test reviews', subtitle: 'Mistakes, key points and new learning from your completed tests' },
   app: { title: 'Install & offline study', subtitle: 'iPhone, iPad and your local study profiles' },
   walkthrough: { title: 'Exam walkthroughs', subtitle: 'See the method, try an answer, understand the reasoning' },
   dashboard: { title: 'Detailed dashboard', subtitle: 'Study history and advanced tools' },
@@ -44,8 +49,8 @@ const pageMeta: Record<NavSection, { title: string; subtitle?: string }> = {
     subtitle: 'Learn from feedback and make corrections stick',
   },
   home: {
-    title: 'Start here',
-    subtitle: 'Your next step in OET preparation',
+    title: 'Study desk',
+    subtitle: 'Your collections, your next test, your learning',
   },
   planner: {
     title: 'Grade A Study Plan',
@@ -97,6 +102,7 @@ function App() {
   const [route, setRoute] = useState(parseRoute);
   const [preferredProfession] = useState(() => initPreferredProfession());
   const meta = pageMeta[route.section];
+  useEffect(() => { rememberStudyLocation(route); }, [route]);
 
   useEffect(() => {
     const onRouteChange = () => setRoute(parseRoute());
@@ -125,6 +131,8 @@ function App() {
 
   const renderPage = () => {
     switch (route.section) {
+      case 'tools': return <StudyToolsPage onNavigate={navigate} />;
+      case 'reviews': return <TestReviewsPage />;
       case 'app': return <WebAppPage />;
       case 'notebook': return <NotebookPage />;
       case 'listening': return <AuthenticListeningPage />;

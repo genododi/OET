@@ -1,6 +1,9 @@
 # Mac app and GitHub parity
 
 The user requires the installed macOS app to match the latest GitHub changes.
+The application is currently at `/Volumes/GENODODI/OET Study.app`. Honor the
+saved `installation.json` appPath and `OET_MAC_APP` override when building and
+checking. Preserve its location, previous bundles and the Mac’s profile data.
 After changing and publishing this project, complete this release sequence:
 
 1. Run the checks relevant to the change, commit and push the source to GitHub main.

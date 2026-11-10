@@ -1,4 +1,5 @@
 import { rememberCurrentStudy } from '../lib/currentStudy';
+import { FirstAidRevision } from './FirstAidRevision';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type {
   OetSessionStage,
@@ -403,6 +404,7 @@ function SessionRunnerContent({ config, onExit }: Props) {
             <p><strong>Answer: {item.options?.find(option => option.correct)?.id}. {item.options?.find(option => option.correct)?.label}</strong></p>
             <p style={{ whiteSpace: 'pre-wrap' }}>{item.explanation}</p>
             <UsmleSourceImages images={item.usmleAnswerImages} label="Printed answer source" />
+            {item.usmleStep==='step1' && <FirstAidRevision enabled questionId={item.id} prompt={item.prompt ?? item.title} answer={item.options?.find(option=>option.correct)?.label} explanation={item.explanation} />}
             {item.usmleSource && <p className="meta">{item.usmleSource}</p>}
           </details>)}</section>}
           {coached && <p className="mentor-coached-note">Coached learning saved. Complete a fresh timed session without mentor help to measure independent readiness.</p>}

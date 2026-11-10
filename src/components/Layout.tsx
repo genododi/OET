@@ -4,6 +4,8 @@ import { DailyPearlBalloon } from './DailyPearlBalloon';
 import { Sidebar } from './Sidebar';
 import { SettingsModal } from './SettingsModal';
 import { SettingsContext } from '../lib/settingsContext';
+import { AutomaticTestReviews } from './AutomaticTestReviews';
+import { navigationParent } from '../lib/studyNavigation';
 import { AppIcon } from './AppIcon';
 
 interface Props {
@@ -38,15 +40,11 @@ export function Layout({ active, onNavigate, title, subtitle, children }: Props)
               <span aria-hidden="true">☰</span>
             </button>
             <div className="topbar-titles">
-              <span className="topbar-kicker">OET medicine workspace</span>
+              {navigationParent(active) === 'tools' && active !== 'tools' ? <div className="study-breadcrumb"><button type="button" onClick={()=>onNavigate('tools')}>More study tools</button><span aria-hidden="true">/</span></div> : <span className="topbar-kicker">Your personal study space</span>}
               <h1>{title}</h1>
               {subtitle && <p>{subtitle}</p>}
             </div>
             <div className="topbar-actions">
-              <button type="button" className="topbar-practice" aria-label="Continue learning" onClick={() => onNavigate('walkthrough')}>
-                <AppIcon name="sparkles" />
-                <span>Continue learning</span>
-              </button>
               <button
                 type="button"
                 className="settings-toggle"
@@ -58,9 +56,10 @@ export function Layout({ active, onNavigate, title, subtitle, children }: Props)
               </button>
             </div>
           </header>
+          <AutomaticTestReviews onOpen={()=>onNavigate('reviews')} />
           <main className="page-content">{children}</main>
         </div>
-        <DailyPearlBalloon section={active} />
+        {active === 'pearls' && <DailyPearlBalloon section={active} />}
         <SettingsModal open={settingsOpen} onClose={() => setSettingsOpen(false)} />
       </div>
     </SettingsContext.Provider>

@@ -8,7 +8,10 @@ import { execFileSync } from 'node:child_process';
 export async function copyBuildAssets(source, destination, { recursive = false } = {}) {
   if (process.platform !== 'darwin') return fs.cp(source, destination, { recursive, mode: 2 });
   await fs.mkdir(recursive ? destination : path.dirname(destination), { recursive: true });
-  execFileSync('/bin/cp', [recursive ? '-cR' : '-c', recursive ? source + path.sep + '.' : source, destination], { stdio: 'pipe' });
+  const sameVolume=(await fs.stat(source)).dev===(await fs.stat(recursive ? destination : path.dirname(destination))).dev;
+  // A removable FAT volume cannot share APFS blocks. Use its free storage for
+  // a real copy while continuing to require clones for same-volume staging.
+  execFileSync('/bin/cp', [recursive ? sameVolume ? '-cR' : '-R' : sameVolume ? '-c' : '-p', recursive ? source + path.sep + '.' : source, destination], { stdio: 'pipe' });
   // cp cannot combine its clone and no-xattr options. Strip copied metadata
   // only from the new staging copy, leaving the source and installed app alone.
   execFileSync('/usr/bin/xattr', ['-crs', destination], { stdio: 'pipe' });

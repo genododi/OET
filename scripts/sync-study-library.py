@@ -34,6 +34,14 @@ def transcription_command(library,runtime=TRANSCRIPTION_ROOT):
     prefix=[str(interpreter)] if interpreter.is_file() else ['uv','run','--offline','--with','mlx-whisper','python']
     return ['env','HF_HUB_OFFLINE=1',*prefix,'scripts/transcribe-materials.py','--library',str(library),'--limit','10','--upgrade-existing']
 
+def installed_app_path(home=Path.home(),environment=os.environ,external=Path('/Volumes/GENODODI/OET Study.app')):
+    if environment.get('OET_MAC_APP'):return Path(environment['OET_MAC_APP'])
+    try:
+        saved=json.loads((home/'Library/Application Support/OET Study/installation.json').read_text())['appPath']
+        if isinstance(saved,str) and Path(saved).is_absolute() and saved.endswith('.app'):return Path(saved)
+    except (OSError,ValueError,KeyError,TypeError):pass
+    return external if external.is_dir() else home/'Applications/OET Study.app'
+
 def run(command,timeout=21600,capture=False):
     process=subprocess.Popen(command,cwd=ROOT,text=True,stdout=subprocess.PIPE if capture else None,start_new_session=True)
     try:output,_=process.communicate(timeout=timeout)
@@ -98,12 +106,12 @@ def main():
                 run(['npm','run','test:unit','--','--maxWorkers=2'],timeout=600)
                 run(['git','add','--',*GENERATED]);run(['git','commit','-m','Update supplied OET practice resources and source-matched transcripts']);run(['git','push','origin','main'],timeout=300)
             current=run(['git','rev-parse','HEAD'],capture=True)
-            try:installed=json.loads((Path.home()/'Applications/OET Study.app/Contents/Resources/build-info.json').read_text())
+            try:installed=json.loads((installed_app_path()/'Contents/Resources/build-info.json').read_text())
             except (OSError,ValueError):installed={}
             rebuild=bool(changed) or installed.get('gitCommit')!=current
             if rebuild:
                 save(status='building-mac-app',gitCommit=current);run(['npm','run','desktop:build'])
-                run(['env','OET_SMOKE_EXECUTABLE='+str(Path.home()/'Applications/OET Study.app/Contents/MacOS/OET Study'),'OET_SMOKE_LIBRARY=1','node','scripts/verify-macos-app.mjs'])
+                run(['env','OET_SMOKE_EXECUTABLE='+str(installed_app_path()/'Contents/MacOS/OET Study'),'OET_SMOKE_LIBRARY=1','node','scripts/verify-macos-app.mjs'])
             run(['npm','run','desktop:check'],timeout=120)
             # The workflow remains responsible for publishing only verified web assets.
             runs=[]
