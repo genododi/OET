@@ -10,10 +10,11 @@ import { execFileSync } from 'node:child_process';
 
 const root = process.cwd();
 const data = process.env.OET_SMOKE_DATA || await fs.mkdtemp(path.join(os.tmpdir(), 'oet-mac-smoke-'));
-// An app installed on an external USB drive can take about a minute to open,
-// and longer just after a rebuild while macOS assesses the new signature.
+// An app installed on an external USB drive takes about a minute to open. The
+// first launch after a rebuild reads the whole 4–5 GB bundle while macOS assesses
+// the new signature, which took about eight minutes on the GENODODI drive.
 const externalVolume = !!process.env.OET_SMOKE_EXECUTABLE?.startsWith('/Volumes/');
-const launchTimeout = externalVolume ? 300000 : 60000;
+const launchTimeout = externalVolume ? 900000 : 60000;
 const windowTimeout = externalVolume ? 180000 : 30000;
 const app = await electron.launch({
   ...(process.env.OET_SMOKE_EXECUTABLE ? { executablePath: process.env.OET_SMOKE_EXECUTABLE, args: [] } : { args: [path.join(root, 'desktop')] }),
