@@ -31,6 +31,8 @@ test('a complete Mac copy is usable without a drive/network, while corruption or
     const incomplete = await checkInternalLibrary(root, catalogFile);
     assert.equal(incomplete.state, 'incomplete');
     assert.equal(describeStartupCheck({ files: { state: 'checked', changedFiles: 0 }, published: { state: 'current' }, localLibrary: incomplete }).state, 'library-incomplete');
+    // A check that timed out on a slow drive must not claim originals need restoring.
+    assert.notEqual(describeStartupCheck({ files: { state: 'checked', changedFiles: 0 }, published: { state: 'current' }, localLibrary: { state: 'unavailable' } }).state, 'library-incomplete');
     await fs.writeFile(path.join(root, 'text', sha + '.json'), text);
     const previous = Number(stat.mtimeNs) / 1e9;
     await fs.writeFile(file, Buffer.alloc(data.length, 88)); await fs.utimes(file, previous + 5, previous + 5);

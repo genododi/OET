@@ -10,11 +10,16 @@ import { execFileSync } from 'node:child_process';
 
 const root = process.cwd();
 const data = process.env.OET_SMOKE_DATA || await fs.mkdtemp(path.join(os.tmpdir(), 'oet-mac-smoke-'));
+// An app installed on an external USB drive can take about a minute to open,
+// and longer just after a rebuild while macOS assesses the new signature.
+const externalVolume = !!process.env.OET_SMOKE_EXECUTABLE?.startsWith('/Volumes/');
+const launchTimeout = externalVolume ? 300000 : 60000;
+const windowTimeout = externalVolume ? 180000 : 30000;
 const app = await electron.launch({
   ...(process.env.OET_SMOKE_EXECUTABLE ? { executablePath: process.env.OET_SMOKE_EXECUTABLE, args: [] } : { args: [path.join(root, 'desktop')] }),
   ...(!process.env.OET_SMOKE_EXECUTABLE && process.env.OET_SMOKE_DEV_EXECUTABLE ? { executablePath: process.env.OET_SMOKE_DEV_EXECUTABLE } : {}),
   env: { ...process.env, OET_DESKTOP_USER_DATA: data, ...(process.env.OET_SMOKE_USMLE === '1' ? { OET_DESKTOP_USMLE: path.join(os.homedir(), 'Library/Application Support/OET Study/usmle-library') } : {}), ...(!process.env.OET_SMOKE_EXECUTABLE ? { OET_DESKTOP_WEB: path.join(root, 'dist'), OET_DESKTOP_LIBRARY: '/Volumes/GENODODI/OET/Mac App/offline-library', OET_DESKTOP_AI: path.join(os.homedir(), 'Library/Application Support/OET Study/local-ai') } : {}) },
-  timeout: 60000,
+  timeout: launchTimeout,
 });
 try {
   let page = await app.firstWindow();
@@ -35,7 +40,7 @@ try {
   const first = await page.evaluate(() => window.oetDesktop.createProfile('First learner'));
   const second = await page.evaluate(() => window.oetDesktop.createProfile('Second learner'));
   const switchTo = async id => {
-    const opened = app.waitForEvent('window');
+    const opened = app.waitForEvent('window', { timeout: windowTimeout });
     void page.evaluate(id => window.oetDesktop.switchProfile(id), id).catch(() => {});
     page = await opened; await page.waitForLoadState('domcontentloaded');
     await page.getByRole('button', { name: 'Profiles & backups' }).waitFor();

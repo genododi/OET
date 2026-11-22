@@ -78,7 +78,7 @@ def main():
                 run(['git','fetch','origin','main'],timeout=300);run(['git','merge','--ff-only','origin/main']);head=run(['git','rev-parse','HEAD'],capture=True)
             save(status='source-checked',gitCommit=head)
             if args.check_only:
-                run(['npm','run','desktop:check'],timeout=120);save(status='verified');return
+                run(['npm','run','desktop:check'],timeout=900);save(status='verified');return
             run([sys.executable,'scripts/import-offline-library.py','--source',args.source,'--output',args.library])
             run([sys.executable,'scripts/expand-study-archives.py','--library',args.library,'--destination',str(Path(args.source)/'Imported Archives')])
             run([sys.executable,'scripts/refresh-supplied-formats.py'])
@@ -112,7 +112,7 @@ def main():
             if rebuild:
                 save(status='building-mac-app',gitCommit=current);run(['npm','run','desktop:build'])
                 run(['env','OET_SMOKE_EXECUTABLE='+str(installed_app_path()/'Contents/MacOS/OET Study'),'OET_SMOKE_LIBRARY=1','node','scripts/verify-macos-app.mjs'])
-            run(['npm','run','desktop:check'],timeout=120)
+            run(['npm','run','desktop:check'],timeout=900)
             # The workflow remains responsible for publishing only verified web assets.
             runs=[]
             for attempt in range(4):
